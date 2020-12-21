@@ -1,7 +1,8 @@
 use rand::Rng;
 
 /// Dice types
-enum Dice {
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Die {
     D4 = 4,
     D6 = 6,
     D8 = 8,
@@ -11,9 +12,25 @@ enum Dice {
     D100 = 100,
 }
 
+/// Rolled value of a die
+struct DieRoll {
+    /// Die type
+    die: Die,
+    /// Rolled number
+    roll: u32,
+}
+
 /// Roll a die
-fn roll_die(rng: &mut impl Rng, dice: Dice) -> u32 {
-    rng.gen_range(1..=dice as u32)
+fn roll_die(rng: &mut impl Rng, die: Die) -> DieRoll {
+    DieRoll {
+        die,
+        roll: rng.gen_range(1..=die as u32),
+    }
+}
+
+/// Roll multiple dice
+fn roll_dice(rng: &mut impl Rng, die: Die, quantity: u32) -> Vec<DieRoll> {
+    (1..=quantity).map(|_| roll_die(rng, die)).collect()
 }
 
 #[cfg(test)]
@@ -23,21 +40,69 @@ mod tests {
     use rand_pcg::Pcg64;
 
     #[test]
-    fn test_roll_die() {
+    fn test_roll_die_d4() {
         let mut rng = Pcg64::from_entropy();
-        let roll = roll_die(&mut rng, Dice::D4);
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D4);
+        assert_eq!(die, Die::D4);
         assert!(roll >= 1 && roll <= 4);
-        let roll = roll_die(&mut rng, Dice::D6);
+    }
+
+    #[test]
+    fn test_roll_die_d6() {
+        let mut rng = Pcg64::from_entropy();
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D6);
+        assert_eq!(die, Die::D6);
         assert!(roll >= 1 && roll <= 6);
-        let roll = roll_die(&mut rng, Dice::D8);
+    }
+
+    #[test]
+    fn test_roll_die_d8() {
+        let mut rng = Pcg64::from_entropy();
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D8);
+        assert_eq!(die, Die::D8);
         assert!(roll >= 1 && roll <= 8);
-        let roll = roll_die(&mut rng, Dice::D10);
+    }
+
+    #[test]
+    fn test_roll_die_d10() {
+        let mut rng = Pcg64::from_entropy();
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D10);
+        assert_eq!(die, Die::D10);
         assert!(roll >= 1 && roll <= 10);
-        let roll = roll_die(&mut rng, Dice::D12);
+    }
+
+    #[test]
+    fn test_roll_die_d12() {
+        let mut rng = Pcg64::from_entropy();
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D12);
+        assert_eq!(die, Die::D12);
         assert!(roll >= 1 && roll <= 12);
-        let roll = roll_die(&mut rng, Dice::D20);
+    }
+
+    #[test]
+    fn test_roll_die_d20() {
+        let mut rng = Pcg64::from_entropy();
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D20);
+        assert_eq!(die, Die::D20);
         assert!(roll >= 1 && roll <= 20);
-        let roll = roll_die(&mut rng, Dice::D100);
+    }
+
+    #[test]
+    fn test_roll_die_d100() {
+        let mut rng = Pcg64::from_entropy();
+        let DieRoll { die, roll } = roll_die(&mut rng, Die::D100);
+        assert_eq!(die, Die::D100);
         assert!(roll >= 1 && roll <= 100);
+    }
+
+    #[test]
+    fn test_roll_dice() {
+        let mut rng = Pcg64::from_entropy();
+        let rolls = roll_dice(&mut rng, Die::D6, 4);
+        assert_eq!(rolls.len(), 4);
+        for DieRoll { die, roll } in rolls {
+            assert_eq!(die, Die::D6);
+            assert!(roll >= 1 && roll <= 6);
+        }
     }
 }
