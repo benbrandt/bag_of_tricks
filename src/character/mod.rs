@@ -2,6 +2,7 @@ mod ability;
 
 use ability::AbilityScores;
 use rand::Rng;
+use std::fmt;
 
 /// Character information
 #[derive(Debug)]
@@ -15,6 +16,12 @@ impl Character {
         Self {
             abilities: AbilityScores::new(rng),
         }
+    }
+}
+
+impl fmt::Display for Character {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.abilities)
     }
 }
 

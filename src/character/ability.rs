@@ -1,5 +1,8 @@
-use crate::dice_roller::{roll_dice, Die};
+use std::fmt;
+
 use rand::Rng;
+
+use crate::dice_roller::{roll_dice, Die};
 
 /// Value of a base ability score.
 #[derive(Debug)]
@@ -46,6 +49,30 @@ impl AbilityScores {
             strength: AbilityScore::new(rng),
             wisdom: AbilityScore::new(rng),
         }
+    }
+}
+
+impl fmt::Display for AbilityScores {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let Self {
+            charisma,
+            constitution,
+            dexterity,
+            intelligence,
+            strength,
+            wisdom,
+        } = self;
+        for (abbr, ability) in &[
+            ("STR", strength),
+            ("DEX", dexterity),
+            ("CON", constitution),
+            ("INT", intelligence),
+            ("WIS", wisdom),
+            ("CHA", charisma),
+        ] {
+            writeln!(f, "{} {:+3} ({})", abbr, ability.modifier(), ability.0)?;
+        }
+        write!(f, "")
     }
 }
 
