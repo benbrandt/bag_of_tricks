@@ -2,7 +2,7 @@ use rand::Rng;
 
 /// Dice types
 #[derive(Clone, Copy, Debug, PartialEq)]
-enum Die {
+pub(crate) enum Die {
     D4 = 4,
     D6 = 6,
     D8 = 8,
@@ -13,23 +13,23 @@ enum Die {
 }
 
 /// Rolled value of a die
-struct DieRoll {
+pub(crate) struct DieRoll {
     /// Die type
-    die: Die,
+    pub(crate) die: Die,
     /// Rolled number
-    roll: u32,
+    pub(crate) roll: i32,
 }
 
 /// Roll a die
 fn roll_die(rng: &mut impl Rng, die: Die) -> DieRoll {
     DieRoll {
         die,
-        roll: rng.gen_range(1..=die as u32),
+        roll: rng.gen_range(1..=die as i32),
     }
 }
 
 /// Roll multiple dice
-fn roll_dice(rng: &mut impl Rng, die: Die, quantity: u32) -> Vec<DieRoll> {
+pub(crate) fn roll_dice(rng: &mut impl Rng, die: Die, quantity: u32) -> Vec<DieRoll> {
     (1..=quantity).map(|_| roll_die(rng, die)).collect()
 }
 

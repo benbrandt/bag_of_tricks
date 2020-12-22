@@ -1,7 +1,21 @@
+use crate::dice_roller::{roll_dice, Die};
+use rand::Rng;
+
 /// Value of a base ability score.
 struct AbilityScore(i32);
 
 impl AbilityScore {
+    /// Generate a new ability score based on dice rolls
+    fn new(rng: &mut impl Rng) -> Self {
+        // Roll 4 d6's
+        let mut rolls = roll_dice(rng, Die::D6, 4);
+        // Reverse sort, highest to lowest
+        rolls.sort_by(|a, b| b.roll.cmp(&a.roll));
+        // Sum top 3
+        let score = rolls.drain(0..3).fold(0, |acc, d| acc + d.roll);
+        AbilityScore(score)
+    }
+
     /// Return modifier based on ability score.
     const fn modifier(&self) -> i32 {
         // Lower value to closest even number, subtract by 10 and divide by two
@@ -12,6 +26,23 @@ impl AbilityScore {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_ability_score_new() {
+        let mut rng = Pcg64::from_entropy();
+        let score = AbilityScore::new(&mut rng);
+        assert!(score.0 >= 3 && score.0 <= 18);
+    }
+
+    #[test]
+    fn test_ability_score_avg() {
+        let mut rng = Pcg64::from_entropy();
+        let average = (0..100).fold(0, |acc, _| acc + AbilityScore::new(&mut rng).0) as f64 / 100.0;
+        // Comparison based on http://rumkin.com/reference/dnd/diestats.php
+        assert!(12.24 - 2.847 < average && average < 12.24 + 2.847);
+    }
 
     #[test]
     fn test_ability_score_modifier() {
