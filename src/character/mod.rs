@@ -1,6 +1,6 @@
 mod ability;
 
-use ability::AbilityScores;
+use ability::{AbilityScoreIncreases, AbilityScores};
 use rand::Rng;
 use std::fmt;
 
@@ -14,7 +14,7 @@ impl Character {
     /// Generate a new random character
     pub fn new(rng: &mut impl Rng) -> Self {
         Self {
-            abilities: AbilityScores::new(rng),
+            abilities: AbilityScores::new(rng, AbilityScoreIncreases::default()),
         }
     }
 }
@@ -45,11 +45,11 @@ mod tests {
                     wisdom,
                 },
         } = Character::new(&mut rng);
-        assert!(charisma.0 >= 3 && charisma.0 <= 18);
-        assert!(constitution.0 >= 3 && constitution.0 <= 18);
-        assert!(dexterity.0 >= 3 && dexterity.0 <= 18);
-        assert!(intelligence.0 >= 3 && intelligence.0 <= 18);
-        assert!(strength.0 >= 3 && strength.0 <= 18);
-        assert!(wisdom.0 >= 3 && wisdom.0 <= 18);
+        assert!(charisma.base >= 3 && charisma.base <= 18);
+        assert!(constitution.base >= 3 && constitution.base <= 18);
+        assert!(dexterity.base >= 3 && dexterity.base <= 18);
+        assert!(intelligence.base >= 3 && intelligence.base <= 18);
+        assert!(strength.base >= 3 && strength.base <= 18);
+        assert!(wisdom.base >= 3 && wisdom.base <= 18);
     }
 }
