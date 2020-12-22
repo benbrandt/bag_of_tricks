@@ -3,7 +3,7 @@ use rand::Rng;
 
 /// Value of a base ability score.
 #[derive(Debug)]
-struct AbilityScore(i32);
+pub(crate) struct AbilityScore(pub(crate) i32);
 
 impl AbilityScore {
     /// Generate a new ability score based on dice rolls
@@ -26,18 +26,18 @@ impl AbilityScore {
 
 /// Full set of ability scores a character could have
 #[derive(Debug)]
-struct AbilityScores {
-    charisma: AbilityScore,
-    constitution: AbilityScore,
-    dexterity: AbilityScore,
-    intelligence: AbilityScore,
-    strength: AbilityScore,
-    wisdom: AbilityScore,
+pub(crate) struct AbilityScores {
+    pub(crate) charisma: AbilityScore,
+    pub(crate) constitution: AbilityScore,
+    pub(crate) dexterity: AbilityScore,
+    pub(crate) intelligence: AbilityScore,
+    pub(crate) strength: AbilityScore,
+    pub(crate) wisdom: AbilityScore,
 }
 
 impl AbilityScores {
     /// Generate a set of ability scores for a character
-    fn new(rng: &mut impl Rng) -> Self {
+    pub(crate) fn new(rng: &mut impl Rng) -> Self {
         Self {
             charisma: AbilityScore::new(rng),
             constitution: AbilityScore::new(rng),
