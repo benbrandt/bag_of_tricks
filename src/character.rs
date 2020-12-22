@@ -2,6 +2,7 @@ use crate::dice_roller::{roll_dice, Die};
 use rand::Rng;
 
 /// Value of a base ability score.
+#[derive(Debug)]
 struct AbilityScore(i32);
 
 impl AbilityScore {
@@ -13,13 +14,38 @@ impl AbilityScore {
         rolls.sort_by(|a, b| b.roll.cmp(&a.roll));
         // Sum top 3
         let score = rolls.drain(0..3).fold(0, |acc, d| acc + d.roll);
-        AbilityScore(score)
+        Self(score)
     }
 
     /// Return modifier based on ability score.
     const fn modifier(&self) -> i32 {
         // Lower value to closest even number, subtract by 10 and divide by two
         (self.0 - self.0 % 2 - 10) / 2
+    }
+}
+
+/// Full set of ability scores a character could have
+#[derive(Debug)]
+struct AbilityScores {
+    charisma: AbilityScore,
+    constitution: AbilityScore,
+    dexterity: AbilityScore,
+    intelligence: AbilityScore,
+    strength: AbilityScore,
+    wisdom: AbilityScore,
+}
+
+impl AbilityScores {
+    /// Generate a set of ability scores for a character
+    fn new(rng: &mut impl Rng) -> Self {
+        Self {
+            charisma: AbilityScore::new(rng),
+            constitution: AbilityScore::new(rng),
+            dexterity: AbilityScore::new(rng),
+            intelligence: AbilityScore::new(rng),
+            strength: AbilityScore::new(rng),
+            wisdom: AbilityScore::new(rng),
+        }
     }
 }
 
@@ -66,5 +92,24 @@ mod tests {
         assert_eq!(AbilityScore(18).modifier(), 4);
         assert_eq!(AbilityScore(19).modifier(), 4);
         assert_eq!(AbilityScore(20).modifier(), 5);
+    }
+
+    #[test]
+    fn test_ability_scores() {
+        let mut rng = Pcg64::from_entropy();
+        let AbilityScores {
+            charisma,
+            constitution,
+            dexterity,
+            intelligence,
+            strength,
+            wisdom,
+        } = AbilityScores::new(&mut rng);
+        assert!(charisma.0 >= 3 && charisma.0 <= 18);
+        assert!(constitution.0 >= 3 && constitution.0 <= 18);
+        assert!(dexterity.0 >= 3 && dexterity.0 <= 18);
+        assert!(intelligence.0 >= 3 && intelligence.0 <= 18);
+        assert!(strength.0 >= 3 && strength.0 <= 18);
+        assert!(wisdom.0 >= 3 && wisdom.0 <= 18);
     }
 }
