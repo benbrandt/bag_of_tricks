@@ -139,330 +139,250 @@ mod tests {
 
     #[test]
     fn test_ability_score_modifier() {
-        assert_eq!(
-            AbilityScore {
-                base: 1,
-                increase: 0
-            }
-            .modifier(),
-            -5
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 2,
-                increase: 0
-            }
-            .modifier(),
-            -4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 3,
-                increase: 0
-            }
-            .modifier(),
-            -4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 4,
-                increase: 0
-            }
-            .modifier(),
-            -3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 5,
-                increase: 0
-            }
-            .modifier(),
-            -3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 6,
-                increase: 0
-            }
-            .modifier(),
-            -2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 7,
-                increase: 0
-            }
-            .modifier(),
-            -2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 8,
-                increase: 0
-            }
-            .modifier(),
-            -1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 9,
-                increase: 0
-            }
-            .modifier(),
-            -1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 10,
-                increase: 0
-            }
-            .modifier(),
-            0
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 11,
-                increase: 0
-            }
-            .modifier(),
-            0
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 12,
-                increase: 0
-            }
-            .modifier(),
-            1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 13,
-                increase: 0
-            }
-            .modifier(),
-            1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 14,
-                increase: 0
-            }
-            .modifier(),
-            2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 15,
-                increase: 0
-            }
-            .modifier(),
-            2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 16,
-                increase: 0
-            }
-            .modifier(),
-            3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 17,
-                increase: 0
-            }
-            .modifier(),
-            3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 18,
-                increase: 0
-            }
-            .modifier(),
-            4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 19,
-                increase: 0
-            }
-            .modifier(),
-            4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 20,
-                increase: 0
-            }
-            .modifier(),
-            5
-        );
+        let modifier = AbilityScore {
+            base: 1,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -5);
+        let modifier = AbilityScore {
+            base: 2,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -4);
+        let modifier = AbilityScore {
+            base: 3,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -4);
+        let modifier = AbilityScore {
+            base: 4,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -3);
+        let modifier = AbilityScore {
+            base: 5,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -3);
+        let modifier = AbilityScore {
+            base: 6,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -2);
+        let modifier = AbilityScore {
+            base: 7,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -2);
+        let modifier = AbilityScore {
+            base: 8,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -1);
+        let modifier = AbilityScore {
+            base: 9,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, -1);
+        let modifier = AbilityScore {
+            base: 10,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 0);
+        let modifier = AbilityScore {
+            base: 11,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 0);
+        let modifier = AbilityScore {
+            base: 12,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 1);
+        let modifier = AbilityScore {
+            base: 13,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 1);
+        let modifier = AbilityScore {
+            base: 14,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 2);
+        let modifier = AbilityScore {
+            base: 15,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 2);
+        let modifier = AbilityScore {
+            base: 16,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 3);
+        let modifier = AbilityScore {
+            base: 17,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 3);
+        let modifier = AbilityScore {
+            base: 18,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 4);
+        let modifier = AbilityScore {
+            base: 19,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 4);
+        let modifier = AbilityScore {
+            base: 20,
+            increase: 0,
+        }
+        .modifier();
+        assert_eq!(modifier, 5);
     }
 
     #[test]
     fn test_ability_score_increase_modifier() {
-        assert_eq!(
-            AbilityScore {
-                base: 1,
-                increase: 1
-            }
-            .modifier(),
-            -4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 2,
-                increase: 1
-            }
-            .modifier(),
-            -4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 3,
-                increase: 1
-            }
-            .modifier(),
-            -3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 4,
-                increase: 1
-            }
-            .modifier(),
-            -3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 5,
-                increase: 1
-            }
-            .modifier(),
-            -2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 6,
-                increase: 1
-            }
-            .modifier(),
-            -2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 7,
-                increase: 1
-            }
-            .modifier(),
-            -1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 8,
-                increase: 1
-            }
-            .modifier(),
-            -1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 9,
-                increase: 1
-            }
-            .modifier(),
-            0
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 10,
-                increase: 1
-            }
-            .modifier(),
-            0
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 11,
-                increase: 1
-            }
-            .modifier(),
-            1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 12,
-                increase: 1
-            }
-            .modifier(),
-            1
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 13,
-                increase: 1
-            }
-            .modifier(),
-            2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 14,
-                increase: 1
-            }
-            .modifier(),
-            2
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 15,
-                increase: 1
-            }
-            .modifier(),
-            3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 16,
-                increase: 1
-            }
-            .modifier(),
-            3
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 17,
-                increase: 1
-            }
-            .modifier(),
-            4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 18,
-                increase: 1
-            }
-            .modifier(),
-            4
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 19,
-                increase: 1
-            }
-            .modifier(),
-            5
-        );
-        assert_eq!(
-            AbilityScore {
-                base: 20,
-                increase: 1
-            }
-            .modifier(),
-            5
-        );
+        let modifier = AbilityScore {
+            base: 1,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -4);
+        let modifier = AbilityScore {
+            base: 2,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -4);
+        let modifier = AbilityScore {
+            base: 3,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -3);
+        let modifier = AbilityScore {
+            base: 4,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -3);
+        let modifier = AbilityScore {
+            base: 5,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -2);
+        let modifier = AbilityScore {
+            base: 6,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -2);
+        let modifier = AbilityScore {
+            base: 7,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -1);
+        let modifier = AbilityScore {
+            base: 8,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, -1);
+        let modifier = AbilityScore {
+            base: 9,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 0);
+        let modifier = AbilityScore {
+            base: 10,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 0);
+        let modifier = AbilityScore {
+            base: 11,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 1);
+        let modifier = AbilityScore {
+            base: 12,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 1);
+        let modifier = AbilityScore {
+            base: 13,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 2);
+        let modifier = AbilityScore {
+            base: 14,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 2);
+        let modifier = AbilityScore {
+            base: 15,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 3);
+        let modifier = AbilityScore {
+            base: 16,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 3);
+        let modifier = AbilityScore {
+            base: 17,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 4);
+        let modifier = AbilityScore {
+            base: 18,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 4);
+        let modifier = AbilityScore {
+            base: 19,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 5);
+        let modifier = AbilityScore {
+            base: 20,
+            increase: 1,
+        }
+        .modifier();
+        assert_eq!(modifier, 5);
     }
 
     #[test]
