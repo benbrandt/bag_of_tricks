@@ -1,20 +1,25 @@
 mod ability;
+mod race;
 
-use ability::{AbilityScoreIncreases, AbilityScores};
 use rand::Rng;
 use std::fmt;
 
+use ability::AbilityScores;
+use race::{gen_race_option, Race};
+
 /// Character information
-#[derive(Debug)]
 pub struct Character {
     abilities: AbilityScores,
+    race: Box<dyn Race>,
 }
 
 impl Character {
     /// Generate a new random character
     pub fn new(rng: &mut impl Rng) -> Self {
+        let race = gen_race_option(rng);
         Self {
-            abilities: AbilityScores::new(rng, AbilityScoreIncreases::default()),
+            abilities: AbilityScores::new(rng, race.increases()),
+            race,
         }
     }
 }
@@ -44,6 +49,7 @@ mod tests {
                     strength,
                     wisdom,
                 },
+            ..
         } = Character::new(&mut rng);
         assert!(charisma.base >= 3 && charisma.base <= 18);
         assert!(constitution.base >= 3 && constitution.base <= 18);
