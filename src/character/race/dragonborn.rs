@@ -1,10 +1,8 @@
+use rand::Rng;
 use std::fmt;
 
-use rand::Rng;
-
-use crate::character::ability::AbilityScoreIncreases;
-
 use super::Race;
+use crate::character::ability::AbilityScoreIncreases;
 
 pub(crate) struct Dragonborn;
 

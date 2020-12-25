@@ -1,6 +1,5 @@
-use std::fmt;
-
 use rand::Rng;
+use std::fmt;
 
 use crate::dice_roller::{roll_dice, Die};
 

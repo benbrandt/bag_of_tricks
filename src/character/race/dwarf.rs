@@ -1,15 +1,17 @@
-use std::fmt;
-
+use rand::prelude::IteratorRandom;
 use rand::Rng;
-use rand_derive::Rand;
-
-use crate::character::ability::AbilityScoreIncreases;
+use std::fmt;
+use strum::IntoEnumIterator;
+use strum_macros::{Display, EnumIter};
 
 use super::Race;
+use crate::character::ability::AbilityScoreIncreases;
 
-#[derive(Debug, PartialEq, Rand)]
+#[derive(Debug, Display, EnumIter, PartialEq)]
 enum DwarfSubrace {
+    #[strum(serialize = "Hill Dwarf")]
     Hill,
+    #[strum(serialize = "Mountain Dwarf")]
     Mountain,
 }
 
@@ -20,27 +22,25 @@ pub(crate) struct Dwarf {
 impl Race for Dwarf {
     fn new(rng: &mut impl Rng) -> Self {
         Self {
-            subrace: rng.gen::<DwarfSubrace>(),
+            subrace: DwarfSubrace::iter()
+                .choose(rng)
+                .unwrap_or(DwarfSubrace::Hill),
         }
     }
 
     fn increases(&self) -> AbilityScoreIncreases {
+        let increases = AbilityScoreIncreases {
+            constitution: 2,
+            ..AbilityScoreIncreases::default()
+        };
         match self.subrace {
             DwarfSubrace::Hill => AbilityScoreIncreases {
-                charisma: 0,
-                constitution: 2,
-                dexterity: 0,
-                intelligence: 0,
-                strength: 0,
                 wisdom: 1,
+                ..increases
             },
             DwarfSubrace::Mountain => AbilityScoreIncreases {
-                charisma: 0,
-                constitution: 2,
-                dexterity: 0,
-                intelligence: 0,
                 strength: 2,
-                wisdom: 0,
+                ..increases
             },
         }
     }
@@ -48,10 +48,7 @@ impl Race for Dwarf {
 
 impl fmt::Display for Dwarf {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.subrace {
-            DwarfSubrace::Hill => write!(f, "Hill Dwarf"),
-            DwarfSubrace::Mountain => write!(f, "Mountain Dwarf"),
-        }
+        write!(f, "{}", self.subrace)
     }
 }
 
