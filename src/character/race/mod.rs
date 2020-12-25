@@ -1,13 +1,15 @@
 pub(crate) mod dragonborn;
 pub(crate) mod dwarf;
 
+use std::fmt;
+
 use rand::Rng;
 use rand_derive::Rand;
 
 use super::ability::AbilityScoreIncreases;
 
 /// Shared race traits
-pub(crate) trait Race {
+pub(crate) trait Race: fmt::Display {
     /// Method to generate a new instance of the struct
     fn new(rng: &mut impl Rng) -> Self
     where

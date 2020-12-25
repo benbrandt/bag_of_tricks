@@ -1,3 +1,5 @@
+use std::fmt;
+
 use rand::Rng;
 
 use crate::character::ability::AbilityScoreIncreases;
@@ -20,5 +22,11 @@ impl Race for Dragonborn {
             strength: 2,
             wisdom: 0,
         }
+    }
+}
+
+impl fmt::Display for Dragonborn {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Dragonborn")
     }
 }

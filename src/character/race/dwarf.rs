@@ -1,3 +1,5 @@
+use std::fmt;
+
 use rand::Rng;
 use rand_derive::Rand;
 
@@ -40,6 +42,15 @@ impl Race for Dwarf {
                 strength: 2,
                 wisdom: 0,
             },
+        }
+    }
+}
+
+impl fmt::Display for Dwarf {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self.subrace {
+            DwarfSubrace::Hill => write!(f, "Hill Dwarf"),
+            DwarfSubrace::Mountain => write!(f, "Mountain Dwarf"),
         }
     }
 }
