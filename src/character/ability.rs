@@ -6,13 +6,13 @@ use crate::dice_roller::{roll_dice, Die};
 /// Value of a base ability score.
 #[derive(Debug)]
 pub(crate) struct AbilityScore {
-    pub(crate) base: i32,
-    increase: i32,
+    pub(crate) base: i8,
+    increase: i8,
 }
 
 impl AbilityScore {
     /// Generate a new ability score based on dice rolls
-    fn new(rng: &mut impl Rng, increase: i32) -> Self {
+    fn new(rng: &mut impl Rng, increase: i8) -> Self {
         // Roll 4 d6's
         let mut rolls = roll_dice(rng, Die::D6, 4);
         // Reverse sort, highest to lowest
@@ -23,12 +23,12 @@ impl AbilityScore {
     }
 
     /// Return score value (base + increase)
-    const fn score(&self) -> i32 {
+    const fn score(&self) -> i8 {
         self.base + self.increase
     }
 
     /// Return modifier based on ability score.
-    const fn modifier(&self) -> i32 {
+    const fn modifier(&self) -> i8 {
         let score = self.score();
         // Lower value to closest even number, subtract by 10 and divide by two
         (score - score % 2 - 10) / 2
@@ -49,12 +49,12 @@ pub(crate) struct AbilityScores {
 /// Increases to ablity scores
 #[derive(Debug)]
 pub(crate) struct AbilityScoreIncreases {
-    pub(crate) charisma: i32,
-    pub(crate) constitution: i32,
-    pub(crate) dexterity: i32,
-    pub(crate) intelligence: i32,
-    pub(crate) strength: i32,
-    pub(crate) wisdom: i32,
+    pub(crate) charisma: i8,
+    pub(crate) constitution: i8,
+    pub(crate) dexterity: i8,
+    pub(crate) intelligence: i8,
+    pub(crate) strength: i8,
+    pub(crate) wisdom: i8,
 }
 
 impl Default for AbilityScoreIncreases {
@@ -130,8 +130,9 @@ mod tests {
     #[test]
     fn test_ability_score_avg() {
         let mut rng = Pcg64::from_entropy();
-        let average =
-            (0..100).fold(0, |acc, _| acc + AbilityScore::new(&mut rng, 0).base) as f64 / 100.0;
+        let average = (0..100).fold(0 as f64, |acc, _| {
+            acc + AbilityScore::new(&mut rng, 0).base as f64
+        }) / 100.0;
         // Comparison based on http://rumkin.com/reference/dnd/diestats.php
         assert!(12.24 - 2.847 < average && average < 12.24 + 2.847);
     }

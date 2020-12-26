@@ -17,19 +17,19 @@ pub(crate) struct DieRoll {
     /// Die type
     pub(crate) die: Die,
     /// Rolled number
-    pub(crate) roll: i32,
+    pub(crate) roll: i8,
 }
 
 /// Roll a die
 fn roll_die(rng: &mut impl Rng, die: Die) -> DieRoll {
     DieRoll {
         die,
-        roll: rng.gen_range(1..=die as i32),
+        roll: rng.gen_range(1..=die as i8),
     }
 }
 
 /// Roll multiple dice
-pub(crate) fn roll_dice(rng: &mut impl Rng, die: Die, quantity: u32) -> Vec<DieRoll> {
+pub(crate) fn roll_dice(rng: &mut impl Rng, die: Die, quantity: i8) -> Vec<DieRoll> {
     (1..=quantity).map(|_| roll_die(rng, die)).collect()
 }
 
