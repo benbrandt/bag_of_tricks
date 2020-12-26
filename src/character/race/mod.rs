@@ -3,6 +3,7 @@ mod dwarf;
 mod elf;
 mod gnome;
 mod half_elf;
+mod half_orc;
 mod halfling;
 mod human;
 
@@ -37,6 +38,7 @@ enum RaceOptions {
     Elf,
     Gnome,
     HalfElf,
+    HalfOrc,
     Halfling,
     Human,
 }
@@ -51,6 +53,7 @@ pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
         RaceOptions::Elf => Box::new(elf::Elf::new(rng)),
         RaceOptions::Gnome => Box::new(gnome::Gnome::new(rng)),
         RaceOptions::HalfElf => Box::new(half_elf::HalfElf::new(rng)),
+        RaceOptions::HalfOrc => Box::new(half_orc::HalfOrc::new(rng)),
         RaceOptions::Halfling => Box::new(halfling::Halfling::new(rng)),
         RaceOptions::Human => Box::new(human::Human::new(rng)),
     }
