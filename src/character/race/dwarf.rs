@@ -35,11 +35,7 @@ impl Race for Dwarf {
             page: 18,
         };
         let subrace = match self.subrace {
-            DwarfSubrace::Hill => Citation {
-                book: Book::PlayersHandbook,
-                page: 20,
-            },
-            DwarfSubrace::Mountain => Citation {
+            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation {
                 book: Book::PlayersHandbook,
                 page: 20,
             },

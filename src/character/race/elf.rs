@@ -34,17 +34,13 @@ impl Race for Elf {
             page: 21,
         };
         let subrace = match self.subrace {
-            ElfSubrace::Dark => Citation {
+            ElfSubrace::Dark | ElfSubrace::Wood => Citation {
                 book: Book::PlayersHandbook,
                 page: 24,
             },
             ElfSubrace::High => Citation {
                 book: Book::PlayersHandbook,
                 page: 23,
-            },
-            ElfSubrace::Wood => Citation {
-                book: Book::PlayersHandbook,
-                page: 24,
             },
         };
         vec![elf, subrace]

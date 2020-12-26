@@ -35,11 +35,7 @@ impl Race for Gnome {
             page: 35,
         };
         let subrace = match self.subrace {
-            GnomeSubrace::Forest => Citation {
-                book: Book::PlayersHandbook,
-                page: 37,
-            },
-            GnomeSubrace::Rock => Citation {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation {
                 book: Book::PlayersHandbook,
                 page: 37,
             },

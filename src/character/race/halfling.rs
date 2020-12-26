@@ -35,11 +35,7 @@ impl Race for Halfling {
             page: 26,
         };
         let subrace = match self.subrace {
-            HalflingSubrace::Lightfoot => Citation {
-                book: Book::PlayersHandbook,
-                page: 28,
-            },
-            HalflingSubrace::Stout => Citation {
+            HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation {
                 book: Book::PlayersHandbook,
                 page: 28,
             },
