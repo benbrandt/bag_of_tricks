@@ -1,6 +1,7 @@
 mod dragonborn;
 mod dwarf;
 mod elf;
+mod halfling;
 
 use rand::prelude::IteratorRandom;
 use rand::Rng;
@@ -31,6 +32,7 @@ enum RaceOptions {
     Dragonborn,
     Dwarf,
     Elf,
+    Halfling,
 }
 
 pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
@@ -41,5 +43,6 @@ pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
         RaceOptions::Dragonborn => Box::new(dragonborn::Dragonborn::new(rng)),
         RaceOptions::Dwarf => Box::new(dwarf::Dwarf::new(rng)),
         RaceOptions::Elf => Box::new(elf::Elf::new(rng)),
+        RaceOptions::Halfling => Box::new(halfling::Halfling::new(rng)),
     }
 }

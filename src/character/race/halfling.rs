@@ -10,44 +10,41 @@ use crate::{
     citation::{Book, Citation},
 };
 
-#[derive(Display, EnumIter)]
-enum ElfSubrace {
-    Dark,
-    High,
-    Wood,
+#[derive(Debug, Display, EnumIter, PartialEq)]
+enum HalflingSubrace {
+    Lightfoot,
+    Stout,
 }
 
-pub(crate) struct Elf {
-    subrace: ElfSubrace,
+pub(crate) struct Halfling {
+    subrace: HalflingSubrace,
 }
 
-impl Race for Elf {
+impl Race for Halfling {
     fn new(rng: &mut impl Rng) -> Self {
         Self {
-            subrace: ElfSubrace::iter().choose(rng).unwrap_or(ElfSubrace::Wood),
+            subrace: HalflingSubrace::iter()
+                .choose(rng)
+                .unwrap_or(HalflingSubrace::Lightfoot),
         }
     }
 
     fn citations(&self) -> Vec<Citation> {
-        let elf = Citation {
+        let halfling = Citation {
             book: Book::PlayersHandbook,
-            page: 21,
+            page: 26,
         };
         let subrace = match self.subrace {
-            ElfSubrace::Dark => Citation {
+            HalflingSubrace::Lightfoot => Citation {
                 book: Book::PlayersHandbook,
-                page: 24,
+                page: 28,
             },
-            ElfSubrace::High => Citation {
+            HalflingSubrace::Stout => Citation {
                 book: Book::PlayersHandbook,
-                page: 23,
-            },
-            ElfSubrace::Wood => Citation {
-                book: Book::PlayersHandbook,
-                page: 24,
+                page: 28,
             },
         };
-        vec![elf, subrace]
+        vec![halfling, subrace]
     }
 
     fn increases(&self) -> AbilityScoreIncreases {
@@ -56,24 +53,20 @@ impl Race for Elf {
             ..AbilityScoreIncreases::default()
         };
         match self.subrace {
-            ElfSubrace::Dark => AbilityScoreIncreases {
+            HalflingSubrace::Lightfoot => AbilityScoreIncreases {
                 charisma: 1,
                 ..increases
             },
-            ElfSubrace::High => AbilityScoreIncreases {
-                intelligence: 1,
-                ..increases
-            },
-            ElfSubrace::Wood => AbilityScoreIncreases {
-                wisdom: 1,
+            HalflingSubrace::Stout => AbilityScoreIncreases {
+                constitution: 1,
                 ..increases
             },
         }
     }
 }
 
-impl fmt::Display for Elf {
+impl fmt::Display for Halfling {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} Elf", self.subrace)
+        write!(f, "{} Halfling", self.subrace)
     }
 }
