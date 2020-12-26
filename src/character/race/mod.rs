@@ -6,6 +6,7 @@ mod half_elf;
 mod half_orc;
 mod halfling;
 mod human;
+mod tiefling;
 
 use rand::prelude::IteratorRandom;
 use rand::Rng;
@@ -41,6 +42,7 @@ enum RaceOptions {
     HalfOrc,
     Halfling,
     Human,
+    Tiefling,
 }
 
 pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
@@ -56,5 +58,6 @@ pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
         RaceOptions::HalfOrc => Box::new(half_orc::HalfOrc::new(rng)),
         RaceOptions::Halfling => Box::new(halfling::Halfling::new(rng)),
         RaceOptions::Human => Box::new(human::Human::new(rng)),
+        RaceOptions::Tiefling => Box::new(tiefling::Tiefling::new(rng)),
     }
 }
