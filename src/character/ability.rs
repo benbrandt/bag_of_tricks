@@ -1,7 +1,18 @@
 use rand::Rng;
 use std::fmt;
+use strum_macros::EnumIter;
 
 use crate::dice_roller::{roll_dice, Die};
+
+#[derive(EnumIter, PartialEq)]
+pub(crate) enum AbilityScoreType {
+    Charisma,
+    Constitution,
+    Dexterity,
+    Intelligence,
+    Strength,
+    Wisdom,
+}
 
 /// Value of a base ability score.
 #[derive(Debug)]
