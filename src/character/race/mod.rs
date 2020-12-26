@@ -8,6 +8,8 @@ use std::fmt;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
+use crate::citation::Citation;
+
 use super::ability::AbilityScoreIncreases;
 
 /// Shared race traits
@@ -16,6 +18,9 @@ pub(crate) trait Race: fmt::Display {
     fn new(rng: &mut impl Rng) -> Self
     where
         Self: Sized;
+
+    /// Return list of citations for this race/subrace
+    fn citations(&self) -> Vec<Citation>;
 
     /// Returns ability score increases for the race
     fn increases(&self) -> AbilityScoreIncreases;

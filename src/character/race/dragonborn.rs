@@ -2,13 +2,23 @@ use rand::Rng;
 use std::fmt;
 
 use super::Race;
-use crate::character::ability::AbilityScoreIncreases;
+use crate::{
+    character::ability::AbilityScoreIncreases,
+    citation::{Book, Citation},
+};
 
 pub(crate) struct Dragonborn;
 
 impl Race for Dragonborn {
     fn new(_: &mut impl Rng) -> Self {
         Self
+    }
+
+    fn citations(&self) -> Vec<Citation> {
+        vec![Citation {
+            book: Book::PlayersHandbook,
+            page: 32,
+        }]
     }
 
     fn increases(&self) -> AbilityScoreIncreases {

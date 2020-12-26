@@ -5,11 +5,15 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::character::ability::AbilityScoreIncreases;
+use crate::{
+    character::ability::AbilityScoreIncreases,
+    citation::{Book, Citation},
+};
 
 #[derive(Display, EnumIter)]
 enum ElfSubrace {
-    Drow,
+    #[strum(serialize = "Drow")]
+    Dark,
     #[strum(serialize = "High Elf")]
     High,
     #[strum(serialize = "Wood Elf")]
@@ -27,13 +31,35 @@ impl Race for Elf {
         }
     }
 
+    fn citations(&self) -> Vec<Citation> {
+        let elf = Citation {
+            book: Book::PlayersHandbook,
+            page: 21,
+        };
+        let subrace = match self.subrace {
+            ElfSubrace::Dark => Citation {
+                book: Book::PlayersHandbook,
+                page: 24,
+            },
+            ElfSubrace::High => Citation {
+                book: Book::PlayersHandbook,
+                page: 23,
+            },
+            ElfSubrace::Wood => Citation {
+                book: Book::PlayersHandbook,
+                page: 24,
+            },
+        };
+        vec![elf, subrace]
+    }
+
     fn increases(&self) -> AbilityScoreIncreases {
         let increases = AbilityScoreIncreases {
             dexterity: 2,
             ..AbilityScoreIncreases::default()
         };
         match self.subrace {
-            ElfSubrace::Drow => AbilityScoreIncreases {
+            ElfSubrace::Dark => AbilityScoreIncreases {
                 charisma: 1,
                 ..increases
             },
