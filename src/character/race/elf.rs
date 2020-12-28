@@ -29,7 +29,7 @@ impl Race for Elf {
     }
 
     fn citations(&self) -> Vec<Citation> {
-        let elf = Citation {
+        let race = Citation {
             book: Book::PlayersHandbook,
             page: 21,
         };
@@ -43,7 +43,7 @@ impl Race for Elf {
                 page: 23,
             },
         };
-        vec![elf, subrace]
+        vec![race, subrace]
     }
 
     fn increases(&self) -> AbilityScoreIncreases {
