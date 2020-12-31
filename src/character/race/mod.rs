@@ -14,7 +14,7 @@ use std::fmt;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
-use crate::citation::Citation;
+use crate::citation::Citations;
 
 use super::ability::AbilityScoreIncreases;
 
@@ -26,7 +26,7 @@ pub(crate) trait Race: fmt::Display {
         Self: Sized;
 
     /// Return list of citations for this race/subrace
-    fn citations(&self) -> Vec<Citation>;
+    fn citations(&self) -> Citations;
 
     /// Returns ability score increases for the race
     fn increases(&self) -> AbilityScoreIncreases;

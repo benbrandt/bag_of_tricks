@@ -4,7 +4,7 @@ use std::fmt;
 use super::Race;
 use crate::{
     character::ability::AbilityScoreIncreases,
-    citation::{Book, Citation},
+    citation::{Book, Citation, Citations},
 };
 
 pub(crate) struct Tiefling;
@@ -14,11 +14,11 @@ impl Race for Tiefling {
         Self
     }
 
-    fn citations(&self) -> Vec<Citation> {
-        vec![Citation {
-            book: Book::PlayersHandbook,
+    fn citations(&self) -> Citations {
+        Citations(vec![Citation {
+            book: Book::PHB,
             page: 42,
-        }]
+        }])
     }
 
     fn increases(&self) -> AbilityScoreIncreases {

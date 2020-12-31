@@ -5,7 +5,7 @@ use strum::IntoEnumIterator;
 use super::Race;
 use crate::{
     character::ability::{AbilityScoreIncreases, AbilityScoreType},
-    citation::{Book, Citation},
+    citation::{Book, Citation, Citations},
 };
 
 pub(crate) struct HalfElf {
@@ -31,11 +31,11 @@ impl Race for HalfElf {
         }
     }
 
-    fn citations(&self) -> Vec<Citation> {
-        vec![Citation {
-            book: Book::PlayersHandbook,
+    fn citations(&self) -> Citations {
+        Citations(vec![Citation {
+            book: Book::PHB,
             page: 38,
-        }]
+        }])
     }
 
     fn increases(&self) -> AbilityScoreIncreases {

@@ -26,7 +26,7 @@ impl Character {
 
 impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(f, "{}", self.race)?;
+        writeln!(f, "RACE: {} ({})\n", self.race, self.race.citations())?;
         write!(f, "{}", self.abilities)
     }
 }

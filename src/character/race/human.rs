@@ -4,7 +4,7 @@ use std::fmt;
 use super::Race;
 use crate::{
     character::ability::AbilityScoreIncreases,
-    citation::{Book, Citation},
+    citation::{Book, Citation, Citations},
 };
 
 pub(crate) struct Human;
@@ -14,11 +14,11 @@ impl Race for Human {
         Self
     }
 
-    fn citations(&self) -> Vec<Citation> {
-        vec![Citation {
-            book: Book::PlayersHandbook,
+    fn citations(&self) -> Citations {
+        Citations(vec![Citation {
+            book: Book::PHB,
             page: 29,
-        }]
+        }])
     }
 
     fn increases(&self) -> AbilityScoreIncreases {

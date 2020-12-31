@@ -7,7 +7,7 @@ use strum_macros::{Display, EnumIter};
 use super::Race;
 use crate::{
     character::ability::AbilityScoreIncreases,
-    citation::{Book, Citation},
+    citation::{Book, Citation, Citations},
 };
 
 #[derive(Debug, Display, EnumIter, PartialEq)]
@@ -29,18 +29,18 @@ impl Race for Dwarf {
         }
     }
 
-    fn citations(&self) -> Vec<Citation> {
-        let dwarf = Citation {
-            book: Book::PlayersHandbook,
+    fn citations(&self) -> Citations {
+        let race = Citation {
+            book: Book::PHB,
             page: 18,
         };
         let subrace = match self.subrace {
             DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation {
-                book: Book::PlayersHandbook,
+                book: Book::PHB,
                 page: 20,
             },
         };
-        vec![dwarf, subrace]
+        Citations(vec![race, subrace])
     }
 
     fn increases(&self) -> AbilityScoreIncreases {
