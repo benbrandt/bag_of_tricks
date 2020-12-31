@@ -75,7 +75,7 @@ mod tests {
 
     #[test]
     fn test_dwarf_new() {
-        let mut rng = Pcg64::from_entropy();
+        let mut rng = Pcg64::seed_from_u64(1);
         let race = Dwarf::new(&mut rng);
         assert_eq!(race.subrace, DwarfSubrace::Hill);
     }

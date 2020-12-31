@@ -37,26 +37,23 @@ mod tests {
     use rand::SeedableRng;
     use rand_pcg::Pcg64;
 
+    /// Verify that our snapshot remains the same.
     #[test]
-    fn test_character_new() {
-        let mut rng = Pcg64::from_entropy();
-        let Character {
-            abilities:
-                AbilityScores {
-                    charisma,
-                    constitution,
-                    dexterity,
-                    intelligence,
-                    strength,
-                    wisdom,
-                },
-            ..
-        } = Character::new(&mut rng);
-        assert!(charisma.base >= 3 && charisma.base <= 18);
-        assert!(constitution.base >= 3 && constitution.base <= 18);
-        assert!(dexterity.base >= 3 && dexterity.base <= 18);
-        assert!(intelligence.base >= 3 && intelligence.base <= 18);
-        assert!(strength.base >= 3 && strength.base <= 18);
-        assert!(wisdom.base >= 3 && wisdom.base <= 18);
+    fn test_character_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let character = Character::new(&mut rng);
+        assert_eq!(
+            format!("{}", character),
+            "\
+RACE: Mountain Dwarf (PHB p18,20)
+
+STR  +3 (17)
+DEX  -2 (7)
+CON  +2 (15)
+INT  -1 (9)
+WIS  +3 (16)
+CHA  +1 (13)
+"
+        );
     }
 }
