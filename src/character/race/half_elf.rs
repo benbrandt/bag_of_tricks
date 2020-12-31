@@ -13,8 +13,8 @@ pub(crate) struct HalfElf {
 }
 
 impl HalfElf {
-    fn score_increase(&self, score: AbilityScoreType) -> i8 {
-        if self.addl_increases.contains(&score) {
+    fn score_increase(&self, score: &AbilityScoreType) -> i8 {
+        if self.addl_increases.contains(score) {
             1
         } else {
             0
@@ -41,11 +41,11 @@ impl Race for HalfElf {
     fn increases(&self) -> AbilityScoreIncreases {
         AbilityScoreIncreases {
             charisma: 2,
-            constitution: self.score_increase(AbilityScoreType::Constitution),
-            dexterity: self.score_increase(AbilityScoreType::Dexterity),
-            intelligence: self.score_increase(AbilityScoreType::Intelligence),
-            strength: self.score_increase(AbilityScoreType::Strength),
-            wisdom: self.score_increase(AbilityScoreType::Wisdom),
+            constitution: self.score_increase(&AbilityScoreType::Constitution),
+            dexterity: self.score_increase(&AbilityScoreType::Dexterity),
+            intelligence: self.score_increase(&AbilityScoreType::Intelligence),
+            strength: self.score_increase(&AbilityScoreType::Strength),
+            wisdom: self.score_increase(&AbilityScoreType::Wisdom),
         }
     }
 }

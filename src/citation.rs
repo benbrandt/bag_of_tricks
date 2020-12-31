@@ -27,14 +27,17 @@ pub(crate) struct Citations(pub(crate) Vec<Citation>);
 impl fmt::Display for Citations {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut citations = HashMap::new();
-        for c in self.0.iter() {
+        for c in &self.0 {
             citations
                 .entry(c.book)
-                .or_insert_with(|| HashSet::new())
+                .or_insert_with(HashSet::new)
                 .insert(c.page);
         }
         for (book, page_nums) in citations {
-            let mut pages = page_nums.iter().map(|p| p.to_string()).collect::<Vec<_>>();
+            let mut pages = page_nums
+                .iter()
+                .map(ToString::to_string)
+                .collect::<Vec<_>>();
             pages.sort();
             write!(f, "{} p{}", book, pages.join(","))?;
         }

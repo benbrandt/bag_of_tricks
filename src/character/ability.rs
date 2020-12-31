@@ -83,7 +83,7 @@ impl Default for AbilityScoreIncreases {
 
 impl AbilityScores {
     /// Generate a set of ability scores for a character
-    pub(crate) fn new(rng: &mut impl Rng, increases: AbilityScoreIncreases) -> Self {
+    pub(crate) fn new(rng: &mut impl Rng, increases: &AbilityScoreIncreases) -> Self {
         Self {
             charisma: AbilityScore::new(rng, increases.charisma),
             constitution: AbilityScore::new(rng, increases.constitution),
@@ -406,7 +406,7 @@ mod tests {
             intelligence,
             strength,
             wisdom,
-        } = AbilityScores::new(&mut rng, AbilityScoreIncreases::default());
+        } = AbilityScores::new(&mut rng, &AbilityScoreIncreases::default());
         assert!(charisma.base >= 3 && charisma.base <= 18);
         assert!(constitution.base >= 3 && constitution.base <= 18);
         assert!(dexterity.base >= 3 && dexterity.base <= 18);

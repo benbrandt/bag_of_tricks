@@ -18,7 +18,7 @@ impl Character {
     pub fn new(rng: &mut impl Rng) -> Self {
         let race = gen_race_option(rng);
         Self {
-            abilities: AbilityScores::new(rng, race.increases()),
+            abilities: AbilityScores::new(rng, &race.increases()),
             race,
         }
     }
