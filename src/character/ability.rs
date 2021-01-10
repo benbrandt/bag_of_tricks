@@ -1,125 +1,82 @@
 use rand::Rng;
-use std::fmt;
-use strum_macros::EnumIter;
+use std::{collections::HashMap, fmt};
+use strum::IntoEnumIterator;
+use strum_macros::{Display, EnumIter};
 
 use crate::dice_roller::{roll_dice, Die};
 
-#[derive(EnumIter, PartialEq)]
-pub(crate) enum AbilityScoreType {
-    Charisma,
-    Constitution,
-    Dexterity,
-    Intelligence,
-    Strength,
-    Wisdom,
+/// Return modifier based on ability score.
+const fn modifier(score: i8) -> i8 {
+    // Lower value to closest even number, subtract by 10 and divide by two
+    (score - score % 2 - 10) / 2
 }
 
-/// Value of a base ability score.
-#[derive(Debug)]
-pub(crate) struct AbilityScore {
-    pub(crate) base: i8,
-    increase: i8,
+#[derive(Clone, Copy, Debug, Display, EnumIter, Eq, Hash, PartialEq)]
+pub(crate) enum AbilityScoreType {
+    #[strum(serialize = "STR")]
+    Strength,
+    #[strum(serialize = "DEX")]
+    Dexterity,
+    #[strum(serialize = "CON")]
+    Constitution,
+    #[strum(serialize = "INT")]
+    Intelligence,
+    #[strum(serialize = "WIS")]
+    Wisdom,
+    #[strum(serialize = "CHA")]
+    Charisma,
 }
+
+/// Value of a base ability score or increase
+#[derive(Copy, Clone, Debug)]
+pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) i8);
 
 impl AbilityScore {
     /// Generate a new ability score based on dice rolls
-    fn new(rng: &mut impl Rng, increase: i8) -> Self {
+    fn new(rng: &mut impl Rng, score_type: AbilityScoreType) -> Self {
         // Roll 4 d6's
         let mut rolls = roll_dice(rng, Die::D6, 4);
         // Reverse sort, highest to lowest
         rolls.sort_by(|a, b| b.roll.cmp(&a.roll));
         // Sum top 3
-        let base = rolls.drain(0..3).fold(0, |acc, d| acc + d.roll);
-        Self { base, increase }
-    }
-
-    /// Return score value (base + increase)
-    const fn score(&self) -> i8 {
-        self.base + self.increase
-    }
-
-    /// Return modifier based on ability score.
-    const fn modifier(&self) -> i8 {
-        let score = self.score();
-        // Lower value to closest even number, subtract by 10 and divide by two
-        (score - score % 2 - 10) / 2
+        let score = rolls.drain(0..3).fold(0, |acc, d| acc + d.roll);
+        Self(score_type, score)
     }
 }
 
 /// Full set of ability scores a character could have
 #[derive(Debug)]
-pub(crate) struct AbilityScores {
-    pub(crate) charisma: AbilityScore,
-    pub(crate) constitution: AbilityScore,
-    pub(crate) dexterity: AbilityScore,
-    pub(crate) intelligence: AbilityScore,
-    pub(crate) strength: AbilityScore,
-    pub(crate) wisdom: AbilityScore,
-}
-
-/// Increases to ablity scores
-#[derive(Debug)]
-pub(crate) struct AbilityScoreIncreases {
-    pub(crate) charisma: i8,
-    pub(crate) constitution: i8,
-    pub(crate) dexterity: i8,
-    pub(crate) intelligence: i8,
-    pub(crate) strength: i8,
-    pub(crate) wisdom: i8,
-}
-
-impl Default for AbilityScoreIncreases {
-    fn default() -> Self {
-        Self {
-            charisma: 0,
-            constitution: 0,
-            dexterity: 0,
-            intelligence: 0,
-            strength: 0,
-            wisdom: 0,
-        }
-    }
-}
+pub(crate) struct AbilityScores(pub(crate) Vec<AbilityScore>);
 
 impl AbilityScores {
     /// Generate a set of ability scores for a character
-    pub(crate) fn new(rng: &mut impl Rng, increases: &AbilityScoreIncreases) -> Self {
-        Self {
-            charisma: AbilityScore::new(rng, increases.charisma),
-            constitution: AbilityScore::new(rng, increases.constitution),
-            dexterity: AbilityScore::new(rng, increases.dexterity),
-            intelligence: AbilityScore::new(rng, increases.intelligence),
-            strength: AbilityScore::new(rng, increases.strength),
-            wisdom: AbilityScore::new(rng, increases.wisdom),
+    pub(crate) fn new(rng: &mut impl Rng) -> Self {
+        Self(
+            AbilityScoreType::iter()
+                .map(|t| AbilityScore::new(rng, t))
+                .collect(),
+        )
+    }
+
+    pub(crate) fn extend(&mut self, addl_scores: Self) {
+        self.0.extend(addl_scores.0)
+    }
+
+    pub(crate) fn scores(&self) -> HashMap<AbilityScoreType, i8> {
+        let mut scores = HashMap::new();
+        for AbilityScore(score_type, val) in self.0.clone() {
+            *scores.entry(score_type).or_insert(0) += val;
         }
+        scores
     }
 }
 
 impl fmt::Display for AbilityScores {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let Self {
-            charisma,
-            constitution,
-            dexterity,
-            intelligence,
-            strength,
-            wisdom,
-        } = self;
-        for (abbr, ability) in &[
-            ("STR", strength),
-            ("DEX", dexterity),
-            ("CON", constitution),
-            ("INT", intelligence),
-            ("WIS", wisdom),
-            ("CHA", charisma),
-        ] {
-            writeln!(
-                f,
-                "{} {:+3} ({})",
-                abbr,
-                ability.modifier(),
-                ability.score()
-            )?;
+        let scores = self.scores();
+        for score_type in AbilityScoreType::iter() {
+            let score = *scores.get(&score_type).unwrap_or(&0);
+            writeln!(f, "{} {:+3} ({})", score_type, modifier(score), score)?;
         }
         write!(f, "")
     }
@@ -134,15 +91,15 @@ mod tests {
     #[test]
     fn test_ability_score_new() {
         let mut rng = Pcg64::from_entropy();
-        let score = AbilityScore::new(&mut rng, 0);
-        assert!(score.base >= 3 && score.base <= 18);
+        let score = AbilityScore::new(&mut rng, AbilityScoreType::Charisma);
+        assert!(score.1 >= 3 && score.1 <= 18);
     }
 
     #[test]
     fn test_ability_score_avg() {
         let mut rng = Pcg64::from_entropy();
         let average = (0..100).fold(0 as f64, |acc, _| {
-            acc + AbilityScore::new(&mut rng, 0).base as f64
+            acc + AbilityScore::new(&mut rng, AbilityScoreType::Constitution).1 as f64
         }) / 100.0;
         // Comparison based on http://rumkin.com/reference/dnd/diestats.php
         assert!(12.24 - 2.847 < average && average < 12.24 + 2.847);
@@ -150,268 +107,35 @@ mod tests {
 
     #[test]
     fn test_ability_score_modifier() {
-        let modifier = AbilityScore {
-            base: 1,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -5);
-        let modifier = AbilityScore {
-            base: 2,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -4);
-        let modifier = AbilityScore {
-            base: 3,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -4);
-        let modifier = AbilityScore {
-            base: 4,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -3);
-        let modifier = AbilityScore {
-            base: 5,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -3);
-        let modifier = AbilityScore {
-            base: 6,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -2);
-        let modifier = AbilityScore {
-            base: 7,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -2);
-        let modifier = AbilityScore {
-            base: 8,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -1);
-        let modifier = AbilityScore {
-            base: 9,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, -1);
-        let modifier = AbilityScore {
-            base: 10,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 0);
-        let modifier = AbilityScore {
-            base: 11,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 0);
-        let modifier = AbilityScore {
-            base: 12,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 1);
-        let modifier = AbilityScore {
-            base: 13,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 1);
-        let modifier = AbilityScore {
-            base: 14,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 2);
-        let modifier = AbilityScore {
-            base: 15,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 2);
-        let modifier = AbilityScore {
-            base: 16,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 3);
-        let modifier = AbilityScore {
-            base: 17,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 3);
-        let modifier = AbilityScore {
-            base: 18,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 4);
-        let modifier = AbilityScore {
-            base: 19,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 4);
-        let modifier = AbilityScore {
-            base: 20,
-            increase: 0,
-        }
-        .modifier();
-        assert_eq!(modifier, 5);
-    }
-
-    #[test]
-    fn test_ability_score_increase_modifier() {
-        let modifier = AbilityScore {
-            base: 1,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -4);
-        let modifier = AbilityScore {
-            base: 2,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -4);
-        let modifier = AbilityScore {
-            base: 3,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -3);
-        let modifier = AbilityScore {
-            base: 4,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -3);
-        let modifier = AbilityScore {
-            base: 5,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -2);
-        let modifier = AbilityScore {
-            base: 6,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -2);
-        let modifier = AbilityScore {
-            base: 7,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -1);
-        let modifier = AbilityScore {
-            base: 8,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, -1);
-        let modifier = AbilityScore {
-            base: 9,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 0);
-        let modifier = AbilityScore {
-            base: 10,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 0);
-        let modifier = AbilityScore {
-            base: 11,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 1);
-        let modifier = AbilityScore {
-            base: 12,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 1);
-        let modifier = AbilityScore {
-            base: 13,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 2);
-        let modifier = AbilityScore {
-            base: 14,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 2);
-        let modifier = AbilityScore {
-            base: 15,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 3);
-        let modifier = AbilityScore {
-            base: 16,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 3);
-        let modifier = AbilityScore {
-            base: 17,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 4);
-        let modifier = AbilityScore {
-            base: 18,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 4);
-        let modifier = AbilityScore {
-            base: 19,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 5);
-        let modifier = AbilityScore {
-            base: 20,
-            increase: 1,
-        }
-        .modifier();
-        assert_eq!(modifier, 5);
+        assert_eq!(modifier(1), -5);
+        assert_eq!(modifier(2), -4);
+        assert_eq!(modifier(3), -4);
+        assert_eq!(modifier(4), -3);
+        assert_eq!(modifier(5), -3);
+        assert_eq!(modifier(6), -2);
+        assert_eq!(modifier(7), -2);
+        assert_eq!(modifier(8), -1);
+        assert_eq!(modifier(9), -1);
+        assert_eq!(modifier(10), 0);
+        assert_eq!(modifier(11), 0);
+        assert_eq!(modifier(12), 1);
+        assert_eq!(modifier(13), 1);
+        assert_eq!(modifier(14), 2);
+        assert_eq!(modifier(15), 2);
+        assert_eq!(modifier(16), 3);
+        assert_eq!(modifier(17), 3);
+        assert_eq!(modifier(18), 4);
+        assert_eq!(modifier(19), 4);
+        assert_eq!(modifier(20), 5);
     }
 
     #[test]
     fn test_ability_scores() {
         let mut rng = Pcg64::from_entropy();
-        let AbilityScores {
-            charisma,
-            constitution,
-            dexterity,
-            intelligence,
-            strength,
-            wisdom,
-        } = AbilityScores::new(&mut rng, &AbilityScoreIncreases::default());
-        assert!(charisma.base >= 3 && charisma.base <= 18);
-        assert!(constitution.base >= 3 && constitution.base <= 18);
-        assert!(dexterity.base >= 3 && dexterity.base <= 18);
-        assert!(intelligence.base >= 3 && intelligence.base <= 18);
-        assert!(strength.base >= 3 && strength.base <= 18);
-        assert!(wisdom.base >= 3 && wisdom.base <= 18);
+        let scores = AbilityScores::new(&mut rng).scores();
+        for score_type in AbilityScoreType::iter() {
+            let score = *scores.get(&score_type).unwrap();
+            assert!(score >= 3 && score <= 18);
+        }
     }
 }

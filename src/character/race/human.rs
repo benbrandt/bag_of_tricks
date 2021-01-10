@@ -1,9 +1,10 @@
 use rand::Rng;
 use std::fmt;
+use strum::IntoEnumIterator;
 
 use super::Race;
 use crate::{
-    character::ability::AbilityScoreIncreases,
+    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
     citation::{Book, Citation, Citations},
 };
 
@@ -14,22 +15,19 @@ impl Race for Human {
         Self
     }
 
+    fn abilities(&self) -> AbilityScores {
+        AbilityScores(
+            AbilityScoreType::iter()
+                .map(|t| AbilityScore(t, 1))
+                .collect(),
+        )
+    }
+
     fn citations(&self) -> Citations {
         Citations(vec![Citation {
             book: Book::PHB,
             page: 29,
         }])
-    }
-
-    fn increases(&self) -> AbilityScoreIncreases {
-        AbilityScoreIncreases {
-            charisma: 1,
-            constitution: 1,
-            dexterity: 1,
-            intelligence: 1,
-            strength: 1,
-            wisdom: 1,
-        }
     }
 }
 

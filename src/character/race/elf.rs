@@ -6,7 +6,7 @@ use strum_macros::{Display, EnumIter};
 
 use super::Race;
 use crate::{
-    character::ability::AbilityScoreIncreases,
+    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
     citation::{Book, Citation, Citations},
 };
 
@@ -28,6 +28,17 @@ impl Race for Elf {
         }
     }
 
+    fn abilities(&self) -> AbilityScores {
+        AbilityScores(vec![
+            AbilityScore(AbilityScoreType::Dexterity, 2),
+            match self.subrace {
+                ElfSubrace::Dark => AbilityScore(AbilityScoreType::Charisma, 1),
+                ElfSubrace::High => AbilityScore(AbilityScoreType::Intelligence, 1),
+                ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
+            },
+        ])
+    }
+
     fn citations(&self) -> Citations {
         let race = Citation {
             book: Book::PHB,
@@ -44,27 +55,6 @@ impl Race for Elf {
             },
         };
         Citations(vec![race, subrace])
-    }
-
-    fn increases(&self) -> AbilityScoreIncreases {
-        let increases = AbilityScoreIncreases {
-            dexterity: 2,
-            ..AbilityScoreIncreases::default()
-        };
-        match self.subrace {
-            ElfSubrace::Dark => AbilityScoreIncreases {
-                charisma: 1,
-                ..increases
-            },
-            ElfSubrace::High => AbilityScoreIncreases {
-                intelligence: 1,
-                ..increases
-            },
-            ElfSubrace::Wood => AbilityScoreIncreases {
-                wisdom: 1,
-                ..increases
-            },
-        }
     }
 }
 

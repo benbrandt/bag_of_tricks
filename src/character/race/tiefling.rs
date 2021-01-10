@@ -3,7 +3,7 @@ use std::fmt;
 
 use super::Race;
 use crate::{
-    character::ability::AbilityScoreIncreases,
+    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
     citation::{Book, Citation, Citations},
 };
 
@@ -14,22 +14,18 @@ impl Race for Tiefling {
         Self
     }
 
+    fn abilities(&self) -> AbilityScores {
+        AbilityScores(vec![
+            AbilityScore(AbilityScoreType::Charisma, 2),
+            AbilityScore(AbilityScoreType::Intelligence, 1),
+        ])
+    }
+
     fn citations(&self) -> Citations {
         Citations(vec![Citation {
             book: Book::PHB,
             page: 42,
         }])
-    }
-
-    fn increases(&self) -> AbilityScoreIncreases {
-        AbilityScoreIncreases {
-            charisma: 2,
-            constitution: 0,
-            dexterity: 0,
-            intelligence: 1,
-            strength: 0,
-            wisdom: 0,
-        }
     }
 }
 

@@ -17,10 +17,9 @@ impl Character {
     /// Generate a new random character
     pub fn new(rng: &mut impl Rng) -> Self {
         let race = gen_race_option(rng);
-        Self {
-            abilities: AbilityScores::new(rng, &race.increases()),
-            race,
-        }
+        let mut abilities = AbilityScores::new(rng);
+        abilities.extend(race.abilities());
+        Self { abilities, race }
     }
 }
 
@@ -47,12 +46,12 @@ mod tests {
             "\
 RACE: Mountain Dwarf (PHB p18,20)
 
-STR  +3 (17)
-DEX  -2 (7)
-CON  +2 (15)
+STR  +2 (15)
+DEX  +1 (13)
+CON  -1 (9)
 INT  -1 (9)
-WIS  +3 (16)
-CHA  +1 (13)
+WIS  +2 (15)
+CHA  +3 (16)
 "
         );
     }

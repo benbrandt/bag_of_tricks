@@ -4,22 +4,12 @@ use strum::IntoEnumIterator;
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScoreIncreases, AbilityScoreType},
+    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
     citation::{Book, Citation, Citations},
 };
 
 pub(crate) struct HalfElf {
-    addl_increases: Vec<AbilityScoreType>,
-}
-
-impl HalfElf {
-    fn score_increase(&self, score: &AbilityScoreType) -> i8 {
-        if self.addl_increases.contains(score) {
-            1
-        } else {
-            0
-        }
-    }
+    addl_increases: Vec<AbilityScore>,
 }
 
 impl Race for HalfElf {
@@ -27,8 +17,17 @@ impl Race for HalfElf {
         Self {
             addl_increases: AbilityScoreType::iter()
                 .filter(|s| s != &AbilityScoreType::Charisma)
-                .choose_multiple(rng, 2),
+                .choose_multiple(rng, 2)
+                .into_iter()
+                .map(|t| AbilityScore(t, 1))
+                .collect(),
         }
+    }
+
+    fn abilities(&self) -> AbilityScores {
+        let mut abilities = vec![AbilityScore(AbilityScoreType::Charisma, 2)];
+        abilities.extend(self.addl_increases.clone());
+        AbilityScores(abilities)
     }
 
     fn citations(&self) -> Citations {
@@ -36,17 +35,6 @@ impl Race for HalfElf {
             book: Book::PHB,
             page: 38,
         }])
-    }
-
-    fn increases(&self) -> AbilityScoreIncreases {
-        AbilityScoreIncreases {
-            charisma: 2,
-            constitution: self.score_increase(&AbilityScoreType::Constitution),
-            dexterity: self.score_increase(&AbilityScoreType::Dexterity),
-            intelligence: self.score_increase(&AbilityScoreType::Intelligence),
-            strength: self.score_increase(&AbilityScoreType::Strength),
-            wisdom: self.score_increase(&AbilityScoreType::Wisdom),
-        }
     }
 }
 

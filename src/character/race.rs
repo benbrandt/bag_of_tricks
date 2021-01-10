@@ -16,7 +16,7 @@ use strum_macros::EnumIter;
 
 use crate::citation::Citations;
 
-use super::ability::AbilityScoreIncreases;
+use super::ability::AbilityScores;
 
 /// Shared race traits
 pub(crate) trait Race: fmt::Display {
@@ -25,11 +25,11 @@ pub(crate) trait Race: fmt::Display {
     where
         Self: Sized;
 
+    /// Returns ability score increases for the race
+    fn abilities(&self) -> AbilityScores;
+
     /// Return list of citations for this race/subrace
     fn citations(&self) -> Citations;
-
-    /// Returns ability score increases for the race
-    fn increases(&self) -> AbilityScoreIncreases;
 }
 
 #[derive(EnumIter)]
