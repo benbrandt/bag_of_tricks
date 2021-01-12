@@ -3,7 +3,7 @@ source: src/character/race/halfling.rs
 expression: halfling.features()
 ---
 - title: Ability Score Increase
-  description: Your Dexterity score inscreases by 2.
+  description: Your Dexterity score increases by 2.
   citation:
     book: PHB
     page: 28

@@ -108,7 +108,7 @@ impl Race for Dwarf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![Feature {
             title: "Ability Score Increase",
-            description: "Your Constitution score inscreases by 2.",
+            description: "Your Constitution score increases by 2.",
             citation: Citation {
                 book: Book::PHB,
                 page: 20,

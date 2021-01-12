@@ -66,7 +66,7 @@ impl Race for Elf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![Feature {
             title: "Ability Score Increase",
-            description: "Your Dexterity score inscreases by 2.",
+            description: "Your Dexterity score increases by 2.",
             citation: Citation {
                 book: Book::PHB,
                 page: 23,

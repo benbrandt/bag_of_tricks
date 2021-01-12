@@ -3,7 +3,7 @@ source: src/character/race/gnome.rs
 expression: gnome.features()
 ---
 - title: Ability Score Increase
-  description: Your Intelligence score inscreases by 2.
+  description: Your Intelligence score increases by 2.
   citation:
     book: PHB
     page: 36

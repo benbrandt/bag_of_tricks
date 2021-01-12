@@ -3,7 +3,7 @@ source: src/character/race/dwarf.rs
 expression: dwarf.features()
 ---
 - title: Ability Score Increase
-  description: Your Constitution score inscreases by 2.
+  description: Your Constitution score increases by 2.
   citation:
     book: PHB
     page: 20
