@@ -1,0 +1,13 @@
+---
+source: src/character.rs
+expression: "format!(\"{}\", character)"
+---
+RACE: Mountain Dwarf (PHB p18,20)
+
+STR  +2 (15)
+DEX  +1 (13)
+CON  -1 (9)
+INT  -1 (9)
+WIS  +2 (15)
+CHA  +3 (16)
+

@@ -43,19 +43,9 @@ mod tests {
     fn test_character_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let character = Character::new(&mut rng);
+        // Struct Snapshot
         insta::assert_yaml_snapshot!(character);
-        assert_eq!(
-            format!("{}", character),
-            "\
-RACE: Mountain Dwarf (PHB p18,20)
-
-STR  +2 (15)
-DEX  +1 (13)
-CON  -1 (9)
-INT  -1 (9)
-WIS  +2 (15)
-CHA  +3 (16)
-"
-        );
+        // fmt::Display Snapshot
+        insta::assert_snapshot!(format!("{}", character));
     }
 }
