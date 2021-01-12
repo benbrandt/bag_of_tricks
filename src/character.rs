@@ -3,27 +3,43 @@ mod features;
 mod race;
 
 use features::Feature;
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use strum::IntoEnumIterator;
+use strum_macros::{Display, EnumIter};
 
 use ability::AbilityScores;
 use race::{gen_race_option, Race};
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+pub(crate) enum Gender {
+    Female,
+    Male,
+}
 
 /// Character information
 #[derive(Deserialize, Serialize)]
 pub struct Character {
     abilities: AbilityScores,
+    gender: Gender,
+    name: String,
     race: Box<dyn Race>,
 }
 
 impl Character {
     /// Generate a new random character
     pub fn new(rng: &mut impl Rng) -> Self {
-        let race = gen_race_option(rng);
+        let gender = Gender::iter().choose(rng).unwrap_or(Gender::Female);
+        let (race, name) = gen_race_option(rng, &gender);
         let mut abilities = AbilityScores::new(rng);
         abilities.extend(race.abilities());
-        Self { abilities, race }
+        Self {
+            abilities,
+            gender,
+            name,
+            race,
+        }
     }
 
     fn features(&self) -> Vec<Feature> {
@@ -33,7 +49,10 @@ impl Character {
 
 impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(f, "RACE: {} ({})\n", self.race, self.race.citations())?;
+        writeln!(f, "CHARACTER NAME: {}", self.name)?;
+        writeln!(f, "RACE: {} ({})", self.race, self.race.citations())?;
+        writeln!(f, "GENDER: {}", self.gender)?;
+        writeln!(f, "")?;
         writeln!(f, "{}", self.abilities)?;
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {

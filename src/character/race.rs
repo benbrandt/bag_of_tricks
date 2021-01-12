@@ -16,7 +16,12 @@ use strum_macros::EnumIter;
 
 use crate::citation::Citations;
 
-use super::{ability::AbilityScores, features::Feature};
+use self::{
+    dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, gnome::Gnome, half_elf::HalfElf,
+    half_orc::HalfOrc, halfling::Halfling, human::Human, tiefling::Tiefling,
+};
+
+use super::{ability::AbilityScores, features::Feature, Gender};
 
 /// Shared race traits
 #[typetag::serde(tag = "type")]
@@ -25,6 +30,14 @@ pub(crate) trait Race: fmt::Display {
     fn gen(rng: &mut impl Rng) -> Self
     where
         Self: Sized;
+
+    /// Generate a name for a character of this race
+    fn gen_name(rng: &mut impl Rng, gender: &Gender) -> String
+    where
+        Self: Sized,
+    {
+        String::new()
+    }
 
     /// Returns ability score increases for the race
     fn abilities(&self) -> AbilityScores;
@@ -49,19 +62,28 @@ enum RaceOptions {
     Tiefling,
 }
 
-pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
+pub(crate) fn gen_race_option(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
     match RaceOptions::iter()
         .choose(rng)
         .unwrap_or(RaceOptions::Dragonborn)
     {
-        RaceOptions::Dragonborn => Box::new(dragonborn::Dragonborn::gen(rng)),
-        RaceOptions::Dwarf => Box::new(dwarf::Dwarf::gen(rng)),
-        RaceOptions::Elf => Box::new(elf::Elf::gen(rng)),
-        RaceOptions::Gnome => Box::new(gnome::Gnome::gen(rng)),
-        RaceOptions::HalfElf => Box::new(half_elf::HalfElf::gen(rng)),
-        RaceOptions::HalfOrc => Box::new(half_orc::HalfOrc::gen(rng)),
-        RaceOptions::Halfling => Box::new(halfling::Halfling::gen(rng)),
-        RaceOptions::Human => Box::new(human::Human::gen(rng)),
-        RaceOptions::Tiefling => Box::new(tiefling::Tiefling::gen(rng)),
+        RaceOptions::Dragonborn => (
+            Box::new(Dragonborn::gen(rng)),
+            Dragonborn::gen_name(rng, gender),
+        ),
+        RaceOptions::Dwarf => (Box::new(Dwarf::gen(rng)), Dwarf::gen_name(rng, gender)),
+        RaceOptions::Elf => (Box::new(Elf::gen(rng)), Elf::gen_name(rng, gender)),
+        RaceOptions::Gnome => (Box::new(Gnome::gen(rng)), Gnome::gen_name(rng, gender)),
+        RaceOptions::HalfElf => (Box::new(HalfElf::gen(rng)), HalfElf::gen_name(rng, gender)),
+        RaceOptions::HalfOrc => (Box::new(HalfOrc::gen(rng)), HalfOrc::gen_name(rng, gender)),
+        RaceOptions::Halfling => (
+            Box::new(Halfling::gen(rng)),
+            Halfling::gen_name(rng, gender),
+        ),
+        RaceOptions::Human => (Box::new(Human::gen(rng)), Human::gen_name(rng, gender)),
+        RaceOptions::Tiefling => (
+            Box::new(Tiefling::gen(rng)),
+            Tiefling::gen_name(rng, gender),
+        ),
     }
 }

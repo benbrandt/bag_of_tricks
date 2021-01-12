@@ -6,19 +6,21 @@ abilities:
   - - Strength
     - 13
   - - Dexterity
-    - 13
-  - - Constitution
     - 7
-  - - Intelligence
-    - 9
-  - - Wisdom
-    - 15
-  - - Charisma
-    - 16
   - - Constitution
+    - 9
+  - - Intelligence
+    - 15
+  - - Wisdom
+    - 16
+  - - Charisma
+    - 13
+  - - Dexterity
     - 2
-  - - Strength
-    - 2
+  - - Charisma
+    - 1
+gender: Female
+name: ""
 race:
-  type: Dwarf
-  subrace: Mountain
+  type: Halfling
+  subrace: Lightfoot

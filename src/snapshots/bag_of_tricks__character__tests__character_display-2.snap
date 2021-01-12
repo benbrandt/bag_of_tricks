@@ -2,20 +2,22 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-RACE: Mountain Dwarf (PHB p18,20)
+CHARACTER NAME: 
+RACE: Lightfoot Halfling (PHB p26,28)
+GENDER: Female
 
-STR  +2 (15)
-DEX  +1 (13)
+STR  +1 (13)
+DEX  -1 (9)
 CON  -1 (9)
-INT  -1 (9)
-WIS  +2 (15)
-CHA  +3 (16)
+INT  +2 (15)
+WIS  +3 (16)
+CHA  +2 (14)
 
 FEATURES AND TRAITS:
 Ability Score Increase
-Your Constitution score inscreases by 2. (PHB p20)
+Your Dexterity score inscreases by 2. (PHB p28)
 
 Ability Score Increase
-Your Strength score increases by 2. (PHB p20)
+Your Charisma score increases by 1. (PHB p28)
 
 

@@ -10,9 +10,41 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         features::Feature,
+        Gender,
     },
     citation::{Book, Citation, Citations},
 };
+
+mod names {
+    pub(crate) const CLAN_NAMES: &[&str] = &[
+        "Balderk",
+        "Battlehammer",
+        "Brawnanvil",
+        "Dankil",
+        "Fireforge",
+        "Frostbeard",
+        "Gorunn",
+        "Holderhek",
+        "Ironfist",
+        "Loderr",
+        "Lutgehr",
+        "Rumnaheim",
+        "Strakeln",
+        "Torunn",
+        "Ungart",
+    ];
+    pub(crate) const FEMALE_NAMES: &[&str] = &[
+        "Amber", "Artin", "Audhild", "Bardryn", "Dagnal", "Diesa", "Eldeth", "Falkrunn",
+        "Finellen", "Gunnloda", "Gurdis", "Helja", "Hlin", "Kathra", "Kristryd", "Ilde",
+        "Liftrasa", "Mardred", "Riswynn", "Sannl", "Torbera", "Torgga", "Vistra",
+    ];
+    pub(crate) const MALE_NAMES: &[&str] = &[
+        "Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg",
+        "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik",
+        "Oskar", "Rangrim", "Rurik", "Taklinn", "Thoradin", "Thorin", "Tordek", "Traubon",
+        "Travok", "Ulfgar", "Veit", "Vondal",
+    ];
+}
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum DwarfSubrace {
@@ -32,6 +64,21 @@ impl Race for Dwarf {
                 .choose(rng)
                 .unwrap_or(DwarfSubrace::Hill),
         }
+    }
+
+    fn gen_name(rng: &mut impl Rng, gender: &Gender) -> String
+    where
+        Self: Sized,
+    {
+        let first_names = match gender {
+            Gender::Female => names::FEMALE_NAMES,
+            Gender::Male => names::MALE_NAMES,
+        };
+        format!(
+            "{} {}",
+            first_names.iter().choose(rng).unwrap(),
+            names::CLAN_NAMES.iter().choose(rng).unwrap()
+        )
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -106,6 +153,13 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let dwarf = Dwarf::gen(&mut rng);
         insta::assert_yaml_snapshot!(dwarf);
+    }
+
+    #[test]
+    fn test_snapshot_gen_name() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        insta::assert_snapshot!(Dwarf::gen_name(&mut rng, &Gender::Female));
+        insta::assert_snapshot!(Dwarf::gen_name(&mut rng, &Gender::Male));
     }
 
     #[test]
