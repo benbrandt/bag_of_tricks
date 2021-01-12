@@ -1,4 +1,5 @@
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use super::Race;
@@ -7,8 +8,10 @@ use crate::{
     citation::{Book, Citation, Citations},
 };
 
+#[derive(Deserialize, Serialize)]
 pub(crate) struct Tiefling;
 
+#[typetag::serde]
 impl Race for Tiefling {
     fn new(_: &mut impl Rng) -> Self {
         Self

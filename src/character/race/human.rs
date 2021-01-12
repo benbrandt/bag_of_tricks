@@ -1,4 +1,5 @@
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
 
@@ -8,8 +9,10 @@ use crate::{
     citation::{Book, Citation, Citations},
 };
 
+#[derive(Deserialize, Serialize)]
 pub(crate) struct Human;
 
+#[typetag::serde]
 impl Race for Human {
     fn new(_: &mut impl Rng) -> Self {
         Self

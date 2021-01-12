@@ -1,5 +1,6 @@
 use rand::prelude::IteratorRandom;
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -10,16 +11,18 @@ use crate::{
     citation::{Book, Citation, Citations},
 };
 
-#[derive(Debug, Display, EnumIter, PartialEq)]
+#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum GnomeSubrace {
     Forest,
     Rock,
 }
 
+#[derive(Deserialize, Serialize)]
 pub(crate) struct Gnome {
     subrace: GnomeSubrace,
 }
 
+#[typetag::serde]
 impl Race for Gnome {
     fn new(rng: &mut impl Rng) -> Self {
         Self {

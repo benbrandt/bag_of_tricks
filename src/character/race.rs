@@ -19,6 +19,7 @@ use crate::citation::Citations;
 use super::ability::AbilityScores;
 
 /// Shared race traits
+#[typetag::serde(tag = "type")]
 pub(crate) trait Race: fmt::Display {
     /// Method to generate a new instance of the struct
     fn new(rng: &mut impl Rng) -> Self

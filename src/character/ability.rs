@@ -1,4 +1,5 @@
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, fmt};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -11,7 +12,7 @@ const fn modifier(score: i8) -> i8 {
     (score - score % 2 - 10) / 2
 }
 
-#[derive(Clone, Copy, Debug, Display, EnumIter, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum AbilityScoreType {
     #[strum(serialize = "STR")]
     Strength,
@@ -28,7 +29,7 @@ pub(crate) enum AbilityScoreType {
 }
 
 /// Value of a base ability score or increase
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, Deserialize, Serialize)]
 pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) i8);
 
 impl AbilityScore {

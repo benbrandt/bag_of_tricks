@@ -1,4 +1,5 @@
 use rand::{prelude::IteratorRandom, Rng};
+use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
 
@@ -8,10 +9,12 @@ use crate::{
     citation::{Book, Citation, Citations},
 };
 
+#[derive(Deserialize, Serialize)]
 pub(crate) struct HalfElf {
     addl_increases: Vec<AbilityScore>,
 }
 
+#[typetag::serde]
 impl Race for HalfElf {
     fn new(rng: &mut impl Rng) -> Self {
         Self {
