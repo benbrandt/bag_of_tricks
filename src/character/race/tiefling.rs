@@ -37,3 +37,32 @@ impl fmt::Display for Tiefling {
         write!(f, "Tiefling")
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let tiefling = Tiefling::new(&mut rng);
+        // Struct Snapshot
+        // insta::assert_yaml_snapshot!(tiefling);
+        // fmt::Display Snapshot
+        insta::assert_snapshot!(format!("{}", tiefling));
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        let tiefling = Tiefling;
+        insta::assert_yaml_snapshot!(tiefling.abilities());
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let tiefling = Tiefling;
+        insta::assert_yaml_snapshot!(tiefling.citations());
+    }
+}

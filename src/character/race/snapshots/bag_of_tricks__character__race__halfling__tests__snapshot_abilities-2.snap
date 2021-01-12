@@ -1,0 +1,8 @@
+---
+source: src/character/race/halfling.rs
+expression: halfling.abilities()
+---
+- - Dexterity
+  - 2
+- - Constitution
+  - 1

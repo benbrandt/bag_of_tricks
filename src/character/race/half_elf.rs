@@ -46,3 +46,38 @@ impl fmt::Display for HalfElf {
         write!(f, "Half-Elf")
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let half_elf = HalfElf::new(&mut rng);
+        insta::assert_yaml_snapshot!(half_elf);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let half_elf = HalfElf::new(&mut rng);
+        insta::assert_snapshot!(format!("{}", half_elf));
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let half_elf = HalfElf::new(&mut rng);
+        insta::assert_yaml_snapshot!(half_elf.abilities());
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let half_elf = HalfElf::new(&mut rng);
+        insta::assert_yaml_snapshot!(half_elf.citations());
+    }
+}

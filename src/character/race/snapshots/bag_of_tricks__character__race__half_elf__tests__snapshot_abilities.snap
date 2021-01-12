@@ -1,0 +1,10 @@
+---
+source: src/character/race/half_elf.rs
+expression: half_elf.abilities()
+---
+- - Charisma
+  - 2
+- - Constitution
+  - 1
+- - Wisdom
+  - 1

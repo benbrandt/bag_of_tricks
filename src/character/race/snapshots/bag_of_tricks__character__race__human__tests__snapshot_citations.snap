@@ -1,0 +1,6 @@
+---
+source: src/character/race/human.rs
+expression: human.citations()
+---
+- book: PHB
+  page: 29

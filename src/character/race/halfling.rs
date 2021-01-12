@@ -62,3 +62,41 @@ impl fmt::Display for Halfling {
         write!(f, "{} Halfling", self.subrace)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let halfling = Halfling::new(&mut rng);
+        insta::assert_yaml_snapshot!(halfling);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        for subrace in HalflingSubrace::iter() {
+            let halfling = Halfling { subrace };
+            insta::assert_snapshot!(format!("{}", halfling));
+        }
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        for subrace in HalflingSubrace::iter() {
+            let halfling = Halfling { subrace };
+            insta::assert_yaml_snapshot!(halfling.abilities());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        for subrace in HalflingSubrace::iter() {
+            let halfling = Halfling { subrace };
+            insta::assert_yaml_snapshot!(halfling.citations());
+        }
+    }
+}

@@ -1,0 +1,9 @@
+---
+source: src/character/race/half_elf.rs
+expression: half_elf
+---
+addl_increases:
+  - - Constitution
+    - 1
+  - - Wisdom
+    - 1

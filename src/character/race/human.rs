@@ -39,3 +39,32 @@ impl fmt::Display for Human {
         write!(f, "Human")
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let human = Human::new(&mut rng);
+        // Struct Snapshot
+        // insta::assert_yaml_snapshot!(human);
+        // fmt::Display Snapshot
+        insta::assert_snapshot!(format!("{}", human));
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        let human = Human;
+        insta::assert_yaml_snapshot!(human.abilities());
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let human = Human;
+        insta::assert_yaml_snapshot!(human.citations());
+    }
+}
