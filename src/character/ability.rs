@@ -139,4 +139,19 @@ mod tests {
             assert!(score >= 3 && score <= 18);
         }
     }
+
+    #[test]
+    fn test_ability_scores_extend() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let mut scores = AbilityScores::new(&mut rng);
+        scores.extend(AbilityScores::new(&mut rng));
+        insta::assert_yaml_snapshot!(scores);
+    }
+
+    #[test]
+    fn test_ability_scores_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let scores = AbilityScores::new(&mut rng);
+        insta::assert_snapshot!(format!("{}", scores));
+    }
 }

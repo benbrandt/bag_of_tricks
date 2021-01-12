@@ -1,0 +1,11 @@
+---
+source: src/character/ability.rs
+expression: "format!(\"{}\", scores)"
+---
+STR  +0 (11)
+DEX  +2 (15)
+CON  +0 (10)
+INT  -2 (6)
+WIS  +0 (11)
+CHA  +3 (17)
+
