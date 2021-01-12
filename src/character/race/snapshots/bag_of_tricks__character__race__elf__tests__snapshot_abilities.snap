@@ -1,0 +1,8 @@
+---
+source: src/character/race/elf.rs
+expression: elf.abilities()
+---
+- - Dexterity
+  - 2
+- - Charisma
+  - 1

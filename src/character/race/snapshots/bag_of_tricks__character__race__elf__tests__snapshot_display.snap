@@ -1,0 +1,5 @@
+---
+source: src/character/race/elf.rs
+expression: "format!(\"{}\", elf)"
+---
+Dark Elf

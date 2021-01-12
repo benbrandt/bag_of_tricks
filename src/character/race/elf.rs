@@ -66,3 +66,41 @@ impl fmt::Display for Elf {
         write!(f, "{} Elf", self.subrace)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let elf = Elf::new(&mut rng);
+        insta::assert_yaml_snapshot!(elf);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        for subrace in ElfSubrace::iter() {
+            let elf = Elf { subrace };
+            insta::assert_snapshot!(format!("{}", elf));
+        }
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        for subrace in ElfSubrace::iter() {
+            let elf = Elf { subrace };
+            insta::assert_yaml_snapshot!(elf.abilities());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        for subrace in ElfSubrace::iter() {
+            let elf = Elf { subrace };
+            insta::assert_yaml_snapshot!(elf.citations());
+        }
+    }
+}

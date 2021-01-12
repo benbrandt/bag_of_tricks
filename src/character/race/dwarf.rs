@@ -73,43 +73,29 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let dwarf = Dwarf::new(&mut rng);
         insta::assert_yaml_snapshot!(dwarf);
-        let dwarf = Dwarf::new(&mut rng);
-        insta::assert_yaml_snapshot!(dwarf);
     }
 
     #[test]
     fn test_snapshot_display() {
-        let dwarf = Dwarf {
-            subrace: DwarfSubrace::Hill,
-        };
-        insta::assert_snapshot!(format!("{}", dwarf));
-        let dwarf = Dwarf {
-            subrace: DwarfSubrace::Mountain,
-        };
-        insta::assert_snapshot!(format!("{}", dwarf));
+        for subrace in DwarfSubrace::iter() {
+            let dwarf = Dwarf { subrace };
+            insta::assert_snapshot!(format!("{}", dwarf));
+        }
     }
 
     #[test]
     fn test_snapshot_abilities() {
-        let dwarf = Dwarf {
-            subrace: DwarfSubrace::Hill,
-        };
-        insta::assert_yaml_snapshot!(dwarf.abilities());
-        let dwarf = Dwarf {
-            subrace: DwarfSubrace::Mountain,
-        };
-        insta::assert_yaml_snapshot!(dwarf.abilities());
+        for subrace in DwarfSubrace::iter() {
+            let dwarf = Dwarf { subrace };
+            insta::assert_yaml_snapshot!(dwarf.abilities());
+        }
     }
 
     #[test]
     fn test_snapshot_citations() {
-        let dwarf = Dwarf {
-            subrace: DwarfSubrace::Hill,
-        };
-        insta::assert_yaml_snapshot!(dwarf.citations());
-        let dwarf = Dwarf {
-            subrace: DwarfSubrace::Mountain,
-        };
-        insta::assert_yaml_snapshot!(dwarf.citations());
+        for subrace in DwarfSubrace::iter() {
+            let dwarf = Dwarf { subrace };
+            insta::assert_yaml_snapshot!(dwarf.citations());
+        }
     }
 }
