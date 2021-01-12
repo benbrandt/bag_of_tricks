@@ -60,9 +60,7 @@ pub(crate) struct Dwarf {
 impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {
-            subrace: DwarfSubrace::iter()
-                .choose(rng)
-                .unwrap_or(DwarfSubrace::Hill),
+            subrace: DwarfSubrace::iter().choose(rng).unwrap(),
         }
     }
 

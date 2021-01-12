@@ -29,9 +29,7 @@ pub(crate) struct Halfling {
 impl Race for Halfling {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {
-            subrace: HalflingSubrace::iter()
-                .choose(rng)
-                .unwrap_or(HalflingSubrace::Lightfoot),
+            subrace: HalflingSubrace::iter().choose(rng).unwrap(),
         }
     }
 

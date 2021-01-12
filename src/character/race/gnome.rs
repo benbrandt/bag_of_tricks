@@ -29,9 +29,7 @@ pub(crate) struct Gnome {
 impl Race for Gnome {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {
-            subrace: GnomeSubrace::iter()
-                .choose(rng)
-                .unwrap_or(GnomeSubrace::Forest),
+            subrace: GnomeSubrace::iter().choose(rng).unwrap(),
         }
     }
 

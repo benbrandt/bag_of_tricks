@@ -30,7 +30,7 @@ pub struct Character {
 impl Character {
     /// Generate a new random character
     pub fn new(rng: &mut impl Rng) -> Self {
-        let gender = Gender::iter().choose(rng).unwrap_or(Gender::Female);
+        let gender = Gender::iter().choose(rng).unwrap();
         let (race, name) = gen_race_option(rng, &gender);
         let mut abilities = AbilityScores::new(rng);
         abilities.extend(race.abilities());

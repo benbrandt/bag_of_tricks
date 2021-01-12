@@ -30,7 +30,7 @@ pub(crate) struct Elf {
 impl Race for Elf {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {
-            subrace: ElfSubrace::iter().choose(rng).unwrap_or(ElfSubrace::Wood),
+            subrace: ElfSubrace::iter().choose(rng).unwrap(),
         }
     }
 

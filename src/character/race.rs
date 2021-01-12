@@ -63,10 +63,7 @@ enum RaceOptions {
 }
 
 pub(crate) fn gen_race_option(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
-    match RaceOptions::iter()
-        .choose(rng)
-        .unwrap_or(RaceOptions::Dragonborn)
-    {
+    match RaceOptions::iter().choose(rng).unwrap() {
         RaceOptions::Dragonborn => (
             Box::new(Dragonborn::gen(rng)),
             Dragonborn::gen_name(rng, gender),
