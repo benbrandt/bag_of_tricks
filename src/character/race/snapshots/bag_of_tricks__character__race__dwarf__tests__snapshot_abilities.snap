@@ -1,0 +1,8 @@
+---
+source: src/character/race/dwarf.rs
+expression: dwarf.abilities()
+---
+- - Constitution
+  - 2
+- - Wisdom
+  - 1

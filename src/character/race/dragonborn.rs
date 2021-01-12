@@ -44,16 +44,25 @@ mod tests {
     use rand::SeedableRng;
     use rand_pcg::Pcg64;
 
-    /// Verify that our snapshot remains the same.
     #[test]
-    fn test_snapshots() {
+    fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let dragonborn = Dragonborn::new(&mut rng);
         // Struct Snapshot
         // insta::assert_yaml_snapshot!(dragonborn);
         // fmt::Display Snapshot
         insta::assert_snapshot!(format!("{}", dragonborn));
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        let dragonborn = Dragonborn;
         insta::assert_yaml_snapshot!(dragonborn.abilities());
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let dragonborn = Dragonborn;
         insta::assert_yaml_snapshot!(dragonborn.citations());
     }
 }

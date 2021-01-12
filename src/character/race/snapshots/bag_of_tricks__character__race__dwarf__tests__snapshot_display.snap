@@ -1,0 +1,5 @@
+---
+source: src/character/race/dwarf.rs
+expression: "format!(\"{}\", dwarf)"
+---
+Hill Dwarf
