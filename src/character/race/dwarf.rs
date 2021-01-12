@@ -19,9 +19,9 @@ const AGE_RANGE: AgeRange = AgeRange(1..=350);
 mod names {
     use rand::{prelude::IteratorRandom, Rng};
 
-    use crate::character::characteristics::Gender;
+    use crate::character::characteristics::{Characteristics, Gender};
 
-    const CLAN_NAMES: &[&str] = &[
+    const CLAN: &[&str] = &[
         "Balderk",
         "Battlehammer",
         "Brawnanvil",
@@ -38,27 +38,30 @@ mod names {
         "Torunn",
         "Ungart",
     ];
-    const FEMALE_NAMES: &[&str] = &[
+    const FEMALE: &[&str] = &[
         "Amber", "Artin", "Audhild", "Bardryn", "Dagnal", "Diesa", "Eldeth", "Falkrunn",
         "Finellen", "Gunnloda", "Gurdis", "Helja", "Hlin", "Kathra", "Kristryd", "Ilde",
         "Liftrasa", "Mardred", "Riswynn", "Sannl", "Torbera", "Torgga", "Vistra",
     ];
-    const MALE_NAMES: &[&str] = &[
+    const MALE: &[&str] = &[
         "Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg",
         "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik",
         "Oskar", "Rangrim", "Rurik", "Taklinn", "Thoradin", "Thorin", "Tordek", "Traubon",
         "Travok", "Ulfgar", "Veit", "Vondal",
     ];
 
-    pub(crate) fn gen_name(rng: &mut impl Rng, gender: &Gender) -> String {
+    pub(crate) fn gen_name(
+        rng: &mut impl Rng,
+        Characteristics { gender, .. }: &Characteristics,
+    ) -> String {
         let first_names = match gender {
-            Gender::Female => FEMALE_NAMES,
-            Gender::Male => MALE_NAMES,
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
         };
         format!(
             "{} {}",
             first_names.iter().choose(rng).unwrap(),
-            CLAN_NAMES.iter().choose(rng).unwrap()
+            CLAN.iter().choose(rng).unwrap()
         )
     }
 }
@@ -76,14 +79,12 @@ pub(crate) struct Dwarf {
 #[typetag::serde]
 impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        let race = Box::new(Self {
+            subrace: DwarfSubrace::iter().choose(rng).unwrap(),
+        });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        (
-            Box::new(Self {
-                subrace: DwarfSubrace::iter().choose(rng).unwrap(),
-            }),
-            names::gen_name(rng, &characteristics.gender),
-            characteristics,
-        )
+        let name = names::gen_name(rng, &characteristics);
+        (race, name, characteristics)
     }
 
     fn abilities(&self) -> AbilityScores {

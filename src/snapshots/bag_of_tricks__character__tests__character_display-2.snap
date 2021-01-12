@@ -2,18 +2,18 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: Ulfgar Frostbeard
-RACE: Hill Dwarf (PHB p18,20)
+CHARACTER NAME: Ulfgar Battlehammer
+RACE: Mountain Dwarf (PHB p18,20)
 
-STR  +0 (10)
-DEX  -2 (6)
-CON  +1 (13)
-INT  +3 (17)
+STR  +2 (15)
+DEX  -2 (7)
+CON  +0 (11)
+INT  +2 (15)
 WIS  +3 (16)
 CHA  +1 (13)
 
 CHARACTERISTICS:
-Age: 190
+Age: 100
 Gender: Male
 
 FEATURES AND TRAITS:
@@ -21,6 +21,6 @@ Ability Score Increase
 Your Constitution score increases by 2. (PHB p20)
 
 Ability Score Increase
-Your Wisdom score increases by 1. (PHB p20)
+Your Strength score increases by 2. (PHB p20)
 
 

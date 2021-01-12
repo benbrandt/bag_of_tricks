@@ -3,7 +3,7 @@ source: src/character/race/dwarf.rs
 expression: dwarf
 ---
 - type: Dwarf
-  subrace: Mountain
+  subrace: Hill
 - Ulfgar Battlehammer
-- age: 50
+- age: 190
   gender: Male

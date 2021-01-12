@@ -2,4 +2,8 @@
 source: src/character/race/elf.rs
 expression: elf
 ---
-subrace: Dark
+- type: Elf
+  subrace: Dark
+- Tharivol Amastacia (Starflower)
+- age: 407
+  gender: Male

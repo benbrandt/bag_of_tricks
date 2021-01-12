@@ -4,25 +4,25 @@ expression: character
 ---
 abilities:
   - - Strength
-    - 10
+    - 13
   - - Dexterity
-    - 6
+    - 7
   - - Constitution
-    - 11
+    - 9
   - - Intelligence
-    - 17
-  - - Wisdom
     - 15
+  - - Wisdom
+    - 16
   - - Charisma
     - 13
   - - Constitution
     - 2
-  - - Wisdom
-    - 1
+  - - Strength
+    - 2
 characteristics:
-  age: 190
+  age: 100
   gender: Male
-name: Ulfgar Frostbeard
+name: Ulfgar Battlehammer
 race:
   type: Dwarf
-  subrace: Hill
+  subrace: Mountain
