@@ -26,7 +26,7 @@ pub(crate) struct Dwarf {
 
 #[typetag::serde]
 impl Race for Dwarf {
-    fn new(rng: &mut impl Rng) -> Self {
+    fn gen(rng: &mut impl Rng) -> Self {
         Self {
             subrace: DwarfSubrace::iter()
                 .choose(rng)
@@ -104,7 +104,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let dwarf = Dwarf::new(&mut rng);
+        let dwarf = Dwarf::gen(&mut rng);
         insta::assert_yaml_snapshot!(dwarf);
     }
 

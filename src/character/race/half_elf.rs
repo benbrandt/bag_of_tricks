@@ -19,7 +19,7 @@ pub(crate) struct HalfElf {
 
 #[typetag::serde]
 impl Race for HalfElf {
-    fn new(rng: &mut impl Rng) -> Self {
+    fn gen(rng: &mut impl Rng) -> Self {
         Self {
             addl_increases: AbilityScoreType::iter()
                 .filter(|s| s != &AbilityScoreType::Charisma)
@@ -71,35 +71,35 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_elf = HalfElf::new(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_elf = HalfElf::new(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", half_elf));
     }
 
     #[test]
     fn test_snapshot_abilities() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_elf = HalfElf::new(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.abilities());
     }
 
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_elf = HalfElf::new(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_elf = HalfElf::new(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.features());
     }
 }

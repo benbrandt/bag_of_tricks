@@ -16,7 +16,7 @@ pub(crate) struct Dragonborn;
 
 #[typetag::serde]
 impl Race for Dragonborn {
-    fn new(_: &mut impl Rng) -> Self {
+    fn gen(_: &mut impl Rng) -> Self {
         Self
     }
 
@@ -62,7 +62,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let dragonborn = Dragonborn::new(&mut rng);
+        let dragonborn = Dragonborn::gen(&mut rng);
         // Struct Snapshot
         // insta::assert_yaml_snapshot!(dragonborn);
         // fmt::Display Snapshot

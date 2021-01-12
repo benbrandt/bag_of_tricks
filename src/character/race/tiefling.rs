@@ -16,7 +16,7 @@ pub(crate) struct Tiefling;
 
 #[typetag::serde]
 impl Race for Tiefling {
-    fn new(_: &mut impl Rng) -> Self {
+    fn gen(_: &mut impl Rng) -> Self {
         Self
     }
 
@@ -62,7 +62,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let tiefling = Tiefling::new(&mut rng);
+        let tiefling = Tiefling::gen(&mut rng);
         // Struct Snapshot
         // insta::assert_yaml_snapshot!(tiefling);
         // fmt::Display Snapshot

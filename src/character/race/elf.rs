@@ -28,7 +28,7 @@ pub(crate) struct Elf {
 
 #[typetag::serde]
 impl Race for Elf {
-    fn new(rng: &mut impl Rng) -> Self {
+    fn gen(rng: &mut impl Rng) -> Self {
         Self {
             subrace: ElfSubrace::iter().choose(rng).unwrap_or(ElfSubrace::Wood),
         }
@@ -117,7 +117,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let elf = Elf::new(&mut rng);
+        let elf = Elf::gen(&mut rng);
         insta::assert_yaml_snapshot!(elf);
     }
 

@@ -22,7 +22,7 @@ use super::{ability::AbilityScores, features::Feature};
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race: fmt::Display {
     /// Method to generate a new instance of the struct
-    fn new(rng: &mut impl Rng) -> Self
+    fn gen(rng: &mut impl Rng) -> Self
     where
         Self: Sized;
 
@@ -54,14 +54,14 @@ pub(crate) fn gen_race_option(rng: &mut impl Rng) -> Box<dyn Race> {
         .choose(rng)
         .unwrap_or(RaceOptions::Dragonborn)
     {
-        RaceOptions::Dragonborn => Box::new(dragonborn::Dragonborn::new(rng)),
-        RaceOptions::Dwarf => Box::new(dwarf::Dwarf::new(rng)),
-        RaceOptions::Elf => Box::new(elf::Elf::new(rng)),
-        RaceOptions::Gnome => Box::new(gnome::Gnome::new(rng)),
-        RaceOptions::HalfElf => Box::new(half_elf::HalfElf::new(rng)),
-        RaceOptions::HalfOrc => Box::new(half_orc::HalfOrc::new(rng)),
-        RaceOptions::Halfling => Box::new(halfling::Halfling::new(rng)),
-        RaceOptions::Human => Box::new(human::Human::new(rng)),
-        RaceOptions::Tiefling => Box::new(tiefling::Tiefling::new(rng)),
+        RaceOptions::Dragonborn => Box::new(dragonborn::Dragonborn::gen(rng)),
+        RaceOptions::Dwarf => Box::new(dwarf::Dwarf::gen(rng)),
+        RaceOptions::Elf => Box::new(elf::Elf::gen(rng)),
+        RaceOptions::Gnome => Box::new(gnome::Gnome::gen(rng)),
+        RaceOptions::HalfElf => Box::new(half_elf::HalfElf::gen(rng)),
+        RaceOptions::HalfOrc => Box::new(half_orc::HalfOrc::gen(rng)),
+        RaceOptions::Halfling => Box::new(halfling::Halfling::gen(rng)),
+        RaceOptions::Human => Box::new(human::Human::gen(rng)),
+        RaceOptions::Tiefling => Box::new(tiefling::Tiefling::gen(rng)),
     }
 }

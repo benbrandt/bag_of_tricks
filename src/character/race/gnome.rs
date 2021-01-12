@@ -27,7 +27,7 @@ pub(crate) struct Gnome {
 
 #[typetag::serde]
 impl Race for Gnome {
-    fn new(rng: &mut impl Rng) -> Self {
+    fn gen(rng: &mut impl Rng) -> Self {
         Self {
             subrace: GnomeSubrace::iter()
                 .choose(rng)
@@ -105,7 +105,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let gnome = Gnome::new(&mut rng);
+        let gnome = Gnome::gen(&mut rng);
         insta::assert_yaml_snapshot!(gnome);
     }
 

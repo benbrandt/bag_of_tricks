@@ -17,7 +17,7 @@ pub(crate) struct Human;
 
 #[typetag::serde]
 impl Race for Human {
-    fn new(_: &mut impl Rng) -> Self {
+    fn gen(_: &mut impl Rng) -> Self {
         Self
     }
 
@@ -63,7 +63,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let human = Human::new(&mut rng);
+        let human = Human::gen(&mut rng);
         // Struct Snapshot
         // insta::assert_yaml_snapshot!(human);
         // fmt::Display Snapshot
