@@ -1,0 +1,24 @@
+---
+source: src/character.rs
+expression: character
+---
+abilities:
+  - - Strength
+    - 13
+  - - Dexterity
+    - 13
+  - - Constitution
+    - 7
+  - - Intelligence
+    - 9
+  - - Wisdom
+    - 15
+  - - Charisma
+    - 16
+  - - Constitution
+    - 2
+  - - Strength
+    - 2
+race:
+  type: Dwarf
+  subrace: Mountain

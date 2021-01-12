@@ -46,7 +46,7 @@ impl AbilityScore {
 }
 
 /// Full set of ability scores a character could have
-#[derive(Debug)]
+#[derive(Debug, Deserialize, Serialize)]
 pub(crate) struct AbilityScores(pub(crate) Vec<AbilityScore>);
 
 impl AbilityScores {

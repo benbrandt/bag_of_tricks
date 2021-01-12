@@ -2,12 +2,14 @@ mod ability;
 mod race;
 
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use ability::AbilityScores;
 use race::{gen_race_option, Race};
 
 /// Character information
+#[derive(Deserialize, Serialize)]
 pub struct Character {
     abilities: AbilityScores,
     race: Box<dyn Race>,
@@ -41,6 +43,7 @@ mod tests {
     fn test_character_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let character = Character::new(&mut rng);
+        insta::assert_yaml_snapshot!(character);
         assert_eq!(
             format!("{}", character),
             "\
