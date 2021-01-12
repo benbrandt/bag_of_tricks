@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet},
     fmt,
@@ -5,12 +6,13 @@ use std::{
 use strum_macros::Display;
 
 /// Titles of the available D&D Books.
-#[derive(Clone, Copy, Display, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Deserialize, Display, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum Book {
     PHB,
 }
 
 /// Book and page number for citations.
+#[derive(Deserialize, Serialize)]
 pub(crate) struct Citation {
     pub(crate) book: Book,
     pub(crate) page: u16,
@@ -22,6 +24,7 @@ impl fmt::Display for Citation {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 pub(crate) struct Citations(pub(crate) Vec<Citation>);
 
 impl fmt::Display for Citations {
