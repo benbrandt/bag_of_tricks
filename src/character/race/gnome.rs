@@ -62,3 +62,41 @@ impl fmt::Display for Gnome {
         write!(f, "{} Gnome", self.subrace)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let gnome = Gnome::new(&mut rng);
+        insta::assert_yaml_snapshot!(gnome);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        for subrace in GnomeSubrace::iter() {
+            let gnome = Gnome { subrace };
+            insta::assert_snapshot!(format!("{}", gnome));
+        }
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        for subrace in GnomeSubrace::iter() {
+            let gnome = Gnome { subrace };
+            insta::assert_yaml_snapshot!(gnome.abilities());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        for subrace in GnomeSubrace::iter() {
+            let gnome = Gnome { subrace };
+            insta::assert_yaml_snapshot!(gnome.citations());
+        }
+    }
+}

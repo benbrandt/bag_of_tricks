@@ -1,0 +1,5 @@
+---
+source: src/character/race/gnome.rs
+expression: "format!(\"{}\", gnome)"
+---
+Rock Gnome

@@ -1,0 +1,8 @@
+---
+source: src/character/race/gnome.rs
+expression: gnome.citations()
+---
+- book: PHB
+  page: 35
+- book: PHB
+  page: 37

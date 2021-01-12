@@ -1,0 +1,8 @@
+---
+source: src/character/race/gnome.rs
+expression: gnome.abilities()
+---
+- - Intelligence
+  - 2
+- - Constitution
+  - 1
