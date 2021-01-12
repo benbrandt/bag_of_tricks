@@ -1,0 +1,7 @@
+---
+source: src/character/characteristics.rs
+expression: "format!(\"{}\", characteristics)"
+---
+Age: 100
+Gender: Female
+

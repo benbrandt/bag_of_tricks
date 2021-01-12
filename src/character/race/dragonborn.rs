@@ -6,8 +6,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -17,8 +17,8 @@ pub(crate) struct Dragonborn;
 
 #[typetag::serde]
 impl Race for Dragonborn {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
-        (Box::new(Self), todo!())
+    fn gen(_rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        (Box::new(Self), todo!(), todo!())
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -63,14 +63,14 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let dragonborn = Dragonborn::gen(&mut rng, &Gender::Female);
+        let dragonborn = Dragonborn::gen(&mut rng);
         insta::assert_yaml_snapshot!(dragonborn);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (dragonborn, name) = Dragonborn::gen(&mut rng, &Gender::Female);
+        let (dragonborn, _name, _characteristics) = Dragonborn::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", dragonborn));
     }
 

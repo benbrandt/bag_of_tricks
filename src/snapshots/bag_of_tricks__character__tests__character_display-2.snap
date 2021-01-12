@@ -2,22 +2,25 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: 
-RACE: Lightfoot Halfling (PHB p26,28)
-GENDER: Female
+CHARACTER NAME: Ulfgar Frostbeard
+RACE: Hill Dwarf (PHB p18,20)
 
-STR  +1 (13)
-DEX  -1 (9)
-CON  -1 (9)
-INT  +2 (15)
+STR  +0 (10)
+DEX  -2 (6)
+CON  +1 (13)
+INT  +3 (17)
 WIS  +3 (16)
-CHA  +2 (14)
+CHA  +1 (13)
+
+CHARACTERISTICS:
+Age: 190
+Gender: Male
 
 FEATURES AND TRAITS:
 Ability Score Increase
-Your Dexterity score increases by 2. (PHB p28)
+Your Constitution score increases by 2. (PHB p20)
 
 Ability Score Increase
-Your Charisma score increases by 1. (PHB p28)
+Your Wisdom score increases by 1. (PHB p20)
 
 

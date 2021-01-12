@@ -9,8 +9,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -28,11 +28,12 @@ pub(crate) struct Halfling {
 
 #[typetag::serde]
 impl Race for Halfling {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         (
             Box::new(Self {
                 subrace: HalflingSubrace::iter().choose(rng).unwrap(),
             }),
+            todo!(),
             todo!(),
         )
     }
@@ -107,7 +108,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let halfling = Halfling::gen(&mut rng, &Gender::Male);
+        let halfling = Halfling::gen(&mut rng);
         insta::assert_yaml_snapshot!(halfling);
     }
 

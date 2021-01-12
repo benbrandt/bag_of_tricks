@@ -1,14 +1,14 @@
 use rand::Rng;
 use serde::{Deserialize, Serialize};
-use std::fmt;
+use std::{fmt, todo};
 use strum::IntoEnumIterator;
 
 use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -18,8 +18,8 @@ pub(crate) struct Human;
 
 #[typetag::serde]
 impl Race for Human {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
-        (Box::new(Self), todo!())
+    fn gen(_rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        (Box::new(Self), todo!(), todo!())
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -64,14 +64,14 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let human = Human::gen(&mut rng, &Gender::Male);
+        let human = Human::gen(&mut rng);
         insta::assert_yaml_snapshot!(human);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (human, _) = Human::gen(&mut rng, &Gender::Female);
+        let (human, _name, _characteristics) = Human::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", human));
     }
 

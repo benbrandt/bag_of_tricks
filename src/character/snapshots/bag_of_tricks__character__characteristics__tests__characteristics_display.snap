@@ -1,0 +1,6 @@
+---
+source: src/character/characteristics.rs
+expression: characteristics
+---
+age: 100
+gender: Female

@@ -9,8 +9,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -29,11 +29,12 @@ pub(crate) struct Elf {
 
 #[typetag::serde]
 impl Race for Elf {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         (
             Box::new(Self {
                 subrace: ElfSubrace::iter().choose(rng).unwrap(),
             }),
+            todo!(),
             todo!(),
         )
     }
@@ -121,7 +122,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let elf = Elf::gen(&mut rng, &Gender::Female);
+        let elf = Elf::gen(&mut rng);
         insta::assert_yaml_snapshot!(elf);
     }
 

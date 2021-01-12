@@ -9,8 +9,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -28,11 +28,12 @@ pub(crate) struct Gnome {
 
 #[typetag::serde]
 impl Race for Gnome {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         (
             Box::new(Self {
                 subrace: GnomeSubrace::iter().choose(rng).unwrap(),
             }),
+            todo!(),
             todo!(),
         )
     }
@@ -107,7 +108,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let gnome = Gnome::gen(&mut rng, &Gender::Female);
+        let gnome = Gnome::gen(&mut rng);
         insta::assert_yaml_snapshot!(gnome);
     }
 

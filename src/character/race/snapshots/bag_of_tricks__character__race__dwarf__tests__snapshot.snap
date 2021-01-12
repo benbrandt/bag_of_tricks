@@ -3,5 +3,7 @@ source: src/character/race/dwarf.rs
 expression: dwarf
 ---
 - type: Dwarf
-  subrace: Hill
-- Hlin Fireforge
+  subrace: Mountain
+- Ulfgar Battlehammer
+- age: 50
+  gender: Male

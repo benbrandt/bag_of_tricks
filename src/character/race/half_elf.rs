@@ -7,8 +7,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -20,7 +20,7 @@ pub(crate) struct HalfElf {
 
 #[typetag::serde]
 impl Race for HalfElf {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         let race = Self {
             addl_increases: AbilityScoreType::iter()
                 .filter(|s| s != &AbilityScoreType::Charisma)
@@ -29,7 +29,7 @@ impl Race for HalfElf {
                 .map(|t| AbilityScore(t, 1))
                 .collect(),
         };
-        (Box::new(race), todo!())
+        (Box::new(race), todo!(), todo!())
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -73,35 +73,35 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_elf = HalfElf::gen(&mut rng, &Gender::Female);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _) = HalfElf::gen(&mut rng, &Gender::Male);
+        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", half_elf));
     }
 
     #[test]
     fn test_snapshot_abilities() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _) = HalfElf::gen(&mut rng, &Gender::Female);
+        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.abilities());
     }
 
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _) = HalfElf::gen(&mut rng, &Gender::Male);
+        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _) = HalfElf::gen(&mut rng, &Gender::Female);
+        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.features());
     }
 }

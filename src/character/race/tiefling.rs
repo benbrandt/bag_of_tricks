@@ -6,8 +6,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -17,8 +17,8 @@ pub(crate) struct Tiefling;
 
 #[typetag::serde]
 impl Race for Tiefling {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
-        (Box::new(Self), todo!())
+    fn gen(_rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        (Box::new(Self), todo!(), todo!())
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -63,14 +63,14 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let tiefling = Tiefling::gen(&mut rng, &Gender::Female);
+        let tiefling = Tiefling::gen(&mut rng);
         insta::assert_yaml_snapshot!(tiefling);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tiefling, _) = Tiefling::gen(&mut rng, &Gender::Female);
+        let (tiefling, _name, _characteristics) = Tiefling::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", tiefling));
     }
 

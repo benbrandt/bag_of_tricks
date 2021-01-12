@@ -4,23 +4,25 @@ expression: character
 ---
 abilities:
   - - Strength
-    - 13
+    - 10
   - - Dexterity
-    - 7
+    - 6
   - - Constitution
-    - 9
+    - 11
   - - Intelligence
-    - 15
+    - 17
   - - Wisdom
-    - 16
+    - 15
   - - Charisma
     - 13
-  - - Dexterity
+  - - Constitution
     - 2
-  - - Charisma
+  - - Wisdom
     - 1
-gender: Female
-name: ""
+characteristics:
+  age: 190
+  gender: Male
+name: Ulfgar Frostbeard
 race:
-  type: Halfling
-  subrace: Lightfoot
+  type: Dwarf
+  subrace: Hill

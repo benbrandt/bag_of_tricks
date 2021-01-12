@@ -8,16 +8,18 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::{AgeRange, Characteristics},
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
 
+const AGE_RANGE: AgeRange = AgeRange(1..=350);
+
 mod names {
     use rand::{prelude::IteratorRandom, Rng};
 
-    use crate::character::Gender;
+    use crate::character::characteristics::Gender;
 
     const CLAN_NAMES: &[&str] = &[
         "Balderk",
@@ -73,12 +75,14 @@ pub(crate) struct Dwarf {
 
 #[typetag::serde]
 impl Race for Dwarf {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
         (
             Box::new(Self {
                 subrace: DwarfSubrace::iter().choose(rng).unwrap(),
             }),
-            names::gen_name(rng, gender),
+            names::gen_name(rng, &characteristics.gender),
+            characteristics,
         )
     }
 
@@ -152,7 +156,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let dwarf = Dwarf::gen(&mut rng, &Gender::Female);
+        let dwarf = Dwarf::gen(&mut rng);
         insta::assert_yaml_snapshot!(dwarf);
     }
 

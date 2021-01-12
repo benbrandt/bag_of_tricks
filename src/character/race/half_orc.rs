@@ -6,8 +6,8 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::Characteristics,
         features::Feature,
-        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -17,8 +17,8 @@ pub(crate) struct HalfOrc;
 
 #[typetag::serde]
 impl Race for HalfOrc {
-    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
-        (Box::new(Self), todo!())
+    fn gen(_rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        (Box::new(Self), todo!(), todo!())
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -63,14 +63,14 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_orc = HalfOrc::gen(&mut rng, &Gender::Female);
+        let half_orc = HalfOrc::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_orc);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_orc, _) = HalfOrc::gen(&mut rng, &Gender::Female);
+        let (half_orc, _name, _characteristics) = HalfOrc::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", half_orc));
     }
 
