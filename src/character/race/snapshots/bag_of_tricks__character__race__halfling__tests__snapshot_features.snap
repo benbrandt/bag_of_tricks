@@ -1,0 +1,14 @@
+---
+source: src/character/race/halfling.rs
+expression: halfling.features()
+---
+- title: Ability Score Increase
+  description: Your Dexterity score inscreases by 2.
+  citation:
+    book: PHB
+    page: 28
+- title: Ability Score Increase
+  description: Your Charisma score increases by 1.
+  citation:
+    book: PHB
+    page: 28

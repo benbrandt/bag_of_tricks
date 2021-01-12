@@ -1,6 +1,8 @@
 mod ability;
+mod features;
 mod race;
 
+use features::Feature;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use std::fmt;
@@ -23,12 +25,21 @@ impl Character {
         abilities.extend(race.abilities());
         Self { abilities, race }
     }
+
+    fn features(&self) -> Vec<Feature> {
+        self.race.features()
+    }
 }
 
 impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "RACE: {} ({})\n", self.race, self.race.citations())?;
-        write!(f, "{}", self.abilities)
+        writeln!(f, "{}", self.abilities)?;
+        writeln!(f, "FEATURES AND TRAITS:")?;
+        for feature in self.features() {
+            writeln!(f, "{}", feature)?;
+        }
+        write!(f, "")
     }
 }
 

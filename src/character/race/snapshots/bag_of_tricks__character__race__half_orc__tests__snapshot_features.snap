@@ -1,0 +1,9 @@
+---
+source: src/character/race/half_orc.rs
+expression: half_orc.features()
+---
+- title: Ability Score Increase
+  description: "Your Strength score increases by 2, and your Constitution score increases by 1."
+  citation:
+    book: PHB
+    page: 41

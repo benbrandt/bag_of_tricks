@@ -1,0 +1,9 @@
+---
+source: src/character/race/half_elf.rs
+expression: half_elf.features()
+---
+- title: Ability Score Increase
+  description: "Your Charisma score increases by 2, and two other ability scores of your choice increase by 1."
+  citation:
+    book: PHB
+    page: 39

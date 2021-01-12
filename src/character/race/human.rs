@@ -5,7 +5,10 @@ use strum::IntoEnumIterator;
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -31,6 +34,17 @@ impl Race for Human {
             book: Book::PHB,
             page: 29,
         }])
+    }
+
+    fn features(&self) -> Vec<Feature> {
+        vec![Feature {
+            title: "Ability Score Increase",
+            description: "Your ability scores each increase by 1.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 31,
+            },
+        }]
     }
 }
 
@@ -66,5 +80,11 @@ mod tests {
     fn test_snapshot_citations() {
         let human = Human;
         insta::assert_yaml_snapshot!(human.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let human = Human;
+        insta::assert_yaml_snapshot!(human.features());
     }
 }

@@ -1,0 +1,9 @@
+---
+source: src/character/race/human.rs
+expression: human.features()
+---
+- title: Ability Score Increase
+  description: Your ability scores each increase by 1.
+  citation:
+    book: PHB
+    page: 31

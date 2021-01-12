@@ -5,7 +5,10 @@ use strum::IntoEnumIterator;
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -38,6 +41,18 @@ impl Race for HalfElf {
             book: Book::PHB,
             page: 38,
         }])
+    }
+
+    fn features(&self) -> Vec<Feature> {
+        vec![Feature {
+            title: "Ability Score Increase",
+            description:
+                "Your Charisma score increases by 2, and two other ability scores of your choice increase by 1.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 39,
+            },
+        }]
     }
 }
 
@@ -79,5 +94,12 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let half_elf = HalfElf::new(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let half_elf = HalfElf::new(&mut rng);
+        insta::assert_yaml_snapshot!(half_elf.features());
     }
 }

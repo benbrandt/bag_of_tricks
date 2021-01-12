@@ -7,7 +7,10 @@ use strum_macros::{Display, EnumIter};
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -59,6 +62,44 @@ impl Race for Elf {
         };
         Citations(vec![race, subrace])
     }
+
+    fn features(&self) -> Vec<Feature> {
+        let mut features = vec![Feature {
+            title: "Ability Score Increase",
+            description: "Your Dexterity score inscreases by 2.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 23,
+            },
+        }];
+        features.extend(match self.subrace {
+            ElfSubrace::Dark => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Charisma score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 24,
+                },
+            }],
+            ElfSubrace::High => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Intelligence score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 23,
+                },
+            }],
+            ElfSubrace::Wood => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Wisdom score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 24,
+                },
+            }],
+        });
+        features
+    }
 }
 
 impl fmt::Display for Elf {
@@ -101,6 +142,14 @@ mod tests {
         for subrace in ElfSubrace::iter() {
             let elf = Elf { subrace };
             insta::assert_yaml_snapshot!(elf.citations());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        for subrace in ElfSubrace::iter() {
+            let elf = Elf { subrace };
+            insta::assert_yaml_snapshot!(elf.features());
         }
     }
 }

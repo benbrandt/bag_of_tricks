@@ -7,7 +7,10 @@ use strum_macros::{Display, EnumIter};
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -54,6 +57,36 @@ impl Race for Dwarf {
         };
         Citations(vec![race, subrace])
     }
+
+    fn features(&self) -> Vec<Feature> {
+        let mut features = vec![Feature {
+            title: "Ability Score Increase",
+            description: "Your Constitution score inscreases by 2.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 20,
+            },
+        }];
+        features.extend(match self.subrace {
+            DwarfSubrace::Hill => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Wisdom score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            }],
+            DwarfSubrace::Mountain => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Strength score increases by 2.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            }],
+        });
+        features
+    }
 }
 
 impl fmt::Display for Dwarf {
@@ -96,6 +129,14 @@ mod tests {
         for subrace in DwarfSubrace::iter() {
             let dwarf = Dwarf { subrace };
             insta::assert_yaml_snapshot!(dwarf.citations());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        for subrace in DwarfSubrace::iter() {
+            let dwarf = Dwarf { subrace };
+            insta::assert_yaml_snapshot!(dwarf.features());
         }
     }
 }

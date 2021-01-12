@@ -4,7 +4,10 @@ use std::fmt;
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -29,6 +32,18 @@ impl Race for Dragonborn {
             book: Book::PHB,
             page: 32,
         }])
+    }
+
+    fn features(&self) -> Vec<Feature> {
+        vec![Feature {
+            title: "Ability Score Increase",
+            description:
+                "Your Strength score increases by 2, and your Charisma score increases by 1.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 34,
+            },
+        }]
     }
 }
 
@@ -64,5 +79,11 @@ mod tests {
     fn test_snapshot_citations() {
         let dragonborn = Dragonborn;
         insta::assert_yaml_snapshot!(dragonborn.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let dragonborn = Dragonborn;
+        insta::assert_yaml_snapshot!(dragonborn.features());
     }
 }

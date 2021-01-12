@@ -4,7 +4,10 @@ use std::fmt;
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -29,6 +32,18 @@ impl Race for HalfOrc {
             book: Book::PHB,
             page: 40,
         }])
+    }
+
+    fn features(&self) -> Vec<Feature> {
+        vec![Feature {
+            title: "Ability Score Increase",
+            description:
+                "Your Strength score increases by 2, and your Constitution score increases by 1.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 41,
+            },
+        }]
     }
 }
 
@@ -64,5 +79,11 @@ mod tests {
     fn test_snapshot_citations() {
         let half_orc = HalfOrc;
         insta::assert_yaml_snapshot!(half_orc.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let half_orc = HalfOrc;
+        insta::assert_yaml_snapshot!(half_orc.features());
     }
 }

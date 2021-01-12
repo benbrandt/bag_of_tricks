@@ -1,0 +1,14 @@
+---
+source: src/character/race/gnome.rs
+expression: gnome.features()
+---
+- title: Ability Score Increase
+  description: Your Intelligence score inscreases by 2.
+  citation:
+    book: PHB
+    page: 36
+- title: Ability Score Increase
+  description: Your Constitution score increases by 1.
+  citation:
+    book: PHB
+    page: 37

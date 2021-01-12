@@ -16,7 +16,7 @@ use strum_macros::EnumIter;
 
 use crate::citation::Citations;
 
-use super::ability::AbilityScores;
+use super::{ability::AbilityScores, features::Feature};
 
 /// Shared race traits
 #[typetag::serde(tag = "type")]
@@ -31,6 +31,9 @@ pub(crate) trait Race: fmt::Display {
 
     /// Return list of citations for this race/subrace
     fn citations(&self) -> Citations;
+
+    /// Return list of features & traits for this race
+    fn features(&self) -> Vec<Feature>;
 }
 
 #[derive(EnumIter)]

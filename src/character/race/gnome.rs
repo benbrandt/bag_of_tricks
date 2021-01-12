@@ -7,7 +7,10 @@ use strum_macros::{Display, EnumIter};
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -55,6 +58,36 @@ impl Race for Gnome {
         };
         Citations(vec![race, subrace])
     }
+
+    fn features(&self) -> Vec<Feature> {
+        let mut features = vec![Feature {
+            title: "Ability Score Increase",
+            description: "Your Intelligence score inscreases by 2.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 36,
+            },
+        }];
+        features.extend(match self.subrace {
+            GnomeSubrace::Forest => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Dexterity score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 37,
+                },
+            }],
+            GnomeSubrace::Rock => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Constitution score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 37,
+                },
+            }],
+        });
+        features
+    }
 }
 
 impl fmt::Display for Gnome {
@@ -97,6 +130,14 @@ mod tests {
         for subrace in GnomeSubrace::iter() {
             let gnome = Gnome { subrace };
             insta::assert_yaml_snapshot!(gnome.citations());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        for subrace in GnomeSubrace::iter() {
+            let gnome = Gnome { subrace };
+            insta::assert_yaml_snapshot!(gnome.features());
         }
     }
 }

@@ -4,7 +4,10 @@ use std::fmt;
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -29,6 +32,18 @@ impl Race for Tiefling {
             book: Book::PHB,
             page: 42,
         }])
+    }
+
+    fn features(&self) -> Vec<Feature> {
+        vec![Feature {
+            title: "Ability Score Increase",
+            description:
+                "Your Intelligence score increases by 1, and your Charisma score increases by 12",
+            citation: Citation {
+                book: Book::PHB,
+                page: 43,
+            },
+        }]
     }
 }
 
@@ -64,5 +79,11 @@ mod tests {
     fn test_snapshot_citations() {
         let tiefling = Tiefling;
         insta::assert_yaml_snapshot!(tiefling.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let tiefling = Tiefling;
+        insta::assert_yaml_snapshot!(tiefling.features());
     }
 }

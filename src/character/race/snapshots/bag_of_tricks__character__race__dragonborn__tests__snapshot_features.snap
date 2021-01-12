@@ -1,0 +1,9 @@
+---
+source: src/character/race/dragonborn.rs
+expression: dragonborn.features()
+---
+- title: Ability Score Increase
+  description: "Your Strength score increases by 2, and your Charisma score increases by 1."
+  citation:
+    book: PHB
+    page: 34

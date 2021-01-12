@@ -1,0 +1,14 @@
+---
+source: src/character/race/elf.rs
+expression: elf.features()
+---
+- title: Ability Score Increase
+  description: Your Dexterity score inscreases by 2.
+  citation:
+    book: PHB
+    page: 23
+- title: Ability Score Increase
+  description: Your Wisdom score increases by 1.
+  citation:
+    book: PHB
+    page: 24

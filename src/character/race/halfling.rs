@@ -7,7 +7,10 @@ use strum_macros::{Display, EnumIter};
 
 use super::Race;
 use crate::{
-    character::ability::{AbilityScore, AbilityScoreType, AbilityScores},
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        features::Feature,
+    },
     citation::{Book, Citation, Citations},
 };
 
@@ -55,6 +58,36 @@ impl Race for Halfling {
         };
         Citations(vec![race, subrace])
     }
+
+    fn features(&self) -> Vec<Feature> {
+        let mut features = vec![Feature {
+            title: "Ability Score Increase",
+            description: "Your Dexterity score inscreases by 2.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 28,
+            },
+        }];
+        features.extend(match self.subrace {
+            HalflingSubrace::Lightfoot => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Charisma score increases by 1.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            }],
+            HalflingSubrace::Stout => vec![Feature {
+                title: "Ability Score Increase",
+                description: "Your Constitution score increases by 2.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            }],
+        });
+        features
+    }
 }
 
 impl fmt::Display for Halfling {
@@ -97,6 +130,14 @@ mod tests {
         for subrace in HalflingSubrace::iter() {
             let halfling = Halfling { subrace };
             insta::assert_yaml_snapshot!(halfling.citations());
+        }
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        for subrace in HalflingSubrace::iter() {
+            let halfling = Halfling { subrace };
+            insta::assert_yaml_snapshot!(halfling.features());
         }
     }
 }
