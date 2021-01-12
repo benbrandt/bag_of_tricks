@@ -7,6 +7,7 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         features::Feature,
+        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -16,8 +17,8 @@ pub(crate) struct HalfOrc;
 
 #[typetag::serde]
 impl Race for HalfOrc {
-    fn gen(_: &mut impl Rng) -> Self {
-        Self
+    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+        (Box::new(Self), todo!())
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -60,12 +61,16 @@ mod tests {
     use rand_pcg::Pcg64;
 
     #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let half_orc = HalfOrc::gen(&mut rng, &Gender::Female);
+        insta::assert_yaml_snapshot!(half_orc);
+    }
+
+    #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let half_orc = HalfOrc::gen(&mut rng);
-        // Struct Snapshot
-        // insta::assert_yaml_snapshot!(half_orc);
-        // fmt::Display Snapshot
+        let (half_orc, _) = HalfOrc::gen(&mut rng, &Gender::Female);
         insta::assert_snapshot!(format!("{}", half_orc));
     }
 

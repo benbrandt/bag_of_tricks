@@ -2,4 +2,6 @@
 source: src/character/race/dwarf.rs
 expression: dwarf
 ---
-subrace: Hill
+- type: Dwarf
+  subrace: Hill
+- Hlin Fireforge

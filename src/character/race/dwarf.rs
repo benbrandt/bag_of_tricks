@@ -1,5 +1,4 @@
-use rand::prelude::IteratorRandom;
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -16,7 +15,11 @@ use crate::{
 };
 
 mod names {
-    pub(crate) const CLAN_NAMES: &[&str] = &[
+    use rand::{prelude::IteratorRandom, Rng};
+
+    use crate::character::Gender;
+
+    const CLAN_NAMES: &[&str] = &[
         "Balderk",
         "Battlehammer",
         "Brawnanvil",
@@ -33,17 +36,29 @@ mod names {
         "Torunn",
         "Ungart",
     ];
-    pub(crate) const FEMALE_NAMES: &[&str] = &[
+    const FEMALE_NAMES: &[&str] = &[
         "Amber", "Artin", "Audhild", "Bardryn", "Dagnal", "Diesa", "Eldeth", "Falkrunn",
         "Finellen", "Gunnloda", "Gurdis", "Helja", "Hlin", "Kathra", "Kristryd", "Ilde",
         "Liftrasa", "Mardred", "Riswynn", "Sannl", "Torbera", "Torgga", "Vistra",
     ];
-    pub(crate) const MALE_NAMES: &[&str] = &[
+    const MALE_NAMES: &[&str] = &[
         "Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg",
         "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik",
         "Oskar", "Rangrim", "Rurik", "Taklinn", "Thoradin", "Thorin", "Tordek", "Traubon",
         "Travok", "Ulfgar", "Veit", "Vondal",
     ];
+
+    pub(crate) fn gen_name(rng: &mut impl Rng, gender: &Gender) -> String {
+        let first_names = match gender {
+            Gender::Female => FEMALE_NAMES,
+            Gender::Male => MALE_NAMES,
+        };
+        format!(
+            "{} {}",
+            first_names.iter().choose(rng).unwrap(),
+            CLAN_NAMES.iter().choose(rng).unwrap()
+        )
+    }
 }
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
@@ -58,24 +73,12 @@ pub(crate) struct Dwarf {
 
 #[typetag::serde]
 impl Race for Dwarf {
-    fn gen(rng: &mut impl Rng) -> Self {
-        Self {
-            subrace: DwarfSubrace::iter().choose(rng).unwrap(),
-        }
-    }
-
-    fn gen_name(rng: &mut impl Rng, gender: &Gender) -> String
-    where
-        Self: Sized,
-    {
-        let first_names = match gender {
-            Gender::Female => names::FEMALE_NAMES,
-            Gender::Male => names::MALE_NAMES,
-        };
-        format!(
-            "{} {}",
-            first_names.iter().choose(rng).unwrap(),
-            names::CLAN_NAMES.iter().choose(rng).unwrap()
+    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+        (
+            Box::new(Self {
+                subrace: DwarfSubrace::iter().choose(rng).unwrap(),
+            }),
+            names::gen_name(rng, gender),
         )
     }
 
@@ -149,15 +152,8 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let dwarf = Dwarf::gen(&mut rng);
+        let dwarf = Dwarf::gen(&mut rng, &Gender::Female);
         insta::assert_yaml_snapshot!(dwarf);
-    }
-
-    #[test]
-    fn test_snapshot_gen_name() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        insta::assert_snapshot!(Dwarf::gen_name(&mut rng, &Gender::Female));
-        insta::assert_snapshot!(Dwarf::gen_name(&mut rng, &Gender::Male));
     }
 
     #[test]

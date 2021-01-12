@@ -10,6 +10,7 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         features::Feature,
+        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -27,10 +28,13 @@ pub(crate) struct Gnome {
 
 #[typetag::serde]
 impl Race for Gnome {
-    fn gen(rng: &mut impl Rng) -> Self {
-        Self {
-            subrace: GnomeSubrace::iter().choose(rng).unwrap(),
-        }
+    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+        (
+            Box::new(Self {
+                subrace: GnomeSubrace::iter().choose(rng).unwrap(),
+            }),
+            todo!(),
+        )
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -103,7 +107,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let gnome = Gnome::gen(&mut rng);
+        let gnome = Gnome::gen(&mut rng, &Gender::Female);
         insta::assert_yaml_snapshot!(gnome);
     }
 

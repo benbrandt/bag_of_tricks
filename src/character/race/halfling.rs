@@ -10,6 +10,7 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         features::Feature,
+        Gender,
     },
     citation::{Book, Citation, Citations},
 };
@@ -27,10 +28,13 @@ pub(crate) struct Halfling {
 
 #[typetag::serde]
 impl Race for Halfling {
-    fn gen(rng: &mut impl Rng) -> Self {
-        Self {
-            subrace: HalflingSubrace::iter().choose(rng).unwrap(),
-        }
+    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+        (
+            Box::new(Self {
+                subrace: HalflingSubrace::iter().choose(rng).unwrap(),
+            }),
+            todo!(),
+        )
     }
 
     fn abilities(&self) -> AbilityScores {
@@ -103,7 +107,7 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let halfling = Halfling::gen(&mut rng);
+        let halfling = Halfling::gen(&mut rng, &Gender::Male);
         insta::assert_yaml_snapshot!(halfling);
     }
 

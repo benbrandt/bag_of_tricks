@@ -27,17 +27,9 @@ use super::{ability::AbilityScores, features::Feature, Gender};
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race: fmt::Display {
     /// Method to generate a new instance of the struct
-    fn gen(rng: &mut impl Rng) -> Self
+    fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String)
     where
         Self: Sized;
-
-    /// Generate a name for a character of this race
-    fn gen_name(rng: &mut impl Rng, gender: &Gender) -> String
-    where
-        Self: Sized,
-    {
-        String::new()
-    }
 
     /// Returns ability score increases for the race
     fn abilities(&self) -> AbilityScores;
@@ -50,7 +42,7 @@ pub(crate) trait Race: fmt::Display {
 }
 
 #[derive(EnumIter)]
-enum RaceOptions {
+pub(crate) enum RaceOptions {
     Dragonborn,
     Dwarf,
     Elf,
@@ -62,25 +54,18 @@ enum RaceOptions {
     Tiefling,
 }
 
-pub(crate) fn gen_race_option(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
-    match RaceOptions::iter().choose(rng).unwrap() {
-        RaceOptions::Dragonborn => (
-            Box::new(Dragonborn::gen(rng)),
-            Dragonborn::gen_name(rng, gender),
-        ),
-        RaceOptions::Dwarf => (Box::new(Dwarf::gen(rng)), Dwarf::gen_name(rng, gender)),
-        RaceOptions::Elf => (Box::new(Elf::gen(rng)), Elf::gen_name(rng, gender)),
-        RaceOptions::Gnome => (Box::new(Gnome::gen(rng)), Gnome::gen_name(rng, gender)),
-        RaceOptions::HalfElf => (Box::new(HalfElf::gen(rng)), HalfElf::gen_name(rng, gender)),
-        RaceOptions::HalfOrc => (Box::new(HalfOrc::gen(rng)), HalfOrc::gen_name(rng, gender)),
-        RaceOptions::Halfling => (
-            Box::new(Halfling::gen(rng)),
-            Halfling::gen_name(rng, gender),
-        ),
-        RaceOptions::Human => (Box::new(Human::gen(rng)), Human::gen_name(rng, gender)),
-        RaceOptions::Tiefling => (
-            Box::new(Tiefling::gen(rng)),
-            Tiefling::gen_name(rng, gender),
-        ),
+impl RaceOptions {
+    pub(crate) fn gen(rng: &mut impl Rng, gender: &Gender) -> (Box<dyn Race>, String) {
+        match Self::iter().choose(rng).unwrap() {
+            Self::Dragonborn => Dragonborn::gen(rng, gender),
+            Self::Dwarf => Dwarf::gen(rng, gender),
+            Self::Elf => Elf::gen(rng, gender),
+            Self::Gnome => Gnome::gen(rng, gender),
+            Self::HalfElf => HalfElf::gen(rng, gender),
+            Self::HalfOrc => HalfOrc::gen(rng, gender),
+            Self::Halfling => Halfling::gen(rng, gender),
+            Self::Human => Human::gen(rng, gender),
+            Self::Tiefling => Tiefling::gen(rng, gender),
+        }
     }
 }

@@ -10,7 +10,7 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use ability::AbilityScores;
-use race::{gen_race_option, Race};
+use race::{Race, RaceOptions};
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 pub(crate) enum Gender {
@@ -31,7 +31,7 @@ impl Character {
     /// Generate a new random character
     pub fn new(rng: &mut impl Rng) -> Self {
         let gender = Gender::iter().choose(rng).unwrap();
-        let (race, name) = gen_race_option(rng, &gender);
+        let (race, name) = RaceOptions::gen(rng, &gender);
         let mut abilities = AbilityScores::new(rng);
         abilities.extend(race.abilities());
         Self {
