@@ -1,0 +1,8 @@
+---
+source: src/character/race/human.rs
+expression: human
+---
+- type: Human
+- Wen Huang
+- age: 15
+  gender: Male

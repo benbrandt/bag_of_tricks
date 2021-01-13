@@ -78,12 +78,19 @@ mod names {
     ];
 
     const NICKNAMES: &[&str] = &[
-        "Climber",
-        "Earbender",
-        "Leaper",
-        "Pious",
-        "Shieldbiter",
-        "Zealous",
+        "Aleslosh",
+        "Ashhearth",
+        "Badger",
+        "Cloak",
+        "Doublelock",
+        "Filchbatter",
+        "Fnipper",
+        "Ku",
+        "Nim",
+        "Oneshoe",
+        "Pock",
+        "Sparklegem",
+        "Stumbleduck",
     ];
 
     pub(crate) fn gen_name(
