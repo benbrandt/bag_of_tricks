@@ -1,0 +1,8 @@
+---
+source: src/character/race/half_orc.rs
+expression: half_orc
+---
+- type: HalfOrc
+- Wen Mei
+- age: 11
+  gender: Male

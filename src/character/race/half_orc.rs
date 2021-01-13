@@ -1,24 +1,52 @@
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
-use super::Race;
+use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::Characteristics,
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            human::Names,
+            orc::{FEMALE, MALE},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
+const AGE_RANGE: AgeRange = AgeRange(1..=75);
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct HalfOrc;
 
+impl Name for HalfOrc {
+    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
+        let names = Names::gen_names(rng);
+        let orc_names = match characteristics.gender {
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
+        };
+        let first_name = *[
+            Human::gen_first_name(rng, &names, characteristics),
+            *orc_names.iter().choose(rng).unwrap(),
+        ]
+        .iter()
+        .choose(rng)
+        .unwrap();
+        format!("{} {}", first_name, Human::gen_surname(rng, &names))
+    }
+}
+
 #[typetag::serde]
 impl Race for HalfOrc {
-    fn gen(_rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
-        (Box::new(Self), todo!(), todo!())
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        let race = Box::new(Self);
+        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let name = HalfOrc::gen_name(rng, &characteristics);
+        (race, name, characteristics)
     }
 
     fn abilities(&self) -> AbilityScores {

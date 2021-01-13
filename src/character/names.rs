@@ -4,6 +4,7 @@ pub(crate) mod elf;
 pub(crate) mod gnome;
 pub(crate) mod halfling;
 pub(crate) mod human;
+pub(crate) mod orc;
 
 use rand::Rng;
 
