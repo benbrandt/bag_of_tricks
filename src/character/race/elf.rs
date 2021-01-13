@@ -32,8 +32,11 @@ pub(crate) struct Elf {
     subrace: ElfSubrace,
 }
 
-impl Name for Elf {
-    fn gen_name(rng: &mut impl Rng, Characteristics { age, gender }: &Characteristics) -> String {
+impl Elf {
+    pub(crate) fn gen_first_name<'a>(
+        rng: &mut impl Rng,
+        Characteristics { age, gender }: &Characteristics,
+    ) -> &'a str {
         let first_names = match age {
             1..=100 => CHILD,
             _ => match gender {
@@ -41,10 +44,20 @@ impl Name for Elf {
                 Gender::Male => MALE,
             },
         };
+        first_names.iter().choose(rng).unwrap()
+    }
+
+    pub(crate) fn gen_family_name<'a>(rng: &mut impl Rng) -> &'a str {
+        FAMILY.iter().choose(rng).unwrap()
+    }
+}
+
+impl Name for Elf {
+    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
         format!(
             "{} {}",
-            first_names.iter().choose(rng).unwrap(),
-            FAMILY.iter().choose(rng).unwrap()
+            Elf::gen_first_name(rng, characteristics),
+            Elf::gen_family_name(rng),
         )
     }
 }

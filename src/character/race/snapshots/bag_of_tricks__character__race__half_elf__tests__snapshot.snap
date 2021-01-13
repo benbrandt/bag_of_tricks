@@ -2,8 +2,12 @@
 source: src/character/race/half_elf.rs
 expression: half_elf
 ---
-addl_increases:
-  - - Constitution
-    - 1
-  - - Wisdom
-    - 1
+- type: HalfElf
+  addl_increases:
+    - - Constitution
+      - 1
+    - - Wisdom
+      - 1
+- Felosial Astorio
+- age: 122
+  gender: Female

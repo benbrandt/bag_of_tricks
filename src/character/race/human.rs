@@ -19,17 +19,31 @@ const AGE_RANGE: AgeRange = AgeRange(1..=100);
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Human;
 
-impl Name for Human {
-    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
-        let names = Names::gen_names(rng);
+impl Human {
+    pub(crate) fn gen_first_name<'a>(
+        rng: &mut impl Rng,
+        names: &'a Names,
+        Characteristics { gender, .. }: &Characteristics,
+    ) -> &'a str {
         let first_names = match gender {
             Gender::Female => names.female,
             Gender::Male => names.male,
         };
+        first_names.iter().choose(rng).unwrap()
+    }
+
+    pub(crate) fn gen_surname<'a>(rng: &mut impl Rng, names: &'a Names) -> &'a str {
+        names.surname.iter().choose(rng).unwrap()
+    }
+}
+
+impl Name for Human {
+    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
+        let names = Names::gen_names(rng);
         format!(
             "{} {}",
-            first_names.iter().choose(rng).unwrap(),
-            names.surname.iter().choose(rng).unwrap(),
+            Human::gen_first_name(rng, &names, characteristics),
+            Human::gen_surname(rng, &names),
         )
     }
 }

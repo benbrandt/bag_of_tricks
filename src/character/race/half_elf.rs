@@ -1,21 +1,42 @@
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use std::{fmt, todo};
+use std::fmt;
 use strum::IntoEnumIterator;
 
-use super::Race;
+use super::{elf::Elf, human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::Characteristics,
+        characteristics::{AgeRange, Characteristics},
         features::Feature,
+        names::{human::Names, Name},
     },
     citation::{Book, Citation, Citations},
 };
 
+const AGE_RANGE: AgeRange = AgeRange(1..=180);
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct HalfElf {
     addl_increases: Vec<AbilityScore>,
+}
+
+impl Name for HalfElf {
+    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
+        let names = Names::gen_names(rng);
+        let first_name = *[
+            Elf::gen_first_name(rng, characteristics),
+            Human::gen_first_name(rng, &names, characteristics),
+        ]
+        .iter()
+        .choose(rng)
+        .unwrap();
+        let surname = *[Elf::gen_family_name(rng), Human::gen_surname(rng, &names)]
+            .iter()
+            .choose(rng)
+            .unwrap();
+        format!("{} {}", first_name, surname)
+    }
 }
 
 #[typetag::serde]
@@ -29,7 +50,9 @@ impl Race for HalfElf {
                 .map(|t| AbilityScore(t, 1))
                 .collect(),
         };
-        (Box::new(race), todo!(), todo!())
+        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let name = HalfElf::gen_name(rng, &characteristics);
+        (Box::new(race), name, characteristics)
     }
 
     fn abilities(&self) -> AbilityScores {
