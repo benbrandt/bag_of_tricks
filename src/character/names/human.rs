@@ -1,10 +1,43 @@
+use rand::{prelude::IteratorRandom, Rng};
+use strum::IntoEnumIterator;
+use strum_macros::EnumIter;
+
+#[derive(EnumIter)]
+enum Ethnicity {
+    Calishite,
+    Chondathan,
+    Damaran,
+    Illuskan,
+    Mulan,
+    Rashemi,
+    Shou,
+    Tethyrian,
+    Turami,
+}
+
 pub(crate) struct Names<'a> {
     pub(crate) female: &'a [&'a str],
     pub(crate) male: &'a [&'a str],
     pub(crate) surname: &'a [&'a str],
 }
 
-pub(crate) const CALISHITE: Names = Names {
+impl Names<'_> {
+    pub(crate) fn gen_names(rng: &mut impl Rng) -> Self {
+        match Ethnicity::iter().choose(rng).unwrap() {
+            Ethnicity::Calishite => CALISHITE,
+            Ethnicity::Chondathan => CHONDATHAN,
+            Ethnicity::Damaran => DAMARAN,
+            Ethnicity::Illuskan => ILLUSKAN,
+            Ethnicity::Mulan => MULAN,
+            Ethnicity::Rashemi => RASHEMI,
+            Ethnicity::Shou => SHOU,
+            Ethnicity::Tethyrian => TETHYRIAN,
+            Ethnicity::Turami => TURAMI,
+        }
+    }
+}
+
+const CALISHITE: Names = Names {
     female: &[
         "Atala", "Ceidil", "Hama", "Jasmal", "Meilil", "Seipora", "Yasheira", "Zasheida",
     ],
@@ -16,7 +49,7 @@ pub(crate) const CALISHITE: Names = Names {
     ],
 };
 
-pub(crate) const CHONDATHAN: Names = Names {
+const CHONDATHAN: Names = Names {
     female: &[
         "Arveene", "Esvele", "Jhessail", "Kerri", "Lureene", "Miri", "Rowan", "Shandri", "Tessele",
     ],
@@ -33,7 +66,7 @@ pub(crate) const CHONDATHAN: Names = Names {
     ],
 };
 
-pub(crate) const DAMARAN: Names = Names {
+const DAMARAN: Names = Names {
     female: &[
         "Alethra", "Kara", "Katernin", "Mara", "Natali", "Olma", "Tana", "Zora",
     ],
@@ -46,7 +79,7 @@ pub(crate) const DAMARAN: Names = Names {
     ],
 };
 
-pub(crate) const ILLUSKAN: Names = Names {
+const ILLUSKAN: Names = Names {
     female: &[
         "Amafrey", "Betha", "Cefrey", "Kethra", "Mara", "Olga", "Silifrey", "Westra",
     ],
@@ -64,7 +97,7 @@ pub(crate) const ILLUSKAN: Names = Names {
     ],
 };
 
-pub(crate) const MULAN: Names = Names {
+const MULAN: Names = Names {
     female: &[
         "Arizima", "Chathi", "Nephis", "Nulara", "Murithi", "Sefris", "Thola", "Umara", "Zolis",
     ],
@@ -90,7 +123,7 @@ pub(crate) const MULAN: Names = Names {
     ],
 };
 
-pub(crate) const RASHEMI: Names = Names {
+const RASHEMI: Names = Names {
     female: &[
         "Fyevarra", "Hulmarra", "Immith", "Imzel", "Navarra", "Shevarra", "Tammith", "Yuldra",
     ],
@@ -114,7 +147,7 @@ pub(crate) const RASHEMI: Names = Names {
     ],
 };
 
-pub(crate) const SHOU: Names = Names {
+const SHOU: Names = Names {
     female: &["Bai", "Chao", "Jia", "Lei", "Mei", "Qiao", "Shui", "Tai"],
     male: &[
         "An", "Chen", "Chi", "Fai", "Jiang", "Jun", "Lian", "Long", "Meng", "On", "Shan", "Shui",
@@ -125,9 +158,9 @@ pub(crate) const SHOU: Names = Names {
     ],
 };
 
-pub(crate) const TETHYRIAN: Names = CHONDATHAN;
+const TETHYRIAN: Names = CHONDATHAN;
 
-pub(crate) const TURAMI: Names = Names {
+const TURAMI: Names = Names {
     female: &[
         "Balama", "Dona", "Faila", "Jalana", "Luisa", "Marta", "Quara", "Selise", "Vonda",
     ],

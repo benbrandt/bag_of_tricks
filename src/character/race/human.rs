@@ -2,7 +2,6 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
-use strum_macros::EnumIter;
 
 use super::Race;
 use crate::{
@@ -10,55 +9,27 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
-        names::{
-            human::{
-                CALISHITE, CHONDATHAN, DAMARAN, ILLUSKAN, MULAN, RASHEMI, SHOU, TETHYRIAN, TURAMI,
-            },
-            Name,
-        },
+        names::{human::Names, Name},
     },
     citation::{Book, Citation, Citations},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=100);
 
-#[derive(EnumIter)]
-enum Ethnicity {
-    Calishite,
-    Chondathan,
-    Damaran,
-    Illuskan,
-    Mulan,
-    Rashemi,
-    Shou,
-    Tethyrian,
-    Turami,
-}
-
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Human;
 
 impl Name for Human {
     fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
-        let ethnicity = match Ethnicity::iter().choose(rng).unwrap() {
-            Ethnicity::Calishite => CALISHITE,
-            Ethnicity::Chondathan => CHONDATHAN,
-            Ethnicity::Damaran => DAMARAN,
-            Ethnicity::Illuskan => ILLUSKAN,
-            Ethnicity::Mulan => MULAN,
-            Ethnicity::Rashemi => RASHEMI,
-            Ethnicity::Shou => SHOU,
-            Ethnicity::Tethyrian => TETHYRIAN,
-            Ethnicity::Turami => TURAMI,
-        };
+        let names = Names::gen_names(rng);
         let first_names = match gender {
-            Gender::Female => ethnicity.female,
-            Gender::Male => ethnicity.male,
+            Gender::Female => names.female,
+            Gender::Male => names.male,
         };
         format!(
             "{} {}",
             first_names.iter().choose(rng).unwrap(),
-            ethnicity.surname.iter().choose(rng).unwrap(),
+            names.surname.iter().choose(rng).unwrap(),
         )
     }
 }
