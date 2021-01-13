@@ -1,5 +1,4 @@
-use rand::prelude::IteratorRandom;
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -9,72 +8,17 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics},
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            halfling::{FAMILY, FEMALE, MALE},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=150);
-mod names {
-    use rand::{prelude::IteratorRandom, Rng};
-
-    use crate::character::characteristics::{Characteristics, Gender};
-
-    const FAMILY: &[&str] = &[
-        "Brushgather",
-        "Goodbarrel",
-        "Greenbottle",
-        "High-hill",
-        "Hilltopple",
-        "Leagallow",
-        "Tealeaf",
-        "Thorngage",
-        "Tosscobble",
-        "Underbough",
-    ];
-
-    const FEMALE: &[&str] = &[
-        "Andry",
-        "Bree",
-        "Callie",
-        "Cora",
-        "Euphemia",
-        "Jillian",
-        "Kithri",
-        "Lavinia",
-        "Lidda",
-        "Merla",
-        "Nedda",
-        "Paela",
-        "Portia",
-        "Seraphina",
-        "Shaena",
-        "Trym",
-        "Vani",
-        "Verna",
-    ];
-
-    const MALE: &[&str] = &[
-        "Alton", "Ander", "Cade", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Lindal",
-        "Lyle", "Merric", "Milo", "Osborn", "Perrin", "Reed", "Roscoe", "Wellby",
-    ];
-
-    pub(crate) fn gen_name(
-        rng: &mut impl Rng,
-        Characteristics { gender, .. }: &Characteristics,
-    ) -> String {
-        let first_names = match gender {
-            Gender::Female => FEMALE,
-            Gender::Male => MALE,
-        };
-        format!(
-            "{} {}",
-            first_names.iter().choose(rng).unwrap(),
-            FAMILY.iter().choose(rng).unwrap(),
-        )
-    }
-}
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum HalflingSubrace {
@@ -87,6 +31,20 @@ pub(crate) struct Halfling {
     subrace: HalflingSubrace,
 }
 
+impl Name for Halfling {
+    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
+        let first_names = match gender {
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
+        };
+        format!(
+            "{} {}",
+            first_names.iter().choose(rng).unwrap(),
+            FAMILY.iter().choose(rng).unwrap(),
+        )
+    }
+}
+
 #[typetag::serde]
 impl Race for Halfling {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
@@ -94,7 +52,7 @@ impl Race for Halfling {
             subrace: HalflingSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = names::gen_name(rng, &characteristics);
+        let name = Halfling::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

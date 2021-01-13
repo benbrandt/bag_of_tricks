@@ -1,6 +1,7 @@
 mod ability;
 mod characteristics;
 mod features;
+mod names;
 mod race;
 
 use features::Feature;

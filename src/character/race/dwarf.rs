@@ -8,52 +8,31 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics},
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            dwarf::{CLAN, FEMALE, MALE},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=350);
 
-mod names {
-    use rand::{prelude::IteratorRandom, Rng};
+#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+enum DwarfSubrace {
+    Hill,
+    Mountain,
+}
 
-    use crate::character::characteristics::{Characteristics, Gender};
+#[derive(Deserialize, Serialize)]
+pub(crate) struct Dwarf {
+    subrace: DwarfSubrace,
+}
 
-    const CLAN: &[&str] = &[
-        "Balderk",
-        "Battlehammer",
-        "Brawnanvil",
-        "Dankil",
-        "Fireforge",
-        "Frostbeard",
-        "Gorunn",
-        "Holderhek",
-        "Ironfist",
-        "Loderr",
-        "Lutgehr",
-        "Rumnaheim",
-        "Strakeln",
-        "Torunn",
-        "Ungart",
-    ];
-    const FEMALE: &[&str] = &[
-        "Amber", "Artin", "Audhild", "Bardryn", "Dagnal", "Diesa", "Eldeth", "Falkrunn",
-        "Finellen", "Gunnloda", "Gurdis", "Helja", "Hlin", "Kathra", "Kristryd", "Ilde",
-        "Liftrasa", "Mardred", "Riswynn", "Sannl", "Torbera", "Torgga", "Vistra",
-    ];
-    const MALE: &[&str] = &[
-        "Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg",
-        "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik",
-        "Oskar", "Rangrim", "Rurik", "Taklinn", "Thoradin", "Thorin", "Tordek", "Traubon",
-        "Travok", "Ulfgar", "Veit", "Vondal",
-    ];
-
-    pub(crate) fn gen_name(
-        rng: &mut impl Rng,
-        Characteristics { gender, .. }: &Characteristics,
-    ) -> String {
+impl Name for Dwarf {
+    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
         let first_names = match gender {
             Gender::Female => FEMALE,
             Gender::Male => MALE,
@@ -66,16 +45,6 @@ mod names {
     }
 }
 
-#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
-enum DwarfSubrace {
-    Hill,
-    Mountain,
-}
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Dwarf {
-    subrace: DwarfSubrace,
-}
-
 #[typetag::serde]
 impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
@@ -83,7 +52,7 @@ impl Race for Dwarf {
             subrace: DwarfSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = names::gen_name(rng, &characteristics);
+        let name = Dwarf::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

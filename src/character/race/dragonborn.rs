@@ -1,5 +1,4 @@
-use characteristics::AgeRange;
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
@@ -7,62 +6,23 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{self, Characteristics},
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            dragonborn::{CHILD, CLAN, FEMALE, MALE},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=80);
-mod names {
-    use rand::{prelude::IteratorRandom, Rng};
 
-    use crate::character::characteristics::{Characteristics, Gender};
+#[derive(Deserialize, Serialize)]
+pub(crate) struct Dragonborn;
 
-    const CHILD: &[&str] = &[
-        "Climber",
-        "Earbender",
-        "Leaper",
-        "Pious",
-        "Shieldbiter",
-        "Zealous",
-    ];
-
-    const CLAN: &[&str] = &[
-        "Clethtinthiallor",
-        "Daardendrian",
-        "Delmirev",
-        "Drachedandion",
-        "Fenkenkabradon",
-        "Kepeshkmolik",
-        "Kerrhylon",
-        "Kimbatuul",
-        "Linxakasendalor",
-        "Myastan",
-        "Nemmonis",
-        "Norixius",
-        "Ophinshtalajiir",
-        "Prexijandilin",
-        "Shestendeliath",
-        "Turnuroth",
-        "Verthisathurgiesh",
-        "Yarjerit",
-    ];
-
-    const FEMALE: &[&str] = &[
-        "Akra", "Biri", "Daar", "Farideh", "Harann", "Havilar", "Jheri", "Kava", "Korinn",
-        "Mishann", "Nala", "Perra", "Raiann", "Sora", "Surina", "Thava", "Uadjit",
-    ];
-
-    const MALE: &[&str] = &[
-        "Arjhan", "Balasar", "Bharash", "Donaar", "Ghesh", "Heskan", "Kriv", "Medrash", "Mehen",
-        "Nadarr", "Pandjed", "Patrin", "Rhogar", "Shamash", "Shedinn", "Tarhun", "Torinn",
-    ];
-
-    pub(crate) fn gen_name(
-        rng: &mut impl Rng,
-        Characteristics { gender, .. }: &Characteristics,
-    ) -> String {
+impl Name for Dragonborn {
+    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
         let first_names = match gender {
             Gender::Female => FEMALE,
             Gender::Male => MALE,
@@ -76,15 +36,12 @@ mod names {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Dragonborn;
-
 #[typetag::serde]
 impl Race for Dragonborn {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         let race = Box::new(Self);
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = names::gen_name(rng, &characteristics);
+        let name = Dragonborn::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

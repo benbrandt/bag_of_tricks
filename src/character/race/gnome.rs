@@ -1,5 +1,4 @@
-use rand::prelude::IteratorRandom;
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -9,94 +8,31 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics},
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            gnome::{CLAN, FEMALE, MALE, NICKNAMES},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=500);
-mod names {
-    use rand::{prelude::IteratorRandom, Rng};
 
-    use crate::character::characteristics::{Characteristics, Gender};
+#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+enum GnomeSubrace {
+    Forest,
+    Rock,
+}
 
-    const CLAN: &[&str] = &[
-        "Beren", "Daergel", "Folkor", "Garrick", "Nackle", "Murnig", "Ningel", "Raulnor",
-        "Scheppen", "Timbers", "Turen",
-    ];
+#[derive(Deserialize, Serialize)]
+pub(crate) struct Gnome {
+    subrace: GnomeSubrace,
+}
 
-    const FEMALE: &[&str] = &[
-        "Bimpnottin",
-        "Breena",
-        "Caramip",
-        "Carlin",
-        "Donella",
-        "Duvamil",
-        "Ella",
-        "Ellyjobell",
-        "Ellywick",
-        "Lilli",
-        "Loopmottin",
-        "Lorilla",
-        "Mardnab",
-        "Nissa",
-        "Nyx",
-        "Oda",
-        "Orla",
-        "Roywyn",
-        "Shamil",
-        "Tana",
-        "Waywocket",
-        "Zanna",
-    ];
-
-    const MALE: &[&str] = &[
-        "Alston",
-        "Alvyn",
-        "Boddynock",
-        "Brocc",
-        "Burgell",
-        "Dimble",
-        "Eldon",
-        "Erky",
-        "Fonkin",
-        "Frug",
-        "Gerbo",
-        "Gimble",
-        "Glim",
-        "Jebeddo",
-        "Kellen",
-        "Namfoodle",
-        "Orryn",
-        "Roondar",
-        "Seebo",
-        "Sindri",
-        "Warryn",
-        "Wrenn",
-        "Zook",
-    ];
-
-    const NICKNAMES: &[&str] = &[
-        "Aleslosh",
-        "Ashhearth",
-        "Badger",
-        "Cloak",
-        "Doublelock",
-        "Filchbatter",
-        "Fnipper",
-        "Ku",
-        "Nim",
-        "Oneshoe",
-        "Pock",
-        "Sparklegem",
-        "Stumbleduck",
-    ];
-
-    pub(crate) fn gen_name(
-        rng: &mut impl Rng,
-        Characteristics { gender, .. }: &Characteristics,
-    ) -> String {
+impl Name for Gnome {
+    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
         let first_names = match gender {
             Gender::Female => FEMALE,
             Gender::Male => MALE,
@@ -110,17 +46,6 @@ mod names {
     }
 }
 
-#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
-enum GnomeSubrace {
-    Forest,
-    Rock,
-}
-
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Gnome {
-    subrace: GnomeSubrace,
-}
-
 #[typetag::serde]
 impl Race for Gnome {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
@@ -128,7 +53,7 @@ impl Race for Gnome {
             subrace: GnomeSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = names::gen_name(rng, &characteristics);
+        let name = Gnome::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

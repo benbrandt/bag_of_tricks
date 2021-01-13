@@ -1,5 +1,4 @@
-use rand::prelude::IteratorRandom;
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -9,106 +8,32 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics},
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            elf::{CHILD, FAMILY, FEMALE, MALE},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=750);
 
-mod names {
-    use rand::{prelude::IteratorRandom, Rng};
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum ElfSubrace {
+    Dark,
+    High,
+    Wood,
+}
 
-    use crate::character::characteristics::{Characteristics, Gender};
+#[derive(Deserialize, Serialize)]
+pub(crate) struct Elf {
+    subrace: ElfSubrace,
+}
 
-    const CHILD: &[&str] = &[
-        "Ara", "Bryn", "Del", "Eryn", "Faen", "Innil", "Lael", "Mella", "Naill", "Naeris", "Phann",
-        "Rael", "Rinn", "Sai", "Syllin", "Thia", "Vall",
-    ];
-
-    const FAMILY: &[&str] = &[
-        "Amakiir (Gemflower)",
-        "Amastacia (Starflower)",
-        "Galanodel (Moonwhisper)",
-        "Holimion (Diamonddew)",
-        "Ilphelkiir (Gemblossom)",
-        "Liadon (Silverfrond)",
-        "Meliamne (Oakenheel)",
-        "Naïlo (Nightbreeze)",
-        "Siannodel (Moonbrook)",
-        "Xiloscient (Goldpetal)",
-    ];
-
-    const FEMALE: &[&str] = &[
-        "Adrie",
-        "Althaea",
-        "Anastrianna",
-        "Andraste",
-        "Antinua",
-        "Bethrynna",
-        "Birel",
-        "Caelynn",
-        "Drusilia",
-        "Enna",
-        "Felosial",
-        "Ielenia",
-        "Jelenneth",
-        "Keyleth",
-        "Leshanna",
-        "Lia",
-        "Meriele",
-        "Mialee",
-        "Naivara",
-        "Quelenna",
-        "Quillathe",
-        "Sariel",
-        "Shanairra",
-        "Shava",
-        "Silaqui",
-        "Theirastra",
-        "Thia",
-        "Vadania",
-        "Valanthe",
-        "Xanaphia",
-    ];
-
-    const MALE: &[&str] = &[
-        "Adran",
-        "Aelar",
-        "Aramil",
-        "Arannis",
-        "Aust",
-        "Beiro",
-        "Berrian",
-        "Carric",
-        "Enialis",
-        "Erdan",
-        "Erevan",
-        "Galinndan",
-        "Hadarai",
-        "Heian",
-        "Himo",
-        "Immeral",
-        "Ivellios",
-        "Laucian",
-        "Mindartis",
-        "Paelias",
-        "Peren",
-        "Quarion",
-        "Riardon",
-        "Rolen",
-        "Soveliss",
-        "Thamior",
-        "Tharivol",
-        "Theren",
-        "Varis",
-    ];
-
-    pub(crate) fn gen_name(
-        rng: &mut impl Rng,
-        Characteristics { age, gender }: &Characteristics,
-    ) -> String {
+impl Name for Elf {
+    fn gen_name(rng: &mut impl Rng, Characteristics { age, gender }: &Characteristics) -> String {
         let first_names = match age {
             1..=100 => CHILD,
             _ => match gender {
@@ -124,18 +49,6 @@ mod names {
     }
 }
 
-#[derive(Deserialize, Display, EnumIter, Serialize)]
-enum ElfSubrace {
-    Dark,
-    High,
-    Wood,
-}
-
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Elf {
-    subrace: ElfSubrace,
-}
-
 #[typetag::serde]
 impl Race for Elf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
@@ -143,7 +56,7 @@ impl Race for Elf {
             subrace: ElfSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = names::gen_name(rng, &characteristics);
+        let name = Elf::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 
