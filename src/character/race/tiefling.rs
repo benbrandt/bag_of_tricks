@@ -82,7 +82,7 @@ impl Race for Tiefling {
         vec![Feature {
             title: "Ability Score Increase",
             description:
-                "Your Intelligence score increases by 1, and your Charisma score increases by 12",
+                "Your Intelligence score increases by 1, and your Charisma score increases by 2",
             citation: Citation {
                 book: Book::PHB,
                 page: 43,

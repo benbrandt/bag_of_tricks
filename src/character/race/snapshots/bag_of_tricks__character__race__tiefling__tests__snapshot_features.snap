@@ -3,7 +3,7 @@ source: src/character/race/tiefling.rs
 expression: tiefling.features()
 ---
 - title: Ability Score Increase
-  description: "Your Intelligence score increases by 1, and your Charisma score increases by 12"
+  description: "Your Intelligence score increases by 1, and your Charisma score increases by 2"
   citation:
     book: PHB
     page: 43
