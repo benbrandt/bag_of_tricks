@@ -9,11 +9,99 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::Characteristics,
+        characteristics::{AgeRange, Characteristics},
         features::Feature,
     },
     citation::{Book, Citation, Citations},
 };
+
+const AGE_RANGE: AgeRange = AgeRange(1..=500);
+mod names {
+    use rand::{prelude::IteratorRandom, Rng};
+
+    use crate::character::characteristics::{Characteristics, Gender};
+
+    const CLAN: &[&str] = &[
+        "Beren", "Daergel", "Folkor", "Garrick", "Nackle", "Murnig", "Ningel", "Raulnor",
+        "Scheppen", "Timbers", "Turen",
+    ];
+
+    const FEMALE: &[&str] = &[
+        "Bimpnottin",
+        "Breena",
+        "Caramip",
+        "Carlin",
+        "Donella",
+        "Duvamil",
+        "Ella",
+        "Ellyjobell",
+        "Ellywick",
+        "Lilli",
+        "Loopmottin",
+        "Lorilla",
+        "Mardnab",
+        "Nissa",
+        "Nyx",
+        "Oda",
+        "Orla",
+        "Roywyn",
+        "Shamil",
+        "Tana",
+        "Waywocket",
+        "Zanna",
+    ];
+
+    const MALE: &[&str] = &[
+        "Alston",
+        "Alvyn",
+        "Boddynock",
+        "Brocc",
+        "Burgell",
+        "Dimble",
+        "Eldon",
+        "Erky",
+        "Fonkin",
+        "Frug",
+        "Gerbo",
+        "Gimble",
+        "Glim",
+        "Jebeddo",
+        "Kellen",
+        "Namfoodle",
+        "Orryn",
+        "Roondar",
+        "Seebo",
+        "Sindri",
+        "Warryn",
+        "Wrenn",
+        "Zook",
+    ];
+
+    const NICKNAMES: &[&str] = &[
+        "Climber",
+        "Earbender",
+        "Leaper",
+        "Pious",
+        "Shieldbiter",
+        "Zealous",
+    ];
+
+    pub(crate) fn gen_name(
+        rng: &mut impl Rng,
+        Characteristics { gender, .. }: &Characteristics,
+    ) -> String {
+        let first_names = match gender {
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
+        };
+        format!(
+            "{} \"{}\" {}",
+            first_names.iter().choose(rng).unwrap(),
+            NICKNAMES.iter().choose(rng).unwrap(),
+            CLAN.iter().choose(rng).unwrap(),
+        )
+    }
+}
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum GnomeSubrace {
@@ -29,13 +117,12 @@ pub(crate) struct Gnome {
 #[typetag::serde]
 impl Race for Gnome {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
-        (
-            Box::new(Self {
-                subrace: GnomeSubrace::iter().choose(rng).unwrap(),
-            }),
-            todo!(),
-            todo!(),
-        )
+        let race = Box::new(Self {
+            subrace: GnomeSubrace::iter().choose(rng).unwrap(),
+        });
+        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let name = names::gen_name(rng, &characteristics);
+        (race, name, characteristics)
     }
 
     fn abilities(&self) -> AbilityScores {

@@ -2,4 +2,8 @@
 source: src/character/race/gnome.rs
 expression: gnome
 ---
-subrace: Forest
+- type: Gnome
+  subrace: Forest
+- "Wrenn \"Climber\" Garrick"
+- age: 271
+  gender: Male

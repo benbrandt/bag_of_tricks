@@ -2,4 +2,8 @@
 source: src/character/race/halfling.rs
 expression: halfling
 ---
-subrace: Lightfoot
+- type: Halfling
+  subrace: Lightfoot
+- Roscoe High-hill
+- age: 82
+  gender: Male

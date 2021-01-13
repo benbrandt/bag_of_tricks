@@ -35,7 +35,7 @@ mod names {
         "Ilphelkiir (Gemblossom)",
         "Liadon (Silverfrond)",
         "Meliamne (Oakenheel)",
-        "Nailo (Nightbreeze)",
+        "Naïlo (Nightbreeze)",
         "Siannodel (Moonbrook)",
         "Xiloscient (Goldpetal)",
     ];
