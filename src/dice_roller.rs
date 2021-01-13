@@ -44,7 +44,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D4);
         assert_eq!(die, Die::D4);
-        assert!(roll >= 1 && roll <= 4);
+        assert!((1..=4).contains(&roll));
     }
 
     #[test]
@@ -52,7 +52,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D6);
         assert_eq!(die, Die::D6);
-        assert!(roll >= 1 && roll <= 6);
+        assert!((1..=6).contains(&roll));
     }
 
     #[test]
@@ -60,7 +60,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D8);
         assert_eq!(die, Die::D8);
-        assert!(roll >= 1 && roll <= 8);
+        assert!((1..=8).contains(&roll));
     }
 
     #[test]
@@ -68,7 +68,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D10);
         assert_eq!(die, Die::D10);
-        assert!(roll >= 1 && roll <= 10);
+        assert!((1..=10).contains(&roll));
     }
 
     #[test]
@@ -76,7 +76,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D12);
         assert_eq!(die, Die::D12);
-        assert!(roll >= 1 && roll <= 12);
+        assert!((1..=12).contains(&roll));
     }
 
     #[test]
@@ -84,7 +84,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D20);
         assert_eq!(die, Die::D20);
-        assert!(roll >= 1 && roll <= 20);
+        assert!((1..=20).contains(&roll));
     }
 
     #[test]
@@ -92,7 +92,7 @@ mod tests {
         let mut rng = Pcg64::from_entropy();
         let DieRoll { die, roll } = roll_die(&mut rng, Die::D100);
         assert_eq!(die, Die::D100);
-        assert!(roll >= 1 && roll <= 100);
+        assert!((1..=100).contains(&roll));
     }
 
     #[test]
@@ -102,7 +102,7 @@ mod tests {
         assert_eq!(rolls.len(), 4);
         for DieRoll { die, roll } in rolls {
             assert_eq!(die, Die::D6);
-            assert!(roll >= 1 && roll <= 6);
+            assert!((1..=6).contains(&roll));
         }
     }
 }

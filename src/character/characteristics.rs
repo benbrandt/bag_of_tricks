@@ -56,7 +56,7 @@ mod tests {
     fn test_age_range() {
         let mut rng = Pcg64::from_entropy();
         let age = AgeRange(1..=100).gen(&mut rng);
-        assert!(age >= 1 && age <= 100);
+        assert!((1..=100).contains(&age));
     }
 
     /// Verify that our snapshot remains the same.

@@ -99,8 +99,8 @@ mod tests {
     #[test]
     fn test_ability_score_avg() {
         let mut rng = Pcg64::from_entropy();
-        let average = (0..100).fold(0 as f64, |acc, _| {
-            acc + AbilityScore::new(&mut rng, AbilityScoreType::Constitution).1 as f64
+        let average = (0..100).fold(f64::from(0), |acc, _| {
+            acc + f64::from(AbilityScore::new(&mut rng, AbilityScoreType::Constitution).1)
         }) / 100.0;
         // Comparison based on http://rumkin.com/reference/dnd/diestats.php
         assert!(12.24 - 2.847 < average && average < 12.24 + 2.847);
@@ -136,7 +136,7 @@ mod tests {
         let scores = AbilityScores::new(&mut rng).scores();
         for score_type in AbilityScoreType::iter() {
             let score = *scores.get(&score_type).unwrap();
-            assert!(score >= 3 && score <= 18);
+            assert!((3..=18).contains(&score));
         }
     }
 

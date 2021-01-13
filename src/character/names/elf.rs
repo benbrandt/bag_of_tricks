@@ -11,7 +11,7 @@ pub(crate) const FAMILY: &[&str] = &[
     "Ilphelkiir (Gemblossom)",
     "Liadon (Silverfrond)",
     "Meliamne (Oakenheel)",
-    "Naïlo (Nightbreeze)",
+    "Na\u{ef}lo (Nightbreeze)",
     "Siannodel (Moonbrook)",
     "Xiloscient (Goldpetal)",
 ];

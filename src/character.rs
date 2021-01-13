@@ -45,7 +45,7 @@ impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "CHARACTER NAME: {}", self.name)?;
         writeln!(f, "RACE: {} ({})", self.race, self.race.citations())?;
-        writeln!(f, "")?;
+        writeln!(f)?;
         writeln!(f, "{}", self.abilities)?;
         writeln!(f, "CHARACTERISTICS:")?;
         writeln!(f, "{}", self.characteristics)?;
