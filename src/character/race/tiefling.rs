@@ -1,24 +1,67 @@
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
-use super::Race;
+use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::Characteristics,
+        characteristics::{AgeRange, Characteristics, Gender},
         features::Feature,
+        names::{
+            human::Names,
+            tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, VIRTUE_NAMES},
+            Name,
+        },
     },
     citation::{Book, Citation, Citations},
 };
 
+const AGE_RANGE: AgeRange = AgeRange(1..=100);
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Tiefling;
 
+impl Tiefling {
+    fn gen_first_name<'a>(
+        rng: &mut impl Rng,
+        names: &'a Names,
+        characteristics: &Characteristics,
+    ) -> &'a str {
+        let abyssal_name = *(match characteristics.gender {
+            Gender::Female => FEMALE_ABYSSAL,
+            Gender::Male => MALE_ABYSSAL,
+        })
+        .iter()
+        .choose(rng)
+        .unwrap();
+        let human_name = Human::gen_first_name(rng, names, characteristics);
+        let virtue_name = *VIRTUE_NAMES.iter().choose(rng).unwrap();
+        *[abyssal_name, human_name, virtue_name]
+            .iter()
+            .choose(rng)
+            .unwrap()
+    }
+}
+
+impl Name for Tiefling {
+    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
+        let names = Names::gen_names(rng);
+        format!(
+            "{} {}",
+            Self::gen_first_name(rng, &names, characteristics),
+            Human::gen_surname(rng, &names)
+        )
+    }
+}
+
 #[typetag::serde]
 impl Race for Tiefling {
-    fn gen(_rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
-        (Box::new(Self), todo!(), todo!())
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+        let race = Box::new(Self);
+        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let name = Self::gen_name(rng, &characteristics);
+        (race, name, characteristics)
     }
 
     fn abilities(&self) -> AbilityScores {

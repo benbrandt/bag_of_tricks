@@ -52,7 +52,7 @@ impl Race for Halfling {
             subrace: HalflingSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = Halfling::gen_name(rng, &characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

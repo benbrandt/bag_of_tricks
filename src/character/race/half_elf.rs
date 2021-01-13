@@ -51,7 +51,7 @@ impl Race for HalfElf {
                 .collect(),
         };
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = HalfElf::gen_name(rng, &characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (Box::new(race), name, characteristics)
     }
 

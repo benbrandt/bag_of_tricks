@@ -42,8 +42,8 @@ impl Name for Human {
         let names = Names::gen_names(rng);
         format!(
             "{} {}",
-            Human::gen_first_name(rng, &names, characteristics),
-            Human::gen_surname(rng, &names),
+            Self::gen_first_name(rng, &names, characteristics),
+            Self::gen_surname(rng, &names),
         )
     }
 }
@@ -53,7 +53,7 @@ impl Race for Human {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         let race = Box::new(Self);
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = Human::gen_name(rng, &characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

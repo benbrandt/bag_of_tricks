@@ -53,7 +53,7 @@ impl Race for Gnome {
             subrace: GnomeSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = Gnome::gen_name(rng, &characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

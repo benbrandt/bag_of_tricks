@@ -56,8 +56,8 @@ impl Name for Elf {
     fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
         format!(
             "{} {}",
-            Elf::gen_first_name(rng, characteristics),
-            Elf::gen_family_name(rng),
+            Self::gen_first_name(rng, characteristics),
+            Self::gen_family_name(rng),
         )
     }
 }
@@ -69,7 +69,7 @@ impl Race for Elf {
             subrace: ElfSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = Elf::gen_name(rng, &characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

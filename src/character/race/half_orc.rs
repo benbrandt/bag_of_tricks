@@ -45,7 +45,7 @@ impl Race for HalfOrc {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         let race = Box::new(Self);
         let characteristics = Characteristics::gen(rng, &AGE_RANGE);
-        let name = HalfOrc::gen_name(rng, &characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 
