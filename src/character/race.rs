@@ -21,13 +21,13 @@ use self::{
     half_orc::HalfOrc, halfling::Halfling, human::Human, tiefling::Tiefling,
 };
 
-use super::{ability::AbilityScores, characteristics::Characteristics, features::Feature};
+use super::{ability::AbilityScores, characteristics::CharacteristicDetails, features::Feature};
 
 /// Shared race traits
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race: fmt::Display {
     /// Method to generate a new instance of the struct
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics)
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails)
     where
         Self: Sized;
 
@@ -55,7 +55,7 @@ pub(crate) enum RaceOptions {
 }
 
 impl RaceOptions {
-    pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+    pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         match Self::iter().choose(rng).unwrap() {
             Self::Dragonborn => Dragonborn::gen(rng),
             Self::Dwarf => Dwarf::gen(rng),

@@ -9,7 +9,8 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         characteristics::{
-            in_inches, AgeRange, Characteristics, Gender, HeightAndWeightTable, Size, WeightMod,
+            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            HeightAndWeightTable, Size, WeightMod,
         },
         features::Feature,
         names::{
@@ -21,7 +22,6 @@ use crate::{
     dice_roller::{Die, RollCmd},
 };
 
-const AGE_RANGE: AgeRange = AgeRange(1..=500);
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 11),
     base_weight: 35,
@@ -40,8 +40,21 @@ pub(crate) struct Gnome {
     subrace: GnomeSubrace,
 }
 
+impl Characteristics for Gnome {
+    const AGE_RANGE: AgeRange = AgeRange(1..=500);
+
+    const SIZE: Size = Size::Small;
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
+        &HEIGHT_AND_WEIGHT
+    }
+}
+
 impl Name for Gnome {
-    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
+    fn gen_name(
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
         let first_names = match gender {
             Gender::Female => FEMALE,
             Gender::Male => MALE,
@@ -57,12 +70,11 @@ impl Name for Gnome {
 
 #[typetag::serde]
 impl Race for Gnome {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
             subrace: GnomeSubrace::iter().choose(rng).unwrap(),
         });
-        let characteristics =
-            Characteristics::gen(rng, &AGE_RANGE, Size::Small, &HEIGHT_AND_WEIGHT);
+        let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }

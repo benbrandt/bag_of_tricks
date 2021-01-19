@@ -9,8 +9,8 @@ pub(crate) mod tiefling;
 
 use rand::Rng;
 
-use super::characteristics::Characteristics;
+use super::characteristics::{CharacteristicDetails, Characteristics};
 
-pub(crate) trait Name {
-    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String;
+pub(crate) trait Name: Characteristics {
+    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String;
 }

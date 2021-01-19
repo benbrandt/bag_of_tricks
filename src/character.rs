@@ -10,14 +10,14 @@ use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use ability::AbilityScores;
-use characteristics::Characteristics;
+use characteristics::CharacteristicDetails;
 use race::{Race, RaceOptions};
 
 /// Character information
 #[derive(Deserialize, Serialize)]
 pub struct Character {
     abilities: AbilityScores,
-    characteristics: Characteristics,
+    characteristics: CharacteristicDetails,
     name: String,
     race: Box<dyn Race>,
 }

@@ -62,7 +62,7 @@ pub(crate) enum Size {
 }
 
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Characteristics {
+pub(crate) struct CharacteristicDetails {
     pub(crate) age: u16,
     pub(crate) gender: Gender,
     pub(crate) height: usize,
@@ -70,33 +70,33 @@ pub(crate) struct Characteristics {
     pub(crate) weight: usize,
 }
 
-impl Characteristics {
-    pub(crate) fn gen(
-        rng: &mut impl Rng,
-        age_range: &AgeRange,
-        size: Size,
-        height_and_weight: &HeightAndWeightTable,
-    ) -> Self {
-        let age = age_range.gen(rng);
-        let gender = Gender::gen(rng);
-        let (height, weight) = height_and_weight.gen(rng);
-        Self {
-            age,
-            gender,
-            height,
-            size,
-            weight,
-        }
-    }
-}
-
-impl fmt::Display for Characteristics {
+impl fmt::Display for CharacteristicDetails {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "Age: {}", self.age)?;
         writeln!(f, "Gender: {}", self.gender)?;
         writeln!(f, "Size: {}", self.size)?;
         writeln!(f, "Height: {}'{}\"", self.height / 12, self.height % 12)?;
         writeln!(f, "Weight: {} lb.", self.weight)
+    }
+}
+
+pub(crate) trait Characteristics {
+    const AGE_RANGE: AgeRange;
+    const SIZE: Size;
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable;
+
+    fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {
+        let age = Self::AGE_RANGE.gen(rng);
+        let gender = Gender::gen(rng);
+        let (height, weight) = self.get_height_and_weight_table().gen(rng);
+        CharacteristicDetails {
+            age,
+            gender,
+            height,
+            size: Self::SIZE,
+            weight,
+        }
     }
 }
 
@@ -117,7 +117,7 @@ mod tests {
     #[test]
     fn test_characteristics_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let characteristics = Characteristics {
+        let characteristics = CharacteristicDetails {
             age: 100,
             gender: Gender::gen(&mut rng),
             height: 75,

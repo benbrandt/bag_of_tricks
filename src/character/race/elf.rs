@@ -8,7 +8,9 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics, Gender, Size},
+        characteristics::{
+            AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
+        },
         features::Feature,
         names::{
             elf::{CHILD, FAMILY, FEMALE, MALE},
@@ -18,7 +20,6 @@ use crate::{
     citation::{Book, Citation, Citations},
 };
 
-const AGE_RANGE: AgeRange = AgeRange(1..=750);
 mod height_and_weight {
     use crate::{
         character::characteristics::{in_inches, HeightAndWeightTable, WeightMod},
@@ -60,7 +61,7 @@ pub(crate) struct Elf {
 impl Elf {
     pub(crate) fn gen_first_name<'a>(
         rng: &mut impl Rng,
-        Characteristics { age, gender, .. }: &Characteristics,
+        CharacteristicDetails { age, gender, .. }: &CharacteristicDetails,
     ) -> &'a str {
         let first_names = match age {
             1..=100 => CHILD,
@@ -77,8 +78,22 @@ impl Elf {
     }
 }
 
+impl Characteristics for Elf {
+    const AGE_RANGE: AgeRange = AgeRange(1..=750);
+
+    const SIZE: Size = Size::Medium;
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
+        match self.subrace {
+            ElfSubrace::Dark => &height_and_weight::DARK,
+            ElfSubrace::High => &height_and_weight::HIGH,
+            ElfSubrace::Wood => &height_and_weight::WOOD,
+        }
+    }
+}
+
 impl Name for Elf {
-    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
+    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         format!(
             "{} {}",
             Self::gen_first_name(rng, characteristics),
@@ -89,20 +104,11 @@ impl Name for Elf {
 
 #[typetag::serde]
 impl Race for Elf {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
             subrace: ElfSubrace::iter().choose(rng).unwrap(),
         });
-        let characteristics = Characteristics::gen(
-            rng,
-            &AGE_RANGE,
-            Size::Medium,
-            &match race.subrace {
-                ElfSubrace::Dark => height_and_weight::DARK,
-                ElfSubrace::High => height_and_weight::HIGH,
-                ElfSubrace::Wood => height_and_weight::WOOD,
-            },
-        );
+        let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }

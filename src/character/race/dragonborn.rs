@@ -7,7 +7,8 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         characteristics::{
-            in_inches, AgeRange, Characteristics, Gender, HeightAndWeightTable, Size, WeightMod,
+            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            HeightAndWeightTable, Size, WeightMod,
         },
         features::Feature,
         names::{
@@ -19,7 +20,6 @@ use crate::{
     dice_roller::{Die, RollCmd},
 };
 
-const AGE_RANGE: AgeRange = AgeRange(1..=80);
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(5, 6),
     base_weight: 175,
@@ -30,8 +30,21 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Dragonborn;
 
+impl Characteristics for Dragonborn {
+    const AGE_RANGE: AgeRange = AgeRange(1..=80);
+
+    const SIZE: Size = Size::Medium;
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
+        &HEIGHT_AND_WEIGHT
+    }
+}
+
 impl Name for Dragonborn {
-    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
+    fn gen_name(
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
         let first_names = match gender {
             Gender::Female => FEMALE,
             Gender::Male => MALE,
@@ -47,10 +60,9 @@ impl Name for Dragonborn {
 
 #[typetag::serde]
 impl Race for Dragonborn {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self);
-        let characteristics =
-            Characteristics::gen(rng, &AGE_RANGE, Size::Medium, &HEIGHT_AND_WEIGHT);
+        let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }

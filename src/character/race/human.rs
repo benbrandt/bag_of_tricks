@@ -8,7 +8,8 @@ use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         characteristics::{
-            in_inches, AgeRange, Characteristics, Gender, HeightAndWeightTable, Size, WeightMod,
+            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            HeightAndWeightTable, Size, WeightMod,
         },
         features::Feature,
         names::{human::Names, Name},
@@ -17,7 +18,6 @@ use crate::{
     dice_roller::{Die, RollCmd},
 };
 
-const AGE_RANGE: AgeRange = AgeRange(1..=100);
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 8),
     base_weight: 110,
@@ -32,7 +32,7 @@ impl Human {
     pub(crate) fn gen_first_name<'a>(
         rng: &mut impl Rng,
         names: &'a Names,
-        Characteristics { gender, .. }: &Characteristics,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
     ) -> &'a str {
         let first_names = match gender {
             Gender::Female => names.female,
@@ -46,8 +46,18 @@ impl Human {
     }
 }
 
+impl Characteristics for Human {
+    const AGE_RANGE: AgeRange = AgeRange(1..=100);
+
+    const SIZE: Size = Size::Medium;
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
+        &HEIGHT_AND_WEIGHT
+    }
+}
+
 impl Name for Human {
-    fn gen_name(rng: &mut impl Rng, characteristics: &Characteristics) -> String {
+    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
         format!(
             "{} {}",
@@ -59,10 +69,9 @@ impl Name for Human {
 
 #[typetag::serde]
 impl Race for Human {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self);
-        let characteristics =
-            Characteristics::gen(rng, &AGE_RANGE, Size::Medium, &HEIGHT_AND_WEIGHT);
+        let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }

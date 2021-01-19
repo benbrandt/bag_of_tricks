@@ -8,7 +8,9 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics, Gender, Size},
+        characteristics::{
+            AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
+        },
         features::Feature,
         names::{
             dwarf::{CLAN, FEMALE, MALE},
@@ -18,7 +20,6 @@ use crate::{
     citation::{Book, Citation, Citations},
 };
 
-const AGE_RANGE: AgeRange = AgeRange(1..=350);
 mod height_and_weight {
     use crate::{
         character::characteristics::{in_inches, HeightAndWeightTable, WeightMod},
@@ -50,8 +51,24 @@ pub(crate) struct Dwarf {
     subrace: DwarfSubrace,
 }
 
+impl Characteristics for Dwarf {
+    const AGE_RANGE: AgeRange = AgeRange(1..=350);
+
+    const SIZE: Size = Size::Medium;
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
+        match self.subrace {
+            DwarfSubrace::Hill => &height_and_weight::HILL,
+            DwarfSubrace::Mountain => &height_and_weight::MOUNTAIN,
+        }
+    }
+}
+
 impl Name for Dwarf {
-    fn gen_name(rng: &mut impl Rng, Characteristics { gender, .. }: &Characteristics) -> String {
+    fn gen_name(
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
         let first_names = match gender {
             Gender::Female => FEMALE,
             Gender::Male => MALE,
@@ -66,19 +83,11 @@ impl Name for Dwarf {
 
 #[typetag::serde]
 impl Race for Dwarf {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
             subrace: DwarfSubrace::iter().choose(rng).unwrap(),
         });
-        let characteristics = Characteristics::gen(
-            rng,
-            &AGE_RANGE,
-            Size::Medium,
-            &match race.subrace {
-                DwarfSubrace::Hill => height_and_weight::HILL,
-                DwarfSubrace::Mountain => height_and_weight::MOUNTAIN,
-            },
-        );
+        let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
