@@ -32,8 +32,11 @@ pub(crate) struct HalfElf {
 
 impl Characteristics for HalfElf {
     const AGE_RANGE: AgeRange = AgeRange(1..=180);
-
     const SIZE: Size = Size::Medium;
+
+    fn get_base_speed(&self) -> u8 {
+        30
+    }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT

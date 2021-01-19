@@ -3,9 +3,10 @@ source: src/character/race/human.rs
 expression: human
 ---
 - type: Human
-- Rimardo Falone
-- age: 15
-  gender: Male
-  height: 66
+- Jalana Falone
+- age: 93
+  base_speed: 30
+  gender: Female
+  height: 64
   size: Medium
-  weight: 160
+  weight: 150

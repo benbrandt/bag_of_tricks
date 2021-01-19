@@ -4,9 +4,10 @@ expression: elf
 ---
 - type: Elf
   subrace: Dark
-- Erdan Liadon (Silverfrond)
-- age: 407
-  gender: Male
-  height: 60
+- Vadania Holimion (Diamonddew)
+- age: 693
+  base_speed: 30
+  gender: Female
+  height: 59
   size: Medium
-  weight: 117
+  weight: 105

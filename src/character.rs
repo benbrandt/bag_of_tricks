@@ -39,6 +39,10 @@ impl Character {
     fn features(&self) -> Vec<Feature> {
         self.race.features()
     }
+
+    fn speed(&self) -> u8 {
+        self.characteristics.base_speed
+    }
 }
 
 impl fmt::Display for Character {
@@ -47,6 +51,7 @@ impl fmt::Display for Character {
         writeln!(f, "RACE: {} ({})", self.race, self.race.citations())?;
         writeln!(f)?;
         writeln!(f, "{}", self.abilities)?;
+        writeln!(f, "SPEED: {}", self.speed())?;
         writeln!(f, "CHARACTERISTICS:")?;
         writeln!(f, "{}", self.characteristics)?;
         writeln!(f, "FEATURES AND TRAITS:")?;

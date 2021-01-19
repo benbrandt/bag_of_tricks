@@ -33,8 +33,11 @@ pub(crate) struct HalfOrc;
 
 impl Characteristics for HalfOrc {
     const AGE_RANGE: AgeRange = AgeRange(1..=75);
-
     const SIZE: Size = Size::Medium;
+
+    fn get_base_speed(&self) -> u8 {
+        30
+    }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT

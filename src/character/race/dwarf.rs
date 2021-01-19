@@ -53,8 +53,11 @@ pub(crate) struct Dwarf {
 
 impl Characteristics for Dwarf {
     const AGE_RANGE: AgeRange = AgeRange(1..=350);
-
     const SIZE: Size = Size::Medium;
+
+    fn get_base_speed(&self) -> u8 {
+        25
+    }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         match self.subrace {

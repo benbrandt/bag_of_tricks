@@ -42,8 +42,11 @@ pub(crate) struct Halfling {
 
 impl Characteristics for Halfling {
     const AGE_RANGE: AgeRange = AgeRange(1..=150);
-
     const SIZE: Size = Size::Small;
+
+    fn get_base_speed(&self) -> u8 {
+        25
+    }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT

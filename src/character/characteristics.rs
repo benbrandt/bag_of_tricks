@@ -64,6 +64,7 @@ pub(crate) enum Size {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct CharacteristicDetails {
     pub(crate) age: u16,
+    pub(crate) base_speed: u8,
     pub(crate) gender: Gender,
     pub(crate) height: usize,
     pub(crate) size: Size,
@@ -86,13 +87,14 @@ pub(crate) trait Characteristics {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable;
 
+    fn get_base_speed(&self) -> u8;
+
     fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {
-        let age = Self::AGE_RANGE.gen(rng);
-        let gender = Gender::gen(rng);
         let (height, weight) = self.get_height_and_weight_table().gen(rng);
         CharacteristicDetails {
-            age,
-            gender,
+            age: Self::AGE_RANGE.gen(rng),
+            base_speed: self.get_base_speed(),
+            gender: Gender::gen(rng),
             height,
             size: Self::SIZE,
             weight,
@@ -119,6 +121,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let characteristics = CharacteristicDetails {
             age: 100,
+            base_speed: 30,
             gender: Gender::gen(&mut rng),
             height: 75,
             size: Size::Medium,

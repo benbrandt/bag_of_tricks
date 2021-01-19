@@ -4,9 +4,10 @@ expression: halfling
 ---
 - type: Halfling
   subrace: Lightfoot
-- Roscoe High-hill
-- age: 82
-  gender: Male
+- Vani High-hill
+- age: 101
+  base_speed: 25
+  gender: Female
   height: 36
   size: Small
   weight: 40

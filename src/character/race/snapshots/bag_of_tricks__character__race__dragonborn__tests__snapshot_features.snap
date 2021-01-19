@@ -7,3 +7,23 @@ expression: dragonborn.features()
   citation:
     book: PHB
     page: 34
+- title: Age
+  description: "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80."
+  citation:
+    book: PHB
+    page: 34
+- title: Alignment
+  description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains."
+  citation:
+    book: PHB
+    page: 34
+- title: Size
+  description: "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium."
+  citation:
+    book: PHB
+    page: 34
+- title: Speed
+  description: Your base walking speed is 30 feet.
+  citation:
+    book: PHB
+    page: 34

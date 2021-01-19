@@ -4,28 +4,29 @@ expression: character
 ---
 abilities:
   - - Strength
-    - 7
+    - 5
   - - Dexterity
-    - 9
+    - 12
   - - Constitution
     - 15
   - - Intelligence
-    - 16
+    - 15
   - - Wisdom
-    - 13
+    - 15
   - - Charisma
-    - 14
+    - 13
   - - Constitution
     - 2
   - - Strength
     - 2
 characteristics:
-  age: 100
-  gender: Male
+  age: 316
+  base_speed: 25
+  gender: Female
   height: 54
   size: Medium
-  weight: 175
-name: Baern Ironfist
+  weight: 165
+name: Hlin Holderhek
 race:
   type: Dwarf
   subrace: Mountain

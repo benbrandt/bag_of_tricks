@@ -3,9 +3,10 @@ source: src/character/race/tiefling.rs
 expression: tiefling
 ---
 - type: Tiefling
-- Ekemon Astorio
-- age: 15
-  gender: Male
-  height: 66
+- Faila Astorio
+- age: 93
+  base_speed: 30
+  gender: Female
+  height: 64
   size: Medium
-  weight: 155
+  weight: 145

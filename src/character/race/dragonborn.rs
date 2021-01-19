@@ -32,8 +32,11 @@ pub(crate) struct Dragonborn;
 
 impl Characteristics for Dragonborn {
     const AGE_RANGE: AgeRange = AgeRange(1..=80);
-
     const SIZE: Size = Size::Medium;
+
+    fn get_base_speed(&self) -> u8 {
+        30
+    }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
@@ -82,7 +85,7 @@ impl Race for Dragonborn {
     }
 
     fn features(&self) -> Vec<Feature> {
-        vec![Feature {
+        let ability = Feature {
             title: "Ability Score Increase",
             description:
                 "Your Strength score increases by 2, and your Charisma score increases by 1.",
@@ -90,7 +93,40 @@ impl Race for Dragonborn {
                 book: Book::PHB,
                 page: 34,
             },
-        }]
+        };
+        let age = Feature {
+            title: "Age",
+            description: "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 34,
+            },
+        };
+        let alignment = Feature {
+            title: "Alignment",
+            description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 34,
+            },
+        };
+        let size = Feature {
+            title: "Size",
+            description: "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 34,
+            },
+        };
+        let speed = Feature {
+            title: "Speed",
+            description: "Your base walking speed is 30 feet.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 34,
+            },
+        };
+        vec![ability, age, alignment, size, speed]
     }
 }
 

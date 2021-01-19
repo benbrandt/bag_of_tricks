@@ -3,9 +3,10 @@ source: src/character/race/half_orc.rs
 expression: half_orc
 ---
 - type: HalfOrc
-- Rimardo Astorio
-- age: 11
-  gender: Male
-  height: 68
+- Emen Falone
+- age: 70
+  base_speed: 30
+  gender: Female
+  height: 66
   size: Medium
-  weight: 210
+  weight: 196

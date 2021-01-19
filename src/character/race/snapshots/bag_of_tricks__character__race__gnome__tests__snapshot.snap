@@ -4,9 +4,10 @@ expression: gnome
 ---
 - type: Gnome
   subrace: Forest
-- "Warryn \"Doublelock\" Garrick"
-- age: 271
-  gender: Male
+- "Ellyjobell \"Ashhearth\" Garrick"
+- age: 337
+  base_speed: 25
+  gender: Female
   height: 40
   size: Small
   weight: 40

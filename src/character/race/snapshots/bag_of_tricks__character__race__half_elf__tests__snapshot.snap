@@ -8,9 +8,10 @@ expression: half_elf
       - 1
     - - Wisdom
       - 1
-- Andraste Starag
-- age: 122
+- Del Starag
+- age: 62
+  base_speed: 30
   gender: Female
-  height: 68
+  height: 71
   size: Medium
-  weight: 154
+  weight: 180

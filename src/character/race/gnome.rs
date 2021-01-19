@@ -42,8 +42,11 @@ pub(crate) struct Gnome {
 
 impl Characteristics for Gnome {
     const AGE_RANGE: AgeRange = AgeRange(1..=500);
-
     const SIZE: Size = Size::Small;
+
+    fn get_base_speed(&self) -> u8 {
+        25
+    }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
