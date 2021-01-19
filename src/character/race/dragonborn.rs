@@ -160,8 +160,6 @@ impl Race for Dragonborn {
         vec![self.breath_weapon(character)]
     }
 
-    // fn attacks(&self, scores: &AbilityScores) -> Vec<Attack> {}
-
     fn citations(&self) -> Citations {
         Citations(vec![Citation {
             book: Book::PHB,
@@ -246,6 +244,10 @@ impl Race for Dragonborn {
             damage_resistance,
             languages,
         ]
+    }
+
+    fn resistances(&self) -> Vec<DamageType> {
+        vec![self.damage_type()]
     }
 }
 

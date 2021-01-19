@@ -5,7 +5,7 @@ mod features;
 mod names;
 mod race;
 
-use attack::Attack;
+use attack::{Attack, DamageType};
 use features::Feature;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -58,6 +58,10 @@ impl Character {
         }
     }
 
+    fn resistances(&self) -> Vec<DamageType> {
+        self.race.resistances()
+    }
+
     fn speed(&self) -> u8 {
         self.characteristics.base_speed
     }
@@ -72,6 +76,15 @@ impl fmt::Display for Character {
         writeln!(f, "{}", self.abilities)?;
         writeln!(f, "SPEED: {}", self.speed())?;
         writeln!(f, "PROFICIENCY BONUS: {:+}", self.proficiency_bonus())?;
+        writeln!(
+            f,
+            "RESISTANCES: {}",
+            self.resistances()
+                .iter()
+                .map(|r| format!("{}", r))
+                .collect::<Vec<String>>()
+                .join(", ")
+        )?;
         writeln!(f, "CHARACTERISTICS:")?;
         writeln!(f, "{}", self.characteristics)?;
         writeln!(f, "ATTACKS:")?;

@@ -22,8 +22,11 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScores, attack::Attack, characteristics::CharacteristicDetails,
-    features::Feature, Character,
+    ability::AbilityScores,
+    attack::{Attack, DamageType},
+    characteristics::CharacteristicDetails,
+    features::Feature,
+    Character,
 };
 
 /// Shared race traits
@@ -47,6 +50,11 @@ pub(crate) trait Race: fmt::Display {
 
     /// Return list of features & traits for this race
     fn features(&self) -> Vec<Feature>;
+
+    /// Return list of resistances for this race
+    fn resistances(&self) -> Vec<DamageType> {
+        vec![]
+    }
 }
 
 #[derive(EnumIter)]
