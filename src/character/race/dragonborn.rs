@@ -15,6 +15,7 @@ use crate::{
             HeightAndWeightTable, Size, WeightMod,
         },
         features::Feature,
+        languages::Language,
         names::{
             dragonborn::{CHILD, CLAN, FEMALE, MALE},
             Name,
@@ -244,6 +245,10 @@ impl Race for Dragonborn {
             damage_resistance,
             languages,
         ]
+    }
+
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Draconic]
     }
 
     fn resistances(&self) -> Vec<DamageType> {

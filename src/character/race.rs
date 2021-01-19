@@ -26,6 +26,7 @@ use super::{
     attack::{Attack, DamageType},
     characteristics::CharacteristicDetails,
     features::Feature,
+    languages::Language,
     Character,
 };
 
@@ -50,6 +51,11 @@ pub(crate) trait Race: fmt::Display {
 
     /// Return list of features & traits for this race
     fn features(&self) -> Vec<Feature>;
+
+    /// Return list of languages for this race
+    fn languages(&self) -> Vec<Language> {
+        vec![]
+    }
 
     /// Return list of resistances for this race
     fn resistances(&self) -> Vec<DamageType> {
