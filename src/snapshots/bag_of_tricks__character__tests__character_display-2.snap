@@ -2,24 +2,25 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: Hlin Holderhek
+CHARACTER NAME: Kildrak Fireforge
 RACE: Mountain Dwarf (PHB p18,20)
 LEVEL: 1
 
-STR  -2 (7)
-DEX  +1 (12)
-CON  +3 (17)
+STR  -1 (8)
+DEX  +0 (11)
+CON  +4 (19)
 INT  +2 (15)
-WIS  +2 (15)
-CHA  +1 (13)
+WIS  +1 (13)
+CHA  +0 (11)
 
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: 
 LANGUAGES: 
 CHARACTERISTICS:
+Alignment: Lawful Evil
 Age: 316
-Gender: Female
+Gender: Male
 Size: Medium
 Height: 4'6"
 Weight: 165 lb.

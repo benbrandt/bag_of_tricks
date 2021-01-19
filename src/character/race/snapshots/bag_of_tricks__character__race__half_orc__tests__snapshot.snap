@@ -3,8 +3,11 @@ source: src/character/race/half_orc.rs
 expression: half_orc
 ---
 - type: HalfOrc
-- Emen Falone
+- Kara Chernin
 - age: 70
+  alignment:
+    - Chaotic
+    - Neutral
   base_speed: 30
   gender: Female
   height: 66

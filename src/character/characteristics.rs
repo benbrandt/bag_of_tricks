@@ -6,6 +6,8 @@ use strum_macros::{Display, EnumIter};
 
 use crate::dice_roller::RollCmd;
 
+use super::alignment::Alignment;
+
 pub(crate) struct AgeRange(pub(crate) RangeInclusive<u16>);
 
 impl AgeRange {
@@ -64,6 +66,7 @@ pub(crate) enum Size {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct CharacteristicDetails {
     pub(crate) age: u16,
+    pub(crate) alignment: Alignment,
     pub(crate) base_speed: u8,
     pub(crate) gender: Gender,
     pub(crate) height: usize,
@@ -73,6 +76,7 @@ pub(crate) struct CharacteristicDetails {
 
 impl fmt::Display for CharacteristicDetails {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "Alignment: {}", self.alignment)?;
         writeln!(f, "Age: {}", self.age)?;
         writeln!(f, "Gender: {}", self.gender)?;
         writeln!(f, "Size: {}", self.size)?;
@@ -93,6 +97,7 @@ pub(crate) trait Characteristics {
         let (height, weight) = self.get_height_and_weight_table().gen(rng);
         CharacteristicDetails {
             age: Self::AGE_RANGE.gen(rng),
+            alignment: Alignment::gen(rng),
             base_speed: self.get_base_speed(),
             gender: Gender::gen(rng),
             height,
@@ -121,6 +126,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let characteristics = CharacteristicDetails {
             age: 100,
+            alignment: Alignment::gen(&mut rng),
             base_speed: 30,
             gender: Gender::gen(&mut rng),
             height: 75,

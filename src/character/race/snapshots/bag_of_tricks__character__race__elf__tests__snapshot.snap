@@ -4,8 +4,11 @@ expression: elf
 ---
 - type: Elf
   subrace: Dark
-- Vadania Holimion (Diamonddew)
+- Meriele Liadon (Silverfrond)
 - age: 693
+  alignment:
+    - Chaotic
+    - Neutral
   base_speed: 30
   gender: Female
   height: 59

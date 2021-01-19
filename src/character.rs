@@ -1,4 +1,5 @@
 mod ability;
+mod alignment;
 mod attack;
 mod characteristics;
 mod features;

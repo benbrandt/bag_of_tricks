@@ -4,30 +4,33 @@ expression: character
 ---
 abilities:
   - - Strength
-    - 5
+    - 6
   - - Dexterity
-    - 12
+    - 11
   - - Constitution
-    - 15
+    - 17
   - - Intelligence
     - 15
   - - Wisdom
-    - 15
-  - - Charisma
     - 13
+  - - Charisma
+    - 11
   - - Constitution
     - 2
   - - Strength
     - 2
 characteristics:
   age: 316
+  alignment:
+    - Lawful
+    - Evil
   base_speed: 25
-  gender: Female
+  gender: Male
   height: 54
   size: Medium
   weight: 165
 level: 1
-name: Hlin Holderhek
+name: Kildrak Fireforge
 race:
   type: Dwarf
   subrace: Mountain
