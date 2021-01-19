@@ -1,14 +1,24 @@
+use std::fmt;
+use strum_macros::Display;
+
 use rand::Rng;
 
 /// Dice types
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, Display, PartialEq)]
 pub(crate) enum Die {
+    #[strum(serialize = "d4")]
     D4 = 4,
+    #[strum(serialize = "d6")]
     D6 = 6,
+    #[strum(serialize = "d8")]
     D8 = 8,
+    #[strum(serialize = "d10")]
     D10 = 10,
+    #[strum(serialize = "d12")]
     D12 = 12,
+    #[strum(serialize = "d20")]
     D20 = 20,
+    #[strum(serialize = "d100")]
     D100 = 100,
 }
 
@@ -43,6 +53,12 @@ pub(crate) struct RollCmd(pub(crate) usize, pub(crate) Die);
 impl RollCmd {
     pub(crate) fn roll(&self, rng: &mut impl Rng) -> RollResult {
         RollResult((1..=self.0).map(|_| roll_die(rng, self.1)).collect())
+    }
+}
+
+impl fmt::Display for RollCmd {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}{}", self.0, self.1)
     }
 }
 

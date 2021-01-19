@@ -21,7 +21,10 @@ use self::{
     half_orc::HalfOrc, halfling::Halfling, human::Human, tiefling::Tiefling,
 };
 
-use super::{ability::AbilityScores, characteristics::CharacteristicDetails, features::Feature};
+use super::{
+    ability::AbilityScores, attack::Attack, characteristics::CharacteristicDetails,
+    features::Feature, Character,
+};
 
 /// Shared race traits
 #[typetag::serde(tag = "type")]
@@ -33,6 +36,11 @@ pub(crate) trait Race: fmt::Display {
 
     /// Returns ability score increases for the race
     fn abilities(&self) -> AbilityScores;
+
+    /// Returns list of attacks for the race
+    fn attacks(&self, character: &Character) -> Vec<Attack> {
+        vec![]
+    }
 
     /// Return list of citations for this race/subrace
     fn citations(&self) -> Citations;

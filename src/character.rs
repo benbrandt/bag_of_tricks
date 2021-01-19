@@ -1,13 +1,15 @@
 mod ability;
+mod attack;
 mod characteristics;
 mod features;
 mod names;
 mod race;
 
+use attack::Attack;
 use features::Feature;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
-use std::fmt;
+use std::{fmt, writeln};
 
 use ability::AbilityScores;
 use characteristics::CharacteristicDetails;
@@ -18,6 +20,7 @@ use race::{Race, RaceOptions};
 pub struct Character {
     abilities: AbilityScores,
     characteristics: CharacteristicDetails,
+    level: u8,
     name: String,
     race: Box<dyn Race>,
 }
@@ -31,13 +34,28 @@ impl Character {
         Self {
             abilities,
             characteristics,
+            level: 1,
             name,
             race,
         }
     }
 
+    fn attacks(&self) -> Vec<Attack> {
+        self.race.attacks(self)
+    }
+
     fn features(&self) -> Vec<Feature> {
         self.race.features()
+    }
+
+    fn proficiency_bonus(&self) -> i16 {
+        match self.level {
+            0..=4 => 2,
+            5..=8 => 3,
+            9..=12 => 4,
+            13..=16 => 5,
+            17..=u8::MAX => 6,
+        }
     }
 
     fn speed(&self) -> u8 {
@@ -49,11 +67,22 @@ impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "CHARACTER NAME: {}", self.name)?;
         writeln!(f, "RACE: {} ({})", self.race, self.race.citations())?;
+        writeln!(f, "LEVEL: {}", self.level)?;
         writeln!(f)?;
         writeln!(f, "{}", self.abilities)?;
         writeln!(f, "SPEED: {}", self.speed())?;
+        writeln!(f, "PROFICIENCY BONUS: {:+}", self.proficiency_bonus())?;
         writeln!(f, "CHARACTERISTICS:")?;
         writeln!(f, "{}", self.characteristics)?;
+        writeln!(f, "ATTACKS:")?;
+        writeln!(
+            f,
+            "{:20} {:20} {:20} {:20}",
+            "Attack", "Range", "Hit/DC", "Damage"
+        )?;
+        for attack in self.attacks() {
+            writeln!(f, "{}", attack)?;
+        }
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {
             writeln!(f, "{}", feature)?;

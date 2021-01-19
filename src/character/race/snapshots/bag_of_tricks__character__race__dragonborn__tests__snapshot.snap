@@ -3,10 +3,11 @@ source: src/character/race/dragonborn.rs
 expression: dragonborn
 ---
 - type: Dragonborn
-- "Verthisathurgiesh Biri \"Pious\""
-- age: 74
+  ancestry: Blue
+- "Myastan Daar \"Earbender\""
+- age: 10
   base_speed: 30
   gender: Female
-  height: 73
+  height: 74
   size: Medium
-  weight: 224
+  weight: 263

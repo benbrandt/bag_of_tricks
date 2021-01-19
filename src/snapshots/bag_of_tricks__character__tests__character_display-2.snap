@@ -4,6 +4,7 @@ expression: "format!(\"{}\", character)"
 ---
 CHARACTER NAME: Hlin Holderhek
 RACE: Mountain Dwarf (PHB p18,20)
+LEVEL: 1
 
 STR  -2 (7)
 DEX  +1 (12)
@@ -13,6 +14,7 @@ WIS  +2 (15)
 CHA  +1 (13)
 
 SPEED: 25
+PROFICIENCY BONUS: +2
 CHARACTERISTICS:
 Age: 316
 Gender: Female
@@ -20,6 +22,8 @@ Size: Medium
 Height: 4'6"
 Weight: 165 lb.
 
+ATTACKS:
+Attack               Range                Hit/DC               Damage              
 FEATURES AND TRAITS:
 Ability Score Increase
 Your Constitution score increases by 2. (PHB p20)
