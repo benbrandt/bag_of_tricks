@@ -13,24 +13,37 @@ pub(crate) enum Die {
 }
 
 /// Rolled value of a die
-pub(crate) struct DieRoll {
+pub(crate) struct DieResult {
     /// Die type
     pub(crate) die: Die,
     /// Rolled number
-    pub(crate) roll: i8,
+    pub(crate) roll: u8,
+}
+
+pub(crate) struct RollResult(pub(crate) Vec<DieResult>);
+
+impl RollResult {
+    pub(crate) fn total(&self) -> usize {
+        self.0.iter().fold(0, |acc, d| acc + usize::from(d.roll))
+    }
 }
 
 /// Roll a die
-fn roll_die(rng: &mut impl Rng, die: Die) -> DieRoll {
-    DieRoll {
+fn roll_die(rng: &mut impl Rng, die: Die) -> DieResult {
+    DieResult {
         die,
-        roll: rng.gen_range(1..=die as i8),
+        roll: rng.gen_range(1..=die as u8),
     }
 }
 
 /// Roll multiple dice
-pub(crate) fn roll_dice(rng: &mut impl Rng, die: Die, quantity: i8) -> Vec<DieRoll> {
-    (1..=quantity).map(|_| roll_die(rng, die)).collect()
+
+pub(crate) struct RollCmd(pub(crate) usize, pub(crate) Die);
+
+impl RollCmd {
+    pub(crate) fn roll(&self, rng: &mut impl Rng) -> RollResult {
+        RollResult((1..=self.0).map(|_| roll_die(rng, self.1)).collect())
+    }
 }
 
 #[cfg(test)]
@@ -42,7 +55,7 @@ mod tests {
     #[test]
     fn test_roll_die_d4() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D4);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D4);
         assert_eq!(die, Die::D4);
         assert!((1..=4).contains(&roll));
     }
@@ -50,7 +63,7 @@ mod tests {
     #[test]
     fn test_roll_die_d6() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D6);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D6);
         assert_eq!(die, Die::D6);
         assert!((1..=6).contains(&roll));
     }
@@ -58,7 +71,7 @@ mod tests {
     #[test]
     fn test_roll_die_d8() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D8);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D8);
         assert_eq!(die, Die::D8);
         assert!((1..=8).contains(&roll));
     }
@@ -66,7 +79,7 @@ mod tests {
     #[test]
     fn test_roll_die_d10() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D10);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D10);
         assert_eq!(die, Die::D10);
         assert!((1..=10).contains(&roll));
     }
@@ -74,7 +87,7 @@ mod tests {
     #[test]
     fn test_roll_die_d12() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D12);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D12);
         assert_eq!(die, Die::D12);
         assert!((1..=12).contains(&roll));
     }
@@ -82,7 +95,7 @@ mod tests {
     #[test]
     fn test_roll_die_d20() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D20);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D20);
         assert_eq!(die, Die::D20);
         assert!((1..=20).contains(&roll));
     }
@@ -90,7 +103,7 @@ mod tests {
     #[test]
     fn test_roll_die_d100() {
         let mut rng = Pcg64::from_entropy();
-        let DieRoll { die, roll } = roll_die(&mut rng, Die::D100);
+        let DieResult { die, roll } = roll_die(&mut rng, Die::D100);
         assert_eq!(die, Die::D100);
         assert!((1..=100).contains(&roll));
     }
@@ -98,9 +111,10 @@ mod tests {
     #[test]
     fn test_roll_dice() {
         let mut rng = Pcg64::from_entropy();
-        let rolls = roll_dice(&mut rng, Die::D6, 4);
-        assert_eq!(rolls.len(), 4);
-        for DieRoll { die, roll } in rolls {
+        let rolls = RollCmd(4, Die::D6).roll(&mut rng);
+        assert_eq!(rolls.0.len(), 4);
+        assert!((4..=24).contains(&rolls.total()));
+        for DieResult { die, roll } in rolls.0 {
             assert_eq!(die, Die::D6);
             assert!((1..=6).contains(&roll));
         }

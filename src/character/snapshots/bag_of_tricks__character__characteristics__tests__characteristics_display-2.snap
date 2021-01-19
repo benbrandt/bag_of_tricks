@@ -4,4 +4,7 @@ expression: "format!(\"{}\", characteristics)"
 ---
 Age: 100
 Gender: Female
+Size: Medium
+Height: 6'3"
+Weight: 300 lb.
 

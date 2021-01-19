@@ -3,6 +3,9 @@ source: src/character/race/dragonborn.rs
 expression: dragonborn
 ---
 - type: Dragonborn
-- "Kepeshkmolik Patrin \"Zealous\""
+- "Verthisathurgiesh Balasar \"Pious\""
 - age: 12
   gender: Male
+  height: 75
+  size: Medium
+  weight: 238

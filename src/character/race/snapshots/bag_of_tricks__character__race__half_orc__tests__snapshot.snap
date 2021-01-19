@@ -3,6 +3,9 @@ source: src/character/race/half_orc.rs
 expression: half_orc
 ---
 - type: HalfOrc
-- Wen Mei
+- Rimardo Astorio
 - age: 11
   gender: Male
+  height: 68
+  size: Medium
+  weight: 210

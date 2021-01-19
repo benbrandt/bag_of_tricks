@@ -4,6 +4,9 @@ expression: gnome
 ---
 - type: Gnome
   subrace: Forest
-- "Wrenn \"Ashhearth\" Garrick"
+- "Warryn \"Doublelock\" Garrick"
 - age: 271
   gender: Male
+  height: 40
+  size: Small
+  weight: 40

@@ -4,6 +4,9 @@ expression: dwarf
 ---
 - type: Dwarf
   subrace: Hill
-- Ulfgar Battlehammer
+- Baern Ironfist
 - age: 190
   gender: Male
+  height: 49
+  size: Medium
+  weight: 160

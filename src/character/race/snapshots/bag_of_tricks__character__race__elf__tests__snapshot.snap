@@ -4,6 +4,9 @@ expression: elf
 ---
 - type: Elf
   subrace: Dark
-- Tharivol Amastacia (Starflower)
+- Erdan Liadon (Silverfrond)
 - age: 407
   gender: Male
+  height: 60
+  size: Medium
+  weight: 117

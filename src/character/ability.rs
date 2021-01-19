@@ -4,12 +4,12 @@ use std::{collections::HashMap, fmt};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
-use crate::dice_roller::{roll_dice, Die};
+use crate::dice_roller::{Die, RollCmd};
 
 /// Return modifier based on ability score.
-const fn modifier(score: i8) -> i8 {
+fn modifier(score: u8) -> i16 {
     // Lower value to closest even number, subtract by 10 and divide by two
-    (score - score % 2 - 10) / 2
+    (i16::from(score) - i16::from(score) % 2 - 10) / 2
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Hash, PartialEq, Serialize)]
@@ -30,13 +30,13 @@ pub(crate) enum AbilityScoreType {
 
 /// Value of a base ability score or increase
 #[derive(Copy, Clone, Debug, Deserialize, Serialize)]
-pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) i8);
+pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) u8);
 
 impl AbilityScore {
     /// Generate a new ability score based on dice rolls
     fn new(rng: &mut impl Rng, score_type: AbilityScoreType) -> Self {
         // Roll 4 d6's
-        let mut rolls = roll_dice(rng, Die::D6, 4);
+        let mut rolls = RollCmd(4, Die::D6).roll(rng).0;
         // Reverse sort, highest to lowest
         rolls.sort_by(|a, b| b.roll.cmp(&a.roll));
         // Sum top 3
@@ -63,7 +63,7 @@ impl AbilityScores {
         self.0.extend(addl_scores.0)
     }
 
-    pub(crate) fn scores(&self) -> HashMap<AbilityScoreType, i8> {
+    pub(crate) fn scores(&self) -> HashMap<AbilityScoreType, u8> {
         let mut scores = HashMap::new();
         for AbilityScore(score_type, val) in self.0.clone() {
             *scores.entry(score_type).or_insert(0) += val;

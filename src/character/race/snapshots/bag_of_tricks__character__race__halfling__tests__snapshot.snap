@@ -7,3 +7,6 @@ expression: halfling
 - Roscoe High-hill
 - age: 82
   gender: Male
+  height: 36
+  size: Small
+  weight: 40

@@ -8,7 +8,9 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics, Gender},
+        characteristics::{
+            in_inches, AgeRange, Characteristics, Gender, HeightAndWeightTable, Size, WeightMod,
+        },
         features::Feature,
         names::{
             gnome::{CLAN, FEMALE, MALE, NICKNAMES},
@@ -16,9 +18,16 @@ use crate::{
         },
     },
     citation::{Book, Citation, Citations},
+    dice_roller::{Die, RollCmd},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=500);
+const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
+    base_height: in_inches(2, 11),
+    base_weight: 35,
+    height_mod: RollCmd(2, Die::D4),
+    weight_mod: WeightMod::Fixed(1),
+};
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum GnomeSubrace {
@@ -52,7 +61,8 @@ impl Race for Gnome {
         let race = Box::new(Self {
             subrace: GnomeSubrace::iter().choose(rng).unwrap(),
         });
-        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let characteristics =
+            Characteristics::gen(rng, &AGE_RANGE, Size::Small, &HEIGHT_AND_WEIGHT);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }

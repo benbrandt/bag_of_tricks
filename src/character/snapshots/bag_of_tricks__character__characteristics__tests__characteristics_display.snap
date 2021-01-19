@@ -4,3 +4,6 @@ expression: characteristics
 ---
 age: 100
 gender: Female
+height: 75
+size: Medium
+weight: 300

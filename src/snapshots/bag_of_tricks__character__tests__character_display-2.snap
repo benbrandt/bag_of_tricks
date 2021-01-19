@@ -2,19 +2,22 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: Ulfgar Battlehammer
+CHARACTER NAME: Baern Ironfist
 RACE: Mountain Dwarf (PHB p18,20)
 
-STR  +2 (15)
-DEX  -2 (7)
-CON  +0 (11)
-INT  +2 (15)
-WIS  +3 (16)
-CHA  +1 (13)
+STR  -1 (9)
+DEX  -1 (9)
+CON  +3 (17)
+INT  +3 (16)
+WIS  +1 (13)
+CHA  +2 (14)
 
 CHARACTERISTICS:
 Age: 100
 Gender: Male
+Size: Medium
+Height: 4'6"
+Weight: 175 lb.
 
 FEATURES AND TRAITS:
 Ability Score Increase

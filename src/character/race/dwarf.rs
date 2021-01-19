@@ -8,7 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics, Gender},
+        characteristics::{AgeRange, Characteristics, Gender, Size},
         features::Feature,
         names::{
             dwarf::{CLAN, FEMALE, MALE},
@@ -19,6 +19,25 @@ use crate::{
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=350);
+mod height_and_weight {
+    use crate::{
+        character::characteristics::{in_inches, HeightAndWeightTable, WeightMod},
+        dice_roller::{Die, RollCmd},
+    };
+
+    pub(crate) const HILL: HeightAndWeightTable = HeightAndWeightTable {
+        base_height: in_inches(3, 8),
+        base_weight: 115,
+        height_mod: RollCmd(2, Die::D4),
+        weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
+    };
+    pub(crate) const MOUNTAIN: HeightAndWeightTable = HeightAndWeightTable {
+        base_height: in_inches(4, 1),
+        base_weight: 130,
+        height_mod: RollCmd(2, Die::D4),
+        weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
+    };
+}
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum DwarfSubrace {
@@ -51,7 +70,15 @@ impl Race for Dwarf {
         let race = Box::new(Self {
             subrace: DwarfSubrace::iter().choose(rng).unwrap(),
         });
-        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let characteristics = Characteristics::gen(
+            rng,
+            &AGE_RANGE,
+            Size::Medium,
+            &match race.subrace {
+                DwarfSubrace::Hill => height_and_weight::HILL,
+                DwarfSubrace::Mountain => height_and_weight::MOUNTAIN,
+            },
+        );
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }

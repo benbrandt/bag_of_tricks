@@ -3,6 +3,9 @@ source: src/character/race/human.rs
 expression: human
 ---
 - type: Human
-- Wen Huang
+- Rimardo Falone
 - age: 15
   gender: Male
+  height: 66
+  size: Medium
+  weight: 160

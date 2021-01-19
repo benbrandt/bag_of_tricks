@@ -4,17 +4,17 @@ expression: character
 ---
 abilities:
   - - Strength
-    - 13
-  - - Dexterity
     - 7
-  - - Constitution
+  - - Dexterity
     - 9
-  - - Intelligence
+  - - Constitution
     - 15
-  - - Wisdom
+  - - Intelligence
     - 16
-  - - Charisma
+  - - Wisdom
     - 13
+  - - Charisma
+    - 14
   - - Constitution
     - 2
   - - Strength
@@ -22,7 +22,10 @@ abilities:
 characteristics:
   age: 100
   gender: Male
-name: Ulfgar Battlehammer
+  height: 54
+  size: Medium
+  weight: 175
+name: Baern Ironfist
 race:
   type: Dwarf
   subrace: Mountain

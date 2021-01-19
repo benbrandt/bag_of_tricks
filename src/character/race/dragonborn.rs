@@ -6,7 +6,9 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{AgeRange, Characteristics, Gender},
+        characteristics::{
+            in_inches, AgeRange, Characteristics, Gender, HeightAndWeightTable, Size, WeightMod,
+        },
         features::Feature,
         names::{
             dragonborn::{CHILD, CLAN, FEMALE, MALE},
@@ -14,9 +16,16 @@ use crate::{
         },
     },
     citation::{Book, Citation, Citations},
+    dice_roller::{Die, RollCmd},
 };
 
 const AGE_RANGE: AgeRange = AgeRange(1..=80);
+const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
+    base_height: in_inches(5, 6),
+    base_weight: 175,
+    height_mod: RollCmd(2, Die::D8),
+    weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
+};
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Dragonborn;
@@ -40,7 +49,8 @@ impl Name for Dragonborn {
 impl Race for Dragonborn {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, Characteristics) {
         let race = Box::new(Self);
-        let characteristics = Characteristics::gen(rng, &AGE_RANGE);
+        let characteristics =
+            Characteristics::gen(rng, &AGE_RANGE, Size::Medium, &HEIGHT_AND_WEIGHT);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
