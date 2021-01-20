@@ -2,13 +2,28 @@
 source: src/character/race/gnome.rs
 expression: gnome.features()
 ---
-- title: Ability Score Increase
-  description: Your Intelligence score increases by 2.
+- title: Alignment
+  description: "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious."
   citation:
     book: PHB
     page: 36
-- title: Ability Score Increase
-  description: Your Dexterity score increases by 1.
+- title: Darkvision
+  description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
+  citation:
+    book: PHB
+    page: 37
+- title: Gnome Cunning
+  description: "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+  citation:
+    book: PHB
+    page: 37
+- title: Natural Illusionist
+  description: You know the minor illusion cantrip. Intelligence is your spellcasting ability for it.
+  citation:
+    book: PHB
+    page: 37
+- title: Speak with Small Beasts
+  description: "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts. Forest gnomes love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets."
   citation:
     book: PHB
     page: 37
