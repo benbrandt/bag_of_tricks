@@ -169,81 +169,23 @@ impl Race for Dragonborn {
     }
 
     fn features(&self) -> Vec<Feature> {
-        let ability = Feature {
-            title: "Ability Score Increase",
-            description:
-                "Your Strength score increases by 2, and your Charisma score increases by 1.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let age = Feature {
-            title: "Age",
-            description: "Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let alignment = Feature {
-            title: "Alignment",
-            description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let size = Feature {
-            title: "Size",
-            description: "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let speed = Feature {
-            title: "Speed",
-            description: "Your base walking speed is 30 feet.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let breath_weapon = Feature {
-            title: "Breath Weapon",
-            description: "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let damage_resistance = Feature {
-            title: "Damage Resistance",
-            description:
-                "You have resistance to the damage type associated with your draconic ancestry.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
-        let languages = Feature {
-            title: "Languages",
-            description: "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-        };
         vec![
-            ability,
-            age,
-            alignment,
-            size,
-            speed,
-            breath_weapon,
-            damage_resistance,
-            languages,
+            Feature {
+                title: "Alignment",
+                description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 34,
+                },
+            },
+            Feature {
+                title: "Breath Weapon",
+                description: "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 34,
+                },
+            },
         ]
     }
 
