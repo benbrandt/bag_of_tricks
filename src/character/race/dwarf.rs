@@ -25,7 +25,7 @@ use crate::{
         },
         proficiencies::{Proficiency, WeaponProficiency},
     },
-    citation::{Book, Citation, Citations},
+    citation::{Book, Citation, CitationList, Citations},
 };
 
 mod height_and_weight {
@@ -78,6 +78,22 @@ impl Characteristics for Dwarf {
             DwarfSubrace::Hill => &height_and_weight::HILL,
             DwarfSubrace::Mountain => &height_and_weight::MOUNTAIN,
         }
+    }
+}
+
+impl Citations for Dwarf {
+    fn citations(&self) -> CitationList {
+        let race = Citation {
+            book: Book::PHB,
+            page: 18,
+        };
+        let subrace = match self.subrace {
+            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation {
+                book: Book::PHB,
+                page: 20,
+            },
+        };
+        CitationList(vec![race, subrace])
     }
 }
 
@@ -170,20 +186,6 @@ impl Race for Dwarf {
                 DwarfSubrace::Mountain => AbilityScore(AbilityScoreType::Strength, 2),
             },
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        let race = Citation {
-            book: Book::PHB,
-            page: 18,
-        };
-        let subrace = match self.subrace {
-            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation {
-                book: Book::PHB,
-                page: 20,
-            },
-        };
-        Citations(vec![race, subrace])
     }
 
     fn languages(&self) -> Vec<Language> {

@@ -3,8 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use super::{human::Human, Race};
-use crate::{
-    character::{
+use crate::{character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         attack::DamageType,
         characteristics::{
@@ -18,10 +17,7 @@ use crate::{
             tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, VIRTUE_NAMES},
             Name,
         },
-    },
-    citation::{Book, Citation, Citations},
-    dice_roller::{Die, RollCmd},
-};
+    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 9),
@@ -65,6 +61,15 @@ impl Characteristics for Tiefling {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Citations for Tiefling {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation {
+            book: Book::PHB,
+            page: 42,
+        }])
     }
 }
 
@@ -124,13 +129,6 @@ impl Race for Tiefling {
             AbilityScore(AbilityScoreType::Charisma, 2),
             AbilityScore(AbilityScoreType::Intelligence, 1),
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        Citations(vec![Citation {
-            book: Book::PHB,
-            page: 42,
-        }])
     }
 
     fn languages(&self) -> Vec<Language> {

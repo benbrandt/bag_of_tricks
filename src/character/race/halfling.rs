@@ -5,8 +5,7 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{
-    character::{
+use crate::{character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         attack::DamageType,
         characteristics::{
@@ -19,10 +18,7 @@ use crate::{
             halfling::{FAMILY, FEMALE, MALE},
             Name,
         },
-    },
-    citation::{Book, Citation, Citations},
-    dice_roller::{Die, RollCmd},
-};
+    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 7),
@@ -52,6 +48,22 @@ impl Characteristics for Halfling {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Citations for Halfling {
+    fn citations(&self) -> CitationList {
+        let race = Citation {
+            book: Book::PHB,
+            page: 26,
+        };
+        let subrace = match self.subrace {
+            HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation {
+                book: Book::PHB,
+                page: 28,
+            },
+        };
+        CitationList(vec![race, subrace])
     }
 }
 
@@ -141,20 +153,6 @@ impl Race for Halfling {
                 HalflingSubrace::Stout => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        let race = Citation {
-            book: Book::PHB,
-            page: 26,
-        };
-        let subrace = match self.subrace {
-            HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation {
-                book: Book::PHB,
-                page: 28,
-            },
-        };
-        Citations(vec![race, subrace])
     }
 
     fn languages(&self) -> Vec<Language> {

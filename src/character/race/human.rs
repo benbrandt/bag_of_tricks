@@ -4,10 +4,16 @@ use std::fmt;
 use strum::IntoEnumIterator;
 
 use super::Race;
-use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, characteristics::{
+use crate::{character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
-        }, features::{Feature, Features}, languages::Language, names::{human::Names, Name}}, citation::{Book, Citation, Citations}, dice_roller::{Die, RollCmd}};
+        },
+        features::{Feature, Features},
+        languages::Language,
+        names::{human::Names, Name},
+    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 8),
@@ -61,6 +67,15 @@ impl Characteristics for Human {
     }
 }
 
+impl Citations for Human {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation {
+            book: Book::PHB,
+            page: 29,
+        }])
+    }
+}
+
 impl Features for Human {
     fn features(&self) -> Vec<Feature> {
         vec![Feature {
@@ -102,13 +117,6 @@ impl Race for Human {
                 .map(|t| AbilityScore(t, 1))
                 .collect(),
         )
-    }
-
-    fn citations(&self) -> Citations {
-        Citations(vec![Citation {
-            book: Book::PHB,
-            page: 29,
-        }])
     }
 }
 

@@ -25,9 +25,9 @@ impl fmt::Display for Citation {
 }
 
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Citations(pub(crate) Vec<Citation>);
+pub(crate) struct CitationList(pub(crate) Vec<Citation>);
 
-impl fmt::Display for Citations {
+impl fmt::Display for CitationList {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut citations = HashMap::new();
         for c in &self.0 {
@@ -46,6 +46,11 @@ impl fmt::Display for Citations {
         }
         write!(f, "")
     }
+}
+
+pub(crate) trait Citations {
+    /// Return list of citations for the object in question
+    fn citations(&self) -> CitationList;
 }
 
 #[cfg(test)]
@@ -68,7 +73,7 @@ mod tests {
 
     #[test]
     fn test_citations_display() {
-        let citations = Citations(vec![
+        let citations = CitationList(vec![
             Citation {
                 book: Book::PHB,
                 page: 123,

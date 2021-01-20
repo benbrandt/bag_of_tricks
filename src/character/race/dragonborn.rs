@@ -21,7 +21,7 @@ use crate::{
             Name,
         },
     },
-    citation::{Book, Citation, Citations},
+    citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
 
@@ -120,6 +120,15 @@ impl Characteristics for Dragonborn {
     }
 }
 
+impl Citations for Dragonborn {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation {
+            book: Book::PHB,
+            page: 32,
+        }])
+    }
+}
+
 impl Features for Dragonborn {
     fn features(&self) -> Vec<Feature> {
         vec![
@@ -177,13 +186,6 @@ impl Race for Dragonborn {
             AbilityScore(AbilityScoreType::Charisma, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        Citations(vec![Citation {
-            book: Book::PHB,
-            page: 32,
-        }])
     }
 
     fn languages(&self) -> Vec<Language> {

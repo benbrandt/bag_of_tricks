@@ -5,8 +5,7 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{
-    character::{
+use crate::{character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -19,9 +18,7 @@ use crate::{
             Name,
         },
         proficiencies::{Proficiency, WeaponProficiency},
-    },
-    citation::{Book, Citation, Citations},
-};
+    }, citation::{Book, Citation, CitationList, Citations}};
 
 mod height_and_weight {
     use crate::{
@@ -114,6 +111,26 @@ impl Characteristics for Elf {
             ElfSubrace::High => &height_and_weight::HIGH,
             ElfSubrace::Wood => &height_and_weight::WOOD,
         }
+    }
+}
+
+impl Citations for Elf {
+    fn citations(&self) -> CitationList {
+        let race = Citation {
+            book: Book::PHB,
+            page: 21,
+        };
+        let subrace = match self.subrace {
+            ElfSubrace::Dark | ElfSubrace::Wood => Citation {
+                book: Book::PHB,
+                page: 24,
+            },
+            ElfSubrace::High => Citation {
+                book: Book::PHB,
+                page: 23,
+            },
+        };
+        CitationList(vec![race, subrace])
     }
 }
 
@@ -233,24 +250,6 @@ impl Race for Elf {
                 ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
             },
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        let race = Citation {
-            book: Book::PHB,
-            page: 21,
-        };
-        let subrace = match self.subrace {
-            ElfSubrace::Dark | ElfSubrace::Wood => Citation {
-                book: Book::PHB,
-                page: 24,
-            },
-            ElfSubrace::High => Citation {
-                book: Book::PHB,
-                page: 23,
-            },
-        };
-        Citations(vec![race, subrace])
     }
 
     fn languages(&self) -> Vec<Language> {

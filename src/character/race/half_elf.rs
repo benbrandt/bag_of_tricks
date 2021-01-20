@@ -16,7 +16,7 @@ use crate::{
         names::{human::Names, Name},
         proficiencies::Proficiency,
     },
-    citation::{Book, Citation, Citations},
+    citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
 
@@ -72,6 +72,15 @@ impl Characteristics for HalfElf {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Citations for HalfElf {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation {
+            book: Book::PHB,
+            page: 38,
+        }])
     }
 }
 
@@ -141,13 +150,6 @@ impl Race for HalfElf {
         let mut abilities = vec![AbilityScore(AbilityScoreType::Charisma, 2)];
         abilities.extend(self.addl_increases.clone());
         AbilityScores(abilities)
-    }
-
-    fn citations(&self) -> Citations {
-        Citations(vec![Citation {
-            book: Book::PHB,
-            page: 38,
-        }])
     }
 
     fn languages(&self) -> Vec<Language> {

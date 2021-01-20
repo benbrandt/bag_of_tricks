@@ -21,7 +21,7 @@ use crate::{
         },
         proficiencies::Proficiency,
     },
-    citation::{Book, Citation, Citations},
+    citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
 
@@ -53,6 +53,22 @@ impl Characteristics for Gnome {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Citations for Gnome {
+    fn citations(&self) -> CitationList {
+        let race = Citation {
+            book: Book::PHB,
+            page: 35,
+        };
+        let subrace = match self.subrace {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation {
+                book: Book::PHB,
+                page: 37,
+            },
+        };
+        CitationList(vec![race, subrace])
     }
 }
 
@@ -172,20 +188,6 @@ impl Race for Gnome {
                 GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        let race = Citation {
-            book: Book::PHB,
-            page: 35,
-        };
-        let subrace = match self.subrace {
-            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation {
-                book: Book::PHB,
-                page: 37,
-            },
-        };
-        Citations(vec![race, subrace])
     }
 
     fn languages(&self) -> Vec<Language> {

@@ -3,8 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use super::{human::Human, Race};
-use crate::{
-    character::{
+use crate::{character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -18,10 +17,7 @@ use crate::{
             Name,
         },
         proficiencies::Proficiency,
-    },
-    citation::{Book, Citation, Citations},
-    dice_roller::{Die, RollCmd},
-};
+    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 10),
@@ -43,6 +39,15 @@ impl Characteristics for HalfOrc {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Citations for HalfOrc {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation {
+            book: Book::PHB,
+            page: 40,
+        }])
     }
 }
 
@@ -117,13 +122,6 @@ impl Race for HalfOrc {
             AbilityScore(AbilityScoreType::Constitution, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
-    }
-
-    fn citations(&self) -> Citations {
-        Citations(vec![Citation {
-            book: Book::PHB,
-            page: 40,
-        }])
     }
 
     fn languages(&self) -> Vec<Language> {
