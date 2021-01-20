@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use strum_macros::Display;
 
 use super::{
@@ -9,13 +10,13 @@ use super::{
     },
 };
 
-#[derive(Debug, Display)]
+#[derive(Clone, Debug, Deserialize, Display, Serialize)]
 pub(crate) enum WeaponProficiency {
     Category(WeaponCategory),
     Specific(WeaponType),
 }
 
-#[derive(Debug, Display)]
+#[derive(Clone, Debug, Deserialize, Display, Serialize)]
 pub(crate) enum Proficiency {
     Armor(ArmorType),
     Skill(Skill),

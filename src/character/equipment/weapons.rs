@@ -1,19 +1,20 @@
+use serde::{Deserialize, Serialize};
 use strum_macros::Display;
 
-#[derive(Debug, Display)]
+#[derive(Clone, Debug, Deserialize, Display, Serialize)]
 pub(crate) enum WeaponCategory {
     Simple,
     Martial,
 }
 
-#[derive(Debug, Display)]
+#[derive(Debug, Deserialize, Display, Serialize)]
 pub(crate) enum WeaponClassification {
     Melee,
     Ranged,
 }
 
 #[allow(dead_code)]
-#[derive(Debug, Display)]
+#[derive(Clone, Debug, Deserialize, Display, Serialize)]
 pub(crate) enum WeaponType {
     Battleaxe,
     Blowgun,

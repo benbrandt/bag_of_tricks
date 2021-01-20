@@ -8,13 +8,17 @@ expression: half_elf
       - 1
     - - Wisdom
       - 1
-- Del Starag
-- age: 62
+  addl_proficiencies:
+    - Skill: Insight
+    - Skill: Nature
+  extra_language: Sylvan
+- Yuldra Amastacia (Starflower)
+- age: 114
   alignment:
-    - Chaotic
-    - Good
+    - Neutral
+    - Neutral
   base_speed: 30
-  gender: Male
-  height: 71
+  gender: Female
+  height: 65
   size: Medium
-  weight: 180
+  weight: 158

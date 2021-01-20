@@ -1,5 +1,0 @@
----
-source: src/character/race/dwarf.rs
-expression: "Dwarf::gen_name(&mut rng, &Gender::Female)"
----
-Bardryn Ironfist
