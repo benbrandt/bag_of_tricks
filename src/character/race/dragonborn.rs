@@ -9,7 +9,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        attack::{Attack, Damage, DamageType, Hit},
+        attack::DamageType,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -20,7 +20,6 @@ use crate::{
             dragonborn::{CHILD, CLAN, FEMALE, MALE},
             Name,
         },
-        Character,
     },
     citation::{Book, Citation, Citations},
     dice_roller::{Die, RollCmd},
@@ -65,47 +64,47 @@ impl Dragonborn {
         }
     }
 
-    fn breath_weapon(&self, character: &Character) -> Attack {
-        let (save_type, range) = match self.ancestry {
-            DraconicAncestry::Black
-            | DraconicAncestry::Blue
-            | DraconicAncestry::Brass
-            | DraconicAncestry::Bronze
-            | DraconicAncestry::Copper => (AbilityScoreType::Dexterity, "5 by 30 ft. line"),
-            DraconicAncestry::Gold | DraconicAncestry::Red => {
-                (AbilityScoreType::Dexterity, "15 ft. cone")
-            }
-            DraconicAncestry::Green | DraconicAncestry::Silver | DraconicAncestry::White => {
-                (AbilityScoreType::Constitution, "15 ft. cone")
-            }
-        };
-        Attack {
-            citation: Citation {
-                book: Book::PHB,
-                page: 34,
-            },
-            damage: Damage {
-                damage_type: self.damage_type(),
-                modifier: 0,
-                roll: RollCmd(
-                    match character.level {
-                        0..=5 => 2,
-                        6..=10 => 3,
-                        11..=15 => 4,
-                        16..=u8::MAX => 5,
-                    },
-                    Die::D6,
-                ),
-            },
-            hit: Hit::DC(
-                save_type,
-                8 + character.abilities.modifier(AbilityScoreType::Constitution)
-                    + character.proficiency_bonus(),
-            ),
-            name: "Breath Weapon",
-            range,
-        }
-    }
+    // fn breath_weapon(&self, character: &Character) -> Attack {
+    //     let (save_type, range) = match self.ancestry {
+    //         DraconicAncestry::Black
+    //         | DraconicAncestry::Blue
+    //         | DraconicAncestry::Brass
+    //         | DraconicAncestry::Bronze
+    //         | DraconicAncestry::Copper => (AbilityScoreType::Dexterity, "5 by 30 ft. line"),
+    //         DraconicAncestry::Gold | DraconicAncestry::Red => {
+    //             (AbilityScoreType::Dexterity, "15 ft. cone")
+    //         }
+    //         DraconicAncestry::Green | DraconicAncestry::Silver | DraconicAncestry::White => {
+    //             (AbilityScoreType::Constitution, "15 ft. cone")
+    //         }
+    //     };
+    //     Attack {
+    //         citation: Citation {
+    //             book: Book::PHB,
+    //             page: 34,
+    //         },
+    //         damage: Damage {
+    //             damage_type: self.damage_type(),
+    //             modifier: 0,
+    //             roll: RollCmd(
+    //                 match character.level {
+    //                     0..=5 => 2,
+    //                     6..=10 => 3,
+    //                     11..=15 => 4,
+    //                     16..=u8::MAX => 5,
+    //                 },
+    //                 Die::D6,
+    //             ),
+    //         },
+    //         hit: Hit::DC(
+    //             save_type,
+    //             8 + character.abilities.modifier(AbilityScoreType::Constitution)
+    //                 + character.proficiency_bonus(),
+    //         ),
+    //         name: "Breath Weapon",
+    //         range,
+    //     }
+    // }
 }
 
 impl Characteristics for Dragonborn {
@@ -155,10 +154,6 @@ impl Race for Dragonborn {
             AbilityScore(AbilityScoreType::Charisma, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
-    }
-
-    fn attacks(&self, character: &Character) -> Vec<Attack> {
-        vec![self.breath_weapon(character)]
     }
 
     fn citations(&self) -> Citations {

@@ -9,7 +9,7 @@ mod names;
 mod proficiencies;
 mod race;
 
-use attack::{Attack, DamageType};
+use attack::DamageType;
 use features::Feature;
 use languages::Language;
 use proficiencies::Proficiency;
@@ -44,10 +44,6 @@ impl Character {
             name,
             race,
         }
-    }
-
-    fn attacks(&self) -> Vec<Attack> {
-        self.race.attacks(self)
     }
 
     fn features(&self) -> Vec<Feature> {
@@ -119,15 +115,6 @@ impl fmt::Display for Character {
         )?;
         writeln!(f, "CHARACTERISTICS:")?;
         writeln!(f, "{}", self.characteristics)?;
-        writeln!(f, "ATTACKS:")?;
-        writeln!(
-            f,
-            "{:20} {:20} {:20} {:20}",
-            "Attack", "Range", "Hit/DC", "Damage"
-        )?;
-        for attack in self.attacks() {
-            writeln!(f, "{}", attack)?;
-        }
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {
             writeln!(f, "{}", feature)?;

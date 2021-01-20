@@ -22,13 +22,8 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScores,
-    attack::{Attack, DamageType},
-    characteristics::CharacteristicDetails,
-    features::Feature,
-    languages::Language,
-    proficiencies::Proficiency,
-    Character,
+    ability::AbilityScores, attack::DamageType, characteristics::CharacteristicDetails,
+    features::Feature, languages::Language, proficiencies::Proficiency,
 };
 
 /// Shared race traits
@@ -41,11 +36,6 @@ pub(crate) trait Race: fmt::Display {
 
     /// Returns ability score increases for the race
     fn abilities(&self) -> AbilityScores;
-
-    /// Returns list of attacks for the race
-    fn attacks(&self, character: &Character) -> Vec<Attack> {
-        vec![]
-    }
 
     /// Return list of citations for this race/subrace
     fn citations(&self) -> Citations;

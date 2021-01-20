@@ -63,9 +63,9 @@ impl AbilityScores {
         self.0.extend(addl_scores.0)
     }
 
-    pub(crate) fn modifier(&self, ability: AbilityScoreType) -> i16 {
-        modifier(*self.scores().get(&ability).unwrap_or(&0))
-    }
+    // pub(crate) fn modifier(&self, ability: AbilityScoreType) -> i16 {
+    //     modifier(*self.scores().get(&ability).unwrap_or(&0))
+    // }
 
     pub(crate) fn scores(&self) -> HashMap<AbilityScoreType, u8> {
         let mut scores = HashMap::new();
