@@ -1,6 +1,6 @@
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use std::{collections::HashSet, fmt};
+use std::fmt;
 use strum::IntoEnumIterator;
 
 use super::{elf::Elf, human::Human, Race};
