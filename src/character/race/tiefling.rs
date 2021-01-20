@@ -3,7 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use super::{human::Human, Race};
-use crate::{character::{
+use crate::{
+    character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         attack::DamageType,
         characteristics::{
@@ -11,13 +12,16 @@ use crate::{character::{
             HeightAndWeightTable, Size, WeightMod,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{
             human::Names,
             tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, VIRTUE_NAMES},
             Name,
         },
-    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 9),
@@ -104,6 +108,12 @@ impl Features for Tiefling {
     }
 }
 
+impl Languages for Tiefling {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Infernal]
+    }
+}
+
 impl Name for Tiefling {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
@@ -129,10 +139,6 @@ impl Race for Tiefling {
             AbilityScore(AbilityScoreType::Charisma, 2),
             AbilityScore(AbilityScoreType::Intelligence, 1),
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Infernal]
     }
 
     fn resistances(&self) -> Vec<DamageType> {

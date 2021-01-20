@@ -15,7 +15,7 @@ use crate::{
             HeightAndWeightTable, Size, WeightMod,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{
             dragonborn::{CHILD, CLAN, FEMALE, MALE},
             Name,
@@ -152,6 +152,12 @@ impl Features for Dragonborn {
     }
 }
 
+impl Languages for Dragonborn {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Draconic]
+    }
+}
+
 impl Name for Dragonborn {
     fn gen_name(
         rng: &mut impl Rng,
@@ -186,10 +192,6 @@ impl Race for Dragonborn {
             AbilityScore(AbilityScoreType::Charisma, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Draconic]
     }
 
     fn resistances(&self) -> Vec<DamageType> {

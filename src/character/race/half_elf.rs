@@ -12,7 +12,7 @@ use crate::{
             Size, WeightMod,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{human::Names, Name},
         proficiencies::Proficiency,
     },
@@ -115,6 +115,14 @@ impl Features for HalfElf {
     }
 }
 
+impl Languages for HalfElf {
+    fn languages(&self) -> Vec<Language> {
+        let mut languages = BASE_LANGUAGES.to_vec();
+        languages.push(self.extra_language);
+        languages
+    }
+}
+
 impl Name for HalfElf {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
@@ -150,12 +158,6 @@ impl Race for HalfElf {
         let mut abilities = vec![AbilityScore(AbilityScoreType::Charisma, 2)];
         abilities.extend(self.addl_increases.clone());
         AbilityScores(abilities)
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        let mut languages = BASE_LANGUAGES.to_vec();
-        languages.push(self.extra_language);
-        languages
     }
 
     fn proficiencies(&self) -> Vec<Proficiency> {

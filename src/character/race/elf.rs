@@ -5,20 +5,23 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{character::{
+use crate::{
+    character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
         },
         equipment::weapons::WeaponType,
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{
             elf::{CHILD, FAMILY, FEMALE, MALE},
             Name,
         },
         proficiencies::{Proficiency, WeaponProficiency},
-    }, citation::{Book, Citation, CitationList, Citations}};
+    },
+    citation::{Book, Citation, CitationList, Citations},
+};
 
 mod height_and_weight {
     use crate::{
@@ -218,6 +221,16 @@ impl Features for Elf {
     }
 }
 
+impl Languages for Elf {
+    fn languages(&self) -> Vec<Language> {
+        let mut languages = BASE_LANGUAGES.to_vec();
+        if let Some(language) = self.extra_language {
+            languages.push(language);
+        }
+        languages
+    }
+}
+
 impl Name for Elf {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         format!(
@@ -250,14 +263,6 @@ impl Race for Elf {
                 ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
             },
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        let mut languages = BASE_LANGUAGES.to_vec();
-        if let Some(language) = self.extra_language {
-            languages.push(language);
-        }
-        languages
     }
 
     fn proficiencies(&self) -> Vec<Proficiency> {

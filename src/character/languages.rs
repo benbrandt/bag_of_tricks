@@ -22,3 +22,10 @@ pub(crate) enum Language {
     Sylvan,
     Undercommon,
 }
+
+pub(crate) trait Languages {
+    /// Return list of languages for this object
+    fn languages(&self) -> Vec<Language> {
+        vec![]
+    }
+}

@@ -3,21 +3,25 @@ use serde::{Deserialize, Serialize};
 use std::fmt;
 
 use super::{human::Human, Race};
-use crate::{character::{
+use crate::{
+    character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{
             human::Names,
             orc::{FEMALE, MALE},
             Name,
         },
         proficiencies::Proficiency,
-    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 10),
@@ -90,6 +94,12 @@ impl Features for HalfOrc {
     }
 }
 
+impl Languages for HalfOrc {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Orc]
+    }
+}
+
 impl Name for HalfOrc {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
@@ -122,10 +132,6 @@ impl Race for HalfOrc {
             AbilityScore(AbilityScoreType::Constitution, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Orc]
     }
 
     fn proficiencies(&self) -> Vec<Proficiency> {

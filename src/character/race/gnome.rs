@@ -5,25 +5,13 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{
+use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
-        },
-        equipment::tools::{ArtisansTools, Tool},
-        features::{Feature, Features},
-        languages::Language,
-        names::{
+        }, equipment::tools::{ArtisansTools, Tool}, features::{Feature, Features}, languages::{Language, Languages}, names::{
             gnome::{CLAN, FEMALE, MALE, NICKNAMES},
             Name,
-        },
-        proficiencies::Proficiency,
-    },
-    citation::{Book, Citation, CitationList, Citations},
-    dice_roller::{Die, RollCmd},
-};
+        }, proficiencies::Proficiency}, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 11),
@@ -151,6 +139,12 @@ The box stops playing when it reaches the song's end or when it is closed.",
     }
 }
 
+impl Languages for Gnome {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Gnomish]
+    }
+}
+
 impl Name for Gnome {
     fn gen_name(
         rng: &mut impl Rng,
@@ -188,10 +182,6 @@ impl Race for Gnome {
                 GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Gnomish]
     }
 
     fn proficiencies(&self) -> Vec<Proficiency> {

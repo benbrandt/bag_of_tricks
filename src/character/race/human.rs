@@ -4,16 +4,20 @@ use std::fmt;
 use strum::IntoEnumIterator;
 
 use super::Race;
-use crate::{character::{
+use crate::{
+    character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{human::Names, Name},
-    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 8),
@@ -86,6 +90,12 @@ impl Features for Human {
                 page: 31,
             },
         }]
+    }
+}
+
+impl Languages for Human {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, self.extra_language]
     }
 }
 

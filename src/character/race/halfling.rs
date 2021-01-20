@@ -5,7 +5,8 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{character::{
+use crate::{
+    character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
         attack::DamageType,
         characteristics::{
@@ -13,12 +14,15 @@ use crate::{character::{
             HeightAndWeightTable, Size, WeightMod,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{
             halfling::{FAMILY, FEMALE, MALE},
             Name,
         },
-    }, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 7),
@@ -117,6 +121,12 @@ impl Features for Halfling {
     }
 }
 
+impl Languages for Halfling {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Halfling]
+    }
+}
+
 impl Name for Halfling {
     fn gen_name(
         rng: &mut impl Rng,
@@ -153,10 +163,6 @@ impl Race for Halfling {
                 HalflingSubrace::Stout => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Halfling]
     }
 
     fn resistances(&self) -> Vec<DamageType> {

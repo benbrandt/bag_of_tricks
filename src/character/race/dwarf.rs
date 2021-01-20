@@ -18,7 +18,7 @@ use crate::{
             weapons::WeaponType,
         },
         features::{Feature, Features},
-        languages::Language,
+        languages::{Language, Languages},
         names::{
             dwarf::{CLAN, FEMALE, MALE},
             Name,
@@ -149,6 +149,12 @@ impl Features for Dwarf {
     }
 }
 
+impl Languages for Dwarf {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Dwarvish]
+    }
+}
+
 impl Name for Dwarf {
     fn gen_name(
         rng: &mut impl Rng,
@@ -186,10 +192,6 @@ impl Race for Dwarf {
                 DwarfSubrace::Mountain => AbilityScore(AbilityScoreType::Strength, 2),
             },
         ])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Dwarvish]
     }
 
     fn proficiencies(&self) -> Vec<Proficiency> {

@@ -10,8 +10,8 @@ mod proficiencies;
 mod race;
 
 use attack::DamageType;
-use features::Feature;
-use languages::Language;
+use features::{Feature, Features};
+use languages::{Language, Languages};
 use proficiencies::Proficiency;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -46,14 +46,6 @@ impl Character {
         }
     }
 
-    fn features(&self) -> Vec<Feature> {
-        self.race.features()
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        self.race.languages()
-    }
-
     fn proficiencies(&self) -> Vec<Proficiency> {
         self.race.proficiencies()
     }
@@ -74,6 +66,18 @@ impl Character {
 
     fn speed(&self) -> u8 {
         self.characteristics.base_speed
+    }
+}
+
+impl Features for Character {
+    fn features(&self) -> Vec<Feature> {
+        self.race.features()
+    }
+}
+
+impl Languages for Character {
+    fn languages(&self) -> Vec<Language> {
+        self.race.languages()
     }
 }
 
