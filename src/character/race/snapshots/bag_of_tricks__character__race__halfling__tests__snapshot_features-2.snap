@@ -2,13 +2,23 @@
 source: src/character/race/halfling.rs
 expression: halfling.features()
 ---
-- title: Ability Score Increase
-  description: Your Dexterity score increases by 2.
+- title: Alignment
+  description: "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways."
   citation:
     book: PHB
     page: 28
-- title: Ability Score Increase
-  description: Your Constitution score increases by 2.
+- title: Brave
+  description: You have advantage on saving throws against being frightened.
+  citation:
+    book: PHB
+    page: 28
+- title: Halfling Nimbleness
+  description: You can move through the space of any creature that is of a size larger than yours.
+  citation:
+    book: PHB
+    page: 28
+- title: Stout Resilience
+  description: "You have advantage on saving throws against poison, and you have resistance against poison damage."
   citation:
     book: PHB
     page: 28
