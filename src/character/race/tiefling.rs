@@ -6,11 +6,13 @@ use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        attack::DamageType,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
         features::Feature,
+        languages::Language,
         names::{
             human::Names,
             tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, VIRTUE_NAMES},
@@ -101,15 +103,40 @@ impl Race for Tiefling {
     }
 
     fn features(&self) -> Vec<Feature> {
-        vec![Feature {
-            title: "Ability Score Increase",
-            description:
-                "Your Intelligence score increases by 1, and your Charisma score increases by 2",
-            citation: Citation {
-                book: Book::PHB,
-                page: 43,
+        vec![
+            Feature {
+                title: "Alignment",
+                description: "Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 43,
+                },
             },
-        }]
+            Feature {
+                title: "Darkvision",
+                description: "Thanks to your infernal heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 43,
+                },
+            },
+            Feature {
+                title: "Infernal Legacy",
+                description: "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 43,
+                },
+            },
+        ]
+    }
+
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Infernal]
+    }
+
+    fn resistances(&self) -> Vec<DamageType> {
+        vec![DamageType::Fire]
     }
 }
 
