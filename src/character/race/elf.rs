@@ -8,6 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
+        attack::Resistances,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
         },
@@ -290,6 +291,8 @@ impl Race for Elf {
         ])
     }
 }
+
+impl Resistances for Elf {}
 
 impl fmt::Display for Elf {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

@@ -7,6 +7,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -132,6 +133,8 @@ impl Race for Human {
         )
     }
 }
+
+impl Resistances for Human {}
 
 impl fmt::Display for Human {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

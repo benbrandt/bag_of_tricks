@@ -9,7 +9,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        attack::DamageType,
+        attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -196,7 +196,9 @@ impl Race for Dragonborn {
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
     }
+}
 
+impl Resistances for Dragonborn {
     fn resistances(&self) -> Vec<DamageType> {
         vec![self.damage_type()]
     }

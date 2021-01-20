@@ -22,14 +22,14 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScores, attack::DamageType, characteristics::CharacteristicDetails,
+    ability::AbilityScores, attack::Resistances, characteristics::CharacteristicDetails,
     features::Features, languages::Languages, proficiencies::Proficiencies,
 };
 
 /// Shared race traits
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race:
-    Citations + Features + Languages + Proficiencies + fmt::Display
+    Citations + Features + Languages + Proficiencies + Resistances + fmt::Display
 {
     /// Method to generate a new instance of the struct
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails)
@@ -38,11 +38,6 @@ pub(crate) trait Race:
 
     /// Returns ability score increases for the race
     fn abilities(&self) -> AbilityScores;
-
-    /// Return list of resistances for this race
-    fn resistances(&self) -> Vec<DamageType> {
-        vec![]
-    }
 }
 
 #[derive(EnumIter)]

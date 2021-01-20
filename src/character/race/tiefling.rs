@@ -6,7 +6,7 @@ use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        attack::DamageType,
+        attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -143,7 +143,9 @@ impl Race for Tiefling {
             AbilityScore(AbilityScoreType::Intelligence, 1),
         ])
     }
+}
 
+impl Resistances for Tiefling {
     fn resistances(&self) -> Vec<DamageType> {
         vec![DamageType::Fire]
     }

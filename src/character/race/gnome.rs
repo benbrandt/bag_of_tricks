@@ -8,6 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -208,6 +209,8 @@ impl Race for Gnome {
         ])
     }
 }
+
+impl Resistances for Gnome {}
 
 impl fmt::Display for Gnome {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

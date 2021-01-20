@@ -4,21 +4,10 @@ use std::fmt;
 use strum::IntoEnumIterator;
 
 use super::{elf::Elf, human::Human, Race};
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
-        characteristics::{
+use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill}, attack::Resistances, characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
             Size, WeightMod,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{human::Names, Name},
-        proficiencies::{Proficiencies, Proficiency},
-    },
-    citation::{Book, Citation, CitationList, Citations},
-    dice_roller::{Die, RollCmd},
-};
+        }, features::{Feature, Features}, languages::{Language, Languages}, names::{human::Names, Name}, proficiencies::{Proficiencies, Proficiency}}, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 9),
@@ -166,6 +155,8 @@ impl Race for HalfElf {
         AbilityScores(abilities)
     }
 }
+
+impl Resistances for HalfElf {}
 
 impl fmt::Display for HalfElf {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

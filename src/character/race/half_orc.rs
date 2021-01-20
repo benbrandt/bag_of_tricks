@@ -6,6 +6,7 @@ use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
+        attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -140,6 +141,8 @@ impl Race for HalfOrc {
         ])
     }
 }
+
+impl Resistances for HalfOrc {}
 
 impl fmt::Display for HalfOrc {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

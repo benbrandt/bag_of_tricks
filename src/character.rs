@@ -9,19 +9,18 @@ mod names;
 mod proficiencies;
 mod race;
 
-use attack::DamageType;
-use features::{Feature, Features};
-use languages::{Language, Languages};
-use proficiencies::Proficiency;
-use rand::Rng;
-use serde::{Deserialize, Serialize};
 use std::{fmt, writeln};
 
-use ability::AbilityScores;
-use characteristics::CharacteristicDetails;
-use race::{Race, RaceOptions};
+use rand::Rng;
+use serde::{Deserialize, Serialize};
 
-use self::proficiencies::Proficiencies;
+use ability::AbilityScores;
+use attack::{DamageType, Resistances};
+use characteristics::CharacteristicDetails;
+use features::{Feature, Features};
+use languages::{Language, Languages};
+use proficiencies::{Proficiencies, Proficiency};
+use race::{Race, RaceOptions};
 
 /// Character information
 #[derive(Deserialize, Serialize)]
@@ -58,10 +57,6 @@ impl Character {
         }
     }
 
-    fn resistances(&self) -> Vec<DamageType> {
-        self.race.resistances()
-    }
-
     fn speed(&self) -> u8 {
         self.characteristics.base_speed
     }
@@ -82,6 +77,12 @@ impl Languages for Character {
 impl Proficiencies for Character {
     fn proficiencies(&self) -> Vec<Proficiency> {
         self.race.proficiencies()
+    }
+}
+
+impl Resistances for Character {
+    fn resistances(&self) -> Vec<DamageType> {
+        self.race.resistances()
     }
 }
 

@@ -5,28 +5,16 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        attack::DamageType,
-        characteristics::{
+use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, attack::{DamageType, Resistances}, characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
-        },
-        equipment::{
+        }, equipment::{
             armor::ArmorType,
             tools::{ArtisansTools, Tool},
             weapons::WeaponType,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{
+        }, features::{Feature, Features}, languages::{Language, Languages}, names::{
             dwarf::{CLAN, FEMALE, MALE},
             Name,
-        },
-        proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
-    },
-    citation::{Book, Citation, CitationList, Citations},
-};
+        }, proficiencies::{Proficiencies, Proficiency, WeaponProficiency}}, citation::{Book, Citation, CitationList, Citations}};
 
 mod height_and_weight {
     use crate::{
@@ -212,7 +200,9 @@ impl Race for Dwarf {
             },
         ])
     }
+}
 
+impl Resistances for Dwarf {
     fn resistances(&self) -> Vec<DamageType> {
         vec![DamageType::Poison]
     }

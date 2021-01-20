@@ -65,3 +65,10 @@ impl fmt::Display for Damage {
 //         )
 //     }
 // }
+
+pub(crate) trait Resistances {
+    /// Return list of resistances for this object
+    fn resistances(&self) -> Vec<DamageType> {
+        vec![]
+    }
+}
