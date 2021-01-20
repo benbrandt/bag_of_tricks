@@ -11,7 +11,7 @@ use crate::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
             Size, WeightMod,
         },
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{human::Names, Name},
         proficiencies::Proficiency,
@@ -75,6 +75,37 @@ impl Characteristics for HalfElf {
     }
 }
 
+impl Features for HalfElf {
+    fn features(&self) -> Vec<Feature> {
+        vec![
+            Feature {
+                title: "Alignment",
+                description: "Half-elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable, or at least unpredictable.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 39,
+                },
+            },
+            Feature {
+                title: "Darkvision",
+                description: "Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 39,
+                },
+            },
+            Feature {
+                title: "Fey Ancestry",
+                description: "You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 39,
+                },
+            },
+        ]
+    }
+}
+
 impl Name for HalfElf {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
@@ -117,35 +148,6 @@ impl Race for HalfElf {
             book: Book::PHB,
             page: 38,
         }])
-    }
-
-    fn features(&self) -> Vec<Feature> {
-        vec![
-            Feature {
-                title: "Alignment",
-                description: "Half-elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable, or at least unpredictable.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 39,
-                },
-            },
-            Feature {
-                title: "Darkvision",
-                description: "Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 39,
-                },
-            },
-            Feature {
-                title: "Fey Ancestry",
-                description: "You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 39,
-                },
-            },
-        ]
     }
 
     fn languages(&self) -> Vec<Language> {

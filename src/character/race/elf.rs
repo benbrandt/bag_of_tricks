@@ -12,7 +12,7 @@ use crate::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
         },
         equipment::weapons::WeaponType,
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{
             elf::{CHILD, FAMILY, FEMALE, MALE},
@@ -117,58 +117,7 @@ impl Characteristics for Elf {
     }
 }
 
-impl Name for Elf {
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
-        format!(
-            "{} {}",
-            Self::gen_first_name(rng, characteristics),
-            Self::gen_family_name(rng),
-        )
-    }
-}
-
-#[typetag::serde]
-impl Race for Elf {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let subrace = ElfSubrace::iter().choose(rng).unwrap();
-        let race = Box::new(Self {
-            extra_language: Self::gen_extra_language(&subrace, rng),
-            subrace,
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
-    }
-
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
-            AbilityScore(AbilityScoreType::Dexterity, 2),
-            match self.subrace {
-                ElfSubrace::Dark => AbilityScore(AbilityScoreType::Charisma, 1),
-                ElfSubrace::High => AbilityScore(AbilityScoreType::Intelligence, 1),
-                ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
-            },
-        ])
-    }
-
-    fn citations(&self) -> Citations {
-        let race = Citation {
-            book: Book::PHB,
-            page: 21,
-        };
-        let subrace = match self.subrace {
-            ElfSubrace::Dark | ElfSubrace::Wood => Citation {
-                book: Book::PHB,
-                page: 24,
-            },
-            ElfSubrace::High => Citation {
-                book: Book::PHB,
-                page: 23,
-            },
-        };
-        Citations(vec![race, subrace])
-    }
-
+impl Features for Elf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
             Feature {
@@ -249,6 +198,59 @@ impl Race for Elf {
             }],
         });
         features
+    }
+}
+
+impl Name for Elf {
+    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+        format!(
+            "{} {}",
+            Self::gen_first_name(rng, characteristics),
+            Self::gen_family_name(rng),
+        )
+    }
+}
+
+#[typetag::serde]
+impl Race for Elf {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+        let subrace = ElfSubrace::iter().choose(rng).unwrap();
+        let race = Box::new(Self {
+            extra_language: Self::gen_extra_language(&subrace, rng),
+            subrace,
+        });
+        let characteristics = race.gen_characteristics(rng);
+        let name = Self::gen_name(rng, &characteristics);
+        (race, name, characteristics)
+    }
+
+    fn abilities(&self) -> AbilityScores {
+        AbilityScores(vec![
+            AbilityScore(AbilityScoreType::Dexterity, 2),
+            match self.subrace {
+                ElfSubrace::Dark => AbilityScore(AbilityScoreType::Charisma, 1),
+                ElfSubrace::High => AbilityScore(AbilityScoreType::Intelligence, 1),
+                ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
+            },
+        ])
+    }
+
+    fn citations(&self) -> Citations {
+        let race = Citation {
+            book: Book::PHB,
+            page: 21,
+        };
+        let subrace = match self.subrace {
+            ElfSubrace::Dark | ElfSubrace::Wood => Citation {
+                book: Book::PHB,
+                page: 24,
+            },
+            ElfSubrace::High => Citation {
+                book: Book::PHB,
+                page: 23,
+            },
+        };
+        Citations(vec![race, subrace])
     }
 
     fn languages(&self) -> Vec<Language> {

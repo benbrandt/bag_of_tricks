@@ -14,7 +14,7 @@ use crate::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{
             dragonborn::{CHILD, CLAN, FEMALE, MALE},
@@ -120,6 +120,29 @@ impl Characteristics for Dragonborn {
     }
 }
 
+impl Features for Dragonborn {
+    fn features(&self) -> Vec<Feature> {
+        vec![
+            Feature {
+                title: "Alignment",
+                description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 34,
+                },
+            },
+            Feature {
+                title: "Breath Weapon",
+                description: "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 34,
+                },
+            },
+        ]
+    }
+}
+
 impl Name for Dragonborn {
     fn gen_name(
         rng: &mut impl Rng,
@@ -161,27 +184,6 @@ impl Race for Dragonborn {
             book: Book::PHB,
             page: 32,
         }])
-    }
-
-    fn features(&self) -> Vec<Feature> {
-        vec![
-            Feature {
-                title: "Alignment",
-                description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 34,
-                },
-            },
-            Feature {
-                title: "Breath Weapon",
-                description: "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 34,
-                },
-            },
-        ]
     }
 
     fn languages(&self) -> Vec<Language> {

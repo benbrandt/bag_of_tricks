@@ -13,7 +13,7 @@ use crate::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{
             halfling::{FAMILY, FEMALE, MALE},
@@ -52,6 +52,56 @@ impl Characteristics for Halfling {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Features for Halfling {
+    fn features(&self) -> Vec<Feature> {
+        let mut features = vec![
+            Feature {
+                title: "Alignment",
+                description: "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            },
+            Feature {
+                title: "Brave",
+                description: "You have advantage on saving throws against being frightened.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            },
+            Feature {
+                title: "Halfling Nimbleness",
+                description: "You can move through the space of any creature that is of a size larger than yours.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            },
+        ];
+        features.extend(match self.subrace {
+            HalflingSubrace::Lightfoot => vec![Feature {
+                title: "Naturally Stealthy",
+                description: "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            }],
+            HalflingSubrace::Stout => vec![Feature {
+                title: "Stout Resilience",
+                description: "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 28,
+                },
+            }],
+        });
+        features
     }
 }
 
@@ -105,54 +155,6 @@ impl Race for Halfling {
             },
         };
         Citations(vec![race, subrace])
-    }
-
-    fn features(&self) -> Vec<Feature> {
-        let mut features = vec![
-            Feature {
-                title: "Alignment",
-                description: "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
-            },
-            Feature {
-                title: "Brave",
-                description: "You have advantage on saving throws against being frightened.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
-            },
-            Feature {
-                title: "Halfling Nimbleness",
-                description: "You can move through the space of any creature that is of a size larger than yours.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
-            },
-        ];
-        features.extend(match self.subrace {
-            HalflingSubrace::Lightfoot => vec![Feature {
-                title: "Naturally Stealthy",
-                description: "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
-            }],
-            HalflingSubrace::Stout => vec![Feature {
-                title: "Stout Resilience",
-                description: "You have advantage on saving throws against poison, and you have resistance against poison damage.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
-            }],
-        });
-        features
     }
 
     fn languages(&self) -> Vec<Language> {

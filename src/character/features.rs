@@ -17,6 +17,11 @@ impl fmt::Display for Feature<'_> {
     }
 }
 
+pub(crate) trait Features {
+    // Return a list of features this thing provides
+    fn features(&self) -> Vec<Feature>;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

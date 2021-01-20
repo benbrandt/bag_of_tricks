@@ -17,7 +17,7 @@ use crate::{
             tools::{ArtisansTools, Tool},
             weapons::WeaponType,
         },
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{
             dwarf::{CLAN, FEMALE, MALE},
@@ -81,6 +81,58 @@ impl Characteristics for Dwarf {
     }
 }
 
+impl Features for Dwarf {
+    fn features(&self) -> Vec<Feature> {
+        let mut features = vec![
+            Feature {
+                title: "Alignment",
+                description: "Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Darkvision",
+                description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Dwarven Resilience",
+                description: "You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Stonecunning",
+                description: "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+        ];
+        if let DwarfSubrace::Hill = self.subrace {
+            features.extend(vec![
+                Feature {
+                    title: "Dwarven Toughness",
+                    description: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+                    citation: Citation {
+                        book: Book::PHB,
+                        page: 20,
+                    },
+                },
+            ]);
+        }
+        features
+    }
+}
+
 impl Name for Dwarf {
     fn gen_name(
         rng: &mut impl Rng,
@@ -132,56 +184,6 @@ impl Race for Dwarf {
             },
         };
         Citations(vec![race, subrace])
-    }
-
-    fn features(&self) -> Vec<Feature> {
-        let mut features = vec![
-            Feature {
-                title: "Alignment",
-                description: "Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            },
-            Feature {
-                title: "Darkvision",
-                description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            },
-            Feature {
-                title: "Dwarven Resilience",
-                description: "You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            },
-            Feature {
-                title: "Stonecunning",
-                description: "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            },
-        ];
-        if let DwarfSubrace::Hill = self.subrace {
-            features.extend(vec![
-                Feature {
-                    title: "Dwarven Toughness",
-                    description: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
-                    citation: Citation {
-                        book: Book::PHB,
-                        page: 20,
-                    },
-                },
-            ]);
-        }
-        features
     }
 
     fn languages(&self) -> Vec<Language> {

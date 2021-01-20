@@ -10,7 +10,7 @@ use crate::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{
             human::Names,
@@ -43,6 +43,45 @@ impl Characteristics for HalfOrc {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Features for HalfOrc {
+    fn features(&self) -> Vec<Feature> {
+        vec![
+            Feature {
+                title: "Alignment",
+                description: "Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 41,
+                },
+            },
+            Feature {
+                title: "Darkvision",
+                description: "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 41,
+                },
+            },
+            Feature {
+                title: "Relentless Endurance",
+                description: "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 41,
+                },
+            },
+            Feature {
+                title: "Savage Attacks",
+                description: "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 41,
+                },
+            },
+        ]
     }
 }
 
@@ -85,43 +124,6 @@ impl Race for HalfOrc {
             book: Book::PHB,
             page: 40,
         }])
-    }
-
-    fn features(&self) -> Vec<Feature> {
-        vec![
-            Feature {
-                title: "Alignment",
-                description: "Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 41,
-                },
-            },
-            Feature {
-                title: "Darkvision",
-                description: "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 41,
-                },
-            },
-            Feature {
-                title: "Relentless Endurance",
-                description: "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 41,
-                },
-            },
-            Feature {
-                title: "Savage Attacks",
-                description: "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 41,
-                },
-            },
-        ]
     }
 
     fn languages(&self) -> Vec<Language> {

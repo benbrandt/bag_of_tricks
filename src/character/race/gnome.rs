@@ -13,7 +13,7 @@ use crate::{
             HeightAndWeightTable, Size, WeightMod,
         },
         equipment::tools::{ArtisansTools, Tool},
-        features::Feature,
+        features::{Feature, Features},
         languages::Language,
         names::{
             gnome::{CLAN, FEMALE, MALE, NICKNAMES},
@@ -56,63 +56,7 @@ impl Characteristics for Gnome {
     }
 }
 
-impl Name for Gnome {
-    fn gen_name(
-        rng: &mut impl Rng,
-        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
-    ) -> String {
-        let first_names = match gender {
-            Gender::Female => FEMALE,
-            Gender::Male => MALE,
-        };
-        format!(
-            "{} \"{}\" {}",
-            first_names.iter().choose(rng).unwrap(),
-            NICKNAMES.iter().choose(rng).unwrap(),
-            CLAN.iter().choose(rng).unwrap(),
-        )
-    }
-}
-
-#[typetag::serde]
-impl Race for Gnome {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
-            subrace: GnomeSubrace::iter().choose(rng).unwrap(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
-    }
-
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
-            AbilityScore(AbilityScoreType::Intelligence, 2),
-            match self.subrace {
-                GnomeSubrace::Forest => AbilityScore(AbilityScoreType::Dexterity, 1),
-                GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
-            },
-        ])
-    }
-
-    fn citations(&self) -> Citations {
-        let race = Citation {
-            book: Book::PHB,
-            page: 35,
-        };
-        let subrace = match self.subrace {
-            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation {
-                book: Book::PHB,
-                page: 37,
-            },
-        };
-        Citations(vec![race, subrace])
-    }
-
-    fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Gnomish]
-    }
-
+impl Features for Gnome {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
             Feature {
@@ -188,6 +132,64 @@ The box stops playing when it reaches the song's end or when it is closed.",
             ],
         });
         features
+    }
+}
+
+impl Name for Gnome {
+    fn gen_name(
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
+        let first_names = match gender {
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
+        };
+        format!(
+            "{} \"{}\" {}",
+            first_names.iter().choose(rng).unwrap(),
+            NICKNAMES.iter().choose(rng).unwrap(),
+            CLAN.iter().choose(rng).unwrap(),
+        )
+    }
+}
+
+#[typetag::serde]
+impl Race for Gnome {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+        let race = Box::new(Self {
+            subrace: GnomeSubrace::iter().choose(rng).unwrap(),
+        });
+        let characteristics = race.gen_characteristics(rng);
+        let name = Self::gen_name(rng, &characteristics);
+        (race, name, characteristics)
+    }
+
+    fn abilities(&self) -> AbilityScores {
+        AbilityScores(vec![
+            AbilityScore(AbilityScoreType::Intelligence, 2),
+            match self.subrace {
+                GnomeSubrace::Forest => AbilityScore(AbilityScoreType::Dexterity, 1),
+                GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
+            },
+        ])
+    }
+
+    fn citations(&self) -> Citations {
+        let race = Citation {
+            book: Book::PHB,
+            page: 35,
+        };
+        let subrace = match self.subrace {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation {
+                book: Book::PHB,
+                page: 37,
+            },
+        };
+        Citations(vec![race, subrace])
+    }
+
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Gnomish]
     }
 
     fn proficiencies(&self) -> Vec<Proficiency> {

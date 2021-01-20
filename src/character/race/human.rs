@@ -4,20 +4,10 @@ use std::fmt;
 use strum::IntoEnumIterator;
 
 use super::Race;
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        characteristics::{
+use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
-        },
-        features::Feature,
-        languages::Language,
-        names::{human::Names, Name},
-    },
-    citation::{Book, Citation, Citations},
-    dice_roller::{Die, RollCmd},
-};
+        }, features::{Feature, Features}, languages::Language, names::{human::Names, Name}}, citation::{Book, Citation, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 8),
@@ -71,6 +61,19 @@ impl Characteristics for Human {
     }
 }
 
+impl Features for Human {
+    fn features(&self) -> Vec<Feature> {
+        vec![Feature {
+            title: "Alignment",
+            description: " Humans tend toward no particular alignment. The best and the worst are found among them.",
+            citation: Citation {
+                book: Book::PHB,
+                page: 31,
+            },
+        }]
+    }
+}
+
 impl Name for Human {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
@@ -106,17 +109,6 @@ impl Race for Human {
             book: Book::PHB,
             page: 29,
         }])
-    }
-
-    fn features(&self) -> Vec<Feature> {
-        vec![Feature {
-            title: "Alignment",
-            description: " Humans tend toward no particular alignment. The best and the worst are found among them.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 31,
-            },
-        }]
     }
 }
 
