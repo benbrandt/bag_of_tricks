@@ -2,28 +2,29 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: Kildrak Fireforge
+CHARACTER NAME: Bardryn Dankil
 RACE: Mountain Dwarf (PHB p18,20)
 LEVEL: 1
 
-STR  -1 (8)
-DEX  +0 (11)
-CON  +4 (19)
+STR  +2 (14)
+DEX  +2 (15)
+CON  +3 (17)
 INT  +2 (15)
 WIS  +1 (13)
-CHA  +0 (11)
+CHA  +2 (14)
 
 SPEED: 25
 PROFICIENCY BONUS: +2
-RESISTANCES: 
-LANGUAGES: 
+RESISTANCES: Poison
+LANGUAGES: Common, Dwarvish
+PROFICIENCIES: Tool(ArtisansTools(SmithsTools)), Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium)
 CHARACTERISTICS:
-Alignment: Lawful Evil
-Age: 316
-Gender: Male
+Alignment: Lawful Good
+Age: 31
+Gender: Female
 Size: Medium
 Height: 4'6"
-Weight: 165 lb.
+Weight: 175 lb.
 
 ATTACKS:
 Attack               Range                Hit/DC               Damage              
@@ -31,7 +32,40 @@ FEATURES AND TRAITS:
 Ability Score Increase
 Your Constitution score increases by 2. (PHB p20)
 
+Age
+Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years. (PHB p20)
+
+Alignment
+Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order. (PHB p20)
+
+Size
+Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium. (PHB p20)
+
+Speed
+Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor. (PHB p20)
+
+Darkvision
+Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray. (PHB p20)
+
+Dwarven Resilience
+You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the "Combat" section). (PHB p20)
+
+Dwarven Combat Training
+You have proficiency with the battleaxe, handaxe, light hammer, and warhammer. (PHB p20)
+
+Tool Proficiency
+You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools. (PHB p20)
+
+Stonecunning
+Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus. (PHB p20)
+
+Languages
+You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak. (PHB p20)
+
 Ability Score Increase
 Your Strength score increases by 2. (PHB p20)
+
+Dwarven Armor Training
+You have proficiency with light and medium armor. (PHB p20)
 
 

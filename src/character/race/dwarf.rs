@@ -8,14 +8,22 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        attack::DamageType,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
         },
+        equipment::{
+            armor::ArmorType,
+            tools::{ArtisansTools, Tool},
+            weapons::WeaponType,
+        },
         features::Feature,
+        languages::Language,
         names::{
             dwarf::{CLAN, FEMALE, MALE},
             Name,
         },
+        proficiencies::{Proficiency, WeaponProficiency},
     },
     citation::{Book, Citation, Citations},
 };
@@ -39,6 +47,11 @@ mod height_and_weight {
         weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
     };
 }
+const TOOL_OPTIONS: &[ArtisansTools] = &[
+    ArtisansTools::BrewersSupplies,
+    ArtisansTools::MasonsTools,
+    ArtisansTools::SmithsTools,
+];
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum DwarfSubrace {
@@ -49,6 +62,143 @@ enum DwarfSubrace {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Dwarf {
     subrace: DwarfSubrace,
+    tools: ArtisansTools,
+}
+
+impl Dwarf {
+    fn base_features() -> Vec<Feature<'static>> {
+        vec![
+            Feature {
+                title: "Ability Score Increase",
+                description: "Your Constitution score increases by 2.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Age",
+                description: "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Alignment",
+                description: "Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Size",
+                description: "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Speed",
+                description: "Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Darkvision",
+                description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Dwarven Resilience",
+                description: "You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Dwarven Combat Training",
+                description: "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Tool Proficiency",
+                description: "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Stonecunning",
+                description: "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+            Feature {
+                title: "Languages",
+                description: "You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak.",
+                citation: Citation {
+                    book: Book::PHB,
+                    page: 20,
+                },
+            },
+        ]
+    }
+
+    fn subrace_features(&self) -> Vec<Feature> {
+        match self.subrace {
+            DwarfSubrace::Hill => vec![
+                Feature {
+                    title: "Ability Score Increase",
+                    description: "Your Wisdom score increases by 1.",
+                    citation: Citation {
+                        book: Book::PHB,
+                        page: 20,
+                    },
+                },
+                Feature {
+                    title: "Dwarven Toughness",
+                    description: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+                    citation: Citation {
+                        book: Book::PHB,
+                        page: 20,
+                    },
+                },
+            ],
+            DwarfSubrace::Mountain => vec![
+                Feature {
+                    title: "Ability Score Increase",
+                    description: "Your Strength score increases by 2.",
+                    citation: Citation {
+                        book: Book::PHB,
+                        page: 20,
+                    },
+                },
+                Feature {
+                    title: "Dwarven Armor Training",
+                    description: "You have proficiency with light and medium armor.",
+                    citation: Citation {
+                        book: Book::PHB,
+                        page: 20,
+                    },
+                },
+            ],
+        }
+    }
 }
 
 impl Characteristics for Dwarf {
@@ -89,6 +239,7 @@ impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
             subrace: DwarfSubrace::iter().choose(rng).unwrap(),
+            tools: *TOOL_OPTIONS.iter().choose(rng).unwrap(),
         });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
@@ -120,33 +271,34 @@ impl Race for Dwarf {
     }
 
     fn features(&self) -> Vec<Feature> {
-        let mut features = vec![Feature {
-            title: "Ability Score Increase",
-            description: "Your Constitution score increases by 2.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 20,
-            },
-        }];
-        features.extend(match self.subrace {
-            DwarfSubrace::Hill => vec![Feature {
-                title: "Ability Score Increase",
-                description: "Your Wisdom score increases by 1.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            }],
-            DwarfSubrace::Mountain => vec![Feature {
-                title: "Ability Score Increase",
-                description: "Your Strength score increases by 2.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            }],
-        });
+        let mut features = Self::base_features();
+        features.extend(self.subrace_features());
         features
+    }
+
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Dwarvish]
+    }
+
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        let mut proficiencies = vec![
+            Proficiency::Tool(Tool::ArtisansTools(self.tools)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Battleaxe)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Handaxe)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Warhammer)),
+        ];
+        if let DwarfSubrace::Mountain = self.subrace {
+            proficiencies.extend(vec![
+                Proficiency::Armor(ArmorType::Light),
+                Proficiency::Armor(ArmorType::Medium),
+            ]);
+        };
+        proficiencies
+    }
+
+    fn resistances(&self) -> Vec<DamageType> {
+        vec![DamageType::Poison]
     }
 }
 
@@ -172,7 +324,10 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
+            let dwarf = Dwarf {
+                subrace,
+                tools: ArtisansTools::MasonsTools,
+            };
             insta::assert_snapshot!(format!("{}", dwarf));
         }
     }
@@ -180,7 +335,10 @@ mod tests {
     #[test]
     fn test_snapshot_abilities() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
+            let dwarf = Dwarf {
+                subrace,
+                tools: ArtisansTools::BrewersSupplies,
+            };
             insta::assert_yaml_snapshot!(dwarf.abilities());
         }
     }
@@ -188,7 +346,10 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
+            let dwarf = Dwarf {
+                subrace,
+                tools: ArtisansTools::MasonsTools,
+            };
             insta::assert_yaml_snapshot!(dwarf.citations());
         }
     }
@@ -196,7 +357,10 @@ mod tests {
     #[test]
     fn test_snapshot_features() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
+            let dwarf = Dwarf {
+                subrace,
+                tools: ArtisansTools::SmithsTools,
+            };
             insta::assert_yaml_snapshot!(dwarf.features());
         }
     }

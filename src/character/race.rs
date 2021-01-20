@@ -27,6 +27,7 @@ use super::{
     characteristics::CharacteristicDetails,
     features::Feature,
     languages::Language,
+    proficiencies::Proficiency,
     Character,
 };
 
@@ -54,6 +55,10 @@ pub(crate) trait Race: fmt::Display {
 
     /// Return list of languages for this race
     fn languages(&self) -> Vec<Language> {
+        vec![]
+    }
+
+    fn proficiencies(&self) -> Vec<Proficiency> {
         vec![]
     }
 

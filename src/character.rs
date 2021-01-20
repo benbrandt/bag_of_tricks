@@ -2,14 +2,17 @@ mod ability;
 mod alignment;
 mod attack;
 mod characteristics;
+mod equipment;
 mod features;
 mod languages;
 mod names;
+mod proficiencies;
 mod race;
 
 use attack::{Attack, DamageType};
 use features::Feature;
 use languages::Language;
+use proficiencies::Proficiency;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use std::{fmt, writeln};
@@ -55,6 +58,10 @@ impl Character {
         self.race.languages()
     }
 
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        self.race.proficiencies()
+    }
+
     fn proficiency_bonus(&self) -> i16 {
         match self.level {
             0..=4 => 2,
@@ -98,6 +105,15 @@ impl fmt::Display for Character {
             self.languages()
                 .iter()
                 .map(|r| format!("{}", r))
+                .collect::<Vec<String>>()
+                .join(", ")
+        )?;
+        writeln!(
+            f,
+            "PROFICIENCIES: {}",
+            self.proficiencies()
+                .iter()
+                .map(|r| format!("{:?}", r))
                 .collect::<Vec<String>>()
                 .join(", ")
         )?;

@@ -4,13 +4,14 @@ expression: dwarf
 ---
 - type: Dwarf
   subrace: Hill
-- Hlin Holderhek
-- age: 41
+  tools: MasonsTools
+- Kildrak Fireforge
+- age: 316
   alignment:
-    - Neutral
-    - Good
+    - Lawful
+    - Evil
   base_speed: 25
-  gender: Female
+  gender: Male
   height: 49
   size: Medium
-  weight: 170
+  weight: 150
