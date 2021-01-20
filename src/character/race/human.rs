@@ -12,6 +12,7 @@ use crate::{
             HeightAndWeightTable, Size, WeightMod,
         },
         features::Feature,
+        languages::Language,
         names::{human::Names, Name},
     },
     citation::{Book, Citation, Citations},
@@ -26,7 +27,18 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 };
 
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Human;
+pub(crate) struct Human {
+    extra_language: Language,
+}
+
+impl Human {
+    fn gen_extra_language(rng: &mut impl Rng) -> Language {
+        Language::iter()
+            .filter(|l| l != &Language::Common)
+            .choose(rng)
+            .unwrap()
+    }
+}
 
 impl Human {
     pub(crate) fn gen_first_name<'a>(
@@ -73,7 +85,9 @@ impl Name for Human {
 #[typetag::serde]
 impl Race for Human {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self);
+        let race = Box::new(Self {
+            extra_language: Self::gen_extra_language(rng),
+        });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
@@ -96,8 +110,8 @@ impl Race for Human {
 
     fn features(&self) -> Vec<Feature> {
         vec![Feature {
-            title: "Ability Score Increase",
-            description: "Your ability scores each increase by 1.",
+            title: "Alignment",
+            description: " Humans tend toward no particular alignment. The best and the worst are found among them.",
             citation: Citation {
                 book: Book::PHB,
                 page: 31,
@@ -134,19 +148,25 @@ mod tests {
 
     #[test]
     fn test_snapshot_abilities() {
-        let human = Human;
+        let human = Human {
+            extra_language: Language::Abyssal,
+        };
         insta::assert_yaml_snapshot!(human.abilities());
     }
 
     #[test]
     fn test_snapshot_citations() {
-        let human = Human;
+        let human = Human {
+            extra_language: Language::Celestial,
+        };
         insta::assert_yaml_snapshot!(human.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
-        let human = Human;
+        let human = Human {
+            extra_language: Language::DeepSpeech,
+        };
         insta::assert_yaml_snapshot!(human.features());
     }
 }

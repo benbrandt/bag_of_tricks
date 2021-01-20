@@ -2,8 +2,8 @@
 source: src/character/race/human.rs
 expression: human.features()
 ---
-- title: Ability Score Increase
-  description: Your ability scores each increase by 1.
+- title: Alignment
+  description: " Humans tend toward no particular alignment. The best and the worst are found among them."
   citation:
     book: PHB
     page: 31

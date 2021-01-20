@@ -3,13 +3,14 @@ source: src/character/race/human.rs
 expression: human
 ---
 - type: Human
-- Kara Chernin
-- age: 93
+  extra_language: Giant
+- Diero Domine
+- age: 98
   alignment:
-    - Chaotic
     - Neutral
+    - Good
   base_speed: 30
-  gender: Female
-  height: 64
+  gender: Male
+  height: 69
   size: Medium
-  weight: 150
+  weight: 201
