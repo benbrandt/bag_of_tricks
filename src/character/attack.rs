@@ -6,6 +6,7 @@ use crate::{citation::Citation, dice_roller::RollCmd};
 
 use super::ability::AbilityScoreType;
 
+#[allow(dead_code)]
 #[derive(Display)]
 pub(crate) enum DamageType {
     Acid,

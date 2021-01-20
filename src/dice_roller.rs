@@ -4,6 +4,7 @@ use strum_macros::Display;
 use rand::Rng;
 
 /// Dice types
+#[allow(dead_code)]
 #[derive(Clone, Copy, Debug, Display, PartialEq)]
 pub(crate) enum Die {
     #[strum(serialize = "d4")]

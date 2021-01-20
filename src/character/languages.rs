@@ -1,6 +1,8 @@
-use strum_macros::Display;
+use serde::{Deserialize, Serialize};
+use strum_macros::{Display, EnumIter};
 
-#[derive(Display)]
+#[allow(dead_code)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum Language {
     Abyssal,
     Celestial,

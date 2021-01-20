@@ -87,6 +87,29 @@ impl fmt::Display for AbilityScores {
     }
 }
 
+#[allow(dead_code)]
+#[derive(Debug, Display)]
+pub(crate) enum Skill {
+    Acrobatics,
+    AnimalHandling,
+    Arcana,
+    Athletics,
+    Deception,
+    History,
+    Insight,
+    Intimidation,
+    Investigation,
+    Medicine,
+    Nature,
+    Perception,
+    Performance,
+    Persuasion,
+    Religion,
+    SleightOfHand,
+    Stealth,
+    Survival,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

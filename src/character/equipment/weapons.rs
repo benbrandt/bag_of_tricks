@@ -12,6 +12,7 @@ pub(crate) enum WeaponClassification {
     Ranged,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Display)]
 pub(crate) enum WeaponType {
     Battleaxe,
@@ -31,7 +32,7 @@ pub(crate) enum WeaponType {
     Handaxe,
     Javelin,
     Lance,
-    LongBow,
+    Longbow,
     Longsword,
     LightHammer,
     Mace,
