@@ -21,6 +21,8 @@ use ability::AbilityScores;
 use characteristics::CharacteristicDetails;
 use race::{Race, RaceOptions};
 
+use self::proficiencies::Proficiencies;
+
 /// Character information
 #[derive(Deserialize, Serialize)]
 pub struct Character {
@@ -44,10 +46,6 @@ impl Character {
             name,
             race,
         }
-    }
-
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        self.race.proficiencies()
     }
 
     fn proficiency_bonus(&self) -> i16 {
@@ -78,6 +76,12 @@ impl Features for Character {
 impl Languages for Character {
     fn languages(&self) -> Vec<Language> {
         self.race.languages()
+    }
+}
+
+impl Proficiencies for Character {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        self.race.proficiencies()
     }
 }
 

@@ -17,7 +17,7 @@ use crate::{
             orc::{FEMALE, MALE},
             Name,
         },
-        proficiencies::Proficiency,
+        proficiencies::{Proficiencies, Proficiency},
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -118,6 +118,12 @@ impl Name for HalfOrc {
     }
 }
 
+impl Proficiencies for HalfOrc {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        vec![Proficiency::Skill(Skill::Intimidation)]
+    }
+}
+
 #[typetag::serde]
 impl Race for HalfOrc {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
@@ -132,10 +138,6 @@ impl Race for HalfOrc {
             AbilityScore(AbilityScoreType::Constitution, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
         ])
-    }
-
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![Proficiency::Skill(Skill::Intimidation)]
     }
 }
 

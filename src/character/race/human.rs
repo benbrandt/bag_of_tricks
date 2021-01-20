@@ -14,6 +14,7 @@ use crate::{
         features::{Feature, Features},
         languages::{Language, Languages},
         names::{human::Names, Name},
+        proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -109,6 +110,8 @@ impl Name for Human {
         )
     }
 }
+
+impl Proficiencies for Human {}
 
 #[typetag::serde]
 impl Race for Human {

@@ -5,13 +5,25 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, characteristics::{
+use crate::{
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
-        }, equipment::tools::{ArtisansTools, Tool}, features::{Feature, Features}, languages::{Language, Languages}, names::{
+        },
+        equipment::tools::{ArtisansTools, Tool},
+        features::{Feature, Features},
+        languages::{Language, Languages},
+        names::{
             gnome::{CLAN, FEMALE, MALE, NICKNAMES},
             Name,
-        }, proficiencies::Proficiency}, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
+        },
+        proficiencies::{Proficiencies, Proficiency},
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 11),
@@ -163,6 +175,18 @@ impl Name for Gnome {
     }
 }
 
+impl Proficiencies for Gnome {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        let mut proficiencies = vec![];
+        if let GnomeSubrace::Rock = self.subrace {
+            proficiencies.push(Proficiency::Tool(Tool::ArtisansTools(
+                ArtisansTools::TinkersTools,
+            )))
+        }
+        proficiencies
+    }
+}
+
 #[typetag::serde]
 impl Race for Gnome {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
@@ -182,16 +206,6 @@ impl Race for Gnome {
                 GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ])
-    }
-
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        let mut proficiencies = vec![];
-        if let GnomeSubrace::Rock = self.subrace {
-            proficiencies.push(Proficiency::Tool(Tool::ArtisansTools(
-                ArtisansTools::TinkersTools,
-            )))
-        }
-        proficiencies
     }
 }
 

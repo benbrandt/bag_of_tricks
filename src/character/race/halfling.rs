@@ -5,24 +5,13 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
-        attack::DamageType,
-        characteristics::{
+use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, attack::DamageType, characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{
+        }, features::{Feature, Features}, languages::{Language, Languages}, names::{
             halfling::{FAMILY, FEMALE, MALE},
             Name,
-        },
-    },
-    citation::{Book, Citation, CitationList, Citations},
-    dice_roller::{Die, RollCmd},
-};
+        }, proficiencies::Proficiencies}, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 7),
@@ -143,6 +132,8 @@ impl Name for Halfling {
         )
     }
 }
+
+impl Proficiencies for Halfling {}
 
 #[typetag::serde]
 impl Race for Halfling {

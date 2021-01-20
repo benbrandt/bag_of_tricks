@@ -18,7 +18,7 @@ use crate::{
             elf::{CHILD, FAMILY, FEMALE, MALE},
             Name,
         },
-        proficiencies::{Proficiency, WeaponProficiency},
+        proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
     },
     citation::{Book, Citation, CitationList, Citations},
 };
@@ -240,6 +240,31 @@ impl Name for Elf {
         )
     }
 }
+impl Proficiencies for Elf {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        let mut proficiencies = vec![Proficiency::Skill(Skill::Perception)];
+
+        proficiencies.extend(match self.subrace {
+            ElfSubrace::Dark => vec![
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            ],
+            ElfSubrace::High => vec![
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            ],
+            ElfSubrace::Wood => vec![
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            ],
+        });
+        proficiencies
+    }
+}
 
 #[typetag::serde]
 impl Race for Elf {
@@ -263,30 +288,6 @@ impl Race for Elf {
                 ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
             },
         ])
-    }
-
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        let mut proficiencies = vec![Proficiency::Skill(Skill::Perception)];
-
-        proficiencies.extend(match self.subrace {
-            ElfSubrace::Dark => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
-            ],
-            ElfSubrace::High => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
-            ],
-            ElfSubrace::Wood => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
-            ],
-        });
-        proficiencies
     }
 }
 

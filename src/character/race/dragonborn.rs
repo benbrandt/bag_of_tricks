@@ -20,6 +20,7 @@ use crate::{
             dragonborn::{CHILD, CLAN, FEMALE, MALE},
             Name,
         },
+        proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -175,6 +176,8 @@ impl Name for Dragonborn {
         )
     }
 }
+
+impl Proficiencies for Dragonborn {}
 
 #[typetag::serde]
 impl Race for Dragonborn {

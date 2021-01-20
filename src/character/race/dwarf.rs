@@ -23,7 +23,7 @@ use crate::{
             dwarf::{CLAN, FEMALE, MALE},
             Name,
         },
-        proficiencies::{Proficiency, WeaponProficiency},
+        proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
     },
     citation::{Book, Citation, CitationList, Citations},
 };
@@ -172,6 +172,25 @@ impl Name for Dwarf {
     }
 }
 
+impl Proficiencies for Dwarf {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        let mut proficiencies = vec![
+            Proficiency::Tool(Tool::ArtisansTools(self.tools)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Battleaxe)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Handaxe)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Warhammer)),
+        ];
+        if let DwarfSubrace::Mountain = self.subrace {
+            proficiencies.extend(vec![
+                Proficiency::Armor(ArmorType::Light),
+                Proficiency::Armor(ArmorType::Medium),
+            ]);
+        };
+        proficiencies
+    }
+}
+
 #[typetag::serde]
 impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
@@ -192,23 +211,6 @@ impl Race for Dwarf {
                 DwarfSubrace::Mountain => AbilityScore(AbilityScoreType::Strength, 2),
             },
         ])
-    }
-
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        let mut proficiencies = vec![
-            Proficiency::Tool(Tool::ArtisansTools(self.tools)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Battleaxe)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Handaxe)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Warhammer)),
-        ];
-        if let DwarfSubrace::Mountain = self.subrace {
-            proficiencies.extend(vec![
-                Proficiency::Armor(ArmorType::Light),
-                Proficiency::Armor(ArmorType::Medium),
-            ]);
-        };
-        proficiencies
     }
 
     fn resistances(&self) -> Vec<DamageType> {

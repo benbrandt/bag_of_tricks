@@ -14,7 +14,7 @@ use crate::{
         features::{Feature, Features},
         languages::{Language, Languages},
         names::{human::Names, Name},
-        proficiencies::Proficiency,
+        proficiencies::{Proficiencies, Proficiency},
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -141,6 +141,12 @@ impl Name for HalfElf {
     }
 }
 
+impl Proficiencies for HalfElf {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        self.addl_proficiencies.clone()
+    }
+}
+
 #[typetag::serde]
 impl Race for HalfElf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
@@ -158,10 +164,6 @@ impl Race for HalfElf {
         let mut abilities = vec![AbilityScore(AbilityScoreType::Charisma, 2)];
         abilities.extend(self.addl_increases.clone());
         AbilityScores(abilities)
-    }
-
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        self.addl_proficiencies.clone()
     }
 }
 

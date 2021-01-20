@@ -23,3 +23,9 @@ pub(crate) enum Proficiency {
     Tool(Tool),
     Weapon(WeaponProficiency),
 }
+
+pub(crate) trait Proficiencies {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        vec![]
+    }
+}

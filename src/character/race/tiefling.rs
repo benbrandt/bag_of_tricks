@@ -18,6 +18,7 @@ use crate::{
             tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, VIRTUE_NAMES},
             Name,
         },
+        proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -124,6 +125,8 @@ impl Name for Tiefling {
         )
     }
 }
+
+impl Proficiencies for Tiefling {}
 
 #[typetag::serde]
 impl Race for Tiefling {
