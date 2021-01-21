@@ -28,4 +28,9 @@ pub(crate) trait Languages {
     fn languages(&self) -> Vec<Language> {
         vec![]
     }
+
+    /// Does this provide additional language options?
+    fn addl_languages(&self) -> usize {
+        0
+    }
 }

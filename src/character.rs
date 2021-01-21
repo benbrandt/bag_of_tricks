@@ -9,10 +9,11 @@ mod names;
 mod proficiencies;
 mod race;
 
-use std::{fmt, writeln};
+use std::fmt;
 
-use rand::Rng;
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
+use strum::IntoEnumIterator;
 
 use ability::AbilityScores;
 use attack::{DamageType, Resistances};
@@ -26,6 +27,7 @@ use race::{Race, RaceOptions};
 #[derive(Deserialize, Serialize)]
 pub struct Character {
     abilities: AbilityScores,
+    addl_languages: Vec<Language>,
     characteristics: CharacteristicDetails,
     level: u8,
     name: String,
@@ -34,17 +36,28 @@ pub struct Character {
 
 impl Character {
     /// Generate a new random character
-    pub fn new(rng: &mut impl Rng) -> Self {
+    pub fn gen(rng: &mut impl Rng) -> Self {
         let (race, name, characteristics) = RaceOptions::gen(rng);
         let mut abilities = AbilityScores::new(rng);
         abilities.extend(race.abilities());
-        Self {
+        let mut character = Self {
             abilities,
+            addl_languages: vec![],
             characteristics,
             level: 1,
             name,
             race,
-        }
+        };
+        character.gen_languages(rng);
+        character
+    }
+
+    fn gen_languages(&mut self, rng: &mut impl Rng) {
+        let amount = self.addl_languages();
+        let current = self.languages();
+        self.addl_languages = Language::iter()
+            .filter(|l| !current.contains(l))
+            .choose_multiple(rng, amount);
     }
 
     fn proficiency_bonus(&self) -> i16 {
@@ -70,7 +83,13 @@ impl Features for Character {
 
 impl Languages for Character {
     fn languages(&self) -> Vec<Language> {
-        self.race.languages()
+        let mut languages = self.race.languages();
+        languages.extend(self.addl_languages.clone());
+        languages
+    }
+
+    fn addl_languages(&self) -> usize {
+        self.race.addl_languages()
     }
 }
 
@@ -142,7 +161,7 @@ mod tests {
     #[test]
     fn test_character_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let character = Character::new(&mut rng);
+        let character = Character::gen(&mut rng);
         // Struct Snapshot
         insta::assert_yaml_snapshot!(character);
         // fmt::Display Snapshot

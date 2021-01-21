@@ -5,5 +5,5 @@ use bag_of_tricks::character::Character;
 
 fn main() {
     let mut rng = Pcg64::from_entropy();
-    println!("{}", Character::new(&mut rng));
+    println!("{}", Character::gen(&mut rng));
 }

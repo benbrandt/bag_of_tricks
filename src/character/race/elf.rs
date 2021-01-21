@@ -1,6 +1,6 @@
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use std::{collections::HashSet, fmt};
+use std::fmt;
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
@@ -49,7 +49,6 @@ mod height_and_weight {
         weight_mod: WeightMod::Roll(RollCmd(1, Die::D4)),
     };
 }
-const BASE_LANGUAGES: &[Language] = &[Language::Common, Language::Elvish];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum ElfSubrace {
@@ -60,25 +59,10 @@ enum ElfSubrace {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Elf {
-    extra_language: Option<Language>,
     subrace: ElfSubrace,
 }
 
 impl Elf {
-    fn gen_extra_language(subrace: &ElfSubrace, rng: &mut impl Rng) -> Option<Language> {
-        let languages: HashSet<_> = BASE_LANGUAGES.iter().cloned().collect();
-        match subrace {
-            ElfSubrace::High => Some(
-                *Language::iter()
-                    .collect::<HashSet<Language>>()
-                    .difference(&languages)
-                    .choose(rng)
-                    .unwrap(),
-            ),
-            ElfSubrace::Dark | ElfSubrace::Wood => None,
-        }
-    }
-
     pub(crate) fn gen_first_name<'a>(
         rng: &mut impl Rng,
         CharacteristicDetails { age, gender, .. }: &CharacteristicDetails,
@@ -224,11 +208,14 @@ impl Features for Elf {
 
 impl Languages for Elf {
     fn languages(&self) -> Vec<Language> {
-        let mut languages = BASE_LANGUAGES.to_vec();
-        if let Some(language) = self.extra_language {
-            languages.push(language);
+        vec![Language::Common, Language::Elvish]
+    }
+
+    fn addl_languages(&self) -> usize {
+        match self.subrace {
+            ElfSubrace::High => 1,
+            ElfSubrace::Dark | ElfSubrace::Wood => 0,
         }
-        languages
     }
 }
 
@@ -271,10 +258,7 @@ impl Proficiencies for Elf {
 impl Race for Elf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let subrace = ElfSubrace::iter().choose(rng).unwrap();
-        let race = Box::new(Self {
-            extra_language: Self::gen_extra_language(&subrace, rng),
-            subrace,
-        });
+        let race = Box::new(Self { subrace });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
@@ -316,10 +300,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         for subrace in ElfSubrace::iter() {
-            let elf = Elf {
-                extra_language: Some(Language::Abyssal),
-                subrace,
-            };
+            let elf = Elf { subrace };
             insta::assert_snapshot!(format!("{}", elf));
         }
     }
@@ -327,10 +308,7 @@ mod tests {
     #[test]
     fn test_snapshot_abilities() {
         for subrace in ElfSubrace::iter() {
-            let elf = Elf {
-                extra_language: None,
-                subrace,
-            };
+            let elf = Elf { subrace };
             insta::assert_yaml_snapshot!(elf.abilities());
         }
     }
@@ -338,10 +316,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         for subrace in ElfSubrace::iter() {
-            let elf = Elf {
-                extra_language: None,
-                subrace,
-            };
+            let elf = Elf { subrace };
             insta::assert_yaml_snapshot!(elf.citations());
         }
     }
@@ -349,10 +324,7 @@ mod tests {
     #[test]
     fn test_snapshot_features() {
         for subrace in ElfSubrace::iter() {
-            let elf = Elf {
-                extra_language: None,
-                subrace,
-            };
+            let elf = Elf { subrace };
             insta::assert_yaml_snapshot!(elf.features());
         }
     }

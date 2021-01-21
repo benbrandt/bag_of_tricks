@@ -4,10 +4,22 @@ use std::fmt;
 use strum::IntoEnumIterator;
 
 use super::{elf::Elf, human::Human, Race};
-use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill}, attack::Resistances, characteristics::{
+use crate::{
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
+        attack::Resistances,
+        characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
             Size, WeightMod,
-        }, features::{Feature, Features}, languages::{Language, Languages}, names::{human::Names, Name}, proficiencies::{Proficiencies, Proficiency}}, citation::{Book, Citation, CitationList, Citations}, dice_roller::{Die, RollCmd}};
+        },
+        features::{Feature, Features},
+        languages::{Language, Languages},
+        names::{human::Names, Name},
+        proficiencies::{Proficiencies, Proficiency},
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 9),
@@ -15,13 +27,11 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     height_mod: RollCmd(2, Die::D8),
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D4)),
 };
-const BASE_LANGUAGES: &[Language] = &[Language::Common, Language::Elvish];
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct HalfElf {
     addl_increases: Vec<AbilityScore>,
     addl_proficiencies: Vec<Proficiency>,
-    extra_language: Language,
 }
 
 impl HalfElf {
@@ -32,13 +42,6 @@ impl HalfElf {
             .into_iter()
             .map(|t| AbilityScore(t, 1))
             .collect()
-    }
-
-    fn gen_extra_language(rng: &mut impl Rng) -> Language {
-        Language::iter()
-            .filter(|l| !BASE_LANGUAGES.contains(l))
-            .choose(rng)
-            .unwrap()
     }
 
     fn gen_proficiences(rng: &mut impl Rng) -> Vec<Proficiency> {
@@ -106,9 +109,11 @@ impl Features for HalfElf {
 
 impl Languages for HalfElf {
     fn languages(&self) -> Vec<Language> {
-        let mut languages = BASE_LANGUAGES.to_vec();
-        languages.push(self.extra_language);
-        languages
+        vec![Language::Common, Language::Elvish]
+    }
+
+    fn addl_languages(&self) -> usize {
+        1
     }
 }
 
@@ -142,7 +147,6 @@ impl Race for HalfElf {
         let race = Self {
             addl_increases: Self::gen_ability_increases(rng),
             addl_proficiencies: Self::gen_proficiences(rng),
-            extra_language: Self::gen_extra_language(rng),
         };
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);

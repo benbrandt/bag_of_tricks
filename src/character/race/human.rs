@@ -29,18 +29,7 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 };
 
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Human {
-    extra_language: Language,
-}
-
-impl Human {
-    fn gen_extra_language(rng: &mut impl Rng) -> Language {
-        Language::iter()
-            .filter(|l| l != &Language::Common)
-            .choose(rng)
-            .unwrap()
-    }
-}
+pub(crate) struct Human;
 
 impl Human {
     pub(crate) fn gen_first_name<'a>(
@@ -97,7 +86,11 @@ impl Features for Human {
 
 impl Languages for Human {
     fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, self.extra_language]
+        vec![Language::Common]
+    }
+
+    fn addl_languages(&self) -> usize {
+        1
     }
 }
 
@@ -117,9 +110,7 @@ impl Proficiencies for Human {}
 #[typetag::serde]
 impl Race for Human {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
-            extra_language: Self::gen_extra_language(rng),
-        });
+        let race = Box::new(Self);
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
@@ -164,25 +155,19 @@ mod tests {
 
     #[test]
     fn test_snapshot_abilities() {
-        let human = Human {
-            extra_language: Language::Abyssal,
-        };
+        let human = Human;
         insta::assert_yaml_snapshot!(human.abilities());
     }
 
     #[test]
     fn test_snapshot_citations() {
-        let human = Human {
-            extra_language: Language::Celestial,
-        };
+        let human = Human;
         insta::assert_yaml_snapshot!(human.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
-        let human = Human {
-            extra_language: Language::DeepSpeech,
-        };
+        let human = Human;
         insta::assert_yaml_snapshot!(human.features());
     }
 }

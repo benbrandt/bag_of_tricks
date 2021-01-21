@@ -11,14 +11,13 @@ expression: half_elf
   addl_proficiencies:
     - Skill: Insight
     - Skill: Nature
-  extra_language: Sylvan
-- Yuldra Amastacia (Starflower)
-- age: 114
+- Eryn Ulmokina
+- age: 28
   alignment:
-    - Neutral
+    - Lawful
     - Neutral
   base_speed: 30
-  gender: Female
-  height: 65
+  gender: Male
+  height: 67
   size: Medium
-  weight: 158
+  weight: 180

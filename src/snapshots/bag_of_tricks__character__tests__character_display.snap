@@ -19,6 +19,7 @@ abilities:
     - 2
   - - Strength
     - 2
+addl_languages: []
 characteristics:
   age: 31
   alignment:
