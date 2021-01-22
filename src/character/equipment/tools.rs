@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use strum_macros::Display;
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, Display, PartialEq, Serialize)]
 pub(crate) enum ArtisansTools {
     #[strum(serialize = "Alchemist's Supplies")]
     AlchemistsSupplies,
@@ -39,7 +39,7 @@ pub(crate) enum ArtisansTools {
     WoodcarversTools,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, Display, PartialEq, Serialize)]
 pub(crate) enum GamingSet {
     #[strum(serialize = "Dice Set")]
     Dice,
@@ -51,7 +51,7 @@ pub(crate) enum GamingSet {
     ThreeDragonAnte,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, Display, PartialEq, Serialize)]
 pub(crate) enum MusicalInstrument {
     Bagpipes,
     Drum,
@@ -66,13 +66,13 @@ pub(crate) enum MusicalInstrument {
     Viol,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, Display, PartialEq, Serialize)]
 pub(crate) enum Vehicles {
     Land,
     Water,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, Display, PartialEq, Serialize)]
 pub(crate) enum Tool {
     ArtisansTools(ArtisansTools),
     #[strum(serialize = "Disguise Kit")]

@@ -23,12 +23,15 @@ use languages::{Language, Languages};
 use proficiencies::{Proficiencies, Proficiency};
 use race::{Race, RaceOptions};
 
+use self::proficiencies::ProficiencyOption;
+
 /// Character information
 #[derive(Deserialize, Serialize)]
 pub struct Character {
     abilities: AbilityScores,
-    addl_languages: Vec<Language>,
     characteristics: CharacteristicDetails,
+    chosen_languages: Vec<Language>,
+    chosen_proficiencies: Vec<Proficiency>,
     level: u8,
     name: String,
     race: Box<dyn Race>,
@@ -42,22 +45,31 @@ impl Character {
         abilities.extend(race.abilities());
         let mut character = Self {
             abilities,
-            addl_languages: vec![],
             characteristics,
+            chosen_languages: vec![],
+            chosen_proficiencies: vec![],
             level: 1,
             name,
             race,
         };
         character.gen_languages(rng);
+        character.gen_proficiences(rng);
         character
     }
 
     fn gen_languages(&mut self, rng: &mut impl Rng) {
         let amount = self.addl_languages();
         let current = self.languages();
-        self.addl_languages = Language::iter()
+        self.chosen_languages = Language::iter()
             .filter(|l| !current.contains(l))
             .choose_multiple(rng, amount);
+    }
+
+    fn gen_proficiences(&mut self, rng: &mut impl Rng) {
+        for option in self.addl_proficiencies() {
+            self.chosen_proficiencies
+                .extend(option.gen(rng, &self.proficiencies()));
+        }
     }
 
     fn proficiency_bonus(&self) -> i16 {
@@ -84,7 +96,7 @@ impl Features for Character {
 impl Languages for Character {
     fn languages(&self) -> Vec<Language> {
         let mut languages = self.race.languages();
-        languages.extend(self.addl_languages.clone());
+        languages.extend(self.chosen_languages.clone());
         languages
     }
 
@@ -95,7 +107,13 @@ impl Languages for Character {
 
 impl Proficiencies for Character {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        self.race.proficiencies()
+        let mut proficiencies = self.race.proficiencies();
+        proficiencies.extend(self.chosen_proficiencies.clone());
+        proficiencies
+    }
+
+    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
+        self.race.addl_proficiencies()
     }
 }
 

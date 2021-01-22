@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
-use strum_macros::Display;
+use strum_macros::{Display, EnumIter};
 
-#[derive(Clone, Debug, Deserialize, Display, Serialize)]
+#[derive(Clone, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 pub(crate) enum ArmorType {
     Light,
     Medium,

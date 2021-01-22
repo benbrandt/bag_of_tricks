@@ -8,16 +8,13 @@ expression: half_elf
       - 1
     - - Wisdom
       - 1
-  addl_proficiencies:
-    - Skill: Insight
-    - Skill: Nature
-- Eryn Ulmokina
-- age: 28
+- Del Starag
+- age: 62
   alignment:
-    - Lawful
-    - Neutral
+    - Chaotic
+    - Good
   base_speed: 30
   gender: Male
-  height: 67
+  height: 71
   size: Medium
   weight: 180

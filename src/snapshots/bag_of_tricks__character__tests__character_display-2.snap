@@ -2,29 +2,29 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: Bardryn Dankil
+CHARACTER NAME: Kildrak Fireforge
 RACE: Mountain Dwarf (PHB p18,20)
 LEVEL: 1
 
-STR  +2 (14)
-DEX  +2 (15)
-CON  +3 (17)
+STR  -1 (8)
+DEX  +0 (11)
+CON  +4 (19)
 INT  +2 (15)
 WIS  +1 (13)
-CHA  +2 (14)
+CHA  +0 (11)
 
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 LANGUAGES: Common, Dwarvish
-PROFICIENCIES: Tool(ArtisansTools(SmithsTools)), Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium)
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(SmithsTools))
 CHARACTERISTICS:
-Alignment: Lawful Good
-Age: 31
-Gender: Female
+Alignment: Lawful Evil
+Age: 316
+Gender: Male
 Size: Medium
 Height: 4'6"
-Weight: 175 lb.
+Weight: 165 lb.
 
 FEATURES AND TRAITS:
 Alignment

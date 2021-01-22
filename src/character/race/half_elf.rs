@@ -6,7 +6,7 @@ use strum::IntoEnumIterator;
 use super::{elf::Elf, human::Human, Race};
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
@@ -15,7 +15,7 @@ use crate::{
         features::{Feature, Features},
         languages::{Language, Languages},
         names::{human::Names, Name},
-        proficiencies::{Proficiencies, Proficiency},
+        proficiencies::{Proficiencies, ProficiencyOption},
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -31,7 +31,6 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct HalfElf {
     addl_increases: Vec<AbilityScore>,
-    addl_proficiencies: Vec<Proficiency>,
 }
 
 impl HalfElf {
@@ -41,15 +40,6 @@ impl HalfElf {
             .choose_multiple(rng, 2)
             .into_iter()
             .map(|t| AbilityScore(t, 1))
-            .collect()
-    }
-
-    fn gen_proficiences(rng: &mut impl Rng) -> Vec<Proficiency> {
-        // TODO: Filter out existing proficiencies
-        Skill::iter()
-            .choose_multiple(rng, 2)
-            .into_iter()
-            .map(Proficiency::Skill)
             .collect()
     }
 }
@@ -136,8 +126,8 @@ impl Name for HalfElf {
 }
 
 impl Proficiencies for HalfElf {
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        self.addl_proficiencies.clone()
+    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
+        vec![ProficiencyOption::Skill, ProficiencyOption::Skill]
     }
 }
 
@@ -146,7 +136,6 @@ impl Race for HalfElf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Self {
             addl_increases: Self::gen_ability_increases(rng),
-            addl_proficiencies: Self::gen_proficiences(rng),
         };
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);

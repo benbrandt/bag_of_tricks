@@ -4,35 +4,37 @@ expression: character
 ---
 abilities:
   - - Strength
-    - 12
+    - 6
   - - Dexterity
-    - 15
+    - 11
   - - Constitution
-    - 15
+    - 17
   - - Intelligence
     - 15
   - - Wisdom
     - 13
   - - Charisma
-    - 14
+    - 11
   - - Constitution
     - 2
   - - Strength
     - 2
-addl_languages: []
 characteristics:
-  age: 31
+  age: 316
   alignment:
     - Lawful
-    - Good
+    - Evil
   base_speed: 25
-  gender: Female
+  gender: Male
   height: 54
   size: Medium
-  weight: 175
+  weight: 165
+chosen_languages: []
+chosen_proficiencies:
+  - Tool:
+      ArtisansTools: SmithsTools
 level: 1
-name: Bardryn Dankil
+name: Kildrak Fireforge
 race:
   type: Dwarf
   subrace: Mountain
-  tools: SmithsTools

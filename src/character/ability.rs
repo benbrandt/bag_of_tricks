@@ -88,7 +88,7 @@ impl fmt::Display for AbilityScores {
 }
 
 #[allow(dead_code)]
-#[derive(Clone, Debug, Deserialize, Display, EnumIter, Serialize)]
+#[derive(Clone, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 pub(crate) enum Skill {
     Acrobatics,
     AnimalHandling,

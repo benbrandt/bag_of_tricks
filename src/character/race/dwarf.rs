@@ -5,16 +5,28 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use super::Race;
-use crate::{character::{ability::{AbilityScore, AbilityScoreType, AbilityScores}, attack::{DamageType, Resistances}, characteristics::{
+use crate::{
+    character::{
+        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        attack::{DamageType, Resistances},
+        characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
-        }, equipment::{
+        },
+        equipment::{
             armor::ArmorType,
             tools::{ArtisansTools, Tool},
             weapons::WeaponType,
-        }, features::{Feature, Features}, languages::{Language, Languages}, names::{
+        },
+        features::{Feature, Features},
+        languages::{Language, Languages},
+        names::{
             dwarf::{CLAN, FEMALE, MALE},
             Name,
-        }, proficiencies::{Proficiencies, Proficiency, WeaponProficiency}}, citation::{Book, Citation, CitationList, Citations}};
+        },
+        proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
+    },
+    citation::{Book, Citation, CitationList, Citations},
+};
 
 mod height_and_weight {
     use crate::{
@@ -35,11 +47,6 @@ mod height_and_weight {
         weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
     };
 }
-const TOOL_OPTIONS: &[ArtisansTools] = &[
-    ArtisansTools::BrewersSupplies,
-    ArtisansTools::MasonsTools,
-    ArtisansTools::SmithsTools,
-];
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum DwarfSubrace {
@@ -50,7 +57,6 @@ enum DwarfSubrace {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Dwarf {
     subrace: DwarfSubrace,
-    tools: ArtisansTools,
 }
 
 impl Characteristics for Dwarf {
@@ -163,7 +169,6 @@ impl Name for Dwarf {
 impl Proficiencies for Dwarf {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![
-            Proficiency::Tool(Tool::ArtisansTools(self.tools)),
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Battleaxe)),
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Handaxe)),
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
@@ -177,6 +182,19 @@ impl Proficiencies for Dwarf {
         };
         proficiencies
     }
+
+    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
+        vec![ProficiencyOption::From(
+            [
+                ArtisansTools::BrewersSupplies,
+                ArtisansTools::MasonsTools,
+                ArtisansTools::SmithsTools,
+            ]
+            .iter()
+            .map(|t| Proficiency::Tool(Tool::ArtisansTools(*t)))
+            .collect(),
+        )]
+    }
 }
 
 #[typetag::serde]
@@ -184,7 +202,6 @@ impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
             subrace: DwarfSubrace::iter().choose(rng).unwrap(),
-            tools: *TOOL_OPTIONS.iter().choose(rng).unwrap(),
         });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
@@ -230,10 +247,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf {
-                subrace,
-                tools: ArtisansTools::MasonsTools,
-            };
+            let dwarf = Dwarf { subrace };
             insta::assert_snapshot!(format!("{}", dwarf));
         }
     }
@@ -241,10 +255,7 @@ mod tests {
     #[test]
     fn test_snapshot_abilities() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf {
-                subrace,
-                tools: ArtisansTools::BrewersSupplies,
-            };
+            let dwarf = Dwarf { subrace };
             insta::assert_yaml_snapshot!(dwarf.abilities());
         }
     }
@@ -252,10 +263,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf {
-                subrace,
-                tools: ArtisansTools::MasonsTools,
-            };
+            let dwarf = Dwarf { subrace };
             insta::assert_yaml_snapshot!(dwarf.citations());
         }
     }
@@ -263,10 +271,7 @@ mod tests {
     #[test]
     fn test_snapshot_features() {
         for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf {
-                subrace,
-                tools: ArtisansTools::SmithsTools,
-            };
+            let dwarf = Dwarf { subrace };
             insta::assert_yaml_snapshot!(dwarf.features());
         }
     }
