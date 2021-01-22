@@ -6,6 +6,11 @@ use strum_macros::{Display, EnumIter};
 
 use crate::dice_roller::{Die, RollCmd};
 
+use super::{
+    proficiencies::{Proficiencies, Proficiency},
+    Character,
+};
+
 /// Return modifier based on ability score.
 fn modifier(score: u8) -> i16 {
     // Lower value to closest even number, subtract by 10 and divide by two
@@ -93,9 +98,10 @@ impl fmt::Display for AbilityScores {
 }
 
 #[allow(dead_code)]
-#[derive(Clone, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 pub(crate) enum Skill {
     Acrobatics,
+    #[strum(serialize = "Animal Handling")]
     AnimalHandling,
     Arcana,
     Athletics,
@@ -110,9 +116,49 @@ pub(crate) enum Skill {
     Performance,
     Persuasion,
     Religion,
+    #[strum(serialize = "Sleight of Hand")]
     SleightOfHand,
     Stealth,
     Survival,
+}
+
+impl Skill {
+    pub(crate) fn ability_score_type(self) -> AbilityScoreType {
+        match self {
+            Skill::Athletics => AbilityScoreType::Strength,
+            Skill::Acrobatics | Skill::SleightOfHand | Skill::Stealth => {
+                AbilityScoreType::Dexterity
+            }
+            Skill::Arcana
+            | Skill::History
+            | Skill::Investigation
+            | Skill::Nature
+            | Skill::Religion => AbilityScoreType::Intelligence,
+            Skill::AnimalHandling
+            | Skill::Insight
+            | Skill::Medicine
+            | Skill::Perception
+            | Skill::Survival => AbilityScoreType::Wisdom,
+            Skill::Deception | Skill::Intimidation | Skill::Performance | Skill::Persuasion => {
+                AbilityScoreType::Charisma
+            }
+        }
+    }
+
+    pub(crate) fn modifier(self, character: &Character) -> i16 {
+        character.abilities.modifier(self.ability_score_type())
+            + if self.proficient(character) {
+                character.proficiency_bonus()
+            } else {
+                0
+            }
+    }
+
+    pub(crate) fn proficient(self, character: &Character) -> bool {
+        character
+            .proficiencies()
+            .contains(&Proficiency::Skill(self))
+    }
 }
 
 #[cfg(test)]

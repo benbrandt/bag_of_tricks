@@ -15,7 +15,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 
-use ability::AbilityScores;
+use ability::{AbilityScores, Skill};
 use attack::{DamageType, Resistances};
 use characteristics::CharacteristicDetails;
 use features::{Feature, Features};
@@ -130,6 +130,19 @@ impl fmt::Display for Character {
         writeln!(f, "LEVEL: {}", self.level)?;
         writeln!(f)?;
         writeln!(f, "{}", self.abilities)?;
+        writeln!(f, "SKILLS:")?;
+        writeln!(f, "PROF  MOD  SKILL            BONUS:")?;
+        for skill in Skill::iter() {
+            writeln!(
+                f,
+                "{:4}  {}  {:15}  {:+}",
+                if skill.proficient(self) { " X" } else { "" },
+                skill.ability_score_type(),
+                skill,
+                skill.modifier(self),
+            )?;
+        }
+        writeln!(f)?;
         writeln!(f, "SPEED: {}", self.speed())?;
         writeln!(f, "PROFICIENCY BONUS: {:+}", self.proficiency_bonus())?;
         writeln!(

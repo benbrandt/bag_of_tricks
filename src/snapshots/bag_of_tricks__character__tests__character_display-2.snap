@@ -13,6 +13,27 @@ INT  +2 (15)
 WIS  +1 (13)
 CHA  +0 (11)
 
+SKILLS:
+PROF  MOD  SKILL            BONUS:
+      DEX  Acrobatics       +0
+      WIS  Animal Handling  +1
+      INT  Arcana           +2
+      STR  Athletics        -1
+      CHA  Deception        +0
+      INT  History          +2
+      WIS  Insight          +1
+      CHA  Intimidation     +0
+      INT  Investigation    +2
+      WIS  Medicine         +1
+      INT  Nature           +2
+      WIS  Perception       +1
+      CHA  Performance      +0
+      CHA  Persuasion       +0
+      INT  Religion         +2
+      DEX  Sleight of Hand  +0
+      DEX  Stealth          +0
+      WIS  Survival         +1
+
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
