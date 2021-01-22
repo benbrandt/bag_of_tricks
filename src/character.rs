@@ -41,8 +41,8 @@ impl Character {
     /// Generate a new random character
     pub fn gen(rng: &mut impl Rng) -> Self {
         let (race, name, characteristics) = RaceOptions::gen(rng);
-        let mut abilities = AbilityScores::new(rng);
-        abilities.extend(race.abilities());
+        let mut abilities = AbilityScores::gen(rng);
+        abilities.increase(race.abilities());
         let mut character = Self {
             abilities,
             characteristics,

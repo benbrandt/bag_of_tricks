@@ -6,7 +6,7 @@ use strum::IntoEnumIterator;
 use super::Race;
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -116,12 +116,10 @@ impl Race for Human {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(
-            AbilityScoreType::iter()
-                .map(|t| AbilityScore(t, 1))
-                .collect(),
-        )
+    fn abilities(&self) -> Vec<AbilityScore> {
+        AbilityScoreType::iter()
+            .map(|t| AbilityScore(t, 1))
+            .collect()
     }
 }
 

@@ -5,7 +5,7 @@ use std::fmt;
 use super::{human::Human, Race};
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -137,11 +137,11 @@ impl Race for Tiefling {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
             AbilityScore(AbilityScoreType::Charisma, 2),
             AbilityScore(AbilityScoreType::Intelligence, 1),
-        ])
+        ]
     }
 }
 

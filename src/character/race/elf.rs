@@ -7,7 +7,7 @@ use strum_macros::{Display, EnumIter};
 use super::Race;
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
+        ability::{AbilityScore, AbilityScoreType, Skill},
         attack::Resistances,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -264,15 +264,15 @@ impl Race for Elf {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
             AbilityScore(AbilityScoreType::Dexterity, 2),
             match self.subrace {
                 ElfSubrace::Dark => AbilityScore(AbilityScoreType::Charisma, 1),
                 ElfSubrace::High => AbilityScore(AbilityScoreType::Intelligence, 1),
                 ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
             },
-        ])
+        ]
     }
 }
 

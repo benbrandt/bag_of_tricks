@@ -3,22 +3,12 @@ source: src/character.rs
 expression: character
 ---
 abilities:
-  - - Strength
-    - 6
-  - - Dexterity
-    - 11
-  - - Constitution
-    - 17
-  - - Intelligence
-    - 15
-  - - Wisdom
-    - 13
-  - - Charisma
-    - 11
-  - - Constitution
-    - 2
-  - - Strength
-    - 2
+  Strength: 8
+  Dexterity: 11
+  Constitution: 19
+  Intelligence: 15
+  Wisdom: 13
+  Charisma: 11
 characteristics:
   age: 316
   alignment:

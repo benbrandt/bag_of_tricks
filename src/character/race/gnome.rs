@@ -7,7 +7,7 @@ use strum_macros::{Display, EnumIter};
 use super::Race;
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -199,14 +199,14 @@ impl Race for Gnome {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
             AbilityScore(AbilityScoreType::Intelligence, 2),
             match self.subrace {
                 GnomeSubrace::Forest => AbilityScore(AbilityScoreType::Dexterity, 1),
                 GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
             },
-        ])
+        ]
     }
 }
 

@@ -1,0 +1,10 @@
+---
+source: src/character/ability.rs
+expression: scores
+---
+Strength: 26
+Dexterity: 28
+Constitution: 21
+Intelligence: 21
+Wisdom: 18
+Charisma: 28

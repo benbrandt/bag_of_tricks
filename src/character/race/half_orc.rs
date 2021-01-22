@@ -5,7 +5,7 @@ use std::fmt;
 use super::{human::Human, Race};
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores, Skill},
+        ability::{AbilityScore, AbilityScoreType, Skill},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -134,11 +134,11 @@ impl Race for HalfOrc {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
             AbilityScore(AbilityScoreType::Constitution, 1),
             AbilityScore(AbilityScoreType::Strength, 2),
-        ])
+        ]
     }
 }
 

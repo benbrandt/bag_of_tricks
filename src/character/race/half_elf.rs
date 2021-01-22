@@ -6,7 +6,7 @@ use strum::IntoEnumIterator;
 use super::{elf::Elf, human::Human, Race};
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
@@ -142,10 +142,10 @@ impl Race for HalfElf {
         (Box::new(race), name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
+    fn abilities(&self) -> Vec<AbilityScore> {
         let mut abilities = vec![AbilityScore(AbilityScoreType::Charisma, 2)];
         abilities.extend(self.addl_increases.clone());
-        AbilityScores(abilities)
+        abilities
     }
 }
 

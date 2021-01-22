@@ -7,7 +7,7 @@ use strum_macros::{Display, EnumIter};
 use super::Race;
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -158,14 +158,14 @@ impl Race for Halfling {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
             AbilityScore(AbilityScoreType::Dexterity, 2),
             match self.subrace {
                 HalflingSubrace::Lightfoot => AbilityScore(AbilityScoreType::Charisma, 1),
                 HalflingSubrace::Stout => AbilityScore(AbilityScoreType::Constitution, 1),
             },
-        ])
+        ]
     }
 }
 

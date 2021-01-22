@@ -22,7 +22,7 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScores, attack::Resistances, characteristics::CharacteristicDetails,
+    ability::AbilityScore, attack::Resistances, characteristics::CharacteristicDetails,
     features::Features, languages::Languages, proficiencies::Proficiencies,
 };
 
@@ -37,7 +37,7 @@ pub(crate) trait Race:
         Self: Sized;
 
     /// Returns ability score increases for the race
-    fn abilities(&self) -> AbilityScores;
+    fn abilities(&self) -> Vec<AbilityScore>;
 }
 
 #[derive(EnumIter)]

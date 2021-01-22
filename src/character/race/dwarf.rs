@@ -7,7 +7,7 @@ use strum_macros::{Display, EnumIter};
 use super::Race;
 use crate::{
     character::{
-        ability::{AbilityScore, AbilityScoreType, AbilityScores},
+        ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -208,14 +208,14 @@ impl Race for Dwarf {
         (race, name, characteristics)
     }
 
-    fn abilities(&self) -> AbilityScores {
-        AbilityScores(vec![
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
             AbilityScore(AbilityScoreType::Constitution, 2),
             match self.subrace {
                 DwarfSubrace::Hill => AbilityScore(AbilityScoreType::Wisdom, 1),
                 DwarfSubrace::Mountain => AbilityScore(AbilityScoreType::Strength, 2),
             },
-        ])
+        ]
     }
 }
 
