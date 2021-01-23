@@ -66,9 +66,11 @@ impl Character {
     }
 
     fn gen_proficiences(&mut self, rng: &mut impl Rng) {
-        for option in self.addl_proficiencies() {
-            self.chosen_proficiencies
-                .extend(option.gen(rng, &self.proficiencies()));
+        let mut options = self.addl_proficiencies();
+        // Sort so that the options with the least amount are chosen first.
+        options.sort();
+        for option in options {
+            self.chosen_proficiencies.push(option.gen(rng, &self));
         }
     }
 
