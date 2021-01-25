@@ -2,11 +2,6 @@
 source: src/character/race/tiefling.rs
 expression: tiefling.features()
 ---
-- title: Alignment
-  description: "Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment."
-  citation:
-    book: PHB
-    page: 43
 - title: Darkvision
   description: "Thanks to your infernal heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
   citation:

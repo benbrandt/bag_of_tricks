@@ -2,8 +2,4 @@
 source: src/character/race/human.rs
 expression: human.features()
 ---
-- title: Alignment
-  description: " Humans tend toward no particular alignment. The best and the worst are found among them."
-  citation:
-    book: PHB
-    page: 31
+[]

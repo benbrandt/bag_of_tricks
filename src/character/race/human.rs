@@ -12,7 +12,7 @@ use crate::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
         },
-        features::{Feature, Features},
+        features::Features,
         languages::{Language, Languages},
         names::{human::Names, Name},
         proficiencies::Proficiencies,
@@ -71,18 +71,7 @@ impl Citations for Human {
     }
 }
 
-impl Features for Human {
-    fn features(&self) -> Vec<Feature> {
-        vec![Feature {
-            title: "Alignment",
-            description: " Humans tend toward no particular alignment. The best and the worst are found among them.",
-            citation: Citation {
-                book: Book::PHB,
-                page: 31,
-            },
-        }]
-    }
-}
+impl Features for Human {}
 
 impl Languages for Human {
     fn languages(&self) -> Vec<Language> {

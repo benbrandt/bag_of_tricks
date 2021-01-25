@@ -8,7 +8,7 @@ expression: dragonborn
 - age: 10
   alignment:
     - Neutral
-    - Good
+    - Evil
   base_speed: 30
   gender: Female
   height: 74

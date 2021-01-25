@@ -8,6 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::{Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -47,6 +48,10 @@ impl Characteristics for Halfling {
     const AGE_RANGE: AgeRange = AgeRange(1..=150);
     const SIZE: Size = Size::Small;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (Some(Attitude::Lawful), Some(Morality::Good))
+    }
+
     fn get_base_speed(&self) -> u8 {
         25
     }
@@ -75,14 +80,6 @@ impl Citations for Halfling {
 impl Features for Halfling {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
-            Feature {
-                title: "Alignment",
-                description: "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
-            },
             Feature {
                 title: "Brave",
                 description: "You have advantage on saving throws against being frightened.",

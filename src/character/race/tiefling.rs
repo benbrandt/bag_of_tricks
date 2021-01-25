@@ -6,6 +6,7 @@ use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::{Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -60,6 +61,10 @@ impl Characteristics for Tiefling {
     const AGE_RANGE: AgeRange = AgeRange(1..=100);
     const SIZE: Size = Size::Medium;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (Some(Attitude::Chaotic), Some(Morality::Evil))
+    }
+
     fn get_base_speed(&self) -> u8 {
         30
     }
@@ -81,14 +86,6 @@ impl Citations for Tiefling {
 impl Features for Tiefling {
     fn features(&self) -> Vec<Feature> {
         vec![
-            Feature {
-                title: "Alignment",
-                description: "Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 43,
-                },
-            },
             Feature {
                 title: "Darkvision",
                 description: "Thanks to your infernal heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",

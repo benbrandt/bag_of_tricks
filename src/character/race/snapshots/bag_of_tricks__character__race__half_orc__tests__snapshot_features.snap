@@ -2,11 +2,6 @@
 source: src/character/race/half_orc.rs
 expression: half_orc.features()
 ---
-- title: Alignment
-  description: Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.
-  citation:
-    book: PHB
-    page: 41
 - title: Darkvision
   description: "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
   citation:

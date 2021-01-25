@@ -7,8 +7,8 @@ expression: gnome
 - "Lorilla \"Cloak\" Daergel"
 - age: 337
   alignment:
-    - Chaotic
     - Neutral
+    - Evil
   base_speed: 25
   gender: Female
   height: 40

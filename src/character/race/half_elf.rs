@@ -7,6 +7,7 @@ use super::{elf::Elf, human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::{Attitude, Morality},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
@@ -48,6 +49,10 @@ impl Characteristics for HalfElf {
     const AGE_RANGE: AgeRange = AgeRange(1..=180);
     const SIZE: Size = Size::Medium;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (Some(Attitude::Chaotic), None)
+    }
+
     fn get_base_speed(&self) -> u8 {
         30
     }
@@ -69,14 +74,6 @@ impl Citations for HalfElf {
 impl Features for HalfElf {
     fn features(&self) -> Vec<Feature> {
         vec![
-            Feature {
-                title: "Alignment",
-                description: "Half-elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable, or at least unpredictable.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 39,
-                },
-            },
             Feature {
                 title: "Darkvision",
                 description: "Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",

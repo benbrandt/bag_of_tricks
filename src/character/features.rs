@@ -19,7 +19,9 @@ impl fmt::Display for Feature<'_> {
 
 pub(crate) trait Features {
     // Return a list of features this thing provides
-    fn features(&self) -> Vec<Feature>;
+    fn features(&self) -> Vec<Feature> {
+        vec![]
+    }
 }
 
 #[cfg(test)]

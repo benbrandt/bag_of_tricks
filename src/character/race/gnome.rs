@@ -8,6 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::{Attitude, Morality},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -48,6 +49,10 @@ impl Characteristics for Gnome {
     const AGE_RANGE: AgeRange = AgeRange(1..=500);
     const SIZE: Size = Size::Small;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (None, Some(Morality::Good))
+    }
+
     fn get_base_speed(&self) -> u8 {
         25
     }
@@ -76,14 +81,6 @@ impl Citations for Gnome {
 impl Features for Gnome {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
-            Feature {
-                title: "Alignment",
-                description: "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 36,
-                },
-            },
             Feature {
                 title: "Darkvision",
                 description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",

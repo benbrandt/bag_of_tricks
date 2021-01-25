@@ -2,11 +2,6 @@
 source: src/character/race/elf.rs
 expression: elf.features()
 ---
-- title: Alignment
-  description: "Elves love freedom, variety, and self-expression, so they lean strongly toward the gentler aspects of chaos. They value and protect others' freedom as well as their own, and they are more often good than not. The drow are an exception; their exile into the Underdark has made them vicious and dangerous. Drow are more often evil than not."
-  citation:
-    book: PHB
-    page: 23
 - title: Darkvision
   description: "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
   citation:

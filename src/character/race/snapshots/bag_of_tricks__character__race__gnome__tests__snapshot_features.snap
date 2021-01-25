@@ -2,11 +2,6 @@
 source: src/character/race/gnome.rs
 expression: gnome.features()
 ---
-- title: Alignment
-  description: "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious."
-  citation:
-    book: PHB
-    page: 36
 - title: Darkvision
   description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
   citation:

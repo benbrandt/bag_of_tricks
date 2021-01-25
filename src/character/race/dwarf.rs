@@ -8,6 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::{Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -63,6 +64,10 @@ impl Characteristics for Dwarf {
     const AGE_RANGE: AgeRange = AgeRange(1..=350);
     const SIZE: Size = Size::Medium;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (Some(Attitude::Lawful), Some(Morality::Good))
+    }
+
     fn get_base_speed(&self) -> u8 {
         25
     }
@@ -94,14 +99,6 @@ impl Citations for Dwarf {
 impl Features for Dwarf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
-            Feature {
-                title: "Alignment",
-                description: "Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
-            },
             Feature {
                 title: "Darkvision",
                 description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",

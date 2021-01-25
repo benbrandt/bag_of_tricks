@@ -9,6 +9,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::{Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -112,6 +113,24 @@ impl Characteristics for Dragonborn {
     const AGE_RANGE: AgeRange = AgeRange(1..=80);
     const SIZE: Size = Size::Medium;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (
+            None,
+            Some(match self.ancestry {
+                DraconicAncestry::Black
+                | DraconicAncestry::Blue
+                | DraconicAncestry::Green
+                | DraconicAncestry::Red
+                | DraconicAncestry::White => Morality::Evil,
+                DraconicAncestry::Brass
+                | DraconicAncestry::Bronze
+                | DraconicAncestry::Copper
+                | DraconicAncestry::Gold
+                | DraconicAncestry::Silver => Morality::Good,
+            }),
+        )
+    }
+
     fn get_base_speed(&self) -> u8 {
         30
     }
@@ -133,14 +152,6 @@ impl Citations for Dragonborn {
 impl Features for Dragonborn {
     fn features(&self) -> Vec<Feature> {
         vec![
-            Feature {
-                title: "Alignment",
-                description: "Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 34,
-                },
-            },
             Feature {
                 title: "Breath Weapon",
                 description: "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",

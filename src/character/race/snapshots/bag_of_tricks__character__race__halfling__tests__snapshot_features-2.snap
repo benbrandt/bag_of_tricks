@@ -2,11 +2,6 @@
 source: src/character/race/halfling.rs
 expression: halfling.features()
 ---
-- title: Alignment
-  description: "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways."
-  citation:
-    book: PHB
-    page: 28
 - title: Brave
   description: You have advantage on saving throws against being frightened.
   citation:

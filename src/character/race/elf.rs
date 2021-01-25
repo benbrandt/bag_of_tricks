@@ -8,6 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
+        alignment::{Attitude, Morality},
         attack::Resistances,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -86,6 +87,16 @@ impl Characteristics for Elf {
     const AGE_RANGE: AgeRange = AgeRange(1..=750);
     const SIZE: Size = Size::Medium;
 
+    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
+        (
+            Some(Attitude::Chaotic),
+            Some(match self.subrace {
+                ElfSubrace::Dark => Morality::Evil,
+                ElfSubrace::High | ElfSubrace::Wood => Morality::Good,
+            }),
+        )
+    }
+
     fn get_base_speed(&self) -> u8 {
         match self.subrace {
             ElfSubrace::Wood => 35,
@@ -125,14 +136,6 @@ impl Citations for Elf {
 impl Features for Elf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
-            Feature {
-                title: "Alignment",
-                description: "Elves love freedom, variety, and self-expression, so they lean strongly toward the gentler aspects of chaos. They value and protect others' freedom as well as their own, and they are more often good than not. The drow are an exception; their exile into the Underdark has made them vicious and dangerous. Drow are more often evil than not.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 23,
-                },
-            },
             Feature {
                 title: "Darkvision",
                 description: "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
