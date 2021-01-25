@@ -12,8 +12,7 @@ pub(crate) struct Feature<'a> {
 
 impl fmt::Display for Feature<'_> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(f, "{}", self.title)?;
-        writeln!(f, "{} ({})", self.description, self.citation)
+        write!(f, "{} ({})", self.title, self.citation)
     }
 }
 

@@ -2,6 +2,4 @@
 source: src/character/features.rs
 expression: "format!(\"{}\", feature)"
 ---
-Title
-Description (PHB p1)
-
+Title (PHB p1)

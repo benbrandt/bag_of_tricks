@@ -178,7 +178,7 @@ impl fmt::Display for Character {
         writeln!(f, "{}", self.characteristics)?;
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {
-            writeln!(f, "{}", feature)?;
+            writeln!(f, "- {}", feature)?;
         }
         write!(f, "")
     }
