@@ -82,15 +82,9 @@ impl Characteristics for Dwarf {
 
 impl Citations for Dwarf {
     fn citations(&self) -> CitationList {
-        let race = Citation {
-            book: Book::PHB,
-            page: 18,
-        };
+        let race = Citation(Book::PHB, 18);
         let subrace = match self.subrace {
-            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation {
-                book: Book::PHB,
-                page: 20,
-            },
+            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation(Book::PHB, 20),
         };
         CitationList(vec![race, subrace])
     }
@@ -102,26 +96,17 @@ impl Features for Dwarf {
             Feature {
                 title: "Darkvision",
                 description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
+                citation: Citation(Book::PHB, 20),
             },
             Feature {
                 title: "Dwarven Resilience",
                 description: "You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
+                citation: Citation(Book::PHB, 20),
             },
             Feature {
                 title: "Stonecunning",
                 description: "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 20,
-                },
+                citation: Citation(Book::PHB, 20),
             },
         ];
         if let DwarfSubrace::Hill = self.subrace {
@@ -129,10 +114,7 @@ impl Features for Dwarf {
                 Feature {
                     title: "Dwarven Toughness",
                     description: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
-                    citation: Citation {
-                        book: Book::PHB,
-                        page: 20,
-                    },
+                    citation: Citation(Book::PHB, 20),
                 },
             ]);
         }

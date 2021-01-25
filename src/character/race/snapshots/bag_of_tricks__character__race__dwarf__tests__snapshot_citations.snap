@@ -2,7 +2,7 @@
 source: src/character/race/dwarf.rs
 expression: dwarf.citations()
 ---
-- book: PHB
-  page: 18
-- book: PHB
-  page: 20
+- - PHB
+  - 18
+- - PHB
+  - 20

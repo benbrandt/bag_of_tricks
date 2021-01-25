@@ -5,20 +5,20 @@ expression: dwarf.features()
 - title: Darkvision
   description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray."
   citation:
-    book: PHB
-    page: 20
+    - PHB
+    - 20
 - title: Dwarven Resilience
   description: "You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section)."
   citation:
-    book: PHB
-    page: 20
+    - PHB
+    - 20
 - title: Stonecunning
   description: "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
   citation:
-    book: PHB
-    page: 20
+    - PHB
+    - 20
 - title: Dwarven Toughness
   description: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
   citation:
-    book: PHB
-    page: 20
+    - PHB
+    - 20

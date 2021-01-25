@@ -5,15 +5,15 @@ expression: halfling.features()
 - title: Brave
   description: You have advantage on saving throws against being frightened.
   citation:
-    book: PHB
-    page: 28
+    - PHB
+    - 28
 - title: Halfling Nimbleness
   description: You can move through the space of any creature that is of a size larger than yours.
   citation:
-    book: PHB
-    page: 28
+    - PHB
+    - 28
 - title: Naturally Stealthy
   description: You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.
   citation:
-    book: PHB
-    page: 28
+    - PHB
+    - 28

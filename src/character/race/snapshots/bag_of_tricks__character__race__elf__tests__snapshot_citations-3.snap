@@ -2,7 +2,7 @@
 source: src/character/race/elf.rs
 expression: elf.citations()
 ---
-- book: PHB
-  page: 21
-- book: PHB
-  page: 24
+- - PHB
+  - 21
+- - PHB
+  - 24

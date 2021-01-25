@@ -2,7 +2,7 @@
 source: src/character/race/gnome.rs
 expression: gnome.citations()
 ---
-- book: PHB
-  page: 35
-- book: PHB
-  page: 37
+- - PHB
+  - 35
+- - PHB
+  - 37

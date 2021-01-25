@@ -2,5 +2,5 @@
 source: src/character/race/half_elf.rs
 expression: half_elf.citations()
 ---
-- book: PHB
-  page: 38
+- - PHB
+  - 38

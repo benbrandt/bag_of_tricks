@@ -63,15 +63,9 @@ impl Characteristics for Halfling {
 
 impl Citations for Halfling {
     fn citations(&self) -> CitationList {
-        let race = Citation {
-            book: Book::PHB,
-            page: 26,
-        };
+        let race = Citation(Book::PHB, 26);
         let subrace = match self.subrace {
-            HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation {
-                book: Book::PHB,
-                page: 28,
-            },
+            HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation(Book::PHB, 28),
         };
         CitationList(vec![race, subrace])
     }
@@ -83,36 +77,24 @@ impl Features for Halfling {
             Feature {
                 title: "Brave",
                 description: "You have advantage on saving throws against being frightened.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
+                citation: Citation(Book::PHB, 28),
             },
             Feature {
                 title: "Halfling Nimbleness",
                 description: "You can move through the space of any creature that is of a size larger than yours.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
+                citation: Citation(Book::PHB, 28),
             },
         ];
         features.extend(match self.subrace {
             HalflingSubrace::Lightfoot => vec![Feature {
                 title: "Naturally Stealthy",
                 description: "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
+                citation: Citation(Book::PHB, 28),
             }],
             HalflingSubrace::Stout => vec![Feature {
                 title: "Stout Resilience",
                 description: "You have advantage on saving throws against poison, and you have resistance against poison damage.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 28,
-                },
+                citation: Citation(Book::PHB, 28),
             }],
         });
         features

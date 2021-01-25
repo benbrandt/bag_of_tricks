@@ -64,15 +64,9 @@ impl Characteristics for Gnome {
 
 impl Citations for Gnome {
     fn citations(&self) -> CitationList {
-        let race = Citation {
-            book: Book::PHB,
-            page: 35,
-        };
+        let race = Citation(Book::PHB, 35);
         let subrace = match self.subrace {
-            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation {
-                book: Book::PHB,
-                page: 37,
-            },
+            GnomeSubrace::Forest | GnomeSubrace::Rock => Citation(Book::PHB, 37),
         };
         CitationList(vec![race, subrace])
     }
@@ -84,18 +78,12 @@ impl Features for Gnome {
             Feature {
                 title: "Darkvision",
                 description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 37,
-                },
+                citation: Citation(Book::PHB, 37),
             },
             Feature {
                 title: "Gnome Cunning",
                 description: "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
-                citation: Citation {
-                    book: Book::PHB,
-                    page: 37,
-                },
+                citation: Citation(Book::PHB, 37),
             },
         ];
         features.extend(match self.subrace {
@@ -103,28 +91,18 @@ impl Features for Gnome {
                 Feature {
                     title: "Natural Illusionist",
                     description: "You know the minor illusion cantrip. Intelligence is your spellcasting ability for it.",
-                    citation: Citation {
-                        book: Book::PHB,
-                        page: 37,
-                    },
+                    citation: Citation(Book::PHB, 37),
                 },
                 Feature {
                     title: "Speak with Small Beasts",
                     description: "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts. Forest gnomes love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets.",
-                    citation: Citation {
-                        book: Book::PHB,
-                        page: 37,
-                    },
-                },
+                    citation: Citation(Book::PHB, 37),               },
             ],
             GnomeSubrace::Rock => vec![
                 Feature {
                     title: "Artificer's Lore",
                     description: "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.",
-                    citation: Citation {
-                        book: Book::PHB,
-                        page: 37,
-                    },
+                    citation: Citation(Book::PHB, 37),
                 },
                 Feature {
                     title: "Artificer's Lore",
@@ -138,10 +116,7 @@ Fire Starter. The device produces a miniature flame, which you can use to light 
 
 Music Box. When opened, this music box plays a single song at a moderate volume.
 The box stops playing when it reaches the song's end or when it is closed.",
-                    citation: Citation {
-                        book: Book::PHB,
-                        page: 37,
-                    },
+                    citation: Citation(Book::PHB, 37),
                 },
             ],
         });

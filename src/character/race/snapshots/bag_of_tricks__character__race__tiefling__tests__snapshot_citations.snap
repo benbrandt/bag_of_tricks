@@ -2,5 +2,5 @@
 source: src/character/race/tiefling.rs
 expression: tiefling.citations()
 ---
-- book: PHB
-  page: 42
+- - PHB
+  - 42

@@ -2,7 +2,7 @@
 source: src/character/race/halfling.rs
 expression: halfling.citations()
 ---
-- book: PHB
-  page: 26
-- book: PHB
-  page: 28
+- - PHB
+  - 26
+- - PHB
+  - 28

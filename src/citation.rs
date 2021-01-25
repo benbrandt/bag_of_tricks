@@ -13,14 +13,11 @@ pub(crate) enum Book {
 
 /// Book and page number for citations.
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Citation {
-    pub(crate) book: Book,
-    pub(crate) page: u16,
-}
+pub(crate) struct Citation(pub(crate) Book, pub(crate) u16);
 
 impl fmt::Display for Citation {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} p{}", self.book, self.page)
+        write!(f, "{} p{}", self.0, self.1)
     }
 }
 
@@ -32,9 +29,9 @@ impl fmt::Display for CitationList {
         let mut citations = HashMap::new();
         for c in &self.0 {
             citations
-                .entry(c.book)
+                .entry(c.0)
                 .or_insert_with(HashSet::new)
-                .insert(c.page);
+                .insert(c.1);
         }
         for (book, page_nums) in citations {
             let mut pages = page_nums
@@ -64,25 +61,13 @@ mod tests {
 
     #[test]
     fn test_citation_display() {
-        let citation = Citation {
-            book: Book::PHB,
-            page: 123,
-        };
+        let citation = Citation(Book::PHB, 123);
         assert_eq!(format!("{}", citation), "PHB p123");
     }
 
     #[test]
     fn test_citations_display() {
-        let citations = CitationList(vec![
-            Citation {
-                book: Book::PHB,
-                page: 123,
-            },
-            Citation {
-                book: Book::PHB,
-                page: 125,
-            },
-        ]);
+        let citations = CitationList(vec![Citation(Book::PHB, 123), Citation(Book::PHB, 125)]);
         assert_eq!(format!("{}", citations), "PHB p123,125");
     }
 }
