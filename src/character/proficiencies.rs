@@ -51,8 +51,8 @@ impl ProficiencyOption {
                 // Make sure they are positive, and increase the weight of the higher ones
                 let weights = modifiers.map(|m| {
                     let pos_mod =
-                        usize::try_from(if min < 0 { m + min.abs() } else { m }).unwrap_or(0);
-                    pos_mod * pos_mod
+                        usize::try_from(if min <= 0 { m + min.abs() + 1 } else { m }).unwrap_or(0);
+                    pos_mod.pow(u32::try_from(pos_mod).unwrap())
                 });
                 let dist = WeightedIndex::new(weights).unwrap();
                 Proficiency::Skill(available_skills.collect::<Vec<Skill>>()[dist.sample(rng)])
