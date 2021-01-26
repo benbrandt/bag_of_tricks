@@ -61,19 +61,19 @@ impl Citations for HalfOrc {
 impl Features for HalfOrc {
     fn features(&self) -> Vec<Feature> {
         vec![
+            // Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
             Feature {
                 title: "Darkvision",
-                description: "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
                 citation: Citation(Book::PHB, 41),
             },
+            // When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.
             Feature {
                 title: "Relentless Endurance",
-                description: "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
                 citation: Citation(Book::PHB, 41),
             },
+            // When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.
             Feature {
                 title: "Savage Attacks",
-                description: "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.",
                 citation: Citation(Book::PHB, 41),
             },
         ]

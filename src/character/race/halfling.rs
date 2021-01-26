@@ -74,26 +74,26 @@ impl Citations for Halfling {
 impl Features for Halfling {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
+            // You have advantage on saving throws against being frightened.
             Feature {
                 title: "Brave",
-                description: "You have advantage on saving throws against being frightened.",
                 citation: Citation(Book::PHB, 28),
             },
+            // You can move through the space of any creature that is of a size larger than yours.
             Feature {
                 title: "Halfling Nimbleness",
-                description: "You can move through the space of any creature that is of a size larger than yours.",
                 citation: Citation(Book::PHB, 28),
             },
         ];
         features.extend(match self.subrace {
+            // You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.
             HalflingSubrace::Lightfoot => vec![Feature {
                 title: "Naturally Stealthy",
-                description: "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
                 citation: Citation(Book::PHB, 28),
             }],
+            // You have advantage on saving throws against poison, and you have resistance against poison damage.
             HalflingSubrace::Stout => vec![Feature {
                 title: "Stout Resilience",
-                description: "You have advantage on saving throws against poison, and you have resistance against poison damage.",
                 citation: Citation(Book::PHB, 28),
             }],
         });

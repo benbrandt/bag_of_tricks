@@ -6,7 +6,6 @@ use crate::citation::Citation;
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Feature<'a> {
     pub(crate) title: &'a str,
-    pub(crate) description: &'a str,
     pub(crate) citation: Citation,
 }
 
@@ -32,7 +31,6 @@ mod tests {
     fn test_display() {
         let feature = Feature {
             title: "Title",
-            description: "Description",
             citation: Citation(Book::PHB, 1),
         };
         insta::assert_snapshot!(format!("{}", feature));

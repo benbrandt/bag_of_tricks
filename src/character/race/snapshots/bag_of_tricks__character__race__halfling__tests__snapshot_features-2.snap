@@ -3,17 +3,14 @@ source: src/character/race/halfling.rs
 expression: halfling.features()
 ---
 - title: Brave
-  description: You have advantage on saving throws against being frightened.
   citation:
     - PHB
     - 28
 - title: Halfling Nimbleness
-  description: You can move through the space of any creature that is of a size larger than yours.
   citation:
     - PHB
     - 28
 - title: Stout Resilience
-  description: "You have advantage on saving throws against poison, and you have resistance against poison damage."
   citation:
     - PHB
     - 28

@@ -93,27 +93,27 @@ impl Citations for Dwarf {
 impl Features for Dwarf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
+            // Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
             Feature {
                 title: "Darkvision",
-                description: "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
                 citation: Citation(Book::PHB, 20),
             },
+            // You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).
             Feature {
                 title: "Dwarven Resilience",
-                description: "You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).",
                 citation: Citation(Book::PHB, 20),
             },
+            // Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.
             Feature {
                 title: "Stonecunning",
-                description: "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
                 citation: Citation(Book::PHB, 20),
             },
         ];
         if let DwarfSubrace::Hill = self.subrace {
             features.extend(vec![
+                // Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
                 Feature {
                     title: "Dwarven Toughness",
-                    description: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
                     citation: Citation(Book::PHB, 20),
                 },
             ]);
