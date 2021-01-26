@@ -4,6 +4,7 @@ expression: "format!(\"{}\", character)"
 ---
 CHARACTER NAME: Kildrak Fireforge
 RACE: Mountain Dwarf (PHB p18,20)
+BACKGROUND: Acolyte (PHB p127)
 LEVEL: 1
 
 STR  -1 (8)
@@ -21,7 +22,7 @@ PROF  MOD  SKILL            BONUS:
       STR  Athletics        -1
       CHA  Deception        +0
       INT  History          +2
-      WIS  Insight          +1
+ X    WIS  Insight          +3
       CHA  Intimidation     +0
       INT  Investigation    +2
       WIS  Medicine         +1
@@ -29,7 +30,7 @@ PROF  MOD  SKILL            BONUS:
       WIS  Perception       +1
       CHA  Performance      +0
       CHA  Persuasion       +0
-      INT  Religion         +2
+ X    INT  Religion         +4
       DEX  Sleight of Hand  +0
       DEX  Stealth          +0
       WIS  Survival         +1
@@ -37,7 +38,7 @@ PROF  MOD  SKILL            BONUS:
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
-LANGUAGES: Common, Dwarvish
+LANGUAGES: Common, Dwarvish, Primordial, Draconic
 PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(SmithsTools))
 CHARACTERISTICS:
 Alignment: Lawful Evil
@@ -47,8 +48,18 @@ Size: Medium
 Height: 4'6"
 Weight: 165 lb.
 
+PERSONALITY TRAITS:
+I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.
+I've spent so long in the temple that I have little practical experience dealing with people in the outside world.
+IDEAL: Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)
+BOND: I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.
+FLAW: I am inflexible in my thinking.
+
+EQUIPMENT
+A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
+- Shelter of the Faithful (PHB p127)
 

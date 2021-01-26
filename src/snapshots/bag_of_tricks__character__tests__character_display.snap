@@ -9,6 +9,8 @@ abilities:
   Intelligence: 15
   Wisdom: 13
   Charisma: 11
+background:
+  type: Acolyte
 characteristics:
   age: 316
   alignment:
@@ -19,12 +21,21 @@ characteristics:
   height: 54
   size: Medium
   weight: 165
-chosen_languages: []
+chosen_languages:
+  - Primordial
+  - Draconic
 chosen_proficiencies:
   - Tool:
       ArtisansTools: SmithsTools
 level: 1
 name: Kildrak Fireforge
+personality:
+  bond: I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.
+  flaw: I am inflexible in my thinking.
+  ideal: Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)
+  traits:
+    - "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
+    - "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
 race:
   type: Dwarf
   subrace: Mountain
