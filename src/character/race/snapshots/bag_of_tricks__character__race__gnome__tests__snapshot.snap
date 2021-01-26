@@ -4,11 +4,8 @@ expression: gnome
 ---
 - type: Gnome
   subrace: Forest
-- "Lorilla \"Cloak\" Daergel"
+- "Ellyjobell \"Ashhearth\" Garrick"
 - age: 337
-  alignment:
-    - Neutral
-    - Evil
   base_speed: 25
   gender: Female
   height: 40

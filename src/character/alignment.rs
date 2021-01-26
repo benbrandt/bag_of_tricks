@@ -19,14 +19,14 @@ pub(crate) enum Morality {
     Neutral,
 }
 
-fn weighted_choice<T, I>(rng: &mut impl Rng, options: I, tendency: Option<T>) -> T
+fn weighted_choice<T, I>(rng: &mut impl Rng, options: I, influences: &[T]) -> T
 where
     T: Clone + Copy + PartialEq,
     I: Clone + Iterator<Item = T>,
 {
     let weights = options
         .clone()
-        .map(|a| if Some(a) == tendency { 2 } else { 1 });
+        .map(|a| 1 + influences.iter().filter(|i| &a == *i).count());
     options.collect::<Vec<T>>()[WeightedIndex::new(weights).unwrap().sample(rng)]
 }
 
@@ -36,11 +36,11 @@ pub(crate) struct Alignment(Attitude, Morality);
 impl Alignment {
     pub(crate) fn gen(
         rng: &mut impl Rng,
-        attitude_tendency: Option<Attitude>,
-        morality_tendency: Option<Morality>,
+        attitude_influences: &[Attitude],
+        morality_influences: &[Morality],
     ) -> Self {
-        let attitude = weighted_choice(rng, Attitude::iter(), attitude_tendency);
-        let morality = weighted_choice(rng, Morality::iter(), morality_tendency);
+        let attitude = weighted_choice(rng, Attitude::iter(), attitude_influences);
+        let morality = weighted_choice(rng, Morality::iter(), morality_influences);
         Self(attitude, morality)
     }
 }
@@ -51,5 +51,15 @@ impl fmt::Display for Alignment {
             Self(Attitude::Neutral, Morality::Neutral) => write!(f, "Neutral"),
             Self(a, m) => write!(f, "{} {}", a, m),
         }
+    }
+}
+
+pub(crate) trait AlignmentInfluences {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![]
     }
 }

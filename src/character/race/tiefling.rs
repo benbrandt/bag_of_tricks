@@ -6,7 +6,7 @@ use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -57,13 +57,19 @@ impl Tiefling {
     }
 }
 
+impl AlignmentInfluences for Tiefling {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Chaotic]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![Morality::Evil]
+    }
+}
+
 impl Characteristics for Tiefling {
     const AGE_RANGE: AgeRange = AgeRange(1..=100);
     const SIZE: Size = Size::Medium;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (Some(Attitude::Chaotic), Some(Morality::Evil))
-    }
 
     fn get_base_speed(&self) -> u8 {
         30

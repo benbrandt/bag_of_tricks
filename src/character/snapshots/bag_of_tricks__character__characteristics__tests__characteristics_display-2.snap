@@ -2,9 +2,8 @@
 source: src/character/characteristics.rs
 expression: "format!(\"{}\", characteristics)"
 ---
-Alignment: Chaotic Good
 Age: 100
-Gender: Male
+Gender: Female
 Size: Medium
 Height: 6'3"
 Weight: 300 lb.

@@ -7,7 +7,7 @@ use super::{elf::Elf, human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Attitude},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
@@ -45,13 +45,15 @@ impl HalfElf {
     }
 }
 
+impl AlignmentInfluences for HalfElf {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Chaotic]
+    }
+}
+
 impl Characteristics for HalfElf {
     const AGE_RANGE: AgeRange = AgeRange(1..=180);
     const SIZE: Size = Size::Medium;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (Some(Attitude::Chaotic), None)
-    }
 
     fn get_base_speed(&self) -> u8 {
         30

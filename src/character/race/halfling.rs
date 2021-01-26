@@ -8,7 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -44,13 +44,19 @@ pub(crate) struct Halfling {
     subrace: HalflingSubrace,
 }
 
+impl AlignmentInfluences for Halfling {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Lawful]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![Morality::Good]
+    }
+}
+
 impl Characteristics for Halfling {
     const AGE_RANGE: AgeRange = AgeRange(1..=150);
     const SIZE: Size = Size::Small;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (Some(Attitude::Lawful), Some(Morality::Good))
-    }
 
     fn get_base_speed(&self) -> u8 {
         25

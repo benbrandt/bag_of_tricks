@@ -2,48 +2,48 @@
 source: src/character.rs
 expression: "format!(\"{}\", character)"
 ---
-CHARACTER NAME: Kildrak Fireforge
+CHARACTER NAME: Hlin Holderhek
 RACE: Mountain Dwarf (PHB p18,20)
 BACKGROUND: Acolyte (PHB p127)
+ALIGNMENT: Lawful Good
 LEVEL: 1
 
-STR  -1 (8)
-DEX  +0 (11)
-CON  +4 (19)
+STR  -2 (7)
+DEX  +1 (12)
+CON  +3 (17)
 INT  +2 (15)
-WIS  +1 (13)
-CHA  +0 (11)
+WIS  +2 (15)
+CHA  +1 (13)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
-      DEX  Acrobatics       +0
-      WIS  Animal Handling  +1
+      DEX  Acrobatics       +1
+      WIS  Animal Handling  +2
       INT  Arcana           +2
-      STR  Athletics        -1
-      CHA  Deception        +0
+      STR  Athletics        -2
+      CHA  Deception        +1
       INT  History          +2
- X    WIS  Insight          +3
-      CHA  Intimidation     +0
+ X    WIS  Insight          +4
+      CHA  Intimidation     +1
       INT  Investigation    +2
-      WIS  Medicine         +1
+      WIS  Medicine         +2
       INT  Nature           +2
-      WIS  Perception       +1
-      CHA  Performance      +0
-      CHA  Persuasion       +0
+      WIS  Perception       +2
+      CHA  Performance      +1
+      CHA  Persuasion       +1
  X    INT  Religion         +4
-      DEX  Sleight of Hand  +0
-      DEX  Stealth          +0
-      WIS  Survival         +1
+      DEX  Sleight of Hand  +1
+      DEX  Stealth          +1
+      WIS  Survival         +2
 
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
-LANGUAGES: Common, Dwarvish, Primordial, Draconic
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(SmithsTools))
+LANGUAGES: Common, Dwarvish, Sylvan, Orc
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(BrewersSupplies))
 CHARACTERISTICS:
-Alignment: Lawful Evil
 Age: 316
-Gender: Male
+Gender: Female
 Size: Medium
 Height: 4'6"
 Weight: 165 lb.
@@ -51,9 +51,9 @@ Weight: 165 lb.
 PERSONALITY TRAITS:
 I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.
 I've spent so long in the temple that I have little practical experience dealing with people in the outside world.
-IDEAL: Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)
-BOND: I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.
-FLAW: I am inflexible in my thinking.
+IDEAL: Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.  (Lawful)
+BOND: I owe my life to the priest who took me in when my parents died.
+FLAW: Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.
 
 EQUIPMENT
 A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp

@@ -7,6 +7,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
+        alignment::AlignmentInfluences,
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -48,6 +49,8 @@ impl Human {
         names.surname.iter().choose(rng).unwrap()
     }
 }
+
+impl AlignmentInfluences for Human {}
 
 impl Characteristics for Human {
     const AGE_RANGE: AgeRange = AgeRange(1..=100);

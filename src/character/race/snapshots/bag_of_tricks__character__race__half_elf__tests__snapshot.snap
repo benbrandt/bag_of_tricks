@@ -10,11 +10,8 @@ expression: half_elf
       - 1
 - Del Starag
 - age: 62
-  alignment:
-    - Chaotic
-    - Good
   base_speed: 30
-  gender: Male
+  gender: Female
   height: 71
   size: Medium
   weight: 180

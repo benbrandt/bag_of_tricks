@@ -6,7 +6,7 @@ use super::{human::Human, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -35,13 +35,19 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct HalfOrc;
 
+impl AlignmentInfluences for HalfOrc {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Chaotic]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![Morality::Evil]
+    }
+}
+
 impl Characteristics for HalfOrc {
     const AGE_RANGE: AgeRange = AgeRange(1..=75);
     const SIZE: Size = Size::Medium;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (Some(Attitude::Chaotic), Some(Morality::Evil))
-    }
 
     fn get_base_speed(&self) -> u8 {
         30

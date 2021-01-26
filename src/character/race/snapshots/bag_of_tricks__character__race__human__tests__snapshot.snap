@@ -3,11 +3,8 @@ source: src/character/race/human.rs
 expression: human
 ---
 - type: Human
-- Kara Chernin
+- Jalana Falone
 - age: 93
-  alignment:
-    - Chaotic
-    - Neutral
   base_speed: 30
   gender: Female
   height: 64

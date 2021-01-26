@@ -4,11 +4,8 @@ expression: halfling
 ---
 - type: Halfling
   subrace: Lightfoot
-- Merla Goodbarrel
+- Vani High-hill
 - age: 101
-  alignment:
-    - Neutral
-    - Evil
   base_speed: 25
   gender: Female
   height: 36

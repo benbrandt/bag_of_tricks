@@ -8,7 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Morality},
         attack::Resistances,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -45,13 +45,15 @@ pub(crate) struct Gnome {
     subrace: GnomeSubrace,
 }
 
+impl AlignmentInfluences for Gnome {
+    fn morality(&self) -> Vec<Morality> {
+        vec![Morality::Good]
+    }
+}
+
 impl Characteristics for Gnome {
     const AGE_RANGE: AgeRange = AgeRange(1..=500);
     const SIZE: Size = Size::Small;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (None, Some(Morality::Good))
-    }
 
     fn get_base_speed(&self) -> u8 {
         25
@@ -112,7 +114,7 @@ impl Features for Gnome {
                 // Music Box. When opened, this music box plays a single song at a moderate volume.
                 // The box stops playing when it reaches the song's end or when it is closed.
                 Feature {
-                    title: "Artificer's Lore",
+                    title: "Tinker",
                     citation: Citation(Book::PHB, 37),
                 },
             ],

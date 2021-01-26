@@ -3,11 +3,8 @@ source: src/character/characteristics.rs
 expression: characteristics
 ---
 age: 100
-alignment:
-  - Chaotic
-  - Good
 base_speed: 30
-gender: Male
+gender: Female
 height: 75
 size: Medium
 weight: 300

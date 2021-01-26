@@ -12,7 +12,7 @@ use crate::{
     citation::{Book, Citation, CitationList, Citations},
 };
 
-use super::{Background, Personality, PersonalityOptions};
+use super::{Background, Influence, Personality, PersonalityOptions};
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Acolyte;
@@ -66,13 +66,13 @@ impl PersonalityOptions for Acolyte {
         "I am suspicious of strangers and expect the worst of them.",
         "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.",
     ];
-    const IDEALS: [&'static str; 6] = [
-        "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)",
-        "Charity. I always try to help those in need, no matter what the personal cost. (Good)",
-        "Change. We must help bring about the changes the gods are constantly working in the world. (Chaotic)",
-        "Power. I hope to one day rise to the top of my faith's religious hierarchy. (Lawful)",
-        "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. (Lawful)",
-        "Aspiration. I seek to prove myself worthy of my god;s favor by matching my actions against his or her teachings. (Any)",
+    const IDEALS: [(&'static str, Influence); 6] = [
+        ("Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.", Influence::Lawful),
+        ("Charity. I always try to help those in need, no matter what the personal cost.", Influence::Good),
+        ("Change. We must help bring about the changes the gods are constantly working in the world", Influence::Chaotic),
+        ("Power. I hope to one day rise to the top of my faith's religious hierarchy.", Influence::Lawful),
+        ("Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. ", Influence::Lawful),
+        ("Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings.", Influence::Any),
     ];
     const TRAITS: [&'static str; 8] = [
         "I idolize a particular hero of my faith, and constantly refer to that person's deeds and example.",

@@ -6,9 +6,6 @@ expression: dwarf
   subrace: Hill
 - Hlin Holderhek
 - age: 41
-  alignment:
-    - Neutral
-    - Good
   base_speed: 25
   gender: Female
   height: 49

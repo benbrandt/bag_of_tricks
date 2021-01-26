@@ -22,14 +22,15 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScore, attack::Resistances, characteristics::CharacteristicDetails,
-    features::Features, languages::Languages, proficiencies::Proficiencies,
+    ability::AbilityScore, alignment::AlignmentInfluences, attack::Resistances,
+    characteristics::CharacteristicDetails, features::Features, languages::Languages,
+    proficiencies::Proficiencies,
 };
 
 /// Shared race traits
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race:
-    Citations + Features + Languages + Proficiencies + Resistances + fmt::Display
+    AlignmentInfluences + Citations + Features + Languages + Proficiencies + Resistances + fmt::Display
 {
     /// Method to generate a new instance of the struct
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails)

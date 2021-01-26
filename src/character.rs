@@ -12,6 +12,7 @@ mod race;
 
 use std::{fmt, writeln};
 
+use alignment::{Alignment, AlignmentInfluences, Attitude};
 use background::{Background, BackgroundOptions, Personality};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -25,12 +26,13 @@ use languages::{Language, Languages};
 use proficiencies::{Proficiencies, Proficiency};
 use race::{Race, RaceOptions};
 
-use self::proficiencies::ProficiencyOption;
+use self::{alignment::Morality, proficiencies::ProficiencyOption};
 
 /// Character information
 #[derive(Deserialize, Serialize)]
 pub struct Character {
     abilities: AbilityScores,
+    alignment: Option<Alignment>,
     background: Box<dyn Background>,
     characteristics: CharacteristicDetails,
     chosen_languages: Vec<Language>,
@@ -50,6 +52,7 @@ impl Character {
         let (background, personality) = BackgroundOptions::gen(rng);
         let mut character = Self {
             abilities,
+            alignment: None,
             background,
             characteristics,
             chosen_languages: vec![],
@@ -59,9 +62,14 @@ impl Character {
             personality,
             race,
         };
+        character.gen_alignment(rng);
         character.gen_languages(rng);
         character.gen_proficiences(rng);
         character
+    }
+
+    fn gen_alignment(&mut self, rng: &mut impl Rng) {
+        self.alignment = Some(Alignment::gen(rng, &self.attitude(), &self.morality()));
     }
 
     fn gen_languages(&mut self, rng: &mut impl Rng) {
@@ -93,6 +101,20 @@ impl Character {
 
     fn speed(&self) -> u8 {
         self.characteristics.base_speed
+    }
+}
+
+impl AlignmentInfluences for Character {
+    fn attitude(&self) -> Vec<Attitude> {
+        let mut attitude = self.race.attitude();
+        attitude.extend(self.personality.attitude());
+        attitude
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        let mut morality = self.race.morality();
+        morality.extend(self.personality.morality());
+        morality
     }
 }
 
@@ -148,6 +170,7 @@ impl fmt::Display for Character {
             self.background,
             self.background.citations()
         )?;
+        writeln!(f, "ALIGNMENT: {}", self.alignment.as_ref().unwrap())?;
         writeln!(f, "LEVEL: {}", self.level)?;
         writeln!(f)?;
         writeln!(f, "{}", self.abilities)?;

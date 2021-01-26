@@ -8,7 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -60,13 +60,19 @@ pub(crate) struct Dwarf {
     subrace: DwarfSubrace,
 }
 
+impl AlignmentInfluences for Dwarf {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Lawful]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![Morality::Good]
+    }
+}
+
 impl Characteristics for Dwarf {
     const AGE_RANGE: AgeRange = AgeRange(1..=350);
     const SIZE: Size = Size::Medium;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (Some(Attitude::Lawful), Some(Morality::Good))
-    }
 
     fn get_base_speed(&self) -> u8 {
         25

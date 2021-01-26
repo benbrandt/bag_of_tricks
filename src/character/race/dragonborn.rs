@@ -9,7 +9,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Morality},
         attack::{DamageType, Resistances},
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
@@ -106,27 +106,26 @@ impl Dragonborn {
     // }
 }
 
+impl AlignmentInfluences for Dragonborn {
+    fn morality(&self) -> Vec<Morality> {
+        vec![match self.ancestry {
+            DraconicAncestry::Black
+            | DraconicAncestry::Blue
+            | DraconicAncestry::Green
+            | DraconicAncestry::Red
+            | DraconicAncestry::White => Morality::Evil,
+            DraconicAncestry::Brass
+            | DraconicAncestry::Bronze
+            | DraconicAncestry::Copper
+            | DraconicAncestry::Gold
+            | DraconicAncestry::Silver => Morality::Good,
+        }]
+    }
+}
+
 impl Characteristics for Dragonborn {
     const AGE_RANGE: AgeRange = AgeRange(1..=80);
     const SIZE: Size = Size::Medium;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (
-            None,
-            Some(match self.ancestry {
-                DraconicAncestry::Black
-                | DraconicAncestry::Blue
-                | DraconicAncestry::Green
-                | DraconicAncestry::Red
-                | DraconicAncestry::White => Morality::Evil,
-                DraconicAncestry::Brass
-                | DraconicAncestry::Bronze
-                | DraconicAncestry::Copper
-                | DraconicAncestry::Gold
-                | DraconicAncestry::Silver => Morality::Good,
-            }),
-        )
-    }
 
     fn get_base_speed(&self) -> u8 {
         30

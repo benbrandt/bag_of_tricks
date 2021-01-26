@@ -8,7 +8,7 @@ use super::Race;
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
-        alignment::{Attitude, Morality},
+        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::Resistances,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
@@ -83,19 +83,22 @@ impl Elf {
     }
 }
 
+impl AlignmentInfluences for Elf {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Chaotic]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![match self.subrace {
+            ElfSubrace::Dark => Morality::Evil,
+            ElfSubrace::High | ElfSubrace::Wood => Morality::Good,
+        }]
+    }
+}
+
 impl Characteristics for Elf {
     const AGE_RANGE: AgeRange = AgeRange(1..=750);
     const SIZE: Size = Size::Medium;
-
-    fn get_alignment_tendencies(&self) -> (Option<Attitude>, Option<Morality>) {
-        (
-            Some(Attitude::Chaotic),
-            Some(match self.subrace {
-                ElfSubrace::Dark => Morality::Evil,
-                ElfSubrace::High | ElfSubrace::Wood => Morality::Good,
-            }),
-        )
-    }
 
     fn get_base_speed(&self) -> u8 {
         match self.subrace {

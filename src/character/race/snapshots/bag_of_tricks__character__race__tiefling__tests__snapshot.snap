@@ -3,11 +3,8 @@ source: src/character/race/tiefling.rs
 expression: tiefling
 ---
 - type: Tiefling
-- Kara Chernin
+- Faila Astorio
 - age: 93
-  alignment:
-    - Chaotic
-    - Neutral
   base_speed: 30
   gender: Female
   height: 64
