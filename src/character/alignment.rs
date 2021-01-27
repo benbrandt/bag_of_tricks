@@ -1,6 +1,6 @@
 use std::fmt;
 
-use rand::{distributions::WeightedIndex, prelude::Distribution, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -24,10 +24,10 @@ where
     T: Clone + Copy + PartialEq,
     I: Clone + Iterator<Item = T>,
 {
-    let weights = options
-        .clone()
-        .map(|a| 1 + influences.iter().filter(|i| &a == *i).count());
-    options.collect::<Vec<T>>()[WeightedIndex::new(weights).unwrap().sample(rng)]
+    *options
+        .collect::<Vec<T>>()
+        .choose_weighted(rng, |t| 1 + influences.iter().filter(|i| t == *i).count())
+        .unwrap()
 }
 
 #[derive(Deserialize, Serialize)]

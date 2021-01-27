@@ -9,7 +9,15 @@ use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::Display;
 
-use super::{Character, ability::Skill, equipment::{armor::ArmorType, tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool}, weapons::{WeaponCategory, WeaponType}}};
+use super::{
+    ability::Skill,
+    equipment::{
+        armor::ArmorType,
+        tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
+        weapons::{WeaponCategory, WeaponType},
+    },
+    Character,
+};
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum WeaponProficiency {
