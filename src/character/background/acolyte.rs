@@ -1,10 +1,12 @@
 use std::fmt;
 
+use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 use crate::{
     character::{
         ability::Skill,
+        backstory::Backstory,
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -19,7 +21,7 @@ pub(crate) struct Acolyte;
 
 #[typetag::serde]
 impl Background for Acolyte {
-    fn gen(rng: &mut impl rand::Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
     }
 
@@ -27,6 +29,8 @@ impl Background for Acolyte {
         String::from("A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp")
     }
 }
+
+impl Backstory for Acolyte {}
 
 impl Citations for Acolyte {
     fn citations(&self) -> CitationList {
@@ -36,6 +40,8 @@ impl Citations for Acolyte {
 
 impl Features for Acolyte {
     fn features(&self) -> Vec<Feature> {
+        // As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.
+        // You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple.
         vec![Feature {
             title: "Shelter of the Faithful",
             citation: Citation(Book::PHB, 127),

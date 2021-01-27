@@ -2,6 +2,7 @@ mod ability;
 mod alignment;
 mod attack;
 mod background;
+mod backstory;
 mod characteristics;
 mod equipment;
 mod features;
@@ -14,6 +15,7 @@ use std::{fmt, writeln};
 
 use alignment::{Alignment, AlignmentInfluences, Attitude};
 use background::{Background, BackgroundOptions, Personality};
+use backstory::Backstory;
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -115,6 +117,12 @@ impl AlignmentInfluences for Character {
         let mut morality = self.race.morality();
         morality.extend(self.personality.morality());
         morality
+    }
+}
+
+impl Backstory for Character {
+    fn backstory(&self) -> Vec<String> {
+        self.background.backstory()
     }
 }
 
@@ -220,14 +228,21 @@ impl fmt::Display for Character {
                 .collect::<Vec<String>>()
                 .join(", ")
         )?;
+        writeln!(f)?;
         writeln!(f, "CHARACTERISTICS:")?;
         writeln!(f, "{}", self.characteristics)?;
         writeln!(f, "{}", self.personality)?;
         writeln!(f, "EQUIPMENT")?;
         writeln!(f, "{}", self.background.equipment())?;
+        writeln!(f)?;
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {
             writeln!(f, "- {}", feature)?;
+        }
+        writeln!(f)?;
+        writeln!(f, "BACKSTORY:")?;
+        for backstory in self.backstory() {
+            writeln!(f, "{}", backstory)?;
         }
         write!(f, "")
     }

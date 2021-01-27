@@ -1,4 +1,6 @@
 mod acolyte;
+mod charlatan;
+mod criminal;
 
 use std::fmt;
 
@@ -9,10 +11,11 @@ use strum_macros::{Display, EnumIter};
 
 use crate::citation::Citations;
 
-use self::acolyte::Acolyte;
+use self::{acolyte::Acolyte, charlatan::Charlatan, criminal::Criminal};
 
 use super::{
     alignment::{AlignmentInfluences, Attitude, Morality},
+    backstory::Backstory,
     features::Features,
     languages::Languages,
     proficiencies::Proficiencies,
@@ -100,7 +103,7 @@ pub(crate) trait PersonalityOptions {
 
 #[typetag::serde(tag = "type")]
 pub(crate) trait Background:
-    Citations + Features + Languages + Proficiencies + fmt::Display
+    Backstory + Citations + Features + Languages + Proficiencies + fmt::Display
 {
     /// Generate a new instance of the background
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality)
@@ -113,12 +116,16 @@ pub(crate) trait Background:
 #[derive(EnumIter)]
 pub(crate) enum BackgroundOptions {
     Acolyte,
+    Charlatan,
+    Criminal,
 }
 
 impl BackgroundOptions {
     pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         match Self::iter().choose(rng).unwrap() {
             Self::Acolyte => Acolyte::gen(rng),
+            Self::Charlatan => Charlatan::gen(rng),
+            Self::Criminal => Criminal::gen(rng),
         }
     }
 }

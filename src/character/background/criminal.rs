@@ -1,0 +1,150 @@
+use std::fmt;
+
+use rand::{prelude::IteratorRandom, Rng};
+use serde::{Deserialize, Serialize};
+use strum::IntoEnumIterator;
+use strum_macros::{Display, EnumIter};
+
+use crate::{
+    character::{
+        ability::Skill,
+        backstory::Backstory,
+        equipment::tools::Tool,
+        features::{Feature, Features},
+        languages::Languages,
+        proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+    },
+    citation::{Book, Citation, CitationList, Citations},
+};
+
+use super::{Background, Influence, Personality, PersonalityOptions};
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum Specialty {
+    Blackmailer,
+    Burglar,
+    Enforcer,
+    Fence,
+    #[strum(serialize = "Highway robber")]
+    HighwayRobber,
+    #[strum(serialize = "Hired killer")]
+    HiredKiller,
+    Pickpocket,
+    Smuggler,
+}
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum Variant {
+    Criminal,
+    Spy,
+}
+
+#[derive(Deserialize, Serialize)]
+pub(crate) struct Criminal {
+    specialty: Specialty,
+    variant: Variant,
+}
+
+#[typetag::serde]
+impl Background for Criminal {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+        let background = Box::new(Self {
+            specialty: Specialty::iter().choose(rng).unwrap(),
+            variant: Variant::iter().choose(rng).unwrap(),
+        });
+        (background, Self::gen_personality(rng))
+    }
+
+    fn equipment(&self) -> String {
+        String::from("A crowbar, a set of dark common clothes including a hood, and a pouch containing 15 gp")
+    }
+}
+
+impl Backstory for Criminal {}
+
+impl Citations for Criminal {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation(Book::PHB, 129)])
+    }
+}
+
+impl Features for Criminal {
+    fn features(&self) -> Vec<Feature> {
+        // You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.
+        vec![Feature {
+            title: "Criminal Contact",
+            citation: Citation(Book::PHB, 129),
+        }]
+    }
+}
+
+impl Languages for Criminal {}
+
+impl PersonalityOptions for Criminal {
+    const BONDS: [&'static str; 6] = [
+        "I'm trying to pay off an old debt I owe to a generous benefactor.",
+        "My ill-gotten gains go to support my family.",
+        "Something important was taken from me, and I aim to steal it back.",
+        "I will become the greatest thief that ever lived.",
+        "I'm guilty of a terrible crime. I hope I can redeem myself for it.",
+        "Someone I loved died because of a mistake I made. That will never happen again.",
+    ];
+    const FLAWS: [&'static str; 6] = [
+        "When I see something valuable, I can't think about anything but how to steal it.",
+        "When faced with a choice between money and my friends, I usually choose the money.",
+        "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.",
+        "I have a \"tell\" that reveals when I'm lying.",
+        "I turn tail and run when things look bad.",
+        "An innocent person is in prison for a crime that I committed. I'm okay with that.",
+    ];
+    const IDEALS: [(&'static str, Influence); 6] = [
+        (
+            "Honor. I don't steal from others in the trade.",
+            Influence::Lawful,
+        ),
+        (
+            "Freedom. Chains are meant to be broken, as are those who would forge them.",
+            Influence::Chaotic,
+        ),
+        (
+            "Charity. I steal from the wealthy so that I can help people in need.",
+            Influence::Good,
+        ),
+        (
+            "Greed. I will do whatever it takes to become wealthy.",
+            Influence::Evil,
+        ),
+        ("People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.", Influence::Neutral),
+        ("Redemption. There's a spark of good in everyone.", Influence::Good),
+    ];
+    const TRAITS: [&'static str; 8] = [
+        "I always have a plan for what to do when things go wrong.",
+        "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.",
+        "The first thing I do in a new place is note the locations of everything valuable \u{2014} or where such things could be hidden.",
+        "I would rather make a new friend than a new enemy.",
+        "I am incredibly slow to trust. Those who seem the fairest often have the most to hide.",
+        "I don't pay attention to the risks in a situation. Never tell me the odds.",
+        "The best way to get me to do something is to tell me I can't do it.",
+        "I blow up at the slightest insult.",
+    ];
+}
+
+impl Proficiencies for Criminal {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        vec![
+            Proficiency::Skill(Skill::Deception),
+            Proficiency::Skill(Skill::Stealth),
+            Proficiency::Tool(Tool::ThievesTools),
+        ]
+    }
+
+    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
+        vec![ProficiencyOption::GamingSet]
+    }
+}
+
+impl fmt::Display for Criminal {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{} ({})", self.variant, self.specialty)
+    }
+}

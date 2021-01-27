@@ -13,7 +13,7 @@ use super::{
     ability::Skill,
     equipment::{
         armor::ArmorType,
-        tools::Tool,
+        tools::{GamingSet, Tool},
         weapons::{WeaponCategory, WeaponType},
     },
     Character,
@@ -28,6 +28,7 @@ pub(crate) enum WeaponProficiency {
 #[derive(Eq, Ord, PartialEq, PartialOrd)]
 pub(crate) enum ProficiencyOption {
     From(Vec<Proficiency>),
+    GamingSet,
     Skill,
 }
 
@@ -40,6 +41,12 @@ impl ProficiencyOption {
                 .filter(|p| !character.proficiencies().contains(p))
                 .choose(rng)
                 .unwrap(),
+            Self::GamingSet => Self::From(
+                GamingSet::iter()
+                    .map(|g| Proficiency::Tool(Tool::GamingSet(g)))
+                    .collect(),
+            )
+            .gen(rng, character),
             Self::Skill => {
                 let available_skills = Skill::iter()
                     .filter(|s| !character.proficiencies().contains(&Proficiency::Skill(*s)));
