@@ -9,15 +9,7 @@ use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::Display;
 
-use super::{
-    ability::Skill,
-    equipment::{
-        armor::ArmorType,
-        tools::{GamingSet, Tool},
-        weapons::{WeaponCategory, WeaponType},
-    },
-    Character,
-};
+use super::{Character, ability::Skill, equipment::{armor::ArmorType, tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool}, weapons::{WeaponCategory, WeaponType}}};
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum WeaponProficiency {
@@ -28,7 +20,9 @@ pub(crate) enum WeaponProficiency {
 #[derive(Eq, Ord, PartialEq, PartialOrd)]
 pub(crate) enum ProficiencyOption {
     From(Vec<Proficiency>),
+    ArtisansTools,
     GamingSet,
+    MusicalInstrument,
     Skill,
 }
 
@@ -41,9 +35,21 @@ impl ProficiencyOption {
                 .filter(|p| !character.proficiencies().contains(p))
                 .choose(rng)
                 .unwrap(),
+            Self::ArtisansTools => Self::From(
+                ArtisansTools::iter()
+                    .map(|g| Proficiency::Tool(Tool::ArtisansTools(g)))
+                    .collect(),
+            )
+            .gen(rng, character),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
                     .map(|g| Proficiency::Tool(Tool::GamingSet(g)))
+                    .collect(),
+            )
+            .gen(rng, character),
+            Self::MusicalInstrument => Self::From(
+                MusicalInstrument::iter()
+                    .map(|m| Proficiency::Tool(Tool::MusicalInstrument(m)))
                     .collect(),
             )
             .gen(rng, character),

@@ -1,9 +1,13 @@
 mod acolyte;
 mod charlatan;
 mod criminal;
+mod entertainer;
+mod folk_hero;
 
 use std::fmt;
 
+use entertainer::Entertainer;
+use folk_hero::FolkHero;
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -118,6 +122,8 @@ pub(crate) enum BackgroundOptions {
     Acolyte,
     Charlatan,
     Criminal,
+    Entertainer,
+    FolkHero,
 }
 
 impl BackgroundOptions {
@@ -126,6 +132,8 @@ impl BackgroundOptions {
             Self::Acolyte => Acolyte::gen(rng),
             Self::Charlatan => Charlatan::gen(rng),
             Self::Criminal => Criminal::gen(rng),
+            Self::Entertainer => Entertainer::gen(rng),
+            Self::FolkHero => FolkHero::gen(rng),
         }
     }
 }

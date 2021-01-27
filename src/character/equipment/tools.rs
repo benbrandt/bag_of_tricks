@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
 use strum_macros::{Display, EnumIter};
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(
+    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+)]
 pub(crate) enum ArtisansTools {
     #[strum(serialize = "Alchemist's Supplies")]
     AlchemistsSupplies,
@@ -53,7 +55,9 @@ pub(crate) enum GamingSet {
     ThreeDragonAnte,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(
+    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+)]
 pub(crate) enum MusicalInstrument {
     Bagpipes,
     Drum,
