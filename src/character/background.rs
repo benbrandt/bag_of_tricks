@@ -3,6 +3,14 @@ mod charlatan;
 mod criminal;
 mod entertainer;
 mod folk_hero;
+mod guild_artisan;
+mod hermit;
+mod noble;
+mod outlander;
+mod sage;
+mod sailor;
+mod soldier;
+mod urchin;
 
 use std::fmt;
 
@@ -15,7 +23,11 @@ use strum_macros::{Display, EnumIter};
 
 use crate::citation::Citations;
 
-use self::{acolyte::Acolyte, charlatan::Charlatan, criminal::Criminal};
+use self::{
+    acolyte::Acolyte, charlatan::Charlatan, criminal::Criminal, guild_artisan::GuildArtisan,
+    hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage, sailor::Sailor,
+    soldier::Soldier, urchin::Urchin,
+};
 
 use super::{
     alignment::{AlignmentInfluences, Attitude, Morality},
@@ -124,6 +136,14 @@ pub(crate) enum BackgroundOptions {
     Criminal,
     Entertainer,
     FolkHero,
+    GuildArtisan,
+    Hermit,
+    Noble,
+    Outlander,
+    Sage,
+    Sailor,
+    Soldier,
+    Urchin,
 }
 
 impl BackgroundOptions {
@@ -134,6 +154,14 @@ impl BackgroundOptions {
             Self::Criminal => Criminal::gen(rng),
             Self::Entertainer => Entertainer::gen(rng),
             Self::FolkHero => FolkHero::gen(rng),
+            Self::GuildArtisan => GuildArtisan::gen(rng),
+            Self::Hermit => Hermit::gen(rng),
+            Self::Noble => Noble::gen(rng),
+            Self::Outlander => Outlander::gen(rng),
+            Self::Sage => Sage::gen(rng),
+            Self::Sailor => Sailor::gen(rng),
+            Self::Soldier => Soldier::gen(rng),
+            Self::Urchin => Urchin::gen(rng),
         }
     }
 }
