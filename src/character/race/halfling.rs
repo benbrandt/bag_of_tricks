@@ -156,7 +156,10 @@ impl Race for Halfling {
 
 impl Resistances for Halfling {
     fn resistances(&self) -> Vec<DamageType> {
-        vec![DamageType::Poison]
+        match self.subrace {
+            HalflingSubrace::Lightfoot => vec![],
+            HalflingSubrace::Stout => vec![DamageType::Poison],
+        }
     }
 }
 
