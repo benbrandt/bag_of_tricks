@@ -1,0 +1,12 @@
+---
+source: src/character/characteristics.rs
+expression: characteristics
+
+---
+age: 100
+base_speed: 30
+gender: Female
+height: 75
+size: Medium
+weight: 300
+

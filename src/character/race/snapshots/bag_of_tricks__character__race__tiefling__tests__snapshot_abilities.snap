@@ -1,8 +1,10 @@
 ---
 source: src/character/race/tiefling.rs
 expression: tiefling.abilities()
+
 ---
 - - Charisma
   - 2
 - - Intelligence
   - 1
+

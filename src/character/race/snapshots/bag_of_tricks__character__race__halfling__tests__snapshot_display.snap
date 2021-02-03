@@ -1,5 +1,8 @@
 ---
 source: src/character/race/halfling.rs
-expression: "format!(\"{}\", halfling)"
+expression: "HalflingSubrace::iter().map(|subrace|\n                                format!(\"{}\", Halfling\n                                        {\n                                            subrace\n                                        })).collect::<Vec<String>>().join(\"\\n\\n\")"
+
 ---
 Lightfoot Halfling
+
+Stout Halfling

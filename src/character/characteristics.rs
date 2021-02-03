@@ -117,6 +117,21 @@ mod tests {
 
     /// Verify that our snapshot remains the same.
     #[test]
+    fn test_characteristics() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let characteristics = CharacteristicDetails {
+            age: 100,
+            base_speed: 30,
+            gender: Gender::gen(&mut rng),
+            height: 75,
+            size: Size::Medium,
+            weight: 300,
+        };
+        insta::assert_yaml_snapshot!(characteristics);
+    }
+
+    /// Verify that our snapshot remains the same.
+    #[test]
     fn test_characteristics_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let characteristics = CharacteristicDetails {
@@ -127,9 +142,6 @@ mod tests {
             size: Size::Medium,
             weight: 300,
         };
-        // Struct Snapshot
-        insta::assert_yaml_snapshot!(characteristics);
-        // fmt::Display Snapshot
         insta::assert_snapshot!(format!("{}", characteristics));
     }
 }

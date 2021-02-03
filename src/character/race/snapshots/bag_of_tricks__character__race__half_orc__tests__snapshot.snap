@@ -1,6 +1,7 @@
 ---
 source: src/character/race/half_orc.rs
 expression: half_orc
+
 ---
 - type: HalfOrc
 - Emen Falone
@@ -10,3 +11,4 @@ expression: half_orc
   height: 66
   size: Medium
   weight: 196
+

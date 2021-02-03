@@ -204,33 +204,30 @@ mod tests {
 
     #[test]
     fn test_snapshot_display() {
-        for subrace in GnomeSubrace::iter() {
-            let gnome = Gnome { subrace };
-            insta::assert_snapshot!(format!("{}", gnome));
-        }
+        insta::assert_snapshot!(GnomeSubrace::iter()
+            .map(|subrace| format!("{}", Gnome { subrace }))
+            .collect::<Vec<String>>()
+            .join("\n\n"));
     }
 
     #[test]
     fn test_snapshot_abilities() {
-        for subrace in GnomeSubrace::iter() {
-            let gnome = Gnome { subrace };
-            insta::assert_yaml_snapshot!(gnome.abilities());
-        }
+        insta::assert_yaml_snapshot!(GnomeSubrace::iter()
+            .map(|subrace| (Gnome { subrace }).abilities())
+            .collect::<Vec<Vec<AbilityScore>>>());
     }
 
     #[test]
     fn test_snapshot_citations() {
-        for subrace in GnomeSubrace::iter() {
-            let gnome = Gnome { subrace };
-            insta::assert_yaml_snapshot!(gnome.citations());
-        }
+        insta::assert_yaml_snapshot!(GnomeSubrace::iter()
+            .map(|subrace| (Gnome { subrace }).citations())
+            .collect::<Vec<CitationList>>());
     }
 
     #[test]
     fn test_snapshot_features() {
-        for subrace in GnomeSubrace::iter() {
-            let gnome = Gnome { subrace };
-            insta::assert_yaml_snapshot!(gnome.features());
-        }
+        insta::assert_yaml_snapshot!(GnomeSubrace::iter()
+            .map(|subrace| (Gnome { subrace }).features())
+            .collect::<Vec<Vec<Feature>>>());
     }
 }

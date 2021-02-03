@@ -1,6 +1,8 @@
 ---
 source: src/character/race/human.rs
 expression: human.citations()
+
 ---
 - - PHB
   - 29
+

@@ -1,8 +1,14 @@
 ---
 source: src/character/race/gnome.rs
-expression: gnome.citations()
+expression: "GnomeSubrace::iter().map(|subrace|\n                             (Gnome{subrace,}).citations()).collect::<Vec<CitationList>>()"
+
 ---
-- - PHB
-  - 35
-- - PHB
-  - 37
+- - - PHB
+    - 35
+  - - PHB
+    - 37
+- - - PHB
+    - 35
+  - - PHB
+    - 37
+

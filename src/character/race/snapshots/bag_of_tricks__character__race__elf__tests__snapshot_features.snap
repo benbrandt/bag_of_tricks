@@ -1,28 +1,62 @@
 ---
 source: src/character/race/elf.rs
-expression: elf.features()
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
+
 ---
-- title: Darkvision
-  citation:
-    - PHB
-    - 23
-- title: Fey Ancestry
-  citation:
-    - PHB
-    - 23
-- title: Trance
-  citation:
-    - PHB
-    - 23
-- title: Superior Darkvision
-  citation:
-    - PHB
-    - 24
-- title: Sunlight Sensitivity
-  citation:
-    - PHB
-    - 24
-- title: Drow Magic
-  citation:
-    - PHB
-    - 24
+- - title: Darkvision
+    citation:
+      - PHB
+      - 23
+  - title: Fey Ancestry
+    citation:
+      - PHB
+      - 23
+  - title: Trance
+    citation:
+      - PHB
+      - 23
+  - title: Superior Darkvision
+    citation:
+      - PHB
+      - 24
+  - title: Sunlight Sensitivity
+    citation:
+      - PHB
+      - 24
+  - title: Drow Magic
+    citation:
+      - PHB
+      - 24
+- - title: Darkvision
+    citation:
+      - PHB
+      - 23
+  - title: Fey Ancestry
+    citation:
+      - PHB
+      - 23
+  - title: Trance
+    citation:
+      - PHB
+      - 23
+  - title: Cantrip
+    citation:
+      - PHB
+      - 24
+- - title: Darkvision
+    citation:
+      - PHB
+      - 23
+  - title: Fey Ancestry
+    citation:
+      - PHB
+      - 23
+  - title: Trance
+    citation:
+      - PHB
+      - 23
+  - title: Mask of the Wild
+    citation:
+      - PHB
+      - 24
+

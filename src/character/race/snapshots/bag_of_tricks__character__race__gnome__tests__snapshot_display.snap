@@ -1,5 +1,8 @@
 ---
 source: src/character/race/gnome.rs
-expression: "format!(\"{}\", gnome)"
+expression: "GnomeSubrace::iter().map(|subrace|\n                             format!(\"{}\", Gnome\n                                     {\n                                         subrace\n                                     })).collect::<Vec<String>>().join(\"\\n\\n\")"
+
 ---
 Forest Gnome
+
+Rock Gnome

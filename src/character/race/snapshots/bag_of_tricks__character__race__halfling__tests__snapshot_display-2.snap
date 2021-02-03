@@ -1,5 +1,0 @@
----
-source: src/character/race/halfling.rs
-expression: "format!(\"{}\", halfling)"
----
-Stout Halfling

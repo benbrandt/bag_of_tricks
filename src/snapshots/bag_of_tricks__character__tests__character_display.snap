@@ -1,43 +1,70 @@
 ---
 source: src/character.rs
-expression: character
+expression: "format!(\"{}\", character)"
+
 ---
-abilities:
-  Strength: 7
-  Dexterity: 12
-  Constitution: 17
-  Intelligence: 15
-  Wisdom: 15
-  Charisma: 13
-alignment:
-  - Lawful
-  - Good
-background:
-  type: Acolyte
-characteristics:
-  age: 316
-  base_speed: 25
-  gender: Female
-  height: 54
-  size: Medium
-  weight: 165
-chosen_languages:
-  - Sylvan
-  - Orc
-chosen_proficiencies:
-  - Tool:
-      ArtisansTools: BrewersSupplies
-level: 1
-name: Hlin Holderhek
-personality:
-  bond: I owe my life to the priest who took me in when my parents died.
-  flaw: "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
-  ideal:
-    - "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. "
-    - Lawful
-  traits:
-    - "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
-    - "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
-race:
-  type: Dwarf
-  subrace: Mountain
+CHARACTER NAME: Hlin Holderhek
+RACE: Mountain Dwarf (PHB p18,20)
+BACKGROUND: Acolyte (PHB p127)
+ALIGNMENT: Lawful Good
+LEVEL: 1
+
+STR  -2 (7)
+DEX  +1 (12)
+CON  +3 (17)
+INT  +2 (15)
+WIS  +2 (15)
+CHA  +1 (13)
+
+SKILLS:
+PROF  MOD  SKILL            BONUS:
+      DEX  Acrobatics       +1
+      WIS  Animal Handling  +2
+      INT  Arcana           +2
+      STR  Athletics        -2
+      CHA  Deception        +1
+      INT  History          +2
+ X    WIS  Insight          +4
+      CHA  Intimidation     +1
+      INT  Investigation    +2
+      WIS  Medicine         +2
+      INT  Nature           +2
+      WIS  Perception       +2
+      CHA  Performance      +1
+      CHA  Persuasion       +1
+ X    INT  Religion         +4
+      DEX  Sleight of Hand  +1
+      DEX  Stealth          +1
+      WIS  Survival         +2
+
+SPEED: 25
+PROFICIENCY BONUS: +2
+RESISTANCES: Poison
+LANGUAGES: Common, Dwarvish, Sylvan, Orc
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(BrewersSupplies))
+
+CHARACTERISTICS:
+Age: 316
+Gender: Female
+Size: Medium
+Height: 4'6"
+Weight: 165 lb.
+
+PERSONALITY TRAITS:
+I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.
+I've spent so long in the temple that I have little practical experience dealing with people in the outside world.
+IDEAL: Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.  (Lawful)
+BOND: I owe my life to the priest who took me in when my parents died.
+FLAW: Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.
+
+EQUIPMENT
+A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp
+
+FEATURES AND TRAITS:
+- Darkvision (PHB p20)
+- Dwarven Resilience (PHB p20)
+- Stonecunning (PHB p20)
+- Shelter of the Faithful (PHB p127)
+
+BACKSTORY:
+

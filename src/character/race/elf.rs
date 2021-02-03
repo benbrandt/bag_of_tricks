@@ -272,33 +272,30 @@ mod tests {
 
     #[test]
     fn test_snapshot_display() {
-        for subrace in ElfSubrace::iter() {
-            let elf = Elf { subrace };
-            insta::assert_snapshot!(format!("{}", elf));
-        }
+        insta::assert_snapshot!(ElfSubrace::iter()
+            .map(|subrace| format!("{}", Elf { subrace }))
+            .collect::<Vec<String>>()
+            .join("\n\n"));
     }
 
     #[test]
     fn test_snapshot_abilities() {
-        for subrace in ElfSubrace::iter() {
-            let elf = Elf { subrace };
-            insta::assert_yaml_snapshot!(elf.abilities());
-        }
+        insta::assert_yaml_snapshot!(ElfSubrace::iter()
+            .map(|subrace| (Elf { subrace }).abilities())
+            .collect::<Vec<Vec<AbilityScore>>>());
     }
 
     #[test]
     fn test_snapshot_citations() {
-        for subrace in ElfSubrace::iter() {
-            let elf = Elf { subrace };
-            insta::assert_yaml_snapshot!(elf.citations());
-        }
+        insta::assert_yaml_snapshot!(ElfSubrace::iter()
+            .map(|subrace| (Elf { subrace }).citations())
+            .collect::<Vec<CitationList>>());
     }
 
     #[test]
     fn test_snapshot_features() {
-        for subrace in ElfSubrace::iter() {
-            let elf = Elf { subrace };
-            insta::assert_yaml_snapshot!(elf.features());
-        }
+        insta::assert_yaml_snapshot!(ElfSubrace::iter()
+            .map(|subrace| (Elf { subrace }).features())
+            .collect::<Vec<Vec<Feature>>>());
     }
 }

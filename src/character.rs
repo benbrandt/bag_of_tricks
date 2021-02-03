@@ -256,11 +256,17 @@ mod tests {
 
     /// Verify that our snapshot remains the same.
     #[test]
+    fn test_character() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let character = Character::gen(&mut rng);
+        insta::assert_yaml_snapshot!(character);
+    }
+
+    /// Verify that our snapshot remains the same.
+    #[test]
     fn test_character_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let character = Character::gen(&mut rng);
-        // Struct Snapshot
-        insta::assert_yaml_snapshot!(character);
         // fmt::Display Snapshot
         insta::assert_snapshot!(format!("{}", character));
     }

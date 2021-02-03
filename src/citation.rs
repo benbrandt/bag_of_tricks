@@ -6,13 +6,13 @@ use std::{
 use strum_macros::Display;
 
 /// Titles of the available D&D Books.
-#[derive(Clone, Copy, Deserialize, Display, Eq, Hash, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum Book {
     PHB,
 }
 
 /// Book and page number for citations.
-#[derive(Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
 pub(crate) struct Citation(pub(crate) Book, pub(crate) u16);
 
 impl fmt::Display for Citation {

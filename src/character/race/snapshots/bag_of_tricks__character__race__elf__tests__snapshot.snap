@@ -1,6 +1,7 @@
 ---
 source: src/character/race/elf.rs
 expression: elf
+
 ---
 - type: Elf
   subrace: Dark
@@ -11,3 +12,4 @@ expression: elf
   height: 59
   size: Medium
   weight: 105
+

@@ -1,10 +1,11 @@
 ---
 source: src/character/characteristics.rs
-expression: characteristics
+expression: "format!(\"{}\", characteristics)"
+
 ---
-age: 100
-base_speed: 30
-gender: Female
-height: 75
-size: Medium
-weight: 300
+Age: 100
+Gender: Female
+Size: Medium
+Height: 6'3"
+Weight: 300 lb.
+

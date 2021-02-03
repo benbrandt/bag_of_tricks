@@ -1,5 +1,6 @@
 ---
 source: src/character/race/human.rs
 expression: "format!(\"{}\", human)"
+
 ---
 Human

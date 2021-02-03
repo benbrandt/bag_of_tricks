@@ -1,6 +1,7 @@
 ---
 source: src/character/race/tiefling.rs
 expression: tiefling
+
 ---
 - type: Tiefling
 - Faila Astorio
@@ -10,3 +11,4 @@ expression: tiefling
   height: 64
   size: Medium
   weight: 145
+

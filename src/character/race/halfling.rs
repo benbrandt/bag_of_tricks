@@ -184,33 +184,30 @@ mod tests {
 
     #[test]
     fn test_snapshot_display() {
-        for subrace in HalflingSubrace::iter() {
-            let halfling = Halfling { subrace };
-            insta::assert_snapshot!(format!("{}", halfling));
-        }
+        insta::assert_snapshot!(HalflingSubrace::iter()
+            .map(|subrace| format!("{}", Halfling { subrace }))
+            .collect::<Vec<String>>()
+            .join("\n\n"));
     }
 
     #[test]
     fn test_snapshot_abilities() {
-        for subrace in HalflingSubrace::iter() {
-            let halfling = Halfling { subrace };
-            insta::assert_yaml_snapshot!(halfling.abilities());
-        }
+        insta::assert_yaml_snapshot!(HalflingSubrace::iter()
+            .map(|subrace| (Halfling { subrace }).abilities())
+            .collect::<Vec<Vec<AbilityScore>>>());
     }
 
     #[test]
     fn test_snapshot_citations() {
-        for subrace in HalflingSubrace::iter() {
-            let halfling = Halfling { subrace };
-            insta::assert_yaml_snapshot!(halfling.citations());
-        }
+        insta::assert_yaml_snapshot!(HalflingSubrace::iter()
+            .map(|subrace| (Halfling { subrace }).citations())
+            .collect::<Vec<CitationList>>());
     }
 
     #[test]
     fn test_snapshot_features() {
-        for subrace in HalflingSubrace::iter() {
-            let halfling = Halfling { subrace };
-            insta::assert_yaml_snapshot!(halfling.features());
-        }
+        insta::assert_yaml_snapshot!(HalflingSubrace::iter()
+            .map(|subrace| (Halfling { subrace }).features())
+            .collect::<Vec<Vec<Feature>>>());
     }
 }

@@ -1,8 +1,0 @@
----
-source: src/character/race/gnome.rs
-expression: gnome.citations()
----
-- - PHB
-  - 35
-- - PHB
-  - 37

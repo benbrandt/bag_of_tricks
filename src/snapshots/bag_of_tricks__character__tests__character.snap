@@ -1,0 +1,45 @@
+---
+source: src/character.rs
+expression: character
+
+---
+abilities:
+  Strength: 7
+  Dexterity: 12
+  Constitution: 17
+  Intelligence: 15
+  Wisdom: 15
+  Charisma: 13
+alignment:
+  - Lawful
+  - Good
+background:
+  type: Acolyte
+characteristics:
+  age: 316
+  base_speed: 25
+  gender: Female
+  height: 54
+  size: Medium
+  weight: 165
+chosen_languages:
+  - Sylvan
+  - Orc
+chosen_proficiencies:
+  - Tool:
+      ArtisansTools: BrewersSupplies
+level: 1
+name: Hlin Holderhek
+personality:
+  bond: I owe my life to the priest who took me in when my parents died.
+  flaw: "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
+  ideal:
+    - "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. "
+    - Lawful
+  traits:
+    - "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
+    - "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
+race:
+  type: Dwarf
+  subrace: Mountain
+

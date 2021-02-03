@@ -1,8 +1,10 @@
 ---
 source: src/character/race/half_orc.rs
 expression: half_orc.abilities()
+
 ---
 - - Constitution
   - 1
 - - Strength
   - 2
+

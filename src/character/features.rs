@@ -3,13 +3,13 @@ use std::fmt;
 
 use crate::citation::Citation;
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Feature<'a> {
-    pub(crate) title: &'a str,
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
+pub(crate) struct Feature {
+    pub(crate) title: &'static str,
     pub(crate) citation: Citation,
 }
 
-impl fmt::Display for Feature<'_> {
+impl fmt::Display for Feature {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{} ({})", self.title, self.citation)
     }

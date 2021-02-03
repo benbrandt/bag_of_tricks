@@ -231,33 +231,30 @@ mod tests {
 
     #[test]
     fn test_snapshot_display() {
-        for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
-            insta::assert_snapshot!(format!("{}", dwarf));
-        }
+        insta::assert_snapshot!(DwarfSubrace::iter()
+            .map(|subrace| format!("{}", Dwarf { subrace }))
+            .collect::<Vec<String>>()
+            .join("\n\n"));
     }
 
     #[test]
     fn test_snapshot_abilities() {
-        for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
-            insta::assert_yaml_snapshot!(dwarf.abilities());
-        }
+        insta::assert_yaml_snapshot!(DwarfSubrace::iter()
+            .map(|subrace| (Dwarf { subrace }).abilities())
+            .collect::<Vec<Vec<AbilityScore>>>());
     }
 
     #[test]
     fn test_snapshot_citations() {
-        for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
-            insta::assert_yaml_snapshot!(dwarf.citations());
-        }
+        insta::assert_yaml_snapshot!(DwarfSubrace::iter()
+            .map(|subrace| (Dwarf { subrace }).citations())
+            .collect::<Vec<CitationList>>());
     }
 
     #[test]
     fn test_snapshot_features() {
-        for subrace in DwarfSubrace::iter() {
-            let dwarf = Dwarf { subrace };
-            insta::assert_yaml_snapshot!(dwarf.features());
-        }
+        insta::assert_yaml_snapshot!(DwarfSubrace::iter()
+            .map(|subrace| (Dwarf { subrace }).features())
+            .collect::<Vec<Vec<Feature>>>());
     }
 }

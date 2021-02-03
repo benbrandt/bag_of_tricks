@@ -1,6 +1,8 @@
 ---
 source: src/character/race/tiefling.rs
 expression: tiefling.citations()
+
 ---
 - - PHB
   - 42
+

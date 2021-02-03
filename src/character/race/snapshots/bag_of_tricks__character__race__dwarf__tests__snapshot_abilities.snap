@@ -1,8 +1,14 @@
 ---
 source: src/character/race/dwarf.rs
-expression: dwarf.abilities()
+expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,}).abilities()).collect::<Vec<Vec<AbilityScore>>>()"
+
 ---
-- - Constitution
-  - 2
-- - Wisdom
-  - 1
+- - - Constitution
+    - 2
+  - - Wisdom
+    - 1
+- - - Constitution
+    - 2
+  - - Strength
+    - 2
+

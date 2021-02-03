@@ -1,20 +1,34 @@
 ---
 source: src/character/race/dwarf.rs
-expression: dwarf.features()
+expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
+
 ---
-- title: Darkvision
-  citation:
-    - PHB
-    - 20
-- title: Dwarven Resilience
-  citation:
-    - PHB
-    - 20
-- title: Stonecunning
-  citation:
-    - PHB
-    - 20
-- title: Dwarven Toughness
-  citation:
-    - PHB
-    - 20
+- - title: Darkvision
+    citation:
+      - PHB
+      - 20
+  - title: Dwarven Resilience
+    citation:
+      - PHB
+      - 20
+  - title: Stonecunning
+    citation:
+      - PHB
+      - 20
+  - title: Dwarven Toughness
+    citation:
+      - PHB
+      - 20
+- - title: Darkvision
+    citation:
+      - PHB
+      - 20
+  - title: Dwarven Resilience
+    citation:
+      - PHB
+      - 20
+  - title: Stonecunning
+    citation:
+      - PHB
+      - 20
+

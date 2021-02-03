@@ -1,8 +1,0 @@
----
-source: src/character/race/dwarf.rs
-expression: dwarf.citations()
----
-- - PHB
-  - 18
-- - PHB
-  - 20

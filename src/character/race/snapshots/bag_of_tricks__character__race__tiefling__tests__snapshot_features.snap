@@ -1,6 +1,7 @@
 ---
 source: src/character/race/tiefling.rs
 expression: tiefling.features()
+
 ---
 - title: Darkvision
   citation:
@@ -10,3 +11,4 @@ expression: tiefling.features()
   citation:
     - PHB
     - 43
+
