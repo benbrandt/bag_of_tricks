@@ -49,7 +49,7 @@ jobs:
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
-          args: --workspace --all-features --all-targets --no-fail-fast --verbose
+          args: --workspace --all-features --no-fail-fast --verbose
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
