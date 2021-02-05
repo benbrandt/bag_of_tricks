@@ -24,7 +24,8 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
+
+      - uses: Swatinem/rust-cache@v1
 
       - name: Run cargo build
         uses: actions-rs/cargo@v1
@@ -44,7 +45,8 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
+
+      - uses: Swatinem/rust-cache@v1
 
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
@@ -67,9 +69,10 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: nightly
-          override: true
+          toolchain: stable
           components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v1
 
       - name: Run cargo fmt
         uses: actions-rs/cargo@v1
