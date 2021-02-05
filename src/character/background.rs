@@ -50,18 +50,18 @@ pub(crate) enum Influence {
 impl AlignmentInfluences for Influence {
     fn attitude(&self) -> Vec<Attitude> {
         match self {
-            Self::Chaotic => vec![Attitude::Chaotic],
-            Self::Lawful => vec![Attitude::Lawful],
-            Self::Neutral => vec![Attitude::Neutral],
+            Self::Chaotic => vec![Attitude::Chaotic; 2],
+            Self::Lawful => vec![Attitude::Lawful; 2],
+            Self::Neutral => vec![Attitude::Neutral; 2],
             _ => vec![],
         }
     }
 
     fn morality(&self) -> Vec<Morality> {
         match self {
-            Self::Good => vec![Morality::Good],
-            Self::Evil => vec![Morality::Evil],
-            Self::Neutral => vec![Morality::Neutral],
+            Self::Good => vec![Morality::Good; 2],
+            Self::Evil => vec![Morality::Evil; 2],
+            Self::Neutral => vec![Morality::Neutral; 2],
             _ => vec![],
         }
     }
