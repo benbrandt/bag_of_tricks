@@ -86,7 +86,7 @@ async fn main() -> std::io::Result<()> {
         .expect("PORT must be a number");
 
     HttpServer::new(|| {
-        let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*")).unwrap();
+        let tera = Tera::new("templates/**/*").unwrap();
 
         App::new()
             .data(tera)
