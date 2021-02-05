@@ -1,0 +1,11 @@
+{
+    "name": "Bag of Tricka",
+    "description": "Random Character Generator",
+    "repository": "https://github.com/benbrandt/bag_of_tricks",
+    "success_url": "/",
+    "keywords": ["rust", "actix"],
+    "website": "https://github.com/benbrandt/bag_of_tricks",
+    "env": {
+      "BUILDPACK_URL": "https://github.com/emk/heroku-buildpack-rust.git"
+    }
+  }
