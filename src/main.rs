@@ -4,19 +4,22 @@ use actix_http::{body::Body, http::StatusCode, Response};
 use actix_web::{
     dev::ServiceResponse,
     error::ErrorInternalServerError,
+    get,
     middleware::{
         errhandlers::{ErrorHandlerResponse, ErrorHandlers},
-        Logger,
+        Compress, Logger,
     },
-    web::{get, resource, scope, Data},
+    web::{scope, Data},
     App, Error, HttpResponse, HttpServer, Result,
 };
+use env_logger::Env;
 use rand::SeedableRng;
 use rand_pcg::Pcg64;
 use tera::{Context, Tera};
 
 use bag_of_tricks::character::Character;
 
+#[get("/")]
 async fn index(tmpl: Data<Tera>) -> Result<HttpResponse, Error> {
     let mut rng = Pcg64::from_entropy();
     let mut ctx = Context::new();
@@ -74,8 +77,7 @@ fn get_error_response<B>(res: &ServiceResponse<B>, error: &str) -> Response<Body
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    env::set_var("RUST_LOG", "actix_web=info");
-    env_logger::init();
+    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
 
     HttpServer::new(|| {
         let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*")).unwrap();
@@ -83,7 +85,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .data(tera)
             .wrap(Logger::default())
-            .service(resource("/").route(get().to(index)))
+            .wrap(Compress::default())
+            .service(index)
             .service(scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8000")?
