@@ -14,7 +14,7 @@ I've been focusing on the necessary logic, so the "ui" is very bare-bones right 
 - Clone this repo
 - Run `cargo run` from the root of the project
 
-And you should get something like the following:
+Go to `http://localhost:8000`, and you should see something like this:
 
 ```text
 CHARACTER NAME: Tordek Frostbeard
