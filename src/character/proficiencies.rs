@@ -19,22 +19,32 @@ use super::{
     Character,
 };
 
+/// Types of weapons a character is proficient in.
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum WeaponProficiency {
+    /// Proficiency in an entire category of weapons
     Category(WeaponCategory),
+    /// Proficiency in a specific weapon type
     Specific(WeaponType),
 }
 
+/// A way to encapsulate a proficiency that needs to be chosen for a character.
 #[derive(Eq, Ord, PartialEq, PartialOrd)]
 pub(crate) enum ProficiencyOption {
+    /// Choose from a given list of proficiency options.
     From(Vec<Proficiency>),
+    /// Choose a random artisan's tools to be proficient in.
     ArtisansTools,
+    /// Choose a random gaming set to be proficient in.
     GamingSet,
+    /// Choose a random musical instrument to be proficient in.
     MusicalInstrument,
+    /// Choose a random skill to be proficient in (weighted towards you highest modifiers)
     Skill,
 }
 
 impl ProficiencyOption {
+    /// Randomly choose a given proficiency option, avoiding already existing proficiencies.
     pub(crate) fn gen(&self, rng: &mut impl Rng, character: &Character) -> Proficiency {
         match self {
             Self::From(list) => list
@@ -82,6 +92,7 @@ impl ProficiencyOption {
     }
 }
 
+/// Types of proficiencies
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum Proficiency {
     Armor(ArmorType),
@@ -90,11 +101,14 @@ pub(crate) enum Proficiency {
     Weapon(WeaponProficiency),
 }
 
+/// Trait to describe proficiencies given by an entity and any additional choices that can be made.
 pub(crate) trait Proficiencies {
+    /// Proficiencies given by an entity/object
     fn proficiencies(&self) -> Vec<Proficiency> {
         vec![]
     }
 
+    /// Proficiency options given by an entity/object that need to be chosen.
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![]
     }

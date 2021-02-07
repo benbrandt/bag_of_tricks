@@ -37,6 +37,7 @@ use super::{
     proficiencies::Proficiencies,
 };
 
+/// Types of alignment influence from personality traits
 #[derive(Clone, Copy, Deserialize, Display, Serialize)]
 pub(crate) enum Influence {
     Any,
@@ -48,6 +49,8 @@ pub(crate) enum Influence {
 }
 
 impl AlignmentInfluences for Influence {
+    /// Return attitude influence from personality.
+    /// Doubled because personality should be a major indicator of alignment.
     fn attitude(&self) -> Vec<Attitude> {
         match self {
             Self::Chaotic => vec![Attitude::Chaotic; 2],
@@ -57,6 +60,8 @@ impl AlignmentInfluences for Influence {
         }
     }
 
+    /// Return morality influence from personality.
+    /// Doubled because personality should be a major indicator of alignment.
     fn morality(&self) -> Vec<Morality> {
         match self {
             Self::Good => vec![Morality::Good; 2],
@@ -67,6 +72,7 @@ impl AlignmentInfluences for Influence {
     }
 }
 
+/// Description of a character's personality
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Personality {
     bond: String,
@@ -75,6 +81,7 @@ pub(crate) struct Personality {
     traits: Vec<String>,
 }
 
+/// Return attitude/morality influences from character's ideal
 impl AlignmentInfluences for Personality {
     fn attitude(&self) -> Vec<Attitude> {
         self.ideal.1.attitude()
@@ -97,12 +104,18 @@ impl fmt::Display for Personality {
     }
 }
 
+/// Trait to store associated constants for each background's personality tables.
 pub(crate) trait PersonalityOptions {
+    /// List of 6 bonds to choose from
     const BONDS: [&'static str; 6];
+    /// List of 6 flaws to choose from
     const FLAWS: [&'static str; 6];
+    /// List of 6 ideals to choose from, and their corresponding alignment influence
     const IDEALS: [(&'static str, Influence); 6];
+    /// List of 8 traits to choose from
     const TRAITS: [&'static str; 8];
 
+    /// Generate personality descriptions from the associated constants
     fn gen_personality(rng: &mut impl Rng) -> Personality {
         let ideal = *Self::IDEALS.iter().choose(rng).unwrap();
         Personality {
@@ -117,6 +130,7 @@ pub(crate) trait PersonalityOptions {
     }
 }
 
+/// Trait for backgrounds to build from
 #[typetag::serde(tag = "type")]
 pub(crate) trait Background:
     Backstory + Citations + Features + Languages + Proficiencies + fmt::Display
@@ -126,9 +140,11 @@ pub(crate) trait Background:
     where
         Self: Sized;
 
+    /// Return list of equipment provided by this background
     fn equipment(&self) -> String;
 }
 
+/// List of currently supported background options
 #[derive(EnumIter)]
 pub(crate) enum BackgroundOptions {
     Acolyte,
@@ -147,6 +163,7 @@ pub(crate) enum BackgroundOptions {
 }
 
 impl BackgroundOptions {
+    /// Choose a random background option and map to corresponding generator
     pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         match Self::iter().choose(rng).unwrap() {
             Self::Acolyte => Acolyte::gen(rng),

@@ -30,23 +30,44 @@ use race::{Race, RaceOptions};
 
 use self::{alignment::Morality, proficiencies::ProficiencyOption};
 
-/// Character information
+/// Character information. Mostly stores random choices made for this character.
 #[derive(Deserialize, Serialize)]
 pub struct Character {
+    /// Ability scores for the character.
     abilities: AbilityScores,
+    /// The character's alignment.
     alignment: Option<Alignment>,
+    /// The character's background choice.
     background: Box<dyn Background>,
+    /// Characteristics of the character.
     characteristics: CharacteristicDetails,
+    /// Languages randomly chosen for the character.
     chosen_languages: Vec<Language>,
+    /// Proficiencies randomly chosen for the character.
     chosen_proficiencies: Vec<Proficiency>,
+    /// Current level of the character.
     level: u8,
+    /// Character's name.
     name: String,
+    /// Personality traits of the chracacter.
     personality: Personality,
+    /// Race randomly chosen for the character.
     race: Box<dyn Race>,
 }
 
 impl Character {
     /// Generate a new random character
+    ///
+    /// The methodolgy is to gather together as many static inputs as possible (based on some initial random choices),
+    /// and then have those feed into later choices.
+    ///
+    /// Steps are as follows:
+    /// 1. Randomly choose a Race (which also generates a name and some physical characteristics)
+    /// 2. Roll ability scores (and apply the racial ability increases)
+    /// 3. Randomly choose a background and personality traits.
+    /// 4. Choose alignment (weighted based on inputs from race and background)
+    /// 5. Randomly choose any additional languages
+    /// 6. Randomly choose proficiencies, weighted towards optimal ones based on what is known about the character so far
     pub fn gen(rng: &mut impl Rng) -> Self {
         let (race, name, characteristics) = RaceOptions::gen(rng);
         let mut abilities = AbilityScores::gen(rng);
@@ -70,10 +91,12 @@ impl Character {
         character
     }
 
+    /// Generate character's alignment, feeding in any inputs we have for attitude and morality.
     fn gen_alignment(&mut self, rng: &mut impl Rng) {
         self.alignment = Some(Alignment::gen(rng, &self.attitude(), &self.morality()));
     }
 
+    /// Generate any additional languages, ensuring no overlap with current languages.
     fn gen_languages(&mut self, rng: &mut impl Rng) {
         let amount = self.addl_languages();
         let current = self.languages();
@@ -82,6 +105,9 @@ impl Character {
             .choose_multiple(rng, amount);
     }
 
+    /// Generate additional proficiencies, each looking at the current character sheet.
+    ///
+    /// They are generated from the most limited sets of options to greatest, to avoid overlapping choices.
     fn gen_proficiences(&mut self, rng: &mut impl Rng) {
         let mut options = self.addl_proficiencies();
         // Sort so that the options with the least amount are chosen first.
@@ -91,6 +117,7 @@ impl Character {
         }
     }
 
+    /// Return the character's proficiency bonus based on their level.
     fn proficiency_bonus(&self) -> i16 {
         match self.level {
             0..=4 => 2,
@@ -101,11 +128,13 @@ impl Character {
         }
     }
 
+    /// Return the walking speed of the character.
     fn speed(&self) -> u8 {
         self.characteristics.base_speed
     }
 }
 
+/// Combine all attitude and morality influences for the character (race and personality)
 impl AlignmentInfluences for Character {
     fn attitude(&self) -> Vec<Attitude> {
         let mut attitude = self.race.attitude();
@@ -120,12 +149,14 @@ impl AlignmentInfluences for Character {
     }
 }
 
+/// Combine all backstory items for the character.
 impl Backstory for Character {
     fn backstory(&self) -> Vec<String> {
         self.background.backstory()
     }
 }
 
+/// Combine all features and traits for the characters (race and background)
 impl Features for Character {
     fn features(&self) -> Vec<Feature> {
         let mut features = self.race.features();
@@ -134,6 +165,7 @@ impl Features for Character {
     }
 }
 
+/// Combine all languages for the character, both statically assigned and randomly chosen.
 impl Languages for Character {
     fn languages(&self) -> Vec<Language> {
         let mut languages = self.race.languages();
@@ -147,6 +179,7 @@ impl Languages for Character {
     }
 }
 
+/// Combine all proficiencies for the character, both statically assigned and randomly chosen.
 impl Proficiencies for Character {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = self.race.proficiencies();
@@ -162,12 +195,14 @@ impl Proficiencies for Character {
     }
 }
 
+/// Combine all resistances the character has.
 impl Resistances for Character {
     fn resistances(&self) -> Vec<DamageType> {
         self.race.resistances()
     }
 }
 
+/// Render a text version of the character. Useful for CLI or other output.
 impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "CHARACTER NAME: {}", self.name)?;

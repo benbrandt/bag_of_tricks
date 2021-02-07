@@ -27,7 +27,7 @@ use super::{
     proficiencies::Proficiencies,
 };
 
-/// Shared race traits
+/// Shared racial traits each race should provide.
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race:
     AlignmentInfluences + Citations + Features + Languages + Proficiencies + Resistances + fmt::Display
@@ -41,6 +41,7 @@ pub(crate) trait Race:
     fn abilities(&self) -> Vec<AbilityScore>;
 }
 
+/// All currently supported Race Options for character creation.
 #[derive(EnumIter)]
 pub(crate) enum RaceOptions {
     Dragonborn,
@@ -55,6 +56,7 @@ pub(crate) enum RaceOptions {
 }
 
 impl RaceOptions {
+    /// Randomly choose a race option and return the result of the corresponding racial struct's `gen` method
     pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         match Self::iter().choose(rng).unwrap() {
             Self::Dragonborn => Dragonborn::gen(rng),

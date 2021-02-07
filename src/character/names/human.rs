@@ -2,6 +2,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
+/// Ethnicity options, which determine name lists
 #[derive(EnumIter)]
 enum Ethnicity {
     Calishite,
@@ -15,6 +16,7 @@ enum Ethnicity {
     Turami,
 }
 
+/// Name options for a given ethnicity
 pub(crate) struct Names<'a> {
     pub(crate) female: &'a [&'a str],
     pub(crate) male: &'a [&'a str],
@@ -22,6 +24,7 @@ pub(crate) struct Names<'a> {
 }
 
 impl Names<'_> {
+    /// Choose a random ethnicity and then map to the name options
     pub(crate) fn gen_names(rng: &mut impl Rng) -> Self {
         match Ethnicity::iter().choose(rng).unwrap() {
             Ethnicity::Calishite => CALISHITE,

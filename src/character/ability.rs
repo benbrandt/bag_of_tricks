@@ -13,10 +13,11 @@ use super::{
 
 /// Return modifier based on ability score.
 fn modifier(score: u8) -> i16 {
-    // Lower value to closest even number, subtract by 10 and divide by two
+    // Lower value to closest even number, reduce by 10, and divide by two
     (i16::from(score) - i16::from(score) % 2 - 10) / 2
 }
 
+/// All possible ability score types to choose from
 #[derive(
     Clone,
     Copy,
@@ -51,6 +52,7 @@ pub(crate) enum AbilityScoreType {
 pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) u8);
 
 impl AbilityScore {
+    /// Generate an ability score by rolling 4d6 and keeping the highest 3
     fn gen(rng: &mut impl Rng) -> u8 {
         // Roll 4 d6's
         let mut rolls = RollCmd(4, Die::D6).roll(rng).0;
@@ -76,12 +78,14 @@ impl AbilityScores {
         Self(scores)
     }
 
+    /// Add list of ability score increases to the totals
     pub(crate) fn increase(&mut self, addl_scores: Vec<AbilityScore>) {
         for AbilityScore(score_type, val) in addl_scores {
             *self.0.entry(score_type).or_insert(0) += val;
         }
     }
 
+    /// Get modifier for a given ability score type
     pub(crate) fn modifier(&self, ability: AbilityScoreType) -> i16 {
         modifier(*self.0.get(&ability).unwrap_or(&0))
     }
@@ -97,6 +101,7 @@ impl fmt::Display for AbilityScores {
     }
 }
 
+/// All skill types available
 #[allow(dead_code)]
 #[derive(
     Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
@@ -125,6 +130,7 @@ pub(crate) enum Skill {
 }
 
 impl Skill {
+    /// Return corresponding ability score type for a given skill
     pub(crate) fn ability_score_type(self) -> AbilityScoreType {
         match self {
             Skill::Athletics => AbilityScoreType::Strength,
@@ -147,6 +153,7 @@ impl Skill {
         }
     }
 
+    /// Return the modifier for a skill, adding proficiency bonus if applicable
     pub(crate) fn modifier(self, character: &Character) -> i16 {
         character.abilities.modifier(self.ability_score_type())
             + if self.proficient(character) {
@@ -156,6 +163,7 @@ impl Skill {
             }
     }
 
+    /// Check if the character is proficient in this skill
     pub(crate) fn proficient(self, character: &Character) -> bool {
         character
             .proficiencies()

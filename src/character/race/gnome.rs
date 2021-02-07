@@ -42,6 +42,7 @@ enum GnomeSubrace {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Gnome {
+    /// Randomly chosen subrace
     subrace: GnomeSubrace,
 }
 

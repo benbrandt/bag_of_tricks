@@ -34,6 +34,7 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
 };
 
+/// List of dragon types available for ancestry options
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum DraconicAncestry {
     Black,
@@ -50,6 +51,7 @@ enum DraconicAncestry {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Dragonborn {
+    /// Randomly chosen draconic ancestry
     ancestry: DraconicAncestry,
 }
 
@@ -107,6 +109,7 @@ impl Dragonborn {
 }
 
 impl AlignmentInfluences for Dragonborn {
+    /// Morality influence evil if chromatic color, and good if metallic
     fn morality(&self) -> Vec<Morality> {
         vec![match self.ancestry {
             DraconicAncestry::Black
@@ -161,6 +164,7 @@ impl Languages for Dragonborn {
 }
 
 impl Name for Dragonborn {
+    /// Order is: Clan Name, First Name, Child/Nickname
     fn gen_name(
         rng: &mut impl Rng,
         CharacteristicDetails { gender, .. }: &CharacteristicDetails,

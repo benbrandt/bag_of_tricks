@@ -4,6 +4,7 @@ use strum_macros::Display;
 
 use crate::dice_roller::RollCmd;
 
+/// List of types of damage available
 #[allow(dead_code)]
 #[derive(Display)]
 pub(crate) enum DamageType {
@@ -22,9 +23,13 @@ pub(crate) enum DamageType {
     Thunder,
 }
 
+/// Damage information for a given object or attack
 pub(crate) struct Damage {
+    /// Type of damage the attack does
     pub(crate) damage_type: DamageType,
+    /// Modifier to add to the roll
     pub(crate) modifier: i16,
+    /// Damage roll
     pub(crate) roll: RollCmd,
 }
 
@@ -66,6 +71,7 @@ impl fmt::Display for Damage {
 //     }
 // }
 
+/// Trait to encapuslate resistances
 pub(crate) trait Resistances {
     /// Return list of resistances for this object
     fn resistances(&self) -> Vec<DamageType> {

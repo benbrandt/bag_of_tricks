@@ -33,6 +33,7 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 pub(crate) struct Human;
 
 impl Human {
+    /// Separate function to make it easier to share with other races
     pub(crate) fn gen_first_name<'a>(
         rng: &mut impl Rng,
         names: &'a Names,
@@ -45,6 +46,7 @@ impl Human {
         first_names.iter().choose(rng).unwrap()
     }
 
+    /// Separate function to make it easier to share with other races
     pub(crate) fn gen_surname<'a>(rng: &mut impl Rng, names: &'a Names) -> &'a str {
         names.surname.iter().choose(rng).unwrap()
     }

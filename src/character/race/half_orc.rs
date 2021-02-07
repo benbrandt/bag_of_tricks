@@ -93,6 +93,7 @@ impl Languages for HalfOrc {
 }
 
 impl Name for HalfOrc {
+    /// First name can be either orc or human name
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
         let orc_names = match characteristics.gender {

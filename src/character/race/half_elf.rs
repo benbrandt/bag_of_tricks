@@ -31,10 +31,12 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct HalfElf {
+    /// Randomly chosen additional ability score increases
     addl_increases: Vec<AbilityScore>,
 }
 
 impl HalfElf {
+    /// Generate 2 random ability increases other than charisma
     fn gen_ability_increases(rng: &mut impl Rng) -> Vec<AbilityScore> {
         AbilityScoreType::iter()
             .filter(|s| s != &AbilityScoreType::Charisma)
@@ -98,6 +100,7 @@ impl Languages for HalfElf {
 }
 
 impl Name for HalfElf {
+    /// First and last names can be either elven or human
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
         let first_name = *[

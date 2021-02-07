@@ -6,14 +6,17 @@ use strum_macros::{Display, EnumIter};
 
 use crate::dice_roller::RollCmd;
 
+/// An range of ages a given adventurer could be.
 pub(crate) struct AgeRange(pub(crate) RangeInclusive<u16>);
 
 impl AgeRange {
+    /// Generate a random age within the given range.
     fn gen(&self, rng: &mut impl Rng) -> u16 {
         rng.gen_range(self.0.clone())
     }
 }
 
+/// Really only here to help decide on names, not core to a character choice.
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 pub(crate) enum Gender {
     Female,
@@ -21,30 +24,42 @@ pub(crate) enum Gender {
 }
 
 impl Gender {
+    /// Choose a random gender
     fn gen(rng: &mut impl Rng) -> Self {
         Gender::iter().choose(rng).unwrap()
     }
 }
 
+/// Weight modifier
 pub(crate) enum WeightMod {
+    /// Fixed additional weight
     Fixed(u16),
+    /// Role to find additional weight
     Roll(RollCmd),
 }
 
+/// Convert feet + inches to just inches (allow for better readability in tables)
 pub(crate) const fn in_inches(feet: u8, inches: u8) -> u8 {
     feet * 12 + inches
 }
 
+/// Data from a table to generate a height and weight for a given character.
 pub(crate) struct HeightAndWeightTable {
+    /// Base height for this character
     pub(crate) base_height: u8,
+    /// Base weight for this character
     pub(crate) base_weight: u16,
+    /// Modifier to apply to the height
     pub(crate) height_mod: RollCmd,
+    /// Modifier to apply to the weight (informed by height)
     pub(crate) weight_mod: WeightMod,
 }
 
 impl HeightAndWeightTable {
+    /// Generate a random height and weight for a character
     pub(crate) fn gen(&self, rng: &mut impl Rng) -> (usize, usize) {
         let h = self.height_mod.roll(rng).total();
+        // Weight modifier is multiplied by height
         let w = h * match &self.weight_mod {
             WeightMod::Fixed(f) => usize::from(*f),
             WeightMod::Roll(r) => r.roll(rng).total(),
@@ -55,19 +70,28 @@ impl HeightAndWeightTable {
         )
     }
 }
+
+/// Size of character (there are more options for monsters)
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 pub(crate) enum Size {
     Small,
     Medium,
 }
 
+/// Physical characteristics about a character.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct CharacteristicDetails {
+    /// Age of the character
     pub(crate) age: u16,
+    /// Base speed of the character
     pub(crate) base_speed: u8,
+    /// Gender of the character (only used for name choices)
     pub(crate) gender: Gender,
+    /// Height of the character
     pub(crate) height: usize,
+    /// Size of the character
     pub(crate) size: Size,
+    /// Weight of the character
     pub(crate) weight: usize,
 }
 
@@ -81,14 +105,22 @@ impl fmt::Display for CharacteristicDetails {
     }
 }
 
+/// Trait for object (usually race) to generate appropriate characteristics about a character
+///
+/// Separate from race since it uses associated constants (which can't be on a trait object)
 pub(crate) trait Characteristics {
+    /// Age range to choose from
     const AGE_RANGE: AgeRange;
+    /// Character size
     const SIZE: Size;
 
+    /// Base walking speed
     fn get_base_speed(&self) -> u8;
 
+    /// Calculate the height and weight table to generate from
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable;
 
+    /// Generate characteristics for this race
     fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {
         let (height, weight) = self.get_height_and_weight_table().gen(rng);
         CharacteristicDetails {

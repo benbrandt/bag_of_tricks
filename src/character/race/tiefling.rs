@@ -25,6 +25,7 @@ use crate::{
     dice_roller::{Die, RollCmd},
 };
 
+/// Tiefling height and weight table
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 9),
     base_weight: 110,
@@ -36,6 +37,7 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 pub(crate) struct Tiefling;
 
 impl Tiefling {
+    /// Generate first name for a tiefling. Could be abyssal, human, or virtue name.
     fn gen_first_name<'a>(
         rng: &mut impl Rng,
         names: &'a Names,
@@ -104,12 +106,14 @@ impl Features for Tiefling {
 }
 
 impl Languages for Tiefling {
+    /// Names given by tiefling race
     fn languages(&self) -> Vec<Language> {
         vec![Language::Common, Language::Infernal]
     }
 }
 
 impl Name for Tiefling {
+    /// Name also requires getting a set of human names (for human lineage)
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
         format!(

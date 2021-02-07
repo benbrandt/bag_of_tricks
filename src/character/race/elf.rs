@@ -60,10 +60,12 @@ enum ElfSubrace {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Elf {
+    /// Rnadomly chosen subrace
     subrace: ElfSubrace,
 }
 
 impl Elf {
+    /// Before the age of 100, elves go by their child name
     pub(crate) fn gen_first_name<'a>(
         rng: &mut impl Rng,
         CharacteristicDetails { age, gender, .. }: &CharacteristicDetails,

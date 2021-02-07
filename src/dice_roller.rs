@@ -31,9 +31,11 @@ pub(crate) struct DieResult {
     pub(crate) roll: u8,
 }
 
+/// Result of dice rolls (multiple if more than one was requested)
 pub(crate) struct RollResult(pub(crate) Vec<DieResult>);
 
 impl RollResult {
+    /// Total of all rolls
     pub(crate) fn total(&self) -> usize {
         self.0.iter().fold(0, |acc, d| acc + usize::from(d.roll))
     }
@@ -48,7 +50,6 @@ fn roll_die(rng: &mut impl Rng, die: Die) -> DieResult {
 }
 
 /// Roll multiple dice
-
 pub(crate) struct RollCmd(pub(crate) usize, pub(crate) Die);
 
 impl RollCmd {

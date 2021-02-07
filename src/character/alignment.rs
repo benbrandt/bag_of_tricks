@@ -19,6 +19,7 @@ pub(crate) enum Morality {
     Neutral,
 }
 
+/// Choose from a given list of options weighted by number of influences for a given type
 fn weighted_choice<T, I>(rng: &mut impl Rng, options: I, influences: &[T]) -> T
 where
     T: Clone + Copy + PartialEq,
@@ -30,10 +31,12 @@ where
         .unwrap()
 }
 
+/// Character alignment, both attitude and morality
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Alignment(Attitude, Morality);
 
 impl Alignment {
+    /// Generate alignment, weighted by influences from other choices on the character sheet
     pub(crate) fn gen(
         rng: &mut impl Rng,
         attitude_influences: &[Attitude],
@@ -54,11 +57,14 @@ impl fmt::Display for Alignment {
     }
 }
 
+/// Trait to describe how this entity affects a character's alignment
 pub(crate) trait AlignmentInfluences {
+    /// List of attitude influences
     fn attitude(&self) -> Vec<Attitude> {
         vec![]
     }
 
+    /// List of morality influences
     fn morality(&self) -> Vec<Morality> {
         vec![]
     }

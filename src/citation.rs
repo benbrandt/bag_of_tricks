@@ -21,9 +21,11 @@ impl fmt::Display for Citation {
     }
 }
 
+/// List of multiple citations.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct CitationList(pub(crate) Vec<Citation>);
 
+/// Displays multiple citations from the same book together.
 impl fmt::Display for CitationList {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut citations = HashMap::new();
@@ -45,6 +47,9 @@ impl fmt::Display for CitationList {
     }
 }
 
+/// Trait for any entity/object in need of citation.
+///
+/// Makes it easer for users to find more information in the source books.
 pub(crate) trait Citations {
     /// Return list of citations for the object in question
     fn citations(&self) -> CitationList;

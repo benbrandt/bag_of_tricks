@@ -41,6 +41,7 @@ enum HalflingSubrace {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Halfling {
+    /// Randomly chosen subrace
     subrace: HalflingSubrace,
 }
 
