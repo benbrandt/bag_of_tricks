@@ -137,4 +137,9 @@ mod tests {
             assert!((1..=6).contains(&roll));
         }
     }
+
+    #[test]
+    fn test_roll_cmd_display() {
+        assert_eq!(format!("{}", RollCmd(4, Die::D6)), "4d6");
+    }
 }
