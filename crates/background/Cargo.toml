@@ -25,5 +25,5 @@ trinkets = { path = "../trinkets" }
 typetag = "0.1"
 
 [dev-dependencies]
-insta = "1"
+insta = { version = "1", features = ["backtrace"] }
 serde_yaml = "0.8"

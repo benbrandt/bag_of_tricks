@@ -27,5 +27,5 @@ strum = { version = "0.20", features = ["derive"] }
 trinkets = { path = "../trinkets" }
 
 [dev-dependencies]
-insta = "1"
+insta = { version = "1", features = ["backtrace"] }
 serde_yaml = "0.8"
