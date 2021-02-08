@@ -53,7 +53,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
             command: test
-            args: --workspace --all-features --no-fail-fast -- --test-threads=1
+            args: --workspace --all-features --no-fail-fast
         env:
           CARGO_INCREMENTAL: 0
           RUST_BACKTRACE: 1
