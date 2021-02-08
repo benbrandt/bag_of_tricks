@@ -5,6 +5,7 @@ filter: covered
 output-type: lcov
 output-path: ./lcov.info
 prefix-dir: /home/user/build/
+threads: 1
 source-dir: ./src
 ignore-dir:
   - "../"
