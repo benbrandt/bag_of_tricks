@@ -78,6 +78,13 @@ fn get_error_response<B>(res: &ServiceResponse<B>, error: &str) -> Response<Body
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
+    let _guard = sentry::init((
+        "https://ffdf2fc8b5ff48c4a1e5240f9679abd7@o251876.ingest.sentry.io/5628414",
+        sentry::ClientOptions {
+            ..Default::default()
+        },
+    ));
+    env::set_var("RUST_BACKTRACE", "1");
 
     // Get the port number to listen on.
     let port = env::var("PORT")
@@ -90,6 +97,7 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .data(tera)
+            .wrap(sentry_actix::Sentry::new())
             .wrap(Logger::default())
             .wrap(Compress::default())
             .service(index)
