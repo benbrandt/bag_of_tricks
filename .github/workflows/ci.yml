@@ -40,18 +40,49 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Install stable toolchain
+      - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
-          profile: minimal
-          toolchain: stable
+          toolchain: nightly
+          override: true
+          components: llvm-tools-preview
 
       - uses: Swatinem/rust-cache@v1
 
-      - name: Run cargo-tarpaulin
-        uses: actions-rs/tarpaulin@v0.1.3
+      - name: Execute tests
+        uses: actions-rs/cargo@v1
         with:
-          args: --workspace --all-features --no-fail-fast --verbose
+            command: test
+            args: --workspace --all-features --no-fail-fast --verbose
+        env:
+          CARGO_INCREMENTAL: 0
+          RUSTFLAGS: "-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests"
+          RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+
+      - name: Pre-installing grcov
+        uses: actions-rs/install@v0.1
+        with:
+          crate: grcov
+          version: latest
+
+      - name: Gather coverage data
+        id: coverage
+        uses: actions-rs/grcov@v0.1
+
+      - name: Pre-installing rust-covfix
+        uses: actions-rs/install@v0.1
+        with:
+          crate: rust-covfix
+          version: latest
+
+      - name: Fix coverage data
+        id: fix-coverage
+        run: rust-covfix lcov.info -o lcov.info
+
+      # - name: Run cargo-tarpaulin
+      #   uses: actions-rs/tarpaulin@v0.1
+      #   with:
+      #     args: --workspace --all-features --no-fail-fast --verbose
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
