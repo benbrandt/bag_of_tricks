@@ -20,6 +20,3 @@ tide-tera = "0.2"
 
 [workspace]
 members = ["crates/*"]
-
-[profile.bench]
-debug = 1 # line tables only
