@@ -99,7 +99,7 @@ impl AlignmentInfluences for Elf {
 }
 
 impl Characteristics for Elf {
-    const AGE_RANGE: AgeRange = AgeRange(1..=750);
+    const AGE_RANGE: AgeRange = AgeRange(10..=750);
     const SIZE: Size = Size::Medium;
 
     fn get_base_speed(&self) -> u8 {

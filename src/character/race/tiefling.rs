@@ -70,7 +70,7 @@ impl AlignmentInfluences for Tiefling {
 }
 
 impl Characteristics for Tiefling {
-    const AGE_RANGE: AgeRange = AgeRange(1..=100);
+    const AGE_RANGE: AgeRange = AgeRange(10..=100);
     const SIZE: Size = Size::Medium;
 
     fn get_base_speed(&self) -> u8 {

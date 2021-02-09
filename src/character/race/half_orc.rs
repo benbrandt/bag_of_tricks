@@ -46,7 +46,7 @@ impl AlignmentInfluences for HalfOrc {
 }
 
 impl Characteristics for HalfOrc {
-    const AGE_RANGE: AgeRange = AgeRange(1..=75);
+    const AGE_RANGE: AgeRange = AgeRange(8..=75);
     const SIZE: Size = Size::Medium;
 
     fn get_base_speed(&self) -> u8 {

@@ -54,7 +54,7 @@ impl AlignmentInfluences for HalfElf {
 }
 
 impl Characteristics for HalfElf {
-    const AGE_RANGE: AgeRange = AgeRange(1..=180);
+    const AGE_RANGE: AgeRange = AgeRange(10..=180);
     const SIZE: Size = Size::Medium;
 
     fn get_base_speed(&self) -> u8 {

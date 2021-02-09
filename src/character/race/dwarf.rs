@@ -72,7 +72,7 @@ impl AlignmentInfluences for Dwarf {
 }
 
 impl Characteristics for Dwarf {
-    const AGE_RANGE: AgeRange = AgeRange(1..=350);
+    const AGE_RANGE: AgeRange = AgeRange(10..=350);
     const SIZE: Size = Size::Medium;
 
     fn get_base_speed(&self) -> u8 {

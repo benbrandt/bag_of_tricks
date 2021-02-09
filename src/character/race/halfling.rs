@@ -56,7 +56,7 @@ impl AlignmentInfluences for Halfling {
 }
 
 impl Characteristics for Halfling {
-    const AGE_RANGE: AgeRange = AgeRange(1..=150);
+    const AGE_RANGE: AgeRange = AgeRange(10..=150);
     const SIZE: Size = Size::Small;
 
     fn get_base_speed(&self) -> u8 {

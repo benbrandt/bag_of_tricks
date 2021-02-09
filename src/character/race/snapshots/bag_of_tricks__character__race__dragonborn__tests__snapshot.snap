@@ -6,7 +6,7 @@ expression: dragonborn
 - type: Dragonborn
   ancestry: Blue
 - "Myastan Daar \"Earbender\""
-- age: 10
+- age: 12
   base_speed: 30
   gender: Female
   height: 74

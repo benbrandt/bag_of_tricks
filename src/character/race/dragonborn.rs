@@ -127,7 +127,7 @@ impl AlignmentInfluences for Dragonborn {
 }
 
 impl Characteristics for Dragonborn {
-    const AGE_RANGE: AgeRange = AgeRange(1..=80);
+    const AGE_RANGE: AgeRange = AgeRange(3..=80);
     const SIZE: Size = Size::Medium;
 
     fn get_base_speed(&self) -> u8 {

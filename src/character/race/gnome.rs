@@ -53,7 +53,7 @@ impl AlignmentInfluences for Gnome {
 }
 
 impl Characteristics for Gnome {
-    const AGE_RANGE: AgeRange = AgeRange(1..=500);
+    const AGE_RANGE: AgeRange = AgeRange(10..=500);
     const SIZE: Size = Size::Small;
 
     fn get_base_speed(&self) -> u8 {
