@@ -32,16 +32,12 @@ async fn index(tmpl: Data<Tera>) -> Result<HttpResponse, Error> {
 
 // Custom error handlers, to return HTML responses when an error occurs.
 fn error_handlers() -> ErrorHandlers<Body> {
-    ErrorHandlers::new().handler(StatusCode::NOT_FOUND, not_found)
-}
-
-// Error handler for a 404 Page not found error.
-#[allow(clippy::clippy::unnecessary_wraps)]
-fn not_found<B>(res: ServiceResponse<B>) -> Result<ErrorHandlerResponse<B>> {
-    let response = get_error_response(&res, "Page not found");
-    Ok(ErrorHandlerResponse::Response(
-        res.into_response(response.into_body()),
-    ))
+    ErrorHandlers::new().handler(StatusCode::NOT_FOUND, |res| {
+        let response = get_error_response(&res, "Page not found");
+        Ok(ErrorHandlerResponse::Response(
+            res.into_response(response.into_body()),
+        ))
+    })
 }
 
 // Generic error handler.
