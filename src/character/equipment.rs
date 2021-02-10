@@ -83,16 +83,16 @@ impl EquipmentOption {
     pub(crate) fn gen(&self, rng: &mut impl Rng, character: &Character) -> Equipment {
         match self {
             Self::From(list) => {
-                // Choose proficient equipment if available
-                let mut proficient = list
+                let list = list
                     .clone()
                     .into_iter()
-                    .filter(|e| e.proficient(character))
-                    .peekable();
+                    .filter(|e| !character.equipment().contains(e));
+                // Choose proficient equipment if available
+                let mut proficient = list.clone().filter(|e| e.proficient(character)).peekable();
                 if proficient.peek().is_some() {
                     proficient.choose(rng).unwrap()
                 } else {
-                    list.clone().into_iter().choose(rng).unwrap()
+                    list.choose(rng).unwrap()
                 }
             }
             Self::ArtisansTools => Self::From(
