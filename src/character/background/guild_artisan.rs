@@ -9,7 +9,13 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::{ArtisansTools, Tool},
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::{ArtisansTools, Tool},
+            vehicles::{LandVehicle, Mount, Vehicle},
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -122,13 +128,6 @@ impl Background for GuildArtisan {
         });
         (background, Self::gen_personality(rng))
     }
-
-    fn equipment(&self) -> String {
-        match self.variant {
-            Variant::Artisan => String::from("A set of artisan's tools (one of your choice), a letter of introduction from your guild, a set of traveler's clothes, and a pouch containing 15 gp"),
-            Variant::Merchant => String::from("A mule and a cart, a letter of introduction from your guild, a set of traveler's clothes, and a pouch containing 15 gp")
-        }
-    }
 }
 
 impl Backstory for GuildArtisan {
@@ -216,6 +215,34 @@ impl Proficiencies for GuildArtisan {
             proficiencies.push(Proficiency::Tool(Tool::NavigatorsTools))
         }
         proficiencies
+    }
+}
+
+impl StartingEquipment for GuildArtisan {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 15)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        let mut equipment = vec![
+            Equipment::Other(String::from("a letter of introduction from your guild")),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ];
+        if let Variant::Merchant = self.variant {
+            equipment.extend(vec![
+                Equipment::Vehicle(Vehicle::Mount(Mount::Mule)),
+                Equipment::Vehicle(Vehicle::Land(LandVehicle::Cart)),
+            ])
+        }
+        equipment
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        match self.variant {
+            Variant::Artisan => vec![EquipmentOption::ArtisansTools],
+            Variant::Merchant => vec![],
+        }
     }
 }
 

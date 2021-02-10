@@ -4,12 +4,20 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
+use trinkets::TRINKETS;
 
 use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::{Tool, Vehicles},
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::Tool,
+            trinkets,
+            vehicles::VehicleProficiency,
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -37,10 +45,6 @@ impl Background for Sailor {
             variant: Variant::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A belaying pin (club), 50 feet of silk rope, a lucky charm such as a rabbit foot or a small stone with a hole in the center (or you may roll for a random trinket on the Trinkets table in chapter 5), a set of common clothes, and a pouch containing 10 gp")
     }
 }
 
@@ -118,8 +122,34 @@ impl Proficiencies for Sailor {
             Proficiency::Skill(Skill::Athletics),
             Proficiency::Skill(Skill::Perception),
             Proficiency::Tool(Tool::NavigatorsTools),
-            Proficiency::Tool(Tool::Vehicles(Vehicles::Water)),
+            Proficiency::Vehicle(VehicleProficiency::Water),
         ]
+    }
+}
+
+impl StartingEquipment for Sailor {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 10)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Other("a belaying pin (club)".into()),
+            Equipment::Gear(Gear::Other(OtherGear::RopeSilk)),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        let mut options = vec!["a rabbit foot", "a small stone with a hole in the center"];
+        options.extend(TRINKETS);
+        vec![EquipmentOption::From(
+            options
+                .iter()
+                .map(|o| Equipment::Other(format!("{} (lucky charm)", o)))
+                .collect(),
+        )]
     }
 }
 

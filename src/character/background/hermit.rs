@@ -7,7 +7,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::Tool,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::Tool,
+            Equipment, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -46,10 +51,6 @@ impl Background for Hermit {
             life_of_seclusion: Self::gen_life_of_seclusion(rng),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A scroll case stuffed full of notes from your studies or prayers, a winter blanket, a set of common clothes, an herbalism kit, and 5 gp")
     }
 }
 
@@ -125,6 +126,23 @@ impl Proficiencies for Hermit {
             Proficiency::Skill(Skill::Medicine),
             Proficiency::Skill(Skill::Religion),
             Proficiency::Tool(Tool::HerbalismKit),
+        ]
+    }
+}
+
+impl StartingEquipment for Hermit {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 5)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Other(
+                "A scroll case stuffed full of notes from your studies or prayers".into(),
+            ),
+            Equipment::Other("a winter blanket".into()),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Tool(Tool::HerbalismKit),
         ]
     }
 }

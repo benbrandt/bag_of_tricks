@@ -7,7 +7,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::Tool,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::Tool,
+            Equipment, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -24,10 +29,6 @@ pub(crate) struct Urchin;
 impl Background for Urchin {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A small knife, a map of the city you grew up in, a pet mouse, a token to remember your parents by, a set of common clothes, and a pouch containing 10 gp")
     }
 }
 
@@ -95,6 +96,23 @@ impl Proficiencies for Urchin {
             Proficiency::Skill(Skill::Stealth),
             Proficiency::Tool(Tool::DisguiseKit),
             Proficiency::Tool(Tool::ThievesTools),
+        ]
+    }
+}
+
+impl StartingEquipment for Urchin {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 10)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Other("a small knife".into()),
+            Equipment::Other("a map of the city you grew up in".into()),
+            Equipment::Other("a pet mouse".into()),
+            Equipment::Other("a token to remember your parents by".into()),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
         ]
     }
 }

@@ -32,6 +32,7 @@ use self::{
 use super::{
     alignment::{AlignmentInfluences, Attitude, Morality},
     backstory::Backstory,
+    equipment::StartingEquipment,
     features::Features,
     languages::Languages,
     proficiencies::Proficiencies,
@@ -133,15 +134,12 @@ pub(crate) trait PersonalityOptions {
 /// Trait for backgrounds to build from
 #[typetag::serde(tag = "type")]
 pub(crate) trait Background:
-    Backstory + Citations + Features + Languages + Proficiencies + fmt::Display
+    Backstory + Citations + Features + Languages + Proficiencies + StartingEquipment + fmt::Display
 {
     /// Generate a new instance of the background
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality)
     where
         Self: Sized;
-
-    /// Return list of equipment provided by this background
-    fn equipment(&self) -> String;
 }
 
 /// List of currently supported background options

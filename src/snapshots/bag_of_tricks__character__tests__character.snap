@@ -22,6 +22,10 @@ characteristics:
   height: 54
   size: Medium
   weight: 165
+chosen_equipment:
+  - Other: prayer wheel
+  - Gear:
+      HolySymbol: Emblem
 chosen_languages:
   - Sylvan
   - Orc

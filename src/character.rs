@@ -13,9 +13,10 @@ mod race;
 
 use std::{fmt, writeln};
 
-use alignment::{Alignment, AlignmentInfluences, Attitude};
+use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 use background::{Background, BackgroundOptions, Personality};
 use backstory::Backstory;
+use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -25,10 +26,8 @@ use attack::{DamageType, Resistances};
 use characteristics::CharacteristicDetails;
 use features::{Feature, Features};
 use languages::{Language, Languages};
-use proficiencies::{Proficiencies, Proficiency};
+use proficiencies::{Proficiencies, Proficiency, ProficiencyOption};
 use race::{Race, RaceOptions};
-
-use self::{alignment::Morality, proficiencies::ProficiencyOption};
 
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Deserialize, Serialize)]
@@ -41,6 +40,8 @@ pub struct Character {
     background: Box<dyn Background>,
     /// Characteristics of the character.
     characteristics: CharacteristicDetails,
+    /// Equipment randomly chosen for the character.
+    chosen_equipment: Vec<Equipment>,
     /// Languages randomly chosen for the character.
     chosen_languages: Vec<Language>,
     /// Proficiencies randomly chosen for the character.
@@ -78,6 +79,7 @@ impl Character {
             alignment: None,
             background,
             characteristics,
+            chosen_equipment: vec![],
             chosen_languages: vec![],
             chosen_proficiencies: vec![],
             level: 1,
@@ -88,12 +90,22 @@ impl Character {
         character.gen_alignment(rng);
         character.gen_languages(rng);
         character.gen_proficiences(rng);
+        character.gen_equipment(rng);
         character
     }
 
     /// Generate character's alignment, feeding in any inputs we have for attitude and morality.
     fn gen_alignment(&mut self, rng: &mut impl Rng) {
         self.alignment = Some(Alignment::gen(rng, &self.attitude(), &self.morality()));
+    }
+
+    /// Generate any additional equipment.
+    fn gen_equipment(&mut self, rng: &mut impl Rng) {
+        let mut options = self.addl_equipment();
+        options.sort();
+        for option in options {
+            self.chosen_equipment.push(option.gen(rng, &self));
+        }
     }
 
     /// Generate any additional languages, ensuring no overlap with current languages.
@@ -202,6 +214,22 @@ impl Resistances for Character {
     }
 }
 
+impl StartingEquipment for Character {
+    fn coins(&self) -> (Coin, u8) {
+        self.background.coins()
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        let mut equipment = self.background.equipment();
+        equipment.extend(self.chosen_equipment.clone());
+        equipment
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        self.background.addl_equipment()
+    }
+}
+
 /// Render a text version of the character. Useful for CLI or other output.
 impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -257,8 +285,10 @@ impl fmt::Display for Character {
                 .iter()
                 .filter_map(|p| match p {
                     Proficiency::Skill(_) => None,
-                    Proficiency::Armor(_) | Proficiency::Tool(_) | Proficiency::Weapon(_) =>
-                        Some(format!("{:?}", p)),
+                    Proficiency::Armor(_)
+                    | Proficiency::Tool(_)
+                    | Proficiency::Weapon(_)
+                    | Proficiency::Vehicle(_) => Some(format!("{:?}", p)),
                 })
                 .collect::<Vec<String>>()
                 .join(", ")
@@ -268,7 +298,16 @@ impl fmt::Display for Character {
         writeln!(f, "{}", self.characteristics)?;
         writeln!(f, "{}", self.personality)?;
         writeln!(f, "EQUIPMENT")?;
-        writeln!(f, "{}", self.background.equipment())?;
+        writeln!(
+            f,
+            "{}",
+            self.equipment()
+                .iter()
+                .map(|e| format!("{:?}", e))
+                .collect::<Vec<String>>()
+                .join(", ")
+        )?;
+        writeln!(f, "COINS: {}{}", self.coins().1, self.coins().0)?;
         writeln!(f)?;
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {

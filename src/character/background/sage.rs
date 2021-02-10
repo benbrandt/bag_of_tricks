@@ -9,6 +9,11 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            Equipment, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -44,10 +49,6 @@ impl Background for Sage {
             specialty: Specialty::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A bottle of black ink, a quill, a small knife, a letter from a dead colleague posing a question you have not yet been able to answer, a set of common clothes, and a pouch containing 10 gp")
     }
 }
 
@@ -135,6 +136,23 @@ impl Proficiencies for Sage {
         vec![
             Proficiency::Skill(Skill::Arcana),
             Proficiency::Skill(Skill::History),
+        ]
+    }
+}
+
+impl StartingEquipment for Sage {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 10)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Other("a bottle of black ink".into()),
+            Equipment::Other("a quill".into()),
+            Equipment::Other("a small knife".into()),
+            Equipment::Other("a letter from a dead colleague posing a question you have not yet been able to answer".into()),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
         ]
     }
 }

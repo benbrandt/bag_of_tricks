@@ -9,7 +9,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::{Tool, Vehicles},
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            vehicles::VehicleProficiency,
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
@@ -45,10 +50,6 @@ impl Background for Soldier {
             specialty: Specialty::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("An insignia of rank, a trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner), a set of bone dice or deck of cards, a set of common clothes, and a pouch containing 10 gp")
     }
 }
 
@@ -132,12 +133,45 @@ impl Proficiencies for Soldier {
         vec![
             Proficiency::Skill(Skill::Athletics),
             Proficiency::Skill(Skill::Intimidation),
-            Proficiency::Tool(Tool::Vehicles(Vehicles::Land)),
+            Proficiency::Vehicle(VehicleProficiency::Land),
         ]
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![ProficiencyOption::GamingSet]
+    }
+}
+
+impl StartingEquipment for Soldier {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 10)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Other("an insignia of rank".into()),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::From(
+                ["a dagger", "a broken blade", "a piece of a banner"]
+                    .iter()
+                    .map(|i| {
+                        Equipment::Other(format!("{} (a trophy taken from a fallen enemy)", i))
+                    })
+                    .collect(),
+            ),
+            EquipmentOption::From(
+                ["a set of bone dice", "a deck of cards"]
+                    .iter()
+                    .map(|i| Equipment::Other(String::from(*i)))
+                    .collect(),
+            ),
+        ]
     }
 }
 

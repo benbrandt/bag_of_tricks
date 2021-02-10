@@ -9,6 +9,11 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            Equipment, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
@@ -36,13 +41,6 @@ impl Background for Noble {
             variant: Variant::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        match self.variant {
-            Variant::Knight => String::from("A banner or other token from a noble lord or lady to whom you have given your heart \u{2014} in a chaste sort of devotion, a set of fine clothes, a signet ring, a scroll of pedigree, and a purse containing 25 gp"),
-            Variant::Noble => String::from("A set of fine clothes, a signet ring, a scroll of pedigree, and a purse containing 25 gp"),
-        }
     }
 }
 
@@ -128,6 +126,25 @@ impl Proficiencies for Noble {
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![ProficiencyOption::GamingSet]
+    }
+}
+
+impl StartingEquipment for Noble {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 25)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        let mut equipment = vec![
+            Equipment::Gear(Gear::Other(OtherGear::ClothesFine)),
+            Equipment::Gear(Gear::Other(OtherGear::SignetRing)),
+            Equipment::Other("a scroll of pedigree".into()),
+            Equipment::Other("a purse".into()),
+        ];
+        if let Variant::Knight = self.variant {
+            equipment.push(Equipment::Other("a banner or other token from a noble lord or lady to whom you have given your heart \u{2014} in a chaste sort of devotion".into()));
+        }
+        equipment
     }
 }
 

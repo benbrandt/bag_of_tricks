@@ -58,7 +58,8 @@ BOND: I owe my life to the priest who took me in when my parents died.
 FLAW: Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.
 
 EQUIPMENT
-A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp
+Other("5 sticks of incense"), Other("vestments"), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("prayer wheel"), Gear(HolySymbol(Emblem))
+COINS: 15gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)

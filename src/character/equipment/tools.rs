@@ -73,12 +73,6 @@ pub(crate) enum MusicalInstrument {
 }
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum Vehicles {
-    Land,
-    Water,
-}
-
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum Tool {
     ArtisansTools(ArtisansTools),
     #[strum(serialize = "Disguise Kit")]
@@ -95,5 +89,4 @@ pub(crate) enum Tool {
     PoisonerKit,
     #[strum(serialize = "Thieves' Tools")]
     ThievesTools,
-    Vehicles(Vehicles),
 }

@@ -7,7 +7,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::Tool,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            vehicles::VehicleProficiency,
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
@@ -48,10 +53,6 @@ impl Background for FolkHero {
             defining_event: Self::gen_defining_event(rng),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A set of artisan's tools (one of your choice), a shovel, an iron pot, a set of common clothes, and a pouch containing 10 gp")
     }
 }
 
@@ -121,14 +122,31 @@ impl Proficiencies for FolkHero {
         vec![
             Proficiency::Skill(Skill::AnimalHandling),
             Proficiency::Skill(Skill::Survival),
-            Proficiency::Tool(Tool::Vehicles(
-                crate::character::equipment::tools::Vehicles::Land,
-            )),
+            Proficiency::Vehicle(VehicleProficiency::Land),
         ]
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![ProficiencyOption::ArtisansTools]
+    }
+}
+
+impl StartingEquipment for FolkHero {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 10)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Gear(Gear::Other(OtherGear::Shovel)),
+            Equipment::Gear(Gear::Other(OtherGear::PotIron)),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![EquipmentOption::ArtisansTools]
     }
 }
 

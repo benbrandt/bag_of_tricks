@@ -14,6 +14,7 @@ use super::{
     equipment::{
         armor::ArmorType,
         tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
+        vehicles::VehicleProficiency,
         weapons::{WeaponCategory, WeaponType},
     },
     Character,
@@ -98,6 +99,7 @@ pub(crate) enum Proficiency {
     Armor(ArmorType),
     Skill(Skill),
     Tool(Tool),
+    Vehicle(VehicleProficiency),
     Weapon(WeaponProficiency),
 }
 

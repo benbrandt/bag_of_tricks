@@ -7,7 +7,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::Tool,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::Tool,
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -44,10 +49,6 @@ impl Background for Charlatan {
             scam: Self::gen_scam(rng),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A set of fine clothes, a disguise kit, tools of the con of your choice (ten stoppered bottles filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ring of an imaginary duke), and a pouch containing 15 gp")
     }
 }
 
@@ -142,6 +143,34 @@ impl Proficiencies for Charlatan {
             Proficiency::Tool(Tool::DisguiseKit),
             Proficiency::Tool(Tool::ForgerySet),
         ]
+    }
+}
+
+impl StartingEquipment for Charlatan {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 15)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Gear(Gear::Other(OtherGear::ClothesFine)),
+            Equipment::Tool(Tool::DisguiseKit),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![EquipmentOption::From(
+            [
+                "ten stoppered bottles filled with colored liquid",
+                "a set of weighted dice",
+                "a deck of marked cards",
+                "a signet ring of an imaginary duke",
+            ]
+            .iter()
+            .map(|i| Equipment::Other(String::from(*i)))
+            .collect(),
+        )]
     }
 }
 

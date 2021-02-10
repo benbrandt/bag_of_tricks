@@ -9,6 +9,11 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
+        equipment::{
+            adventuring_gear::{ArcaneFocus, Gear, OtherGear},
+            currency::Coin,
+            Equipment, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
@@ -49,10 +54,6 @@ impl Background for Outlander {
             origin: Origin::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A staff, a hunting trap, a trophy from an animal you killed, a set of traveler's clothes, and a pouch containing 10 gp")
     }
 }
 
@@ -127,6 +128,22 @@ impl Proficiencies for Outlander {
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![ProficiencyOption::MusicalInstrument]
+    }
+}
+
+impl StartingEquipment for Outlander {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 10)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Gear(Gear::ArcaneFocus(ArcaneFocus::Staff)),
+            Equipment::Gear(Gear::Other(OtherGear::HuntingTrap)),
+            Equipment::Other("a trophy from an animal you killed".into()),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
     }
 }
 

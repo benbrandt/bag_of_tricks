@@ -9,7 +9,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::Tool,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::Tool,
+            Equipment, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
@@ -53,10 +58,6 @@ impl Background for Criminal {
             variant: Variant::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A crowbar, a set of dark common clothes including a hood, and a pouch containing 15 gp")
     }
 }
 
@@ -140,6 +141,20 @@ impl Proficiencies for Criminal {
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![ProficiencyOption::GamingSet]
+    }
+}
+
+impl StartingEquipment for Criminal {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 15)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Gear(Gear::Other(OtherGear::Crowbar)),
+            Equipment::Other("a set of dark common clothes including a hood".into()),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
     }
 }
 

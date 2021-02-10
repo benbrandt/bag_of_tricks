@@ -7,6 +7,11 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
@@ -23,10 +28,6 @@ pub(crate) struct Acolyte;
 impl Background for Acolyte {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp")
     }
 }
 
@@ -97,6 +98,33 @@ impl Proficiencies for Acolyte {
         vec![
             Proficiency::Skill(Skill::Insight),
             Proficiency::Skill(Skill::Religion),
+        ]
+    }
+}
+
+impl StartingEquipment for Acolyte {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 15)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Other("5 sticks of incense".into()),
+            Equipment::Other("vestments".into()),
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::HolySymbol,
+            EquipmentOption::From(
+                ["prayer book", "prayer wheel"]
+                    .iter()
+                    .map(|i| Equipment::Other(String::from(*i)))
+                    .collect(),
+            ),
         ]
     }
 }

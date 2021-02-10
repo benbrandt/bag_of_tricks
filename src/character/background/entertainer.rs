@@ -9,7 +9,12 @@ use crate::{
     character::{
         ability::Skill,
         backstory::Backstory,
-        equipment::tools::Tool,
+        equipment::{
+            adventuring_gear::{Gear, OtherGear},
+            currency::Coin,
+            tools::Tool,
+            Equipment, EquipmentOption, StartingEquipment,
+        },
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
@@ -55,10 +60,6 @@ impl Background for Entertainer {
             variant: Variant::iter().choose(rng).unwrap(),
         });
         (background, Self::gen_personality(rng))
-    }
-
-    fn equipment(&self) -> String {
-        String::from("A musical instrument (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket), a costume, and a pouch containing 15 gp")
     }
 }
 
@@ -148,6 +149,31 @@ impl Proficiencies for Entertainer {
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![ProficiencyOption::MusicalInstrument]
+    }
+}
+
+impl StartingEquipment for Entertainer {
+    fn coins(&self) -> (Coin, u8) {
+        (Coin::Gold, 15)
+    }
+
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::Gear(Gear::Other(OtherGear::ClothesCostume)),
+            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::MusicalInstrument,
+            EquipmentOption::From(
+                ["love letter", "lock of hair", "trinket"]
+                    .iter()
+                    .map(|i| Equipment::Other(format!("{} (the favor of an admirer)", i)))
+                    .collect(),
+            ),
+        ]
     }
 }
 
