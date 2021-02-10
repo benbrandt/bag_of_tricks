@@ -226,7 +226,10 @@ impl StartingEquipment for Character {
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
-        self.background.addl_equipment()
+        let mut addl_equipment = self.background.addl_equipment();
+        // Choose a trinket
+        addl_equipment.push(EquipmentOption::Trinket);
+        addl_equipment
     }
 }
 

@@ -13,6 +13,7 @@ use strum::IntoEnumIterator;
 use strum_macros::Display;
 
 use tools::{ArtisansTools, MusicalInstrument};
+use trinkets::TRINKETS;
 use vehicles::Vehicle;
 
 use self::{
@@ -73,6 +74,8 @@ pub(crate) enum EquipmentOption {
     HolySymbol,
     /// Choose a random musical instrument.
     MusicalInstrument,
+    /// Choose a random trinket.
+    Trinket,
 }
 
 impl EquipmentOption {
@@ -107,6 +110,13 @@ impl EquipmentOption {
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Equipment::Tool(Tool::MusicalInstrument(m)))
+                    .collect(),
+            )
+            .gen(rng, character),
+            Self::Trinket => Self::From(
+                TRINKETS
+                    .iter()
+                    .map(|t| Equipment::Other(String::from(*t)))
                     .collect(),
             )
             .gen(rng, character),

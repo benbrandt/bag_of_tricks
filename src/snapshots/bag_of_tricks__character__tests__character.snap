@@ -26,6 +26,7 @@ chosen_equipment:
   - Other: prayer wheel
   - Gear:
       HolySymbol: Emblem
+  - Other: "A white, sequined glove sized for a human"
 chosen_languages:
   - Sylvan
   - Orc

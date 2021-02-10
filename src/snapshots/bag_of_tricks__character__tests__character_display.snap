@@ -58,7 +58,7 @@ BOND: I owe my life to the priest who took me in when my parents died.
 FLAW: Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.
 
 EQUIPMENT
-Other("5 sticks of incense"), Other("vestments"), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("prayer wheel"), Gear(HolySymbol(Emblem))
+Other("5 sticks of incense"), Other("vestments"), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("prayer wheel"), Gear(HolySymbol(Emblem)), Other("A white, sequined glove sized for a human")
 COINS: 15gp
 
 FEATURES AND TRAITS:
