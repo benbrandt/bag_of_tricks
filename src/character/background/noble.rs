@@ -42,6 +42,10 @@ impl Background for Noble {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::History, Skill::Persuasion]
+    }
 }
 
 impl Backstory for Noble {}
@@ -118,10 +122,7 @@ impl PersonalityOptions for Noble {
 
 impl Proficiencies for Noble {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::History),
-            Proficiency::Skill(Skill::Persuasion),
-        ]
+        Self::skills().into_iter().map(Proficiency::Skill).collect()
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

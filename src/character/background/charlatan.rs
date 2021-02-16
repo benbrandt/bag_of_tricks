@@ -50,6 +50,10 @@ impl Background for Charlatan {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Deception, Skill::SleightOfHand]
+    }
 }
 
 impl Backstory for Charlatan {
@@ -137,12 +141,12 @@ impl PersonalityOptions for Charlatan {
 
 impl Proficiencies for Charlatan {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Deception),
-            Proficiency::Skill(Skill::SleightOfHand),
+        let mut proficiencies = vec![
             Proficiency::Tool(Tool::DisguiseKit),
             Proficiency::Tool(Tool::ForgerySet),
-        ]
+        ];
+        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies
     }
 }
 

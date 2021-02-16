@@ -11,10 +11,11 @@ abilities:
   Wisdom: 15
   Charisma: 13
 alignment:
-  - Lawful
+  - Chaotic
   - Good
 background:
-  type: Acolyte
+  type: Hermit
+  life_of_seclusion: I was the caretaker of an ancient ruin or relic.
 characteristics:
   age: 317
   base_speed: 25
@@ -23,27 +24,23 @@ characteristics:
   size: Medium
   weight: 165
 chosen_equipment:
-  - Other: prayer wheel
-  - Gear:
-      HolySymbol: Emblem
-  - Other: "A white, sequined glove sized for a human"
+  - Other: A rank insignia from a lost legionnaire
 chosen_languages:
   - Sylvan
-  - Orc
 chosen_proficiencies:
   - Tool:
       ArtisansTools: BrewersSupplies
 level: 1
 name: Hlin Holderhek
 personality:
-  bond: I owe my life to the priest who took me in when my parents died.
-  flaw: "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
+  bond: My isolation gave me great insight into a great evil that only I can destroy.
+  flaw: I let my need to win arguments overshadow friendships and harmony.
   ideal:
-    - "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. "
-    - Lawful
+    - "Free Thinking. Inquiry and curiosity are the pillars of progress. "
+    - Chaotic
   traits:
-    - "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
-    - "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
+    - "I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings."
+    - I am working on a grand philosophical theory and love sharing my ideas.
 race:
   type: Dwarf
   subrace: Mountain

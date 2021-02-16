@@ -30,6 +30,10 @@ impl Background for Urchin {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::SleightOfHand, Skill::Stealth]
+    }
 }
 
 impl Backstory for Urchin {}
@@ -91,12 +95,12 @@ impl PersonalityOptions for Urchin {
 
 impl Proficiencies for Urchin {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::SleightOfHand),
-            Proficiency::Skill(Skill::Stealth),
+        let mut proficiencies = vec![
             Proficiency::Tool(Tool::DisguiseKit),
             Proficiency::Tool(Tool::ThievesTools),
-        ]
+        ];
+        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies
     }
 }
 

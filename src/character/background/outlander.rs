@@ -55,6 +55,10 @@ impl Background for Outlander {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Athletics, Skill::Survival]
+    }
 }
 
 impl Backstory for Outlander {}
@@ -120,10 +124,7 @@ impl PersonalityOptions for Outlander {
 
 impl Proficiencies for Outlander {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Athletics),
-            Proficiency::Skill(Skill::Survival),
-        ]
+        Self::skills().into_iter().map(Proficiency::Skill).collect()
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

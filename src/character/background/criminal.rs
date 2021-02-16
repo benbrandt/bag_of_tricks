@@ -59,6 +59,10 @@ impl Background for Criminal {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Deception, Skill::Stealth]
+    }
 }
 
 impl Backstory for Criminal {}
@@ -132,11 +136,9 @@ impl PersonalityOptions for Criminal {
 
 impl Proficiencies for Criminal {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Deception),
-            Proficiency::Skill(Skill::Stealth),
-            Proficiency::Tool(Tool::ThievesTools),
-        ]
+        let mut proficiencies = vec![Proficiency::Tool(Tool::ThievesTools)];
+        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

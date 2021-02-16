@@ -50,6 +50,10 @@ impl Background for Sage {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Arcana, Skill::History]
+    }
 }
 
 impl Backstory for Sage {}
@@ -133,10 +137,7 @@ impl PersonalityOptions for Sage {
 
 impl Proficiencies for Sage {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Arcana),
-            Proficiency::Skill(Skill::History),
-        ]
+        Self::skills().into_iter().map(Proficiency::Skill).collect()
     }
 }
 

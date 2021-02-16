@@ -14,7 +14,7 @@ mod race;
 use std::{fmt, writeln};
 
 use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
-use background::{Background, BackgroundOptions, Personality};
+use background::{Background, BackgroundOption, Personality};
 use backstory::Backstory;
 use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use rand::{prelude::IteratorRandom, Rng};
@@ -65,7 +65,7 @@ impl Character {
     /// Steps are as follows:
     /// 1. Randomly choose a Race (which also generates a name and some physical characteristics)
     /// 2. Roll ability scores (and apply the racial ability increases)
-    /// 3. Randomly choose a background and personality traits.
+    /// 3. Randomly choose a background and personality traits (weighted by highest skill modifiers)
     /// 4. Choose alignment (weighted based on inputs from race and background)
     /// 5. Randomly choose any additional languages
     /// 6. Randomly choose proficiencies, weighted towards optimal ones based on what is known about the character so far
@@ -73,7 +73,7 @@ impl Character {
         let (race, name, characteristics) = RaceOptions::gen(rng);
         let mut abilities = AbilityScores::gen(rng);
         abilities.increase(race.abilities());
-        let (background, personality) = BackgroundOptions::gen(rng);
+        let (background, personality) = BackgroundOption::gen(rng, &abilities);
         let mut character = Self {
             abilities,
             alignment: None,

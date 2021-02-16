@@ -51,6 +51,10 @@ impl Background for Soldier {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Athletics, Skill::Intimidation]
+    }
 }
 
 impl Backstory for Soldier {}
@@ -130,11 +134,9 @@ impl PersonalityOptions for Soldier {
 
 impl Proficiencies for Soldier {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Athletics),
-            Proficiency::Skill(Skill::Intimidation),
-            Proficiency::Vehicle(VehicleProficiency::Land),
-        ]
+        let mut proficiencies = vec![Proficiency::Vehicle(VehicleProficiency::Land)];
+        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

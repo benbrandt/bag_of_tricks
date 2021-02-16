@@ -5,8 +5,8 @@ expression: "format!(\"{}\", character)"
 ---
 CHARACTER NAME: Hlin Holderhek
 RACE: Mountain Dwarf (PHB p18,20)
-BACKGROUND: Acolyte (PHB p127)
-ALIGNMENT: Lawful Good
+BACKGROUND: Hermit (PHB p134)
+ALIGNMENT: Chaotic Good
 LEVEL: 1
 
 STR  -2 (7)
@@ -24,10 +24,10 @@ PROF  MOD  SKILL            BONUS:
       STR  Athletics        -2
       CHA  Deception        +1
       INT  History          +2
- X    WIS  Insight          +4
+      WIS  Insight          +2
       CHA  Intimidation     +1
       INT  Investigation    +2
-      WIS  Medicine         +2
+ X    WIS  Medicine         +4
       INT  Nature           +2
       WIS  Perception       +2
       CHA  Performance      +1
@@ -40,8 +40,8 @@ PROF  MOD  SKILL            BONUS:
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
-LANGUAGES: Common, Dwarvish, Sylvan, Orc
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(BrewersSupplies))
+LANGUAGES: Common, Dwarvish, Sylvan
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(HerbalismKit), Tool(ArtisansTools(BrewersSupplies))
 
 CHARACTERISTICS:
 Age: 317
@@ -51,21 +51,22 @@ Height: 4'6"
 Weight: 165 lb.
 
 PERSONALITY TRAITS:
-I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.
-I've spent so long in the temple that I have little practical experience dealing with people in the outside world.
-IDEAL: Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.  (Lawful)
-BOND: I owe my life to the priest who took me in when my parents died.
-FLAW: Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.
+I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings.
+I am working on a grand philosophical theory and love sharing my ideas.
+IDEAL: Free Thinking. Inquiry and curiosity are the pillars of progress.  (Chaotic)
+BOND: My isolation gave me great insight into a great evil that only I can destroy.
+FLAW: I let my need to win arguments overshadow friendships and harmony.
 
 EQUIPMENT
-Other("5 sticks of incense"), Other("vestments"), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("prayer wheel"), Gear(HolySymbol(Emblem)), Other("A white, sequined glove sized for a human")
-COINS: 15gp
+Other("A scroll case stuffed full of notes from your studies or prayers"), Other("a winter blanket"), Gear(Other(ClothesCommon)), Tool(HerbalismKit), Other("A rank insignia from a lost legionnaire")
+COINS: 5gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
-- Shelter of the Faithful (PHB p127)
+- Discovery (PHB p134)
 
 BACKSTORY:
+Life of Seclusion: I was the caretaker of an ancient ruin or relic.
 

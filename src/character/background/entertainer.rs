@@ -61,6 +61,10 @@ impl Background for Entertainer {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Acrobatics, Skill::Performance]
+    }
 }
 
 impl Backstory for Entertainer {
@@ -140,11 +144,9 @@ impl PersonalityOptions for Entertainer {
 
 impl Proficiencies for Entertainer {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Acrobatics),
-            Proficiency::Skill(Skill::Performance),
-            Proficiency::Tool(Tool::DisguiseKit),
-        ]
+        let mut proficiencies = vec![Proficiency::Tool(Tool::DisguiseKit)];
+        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

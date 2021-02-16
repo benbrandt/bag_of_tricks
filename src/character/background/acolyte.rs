@@ -29,6 +29,10 @@ impl Background for Acolyte {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Insight, Skill::Religion]
+    }
 }
 
 impl Backstory for Acolyte {}
@@ -95,10 +99,7 @@ impl PersonalityOptions for Acolyte {
 
 impl Proficiencies for Acolyte {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Insight),
-            Proficiency::Skill(Skill::Religion),
-        ]
+        Self::skills().into_iter().map(Proficiency::Skill).collect()
     }
 }
 

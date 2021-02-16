@@ -1,7 +1,4 @@
-use std::convert::TryFrom;
-
 use rand::{
-    distributions::WeightedIndex,
     prelude::{Distribution, IteratorRandom},
     Rng,
 };
@@ -10,7 +7,7 @@ use strum::IntoEnumIterator;
 use strum_macros::Display;
 
 use super::{
-    ability::Skill,
+    ability::{weighted_modifiers_dist, Skill},
     equipment::{
         armor::ArmorType,
         tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
@@ -79,14 +76,7 @@ impl ProficiencyOption {
                 let modifiers = available_skills
                     .clone()
                     .map(|s| character.abilities.modifier(s.ability_score_type()));
-                let min = modifiers.clone().min().unwrap_or(0);
-                // Make sure they are positive, and increase the weight of the higher ones
-                let weights = modifiers.map(|m| {
-                    let pos_mod =
-                        usize::try_from(if min <= 0 { m + min.abs() + 1 } else { m }).unwrap_or(0);
-                    pos_mod.pow(u32::try_from(pos_mod).unwrap())
-                });
-                let dist = WeightedIndex::new(weights).unwrap();
+                let dist = weighted_modifiers_dist(modifiers);
                 Proficiency::Skill(available_skills.collect::<Vec<Skill>>()[dist.sample(rng)])
             }
         }

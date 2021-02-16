@@ -52,6 +52,10 @@ impl Background for Hermit {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Medicine, Skill::Religion]
+    }
 }
 
 impl Backstory for Hermit {
@@ -122,11 +126,9 @@ impl PersonalityOptions for Hermit {
 
 impl Proficiencies for Hermit {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        vec![
-            Proficiency::Skill(Skill::Medicine),
-            Proficiency::Skill(Skill::Religion),
-            Proficiency::Tool(Tool::HerbalismKit),
-        ]
+        let mut proficiencies = vec![Proficiency::Tool(Tool::HerbalismKit)];
+        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies
     }
 }
 

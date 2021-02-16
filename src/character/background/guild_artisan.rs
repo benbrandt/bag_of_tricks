@@ -128,6 +128,10 @@ impl Background for GuildArtisan {
         });
         (background, Self::gen_personality(rng))
     }
+
+    fn skills() -> Vec<Skill> {
+        vec![Skill::Insight, Skill::Persuasion]
+    }
 }
 
 impl Backstory for GuildArtisan {
@@ -202,10 +206,8 @@ impl PersonalityOptions for GuildArtisan {
 
 impl Proficiencies for GuildArtisan {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        let mut proficiencies = vec![
-            Proficiency::Skill(Skill::Insight),
-            Proficiency::Skill(Skill::Persuasion),
-        ];
+        let mut proficiencies: Vec<Proficiency> =
+            Self::skills().into_iter().map(Proficiency::Skill).collect();
         if let Variant::Artisan = self.variant {
             proficiencies.push(Proficiency::Tool(Tool::ArtisansTools(
                 self.business.tools(),

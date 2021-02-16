@@ -1,6 +1,7 @@
-use rand::Rng;
+use std::{collections::BTreeMap, convert::TryFrom, fmt};
+
+use rand::{distributions::WeightedIndex, Rng};
 use serde::{Deserialize, Serialize};
-use std::{collections::BTreeMap, fmt};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
@@ -15,6 +16,22 @@ use super::{
 fn modifier(score: u8) -> i16 {
     // Lower value to closest even number, reduce by 10, and divide by two
     (i16::from(score) - i16::from(score) % 2 - 10) / 2
+}
+
+/// Generate a weighted random distribution based on a list of modifiers
+pub(crate) fn weighted_modifiers_dist<L>(modifiers: L) -> WeightedIndex<usize>
+where
+    L: Iterator<Item = i16> + Clone,
+{
+    let min = modifiers.clone().min().unwrap_or(0);
+    // Get value to shift all other values by to have lowert be 1
+    let shift = 1 + (if min < 0 { min.abs() } else { -min });
+    // Make sure they are positive, and increase the weight of the higher ones
+    let weights = modifiers.map(|m| {
+        let pos_mod = usize::try_from(m + shift).unwrap_or(0);
+        pos_mod.pow(u32::try_from(pos_mod).unwrap())
+    });
+    WeightedIndex::new(weights).unwrap()
 }
 
 /// All possible ability score types to choose from

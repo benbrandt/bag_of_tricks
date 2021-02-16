@@ -16,7 +16,10 @@ use std::fmt;
 
 use entertainer::Entertainer;
 use folk_hero::FolkHero;
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{Distribution, IteratorRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -30,6 +33,7 @@ use self::{
 };
 
 use super::{
+    ability::{weighted_modifiers_dist, AbilityScores, Skill},
     alignment::{AlignmentInfluences, Attitude, Morality},
     backstory::Backstory,
     equipment::StartingEquipment,
@@ -140,11 +144,16 @@ pub(crate) trait Background:
     fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality)
     where
         Self: Sized;
+
+    /// Return list of skills background gives proficiency in
+    fn skills() -> Vec<Skill>
+    where
+        Self: Sized;
 }
 
 /// List of currently supported background options
 #[derive(EnumIter)]
-pub(crate) enum BackgroundOptions {
+pub(crate) enum BackgroundOption {
     Acolyte,
     Charlatan,
     Criminal,
@@ -160,10 +169,16 @@ pub(crate) enum BackgroundOptions {
     Urchin,
 }
 
-impl BackgroundOptions {
-    /// Choose a random background option and map to corresponding generator
-    pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
-        match Self::iter().choose(rng).unwrap() {
+impl BackgroundOption {
+    /// Choose a random background option, weighted by proficiency bonuses, and map to corresponding generator
+    pub(crate) fn gen(
+        rng: &mut impl Rng,
+        abilities: &AbilityScores,
+    ) -> (Box<dyn Background>, Personality) {
+        let options: Vec<BackgroundOption> = Self::iter().collect();
+        let modifiers = Self::iter().map(|o| o.skill_modifiers(abilities));
+        let dist = weighted_modifiers_dist(modifiers);
+        match options.get(dist.sample(rng)).unwrap() {
             Self::Acolyte => Acolyte::gen(rng),
             Self::Charlatan => Charlatan::gen(rng),
             Self::Criminal => Criminal::gen(rng),
@@ -178,5 +193,27 @@ impl BackgroundOptions {
             Self::Soldier => Soldier::gen(rng),
             Self::Urchin => Urchin::gen(rng),
         }
+    }
+
+    /// Skill modifiers of background for weighting
+    fn skill_modifiers(&self, abilities: &AbilityScores) -> i16 {
+        let skills = match self {
+            Self::Acolyte => Acolyte::skills(),
+            Self::Charlatan => Charlatan::skills(),
+            Self::Criminal => Criminal::skills(),
+            Self::Entertainer => Entertainer::skills(),
+            Self::FolkHero => FolkHero::skills(),
+            Self::GuildArtisan => GuildArtisan::skills(),
+            Self::Hermit => Hermit::skills(),
+            Self::Noble => Noble::skills(),
+            Self::Outlander => Outlander::skills(),
+            Self::Sage => Sage::skills(),
+            Self::Sailor => Sailor::skills(),
+            Self::Soldier => Soldier::skills(),
+            Self::Urchin => Urchin::skills(),
+        };
+        skills
+            .iter()
+            .fold(0, |acc, s| acc + abilities.modifier(s.ability_score_type()))
     }
 }
