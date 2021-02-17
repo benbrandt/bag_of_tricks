@@ -5,8 +5,8 @@ expression: "format!(\"{}\", character)"
 ---
 CHARACTER NAME: Hlin Holderhek
 RACE: Mountain Dwarf (PHB p18,20)
-BACKGROUND: Hermit (PHB p134)
-ALIGNMENT: Chaotic Good
+BACKGROUND: Outlander (Exile or outcast) (PHB p136)
+ALIGNMENT: Lawful Good
 LEVEL: 1
 
 STR  -2 (7)
@@ -21,27 +21,27 @@ PROF  MOD  SKILL            BONUS:
       DEX  Acrobatics       +1
       WIS  Animal Handling  +2
       INT  Arcana           +2
-      STR  Athletics        -2
+ X    STR  Athletics        +0
       CHA  Deception        +1
       INT  History          +2
       WIS  Insight          +2
       CHA  Intimidation     +1
       INT  Investigation    +2
- X    WIS  Medicine         +4
+      WIS  Medicine         +2
       INT  Nature           +2
       WIS  Perception       +2
       CHA  Performance      +1
       CHA  Persuasion       +1
- X    INT  Religion         +4
+      INT  Religion         +2
       DEX  Sleight of Hand  +1
       DEX  Stealth          +1
-      WIS  Survival         +2
+ X    WIS  Survival         +4
 
 SPEED: 25
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 LANGUAGES: Common, Dwarvish, Sylvan
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(HerbalismKit), Tool(ArtisansTools(BrewersSupplies))
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(BrewersSupplies)), Tool(MusicalInstrument(Viol))
 
 CHARACTERISTICS:
 Age: 317
@@ -51,22 +51,21 @@ Height: 4'6"
 Weight: 165 lb.
 
 PERSONALITY TRAITS:
-I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings.
-I am working on a grand philosophical theory and love sharing my ideas.
-IDEAL: Free Thinking. Inquiry and curiosity are the pillars of progress.  (Chaotic)
-BOND: My isolation gave me great insight into a great evil that only I can destroy.
-FLAW: I let my need to win arguments overshadow friendships and harmony.
+I feel far more comfortable around animals than people.
+I was, in fact, raised by wolves.
+IDEAL: Glory. I must earn glory in battle, for myself and my clan. (Any)
+BOND: I am the last of my tribe, and it is up to me to ensure their names enter legend.
+FLAW: I am too enamored of ale, wine, and other intoxicants.
 
 EQUIPMENT
-Other("A scroll case stuffed full of notes from your studies or prayers"), Other("a winter blanket"), Gear(Other(ClothesCommon)), Tool(HerbalismKit), Other("A rank insignia from a lost legionnaire")
-COINS: 5gp
+Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
+COINS: 10gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
-- Discovery (PHB p134)
+- Wanderer (PHB p136)
 
 BACKSTORY:
-Life of Seclusion: I was the caretaker of an ancient ruin or relic.
 

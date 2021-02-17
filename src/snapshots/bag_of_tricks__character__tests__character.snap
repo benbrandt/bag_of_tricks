@@ -11,11 +11,11 @@ abilities:
   Wisdom: 15
   Charisma: 13
 alignment:
-  - Chaotic
+  - Lawful
   - Good
 background:
-  type: Hermit
-  life_of_seclusion: I was the caretaker of an ancient ruin or relic.
+  type: Outlander
+  origin: Exile
 characteristics:
   age: 317
   base_speed: 25
@@ -24,23 +24,25 @@ characteristics:
   size: Medium
   weight: 165
 chosen_equipment:
-  - Other: A rank insignia from a lost legionnaire
+  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
 chosen_languages:
   - Sylvan
 chosen_proficiencies:
   - Tool:
       ArtisansTools: BrewersSupplies
+  - Tool:
+      MusicalInstrument: Viol
 level: 1
 name: Hlin Holderhek
 personality:
-  bond: My isolation gave me great insight into a great evil that only I can destroy.
-  flaw: I let my need to win arguments overshadow friendships and harmony.
+  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
+  flaw: "I am too enamored of ale, wine, and other intoxicants."
   ideal:
-    - "Free Thinking. Inquiry and curiosity are the pillars of progress. "
-    - Chaotic
+    - "Glory. I must earn glory in battle, for myself and my clan."
+    - Any
   traits:
-    - "I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings."
-    - I am working on a grand philosophical theory and love sharing my ideas.
+    - I feel far more comfortable around animals than people.
+    - "I was, in fact, raised by wolves."
 race:
   type: Dwarf
   subrace: Mountain

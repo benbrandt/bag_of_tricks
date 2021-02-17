@@ -176,7 +176,7 @@ impl BackgroundOption {
         abilities: &AbilityScores,
     ) -> (Box<dyn Background>, Personality) {
         let options: Vec<BackgroundOption> = Self::iter().collect();
-        let modifiers = Self::iter().map(|o| o.skill_modifiers(abilities));
+        let modifiers = Self::iter().map(|o| o.skill_modifier(abilities));
         let dist = weighted_modifiers_dist(modifiers);
         match options.get(dist.sample(rng)).unwrap() {
             Self::Acolyte => Acolyte::gen(rng),
@@ -195,8 +195,8 @@ impl BackgroundOption {
         }
     }
 
-    /// Skill modifiers of background for weighting
-    fn skill_modifiers(&self, abilities: &AbilityScores) -> i16 {
+    /// Max skill modifier of background for weighting
+    fn skill_modifier(&self, abilities: &AbilityScores) -> i16 {
         let skills = match self {
             Self::Acolyte => Acolyte::skills(),
             Self::Charlatan => Charlatan::skills(),
@@ -214,6 +214,8 @@ impl BackgroundOption {
         };
         skills
             .iter()
-            .fold(0, |acc, s| acc + abilities.modifier(s.ability_score_type()))
+            .map(|s| abilities.modifier(s.ability_score_type()))
+            .max()
+            .unwrap_or(0)
     }
 }
