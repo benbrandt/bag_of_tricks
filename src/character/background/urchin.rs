@@ -40,7 +40,7 @@ impl Backstory for Urchin {}
 
 impl Citations for Urchin {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 141)])
+        CitationList(vec![Citation(Book::Phb, 141)])
     }
 }
 
@@ -49,7 +49,7 @@ impl Features for Urchin {
         // You know the secret patterns and flow to cities and can find passages through the urban sprawl that others would miss. When you are not in combat, you (and companions you lead) can travel between any two locations in the city twice as fast as your speed would normally allow.
         vec![Feature {
             title: "City Secrets",
-            citation: Citation(Book::PHB, 141),
+            citation: Citation(Book::Phb, 141),
         }]
     }
 }

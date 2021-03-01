@@ -5,34 +5,34 @@ expression: "GnomeSubrace::iter().map(|subrace|\n                             (G
 ---
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 37
   - title: Gnome Cunning
     citation:
-      - PHB
+      - Phb
       - 37
   - title: Natural Illusionist
     citation:
-      - PHB
+      - Phb
       - 37
   - title: Speak with Small Beasts
     citation:
-      - PHB
+      - Phb
       - 37
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 37
   - title: Gnome Cunning
     citation:
-      - PHB
+      - Phb
       - 37
   - title: "Artificer's Lore"
     citation:
-      - PHB
+      - Phb
       - 37
   - title: Tinker
     citation:
-      - PHB
+      - Phb
       - 37
 

@@ -69,7 +69,7 @@ impl Backstory for Criminal {}
 
 impl Citations for Criminal {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 129)])
+        CitationList(vec![Citation(Book::Phb, 129)])
     }
 }
 
@@ -78,7 +78,7 @@ impl Features for Criminal {
         // You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.
         vec![Feature {
             title: "Criminal Contact",
-            citation: Citation(Book::PHB, 129),
+            citation: Citation(Book::Phb, 129),
         }]
     }
 }

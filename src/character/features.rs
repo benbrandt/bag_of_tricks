@@ -35,7 +35,7 @@ mod tests {
     fn test_display() {
         let feature = Feature {
             title: "Title",
-            citation: Citation(Book::PHB, 1),
+            citation: Citation(Book::Phb, 1),
         };
         insta::assert_snapshot!(format!("{}", feature));
     }

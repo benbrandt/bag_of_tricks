@@ -5,58 +5,58 @@ expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{s
 ---
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Fey Ancestry
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Trance
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Superior Darkvision
     citation:
-      - PHB
+      - Phb
       - 24
   - title: Sunlight Sensitivity
     citation:
-      - PHB
+      - Phb
       - 24
   - title: Drow Magic
     citation:
-      - PHB
+      - Phb
       - 24
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Fey Ancestry
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Trance
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Cantrip
     citation:
-      - PHB
+      - Phb
       - 24
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Fey Ancestry
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Trance
     citation:
-      - PHB
+      - Phb
       - 23
   - title: Mask of the Wild
     citation:
-      - PHB
+      - Phb
       - 24
 

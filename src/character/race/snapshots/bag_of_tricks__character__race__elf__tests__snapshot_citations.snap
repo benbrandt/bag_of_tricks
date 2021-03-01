@@ -3,16 +3,16 @@ source: src/character/race/elf.rs
 expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{subrace,}).citations()).collect::<Vec<CitationList>>()"
 
 ---
-- - - PHB
+- - - Phb
     - 21
-  - - PHB
+  - - Phb
     - 24
-- - - PHB
+- - - Phb
     - 21
-  - - PHB
+  - - Phb
     - 23
-- - - PHB
+- - - Phb
     - 21
-  - - PHB
+  - - Phb
     - 24
 

@@ -65,7 +65,7 @@ impl Backstory for Outlander {}
 
 impl Citations for Outlander {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 136)])
+        CitationList(vec![Citation(Book::Phb, 136)])
     }
 }
 
@@ -74,7 +74,7 @@ impl Features for Outlander {
         // You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth.
         vec![Feature {
             title: "Wanderer",
-            citation: Citation(Book::PHB, 136),
+            citation: Citation(Book::Phb, 136),
         }]
     }
 }

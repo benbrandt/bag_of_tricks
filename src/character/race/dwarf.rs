@@ -89,9 +89,9 @@ impl Characteristics for Dwarf {
 
 impl Citations for Dwarf {
     fn citations(&self) -> CitationList {
-        let race = Citation(Book::PHB, 18);
+        let race = Citation(Book::Phb, 18);
         let subrace = match self.subrace {
-            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation(Book::PHB, 20),
+            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation(Book::Phb, 20),
         };
         CitationList(vec![race, subrace])
     }
@@ -103,17 +103,17 @@ impl Features for Dwarf {
             // Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
             Feature {
                 title: "Darkvision",
-                citation: Citation(Book::PHB, 20),
+                citation: Citation(Book::Phb, 20),
             },
             // You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).
             Feature {
                 title: "Dwarven Resilience",
-                citation: Citation(Book::PHB, 20),
+                citation: Citation(Book::Phb, 20),
             },
             // Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.
             Feature {
                 title: "Stonecunning",
-                citation: Citation(Book::PHB, 20),
+                citation: Citation(Book::Phb, 20),
             },
         ];
         if let DwarfSubrace::Hill = self.subrace {
@@ -121,7 +121,7 @@ impl Features for Dwarf {
                 // Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
                 Feature {
                     title: "Dwarven Toughness",
-                    citation: Citation(Book::PHB, 20),
+                    citation: Citation(Book::Phb, 20),
                 },
             ]);
         }

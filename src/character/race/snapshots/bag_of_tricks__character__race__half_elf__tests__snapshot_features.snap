@@ -5,10 +5,10 @@ expression: half_elf.features()
 ---
 - title: Darkvision
   citation:
-    - PHB
+    - Phb
     - 39
 - title: Fey Ancestry
   citation:
-    - PHB
+    - Phb
     - 39
 

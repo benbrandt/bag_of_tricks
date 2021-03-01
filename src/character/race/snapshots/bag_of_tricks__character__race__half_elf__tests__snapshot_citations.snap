@@ -3,6 +3,6 @@ source: src/character/race/half_elf.rs
 expression: half_elf.citations()
 
 ---
-- - PHB
+- - Phb
   - 38
 

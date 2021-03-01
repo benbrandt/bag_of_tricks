@@ -5,26 +5,26 @@ expression: "HalflingSubrace::iter().map(|subrace|\n                            
 ---
 - - title: Brave
     citation:
-      - PHB
+      - Phb
       - 28
   - title: Halfling Nimbleness
     citation:
-      - PHB
+      - Phb
       - 28
   - title: Naturally Stealthy
     citation:
-      - PHB
+      - Phb
       - 28
 - - title: Brave
     citation:
-      - PHB
+      - Phb
       - 28
   - title: Halfling Nimbleness
     citation:
-      - PHB
+      - Phb
       - 28
   - title: Stout Resilience
     citation:
-      - PHB
+      - Phb
       - 28
 

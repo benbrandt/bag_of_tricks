@@ -5,30 +5,30 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
 ---
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 20
   - title: Dwarven Resilience
     citation:
-      - PHB
+      - Phb
       - 20
   - title: Stonecunning
     citation:
-      - PHB
+      - Phb
       - 20
   - title: Dwarven Toughness
     citation:
-      - PHB
+      - Phb
       - 20
 - - title: Darkvision
     citation:
-      - PHB
+      - Phb
       - 20
   - title: Dwarven Resilience
     citation:
-      - PHB
+      - Phb
       - 20
   - title: Stonecunning
     citation:
-      - PHB
+      - Phb
       - 20
 

@@ -66,7 +66,7 @@ impl Backstory for Hermit {
 
 impl Citations for Hermit {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 134)])
+        CitationList(vec![Citation(Book::Phb, 134)])
     }
 }
 
@@ -76,7 +76,7 @@ impl Features for Hermit {
         // Work with your DM to determine the details of your discovery and its impact on the campaign.
         vec![Feature {
             title: "Discovery",
-            citation: Citation(Book::PHB, 134),
+            citation: Citation(Book::Phb, 134),
         }]
     }
 }

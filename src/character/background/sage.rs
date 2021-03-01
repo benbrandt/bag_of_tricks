@@ -60,7 +60,7 @@ impl Backstory for Sage {}
 
 impl Citations for Sage {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 137)])
+        CitationList(vec![Citation(Book::Phb, 137)])
     }
 }
 
@@ -69,7 +69,7 @@ impl Features for Sage {
         // When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found. Unearthing the deepest secrets of the multiverse can require an adventure or even a whole campaign.
         vec![Feature {
             title: "Researcher",
-            citation: Citation(Book::PHB, 138),
+            citation: Citation(Book::Phb, 138),
         }]
     }
 }

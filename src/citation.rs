@@ -8,7 +8,8 @@ use strum_macros::Display;
 /// Titles of the available D&D Books.
 #[derive(Clone, Copy, Debug, Deserialize, Display, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum Book {
-    PHB,
+    #[strum(serialize = "PHB")]
+    Phb,
 }
 
 /// Book and page number for citations.
@@ -61,18 +62,18 @@ mod tests {
 
     #[test]
     fn test_book_display() {
-        assert_eq!(format!("{}", Book::PHB), "PHB");
+        assert_eq!(format!("{}", Book::Phb), "PHB");
     }
 
     #[test]
     fn test_citation_display() {
-        let citation = Citation(Book::PHB, 123);
+        let citation = Citation(Book::Phb, 123);
         assert_eq!(format!("{}", citation), "PHB p123");
     }
 
     #[test]
     fn test_citations_display() {
-        let citations = CitationList(vec![Citation(Book::PHB, 123), Citation(Book::PHB, 125)]);
+        let citations = CitationList(vec![Citation(Book::Phb, 123), Citation(Book::Phb, 125)]);
         assert_eq!(format!("{}", citations), "PHB p123,125");
     }
 }

@@ -3,6 +3,6 @@ source: src/character/race/half_orc.rs
 expression: half_orc.citations()
 
 ---
-- - PHB
+- - Phb
   - 40
 

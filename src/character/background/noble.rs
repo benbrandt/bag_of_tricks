@@ -52,7 +52,7 @@ impl Backstory for Noble {}
 
 impl Citations for Noble {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 135)])
+        CitationList(vec![Citation(Book::Phb, 135)])
     }
 }
 
@@ -63,14 +63,14 @@ impl Features for Noble {
                 // You have the service of three retainers loyal to your family. These retainers can be attendants or messengers, and one might be a majordomo. Your retainers are commoners who can perform mundane tasks for you, but they do not fight for you, will not follow you into obviously dangerous areas (such as dungeons), and will leave if they are frequently endangered or abused.
                 vec![Feature {
                     title: "Retainers",
-                    citation: Citation(Book::PHB, 136),
+                    citation: Citation(Book::Phb, 136),
                 }]
             }
             Variant::Noble => {
                 // You have the service of three retainers loyal to your family. These retainers can be attendants or messengers, and one might be a majordomo. Your retainers are commoners who can perform mundane tasks for you, but they do not fight for you, will not follow you into obviously dangerous areas (such as dungeons), and will leave if they are frequently endangered or abused.
                 vec![Feature {
                     title: "Position of Privilege",
-                    citation: Citation(Book::PHB, 135),
+                    citation: Citation(Book::Phb, 135),
                 }]
             }
         }

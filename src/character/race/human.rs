@@ -69,7 +69,7 @@ impl Characteristics for Human {
 
 impl Citations for Human {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 29)])
+        CitationList(vec![Citation(Book::Phb, 29)])
     }
 }
 

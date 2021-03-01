@@ -142,7 +142,7 @@ impl Backstory for GuildArtisan {
 
 impl Citations for GuildArtisan {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 132)])
+        CitationList(vec![Citation(Book::Phb, 132)])
     }
 }
 
@@ -153,7 +153,7 @@ impl Features for GuildArtisan {
         // You must pay dues of 5 gp per month to the guild. If you miss payments, you must make up back dues to remain in the guild's good graces.
         vec![Feature {
             title: "Guild Membership",
-            citation: Citation(Book::PHB, 133),
+            citation: Citation(Book::Phb, 133),
         }]
     }
 }

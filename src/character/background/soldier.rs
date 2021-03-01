@@ -61,7 +61,7 @@ impl Backstory for Soldier {}
 
 impl Citations for Soldier {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::PHB, 140)])
+        CitationList(vec![Citation(Book::Phb, 140)])
     }
 }
 
@@ -70,7 +70,7 @@ impl Features for Soldier {
         // You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment or horses for temporary use. You can also usually gain access to friendly military encampments and fortresses where your rank is recognized.
         vec![Feature {
             title: "Military Rank",
-            citation: Citation(Book::PHB, 140),
+            citation: Citation(Book::Phb, 140),
         }]
     }
 }

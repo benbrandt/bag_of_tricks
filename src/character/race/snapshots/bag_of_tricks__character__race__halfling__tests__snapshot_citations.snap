@@ -3,12 +3,12 @@ source: src/character/race/halfling.rs
 expression: "HalflingSubrace::iter().map(|subrace|\n                                (Halfling{subrace,}).citations()).collect::<Vec<CitationList>>()"
 
 ---
-- - - PHB
+- - - Phb
     - 26
-  - - PHB
+  - - Phb
     - 28
-- - - PHB
+- - - Phb
     - 26
-  - - PHB
+  - - Phb
     - 28
 

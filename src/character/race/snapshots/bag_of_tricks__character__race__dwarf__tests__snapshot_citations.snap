@@ -3,12 +3,12 @@ source: src/character/race/dwarf.rs
 expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,}).citations()).collect::<Vec<CitationList>>()"
 
 ---
-- - - PHB
+- - - Phb
     - 18
-  - - PHB
+  - - Phb
     - 20
-- - - PHB
+- - - Phb
     - 18
-  - - PHB
+  - - Phb
     - 20
 
