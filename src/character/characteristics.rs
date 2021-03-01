@@ -31,6 +31,7 @@ impl Gender {
 }
 
 /// Weight modifier
+#[derive(Debug, PartialEq)]
 pub(crate) enum WeightMod {
     /// Fixed additional weight
     Fixed(u16),
@@ -44,6 +45,7 @@ pub(crate) const fn in_inches(feet: u8, inches: u8) -> u8 {
 }
 
 /// Data from a table to generate a height and weight for a given character.
+#[derive(Debug, PartialEq)]
 pub(crate) struct HeightAndWeightTable {
     /// Base height for this character
     pub(crate) base_height: u8,

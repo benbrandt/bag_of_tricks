@@ -232,15 +232,30 @@ mod tests {
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let (dragonborn, _name, _characteristics) = Dragonborn::gen(&mut rng);
-        insta::assert_snapshot!(format!("{}", dragonborn));
+        insta::assert_display_snapshot!(dragonborn);
     }
 
     #[test]
-    fn test_snapshot_abilities() {
-        let dragonborn = Dragonborn {
-            ancestry: DraconicAncestry::Black,
-        };
-        insta::assert_yaml_snapshot!(dragonborn.abilities());
+    fn test_damage_type() {
+        insta::assert_yaml_snapshot!(DraconicAncestry::iter()
+            .map(|ancestry| Dragonborn { ancestry }.damage_type())
+            .collect::<Vec<DamageType>>())
+    }
+
+    #[test]
+    fn test_morality() {
+        insta::assert_yaml_snapshot!(DraconicAncestry::iter()
+            .map(|ancestry| Dragonborn { ancestry }.morality())
+            .collect::<Vec<Vec<Morality>>>())
+    }
+
+    #[test]
+    fn test_characteristics() {
+        for ancestry in DraconicAncestry::iter() {
+            let dragonborn = Dragonborn { ancestry };
+            assert_eq!(dragonborn.get_base_speed(), 30);
+            assert_eq!(dragonborn.get_height_and_weight_table(), &HEIGHT_AND_WEIGHT);
+        }
     }
 
     #[test]
@@ -257,5 +272,53 @@ mod tests {
             ancestry: DraconicAncestry::Black,
         };
         insta::assert_yaml_snapshot!(dragonborn.features());
+    }
+
+    #[test]
+    fn test_snapshot_languages() {
+        let dragonborn = Dragonborn {
+            ancestry: DraconicAncestry::Black,
+        };
+        insta::assert_yaml_snapshot!(dragonborn.languages());
+    }
+
+    #[test]
+    fn test_name() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let dragonborn = Dragonborn {
+            ancestry: DraconicAncestry::Black,
+        };
+        let characteristics_1 = dragonborn.gen_characteristics(&mut rng);
+        let characteristics_2 = dragonborn.gen_characteristics(&mut rng);
+        let female_name = Dragonborn::gen_name(
+            &mut rng,
+            &CharacteristicDetails {
+                gender: Gender::Female,
+                ..characteristics_1
+            },
+        );
+        let male_name = Dragonborn::gen_name(
+            &mut rng,
+            &CharacteristicDetails {
+                gender: Gender::Male,
+                ..characteristics_2
+            },
+        );
+        insta::assert_yaml_snapshot!([female_name, male_name]);
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        let dragonborn = Dragonborn {
+            ancestry: DraconicAncestry::Black,
+        };
+        insta::assert_yaml_snapshot!(dragonborn.abilities());
+    }
+
+    #[test]
+    fn test_resistances() {
+        insta::assert_yaml_snapshot!(DraconicAncestry::iter()
+            .map(|ancestry| Dragonborn { ancestry }.resistances())
+            .collect::<Vec<Vec<DamageType>>>())
     }
 }

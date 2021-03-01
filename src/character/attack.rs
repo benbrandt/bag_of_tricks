@@ -1,12 +1,13 @@
 use std::fmt;
 
+use serde::{Deserialize, Serialize};
 use strum_macros::Display;
 
 use crate::dice_roller::RollCmd;
 
 /// List of types of damage available
 #[allow(dead_code)]
-#[derive(Display)]
+#[derive(Deserialize, Display, Serialize)]
 pub(crate) enum DamageType {
     Acid,
     Bludgeoning,

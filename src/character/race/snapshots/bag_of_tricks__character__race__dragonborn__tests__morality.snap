@@ -1,0 +1,16 @@
+---
+source: src/character/race/dragonborn.rs
+expression: "DraconicAncestry::iter().map(|ancestry|\n                                 Dragonborn{ancestry,}.morality()).collect::<Vec<Vec<Morality>>>()"
+
+---
+- - Evil
+- - Evil
+- - Good
+- - Good
+- - Good
+- - Good
+- - Evil
+- - Evil
+- - Good
+- - Evil
+

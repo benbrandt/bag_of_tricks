@@ -50,6 +50,7 @@ fn roll_die(rng: &mut impl Rng, die: Die) -> DieResult {
 }
 
 /// Roll multiple dice
+#[derive(Debug, PartialEq)]
 pub(crate) struct RollCmd(pub(crate) usize, pub(crate) Die);
 
 impl RollCmd {
