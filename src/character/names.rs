@@ -4,8 +4,10 @@ pub(crate) mod elf;
 pub(crate) mod gnome;
 pub(crate) mod halfling;
 pub(crate) mod human;
+pub(crate) mod kobold;
 pub(crate) mod orc;
 pub(crate) mod tiefling;
+pub(crate) mod yuan_ti;
 
 use rand::Rng;
 

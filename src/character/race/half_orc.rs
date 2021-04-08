@@ -16,7 +16,7 @@ use crate::{
         languages::{Language, Languages},
         names::{
             human::Names,
-            orc::{FEMALE, MALE},
+            orc::{EPITHET, FEMALE, MALE},
             Name,
         },
         proficiencies::{Proficiencies, Proficiency},
@@ -107,7 +107,14 @@ impl Name for HalfOrc {
         .iter()
         .choose(rng)
         .unwrap();
-        format!("{} {}", first_name, Human::gen_surname(rng, &names))
+        let last_name = *[
+            Human::gen_surname(rng, &names),
+            *EPITHET.iter().choose(rng).unwrap(),
+        ]
+        .iter()
+        .choose(rng)
+        .unwrap();
+        format!("{} {}", first_name, last_name)
     }
 }
 

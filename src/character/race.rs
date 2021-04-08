@@ -6,7 +6,9 @@ mod half_elf;
 mod half_orc;
 mod halfling;
 mod human;
+mod kobold;
 mod tiefling;
+mod yuan_ti;
 
 use rand::prelude::IteratorRandom;
 use rand::Rng;
