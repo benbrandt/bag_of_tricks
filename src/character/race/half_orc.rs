@@ -1,4 +1,4 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
@@ -105,16 +105,14 @@ impl Name for HalfOrc {
         };
         let first_name = *[
             Human::gen_first_name(rng, &names, characteristics),
-            *orc_names.iter().choose(rng).unwrap(),
+            *orc_names.choose(rng).unwrap(),
         ]
-        .iter()
         .choose(rng)
         .unwrap();
         let last_name = *[
             Human::gen_surname(rng, &names),
-            *EPITHET.iter().choose(rng).unwrap(),
+            *EPITHET.choose(rng).unwrap(),
         ]
-        .iter()
         .choose(rng)
         .unwrap();
         format!("{} {}", first_name, last_name)

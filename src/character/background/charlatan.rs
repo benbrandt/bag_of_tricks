@@ -1,6 +1,6 @@
 use std::fmt;
 
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -38,7 +38,7 @@ pub(crate) struct Charlatan {
 
 impl Charlatan {
     fn gen_scam(rng: &mut impl Rng) -> String {
-        String::from(*SCAMS.iter().choose(rng).unwrap())
+        String::from(*SCAMS.choose(rng).unwrap())
     }
 }
 

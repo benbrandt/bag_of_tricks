@@ -1,4 +1,7 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -78,11 +81,11 @@ impl Elf {
                 Gender::Male => MALE,
             },
         };
-        first_names.iter().choose(rng).unwrap()
+        first_names.choose(rng).unwrap()
     }
 
     pub(crate) fn gen_family_name<'a>(rng: &mut impl Rng) -> &'a str {
-        FAMILY.iter().choose(rng).unwrap()
+        FAMILY.choose(rng).unwrap()
     }
 }
 

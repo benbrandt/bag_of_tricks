@@ -1,4 +1,7 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -149,8 +152,8 @@ impl Name for Dwarf {
         };
         format!(
             "{} {}",
-            first_names.iter().choose(rng).unwrap(),
-            CLAN.iter().choose(rng).unwrap()
+            first_names.choose(rng).unwrap(),
+            CLAN.choose(rng).unwrap()
         )
     }
 }

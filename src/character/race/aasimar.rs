@@ -1,6 +1,9 @@
 use std::fmt;
 
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -40,43 +43,35 @@ enum AasimarSubrace {
     Scourge,
 }
 
-#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
-enum GuideName {
-    Tadriel,
-    Myllandra,
-    Seraphina,
-    Galladia,
-    Mykiel,
-    Valandras,
-}
+const GUIDE_NAME: &[&str] = &[
+    "Tadriel",
+    "Myllandra",
+    "Seraphina",
+    "Galladia",
+    "Mykiel",
+    "Valandras",
+];
 
-#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
-enum GuideNature {
-    #[strum(serialize = "Bookish and lecturing")]
-    Bookish,
-    #[strum(serialize = "Compassionate and hopeful")]
-    Compassionate,
-    #[strum(serialize = "Practical and lighthearted")]
-    Practical,
-    #[strum(serialize = "Fierce and vengeful")]
-    Fierce,
-    #[strum(serialize = "Stern and judgmental")]
-    Stern,
-    #[strum(serialize = "Kind and parental")]
-    Kind,
-}
+const GUIDE_NATURE: &[&str] = &[
+    "Bookish and lecturing",
+    "Compassionate and hopeful",
+    "Practical and lighthearted",
+    "Fierce and vengeful",
+    "Stern and judgmental",
+    "Kind and parental",
+];
 
 #[derive(Deserialize, Serialize)]
 struct AngelicGuide {
-    name: GuideName,
-    nature: GuideNature,
+    name: String,
+    nature: String,
 }
 
 impl AngelicGuide {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {
-            name: GuideName::iter().choose(rng).unwrap(),
-            nature: GuideNature::iter().choose(rng).unwrap(),
+            name: (*GUIDE_NAME.choose(rng).unwrap()).to_string(),
+            nature: (*GUIDE_NATURE.choose(rng).unwrap()).to_string(),
         }
     }
 }
@@ -299,8 +294,8 @@ mod tests {
     fn test_characteristics() {
         let aasimar = Aasimar {
             guide: AngelicGuide {
-                name: GuideName::Galladia,
-                nature: GuideNature::Bookish,
+                name: "Galladia".to_string(),
+                nature: "Bookish".to_string(),
             },
             subrace: AasimarSubrace::Fallen,
         };
@@ -312,8 +307,8 @@ mod tests {
     fn test_snapshot_citations() {
         let aasimar = Aasimar {
             guide: AngelicGuide {
-                name: GuideName::Galladia,
-                nature: GuideNature::Bookish,
+                name: "Galladia".to_string(),
+                nature: "Bookish".to_string(),
             },
             subrace: AasimarSubrace::Fallen,
         };
@@ -336,8 +331,8 @@ mod tests {
     fn test_snapshot_languages() {
         let aasimar = Aasimar {
             guide: AngelicGuide {
-                name: GuideName::Galladia,
-                nature: GuideNature::Bookish,
+                name: "Galladia".to_string(),
+                nature: "Bookish".to_string(),
             },
             subrace: AasimarSubrace::Fallen,
         };
@@ -349,8 +344,8 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let aasimar = Aasimar {
             guide: AngelicGuide {
-                name: GuideName::Galladia,
-                nature: GuideNature::Bookish,
+                name: "Galladia".to_string(),
+                nature: "Bookish".to_string(),
             },
             subrace: AasimarSubrace::Fallen,
         };
@@ -389,8 +384,8 @@ mod tests {
     fn test_resistances() {
         let aasimar = Aasimar {
             guide: AngelicGuide {
-                name: GuideName::Galladia,
-                nature: GuideNature::Bookish,
+                name: "Galladia".to_string(),
+                nature: "Bookish".to_string(),
             },
             subrace: AasimarSubrace::Fallen,
         };

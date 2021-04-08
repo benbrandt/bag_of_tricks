@@ -17,7 +17,7 @@ use std::fmt;
 use entertainer::Entertainer;
 use folk_hero::FolkHero;
 use rand::{
-    prelude::{Distribution, IteratorRandom},
+    prelude::{Distribution, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
@@ -122,15 +122,15 @@ pub(crate) trait PersonalityOptions {
 
     /// Generate personality descriptions from the associated constants
     fn gen_personality(rng: &mut impl Rng) -> Personality {
-        let ideal = *Self::IDEALS.iter().choose(rng).unwrap();
+        let ideal = *Self::IDEALS.choose(rng).unwrap();
         Personality {
-            bond: String::from(*Self::BONDS.iter().choose(rng).unwrap()),
-            flaw: String::from(*Self::FLAWS.iter().choose(rng).unwrap()),
+            bond: String::from(*Self::BONDS.choose(rng).unwrap()),
+            flaw: String::from(*Self::FLAWS.choose(rng).unwrap()),
             ideal: (String::from(ideal.0), ideal.1),
             traits: Self::TRAITS
-                .iter()
+                .choose_multiple(rng, 2)
                 .map(|s| String::from(*s))
-                .choose_multiple(rng, 2),
+                .collect(),
         }
     }
 }

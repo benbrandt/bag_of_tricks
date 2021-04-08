@@ -1,4 +1,4 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
@@ -48,15 +48,11 @@ impl Tiefling {
             Gender::Female => FEMALE_ABYSSAL,
             Gender::Male => MALE_ABYSSAL,
         })
-        .iter()
         .choose(rng)
         .unwrap();
         let human_name = Human::gen_first_name(rng, names, characteristics);
-        let virtue_name = *VIRTUE_NAMES.iter().choose(rng).unwrap();
-        *[abyssal_name, human_name, virtue_name]
-            .iter()
-            .choose(rng)
-            .unwrap()
+        let virtue_name = *VIRTUE_NAMES.choose(rng).unwrap();
+        *[abyssal_name, human_name, virtue_name].choose(rng).unwrap()
     }
 }
 

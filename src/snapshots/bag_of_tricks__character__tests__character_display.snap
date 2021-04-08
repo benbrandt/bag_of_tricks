@@ -41,7 +41,7 @@ SPEED: 30
 PROFICIENCY BONUS: +2
 RESISTANCES: Fire
 LANGUAGES: Common, Draconic
-PROFICIENCIES: Tool(ThievesTools), Tool(GamingSet(Dragonchess))
+PROFICIENCIES: Tool(ThievesTools), Tool(GamingSet(Dice))
 
 CHARACTERISTICS:
 Age: 73
@@ -51,14 +51,14 @@ Height: 6'3"
 Weight: 238 lb.
 
 PERSONALITY TRAITS:
-The first thing I do in a new place is note the locations of everything valuable — or where such things could be hidden.
-I would rather make a new friend than a new enemy.
+I always have a plan for what to do when things go wrong.
+I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.
 IDEAL: People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care. (Neutral)
 BOND: I'm trying to pay off an old debt I owe to a generous benefactor.
 FLAW: An innocent person is in prison for a crime that I committed. I'm okay with that.
 
 EQUIPMENT
-Gear(Other(Crowbar)), Other("a set of dark common clothes including a hood"), Gear(Other(Pouch)), Other("A white, sequined glove sized for a human")
+Gear(Other(Crowbar)), Other("a set of dark common clothes including a hood"), Gear(Other(Pouch)), Other("A rank insignia from a lost legionnaire")
 COINS: 15gp
 
 FEATURES AND TRAITS:

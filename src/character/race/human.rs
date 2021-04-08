@@ -1,4 +1,4 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -44,12 +44,12 @@ impl Human {
             Gender::Female => names.female,
             Gender::Male => names.male,
         };
-        first_names.iter().choose(rng).unwrap()
+        first_names.choose(rng).unwrap()
     }
 
     /// Separate function to make it easier to share with other races
     pub(crate) fn gen_surname<'a>(rng: &mut impl Rng, names: &'a Names) -> &'a str {
-        names.surname.iter().choose(rng).unwrap()
+        names.surname.choose(rng).unwrap()
     }
 }
 

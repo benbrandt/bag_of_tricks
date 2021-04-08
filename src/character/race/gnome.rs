@@ -1,4 +1,7 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -144,9 +147,9 @@ impl Name for Gnome {
         };
         format!(
             "{} \"{}\" {}",
-            first_names.iter().choose(rng).unwrap(),
-            NICKNAMES.iter().choose(rng).unwrap(),
-            CLAN.iter().choose(rng).unwrap(),
+            first_names.choose(rng).unwrap(),
+            NICKNAMES.choose(rng).unwrap(),
+            CLAN.choose(rng).unwrap(),
         )
     }
 }

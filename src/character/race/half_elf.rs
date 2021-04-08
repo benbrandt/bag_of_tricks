@@ -1,4 +1,7 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -110,11 +113,9 @@ impl Name for HalfElf {
             Elf::gen_first_name(rng, characteristics),
             Human::gen_first_name(rng, &names, characteristics),
         ]
-        .iter()
         .choose(rng)
         .unwrap();
         let surname = *[Elf::gen_family_name(rng), Human::gen_surname(rng, &names)]
-            .iter()
             .choose(rng)
             .unwrap();
         format!("{} {}", first_name, surname)

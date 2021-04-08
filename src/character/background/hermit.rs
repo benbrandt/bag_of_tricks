@@ -1,6 +1,6 @@
 use std::fmt;
 
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -40,7 +40,7 @@ pub(crate) struct Hermit {
 
 impl Hermit {
     fn gen_life_of_seclusion(rng: &mut impl Rng) -> String {
-        String::from(*LIFE_OF_SECLUSION.iter().choose(rng).unwrap())
+        String::from(*LIFE_OF_SECLUSION.choose(rng).unwrap())
     }
 }
 

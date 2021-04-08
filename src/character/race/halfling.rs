@@ -1,4 +1,7 @@
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use strum::IntoEnumIterator;
@@ -128,8 +131,8 @@ impl Name for Halfling {
         };
         format!(
             "{} {}",
-            first_names.iter().choose(rng).unwrap(),
-            FAMILY.iter().choose(rng).unwrap(),
+            first_names.choose(rng).unwrap(),
+            FAMILY.choose(rng).unwrap(),
         )
     }
 }

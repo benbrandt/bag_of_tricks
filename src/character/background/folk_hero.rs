@@ -1,6 +1,6 @@
 use std::fmt;
 
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -42,7 +42,7 @@ pub(crate) struct FolkHero {
 
 impl FolkHero {
     fn gen_defining_event(rng: &mut impl Rng) -> String {
-        String::from(*DEFINING_EVENTS.iter().choose(rng).unwrap())
+        String::from(*DEFINING_EVENTS.choose(rng).unwrap())
     }
 }
 

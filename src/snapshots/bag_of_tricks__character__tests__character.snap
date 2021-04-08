@@ -25,11 +25,11 @@ characteristics:
   size: Medium
   weight: 238
 chosen_equipment:
-  - Other: "A white, sequined glove sized for a human"
+  - Other: A rank insignia from a lost legionnaire
 chosen_languages: []
 chosen_proficiencies:
   - Tool:
-      GamingSet: Dragonchess
+      GamingSet: Dice
 level: 1
 name: "Myastan Daar \"Earbender\""
 personality:
@@ -39,8 +39,8 @@ personality:
     - "People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."
     - Neutral
   traits:
-    - The first thing I do in a new place is note the locations of everything valuable — or where such things could be hidden.
-    - I would rather make a new friend than a new enemy.
+    - I always have a plan for what to do when things go wrong.
+    - "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."
 race:
   type: Dragonborn
   ancestry: Gold
