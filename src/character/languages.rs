@@ -6,6 +6,7 @@ use strum_macros::{Display, EnumIter};
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum Language {
     Abyssal,
+    Auran,
     Celestial,
     Common,
     #[strum(serialize = "Deep Speech")]

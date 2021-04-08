@@ -1,0 +1,14 @@
+---
+source: src/character/race/kenku.rs
+expression: kenku.features()
+
+---
+- title: Expert Forgery
+  citation:
+    - Vgtm
+    - 111
+- title: Mimicry
+  citation:
+    - Vgtm
+    - 111
+

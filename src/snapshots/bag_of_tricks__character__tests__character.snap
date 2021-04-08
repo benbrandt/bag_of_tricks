@@ -4,44 +4,51 @@ expression: character
 
 ---
 abilities:
-  Strength: 14
-  Dexterity: 15
-  Constitution: 15
-  Intelligence: 15
-  Wisdom: 13
-  Charisma: 15
+  Strength: 17
+  Dexterity: 16
+  Constitution: 13
+  Intelligence: 12
+  Wisdom: 15
+  Charisma: 9
 alignment:
-  - Neutral
+  - Lawful
   - Good
 background:
-  type: Criminal
-  specialty: Blackmailer
-  variant: Criminal
+  type: Outlander
+  origin: Forester
 characteristics:
-  age: 73
+  age: 57
   base_speed: 30
   gender: Female
-  height: 75
+  height: 61
   size: Medium
-  weight: 238
+  weight: 134
 chosen_equipment:
-  - Other: A rank insignia from a lost legionnaire
-chosen_languages: []
+  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
+chosen_languages:
+  - Primordial
+  - Undercommon
 chosen_proficiencies:
   - Tool:
-      GamingSet: Dice
+      MusicalInstrument: Viol
+  - Skill: Stealth
+  - Skill: SleightOfHand
 level: 1
-name: "Myastan Daar \"Earbender\""
+name: Kerri Amastacia (Starflower)
 personality:
-  bond: "I'm trying to pay off an old debt I owe to a generous benefactor."
-  flaw: "An innocent person is in prison for a crime that I committed. I'm okay with that."
+  bond: An injury to the unspoiled wilderness of my home is an injury to me.
+  flaw: Violence is my answer to almost any challenge.
   ideal:
-    - "People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."
-    - Neutral
+    - "Honor. If I dishonor myself, I dishonor my whole clan."
+    - Lawful
   traits:
-    - I always have a plan for what to do when things go wrong.
-    - "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."
+    - "I was, in fact, raised by wolves."
+    - "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them."
 race:
-  type: Dragonborn
-  ancestry: Gold
+  type: HalfElf
+  addl_increases:
+    - - Intelligence
+      - 1
+    - - Dexterity
+      - 1
 

@@ -1,0 +1,17 @@
+---
+source: src/character/race/kenku.rs
+expression: kenku
+
+---
+- type: Kenku
+  addl_proficiencies:
+    - Skill: Acrobatics
+    - Skill: Stealth
+- Basher
+- age: 12
+  base_speed: 30
+  gender: Female
+  height: 61
+  size: Medium
+  weight: 104
+
