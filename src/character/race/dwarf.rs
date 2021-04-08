@@ -185,6 +185,7 @@ impl Proficiencies for Dwarf {
             .iter()
             .map(|t| Proficiency::Tool(Tool::ArtisansTools(*t)))
             .collect(),
+            1,
         )]
     }
 }

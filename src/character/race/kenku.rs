@@ -16,7 +16,7 @@ use crate::{
         features::{Feature, Features},
         languages::{Language, Languages},
         names::{kenku::NAMES, Name},
-        proficiencies::{Proficiencies, Proficiency},
+        proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -32,24 +32,7 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 };
 
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Kenku {
-    addl_proficiencies: Vec<Proficiency>,
-}
-
-impl Kenku {
-    fn gen_addl_proficiencies(rng: &mut impl Rng) -> Vec<Proficiency> {
-        [
-            Skill::Acrobatics,
-            Skill::Deception,
-            Skill::Stealth,
-            Skill::SleightOfHand,
-        ]
-        .choose_multiple(rng, 2)
-        .into_iter()
-        .map(|s| Proficiency::Skill(*s))
-        .collect()
-    }
-}
+pub(crate) struct Kenku;
 
 impl AlignmentInfluences for Kenku {
     fn attitude(&self) -> Vec<Attitude> {
@@ -112,17 +95,26 @@ impl Name for Kenku {
 }
 
 impl Proficiencies for Kenku {
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        self.addl_proficiencies.clone()
+    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
+        vec![ProficiencyOption::From(
+            [
+                Skill::Acrobatics,
+                Skill::Deception,
+                Skill::Stealth,
+                Skill::SleightOfHand,
+            ]
+            .iter()
+            .map(|s| Proficiency::Skill(*s))
+            .collect(),
+            2,
+        )]
     }
 }
 
 #[typetag::serde]
 impl Race for Kenku {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
-            addl_proficiencies: Self::gen_addl_proficiencies(rng),
-        });
+        let race = Box::new(Self);
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
@@ -166,23 +158,19 @@ mod tests {
 
     #[test]
     fn test_attitude() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku;
         insta::assert_yaml_snapshot!(kenku.attitude());
     }
 
     #[test]
     fn test_morality() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku;
         insta::assert_yaml_snapshot!(kenku.morality());
     }
 
     #[test]
     fn test_characteristics() {
-        let kenku = Kenku {
-            addl_proficiencies: vec![],
-        };
+        let kenku = Kenku;
         assert_eq!(kenku.get_base_speed(), 30);
         assert_eq!(kenku.get_height_and_weight_table(), &HEIGHT_AND_WEIGHT);
     }
@@ -196,24 +184,20 @@ mod tests {
 
     #[test]
     fn test_snapshot_features() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku;
         insta::assert_yaml_snapshot!(kenku.features());
     }
 
     #[test]
     fn test_snapshot_languages() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku;
         insta::assert_yaml_snapshot!(kenku.languages());
     }
 
     #[test]
     fn test_name() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let kenku = Kenku {
-            addl_proficiencies: vec![],
-        };
+        let kenku = Kenku;
         let characteristics = kenku.gen_characteristics(&mut rng);
         let name = Kenku::gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
@@ -221,15 +205,13 @@ mod tests {
 
     #[test]
     fn test_snapshot_proficiencies() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
-        insta::assert_yaml_snapshot!(kenku.proficiencies());
+        let kenku = Kenku;
+        insta::assert_yaml_snapshot!(kenku.addl_proficiencies());
     }
 
     #[test]
     fn test_snapshot_abilities() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku;
         insta::assert_yaml_snapshot!(kenku.abilities());
     }
 }

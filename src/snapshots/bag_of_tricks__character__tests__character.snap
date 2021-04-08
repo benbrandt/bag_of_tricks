@@ -24,15 +24,15 @@ characteristics:
   size: Medium
   weight: 134
 chosen_equipment:
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
+  - Other: A rank insignia from a lost legionnaire
 chosen_languages:
   - Primordial
   - Undercommon
 chosen_proficiencies:
   - Tool:
-      MusicalInstrument: Viol
+      MusicalInstrument: Lute
+  - Skill: Acrobatics
   - Skill: Stealth
-  - Skill: SleightOfHand
 level: 1
 name: Kerri Amastacia (Starflower)
 personality:

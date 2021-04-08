@@ -125,7 +125,7 @@ impl Character {
         // Sort so that the options with the least amount are chosen first.
         options.sort();
         for option in options {
-            self.chosen_proficiencies.push(option.gen(rng, &self));
+            self.chosen_proficiencies.extend(option.gen(rng, &self));
         }
     }
 

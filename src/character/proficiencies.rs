@@ -27,10 +27,10 @@ pub(crate) enum WeaponProficiency {
 }
 
 /// A way to encapsulate a proficiency that needs to be chosen for a character.
-#[derive(Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum ProficiencyOption {
     /// Choose from a given list of proficiency options.
-    From(Vec<Proficiency>),
+    From(Vec<Proficiency>, usize),
     /// Choose a random artisan's tools to be proficient in.
     ArtisansTools,
     /// Choose a random gaming set to be proficient in.
@@ -43,30 +43,32 @@ pub(crate) enum ProficiencyOption {
 
 impl ProficiencyOption {
     /// Randomly choose a given proficiency option, avoiding already existing proficiencies.
-    pub(crate) fn gen(&self, rng: &mut impl Rng, character: &Character) -> Proficiency {
+    pub(crate) fn gen(&self, rng: &mut impl Rng, character: &Character) -> Vec<Proficiency> {
         match self {
-            Self::From(list) => list
+            Self::From(list, amount) => list
                 .clone()
                 .into_iter()
                 .filter(|p| !character.proficiencies().contains(p))
-                .choose(rng)
-                .unwrap(),
+                .choose_multiple(rng, *amount),
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|g| Proficiency::Tool(Tool::ArtisansTools(g)))
                     .collect(),
+                1,
             )
             .gen(rng, character),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
                     .map(|g| Proficiency::Tool(Tool::GamingSet(g)))
                     .collect(),
+                1,
             )
             .gen(rng, character),
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Proficiency::Tool(Tool::MusicalInstrument(m)))
                     .collect(),
+                1,
             )
             .gen(rng, character),
             Self::Skill => {
@@ -77,7 +79,9 @@ impl ProficiencyOption {
                     .clone()
                     .map(|s| character.abilities.modifier(s.ability_score_type()));
                 let dist = weighted_modifiers_dist(modifiers);
-                Proficiency::Skill(available_skills.collect::<Vec<Skill>>()[dist.sample(rng)])
+                vec![Proficiency::Skill(
+                    available_skills.collect::<Vec<Skill>>()[dist.sample(rng)],
+                )]
             }
         }
     }
