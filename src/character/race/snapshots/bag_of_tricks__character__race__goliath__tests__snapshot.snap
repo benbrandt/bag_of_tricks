@@ -1,0 +1,14 @@
+---
+source: src/character/race/goliath.rs
+expression: goliath
+
+---
+- type: Goliath
+- "Vaunea \"Keeneye\" Kolae-Gileana"
+- age: 94
+  base_speed: 30
+  gender: Female
+  height: 82
+  size: Medium
+  weight: 256
+

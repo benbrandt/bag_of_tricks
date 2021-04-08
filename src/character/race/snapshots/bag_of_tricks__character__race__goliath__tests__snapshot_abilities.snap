@@ -1,0 +1,10 @@
+---
+source: src/character/race/goliath.rs
+expression: goliath.abilities()
+
+---
+- - Strength
+  - 2
+- - Constitution
+  - 1
+

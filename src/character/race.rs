@@ -4,6 +4,7 @@ mod dwarf;
 mod elf;
 mod firbolg;
 mod gnome;
+mod goliath;
 mod half_elf;
 mod half_orc;
 mod halfling;
@@ -22,8 +23,8 @@ use crate::citation::Citations;
 
 use self::{
     aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
-    gnome::Gnome, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling, human::Human,
-    tiefling::Tiefling,
+    gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling,
+    human::Human, tiefling::Tiefling,
 };
 
 use super::{
@@ -62,6 +63,7 @@ pub(crate) enum RaceOptions {
     Elf,
     Firbolg,
     Gnome,
+    Goliath,
     HalfElf,
     HalfOrc,
     Halfling,
@@ -79,6 +81,7 @@ impl RaceOptions {
             Self::Elf => Elf::gen(rng),
             Self::Firbolg => Firbolg::gen(rng),
             Self::Gnome => Gnome::gen(rng),
+            Self::Goliath => Goliath::gen(rng),
             Self::HalfElf => HalfElf::gen(rng),
             Self::HalfOrc => HalfOrc::gen(rng),
             Self::Halfling => Halfling::gen(rng),

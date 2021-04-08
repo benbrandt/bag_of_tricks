@@ -1,0 +1,7 @@
+---
+source: src/character/race/goliath.rs
+expression: goliath.proficiencies()
+
+---
+- Skill: Athletics
+
