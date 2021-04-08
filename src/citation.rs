@@ -10,6 +10,8 @@ use strum_macros::Display;
 pub(crate) enum Book {
     #[strum(serialize = "PHB")]
     Phb,
+    #[strum(serialize = "VGTM")]
+    Vgtm,
 }
 
 /// Book and page number for citations.

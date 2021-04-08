@@ -9,6 +9,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::AlignmentInfluences,
         attack::Resistances,
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -53,6 +54,8 @@ impl Human {
 }
 
 impl AlignmentInfluences for Human {}
+
+impl Backstory for Human {}
 
 impl Characteristics for Human {
     const AGE_RANGE: AgeRange = AgeRange(10..=100);

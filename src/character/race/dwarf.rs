@@ -10,6 +10,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
+        backstory::Backstory,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
         },
@@ -70,6 +71,8 @@ impl AlignmentInfluences for Dwarf {
         vec![Morality::Good]
     }
 }
+
+impl Backstory for Dwarf {}
 
 impl Characteristics for Dwarf {
     const AGE_RANGE: AgeRange = AgeRange(10..=350);

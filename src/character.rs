@@ -164,7 +164,9 @@ impl AlignmentInfluences for Character {
 /// Combine all backstory items for the character.
 impl Backstory for Character {
     fn backstory(&self) -> Vec<String> {
-        self.background.backstory()
+        let mut backstory = self.race.backstory();
+        backstory.extend(self.background.backstory());
+        backstory
     }
 }
 

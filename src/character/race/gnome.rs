@@ -10,6 +10,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::{AlignmentInfluences, Morality},
         attack::Resistances,
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -51,6 +52,8 @@ impl AlignmentInfluences for Gnome {
         vec![Morality::Good]
     }
 }
+
+impl Backstory for Gnome {}
 
 impl Characteristics for Gnome {
     const AGE_RANGE: AgeRange = AgeRange(10..=500);

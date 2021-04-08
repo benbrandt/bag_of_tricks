@@ -8,6 +8,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType, Skill},
         alignment::{AlignmentInfluences, Attitude, Morality},
         attack::Resistances,
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -44,6 +45,8 @@ impl AlignmentInfluences for HalfOrc {
         vec![Morality::Evil]
     }
 }
+
+impl Backstory for HalfOrc {}
 
 impl Characteristics for HalfOrc {
     const AGE_RANGE: AgeRange = AgeRange(8..=75);

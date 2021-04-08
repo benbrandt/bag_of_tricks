@@ -1,3 +1,4 @@
+mod aasimar;
 mod dragonborn;
 mod dwarf;
 mod elf;
@@ -19,20 +20,27 @@ use strum_macros::EnumIter;
 use crate::citation::Citations;
 
 use self::{
-    dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, gnome::Gnome, half_elf::HalfElf,
-    half_orc::HalfOrc, halfling::Halfling, human::Human, tiefling::Tiefling,
+    aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, gnome::Gnome,
+    half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling, human::Human, tiefling::Tiefling,
 };
 
 use super::{
     ability::AbilityScore, alignment::AlignmentInfluences, attack::Resistances,
-    characteristics::CharacteristicDetails, features::Features, languages::Languages,
-    proficiencies::Proficiencies,
+    backstory::Backstory, characteristics::CharacteristicDetails, features::Features,
+    languages::Languages, proficiencies::Proficiencies,
 };
 
 /// Shared racial traits each race should provide.
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race:
-    AlignmentInfluences + Citations + Features + Languages + Proficiencies + Resistances + fmt::Display
+    AlignmentInfluences
+    + Backstory
+    + Citations
+    + Features
+    + Languages
+    + Proficiencies
+    + Resistances
+    + fmt::Display
 {
     /// Method to generate a new instance of the struct
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails)
@@ -46,6 +54,7 @@ pub(crate) trait Race:
 /// All currently supported Race Options for character creation.
 #[derive(EnumIter)]
 pub(crate) enum RaceOptions {
+    Aasimar,
     Dragonborn,
     Dwarf,
     Elf,
@@ -61,6 +70,7 @@ impl RaceOptions {
     /// Randomly choose a race option and return the result of the corresponding racial struct's `gen` method
     pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         match Self::iter().choose(rng).unwrap() {
+            Self::Aasimar => Aasimar::gen(rng),
             Self::Dragonborn => Dragonborn::gen(rng),
             Self::Dwarf => Dwarf::gen(rng),
             Self::Elf => Elf::gen(rng),

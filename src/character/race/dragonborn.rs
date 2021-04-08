@@ -11,6 +11,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::{AlignmentInfluences, Morality},
         attack::{DamageType, Resistances},
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -125,6 +126,8 @@ impl AlignmentInfluences for Dragonborn {
         }]
     }
 }
+
+impl Backstory for Dragonborn {}
 
 impl Characteristics for Dragonborn {
     const AGE_RANGE: AgeRange = AgeRange(3..=80);

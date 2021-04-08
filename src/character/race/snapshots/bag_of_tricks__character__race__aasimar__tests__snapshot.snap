@@ -1,0 +1,18 @@
+---
+source: src/character/race/aasimar.rs
+expression: aasimar
+
+---
+- type: Aasimar
+  guide:
+    name: Galladia
+    nature: Compassionate
+  subrace: Scourge
+- Fodel Chernin
+- age: 23
+  base_speed: 30
+  gender: Male
+  height: 68
+  size: Medium
+  weight: 182
+

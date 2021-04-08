@@ -3,69 +3,67 @@ source: src/character.rs
 expression: "format!(\"{}\", character)"
 
 ---
-CHARACTER NAME: Hlin Holderhek
-RACE: Mountain Dwarf (PHB p18,20)
-BACKGROUND: Outlander (Exile or outcast) (PHB p136)
-ALIGNMENT: Lawful Good
+CHARACTER NAME: Myastan Daar "Earbender"
+RACE: Gold Dragonborn (PHB p32)
+BACKGROUND: Criminal (Blackmailer) (PHB p129)
+ALIGNMENT: Neutral Good
 LEVEL: 1
 
-STR  -2 (7)
-DEX  +1 (12)
-CON  +3 (17)
+STR  +2 (14)
+DEX  +2 (15)
+CON  +2 (15)
 INT  +2 (15)
-WIS  +2 (15)
-CHA  +1 (13)
+WIS  +1 (13)
+CHA  +2 (15)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
-      DEX  Acrobatics       +1
-      WIS  Animal Handling  +2
+      DEX  Acrobatics       +2
+      WIS  Animal Handling  +1
       INT  Arcana           +2
- X    STR  Athletics        +0
-      CHA  Deception        +1
+      STR  Athletics        +2
+ X    CHA  Deception        +4
       INT  History          +2
-      WIS  Insight          +2
-      CHA  Intimidation     +1
+      WIS  Insight          +1
+      CHA  Intimidation     +2
       INT  Investigation    +2
-      WIS  Medicine         +2
+      WIS  Medicine         +1
       INT  Nature           +2
-      WIS  Perception       +2
-      CHA  Performance      +1
-      CHA  Persuasion       +1
+      WIS  Perception       +1
+      CHA  Performance      +2
+      CHA  Persuasion       +2
       INT  Religion         +2
-      DEX  Sleight of Hand  +1
-      DEX  Stealth          +1
- X    WIS  Survival         +4
+      DEX  Sleight of Hand  +2
+ X    DEX  Stealth          +4
+      WIS  Survival         +1
 
-SPEED: 25
+SPEED: 30
 PROFICIENCY BONUS: +2
-RESISTANCES: Poison
-LANGUAGES: Common, Dwarvish, Sylvan
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(BrewersSupplies)), Tool(MusicalInstrument(Viol))
+RESISTANCES: Fire
+LANGUAGES: Common, Draconic
+PROFICIENCIES: Tool(ThievesTools), Tool(GamingSet(Dragonchess))
 
 CHARACTERISTICS:
-Age: 317
+Age: 73
 Gender: Female
 Size: Medium
-Height: 4'6"
-Weight: 165 lb.
+Height: 6'3"
+Weight: 238 lb.
 
 PERSONALITY TRAITS:
-I feel far more comfortable around animals than people.
-I was, in fact, raised by wolves.
-IDEAL: Glory. I must earn glory in battle, for myself and my clan. (Any)
-BOND: I am the last of my tribe, and it is up to me to ensure their names enter legend.
-FLAW: I am too enamored of ale, wine, and other intoxicants.
+The first thing I do in a new place is note the locations of everything valuable — or where such things could be hidden.
+I would rather make a new friend than a new enemy.
+IDEAL: People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care. (Neutral)
+BOND: I'm trying to pay off an old debt I owe to a generous benefactor.
+FLAW: An innocent person is in prison for a crime that I committed. I'm okay with that.
 
 EQUIPMENT
-Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
-COINS: 10gp
+Gear(Other(Crowbar)), Other("a set of dark common clothes including a hood"), Gear(Other(Pouch)), Other("A white, sequined glove sized for a human")
+COINS: 15gp
 
 FEATURES AND TRAITS:
-- Darkvision (PHB p20)
-- Dwarven Resilience (PHB p20)
-- Stonecunning (PHB p20)
-- Wanderer (PHB p136)
+- Breath Weapon (PHB p34)
+- Criminal Contact (PHB p129)
 
 BACKSTORY:
 

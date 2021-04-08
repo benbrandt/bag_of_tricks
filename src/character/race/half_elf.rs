@@ -9,6 +9,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::{AlignmentInfluences, Attitude},
         attack::Resistances,
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
             Size, WeightMod,
@@ -52,6 +53,8 @@ impl AlignmentInfluences for HalfElf {
         vec![Attitude::Chaotic]
     }
 }
+
+impl Backstory for HalfElf {}
 
 impl Characteristics for HalfElf {
     const AGE_RANGE: AgeRange = AgeRange(10..=180);

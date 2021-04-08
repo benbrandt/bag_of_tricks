@@ -10,6 +10,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -54,6 +55,8 @@ impl AlignmentInfluences for Halfling {
         vec![Morality::Good]
     }
 }
+
+impl Backstory for Halfling {}
 
 impl Characteristics for Halfling {
     const AGE_RANGE: AgeRange = AgeRange(10..=150);

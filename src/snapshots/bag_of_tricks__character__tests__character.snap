@@ -4,46 +4,44 @@ expression: character
 
 ---
 abilities:
-  Strength: 7
-  Dexterity: 12
-  Constitution: 17
+  Strength: 14
+  Dexterity: 15
+  Constitution: 15
   Intelligence: 15
-  Wisdom: 15
-  Charisma: 13
+  Wisdom: 13
+  Charisma: 15
 alignment:
-  - Lawful
+  - Neutral
   - Good
 background:
-  type: Outlander
-  origin: Exile
+  type: Criminal
+  specialty: Blackmailer
+  variant: Criminal
 characteristics:
-  age: 317
-  base_speed: 25
+  age: 73
+  base_speed: 30
   gender: Female
-  height: 54
+  height: 75
   size: Medium
-  weight: 165
+  weight: 238
 chosen_equipment:
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
-chosen_languages:
-  - Sylvan
+  - Other: "A white, sequined glove sized for a human"
+chosen_languages: []
 chosen_proficiencies:
   - Tool:
-      ArtisansTools: BrewersSupplies
-  - Tool:
-      MusicalInstrument: Viol
+      GamingSet: Dragonchess
 level: 1
-name: Hlin Holderhek
+name: "Myastan Daar \"Earbender\""
 personality:
-  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
-  flaw: "I am too enamored of ale, wine, and other intoxicants."
+  bond: "I'm trying to pay off an old debt I owe to a generous benefactor."
+  flaw: "An innocent person is in prison for a crime that I committed. I'm okay with that."
   ideal:
-    - "Glory. I must earn glory in battle, for myself and my clan."
-    - Any
+    - "People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."
+    - Neutral
   traits:
-    - I feel far more comfortable around animals than people.
-    - "I was, in fact, raised by wolves."
+    - The first thing I do in a new place is note the locations of everything valuable — or where such things could be hidden.
+    - I would rather make a new friend than a new enemy.
 race:
-  type: Dwarf
-  subrace: Mountain
+  type: Dragonborn
+  ancestry: Gold
 

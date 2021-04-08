@@ -10,6 +10,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType, Skill},
         alignment::{AlignmentInfluences, Attitude, Morality},
         attack::Resistances,
+        backstory::Backstory,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
         },
@@ -97,6 +98,8 @@ impl AlignmentInfluences for Elf {
         }]
     }
 }
+
+impl Backstory for Elf {}
 
 impl Characteristics for Elf {
     const AGE_RANGE: AgeRange = AgeRange(10..=750);

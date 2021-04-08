@@ -8,6 +8,7 @@ use crate::{
         ability::{AbilityScore, AbilityScoreType},
         alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
+        backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, WeightMod,
@@ -68,6 +69,8 @@ impl AlignmentInfluences for Tiefling {
         vec![Morality::Evil]
     }
 }
+
+impl Backstory for Tiefling {}
 
 impl Characteristics for Tiefling {
     const AGE_RANGE: AgeRange = AgeRange(10..=100);
