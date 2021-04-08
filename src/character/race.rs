@@ -2,6 +2,7 @@ mod aasimar;
 mod dragonborn;
 mod dwarf;
 mod elf;
+mod firbolg;
 mod gnome;
 mod half_elf;
 mod half_orc;
@@ -20,8 +21,9 @@ use strum_macros::EnumIter;
 use crate::citation::Citations;
 
 use self::{
-    aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, gnome::Gnome,
-    half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling, human::Human, tiefling::Tiefling,
+    aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
+    gnome::Gnome, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling, human::Human,
+    tiefling::Tiefling,
 };
 
 use super::{
@@ -58,6 +60,7 @@ pub(crate) enum RaceOptions {
     Dragonborn,
     Dwarf,
     Elf,
+    Firbolg,
     Gnome,
     HalfElf,
     HalfOrc,
@@ -74,6 +77,7 @@ impl RaceOptions {
             Self::Dragonborn => Dragonborn::gen(rng),
             Self::Dwarf => Dwarf::gen(rng),
             Self::Elf => Elf::gen(rng),
+            Self::Firbolg => Firbolg::gen(rng),
             Self::Gnome => Gnome::gen(rng),
             Self::HalfElf => HalfElf::gen(rng),
             Self::HalfOrc => HalfOrc::gen(rng),

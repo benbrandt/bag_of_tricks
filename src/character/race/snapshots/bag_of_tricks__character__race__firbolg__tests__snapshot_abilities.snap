@@ -1,0 +1,10 @@
+---
+source: src/character/race/firbolg.rs
+expression: firbolg.abilities()
+
+---
+- - Wisdom
+  - 2
+- - Strength
+  - 1
+

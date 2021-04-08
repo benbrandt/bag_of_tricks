@@ -84,3 +84,5 @@ FEATURES AND TRAITS:
 BACKSTORY:
 Life of Seclusion: I retreated from society after a life-altering event.
 ```
+
+(Line count `git ls-files | grep -E '.*\.rs$' | xargs wc -l`)

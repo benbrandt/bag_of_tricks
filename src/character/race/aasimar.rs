@@ -15,8 +15,8 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, WeightMod,
+            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
+            Size, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -206,7 +206,7 @@ impl Race for Aasimar {
             subrace: AasimarSubrace::iter().choose(rng).unwrap(),
         });
         let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &&characteristics);
+        let name = Self::gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 
@@ -237,6 +237,7 @@ impl fmt::Display for Aasimar {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::character::characteristics::Gender;
     use rand::SeedableRng;
     use rand_pcg::Pcg64;
 
