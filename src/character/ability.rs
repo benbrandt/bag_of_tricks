@@ -24,7 +24,7 @@ where
     L: Iterator<Item = i16> + Clone,
 {
     let min = modifiers.min().unwrap_or(0);
-    1 + (if min < 0 { min.abs() } else { -min })
+    1 + (if min <= 0 { min.abs() } else { -min })
 }
 
 pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> u32 {
