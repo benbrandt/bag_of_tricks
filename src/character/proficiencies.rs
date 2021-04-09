@@ -1,5 +1,5 @@
 use rand::{
-    prelude::{Distribution, IteratorRandom},
+    prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
@@ -7,7 +7,7 @@ use strum::IntoEnumIterator;
 use strum_macros::Display;
 
 use super::{
-    ability::{weighted_modifiers_dist, Skill},
+    ability::{modifier_shift, modifier_weight, Skill},
     equipment::{
         armor::ArmorType,
         tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
@@ -38,7 +38,7 @@ pub(crate) enum ProficiencyOption {
     /// Choose a random musical instrument to be proficient in.
     MusicalInstrument,
     /// Choose a random skill to be proficient in (weighted towards you highest modifiers)
-    Skill,
+    Skill(Option<Vec<Skill>>, usize),
 }
 
 impl ProficiencyOption {
@@ -71,17 +71,26 @@ impl ProficiencyOption {
                 1,
             )
             .gen(rng, character),
-            Self::Skill => {
-                let available_skills = Skill::iter()
-                    .filter(|s| !character.proficiencies().contains(&Proficiency::Skill(*s)));
-                // Weight the proficiencies based on their underlying ability score.
-                let modifiers = available_skills
+            Self::Skill(skills, amount) => {
+                let available_skills = skills
                     .clone()
-                    .map(|s| character.abilities.modifier(s.ability_score_type()));
-                let dist = weighted_modifiers_dist(modifiers);
-                vec![Proficiency::Skill(
-                    available_skills.collect::<Vec<Skill>>()[dist.sample(rng)],
-                )]
+                    .unwrap_or_else(|| Skill::iter().collect())
+                    .into_iter()
+                    .filter(|&s| !character.proficiencies().contains(&Proficiency::Skill(s)));
+                // Weight the proficiencies based on their underlying ability score.
+                let shift = modifier_shift(
+                    available_skills
+                        .clone()
+                        .map(|s| character.abilities.modifier(s.ability_score_type())),
+                );
+                available_skills
+                    .collect::<Vec<_>>()
+                    .choose_multiple_weighted(rng, *amount, |s| {
+                        modifier_weight(character.abilities.modifier(s.ability_score_type()), shift)
+                    })
+                    .unwrap()
+                    .map(|&s| Proficiency::Skill(s))
+                    .collect::<Vec<_>>()
             }
         }
     }

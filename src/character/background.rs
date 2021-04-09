@@ -16,10 +16,7 @@ use std::fmt;
 
 use entertainer::Entertainer;
 use folk_hero::FolkHero;
-use rand::{
-    prelude::{Distribution, SliceRandom},
-    Rng,
-};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -33,7 +30,7 @@ use self::{
 };
 
 use super::{
-    ability::{weighted_modifiers_dist, AbilityScores, Skill},
+    ability::{modifier_shift, modifier_weight, AbilityScores, Skill},
     alignment::{AlignmentInfluences, Attitude, Morality},
     backstory::Backstory,
     equipment::StartingEquipment,
@@ -176,9 +173,11 @@ impl BackgroundOption {
         abilities: &AbilityScores,
     ) -> (Box<dyn Background>, Personality) {
         let options: Vec<BackgroundOption> = Self::iter().collect();
-        let modifiers = Self::iter().map(|o| o.skill_modifier(abilities));
-        let dist = weighted_modifiers_dist(modifiers);
-        match options.get(dist.sample(rng)).unwrap() {
+        let shift = modifier_shift(Self::iter().map(|o| o.skill_modifier(abilities)));
+        let option = options
+            .choose_weighted(rng, |o| modifier_weight(o.skill_modifier(abilities), shift))
+            .unwrap();
+        match option {
             Self::Acolyte => Acolyte::gen(rng),
             Self::Charlatan => Charlatan::gen(rng),
             Self::Criminal => Criminal::gen(rng),

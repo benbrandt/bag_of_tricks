@@ -96,16 +96,13 @@ impl Name for Kenku {
 
 impl Proficiencies for Kenku {
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
-        vec![ProficiencyOption::From(
-            [
+        vec![ProficiencyOption::Skill(
+            Some(vec![
                 Skill::Acrobatics,
                 Skill::Deception,
                 Skill::Stealth,
                 Skill::SleightOfHand,
-            ]
-            .iter()
-            .map(|s| Proficiency::Skill(*s))
-            .collect(),
+            ]),
             2,
         )]
     }

@@ -124,7 +124,10 @@ impl Name for HalfElf {
 
 impl Proficiencies for HalfElf {
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
-        vec![ProficiencyOption::Skill, ProficiencyOption::Skill]
+        vec![
+            ProficiencyOption::Skill(None, 1),
+            ProficiencyOption::Skill(None, 1),
+        ]
     }
 }
 

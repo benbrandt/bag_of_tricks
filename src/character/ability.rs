@@ -1,6 +1,6 @@
 use std::{collections::BTreeMap, convert::TryFrom, fmt};
 
-use rand::{distributions::WeightedIndex, Rng};
+use rand::Rng;
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
@@ -18,20 +18,18 @@ fn modifier(score: u8) -> i16 {
     (i16::from(score) - i16::from(score) % 2 - 10) / 2
 }
 
-/// Generate a weighted random distribution based on a list of modifiers
-pub(crate) fn weighted_modifiers_dist<L>(modifiers: L) -> WeightedIndex<usize>
+// Used for weighting ability scores. Get value to shift all other values by to have lowest be 1
+pub(crate) fn modifier_shift<L>(modifiers: L) -> i16
 where
     L: Iterator<Item = i16> + Clone,
 {
-    let min = modifiers.clone().min().unwrap_or(0);
-    // Get value to shift all other values by to have lowert be 1
-    let shift = 1 + (if min < 0 { min.abs() } else { -min });
-    // Make sure they are positive, and increase the weight of the higher ones
-    let weights = modifiers.map(|m| {
-        let pos_mod = usize::try_from(m + shift).unwrap_or(0);
-        pos_mod.pow(u32::try_from(pos_mod).unwrap())
-    });
-    WeightedIndex::new(weights).unwrap()
+    let min = modifiers.min().unwrap_or(0);
+    1 + (if min < 0 { min.abs() } else { -min })
+}
+
+pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> i16 {
+    let pos_mod = modifier + shift;
+    pos_mod.pow(u32::try_from(pos_mod).unwrap())
 }
 
 /// All possible ability score types to choose from
