@@ -1,0 +1,7 @@
+---
+source: src/character/race/lizardfolk.rs
+expression: lizardfolk.attitude()
+
+---
+- Neutral
+

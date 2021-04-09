@@ -1,0 +1,17 @@
+---
+source: src/character/race/lizardfolk.rs
+expression: lizardfolk
+
+---
+- type: Lizardfolk
+  quirk: You sleep best while mostly submerged in water.
+- Litrix (armor)
+- age: 13
+  base_speeds:
+    - Walking: 30
+    - Swimming: 30
+  gender: Female
+  height: 66
+  size: Medium
+  weight: 219
+

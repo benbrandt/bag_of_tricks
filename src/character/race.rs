@@ -11,6 +11,7 @@ mod halfling;
 mod human;
 mod kenku;
 mod kobold;
+mod lizardfolk;
 mod tiefling;
 mod yuan_ti;
 
@@ -25,7 +26,7 @@ use crate::citation::Citations;
 use self::{
     aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
     gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling,
-    human::Human, kenku::Kenku, tiefling::Tiefling,
+    human::Human, kenku::Kenku, lizardfolk::Lizardfolk, tiefling::Tiefling,
 };
 
 use super::{
@@ -70,6 +71,7 @@ pub(crate) enum RaceOptions {
     Halfling,
     Human,
     Kenku,
+    Lizardfolk,
     Tiefling,
 }
 
@@ -89,6 +91,7 @@ impl RaceOptions {
             Self::Halfling => Halfling::gen(rng),
             Self::Human => Human::gen(rng),
             Self::Kenku => Kenku::gen(rng),
+            Self::Lizardfolk => Lizardfolk::gen(rng),
             Self::Tiefling => Tiefling::gen(rng),
         }
     }

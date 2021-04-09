@@ -1,0 +1,7 @@
+---
+source: src/character/race/lizardfolk.rs
+expression: lizardfolk.backstory()
+
+---
+- "Quirk: You sleep best while mostly submerged in water."
+
