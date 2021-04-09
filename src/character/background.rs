@@ -173,6 +173,7 @@ impl BackgroundOption {
         abilities: &AbilityScores,
     ) -> (Box<dyn Background>, Personality) {
         let options: Vec<BackgroundOption> = Self::iter().collect();
+        println!("{:?}", abilities);
         let shift = modifier_shift(Self::iter().map(|o| o.skill_modifier(abilities)));
         let option = options
             .choose_weighted(rng, |o| modifier_weight(o.skill_modifier(abilities), shift))

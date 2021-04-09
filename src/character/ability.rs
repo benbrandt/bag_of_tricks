@@ -28,8 +28,8 @@ where
 }
 
 pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> u32 {
-    let pos_mod = modifier + shift;
-    u32::try_from(pos_mod.pow(u32::try_from(pos_mod).unwrap())).unwrap()
+    let pos_mod = u32::try_from(modifier + shift).unwrap();
+    pos_mod.pow(pos_mod)
 }
 
 /// All possible ability score types to choose from
@@ -263,5 +263,31 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let scores = AbilityScores::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", scores));
+    }
+
+    #[test]
+    fn test_modifier_shift() {
+        let mods = vec![-5, 1].into_iter();
+        assert_eq!(modifier_shift(mods), 6);
+        let mods = vec![4, 5].into_iter();
+        assert_eq!(modifier_shift(mods), -3);
+        let mods = vec![-1, 0, 1].into_iter();
+        assert_eq!(modifier_shift(mods), 2);
+        let mods = vec![0, 1].into_iter();
+        assert_eq!(modifier_shift(mods), 1);
+        let mods = vec![1, 1].into_iter();
+        assert_eq!(modifier_shift(mods), 0);
+        let mods = vec![0, 0].into_iter();
+        assert_eq!(modifier_shift(mods), 1);
+    }
+
+    #[test]
+    fn test_modifier_weight() {
+        assert_eq!(modifier_weight(-5, 6), 1);
+        assert_eq!(modifier_weight(4, -3), 1);
+        assert_eq!(modifier_weight(-1, 2), 1);
+        assert_eq!(modifier_weight(0, 1), 1);
+        assert_eq!(modifier_weight(1, 0), 1);
+        assert_eq!(modifier_weight(-3, 4), 1);
     }
 }
