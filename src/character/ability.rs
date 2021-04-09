@@ -27,9 +27,9 @@ where
     1 + (if min < 0 { min.abs() } else { -min })
 }
 
-pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> i16 {
+pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> u32 {
     let pos_mod = modifier + shift;
-    pos_mod.pow(u32::try_from(pos_mod).unwrap())
+    u32::try_from(pos_mod.pow(u32::try_from(pos_mod).unwrap())).unwrap()
 }
 
 /// All possible ability score types to choose from
