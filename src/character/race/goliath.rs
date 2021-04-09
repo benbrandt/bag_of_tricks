@@ -11,7 +11,7 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, WeightMod,
+            Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -53,8 +53,8 @@ impl Characteristics for Goliath {
     const AGE_RANGE: AgeRange = AgeRange(10..=100);
     const SIZE: Size = Size::Medium;
 
-    fn get_base_speed(&self) -> u8 {
-        30
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(30)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
@@ -173,7 +173,7 @@ mod tests {
     #[test]
     fn test_characteristics() {
         let goliath = Goliath;
-        assert_eq!(goliath.get_base_speed(), 30);
+        assert_eq!(goliath.get_base_speeds(), vec![Speed::Walking(30)]);
         assert_eq!(goliath.get_height_and_weight_table(), &HEIGHT_AND_WEIGHT);
     }
 

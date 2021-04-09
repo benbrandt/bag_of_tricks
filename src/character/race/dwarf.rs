@@ -16,6 +16,7 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
+            Speed,
         },
         equipment::{
             armor::ArmorType,
@@ -81,8 +82,8 @@ impl Characteristics for Dwarf {
     const AGE_RANGE: AgeRange = AgeRange(10..=350);
     const SIZE: Size = Size::Medium;
 
-    fn get_base_speed(&self) -> u8 {
-        25
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(25)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {

@@ -12,7 +12,7 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, WeightMod,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::Features,
         languages::{Language, Languages},
@@ -61,8 +61,8 @@ impl Characteristics for Human {
     const AGE_RANGE: AgeRange = AgeRange(10..=100);
     const SIZE: Size = Size::Medium;
 
-    fn get_base_speed(&self) -> u8 {
-        30
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(30)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {

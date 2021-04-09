@@ -6,7 +6,8 @@ expression: half_orc
 - type: HalfOrc
 - Emen Falone
 - age: 70
-  base_speed: 30
+  base_speeds:
+    - Walking: 30
   gender: Female
   height: 66
   size: Medium

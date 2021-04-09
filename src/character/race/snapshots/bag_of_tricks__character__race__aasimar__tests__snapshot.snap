@@ -10,7 +10,8 @@ expression: aasimar
   subrace: Scourge
 - Fodel Chernin
 - age: 23
-  base_speed: 30
+  base_speeds:
+    - Walking: 30
   gender: Male
   height: 68
   size: Medium

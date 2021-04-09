@@ -6,7 +6,8 @@ expression: goliath
 - type: Goliath
 - "Vaunea \"Keeneye\" Kolae-Gileana"
 - age: 94
-  base_speed: 30
+  base_speeds:
+    - Walking: 30
   gender: Female
   height: 82
   size: Medium

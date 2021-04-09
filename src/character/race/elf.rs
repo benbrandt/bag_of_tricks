@@ -16,6 +16,7 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
+            Speed,
         },
         equipment::weapons::WeaponType,
         features::{Feature, Features},
@@ -108,11 +109,11 @@ impl Characteristics for Elf {
     const AGE_RANGE: AgeRange = AgeRange(10..=750);
     const SIZE: Size = Size::Medium;
 
-    fn get_base_speed(&self) -> u8 {
-        match self.subrace {
-            ElfSubrace::Wood => 35,
-            _ => 30,
-        }
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![match self.subrace {
+            ElfSubrace::Wood => Speed::Walking(35),
+            _ => Speed::Walking(30),
+        }]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {

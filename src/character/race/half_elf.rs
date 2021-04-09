@@ -15,7 +15,7 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, WeightMod,
+            Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -63,8 +63,8 @@ impl Characteristics for HalfElf {
     const AGE_RANGE: AgeRange = AgeRange(10..=180);
     const SIZE: Size = Size::Medium;
 
-    fn get_base_speed(&self) -> u8 {
-        30
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(30)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {

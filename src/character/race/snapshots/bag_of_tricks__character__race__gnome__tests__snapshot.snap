@@ -7,7 +7,8 @@ expression: gnome
   subrace: Forest
 - "Ellyjobell \"Ashhearth\" Garrick"
 - age: 340
-  base_speed: 25
+  base_speeds:
+    - Walking: 25
   gender: Female
   height: 40
   size: Small

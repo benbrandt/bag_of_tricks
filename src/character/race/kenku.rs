@@ -11,12 +11,12 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, WeightMod,
+            Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
         names::{kenku::NAMES, Name},
-        proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+        proficiencies::{Proficiencies, ProficiencyOption},
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
@@ -50,8 +50,8 @@ impl Characteristics for Kenku {
     const AGE_RANGE: AgeRange = AgeRange(6..=60);
     const SIZE: Size = Size::Medium;
 
-    fn get_base_speed(&self) -> u8 {
-        30
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(30)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
@@ -168,7 +168,7 @@ mod tests {
     #[test]
     fn test_characteristics() {
         let kenku = Kenku;
-        assert_eq!(kenku.get_base_speed(), 30);
+        assert_eq!(kenku.get_base_speeds(), vec![Speed::Walking(30)]);
         assert_eq!(kenku.get_height_and_weight_table(), &HEIGHT_AND_WEIGHT);
     }
 

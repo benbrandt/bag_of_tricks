@@ -7,7 +7,8 @@ expression: halfling
   subrace: Lightfoot
 - Vani High-hill
 - age: 104
-  base_speed: 25
+  base_speeds:
+    - Walking: 25
   gender: Female
   height: 36
   size: Small

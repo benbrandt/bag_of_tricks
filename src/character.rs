@@ -29,6 +29,8 @@ use languages::{Language, Languages};
 use proficiencies::{Proficiencies, Proficiency, ProficiencyOption};
 use race::{Race, RaceOptions};
 
+use self::characteristics::Speed;
+
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Deserialize, Serialize)]
 pub struct Character {
@@ -140,9 +142,9 @@ impl Character {
         }
     }
 
-    /// Return the walking speed of the character.
-    fn speed(&self) -> u8 {
-        self.characteristics.base_speed
+    /// Return the speeds of the character.
+    fn speeds(&self) -> Vec<Speed> {
+        self.characteristics.base_speeds.clone()
     }
 }
 
@@ -263,7 +265,10 @@ impl fmt::Display for Character {
             )?;
         }
         writeln!(f)?;
-        writeln!(f, "SPEED: {}", self.speed())?;
+        writeln!(f, "SPEED:")?;
+        for speed in self.speeds() {
+            writeln!(f, "{}", speed)?;
+        }
         writeln!(f, "PROFICIENCY BONUS: {:+}", self.proficiency_bonus())?;
         writeln!(
             f,

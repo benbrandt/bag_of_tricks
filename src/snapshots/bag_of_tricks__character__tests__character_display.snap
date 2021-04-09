@@ -37,7 +37,8 @@ PROF  MOD  SKILL            BONUS:
  X    DEX  Stealth          +5
       WIS  Survival         +2
 
-SPEED: 30
+SPEED:
+Walking Speed: 30ft
 PROFICIENCY BONUS: +2
 RESISTANCES: 
 LANGUAGES: Common, Elvish, Primordial

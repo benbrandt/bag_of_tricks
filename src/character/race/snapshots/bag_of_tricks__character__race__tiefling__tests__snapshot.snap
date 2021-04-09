@@ -6,7 +6,8 @@ expression: tiefling
 - type: Tiefling
 - Faila Astorio
 - age: 94
-  base_speed: 30
+  base_speeds:
+    - Walking: 30
   gender: Female
   height: 64
   size: Medium

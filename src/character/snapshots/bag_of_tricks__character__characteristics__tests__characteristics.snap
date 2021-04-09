@@ -4,7 +4,8 @@ expression: characteristics
 
 ---
 age: 100
-base_speed: 30
+base_speeds:
+  - Walking: 30
 gender: Female
 height: 75
 size: Medium

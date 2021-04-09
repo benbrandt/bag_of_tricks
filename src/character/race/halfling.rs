@@ -16,7 +16,7 @@ use crate::{
         backstory::Backstory,
         characteristics::{
             in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, WeightMod,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -65,8 +65,8 @@ impl Characteristics for Halfling {
     const AGE_RANGE: AgeRange = AgeRange(10..=150);
     const SIZE: Size = Size::Small;
 
-    fn get_base_speed(&self) -> u8 {
-        25
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(25)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {

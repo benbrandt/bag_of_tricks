@@ -80,13 +80,29 @@ pub(crate) enum Size {
     Medium,
 }
 
+/// Types of movement speeds
+#[derive(Clone, Copy, Debug, Deserialize, EnumIter, PartialEq, Serialize)]
+pub(crate) enum Speed {
+    Swimming(u8),
+    Walking(u8),
+}
+
+impl fmt::Display for Speed {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Swimming(s) => write!(f, "Swimming Speed: {}ft", s),
+            Self::Walking(s) => write!(f, "Walking Speed: {}ft", s),
+        }
+    }
+}
+
 /// Physical characteristics about a character.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct CharacteristicDetails {
     /// Age of the character
     pub(crate) age: u16,
     /// Base speed of the character
-    pub(crate) base_speed: u8,
+    pub(crate) base_speeds: Vec<Speed>,
     /// Gender of the character (only used for name choices)
     pub(crate) gender: Gender,
     /// Height of the character
@@ -116,8 +132,8 @@ pub(crate) trait Characteristics {
     /// Character size
     const SIZE: Size;
 
-    /// Base walking speed
-    fn get_base_speed(&self) -> u8;
+    /// Base speeds
+    fn get_base_speeds(&self) -> Vec<Speed>;
 
     /// Calculate the height and weight table to generate from
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable;
@@ -127,7 +143,7 @@ pub(crate) trait Characteristics {
         let (height, weight) = self.get_height_and_weight_table().gen(rng);
         CharacteristicDetails {
             age: Self::AGE_RANGE.gen(rng),
-            base_speed: self.get_base_speed(),
+            base_speeds: self.get_base_speeds(),
             gender: Gender::gen(rng),
             height,
             size: Self::SIZE,
@@ -155,7 +171,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let characteristics = CharacteristicDetails {
             age: 100,
-            base_speed: 30,
+            base_speeds: vec![Speed::Walking(30)],
             gender: Gender::gen(&mut rng),
             height: 75,
             size: Size::Medium,
@@ -170,7 +186,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let characteristics = CharacteristicDetails {
             age: 100,
-            base_speed: 30,
+            base_speeds: vec![Speed::Walking(30)],
             gender: Gender::gen(&mut rng),
             height: 75,
             size: Size::Medium,

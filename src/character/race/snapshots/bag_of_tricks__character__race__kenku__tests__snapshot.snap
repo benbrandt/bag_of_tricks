@@ -6,7 +6,8 @@ expression: kenku
 - type: Kenku
 - Basher
 - age: 42
-  base_speed: 30
+  base_speeds:
+    - Walking: 30
   gender: Female
   height: 59
   size: Medium
