@@ -29,7 +29,7 @@ where
 
 pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> i16 {
     let pos_mod = modifier + shift;
-    pos_mod.pow(3)
+    pos_mod * pos_mod
 }
 
 /// All possible ability score types to choose from
