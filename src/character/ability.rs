@@ -1,4 +1,4 @@
-use std::{collections::BTreeMap, fmt};
+use std::{collections::BTreeMap, f64::consts::E, fmt};
 
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -24,12 +24,15 @@ where
     L: Iterator<Item = i16> + Clone,
 {
     let min = modifiers.min().unwrap_or(0);
-    1 + (if min <= 0 { min.abs() } else { -min })
+    if min <= 0 {
+        min.abs()
+    } else {
+        -min
+    }
 }
 
-pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> i16 {
-    let pos_mod = modifier + shift;
-    pos_mod * pos_mod
+pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> f64 {
+    E.powi(i32::from(modifier + shift))
 }
 
 /// All possible ability score types to choose from
@@ -268,26 +271,16 @@ mod tests {
     #[test]
     fn test_modifier_shift() {
         let mods = vec![-5, 1].into_iter();
-        assert_eq!(modifier_shift(mods), 6);
+        assert_eq!(modifier_shift(mods), 5);
         let mods = vec![4, 5].into_iter();
-        assert_eq!(modifier_shift(mods), -3);
+        assert_eq!(modifier_shift(mods), -4);
         let mods = vec![-1, 0, 1].into_iter();
-        assert_eq!(modifier_shift(mods), 2);
+        assert_eq!(modifier_shift(mods), 1);
         let mods = vec![0, 1].into_iter();
-        assert_eq!(modifier_shift(mods), 1);
-        let mods = vec![1, 1].into_iter();
         assert_eq!(modifier_shift(mods), 0);
+        let mods = vec![1, 1].into_iter();
+        assert_eq!(modifier_shift(mods), -1);
         let mods = vec![0, 0].into_iter();
-        assert_eq!(modifier_shift(mods), 1);
-    }
-
-    #[test]
-    fn test_modifier_weight() {
-        assert_eq!(modifier_weight(-5, 6), 1);
-        assert_eq!(modifier_weight(4, -3), 1);
-        assert_eq!(modifier_weight(-1, 2), 1);
-        assert_eq!(modifier_weight(0, 1), 1);
-        assert_eq!(modifier_weight(1, 0), 1);
-        assert_eq!(modifier_weight(-3, 4), 1);
+        assert_eq!(modifier_shift(mods), 0);
     }
 }

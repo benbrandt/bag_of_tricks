@@ -1,0 +1,55 @@
+---
+source: src/character.rs
+expression: character
+
+---
+abilities:
+  Strength: 17
+  Dexterity: 16
+  Constitution: 13
+  Intelligence: 12
+  Wisdom: 15
+  Charisma: 9
+alignment:
+  - Lawful
+  - Good
+background:
+  type: Outlander
+  origin: Forester
+characteristics:
+  age: 57
+  base_speeds:
+    - Walking: 30
+  gender: Female
+  height: 61
+  size: Medium
+  weight: 134
+chosen_equipment:
+  - Other: A tiny cage with no door
+chosen_languages:
+  - Primordial
+  - Undercommon
+chosen_proficiencies:
+  - Tool:
+      MusicalInstrument: Lute
+  - Skill: Perception
+  - Skill: Stealth
+level: 1
+name: Kerri Amastacia (Starflower)
+personality:
+  bond: An injury to the unspoiled wilderness of my home is an injury to me.
+  flaw: Violence is my answer to almost any challenge.
+  ideal:
+    - "Honor. If I dishonor myself, I dishonor my whole clan."
+    - Lawful
+  traits:
+    - "I was, in fact, raised by wolves."
+    - "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them."
+race:
+  type: HalfElf
+  addl_increases:
+    - - Intelligence
+      - 1
+    - - Dexterity
+      - 1
+
