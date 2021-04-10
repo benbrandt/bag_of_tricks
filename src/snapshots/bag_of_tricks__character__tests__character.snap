@@ -11,10 +11,11 @@ abilities:
   Wisdom: 15
   Charisma: 9
 alignment:
-  - Chaotic
+  - Lawful
   - Good
 background:
-  type: Urchin
+  type: Outlander
+  origin: Forester
 characteristics:
   age: 57
   base_speeds:
@@ -24,23 +25,26 @@ characteristics:
   size: Medium
   weight: 134
 chosen_equipment:
-  - Other: An alabaster mask
+  - Other: A tiny cage with no door
 chosen_languages:
   - Primordial
+  - Undercommon
 chosen_proficiencies:
-  - Skill: Survival
-  - Skill: History
+  - Tool:
+      MusicalInstrument: Lute
+  - Skill: Perception
+  - Skill: Stealth
 level: 1
 name: Kerri Amastacia (Starflower)
 personality:
-  bond: I owe my survival to another urchin who taught me to live on the streets.
-  flaw: "Gold seems like a lot of money to me, and I'll do just about anything for more of it."
+  bond: An injury to the unspoiled wilderness of my home is an injury to me.
+  flaw: Violence is my answer to almost any challenge.
   ideal:
-    - "Respect. All people, rich or poor, deserve respect."
-    - Good
+    - "Honor. If I dishonor myself, I dishonor my whole clan."
+    - Lawful
   traits:
-    - "I think anyone who's nice to me is hiding evil intent."
-    - I ask a lot of questions.
+    - "I was, in fact, raised by wolves."
+    - "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them."
 race:
   type: HalfElf
   addl_increases:

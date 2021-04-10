@@ -9,6 +9,7 @@ pub(crate) mod kenku;
 pub(crate) mod kobold;
 pub(crate) mod lizardfolk;
 pub(crate) mod orc;
+pub(crate) mod tabaxi;
 pub(crate) mod tiefling;
 pub(crate) mod yuan_ti;
 

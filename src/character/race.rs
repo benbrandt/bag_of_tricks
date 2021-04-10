@@ -12,6 +12,7 @@ mod human;
 mod kenku;
 mod kobold;
 mod lizardfolk;
+mod tabaxi;
 mod tiefling;
 mod yuan_ti;
 
