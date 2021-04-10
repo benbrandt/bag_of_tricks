@@ -18,12 +18,12 @@ CHA  -1 (9)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
- X    DEX  Acrobatics       +5
+      DEX  Acrobatics       +3
       WIS  Animal Handling  +2
       INT  Arcana           +1
- X    STR  Athletics        +5
+      STR  Athletics        +3
       CHA  Deception        -1
-      INT  History          +1
+ X    INT  History          +3
       WIS  Insight          +2
       CHA  Intimidation     -1
       INT  Investigation    +1
@@ -35,7 +35,7 @@ PROF  MOD  SKILL            BONUS:
       INT  Religion         +1
  X    DEX  Sleight of Hand  +5
  X    DEX  Stealth          +5
-      WIS  Survival         +2
+ X    WIS  Survival         +4
 
 SPEED:
 Walking Speed: 30ft

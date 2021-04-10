@@ -28,8 +28,8 @@ chosen_equipment:
 chosen_languages:
   - Primordial
 chosen_proficiencies:
-  - Skill: Acrobatics
-  - Skill: Athletics
+  - Skill: Survival
+  - Skill: History
 level: 1
 name: Kerri Amastacia (Starflower)
 personality:

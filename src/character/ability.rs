@@ -1,4 +1,4 @@
-use std::{collections::BTreeMap, convert::TryFrom, fmt};
+use std::{collections::BTreeMap, fmt};
 
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -27,9 +27,9 @@ where
     1 + (if min <= 0 { min.abs() } else { -min })
 }
 
-pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> u32 {
-    let pos_mod = u32::try_from(modifier + shift).unwrap();
-    pos_mod.pow(pos_mod)
+pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> i16 {
+    let pos_mod = modifier + shift;
+    pos_mod.pow(3)
 }
 
 /// All possible ability score types to choose from
