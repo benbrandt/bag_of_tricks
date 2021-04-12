@@ -22,7 +22,7 @@ use self::{
 };
 
 use super::{
-    proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
+    proficiencies::{Proficiency, WeaponProficiency},
     Character,
 };
 
@@ -38,21 +38,22 @@ pub(crate) enum Equipment {
 
 impl Equipment {
     fn proficient(&self, character: &Character) -> bool {
-        let proficiencies = character.proficiencies();
         match self {
-            Self::Armor(armor) => proficiencies
+            Self::Armor(armor) => character
+                .proficiencies
                 .iter()
                 .any(|p| matches!(p, Proficiency::Armor(a) if a == &armor.armor_type())),
-            Self::Tool(tool) => proficiencies
+            Self::Tool(tool) => character
+                .proficiencies
                 .iter()
                 .any(|p| matches!(p, Proficiency::Tool(t) if t == tool)),
-            Self::Vehicle(vehicle) => proficiencies.iter().any(|p| {
+            Self::Vehicle(vehicle) => character.proficiencies.iter().any(|p| {
                 matches!(p, Proficiency::Vehicle(v) if v == match vehicle {
                     Vehicle::Land(_) | Vehicle::Mount(_) => &VehicleProficiency::Land,
                     Vehicle::Water(_) => &VehicleProficiency::Water,
                 })
             }),
-            Self::Weapon(weapon) => proficiencies.iter().any(|p| {
+            Self::Weapon(weapon) => character.proficiencies.iter().any(|p| {
                 matches!(p, Proficiency::Weapon(w) if match w {
                     WeaponProficiency::Category(category) => category == &weapon.category(),
                     WeaponProficiency::Specific(weapon_type) => weapon_type == weapon,

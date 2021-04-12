@@ -7,10 +7,7 @@ use strum_macros::{Display, EnumIter};
 
 use crate::dice_roller::{Die, RollCmd};
 
-use super::{
-    proficiencies::{Proficiencies, Proficiency},
-    Character,
-};
+use super::{proficiencies::Proficiency, Character};
 
 /// Return modifier based on ability score.
 fn modifier(score: u8) -> i16 {
@@ -183,9 +180,7 @@ impl Skill {
 
     /// Check if the character is proficient in this skill
     pub(crate) fn proficient(self, character: &Character) -> bool {
-        character
-            .proficiencies()
-            .contains(&Proficiency::Skill(self))
+        character.proficiencies.contains(&Proficiency::Skill(self))
     }
 }
 

@@ -26,7 +26,7 @@ use attack::{DamageType, Resistances};
 use characteristics::CharacteristicDetails;
 use features::{Feature, Features};
 use languages::{Language, Languages};
-use proficiencies::{Proficiencies, Proficiency, ProficiencyOption};
+use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
 
 use self::characteristics::Speed;
@@ -46,14 +46,14 @@ pub struct Character {
     chosen_equipment: Vec<Equipment>,
     /// Languages randomly chosen for the character.
     chosen_languages: Vec<Language>,
-    /// Proficiencies randomly chosen for the character.
-    chosen_proficiencies: Vec<Proficiency>,
     /// Current level of the character.
     level: u8,
     /// Character's name.
     name: String,
     /// Personality traits of the chracacter.
     personality: Personality,
+    /// Proficiencies for the character.
+    proficiencies: Vec<Proficiency>,
     /// Race randomly chosen for the character.
     race: Box<dyn Race>,
 }
@@ -83,10 +83,10 @@ impl Character {
             characteristics,
             chosen_equipment: vec![],
             chosen_languages: vec![],
-            chosen_proficiencies: vec![],
             level: 1,
             name,
             personality,
+            proficiencies: vec![],
             race,
         };
         character.gen_alignment(rng);
@@ -123,11 +123,24 @@ impl Character {
     ///
     /// They are generated from the most limited sets of options to greatest, to avoid overlapping choices.
     fn gen_proficiences(&mut self, rng: &mut impl Rng) {
-        let mut options = self.addl_proficiencies();
+        // Static choices
+        let mut proficiencies = self.race.proficiencies();
+        proficiencies.extend(self.background.proficiencies());
+        // Handle any dupes across these options
+        for p in proficiencies {
+            if self.proficiencies.contains(&p) {
+                self.proficiencies.extend(p.gen_replacement(rng, self));
+            } else {
+                self.proficiencies.push(p);
+            }
+        }
+
+        let mut addl_proficiencies = self.race.addl_proficiencies();
+        addl_proficiencies.extend(self.background.addl_proficiencies());
         // Sort so that the options with the least amount are chosen first.
-        options.sort();
-        for option in options {
-            self.chosen_proficiencies.extend(option.gen(rng, &self));
+        addl_proficiencies.sort();
+        for option in addl_proficiencies {
+            self.proficiencies.extend(option.gen(rng, &self));
         }
     }
 
@@ -192,22 +205,6 @@ impl Languages for Character {
 
     fn addl_languages(&self) -> usize {
         self.race.addl_languages() + self.background.addl_languages()
-    }
-}
-
-/// Combine all proficiencies for the character, both statically assigned and randomly chosen.
-impl Proficiencies for Character {
-    fn proficiencies(&self) -> Vec<Proficiency> {
-        let mut proficiencies = self.race.proficiencies();
-        proficiencies.extend(self.background.proficiencies());
-        proficiencies.extend(self.chosen_proficiencies.clone());
-        proficiencies
-    }
-
-    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
-        let mut addl_proficiencies = self.race.addl_proficiencies();
-        addl_proficiencies.extend(self.background.addl_proficiencies());
-        addl_proficiencies
     }
 }
 
@@ -291,7 +288,7 @@ impl fmt::Display for Character {
         writeln!(
             f,
             "PROFICIENCIES: {}",
-            self.proficiencies()
+            self.proficiencies
                 .iter()
                 .filter_map(|p| match p {
                     Proficiency::Skill(_) => None,

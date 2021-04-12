@@ -28,11 +28,6 @@ chosen_equipment:
   - Other: A rank insignia from a lost legionnaire
 chosen_languages:
   - Orc
-chosen_proficiencies:
-  - Tool:
-      ArtisansTools: SmithsTools
-  - Tool:
-      MusicalInstrument: PanFlute
 level: 1
 name: Hlin Holderhek
 personality:
@@ -44,6 +39,23 @@ personality:
   traits:
     - I watch over my friends as if they were a litter of newborn pups.
     - I feel far more comfortable around animals than people.
+proficiencies:
+  - Weapon:
+      Specific: Battleaxe
+  - Weapon:
+      Specific: Handaxe
+  - Weapon:
+      Specific: LightHammer
+  - Weapon:
+      Specific: Warhammer
+  - Armor: Light
+  - Armor: Medium
+  - Skill: Athletics
+  - Skill: Survival
+  - Tool:
+      ArtisansTools: SmithsTools
+  - Tool:
+      MusicalInstrument: PanFlute
 race:
   type: Dwarf
   subrace: Mountain

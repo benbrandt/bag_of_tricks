@@ -48,7 +48,7 @@ impl ProficiencyOption {
             Self::From(list, amount) => list
                 .clone()
                 .into_iter()
-                .filter(|p| !character.proficiencies().contains(p))
+                .filter(|p| !character.proficiencies.contains(p))
                 .choose_multiple(rng, *amount),
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
@@ -76,21 +76,26 @@ impl ProficiencyOption {
                     .clone()
                     .unwrap_or_else(|| Skill::iter().collect())
                     .into_iter()
-                    .filter(|&s| !character.proficiencies().contains(&Proficiency::Skill(s)));
+                    .filter(|&s| !character.proficiencies.contains(&Proficiency::Skill(s)));
                 // Weight the proficiencies based on their underlying ability score.
                 let shift = modifier_shift(
                     available_skills
                         .clone()
                         .map(|s| character.abilities.modifier(s.ability_score_type())),
                 );
-                available_skills
+                let mut skills = available_skills
                     .collect::<Vec<_>>()
                     .choose_multiple_weighted(rng, *amount, |s| {
                         modifier_weight(character.abilities.modifier(s.ability_score_type()), shift)
                     })
                     .unwrap()
                     .map(|&s| Proficiency::Skill(s))
-                    .collect::<Vec<_>>()
+                    .collect::<Vec<_>>();
+                // Add some more if we didn't get enough
+                if skills.len() < *amount {
+                    skills.extend(Self::Skill(None, *amount - skills.len()).gen(rng, character));
+                }
+                skills
             }
         }
     }
@@ -104,6 +109,16 @@ pub(crate) enum Proficiency {
     Tool(Tool),
     Vehicle(VehicleProficiency),
     Weapon(WeaponProficiency),
+}
+
+impl Proficiency {
+    // Sometimes you end up with dupes. Consume and replace with a new option
+    pub(crate) fn gen_replacement(self, rng: &mut impl Rng, character: &Character) -> Vec<Self> {
+        match self {
+            Self::Skill(_) => ProficiencyOption::Skill(None, 1).gen(rng, character),
+            Self::Armor(_) | Self::Tool(_) | Self::Vehicle(_) | Self::Weapon(_) => todo!(),
+        }
+    }
 }
 
 /// Trait to describe proficiencies given by an entity and any additional choices that can be made.
