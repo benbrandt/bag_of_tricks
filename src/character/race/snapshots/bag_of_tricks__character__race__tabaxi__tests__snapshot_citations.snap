@@ -1,0 +1,8 @@
+---
+source: src/character/race/tabaxi.rs
+expression: tabaxi.citations()
+
+---
+- - Vgtm
+  - 113
+

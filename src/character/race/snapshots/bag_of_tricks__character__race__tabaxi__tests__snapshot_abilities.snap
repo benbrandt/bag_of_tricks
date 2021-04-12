@@ -1,0 +1,10 @@
+---
+source: src/character/race/tabaxi.rs
+expression: tabaxi.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Charisma
+  - 1
+

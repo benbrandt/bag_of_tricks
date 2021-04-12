@@ -4,52 +4,47 @@ expression: character
 
 ---
 abilities:
-  Strength: 17
-  Dexterity: 16
-  Constitution: 13
-  Intelligence: 12
+  Strength: 7
+  Dexterity: 12
+  Constitution: 17
+  Intelligence: 15
   Wisdom: 15
-  Charisma: 9
+  Charisma: 13
 alignment:
   - Lawful
   - Good
 background:
   type: Outlander
-  origin: Forester
+  origin: Exile
 characteristics:
-  age: 57
+  age: 317
   base_speeds:
-    - Walking: 30
+    - Walking: 25
   gender: Female
-  height: 61
+  height: 54
   size: Medium
-  weight: 134
+  weight: 165
 chosen_equipment:
-  - Other: A tiny cage with no door
+  - Other: A rank insignia from a lost legionnaire
 chosen_languages:
-  - Primordial
-  - Undercommon
+  - Orc
 chosen_proficiencies:
   - Tool:
-      MusicalInstrument: Lute
-  - Skill: Perception
-  - Skill: Stealth
+      ArtisansTools: SmithsTools
+  - Tool:
+      MusicalInstrument: PanFlute
 level: 1
-name: Kerri Amastacia (Starflower)
+name: Hlin Holderhek
 personality:
-  bond: An injury to the unspoiled wilderness of my home is an injury to me.
-  flaw: Violence is my answer to almost any challenge.
+  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
+  flaw: "I am too enamored of ale, wine, and other intoxicants."
   ideal:
-    - "Honor. If I dishonor myself, I dishonor my whole clan."
-    - Lawful
+    - "Glory. I must earn glory in battle, for myself and my clan."
+    - Any
   traits:
-    - "I was, in fact, raised by wolves."
-    - "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them."
+    - I watch over my friends as if they were a litter of newborn pups.
+    - I feel far more comfortable around animals than people.
 race:
-  type: HalfElf
-  addl_increases:
-    - - Intelligence
-      - 1
-    - - Dexterity
-      - 1
+  type: Dwarf
+  subrace: Mountain
 

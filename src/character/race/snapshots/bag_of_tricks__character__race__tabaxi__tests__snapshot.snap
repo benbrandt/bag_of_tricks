@@ -1,0 +1,18 @@
+---
+source: src/character/race/tabaxi.rs
+expression: tabaxi
+
+---
+- type: Tabaxi
+  obsession: a monster
+  quirk: "You keep a small ball of yarn in your hand, which you constantly fidget with."
+- Left Handed Hummingbird (Bird) Mountain Tree
+- age: 91
+  base_speeds:
+    - Walking: 30
+    - Climbing: 20
+  gender: Female
+  height: 68
+  size: Medium
+  weight: 140
+

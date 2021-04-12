@@ -1,0 +1,18 @@
+---
+source: src/character/race/tabaxi.rs
+expression: tabaxi.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 115
+- title: Feline Agility
+  citation:
+    - Vgtm
+    - 115
+- title: "Cat's Claws"
+  citation:
+    - Vgtm
+    - 115
+

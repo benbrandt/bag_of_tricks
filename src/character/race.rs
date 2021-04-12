@@ -27,7 +27,7 @@ use crate::citation::Citations;
 use self::{
     aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
     gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling,
-    human::Human, kenku::Kenku, lizardfolk::Lizardfolk, tiefling::Tiefling,
+    human::Human, kenku::Kenku, lizardfolk::Lizardfolk, tabaxi::Tabaxi, tiefling::Tiefling,
 };
 
 use super::{
@@ -73,6 +73,7 @@ pub(crate) enum RaceOptions {
     Human,
     Kenku,
     Lizardfolk,
+    Tabaxi,
     Tiefling,
 }
 
@@ -93,6 +94,7 @@ impl RaceOptions {
             Self::Human => Human::gen(rng),
             Self::Kenku => Kenku::gen(rng),
             Self::Lizardfolk => Lizardfolk::gen(rng),
+            Self::Tabaxi => Tabaxi::gen(rng),
             Self::Tiefling => Tiefling::gen(rng),
         }
     }

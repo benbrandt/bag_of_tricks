@@ -13,5 +13,5 @@ pub(crate) const NAMES: &[&str] = &[
     "Left Handed Hummingbird (Bird)",
     "Seven Thundercloud (Thunder)",
     "Skirt of Snakes (Snake)",
-    "Smoking MIrror (Smoke)",
+    "Smoking Mirror (Smoke)",
 ];

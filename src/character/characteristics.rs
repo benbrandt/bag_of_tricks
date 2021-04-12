@@ -83,6 +83,7 @@ pub(crate) enum Size {
 /// Types of movement speeds
 #[derive(Clone, Copy, Debug, Deserialize, EnumIter, PartialEq, Serialize)]
 pub(crate) enum Speed {
+    Climbing(u8),
     Swimming(u8),
     Walking(u8),
 }
@@ -90,6 +91,7 @@ pub(crate) enum Speed {
 impl fmt::Display for Speed {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
+            Self::Climbing(s) => write!(f, "Climbing Speed: {}ft", s),
             Self::Swimming(s) => write!(f, "Swimming Speed: {}ft", s),
             Self::Walking(s) => write!(f, "Walking Speed: {}ft", s),
         }

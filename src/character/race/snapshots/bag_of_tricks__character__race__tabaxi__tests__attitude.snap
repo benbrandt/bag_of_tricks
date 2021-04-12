@@ -1,0 +1,7 @@
+---
+source: src/character/race/tabaxi.rs
+expression: tabaxi.attitude()
+
+---
+- Chaotic
+
