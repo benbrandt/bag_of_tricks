@@ -1,0 +1,7 @@
+---
+source: src/character/race/hobgoblin.rs
+expression: hobgoblin.proficiencies()
+
+---
+- Armor: Light
+

@@ -4,52 +4,59 @@ expression: character
 
 ---
 abilities:
-  Strength: 6
-  Dexterity: 13
-  Constitution: 18
+  Strength: 7
+  Dexterity: 12
+  Constitution: 17
   Intelligence: 15
-  Wisdom: 13
-  Charisma: 11
+  Wisdom: 15
+  Charisma: 13
 alignment:
   - Lawful
-  - Neutral
+  - Good
 background:
-  type: Entertainer
-  routines:
-    - Poet
-  variant: Gladiator
+  type: Outlander
+  origin: Exile
 characteristics:
-  age: 136
+  age: 317
   base_speeds:
     - Walking: 25
   gender: Female
-  height: 36
-  size: Small
-  weight: 40
+  height: 54
+  size: Medium
+  weight: 165
 chosen_equipment:
-  - Other: love letter (the favor of an admirer)
-  - Tool:
-      MusicalInstrument: Horn
-  - Other: A tiny cage with no door
-chosen_languages: []
+  - Other: A rank insignia from a lost legionnaire
+chosen_languages:
+  - Orc
 level: 1
-name: Nedda Greenbottle
+name: Hlin Ironfist
 personality:
-  bond: I would do anything for the other members of my old troupe.
-  flaw: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
+  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
+  flaw: "I am too enamored of ale, wine, and other intoxicants."
   ideal:
-    - "Greed. I'm only in it for the money and fame."
-    - Evil
+    - "Glory. I must earn glory in battle, for myself and my clan."
+    - Any
   traits:
-    - "I get bitter if I'm not the center of attention."
-    - I know a story relevant to almost every situation.
+    - I watch over my friends as if they were a litter of newborn pups.
+    - I feel far more comfortable around animals than people.
 proficiencies:
-  - Tool: DisguiseKit
-  - Skill: Acrobatics
-  - Skill: Performance
+  - Weapon:
+      Specific: Battleaxe
+  - Weapon:
+      Specific: Handaxe
+  - Weapon:
+      Specific: LightHammer
+  - Weapon:
+      Specific: Warhammer
+  - Armor: Light
+  - Armor: Medium
+  - Skill: Athletics
+  - Skill: Survival
   - Tool:
-      MusicalInstrument: Horn
+      ArtisansTools: SmithsTools
+  - Tool:
+      MusicalInstrument: PanFlute
 race:
-  type: Halfling
-  subrace: Stout
+  type: Dwarf
+  subrace: Mountain
 

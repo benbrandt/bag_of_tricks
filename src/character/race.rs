@@ -10,6 +10,7 @@ mod goliath;
 mod half_elf;
 mod half_orc;
 mod halfling;
+mod hobgoblin;
 mod human;
 mod kenku;
 mod kobold;
@@ -32,9 +33,9 @@ use crate::citation::Citations;
 use self::{
     aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,
     firbolg::Firbolg, gnome::Gnome, goblin::Goblin, goliath::Goliath, half_elf::HalfElf,
-    half_orc::HalfOrc, halfling::Halfling, human::Human, kenku::Kenku, kobold::Kobold,
-    lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi, tiefling::Tiefling, triton::Triton,
-    yuan_ti::YuanTiPureblood,
+    half_orc::HalfOrc, halfling::Halfling, hobgoblin::Hobgoblin, human::Human, kenku::Kenku,
+    kobold::Kobold, lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi, tiefling::Tiefling,
+    triton::Triton, yuan_ti::YuanTiPureblood,
 };
 
 use super::{
@@ -79,6 +80,7 @@ pub(crate) enum RaceOptions {
     HalfElf,
     HalfOrc,
     Halfling,
+    Hobgoblin,
     Human,
     Kenku,
     Kobold,
@@ -106,6 +108,7 @@ impl RaceOptions {
             Self::HalfElf => HalfElf::gen(rng),
             Self::HalfOrc => HalfOrc::gen(rng),
             Self::Halfling => Halfling::gen(rng),
+            Self::Hobgoblin => Hobgoblin::gen(rng),
             Self::Human => Human::gen(rng),
             Self::Kenku => Kenku::gen(rng),
             Self::Kobold => Kobold::gen(rng),

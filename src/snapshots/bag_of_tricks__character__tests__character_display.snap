@@ -3,72 +3,71 @@ source: src/character.rs
 expression: "format!(\"{}\", character)"
 
 ---
-CHARACTER NAME: Nedda Greenbottle
-RACE: Stout Halfling (PHB p26,28)
-BACKGROUND: Gladiator (PHB p130)
-ALIGNMENT: Lawful Neutral
+CHARACTER NAME: Hlin Ironfist
+RACE: Mountain Dwarf (PHB p18,20)
+BACKGROUND: Outlander (Exile or outcast) (PHB p136)
+ALIGNMENT: Lawful Good
 LEVEL: 1
 
-STR  -2 (6)
-DEX  +1 (13)
-CON  +4 (18)
+STR  -2 (7)
+DEX  +1 (12)
+CON  +3 (17)
 INT  +2 (15)
-WIS  +1 (13)
-CHA  +0 (11)
+WIS  +2 (15)
+CHA  +1 (13)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
- X    DEX  Acrobatics       +3
-      WIS  Animal Handling  +1
+      DEX  Acrobatics       +1
+      WIS  Animal Handling  +2
       INT  Arcana           +2
-      STR  Athletics        -2
-      CHA  Deception        +0
+ X    STR  Athletics        +0
+      CHA  Deception        +1
       INT  History          +2
-      WIS  Insight          +1
-      CHA  Intimidation     +0
+      WIS  Insight          +2
+      CHA  Intimidation     +1
       INT  Investigation    +2
-      WIS  Medicine         +1
+      WIS  Medicine         +2
       INT  Nature           +2
-      WIS  Perception       +1
- X    CHA  Performance      +2
-      CHA  Persuasion       +0
+      WIS  Perception       +2
+      CHA  Performance      +1
+      CHA  Persuasion       +1
       INT  Religion         +2
       DEX  Sleight of Hand  +1
       DEX  Stealth          +1
-      WIS  Survival         +1
+ X    WIS  Survival         +4
 
 SPEED:
 Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Halfling
-PROFICIENCIES: Tool(DisguiseKit), Tool(MusicalInstrument(Horn))
+LANGUAGES: Common, Dwarvish, Orc
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(SmithsTools)), Tool(MusicalInstrument(PanFlute))
 
 CHARACTERISTICS:
-Age: 136
+Age: 317
 Gender: Female
-Size: Small
-Height: 3'0"
-Weight: 40 lb.
+Size: Medium
+Height: 4'6"
+Weight: 165 lb.
 
 PERSONALITY TRAITS:
-I get bitter if I'm not the center of attention.
-I know a story relevant to almost every situation.
-IDEAL: Greed. I'm only in it for the money and fame. (Evil)
-BOND: I would do anything for the other members of my old troupe.
-FLAW: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
+I watch over my friends as if they were a litter of newborn pups.
+I feel far more comfortable around animals than people.
+IDEAL: Glory. I must earn glory in battle, for myself and my clan. (Any)
+BOND: I am the last of my tribe, and it is up to me to ensure their names enter legend.
+FLAW: I am too enamored of ale, wine, and other intoxicants.
 
 EQUIPMENT
-Gear(Other(ClothesCostume)), Gear(Other(Pouch)), Other("love letter (the favor of an admirer)"), Tool(MusicalInstrument(Horn)), Other("A tiny cage with no door")
-COINS: 15gp
+Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A rank insignia from a lost legionnaire")
+COINS: 10gp
 
 FEATURES AND TRAITS:
-- Brave (PHB p28)
-- Halfling Nimbleness (PHB p28)
-- Stout Resilience (PHB p28)
-- By Popular Demand (PHB p130)
+- Darkvision (PHB p20)
+- Dwarven Resilience (PHB p20)
+- Stonecunning (PHB p20)
+- Wanderer (PHB p136)
 
 BACKSTORY:
-Entertainer Routine: Poet
 

@@ -1,0 +1,16 @@
+---
+source: src/character/race/hobgoblin.rs
+expression: hobgoblin
+
+---
+- type: Hobgoblin
+  origin: You are the victim of a curse or polymorph spell.
+- Targor Bloodsword
+- age: 20
+  base_speeds:
+    - Walking: 30
+  gender: Female
+  height: 65
+  size: Medium
+  weight: 173
+

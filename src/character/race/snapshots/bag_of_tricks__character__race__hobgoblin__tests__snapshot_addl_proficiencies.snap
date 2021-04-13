@@ -1,0 +1,10 @@
+---
+source: src/character/race/hobgoblin.rs
+expression: hobgoblin.addl_proficiencies()
+
+---
+- Weapon:
+    - Martial
+    - ~
+    - 2
+

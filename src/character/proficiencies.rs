@@ -6,16 +6,7 @@ use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::Display;
 
-use super::{
-    ability::{modifier_shift, modifier_weight, Skill},
-    equipment::{
-        armor::ArmorType,
-        tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
-        vehicles::VehicleProficiency,
-        weapons::{WeaponCategory, WeaponType},
-    },
-    Character,
-};
+use super::{Character, ability::{modifier_shift, modifier_weight, Skill}, equipment::{armor::ArmorType, tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool}, vehicles::VehicleProficiency, weapons::{WeaponCategory, WeaponClassification, WeaponType}}};
 
 /// Types of weapons a character is proficient in.
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
@@ -39,6 +30,8 @@ pub(crate) enum ProficiencyOption {
     MusicalInstrument,
     /// Choose a random skill to be proficient in (weighted towards you highest modifiers)
     Skill(Option<Vec<Skill>>, usize),
+    /// Choose a random weapon.
+    Weapon(Option<WeaponCategory>, Option<WeaponClassification>, usize),
 }
 
 impl ProficiencyOption {
@@ -97,6 +90,25 @@ impl ProficiencyOption {
                 }
                 skills
             }
+            Self::Weapon(category, classification, amount) => Self::From(
+                WeaponType::iter()
+                    .filter(|w| {
+                        if let Some(c) = category {
+                            if c != &w.category() {
+                                return false;
+                            }
+                        } else if let Some(c) = classification {
+                            if c != &w.classification() {
+                                return false;
+                            }
+                        }
+                        true
+                    })
+                    .map(|w| Proficiency::Weapon(WeaponProficiency::Specific(w)))
+                    .collect(),
+                *amount,
+            )
+            .gen(rng, character),
         }
     }
 }
