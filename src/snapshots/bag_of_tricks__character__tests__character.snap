@@ -4,59 +4,48 @@ expression: character
 
 ---
 abilities:
-  Strength: 7
-  Dexterity: 12
+  Strength: 10
+  Dexterity: 16
   Constitution: 17
-  Intelligence: 15
+  Intelligence: 14
   Wisdom: 15
-  Charisma: 13
+  Charisma: 14
 alignment:
-  - Lawful
-  - Good
+  - Neutral
+  - Neutral
 background:
-  type: Outlander
-  origin: Exile
+  type: Criminal
+  specialty: Blackmailer
+  variant: Criminal
 characteristics:
-  age: 317
+  age: 91
   base_speeds:
-    - Walking: 25
+    - Walking: 30
   gender: Female
-  height: 54
+  height: 66
   size: Medium
-  weight: 165
+  weight: 160
 chosen_equipment:
   - Other: A rank insignia from a lost legionnaire
 chosen_languages:
   - Orc
 level: 1
-name: Hlin Holderhek
+name: Kara Chernin
 personality:
-  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
-  flaw: "I am too enamored of ale, wine, and other intoxicants."
+  bond: "I'm trying to pay off an old debt I owe to a generous benefactor."
+  flaw: "An innocent person is in prison for a crime that I committed. I'm okay with that."
   ideal:
-    - "Glory. I must earn glory in battle, for myself and my clan."
-    - Any
+    - "People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."
+    - Neutral
   traits:
-    - I watch over my friends as if they were a litter of newborn pups.
-    - I feel far more comfortable around animals than people.
+    - I always have a plan for what to do when things go wrong.
+    - "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."
 proficiencies:
-  - Weapon:
-      Specific: Battleaxe
-  - Weapon:
-      Specific: Handaxe
-  - Weapon:
-      Specific: LightHammer
-  - Weapon:
-      Specific: Warhammer
-  - Armor: Light
-  - Armor: Medium
-  - Skill: Athletics
-  - Skill: Survival
+  - Tool: ThievesTools
+  - Skill: Deception
+  - Skill: Stealth
   - Tool:
-      ArtisansTools: SmithsTools
-  - Tool:
-      MusicalInstrument: PanFlute
+      GamingSet: Dice
 race:
-  type: Dwarf
-  subrace: Mountain
+  type: Human
 

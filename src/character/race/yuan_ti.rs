@@ -1,11 +1,34 @@
+use std::fmt;
+
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
+use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
-#[derive(Clone, Copy, Display, EnumIter)]
+use super::{human::Human, origins::MONSTROUS_ORIGIN, Race};
+use crate::{
+    character::{
+        ability::{AbilityScore, AbilityScoreType},
+        alignment::{AlignmentInfluences, Attitude, Morality},
+        attack::{DamageType, Resistances},
+        backstory::Backstory,
+        characteristics::{
+            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
+            Size, Speed, WeightMod,
+        },
+        features::{Feature, Features},
+        languages::{Language, Languages},
+        names::{human::Names, yuan_ti::NAMES, Name},
+        proficiencies::Proficiencies,
+    },
+    citation::{Book, Citation, CitationList, Citations},
+    dice_roller::{Die, RollCmd},
+};
+
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum SkinColor {
     #[strum(serialize = "Dark brown")]
     Dark,
@@ -41,7 +64,7 @@ impl SkinColor {
     }
 }
 
-#[derive(Clone, Copy, Display, EnumIter)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum ScaleColor {
     Black,
     #[strum(serialize = "Black and brown")]
@@ -112,7 +135,7 @@ impl ScaleColor {
     }
 }
 
-#[derive(Clone, Copy, Display, EnumIter)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum ScalePattern {
     Mottled,
     Random,
@@ -138,7 +161,7 @@ impl ScalePattern {
     }
 }
 
-#[derive(Clone, Copy, Display, EnumIter)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum TongueColor {
     Black,
     Blue,
@@ -163,7 +186,7 @@ impl TongueColor {
     }
 }
 
-#[derive(Clone, Copy, Display, EnumIter)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum EyeColor {
     Blue,
     Brown,
@@ -179,7 +202,7 @@ impl EyeColor {
     }
 }
 
-#[derive(Clone, Copy, Display, EnumIter, PartialEq)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum PurebloodCharacteristics {
     Fangs,
     #[strum(serialize = "Forked tongue")]
@@ -228,5 +251,258 @@ impl PurebloodCharacteristics {
             | Self::SepentineEyes => vec![characteristic],
             Self::Multiple => Self::multiple(rng),
         }
+    }
+}
+
+const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
+    base_height: in_inches(4, 8),
+    base_weight: 110,
+    height_mod: RollCmd(2, Die::D10),
+    weight_mod: WeightMod::Roll(RollCmd(2, Die::D4)),
+};
+
+#[derive(Deserialize, Serialize)]
+pub(crate) struct YuanTiPureblood {
+    eye_color: EyeColor,
+    origin: String,
+    pureblood_characteristics: Vec<PurebloodCharacteristics>,
+    scale_color: ScaleColor,
+    scale_pattern: ScalePattern,
+    skin_color: SkinColor,
+    tongue_color: TongueColor,
+}
+
+impl AlignmentInfluences for YuanTiPureblood {
+    fn attitude(&self) -> Vec<Attitude> {
+        vec![Attitude::Neutral]
+    }
+
+    fn morality(&self) -> Vec<Morality> {
+        vec![Morality::Evil]
+    }
+}
+
+impl Backstory for YuanTiPureblood {
+    fn backstory(&self) -> Vec<String> {
+        vec![
+            format!("Origin: {}", self.origin),
+            String::from("APPEARANCE:"),
+            format!("Eye color: {}", self.eye_color),
+            format!(
+                "Pureblood characteristics: {}",
+                self.pureblood_characteristics
+                    .iter()
+                    .map(|c| format!("{}", c))
+                    .collect::<Vec<_>>()
+                    .join(", ")
+            ),
+            format!("Scales: {} {}", self.scale_pattern, self.scale_color),
+            format!("Skin color: {}", self.skin_color),
+            format!("Tongue color: {}", self.tongue_color),
+        ]
+    }
+}
+
+impl Characteristics for YuanTiPureblood {
+    const AGE_RANGE: AgeRange = AgeRange(10..=100);
+    const SIZE: Size = Size::Medium;
+
+    fn get_base_speeds(&self) -> Vec<Speed> {
+        vec![Speed::Walking(30)]
+    }
+
+    fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
+        &HEIGHT_AND_WEIGHT
+    }
+}
+
+impl Citations for YuanTiPureblood {
+    fn citations(&self) -> CitationList {
+        CitationList(vec![Citation(Book::Vgtm, 120)])
+    }
+}
+
+impl Features for YuanTiPureblood {
+    fn features(&self) -> Vec<Feature> {
+        vec![
+            // You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.
+            Feature {
+                title: "Darkvision",
+                citation: Citation(Book::Vgtm, 120),
+            },
+            // You know the poison spray cantrip. You can cast animal friendship an unlimited number of times with this trait, but you can target only snakes with it. Starting at 3rd level, you can also cast suggestion with this trait. Once you cast it, you can’t do so again until you finish a long rest. Charisma is your spellcasting ability for these spells.
+            Feature {
+                title: "Innate Spellcasting",
+                citation: Citation(Book::Vgtm, 120),
+            },
+            // You have advantage on saving throws against spells and other magical effects.
+            Feature {
+                title: "Magic Resistance",
+                citation: Citation(Book::Vgtm, 120),
+            },
+            // You are immune to poison damage and the poisoned condition.
+            Feature {
+                title: "Poison Immunity",
+                citation: Citation(Book::Vgtm, 120),
+            },
+        ]
+    }
+}
+
+impl Languages for YuanTiPureblood {
+    fn languages(&self) -> Vec<Language> {
+        vec![Language::Common, Language::Abyssal, Language::Draconic]
+    }
+}
+
+impl Name for YuanTiPureblood {
+    /// Name also requires getting a set of human names (for human lineage)
+    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+        let names = Names::gen_names(rng);
+        let first_name = *[
+            Human::gen_first_name(rng, &names, characteristics),
+            *NAMES.choose(rng).unwrap(),
+        ]
+        .choose(rng)
+        .unwrap();
+        format!("{} {}", first_name, Human::gen_surname(rng, &names))
+    }
+}
+
+impl Proficiencies for YuanTiPureblood {}
+
+#[typetag::serde]
+impl Race for YuanTiPureblood {
+    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+        let race = Box::new(Self {
+            eye_color: EyeColor::gen(rng),
+            origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
+            pureblood_characteristics: PurebloodCharacteristics::gen(rng),
+            scale_color: ScaleColor::gen(rng),
+            scale_pattern: ScalePattern::gen(rng),
+            skin_color: SkinColor::gen(rng),
+            tongue_color: TongueColor::gen(rng),
+        });
+        let characteristics = race.gen_characteristics(rng);
+        let name = Self::gen_name(rng, &characteristics);
+        (race, name, characteristics)
+    }
+
+    fn abilities(&self) -> Vec<AbilityScore> {
+        vec![
+            AbilityScore(AbilityScoreType::Charisma, 2),
+            AbilityScore(AbilityScoreType::Intelligence, 1),
+        ]
+    }
+}
+
+impl Resistances for YuanTiPureblood {
+    fn immunities(&self) -> Vec<DamageType> {
+        vec![DamageType::Poison]
+    }
+}
+
+impl fmt::Display for YuanTiPureblood {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Yuan-ti Pureblood")
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_display_snapshot!(yuan_ti);
+    }
+
+    #[test]
+    fn test_attitude() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.attitude());
+    }
+
+    #[test]
+    fn test_morality() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.morality());
+    }
+
+    #[test]
+    fn test_backstory() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.backstory());
+    }
+
+    #[test]
+    fn test_characteristics() {
+        let yuan_ti = YuanTiPureblood {
+            eye_color: EyeColor::Blue,
+            origin: String::new(),
+            pureblood_characteristics: vec![],
+            scale_color: ScaleColor::Albino,
+            scale_pattern: ScalePattern::Mottled,
+            skin_color: SkinColor::Dark,
+            tongue_color: TongueColor::Black,
+        };
+        assert_eq!(yuan_ti.get_base_speeds(), vec![Speed::Walking(30)]);
+        assert_eq!(yuan_ti.get_height_and_weight_table(), &HEIGHT_AND_WEIGHT);
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.features());
+    }
+
+    #[test]
+    fn test_snapshot_languages() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.languages());
+    }
+
+    #[test]
+    fn test_name() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (_yuan_ti, name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_snapshot_abilities() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.abilities());
+    }
+
+    #[test]
+    fn test_snapshot_immunities() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.immunities());
     }
 }

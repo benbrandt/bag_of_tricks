@@ -74,6 +74,10 @@ impl fmt::Display for Damage {
 
 /// Trait to encapuslate resistances
 pub(crate) trait Resistances {
+    /// Return list of immunities for this object
+    fn immunities(&self) -> Vec<DamageType> {
+        vec![]
+    }
     /// Return list of resistances for this object
     fn resistances(&self) -> Vec<DamageType> {
         vec![]

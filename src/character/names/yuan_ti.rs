@@ -1,4 +1,4 @@
-pub(crate) const YUAN_TI_NAMES: &[&str] = &[
+pub(crate) const NAMES: &[&str] = &[
     "Asutali",
     "Eztli",
     "Hessetal",

@@ -31,7 +31,7 @@ use self::{
     aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
     gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling,
     human::Human, kenku::Kenku, kobold::Kobold, lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi,
-    tiefling::Tiefling, triton::Triton,
+    tiefling::Tiefling, triton::Triton, yuan_ti::YuanTiPureblood,
 };
 
 use super::{
@@ -82,6 +82,7 @@ pub(crate) enum RaceOptions {
     Tabaxi,
     Tiefling,
     Triton,
+    YuanTiPureblood,
 }
 
 impl RaceOptions {
@@ -106,6 +107,7 @@ impl RaceOptions {
             Self::Tabaxi => Tabaxi::gen(rng),
             Self::Tiefling => Tiefling::gen(rng),
             Self::Triton => Triton::gen(rng),
+            Self::YuanTiPureblood => YuanTiPureblood::gen(rng),
         }
     }
 }

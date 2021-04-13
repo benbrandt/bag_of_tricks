@@ -1,0 +1,22 @@
+---
+source: src/character/race/yuan_ti.rs
+expression: yuan_ti.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 120
+- title: Innate Spellcasting
+  citation:
+    - Vgtm
+    - 120
+- title: Magic Resistance
+  citation:
+    - Vgtm
+    - 120
+- title: Poison Immunity
+  citation:
+    - Vgtm
+    - 120
+

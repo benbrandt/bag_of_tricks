@@ -1,0 +1,13 @@
+---
+source: src/character/race/yuan_ti.rs
+expression: yuan_ti.backstory()
+
+---
+- "Origin: You were raised by humans, elves, or dwarves and have adopted their culture."
+- "APPEARANCE:"
+- "Eye color: Red"
+- "Pureblood characteristics: Scaly torso"
+- "Scales: Mottled Red and tan"
+- "Skin color: Yellow-brown"
+- "Tongue color: Orange"
+

@@ -210,6 +210,10 @@ impl Languages for Character {
 
 /// Combine all resistances the character has.
 impl Resistances for Character {
+    fn immunities(&self) -> Vec<DamageType> {
+        self.race.immunities()
+    }
+
     fn resistances(&self) -> Vec<DamageType> {
         self.race.resistances()
     }
@@ -271,6 +275,15 @@ impl fmt::Display for Character {
             f,
             "RESISTANCES: {}",
             self.resistances()
+                .iter()
+                .map(|r| format!("{}", r))
+                .collect::<Vec<String>>()
+                .join(", ")
+        )?;
+        writeln!(
+            f,
+            "IMMUNITIES: {}",
+            self.immunities()
                 .iter()
                 .map(|r| format!("{}", r))
                 .collect::<Vec<String>>()
