@@ -1,0 +1,8 @@
+---
+source: src/character/race/triton.rs
+expression: triton.languages()
+
+---
+- Common
+- Primordial
+

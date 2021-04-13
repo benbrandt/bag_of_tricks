@@ -1,0 +1,7 @@
+---
+source: src/character/race/triton.rs
+expression: triton.resistances()
+
+---
+- Cold
+

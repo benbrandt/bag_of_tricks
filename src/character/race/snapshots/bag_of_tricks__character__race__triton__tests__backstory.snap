@@ -1,0 +1,7 @@
+---
+source: src/character/race/triton.rs
+expression: triton.backstory()
+
+---
+- "Quirk: You assume that people are telling you the truth about local customs and expectations."
+

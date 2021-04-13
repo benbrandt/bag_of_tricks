@@ -11,6 +11,7 @@ pub(crate) mod lizardfolk;
 pub(crate) mod orc;
 pub(crate) mod tabaxi;
 pub(crate) mod tiefling;
+pub(crate) mod triton;
 pub(crate) mod yuan_ti;
 
 use rand::Rng;

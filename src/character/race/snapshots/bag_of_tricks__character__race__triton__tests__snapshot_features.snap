@@ -1,0 +1,22 @@
+---
+source: src/character/race/triton.rs
+expression: triton.features()
+
+---
+- title: Amphibious
+  citation:
+    - Vgtm
+    - 118
+- title: Control Air and Water
+  citation:
+    - Vgtm
+    - 118
+- title: Emissary of the Sea
+  citation:
+    - Vgtm
+    - 118
+- title: Guardians of the Depths
+  citation:
+    - Vgtm
+    - 118
+

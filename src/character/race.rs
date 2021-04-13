@@ -14,6 +14,7 @@ mod kobold;
 mod lizardfolk;
 mod tabaxi;
 mod tiefling;
+mod triton;
 mod yuan_ti;
 
 use rand::prelude::IteratorRandom;
@@ -28,6 +29,7 @@ use self::{
     aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
     gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling,
     human::Human, kenku::Kenku, lizardfolk::Lizardfolk, tabaxi::Tabaxi, tiefling::Tiefling,
+    triton::Triton,
 };
 
 use super::{
@@ -75,6 +77,7 @@ pub(crate) enum RaceOptions {
     Lizardfolk,
     Tabaxi,
     Tiefling,
+    Triton,
 }
 
 impl RaceOptions {
@@ -96,6 +99,7 @@ impl RaceOptions {
             Self::Lizardfolk => Lizardfolk::gen(rng),
             Self::Tabaxi => Tabaxi::gen(rng),
             Self::Tiefling => Tiefling::gen(rng),
+            Self::Triton => Triton::gen(rng),
         }
     }
 }
