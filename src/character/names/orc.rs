@@ -11,6 +11,7 @@ pub(crate) const EPITHET: &[&str] = &[
     "Spine Snapper",
     "Death Spear",
     "The Brutal",
+    "Axe-Biter",
 ];
 
 pub(crate) const FEMALE: &[&str] = &[
@@ -21,5 +22,5 @@ pub(crate) const FEMALE: &[&str] = &[
 pub(crate) const MALE: &[&str] = &[
     "Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Mhurren", "Ront", "Shump",
     "Thokk", "Grutok", "Lortar", "Abzug", "Shugog", "Urzul", "Ruhk", "Mobad", "Shamog", "Mugrub",
-    "Bajok", "Rhorog", "Jahrukk",
+    "Bajok", "Rhorog", "Jahrukk", "Brughor",
 ];

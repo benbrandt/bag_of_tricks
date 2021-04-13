@@ -3,68 +3,75 @@ source: src/character.rs
 expression: "format!(\"{}\", character)"
 
 ---
-CHARACTER NAME: Kara Chernin
-RACE: Human (PHB p29)
-BACKGROUND: Criminal (Blackmailer) (PHB p129)
-ALIGNMENT: Neutral
+CHARACTER NAME: Hagnar
+RACE: Kobold (VGTM p119)
+BACKGROUND: Gladiator (PHB p130)
+ALIGNMENT: Lawful Neutral
 LEVEL: 1
 
-STR  +0 (10)
-DEX  +3 (16)
+STR  -3 (4)
+DEX  +1 (13)
 CON  +3 (17)
-INT  +2 (14)
-WIS  +2 (15)
-CHA  +2 (14)
+INT  +2 (15)
+WIS  +1 (13)
+CHA  +0 (11)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
-      DEX  Acrobatics       +3
-      WIS  Animal Handling  +2
+ X    DEX  Acrobatics       +3
+      WIS  Animal Handling  +1
       INT  Arcana           +2
-      STR  Athletics        +0
- X    CHA  Deception        +4
+      STR  Athletics        -3
+      CHA  Deception        +0
       INT  History          +2
-      WIS  Insight          +2
-      CHA  Intimidation     +2
+      WIS  Insight          +1
+      CHA  Intimidation     +0
       INT  Investigation    +2
-      WIS  Medicine         +2
+      WIS  Medicine         +1
       INT  Nature           +2
-      WIS  Perception       +2
-      CHA  Performance      +2
-      CHA  Persuasion       +2
+      WIS  Perception       +1
+ X    CHA  Performance      +2
+      CHA  Persuasion       +0
       INT  Religion         +2
-      DEX  Sleight of Hand  +3
- X    DEX  Stealth          +5
-      WIS  Survival         +2
+      DEX  Sleight of Hand  +1
+      DEX  Stealth          +1
+      WIS  Survival         +1
 
 SPEED:
 Walking Speed: 30ft
 PROFICIENCY BONUS: +2
 RESISTANCES: 
 IMMUNITIES: 
-LANGUAGES: Common, Orc
-PROFICIENCIES: Tool(ThievesTools), Tool(GamingSet(Dice))
+LANGUAGES: Common, Draconic
+PROFICIENCIES: Tool(DisguiseKit), Tool(MusicalInstrument(Horn))
 
 CHARACTERISTICS:
-Age: 91
-Gender: Female
-Size: Medium
-Height: 5'6"
-Weight: 160 lb.
+Age: 66
+Gender: Male
+Size: Small
+Height: 2'4"
+Weight: 28 lb.
 
 PERSONALITY TRAITS:
-I always have a plan for what to do when things go wrong.
-I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.
-IDEAL: People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care. (Neutral)
-BOND: I'm trying to pay off an old debt I owe to a generous benefactor.
-FLAW: An innocent person is in prison for a crime that I committed. I'm okay with that.
+I get bitter if I'm not the center of attention.
+I know a story relevant to almost every situation.
+IDEAL: Greed. I'm only in it for the money and fame. (Evil)
+BOND: I would do anything for the other members of my old troupe.
+FLAW: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
 
 EQUIPMENT
-Gear(Other(Crowbar)), Other("a set of dark common clothes including a hood"), Gear(Other(Pouch)), Other("A rank insignia from a lost legionnaire")
+Gear(Other(ClothesCostume)), Gear(Other(Pouch)), Other("love letter (the favor of an admirer)"), Tool(MusicalInstrument(Horn)), Other("A tiny cage with no door")
 COINS: 15gp
 
 FEATURES AND TRAITS:
-- Criminal Contact (PHB p129)
+- Darkvision (VGTM p119)
+- Grovel, Cower, and Beg (VGTM p119)
+- Pack Tactics (VGTM p119)
+- Sunlight Sensitivity (VGTM p119)
+- By Popular Demand (PHB p130)
 
 BACKSTORY:
+Origin: An injury or strange event caused you to lose all memory of your past, but occaisional flashes of it return to you.
+Appearance: Striped Brown scales
+Entertainer Routine: Poet
 

@@ -1,4 +1,5 @@
 mod aasimar;
+mod bugbear;
 mod dragonborn;
 mod dwarf;
 mod elf;
@@ -28,10 +29,10 @@ use strum_macros::EnumIter;
 use crate::citation::Citations;
 
 use self::{
-    aasimar::Aasimar, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf, firbolg::Firbolg,
-    gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling,
-    human::Human, kenku::Kenku, kobold::Kobold, lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi,
-    tiefling::Tiefling, triton::Triton, yuan_ti::YuanTiPureblood,
+    aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,
+    firbolg::Firbolg, gnome::Gnome, goliath::Goliath, half_elf::HalfElf, half_orc::HalfOrc,
+    halfling::Halfling, human::Human, kenku::Kenku, kobold::Kobold, lizardfolk::Lizardfolk,
+    orc::Orc, tabaxi::Tabaxi, tiefling::Tiefling, triton::Triton, yuan_ti::YuanTiPureblood,
 };
 
 use super::{
@@ -65,6 +66,7 @@ pub(crate) trait Race:
 #[derive(EnumIter)]
 pub(crate) enum RaceOptions {
     Aasimar,
+    Bugbear,
     Dragonborn,
     Dwarf,
     Elf,
@@ -90,6 +92,7 @@ impl RaceOptions {
     pub(crate) fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         match Self::iter().choose(rng).unwrap() {
             Self::Aasimar => Aasimar::gen(rng),
+            Self::Bugbear => Bugbear::gen(rng),
             Self::Dragonborn => Dragonborn::gen(rng),
             Self::Dwarf => Dwarf::gen(rng),
             Self::Elf => Elf::gen(rng),

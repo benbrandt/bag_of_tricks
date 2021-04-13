@@ -10,6 +10,7 @@ pub(crate) const CLAN: &[&str] = &[
     "Ironfist",
     "Loderr",
     "Lutgehr",
+    "Rockseeker",
     "Rumnaheim",
     "Strakeln",
     "Torunn",
@@ -24,7 +25,7 @@ pub(crate) const FEMALE: &[&str] = &[
 
 pub(crate) const MALE: &[&str] = &[
     "Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg",
-    "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik",
-    "Oskar", "Rangrim", "Rurik", "Taklinn", "Thoradin", "Thorin", "Tordek", "Traubon", "Travok",
-    "Ulfgar", "Veit", "Vondal",
+    "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Gundren", "Harbek", "Kildrak", "Morgran",
+    "Nundro", "Orsik", "Oskar", "Rangrim", "Rurik", "Taklinn", "Thardin", "Thoradin", "Thorin",
+    "Tordek", "Traubon", "Travok", "Ulfgar", "Veit", "Vondal",
 ];

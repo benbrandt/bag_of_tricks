@@ -1,0 +1,8 @@
+---
+source: src/character/race/bugbear.rs
+expression: bugbear.languages()
+
+---
+- Common
+- Goblin
+

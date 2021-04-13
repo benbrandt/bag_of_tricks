@@ -1,16 +1,16 @@
 ---
-source: src/character/race/orc.rs
-expression: orc
+source: src/character/race/bugbear.rs
+expression: bugbear
 
 ---
-- type: Orc
+- type: Bugbear
   origin: You are the victim of a curse or polymorph spell.
-- Kansif Skull Cleaver
-- age: 11
+- Klarg
+- age: 16
   base_speeds:
     - Walking: 30
   gender: Female
-  height: 72
+  height: 83
   size: Medium
-  weight: 263
+  weight: 321
 

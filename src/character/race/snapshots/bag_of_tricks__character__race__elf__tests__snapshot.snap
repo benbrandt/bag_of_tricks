@@ -5,7 +5,7 @@ expression: elf
 ---
 - type: Elf
   subrace: Dark
-- Vadania Holimion (Diamonddew)
+- Thia Holimion (Diamonddew)
 - age: 694
   base_speeds:
     - Walking: 30

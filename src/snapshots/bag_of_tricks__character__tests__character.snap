@@ -4,48 +4,55 @@ expression: character
 
 ---
 abilities:
-  Strength: 10
-  Dexterity: 16
+  Strength: 4
+  Dexterity: 13
   Constitution: 17
-  Intelligence: 14
-  Wisdom: 15
-  Charisma: 14
+  Intelligence: 15
+  Wisdom: 13
+  Charisma: 11
 alignment:
-  - Neutral
+  - Lawful
   - Neutral
 background:
-  type: Criminal
-  specialty: Blackmailer
-  variant: Criminal
+  type: Entertainer
+  routines:
+    - Poet
+  variant: Gladiator
 characteristics:
-  age: 91
+  age: 66
   base_speeds:
     - Walking: 30
-  gender: Female
-  height: 66
-  size: Medium
-  weight: 160
+  gender: Male
+  height: 28
+  size: Small
+  weight: 28
 chosen_equipment:
-  - Other: A rank insignia from a lost legionnaire
-chosen_languages:
-  - Orc
-level: 1
-name: Kara Chernin
-personality:
-  bond: "I'm trying to pay off an old debt I owe to a generous benefactor."
-  flaw: "An innocent person is in prison for a crime that I committed. I'm okay with that."
-  ideal:
-    - "People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care."
-    - Neutral
-  traits:
-    - I always have a plan for what to do when things go wrong.
-    - "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."
-proficiencies:
-  - Tool: ThievesTools
-  - Skill: Deception
-  - Skill: Stealth
+  - Other: love letter (the favor of an admirer)
   - Tool:
-      GamingSet: Dice
+      MusicalInstrument: Horn
+  - Other: A tiny cage with no door
+chosen_languages: []
+level: 1
+name: Hagnar
+personality:
+  bond: I would do anything for the other members of my old troupe.
+  flaw: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
+  ideal:
+    - "Greed. I'm only in it for the money and fame."
+    - Evil
+  traits:
+    - "I get bitter if I'm not the center of attention."
+    - I know a story relevant to almost every situation.
+proficiencies:
+  - Tool: DisguiseKit
+  - Skill: Acrobatics
+  - Skill: Performance
+  - Tool:
+      MusicalInstrument: Horn
 race:
-  type: Human
+  type: Kobold
+  origin: "An injury or strange event caused you to lose all memory of your past, but occaisional flashes of it return to you."
+  scale_color:
+    - Brown
+  scale_pattern: Striped
 

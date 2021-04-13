@@ -2,6 +2,7 @@ pub(crate) mod dragonborn;
 pub(crate) mod dwarf;
 pub(crate) mod elf;
 pub(crate) mod gnome;
+pub(crate) mod goblinoid;
 pub(crate) mod goliath;
 pub(crate) mod halfling;
 pub(crate) mod human;
