@@ -4,9 +4,9 @@ expression: character
 
 ---
 abilities:
-  Strength: 4
+  Strength: 6
   Dexterity: 13
-  Constitution: 17
+  Constitution: 18
   Intelligence: 15
   Wisdom: 13
   Charisma: 11
@@ -19,13 +19,13 @@ background:
     - Poet
   variant: Gladiator
 characteristics:
-  age: 66
+  age: 136
   base_speeds:
-    - Walking: 30
-  gender: Male
-  height: 28
+    - Walking: 25
+  gender: Female
+  height: 36
   size: Small
-  weight: 28
+  weight: 40
 chosen_equipment:
   - Other: love letter (the favor of an admirer)
   - Tool:
@@ -33,7 +33,7 @@ chosen_equipment:
   - Other: A tiny cage with no door
 chosen_languages: []
 level: 1
-name: Hagnar
+name: Nedda Greenbottle
 personality:
   bond: I would do anything for the other members of my old troupe.
   flaw: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
@@ -50,9 +50,6 @@ proficiencies:
   - Tool:
       MusicalInstrument: Horn
 race:
-  type: Kobold
-  origin: "An injury or strange event caused you to lose all memory of your past, but occaisional flashes of it return to you."
-  scale_color:
-    - Brown
-  scale_pattern: Striped
+  type: Halfling
+  subrace: Stout
 

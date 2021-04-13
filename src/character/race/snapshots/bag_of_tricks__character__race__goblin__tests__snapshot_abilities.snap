@@ -1,0 +1,10 @@
+---
+source: src/character/race/goblin.rs
+expression: goblin.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Constitution
+  - 1
+
