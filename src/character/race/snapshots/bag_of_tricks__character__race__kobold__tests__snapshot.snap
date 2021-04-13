@@ -1,0 +1,19 @@
+---
+source: src/character/race/kobold.rs
+expression: kobold
+
+---
+- type: Kobold
+  origin: You are the victim of a curse or polymorph spell.
+  scale_color:
+    - OrangeBrown
+  scale_pattern: Reticulated
+- Molo
+- age: 16
+  base_speeds:
+    - Walking: 30
+  gender: Female
+  height: 32
+  size: Small
+  weight: 32
+

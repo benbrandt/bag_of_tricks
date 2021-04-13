@@ -1,0 +1,7 @@
+---
+source: src/character/race/kobold.rs
+expression: kobold.attitude()
+
+---
+- Lawful
+

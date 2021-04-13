@@ -1,0 +1,8 @@
+---
+source: src/character/race/kobold.rs
+expression: kobold.backstory()
+
+---
+- "Origin: You are the victim of a curse or polymorph spell."
+- "Appearance: Reticulated Orange-brown scales"
+

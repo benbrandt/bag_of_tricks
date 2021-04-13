@@ -10,9 +10,9 @@ use crate::dice_roller::{Die, RollCmd};
 use super::{proficiencies::Proficiency, Character};
 
 /// Return modifier based on ability score.
-fn modifier(score: u8) -> i16 {
+fn modifier(score: i16) -> i16 {
     // Lower value to closest even number, reduce by 10, and divide by two
-    (i16::from(score) - i16::from(score) % 2 - 10) / 2
+    (score - score % 2 - 10) / 2
 }
 
 // Used for weighting ability scores. Get value to shift all other values by to have lowest be 1
@@ -64,7 +64,7 @@ pub(crate) enum AbilityScoreType {
 
 /// Value of a base ability score or increase
 #[derive(Copy, Clone, Debug, Deserialize, Serialize)]
-pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) u8);
+pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) i16);
 
 impl AbilityScore {
     /// Generate an ability score by rolling 4d6 and keeping the highest 3
@@ -81,14 +81,14 @@ impl AbilityScore {
 
 /// Full set of ability scores a character could have
 #[derive(Debug, Deserialize, Serialize)]
-pub(crate) struct AbilityScores(pub(crate) BTreeMap<AbilityScoreType, u8>);
+pub(crate) struct AbilityScores(pub(crate) BTreeMap<AbilityScoreType, i16>);
 
 impl AbilityScores {
     /// Generate a set of ability scores for a character
     pub(crate) fn gen(rng: &mut impl Rng) -> Self {
         let mut scores = BTreeMap::new();
         for a in AbilityScoreType::iter() {
-            scores.insert(a, AbilityScore::gen(rng));
+            scores.insert(a, i16::from(AbilityScore::gen(rng)));
         }
         Self(scores)
     }
