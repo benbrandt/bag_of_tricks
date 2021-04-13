@@ -1,0 +1,18 @@
+---
+source: src/character/race/orc.rs
+expression: orc.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 120
+- title: Aggresive
+  citation:
+    - Vgtm
+    - 120
+- title: Powerful Build
+  citation:
+    - Vgtm
+    - 120
+

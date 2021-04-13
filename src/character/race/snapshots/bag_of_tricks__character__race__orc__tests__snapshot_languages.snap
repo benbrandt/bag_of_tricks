@@ -1,0 +1,8 @@
+---
+source: src/character/race/orc.rs
+expression: orc.languages()
+
+---
+- Common
+- Orc
+

@@ -2,7 +2,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
-use super::{human::Human, Race};
+use super::{human::Human, orc::Orc, Race};
 use crate::{
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
@@ -10,16 +10,12 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, Speed, WeightMod,
+            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
+            Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
-        names::{
-            human::Names,
-            orc::{EPITHET, FEMALE, MALE},
-            Name,
-        },
+        names::{human::Names, Name},
         proficiencies::{Proficiencies, Proficiency},
     },
     citation::{Book, Citation, CitationList, Citations},
@@ -99,22 +95,15 @@ impl Name for HalfOrc {
     /// First name can be either orc or human name
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let names = Names::gen_names(rng);
-        let orc_names = match characteristics.gender {
-            Gender::Female => FEMALE,
-            Gender::Male => MALE,
-        };
         let first_name = *[
             Human::gen_first_name(rng, &names, characteristics),
-            *orc_names.choose(rng).unwrap(),
+            Orc::gen_first_name(rng, characteristics),
         ]
         .choose(rng)
         .unwrap();
-        let last_name = *[
-            Human::gen_surname(rng, &names),
-            *EPITHET.choose(rng).unwrap(),
-        ]
-        .choose(rng)
-        .unwrap();
+        let last_name = *[Human::gen_surname(rng, &names), Orc::gen_epithet(rng)]
+            .choose(rng)
+            .unwrap();
         format!("{} {}", first_name, last_name)
     }
 }
