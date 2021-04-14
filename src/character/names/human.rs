@@ -28,13 +28,12 @@ impl Names<'_> {
     pub(crate) fn gen_names(rng: &mut impl Rng) -> Self {
         match Ethnicity::iter().choose(rng).unwrap() {
             Ethnicity::Calishite => CALISHITE,
-            Ethnicity::Chondathan => CHONDATHAN,
+            Ethnicity::Chondathan | Ethnicity::Tethyrian => CHONDATHAN,
             Ethnicity::Damaran => DAMARAN,
             Ethnicity::Illuskan => ILLUSKAN,
             Ethnicity::Mulan => MULAN,
             Ethnicity::Rashemi => RASHEMI,
             Ethnicity::Shou => SHOU,
-            Ethnicity::Tethyrian => TETHYRIAN,
             Ethnicity::Turami => TURAMI,
         }
     }
@@ -54,18 +53,31 @@ const CALISHITE: Names = Names {
 
 const CHONDATHAN: Names = Names {
     female: &[
-        "Arveene", "Esvele", "Jhessail", "Kerri", "Lureene", "Miri", "Rowan", "Shandri", "Tessele",
+        "Arveene", "Elsa", "Esvele", "Freda", "Halia", "Jhessail", "Kerri", "Linene", "Lureene",
+        "Miri", "Mirna", "Nilsa", "Rowan", "Shandri", "Tessele", "Thistle", "Trilena",
     ],
     male: &[
-        "Darvin", "Dorn", "Evendur", "Gorstag", "Grim", "Helm", "Malark", "Morn", "Randal", "Stedd",
+        "Aldith", "Ander", "Daren", "Darvin", "Dorn", "Elmar", "Evendur", "Favric", "Gorstag",
+        "Grim", "Harbin", "Helm", "Iarno", "Lanar", "Malark", "Morn", "Nars", "Narth", "Palien",
+        "Pip", "Randal", "Sildar", "Stedd", "Thel", "Toblen",
     ],
     surname: &[
+        "Albrek",
         "Amblecrown",
+        "Barthen",
         "Buckman",
+        "Dendrar",
         "Dundragon",
+        "Edermath",
         "Evenwood",
+        "Graywind",
         "Greycastle",
+        "Hallwinter",
+        "Stonehill",
         "Tallstag",
+        "Thornton",
+        "Tresendar",
+        "Wester",
     ],
 };
 
@@ -108,9 +120,11 @@ const MULAN: Names = Names {
         "Aoth",
         "Bareris",
         "Ehput-Ki",
+        "Hamun",
         "Kethoth",
         "Mumed",
         "Ramas",
+        "Reidoth",
         "So-Kehur",
         "Thazar-De",
         "Urhur",
@@ -120,6 +134,7 @@ const MULAN: Names = Names {
         "Anskuld",
         "Fezim",
         "Hahpet",
+        "Kost",
         "Nathandem",
         "Sepret",
         "Uuthrakt",
@@ -162,8 +177,6 @@ const SHOU: Names = Names {
         "Chien", "Huang", "Kao", "Kung", "Lao", "Ling", "Mei", "Pin", "Shin", "Sum", "Tan", "Wan",
     ],
 };
-
-const TETHYRIAN: Names = CHONDATHAN;
 
 const TURAMI: Names = Names {
     female: &[
