@@ -14,4 +14,5 @@ pub(crate) const NAMES: &[&str] = &[
     "Seven Thundercloud (Thunder)",
     "Skirt of Snakes (Snake)",
     "Smoking Mirror (Smoke)",
+    "Stands in Tar (Tar)",
 ];

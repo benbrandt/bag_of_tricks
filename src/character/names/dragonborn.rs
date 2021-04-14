@@ -34,6 +34,22 @@ pub(crate) const FEMALE: &[&str] = &[
 ];
 
 pub(crate) const MALE: &[&str] = &[
-    "Arjhan", "Balasar", "Bharash", "Donaar", "Ghesh", "Heskan", "Kriv", "Medrash", "Mehen",
-    "Nadarr", "Pandjed", "Patrin", "Rhogar", "Shamash", "Shedinn", "Tarhun", "Torinn",
+    "Arjhan",
+    "Balasar",
+    "Bharash",
+    "Donaar",
+    "Ghesh",
+    "Heskan",
+    "Kristoffen",
+    "Kriv",
+    "Medrash",
+    "Mehen",
+    "Nadarr",
+    "Pandjed",
+    "Patrin",
+    "Rhogar",
+    "Shamash",
+    "Shedinn",
+    "Tarhun",
+    "Torinn",
 ];

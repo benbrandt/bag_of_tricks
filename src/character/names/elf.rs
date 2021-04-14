@@ -30,12 +30,14 @@ pub(crate) const FEMALE: &[&str] = &[
     "Felosial",
     "Garaele",
     "Ielenia",
+    "Iverna",
     "Jelenneth",
     "Keyleth",
     "Leshanna",
     "Lia",
     "Meriele",
     "Mialee",
+    "Miraal",
     "Naivara",
     "Quelenna",
     "Quillathe",
@@ -47,6 +49,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Thia",
     "Vadania",
     "Valanthe",
+    "Vyldara",
     "Xanaphia",
 ];
 

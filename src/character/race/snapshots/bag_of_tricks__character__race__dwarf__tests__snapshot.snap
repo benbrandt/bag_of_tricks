@@ -5,7 +5,7 @@ expression: dwarf
 ---
 - type: Dwarf
   subrace: Hill
-- Hlin Ironfist
+- Helja Fireforge
 - age: 49
   base_speeds:
     - Walking: 25

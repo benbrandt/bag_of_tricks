@@ -5,7 +5,7 @@ expression: orc
 ---
 - type: Orc
   origin: You are the victim of a curse or polymorph spell.
-- Kansif Skull Cleaver
+- Neega Doom Hammer
 - age: 11
   base_speeds:
     - Walking: 30

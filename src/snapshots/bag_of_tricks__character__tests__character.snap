@@ -4,18 +4,18 @@ expression: character
 
 ---
 abilities:
-  Strength: 7
-  Dexterity: 12
-  Constitution: 17
+  Strength: 8
+  Dexterity: 11
+  Constitution: 19
   Intelligence: 15
-  Wisdom: 15
-  Charisma: 13
+  Wisdom: 13
+  Charisma: 11
 alignment:
   - Lawful
   - Good
 background:
-  type: Outlander
-  origin: Exile
+  type: FolkHero
+  defining_event: I led a militia to fight off an invading army.
 characteristics:
   age: 317
   base_speeds:
@@ -25,20 +25,21 @@ characteristics:
   size: Medium
   weight: 165
 chosen_equipment:
-  - Other: A rank insignia from a lost legionnaire
-chosen_languages:
-  - Orc
+  - Tool:
+      ArtisansTools: SmithsTools
+  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
+chosen_languages: []
 level: 1
-name: Hlin Ironfist
+name: Helja Fireforge
 personality:
-  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
-  flaw: "I am too enamored of ale, wine, and other intoxicants."
+  bond: "My tools are symbols of my past life, and I carry them so that I will never forget my roots."
+  flaw: The tyrant who rules my land will stop at nothing to see me killed.
   ideal:
-    - "Glory. I must earn glory in battle, for myself and my clan."
+    - Destiny. Nothing and no one can steer me away from my higher calling.
     - Any
   traits:
-    - I watch over my friends as if they were a litter of newborn pups.
-    - I feel far more comfortable around animals than people.
+    - "If someone is in trouble, I'm always ready to lend help."
+    - I misuse long words in an attempt to sound smarter.
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -50,12 +51,13 @@ proficiencies:
       Specific: Warhammer
   - Armor: Light
   - Armor: Medium
-  - Skill: Athletics
+  - Vehicle: Land
+  - Skill: AnimalHandling
   - Skill: Survival
   - Tool:
       ArtisansTools: SmithsTools
   - Tool:
-      MusicalInstrument: PanFlute
+      ArtisansTools: WoodcarversTools
 race:
   type: Dwarf
   subrace: Mountain

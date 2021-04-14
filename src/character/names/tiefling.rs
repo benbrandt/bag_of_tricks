@@ -1,6 +1,18 @@
 pub(crate) const FEMALE_ABYSSAL: &[&str] = &[
-    "Akta", "Anakis", "Bryseis", "Criella", "Damaia", "Ea", "Kallista", "Lerissa", "Makaria",
-    "Nemeia", "Orianna", "Phelaia", "Rieta",
+    "Akta",
+    "Anakis",
+    "Bryseis",
+    "Criella",
+    "Damaia",
+    "Ea",
+    "Kallista",
+    "Lerissa",
+    "Makaria",
+    "Nemeia",
+    "Nixoxious",
+    "Orianna",
+    "Phelaia",
+    "Rieta",
 ];
 
 pub(crate) const MALE_ABYSSAL: &[&str] = &[

@@ -84,7 +84,7 @@ const DAMARAN: Names = Names {
 
 const ILLUSKAN: Names = Names {
     female: &[
-        "Amafrey", "Betha", "Cefrey", "Kethra", "Mara", "Olga", "Silifrey", "Westra",
+        "Amafrey", "Betha", "Cefrey", "Kethra", "Mara", "Olga", "Silifrey", "Teega", "Westra",
     ],
     male: &[
         "Ander", "Blath", "Bran", "Frath", "Geth", "Lander", "Luth", "Malcer", "Stor", "Taman",
@@ -133,6 +133,7 @@ const RASHEMI: Names = Names {
     male: &[
         "Borivik",
         "Faurgar",
+        "Gallio",
         "Jandar",
         "Kanithar",
         "Madislak",
@@ -143,6 +144,7 @@ const RASHEMI: Names = Names {
     surname: &[
         "Chergoba",
         "Dyernina",
+        "Elibro",
         "Iltazyara",
         "Murnyethara",
         "Stayanoga",

@@ -3,6 +3,6 @@ source: src/character/race/firbolg.rs
 expression: "[female_name, male_name]"
 
 ---
-- Antinua Galanodel (Moonwhisper)
-- Galinndan Amastacia (Starflower)
+- Drusilia Amastacia (Starflower)
+- Paelias Galanodel (Moonwhisper)
 

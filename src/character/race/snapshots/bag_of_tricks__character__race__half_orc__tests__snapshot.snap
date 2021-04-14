@@ -4,7 +4,7 @@ expression: half_orc
 
 ---
 - type: HalfOrc
-- Emen Falone
+- Breltora Falone
 - age: 70
   base_speeds:
     - Walking: 30
