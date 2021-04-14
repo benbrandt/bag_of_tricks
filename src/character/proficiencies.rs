@@ -6,7 +6,16 @@ use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::Display;
 
-use super::{Character, ability::{modifier_shift, modifier_weight, Skill}, equipment::{armor::ArmorType, tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool}, vehicles::VehicleProficiency, weapons::{WeaponCategory, WeaponClassification, WeaponType}}};
+use super::{
+    ability::{modifier_shift, modifier_weight, Skill},
+    equipment::{
+        armor::ArmorType,
+        tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
+        vehicles::VehicleProficiency,
+        weapons::{WeaponCategory, WeaponClassification, WeaponType},
+    },
+    Character,
+};
 
 /// Types of weapons a character is proficient in.
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
