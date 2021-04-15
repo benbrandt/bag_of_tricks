@@ -1,24 +1,35 @@
+mod dragon;
 mod dragonlance;
 mod dwarven;
 mod eberron;
 mod elven;
 mod forgotten_realms;
+mod giant;
 mod gnomish;
+mod goblinoid;
 mod greyhawk;
 mod halfling;
+mod kobold;
+mod lizardfolk;
 mod orc;
 
+use giant::Giant;
+use kobold::Kobold;
+use lizardfolk::Lizardfolk;
+use orc::Orc;
 use serde::{Deserialize, Serialize};
 
 use crate::alignment::Alignment;
 
 use self::{
+    dragon::Dragon,
     dragonlance::Dragonlance,
     dwarven::{Duergar, Dwarven},
     eberron::Eberron,
     elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
     gnomish::Gnomish,
+    goblinoid::{Bugbear, Goblin},
     greyhawk::Greyhawk,
     halfling::Halfling,
 };
@@ -50,6 +61,8 @@ pub(crate) trait Pantheon {
 }
 
 pub(crate) enum Pantheons {
+    Bugbear,
+    Dragon,
     Dragonlance,
     Drow,
     Duergar,
@@ -57,14 +70,22 @@ pub(crate) enum Pantheons {
     Eberron,
     Elven,
     ForgottenRealms,
+    Giant,
     Gnomish,
+    Goblin,
     Greyhawk,
     Halfling,
+    Kobold,
+    Lizardfolk,
+    Orc,
+    None,
 }
 
 impl Pantheons {
     fn deities(&self) -> Vec<Deity> {
         match self {
+            Self::Bugbear => Bugbear::deities(),
+            Self::Dragon => Dragon::deities(),
             Self::Dragonlance => Dragonlance::deities(),
             Self::Drow => Drow::deities(),
             Self::Dwarven => Dwarven::deities(),
@@ -72,9 +93,15 @@ impl Pantheons {
             Self::Eberron => Eberron::deities(),
             Self::Elven => Elven::deities(),
             Self::ForgottenRealms => ForgottenRealms::deities(),
+            Self::Giant => Giant::deities(),
             Self::Gnomish => Gnomish::deities(),
+            Self::Goblin => Goblin::deities(),
             Self::Greyhawk => Greyhawk::deities(),
             Self::Halfling => Halfling::deities(),
+            Self::Kobold => Kobold::deities(),
+            Self::Lizardfolk => Lizardfolk::deities(),
+            Self::Orc => Orc::deities(),
+            Self::None => vec![],
         }
     }
 }
