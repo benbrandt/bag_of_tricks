@@ -1,0 +1,407 @@
+---
+source: src/deities/forgotten_realms.rs
+expression: "ForgottenRealms::deities()"
+
+---
+- name: Adaki
+  description: goddess of air
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Tempest
+  symbol: Cloud
+- name: Amaunator
+  description: god of the sun
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Life
+    - Light
+  symbol: Golden sun
+- name: Asmodeus
+  description: god of induldence
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Knowledge
+    - Trickery
+  symbol: Three inverted triangles arranged in a long triangle
+- name: Auril
+  description: goddess of winter
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Nature
+    - Tempest
+  symbol: Six-pointed snowflake
+- name: Azuth
+  description: god of wizardry
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Arcana
+    - Knowledge
+  symbol: "Left hand pointing upward, outlined in fire"
+- name: Bane
+  description: god of tyranny
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbol: "Upright black right hand, thumb and fingers together"
+- name: Beshaba
+  description: goddess of misfortune
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbol: Black antlers
+- name: Bhaal
+  description: god of murder
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbol: Skull surrounded by a ring of blood droplets
+- name: Chauntea
+  description: goddess of agriculture
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+  symbol: Sheaf of grain or a blooming rose over grain
+- name: Cyric
+  description: god of lies
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbol: White jawless skull on black or purple sunburst
+- name: Deneir
+  description: god of writing
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Arcana
+    - Knowledge
+  symbol: Lit candle above an open eye
+- name: Eldath
+  description: goddess of peace
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Nature
+  symbol: Waterfall plunging into still pool
+- name: Gond
+  description: god of craft
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbol: Toothed cog with four spokes
+- name: Grumbar
+  description: god of earth
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbol: Mountain
+- name: Gwaeron Windstrom
+  description: god of tracking
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - Nature
+  symbol: Paw print with a five-pointed star in its center
+- name: Helm
+  description: god of watchfulness
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Life
+    - Light
+  symbol: Staring eye on upright left gauntlet
+- name: Hoar
+  description: god of revenge and retribution
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - War
+  symbol: A coin with a two-faced head
+- name: Ilmater
+  description: god of endurance
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+  symbol: Hands bound at the wrist with red cord
+- name: Istishia
+  description: god of water
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Tempest
+  symbol: Wave
+- name: Jergal
+  description: scribe of the dead
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Knowledge
+    - Death
+  symbol: A skull biting a scroll
+- name: Kelemvor
+  description: god of the dead
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Death
+  symbol: Upright skeletal arm holding balanced scales
+- name: Kossuth
+  description: god of fire
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Light
+  symbol: Flame
+- name: Lathander
+  description: god of dawn and renewal
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Light
+  symbol: Road traveling into a sunrise
+- name: Leira
+  description: goddess of illusion
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbol: Point-down triangle containing a swirl of mist
+- name: Lliira
+  description: goddess of joy
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+  symbol: Triangle of three six-pointed stars
+- name: Loviatar
+  description: goddess of pain
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Death
+  symbol: Nine-tailed barbed scourge
+- name: Malar
+  description: god of the hunt
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Nature
+  symbol: Clawed paw
+- name: Mask
+  description: god of thieves
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbol: Black mask
+- name: Mielikki
+  description: goddess of forests
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Nature
+  symbol: "Unicorn's head"
+- name: Milil
+  description: god of poetry and song
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Light
+  symbol: Five-stringed harp made of leaves
+- name: Myrkul
+  description: god of death
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbol: White human skull
+- name: Mystra
+  description: goddess of magic
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Arcana
+    - Knowledge
+  symbol: "Circle of seven stars, or nine stars encircling a flowing red mist, or a single star"
+- name: Oghma
+  description: god of knowledge
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbol: Blank scroll
+- name: The Red Knight
+  description: goddess of strategy
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - War
+  symbol: Red knight lanceboard piece with stars for eyes
+- name: Savras
+  description: god of divination and fate
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Arcana
+    - Knowledge
+  symbol: Crystal ball containing many kinds of eyes
+- name: Selûne
+  description: goddess of the moon
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbol: Pair of eyes surrounded by seven stars
+- name: Shar
+  description: goddess of darkness and loss
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+    - Trickery
+  symbol: Black disk encircled with a purple border
+- name: Silvanus
+  description: god of wild nature
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbol: Oak leaf
+- name: Sune
+  description: goddess of love and beauty
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+    - Light
+  symbol: Face of a beautiful red-haired woman
+- name: Talona
+  description: goddess of poison and disease
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Death
+  symbol: Three teardrops on a triangle
+- name: Talos
+  description: god of storms
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Tempest
+  symbol: Three lightning bolts radiating from a central point
+- name: Tempus
+  description: god of war
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - War
+  symbol: Upright flaming sword
+- name: Torm
+  description: god of courage and self-sacrifice
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbol: White right gauntlet
+- name: Tymora
+  description: goddess of good fortune
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Trickery
+  symbol: Face-up coin
+- name: Tyr
+  description: god of justice
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbol: Balanced scales resting on a warhammer
+- name: Umberlee
+  description: goddess of the sea
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Tempest
+  symbol: Wave curling left and right
+- name: Valkur
+  description: Northlander god of sailors
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - War
+  symbol: A cloud and three lightning bolts
+- name: Waukeen
+  description: goddess of trade
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+    - Trickery
+  symbol: "Upright coin with Waukeen's profile facing left"
+

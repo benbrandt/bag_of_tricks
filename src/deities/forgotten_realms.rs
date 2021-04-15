@@ -347,3 +347,13 @@ impl Pantheon for ForgottenRealms {
         ]
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_deities() {
+        insta::assert_yaml_snapshot!(ForgottenRealms::deities());
+    }
+}

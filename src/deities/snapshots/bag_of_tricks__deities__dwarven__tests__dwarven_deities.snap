@@ -1,0 +1,97 @@
+---
+source: src/deities/dwarven.rs
+expression: "Dwarven::deities()"
+
+---
+- name: Abbathor
+  description: god of greed
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Trickery
+  symbol: "Jeweled dagger, point-down"
+- name: Berronar Truesilver
+  description: goddess of hearth and home
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+    - Light
+  symbol: Intertwined silver rings
+- name: Clangeddin Silverbeard
+  description: god of war
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbol: Crossed silver battleaxes
+- name: Dugmaren Brightmantle
+  description: god of discovery
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+  symbol: Open book
+- name: Dumathoin
+  description: god of buried secrets
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Death
+    - Knowledge
+  symbol: Mountain silhouette with a central gemstone
+- name: Gorm Gulthyn
+  description: god of vigilance
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbol: Bronze half-mask
+- name: Haela Brightaxe
+  description: goddess of war-luck
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbol: Upright sword whose blade is spiraled in flame
+- name: Marthammor Duin
+  description: god of wanderers
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Nature
+    - Trickery
+  symbol: Upright mace in front of a tall boot
+- name: Moradin
+  description: god of creation
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Knowledge
+  symbol: Hammer and anvil
+- name: Sharindlar
+  description: goddess of healing
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+  symbol: Burning needle
+- name: Vergadain
+  description: god of luck and wealth
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Trickery
+  symbol: Gold coin with the face of a dwarf
+
