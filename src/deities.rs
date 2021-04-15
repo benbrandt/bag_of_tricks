@@ -1,5 +1,6 @@
 mod dragonlance;
 mod dwarven;
+mod eberron;
 mod elven;
 mod forgotten_realms;
 mod gnomish;
@@ -14,6 +15,7 @@ use crate::alignment::Alignment;
 use self::{
     dragonlance::Dragonlance,
     dwarven::{Duergar, Dwarven},
+    eberron::Eberron,
     elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
     gnomish::Gnomish,
@@ -52,6 +54,7 @@ pub(crate) enum Pantheons {
     Drow,
     Duergar,
     Dwarven,
+    Eberron,
     Elven,
     ForgottenRealms,
     Gnomish,
@@ -66,6 +69,7 @@ impl Pantheons {
             Self::Drow => Drow::deities(),
             Self::Dwarven => Dwarven::deities(),
             Self::Duergar => Duergar::deities(),
+            Self::Eberron => Eberron::deities(),
             Self::Elven => Elven::deities(),
             Self::ForgottenRealms => ForgottenRealms::deities(),
             Self::Gnomish => Gnomish::deities(),

@@ -22,7 +22,7 @@ expression: "Dragonlance::deities()"
   domains:
     - Light
   symbols:
-    - Bard’s harp
+    - "Bard's harp"
 - name: Habbakuk
   titles:
     - god of animal life and the sea
@@ -43,7 +43,7 @@ expression: "Dragonlance::deities()"
   domains:
     - War
   symbols:
-    - Bison’s horns
+    - "Bison's horns"
 - name: Majere
   titles:
     - god of meditation and order
@@ -114,7 +114,7 @@ expression: "Dragonlance::deities()"
     - Knowledge
     - Trickery
   symbols:
-    - Griffon’s wing
+    - "Griffon's wing"
 - name: Sirrion
   titles:
     - god of fire and change
@@ -173,7 +173,7 @@ expression: "Dragonlance::deities()"
   domains:
     - Trickery
   symbols:
-    - Broken merchant’s scales
+    - "Broken merchant's scales"
 - name: Morgion
   titles:
     - god of disease and secrecy
