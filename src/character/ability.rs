@@ -80,7 +80,7 @@ impl AbilityScore {
 }
 
 /// Full set of ability scores a character could have
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Default, Deserialize, Serialize)]
 pub(crate) struct AbilityScores(pub(crate) BTreeMap<AbilityScoreType, i16>);
 
 impl AbilityScores {

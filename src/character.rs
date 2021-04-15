@@ -30,16 +30,16 @@ use race::{Race, RaceOptions};
 use super::alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 
 /// Character information. Mostly stores random choices made for this character.
-#[derive(Deserialize, Serialize)]
+#[derive(Default, Deserialize, Serialize)]
 pub struct Character {
     /// Ability scores for the character.
     abilities: AbilityScores,
     /// The character's alignment.
     alignment: Option<Alignment>,
     /// The character's background choice.
-    background: Box<dyn Background>,
+    background: Option<Box<dyn Background>>,
     /// Characteristics of the character.
-    characteristics: CharacteristicDetails,
+    characteristics: Option<CharacteristicDetails>,
     /// Equipment randomly chosen for the character.
     chosen_equipment: Vec<Equipment>,
     /// Languages randomly chosen for the character.
@@ -49,11 +49,11 @@ pub struct Character {
     /// Character's name.
     name: String,
     /// Personality traits of the chracacter.
-    personality: Personality,
+    personality: Option<Personality>,
     /// Proficiencies for the character.
     proficiencies: Vec<Proficiency>,
     /// Race randomly chosen for the character.
-    race: Box<dyn Race>,
+    race: Option<Box<dyn Race>>,
 }
 
 impl Character {
@@ -70,23 +70,20 @@ impl Character {
     /// 5. Randomly choose any additional languages
     /// 6. Randomly choose proficiencies, weighted towards optimal ones based on what is known about the character so far
     pub fn gen(rng: &mut impl Rng) -> Self {
+        let mut character = Self {
+            level: 1,
+            ..Self::default()
+        };
         let (race, name, characteristics) = RaceOptions::gen(rng);
         let mut abilities = AbilityScores::gen(rng);
-        abilities.increase(race.abilities());
         let (background, personality) = BackgroundOption::gen(rng, &abilities);
-        let mut character = Self {
-            abilities,
-            alignment: None,
-            background,
-            characteristics,
-            chosen_equipment: vec![],
-            chosen_languages: vec![],
-            level: 1,
-            name,
-            personality,
-            proficiencies: vec![],
-            race,
-        };
+        abilities.increase(race.abilities());
+        character.abilities = abilities;
+        character.race = Some(race);
+        character.name = name;
+        character.characteristics = Some(characteristics);
+        character.background = Some(background);
+        character.personality = Some(personality);
         character.gen_alignment(rng);
         character.gen_languages(rng);
         character.gen_proficiences(rng);
@@ -122,8 +119,16 @@ impl Character {
     /// They are generated from the most limited sets of options to greatest, to avoid overlapping choices.
     fn gen_proficiences(&mut self, rng: &mut impl Rng) {
         // Static choices
-        let mut proficiencies = self.race.proficiencies();
-        proficiencies.extend(self.background.proficiencies());
+        let mut proficiencies = vec![];
+        let mut addl_proficiencies = vec![];
+        if let Some(race) = self.race.as_ref() {
+            proficiencies.extend(race.proficiencies());
+            addl_proficiencies.extend(race.addl_proficiencies());
+        }
+        if let Some(background) = self.background.as_ref() {
+            proficiencies.extend(background.proficiencies());
+            addl_proficiencies.extend(background.addl_proficiencies());
+        }
         // Handle any dupes across these options
         for p in proficiencies {
             if self.proficiencies.contains(&p) {
@@ -133,8 +138,6 @@ impl Character {
             }
         }
 
-        let mut addl_proficiencies = self.race.addl_proficiencies();
-        addl_proficiencies.extend(self.background.addl_proficiencies());
         // Sort so that the options with the least amount are chosen first.
         addl_proficiencies.sort();
         for option in addl_proficiencies {
@@ -155,21 +158,34 @@ impl Character {
 
     /// Return the speeds of the character.
     fn speeds(&self) -> Vec<Speed> {
-        self.characteristics.base_speeds.clone()
+        self.characteristics
+            .as_ref()
+            .map(|c| c.base_speeds.clone())
+            .unwrap_or_default()
     }
 }
 
 /// Combine all attitude and morality influences for the character (race and personality)
 impl AlignmentInfluences for Character {
     fn attitude(&self) -> Vec<Attitude> {
-        let mut attitude = self.race.attitude();
-        attitude.extend(self.personality.attitude());
+        let mut attitude = vec![];
+        if let Some(race) = self.race.as_ref() {
+            attitude.extend(race.attitude());
+        }
+        if let Some(personality) = self.personality.as_ref() {
+            attitude.extend(personality.attitude());
+        }
         attitude
     }
 
     fn morality(&self) -> Vec<Morality> {
-        let mut morality = self.race.morality();
-        morality.extend(self.personality.morality());
+        let mut morality = vec![];
+        if let Some(race) = self.race.as_ref() {
+            morality.extend(race.morality());
+        }
+        if let Some(personality) = self.personality.as_ref() {
+            morality.extend(personality.morality());
+        }
         morality
     }
 }
@@ -177,8 +193,13 @@ impl AlignmentInfluences for Character {
 /// Combine all backstory items for the character.
 impl Backstory for Character {
     fn backstory(&self) -> Vec<String> {
-        let mut backstory = self.race.backstory();
-        backstory.extend(self.background.backstory());
+        let mut backstory = vec![];
+        if let Some(race) = self.race.as_ref() {
+            backstory.extend(race.backstory());
+        }
+        if let Some(background) = self.background.as_ref() {
+            backstory.extend(background.backstory());
+        }
         backstory
     }
 }
@@ -186,8 +207,13 @@ impl Backstory for Character {
 /// Combine all features and traits for the characters (race and background)
 impl Features for Character {
     fn features(&self) -> Vec<Feature> {
-        let mut features = self.race.features();
-        features.extend(self.background.features());
+        let mut features = vec![];
+        if let Some(race) = self.race.as_ref() {
+            features.extend(race.features());
+        }
+        if let Some(background) = self.background.as_ref() {
+            features.extend(background.features());
+        }
         features
     }
 }
@@ -195,41 +221,68 @@ impl Features for Character {
 /// Combine all languages for the character, both statically assigned and randomly chosen.
 impl Languages for Character {
     fn languages(&self) -> Vec<Language> {
-        let mut languages = self.race.languages();
-        languages.extend(self.background.languages());
+        let mut languages = vec![];
+        if let Some(race) = self.race.as_ref() {
+            languages.extend(race.languages());
+        }
+        if let Some(background) = self.background.as_ref() {
+            languages.extend(background.languages());
+        }
         languages.extend(self.chosen_languages.clone());
         languages
     }
 
     fn addl_languages(&self) -> usize {
-        self.race.addl_languages() + self.background.addl_languages()
+        self.race
+            .as_ref()
+            .map(|r| r.addl_languages())
+            .unwrap_or_default()
+            + self
+                .background
+                .as_ref()
+                .map(|b| b.addl_languages())
+                .unwrap_or_default()
     }
 }
 
 /// Combine all resistances the character has.
 impl Resistances for Character {
     fn immunities(&self) -> Vec<DamageType> {
-        self.race.immunities()
+        self.race
+            .as_ref()
+            .map(|r| r.immunities())
+            .unwrap_or_default()
     }
 
     fn resistances(&self) -> Vec<DamageType> {
-        self.race.resistances()
+        self.race
+            .as_ref()
+            .map(|r| r.resistances())
+            .unwrap_or_default()
     }
 }
 
 impl StartingEquipment for Character {
     fn coins(&self) -> (Coin, u8) {
-        self.background.coins()
+        self.background
+            .as_ref()
+            .map_or((Coin::Gold, 0), |r| r.coins())
     }
 
     fn equipment(&self) -> Vec<Equipment> {
-        let mut equipment = self.background.equipment();
+        let mut equipment = vec![];
+        if let Some(background) = self.background.as_ref() {
+            equipment.extend(background.equipment());
+        }
         equipment.extend(self.chosen_equipment.clone());
         equipment
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
-        let mut addl_equipment = self.background.addl_equipment();
+        let mut addl_equipment = vec![];
+        if let Some(background) = self.background.as_ref() {
+            addl_equipment.extend(background.addl_equipment());
+        }
         // Choose a trinket
         addl_equipment.push(EquipmentOption::Trinket);
         addl_equipment
@@ -238,15 +291,15 @@ impl StartingEquipment for Character {
 
 /// Render a text version of the character. Useful for CLI or other output.
 impl fmt::Display for Character {
+    #[allow(clippy::too_many_lines)]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "CHARACTER NAME: {}", self.name)?;
-        writeln!(f, "RACE: {} ({})", self.race, self.race.citations())?;
-        writeln!(
-            f,
-            "BACKGROUND: {} ({})",
-            self.background,
-            self.background.citations()
-        )?;
+        if let Some(race) = self.race.as_ref() {
+            writeln!(f, "RACE: {} ({})", race, race.citations())?;
+        }
+        if let Some(background) = self.background.as_ref() {
+            writeln!(f, "BACKGROUND: {} ({})", background, background.citations())?;
+        }
         writeln!(f, "ALIGNMENT: {}", self.alignment.as_ref().unwrap())?;
         writeln!(f, "LEVEL: {}", self.level)?;
         writeln!(f)?;
@@ -313,8 +366,12 @@ impl fmt::Display for Character {
         )?;
         writeln!(f)?;
         writeln!(f, "CHARACTERISTICS:")?;
-        writeln!(f, "{}", self.characteristics)?;
-        writeln!(f, "{}", self.personality)?;
+        if let Some(characteristics) = self.characteristics.as_ref() {
+            writeln!(f, "{}", characteristics)?;
+        }
+        if let Some(personality) = self.personality.as_ref() {
+            writeln!(f, "{}", personality)?;
+        }
         writeln!(f, "EQUIPMENT")?;
         writeln!(
             f,
