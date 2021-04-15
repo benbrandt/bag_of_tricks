@@ -16,6 +16,9 @@ expression: "ForgottenRealms::deities()"
 - name: Amaunator
   titles:
     - god of the sun
+    - the Keeper of the Eternal Sun
+    - the Light of Law
+    - the Yellow God
   alignment:
     - Lawful
     - Neutral
@@ -27,6 +30,9 @@ expression: "ForgottenRealms::deities()"
 - name: Asmodeus
   titles:
     - god of induldence
+    - the Lord of the Ninth
+    - The Cloven
+    - Old Hoof and Horn
   alignment:
     - Lawful
     - Evil
@@ -38,6 +44,9 @@ expression: "ForgottenRealms::deities()"
 - name: Auril
   titles:
     - goddess of winter
+    - the Frostmaiden
+    - Lady Frostkiss
+    - Icedawn
   alignment:
     - Neutral
     - Evil
@@ -49,6 +58,9 @@ expression: "ForgottenRealms::deities()"
 - name: Azuth
   titles:
     - god of wizardry
+    - The High One
+    - the Lord of Spellcraft
+    - the First Magister
   alignment:
     - Lawful
     - Neutral
@@ -60,6 +72,8 @@ expression: "ForgottenRealms::deities()"
 - name: Bane
   titles:
     - god of tyranny
+    - the Black Hand
+    - the Lord of Darkness
   alignment:
     - Lawful
     - Evil
@@ -70,6 +84,9 @@ expression: "ForgottenRealms::deities()"
 - name: Beshaba
   titles:
     - goddess of misfortune
+    - the Maid of Misfortune
+    - Lady Doom
+    - Black Bess
   alignment:
     - Chaotic
     - Evil
@@ -80,6 +97,7 @@ expression: "ForgottenRealms::deities()"
 - name: Bhaal
   titles:
     - god of murder
+    - the Lord of Murder
   alignment:
     - Neutral
     - Evil
@@ -90,6 +108,9 @@ expression: "ForgottenRealms::deities()"
 - name: Chauntea
   titles:
     - goddess of agriculture
+    - the Great Mother
+    - the Grain Goddess
+    - the Earthmother
   alignment:
     - Neutral
     - Good
@@ -100,6 +121,8 @@ expression: "ForgottenRealms::deities()"
 - name: Cyric
   titles:
     - god of lies
+    - the Prince of Lies
+    - the Dark Sun
   alignment:
     - Chaotic
     - Evil
@@ -110,6 +133,9 @@ expression: "ForgottenRealms::deities()"
 - name: Deneir
   titles:
     - god of writing
+    - the Lord of All Glyphs and Images
+    - the First Scribe
+    - the Scibe of Oghma
   alignment:
     - Neutral
     - Good
@@ -121,6 +147,9 @@ expression: "ForgottenRealms::deities()"
 - name: Eldath
   titles:
     - goddess of peace
+    - the Quiet One
+    - the Guardian of Groves
+    - the Mother of Waters
   alignment:
     - Neutral
     - Good
@@ -132,6 +161,9 @@ expression: "ForgottenRealms::deities()"
 - name: Gond
   titles:
     - god of craft
+    - the Wonderbringer
+    - the Inspiration Divine
+    - the Holy Maker of All Things
   alignment:
     - Neutral
     - Neutral
@@ -152,6 +184,9 @@ expression: "ForgottenRealms::deities()"
 - name: Gwaeron Windstrom
   titles:
     - god of tracking
+    - the Mouth of Mielikki
+    - the Master Tracker
+    - the Tracker Never Led Astray
   alignment:
     - Neutral
     - Good
@@ -163,6 +198,9 @@ expression: "ForgottenRealms::deities()"
 - name: Helm
   titles:
     - god of watchfulness
+    - the Watcher
+    - He of the Unsleeping Eyes
+    - the Vigilant One
   alignment:
     - Lawful
     - Neutral
@@ -174,6 +212,8 @@ expression: "ForgottenRealms::deities()"
 - name: Hoar
   titles:
     - god of revenge and retribution
+    - the Doombringer
+    - Poet of Justice
   alignment:
     - Lawful
     - Neutral
@@ -184,6 +224,9 @@ expression: "ForgottenRealms::deities()"
 - name: Ilmater
   titles:
     - god of endurance
+    - the Crying God
+    - the Rack-Broken Lord
+    - He Who Endures
   alignment:
     - Lawful
     - Good
@@ -204,6 +247,9 @@ expression: "ForgottenRealms::deities()"
 - name: Jergal
   titles:
     - scribe of the dead
+    - the Final Scribe
+    - the Pitiless One
+    - the Bleak Seneschal
   alignment:
     - Lawful
     - Neutral
@@ -215,6 +261,8 @@ expression: "ForgottenRealms::deities()"
 - name: Kelemvor
   titles:
     - god of the dead
+    - the Lord of the Dead
+    - the Judge of the Damned
   alignment:
     - Lawful
     - Neutral
@@ -235,6 +283,10 @@ expression: "ForgottenRealms::deities()"
 - name: Lathander
   titles:
     - god of dawn and renewal
+    - god of birth and renewal
+    - the Morninglord
+    - "Inspiration's Dawn"
+    - the Rose-and-Gold God
   alignment:
     - Neutral
     - Good
@@ -246,6 +298,9 @@ expression: "ForgottenRealms::deities()"
 - name: Leira
   titles:
     - goddess of illusion
+    - the Lady of the Mists
+    - Mistshadow
+    - the Lady of Deception
   alignment:
     - Chaotic
     - Neutral
@@ -256,6 +311,9 @@ expression: "ForgottenRealms::deities()"
 - name: Lliira
   titles:
     - goddess of joy
+    - Our Lady of Joy
+    - Joybringer
+    - the Mistress of Revels
   alignment:
     - Chaotic
     - Good
@@ -266,6 +324,9 @@ expression: "ForgottenRealms::deities()"
 - name: Loviatar
   titles:
     - goddess of pain
+    - the Maiden of Pain
+    - the Scourge Mistress
+    - the Willing Whip
   alignment:
     - Lawful
     - Evil
@@ -276,6 +337,8 @@ expression: "ForgottenRealms::deities()"
 - name: Malar
   titles:
     - god of the hunt
+    - the Beastlord
+    - the Black-Blooded One
   alignment:
     - Chaotic
     - Evil
@@ -286,6 +349,8 @@ expression: "ForgottenRealms::deities()"
 - name: Mask
   titles:
     - god of thieves
+    - the Lord of Shadows
+    - the Master of All Thieves
   alignment:
     - Chaotic
     - Neutral
@@ -296,6 +361,8 @@ expression: "ForgottenRealms::deities()"
 - name: Mielikki
   titles:
     - goddess of forests
+    - Our Lady of the Forest
+    - the Forest Queen
   alignment:
     - Neutral
     - Good
@@ -306,6 +373,8 @@ expression: "ForgottenRealms::deities()"
 - name: Milil
   titles:
     - god of poetry and song
+    - the Lord of Song
+    - the One True Hand of All-Wise Oghma
   alignment:
     - Neutral
     - Good
@@ -316,6 +385,9 @@ expression: "ForgottenRealms::deities()"
 - name: Myrkul
   titles:
     - god of death
+    - the Lord of Bones
+    - Old Lord Skull
+    - the Reaper
   alignment:
     - Neutral
     - Evil
@@ -326,6 +398,9 @@ expression: "ForgottenRealms::deities()"
 - name: Mystra
   titles:
     - goddess of magic
+    - the Lady of Mysteries
+    - Our Lady of Spells
+    - the Mother of All Magic
   alignment:
     - Neutral
     - Good
@@ -339,6 +414,8 @@ expression: "ForgottenRealms::deities()"
 - name: Oghma
   titles:
     - god of knowledge
+    - the Binder
+    - the Lord of Knowledge
   alignment:
     - Neutral
     - Neutral
@@ -349,6 +426,9 @@ expression: "ForgottenRealms::deities()"
 - name: The Red Knight
   titles:
     - goddess of strategy
+    - the Lady of Strategy
+    - the Crimson General
+    - the Grandmaster of the Lanceboard
   alignment:
     - Lawful
     - Neutral
@@ -359,6 +439,9 @@ expression: "ForgottenRealms::deities()"
 - name: Savras
   titles:
     - god of divination and fate
+    - the All-Seeing
+    - the Third Eye
+    - "Divination's Lord"
   alignment:
     - Lawful
     - Neutral
@@ -370,6 +453,9 @@ expression: "ForgottenRealms::deities()"
 - name: Selûne
   titles:
     - goddess of the moon
+    - Our Lady of Silver
+    - the Moonmaiden
+    - the Night White Lady
   alignment:
     - Chaotic
     - Good
@@ -381,6 +467,9 @@ expression: "ForgottenRealms::deities()"
 - name: Shar
   titles:
     - goddess of darkness and loss
+    - the Mistress of the Night
+    - the Dark Lady
+    - Our Lady of Loss
   alignment:
     - Neutral
     - Evil
@@ -392,6 +481,9 @@ expression: "ForgottenRealms::deities()"
 - name: Silvanus
   titles:
     - god of wild nature
+    - Oak Father
+    - the Old Oak
+    - Old Father Tree
   alignment:
     - Neutral
     - Neutral
@@ -402,6 +494,9 @@ expression: "ForgottenRealms::deities()"
 - name: Sune
   titles:
     - goddess of love and beauty
+    - Lady Firehair
+    - the Lady of Love
+    - the Princess of Passion
   alignment:
     - Chaotic
     - Good
@@ -413,6 +508,9 @@ expression: "ForgottenRealms::deities()"
 - name: Talona
   titles:
     - goddess of poison and disease
+    - Lady of Poison
+    - Mistress of Disease
+    - the Plague-crone
   alignment:
     - Chaotic
     - Evil
@@ -423,6 +521,8 @@ expression: "ForgottenRealms::deities()"
 - name: Talos
   titles:
     - god of storms
+    - Stormlord
+    - the Destroyer
   alignment:
     - Chaotic
     - Evil
@@ -433,6 +533,8 @@ expression: "ForgottenRealms::deities()"
 - name: Tempus
   titles:
     - god of war
+    - the Foehammer
+    - the Lord of Battles
   alignment:
     - Neutral
     - Neutral
@@ -443,6 +545,9 @@ expression: "ForgottenRealms::deities()"
 - name: Torm
   titles:
     - god of courage and self-sacrifice
+    - the Loyal Fury
+    - the True
+    - the Hand of Righteousness
   alignment:
     - Lawful
     - Good
@@ -453,6 +558,8 @@ expression: "ForgottenRealms::deities()"
 - name: Tymora
   titles:
     - goddess of good fortune
+    - Lady Luck
+    - Our Smiling Lady
   alignment:
     - Chaotic
     - Good
@@ -463,6 +570,9 @@ expression: "ForgottenRealms::deities()"
 - name: Tyr
   titles:
     - god of justice
+    - Grimjaws
+    - the Maimed God
+    - the Evenhanded
   alignment:
     - Lawful
     - Good
@@ -473,6 +583,9 @@ expression: "ForgottenRealms::deities()"
 - name: Umberlee
   titles:
     - goddess of the sea
+    - the Bitch Queen
+    - the Queen of the Depths
+    - the Wavemother
   alignment:
     - Chaotic
     - Evil
@@ -494,6 +607,9 @@ expression: "ForgottenRealms::deities()"
 - name: Waukeen
   titles:
     - goddess of trade
+    - Our Lady of Gold
+    - the Coinmaiden
+    - "the Merchant's Friend"
   alignment:
     - Neutral
     - Neutral
