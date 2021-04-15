@@ -2,6 +2,7 @@ mod dwarven;
 mod elven;
 mod forgotten_realms;
 mod gnomish;
+mod greyhawk;
 mod halfling;
 mod orc;
 
@@ -14,6 +15,7 @@ use self::{
     elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
     gnomish::Gnomish,
+    greyhawk::Greyhawk,
     halfling::Halfling,
 };
 
@@ -50,6 +52,7 @@ pub(crate) enum Pantheons {
     Elven,
     ForgottenRealms,
     Gnomish,
+    Greyhawk,
     Halfling,
 }
 
@@ -62,6 +65,7 @@ impl Pantheons {
             Self::Elven => Elven::deities(),
             Self::ForgottenRealms => ForgottenRealms::deities(),
             Self::Gnomish => Gnomish::deities(),
+            Self::Greyhawk => Greyhawk::deities(),
             Self::Halfling => Halfling::deities(),
         }
     }
