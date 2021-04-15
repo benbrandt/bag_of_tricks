@@ -4,7 +4,8 @@ expression: "Dwarven::deities()"
 
 ---
 - name: Abbathor
-  description: god of greed
+  titles:
+    - god of greed
   alignment:
     - Neutral
     - Evil
@@ -12,7 +13,8 @@ expression: "Dwarven::deities()"
     - Trickery
   symbol: "Jeweled dagger, point-down"
 - name: Berronar Truesilver
-  description: goddess of hearth and home
+  titles:
+    - goddess of hearth and home
   alignment:
     - Lawful
     - Good
@@ -21,7 +23,8 @@ expression: "Dwarven::deities()"
     - Light
   symbol: Intertwined silver rings
 - name: Clangeddin Silverbeard
-  description: god of war
+  titles:
+    - god of war
   alignment:
     - Lawful
     - Good
@@ -29,7 +32,8 @@ expression: "Dwarven::deities()"
     - War
   symbol: Crossed silver battleaxes
 - name: Dugmaren Brightmantle
-  description: god of discovery
+  titles:
+    - god of discovery
   alignment:
     - Chaotic
     - Good
@@ -37,7 +41,8 @@ expression: "Dwarven::deities()"
     - Knowledge
   symbol: Open book
 - name: Dumathoin
-  description: god of buried secrets
+  titles:
+    - god of buried secrets
   alignment:
     - Neutral
     - Neutral
@@ -46,7 +51,8 @@ expression: "Dwarven::deities()"
     - Knowledge
   symbol: Mountain silhouette with a central gemstone
 - name: Gorm Gulthyn
-  description: god of vigilance
+  titles:
+    - god of vigilance
   alignment:
     - Lawful
     - Good
@@ -54,7 +60,8 @@ expression: "Dwarven::deities()"
     - War
   symbol: Bronze half-mask
 - name: Haela Brightaxe
-  description: goddess of war-luck
+  titles:
+    - goddess of war-luck
   alignment:
     - Chaotic
     - Good
@@ -62,7 +69,8 @@ expression: "Dwarven::deities()"
     - War
   symbol: Upright sword whose blade is spiraled in flame
 - name: Marthammor Duin
-  description: god of wanderers
+  titles:
+    - god of wanderers
   alignment:
     - Neutral
     - Good
@@ -71,7 +79,8 @@ expression: "Dwarven::deities()"
     - Trickery
   symbol: Upright mace in front of a tall boot
 - name: Moradin
-  description: god of creation
+  titles:
+    - god of creation
   alignment:
     - Lawful
     - Good
@@ -79,7 +88,8 @@ expression: "Dwarven::deities()"
     - Knowledge
   symbol: Hammer and anvil
 - name: Sharindlar
-  description: goddess of healing
+  titles:
+    - goddess of healing
   alignment:
     - Chaotic
     - Good
@@ -87,7 +97,8 @@ expression: "Dwarven::deities()"
     - Life
   symbol: Burning needle
 - name: Vergadain
-  description: god of luck and wealth
+  titles:
+    - god of luck and wealth
   alignment:
     - Neutral
     - Neutral

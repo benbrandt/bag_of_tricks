@@ -1,4 +1,5 @@
 mod dwarven;
+mod elven;
 mod forgotten_realms;
 
 use serde::{Deserialize, Serialize};
@@ -7,6 +8,7 @@ use crate::alignment::Alignment;
 
 use self::{
     dwarven::{Duergar, Dwarven},
+    elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
 };
 
@@ -26,7 +28,7 @@ pub(crate) enum Domain {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Deity {
     name: &'static str,
-    description: &'static str,
+    titles: Vec<&'static str>,
     alignment: Alignment,
     domains: Vec<Domain>,
     symbol: &'static str,
@@ -37,16 +39,20 @@ pub(crate) trait Pantheon {
 }
 
 pub(crate) enum Pantheons {
+    Drow,
     Duergar,
     Dwarven,
+    Elven,
     ForgottenRealms,
 }
 
 impl Pantheons {
     fn deities(&self) -> Vec<Deity> {
         match self {
+            Self::Drow => Drow::deities(),
             Self::Dwarven => Dwarven::deities(),
             Self::Duergar => Duergar::deities(),
+            Self::Elven => Elven::deities(),
             Self::ForgottenRealms => ForgottenRealms::deities(),
         }
     }

@@ -4,7 +4,8 @@ expression: "Duergar::deities()"
 
 ---
 - name: Deep Duerra
-  description: duergar goddess of conquest and psionics
+  titles:
+    - goddess of conquest and psionics
   alignment:
     - Lawful
     - Evil
@@ -13,7 +14,8 @@ expression: "Duergar::deities()"
     - War
   symbol: Mind flayer skill
 - name: Laduguer
-  description: duergar god of magic and slavery
+  titles:
+    - god of magic and slavery
   alignment:
     - Lawful
     - Evil

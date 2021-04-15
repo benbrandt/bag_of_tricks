@@ -4,7 +4,8 @@ expression: "ForgottenRealms::deities()"
 
 ---
 - name: Adaki
-  description: goddess of air
+  titles:
+    - goddess of air
   alignment:
     - Neutral
     - Neutral
@@ -12,7 +13,8 @@ expression: "ForgottenRealms::deities()"
     - Tempest
   symbol: Cloud
 - name: Amaunator
-  description: god of the sun
+  titles:
+    - god of the sun
   alignment:
     - Lawful
     - Neutral
@@ -21,7 +23,8 @@ expression: "ForgottenRealms::deities()"
     - Light
   symbol: Golden sun
 - name: Asmodeus
-  description: god of induldence
+  titles:
+    - god of induldence
   alignment:
     - Lawful
     - Evil
@@ -30,7 +33,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: Three inverted triangles arranged in a long triangle
 - name: Auril
-  description: goddess of winter
+  titles:
+    - goddess of winter
   alignment:
     - Neutral
     - Evil
@@ -39,7 +43,8 @@ expression: "ForgottenRealms::deities()"
     - Tempest
   symbol: Six-pointed snowflake
 - name: Azuth
-  description: god of wizardry
+  titles:
+    - god of wizardry
   alignment:
     - Lawful
     - Neutral
@@ -48,7 +53,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: "Left hand pointing upward, outlined in fire"
 - name: Bane
-  description: god of tyranny
+  titles:
+    - god of tyranny
   alignment:
     - Lawful
     - Evil
@@ -56,7 +62,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: "Upright black right hand, thumb and fingers together"
 - name: Beshaba
-  description: goddess of misfortune
+  titles:
+    - goddess of misfortune
   alignment:
     - Chaotic
     - Evil
@@ -64,7 +71,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: Black antlers
 - name: Bhaal
-  description: god of murder
+  titles:
+    - god of murder
   alignment:
     - Neutral
     - Evil
@@ -72,7 +80,8 @@ expression: "ForgottenRealms::deities()"
     - Death
   symbol: Skull surrounded by a ring of blood droplets
 - name: Chauntea
-  description: goddess of agriculture
+  titles:
+    - goddess of agriculture
   alignment:
     - Neutral
     - Good
@@ -80,7 +89,8 @@ expression: "ForgottenRealms::deities()"
     - Life
   symbol: Sheaf of grain or a blooming rose over grain
 - name: Cyric
-  description: god of lies
+  titles:
+    - god of lies
   alignment:
     - Chaotic
     - Evil
@@ -88,7 +98,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: White jawless skull on black or purple sunburst
 - name: Deneir
-  description: god of writing
+  titles:
+    - god of writing
   alignment:
     - Neutral
     - Good
@@ -97,7 +108,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: Lit candle above an open eye
 - name: Eldath
-  description: goddess of peace
+  titles:
+    - goddess of peace
   alignment:
     - Neutral
     - Good
@@ -106,7 +118,8 @@ expression: "ForgottenRealms::deities()"
     - Nature
   symbol: Waterfall plunging into still pool
 - name: Gond
-  description: god of craft
+  titles:
+    - god of craft
   alignment:
     - Neutral
     - Neutral
@@ -114,7 +127,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: Toothed cog with four spokes
 - name: Grumbar
-  description: god of earth
+  titles:
+    - god of earth
   alignment:
     - Neutral
     - Neutral
@@ -122,7 +136,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: Mountain
 - name: Gwaeron Windstrom
-  description: god of tracking
+  titles:
+    - god of tracking
   alignment:
     - Neutral
     - Good
@@ -131,7 +146,8 @@ expression: "ForgottenRealms::deities()"
     - Nature
   symbol: Paw print with a five-pointed star in its center
 - name: Helm
-  description: god of watchfulness
+  titles:
+    - god of watchfulness
   alignment:
     - Lawful
     - Neutral
@@ -140,7 +156,8 @@ expression: "ForgottenRealms::deities()"
     - Light
   symbol: Staring eye on upright left gauntlet
 - name: Hoar
-  description: god of revenge and retribution
+  titles:
+    - god of revenge and retribution
   alignment:
     - Lawful
     - Neutral
@@ -148,7 +165,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: A coin with a two-faced head
 - name: Ilmater
-  description: god of endurance
+  titles:
+    - god of endurance
   alignment:
     - Lawful
     - Good
@@ -156,7 +174,8 @@ expression: "ForgottenRealms::deities()"
     - Life
   symbol: Hands bound at the wrist with red cord
 - name: Istishia
-  description: god of water
+  titles:
+    - god of water
   alignment:
     - Neutral
     - Neutral
@@ -164,7 +183,8 @@ expression: "ForgottenRealms::deities()"
     - Tempest
   symbol: Wave
 - name: Jergal
-  description: scribe of the dead
+  titles:
+    - scribe of the dead
   alignment:
     - Lawful
     - Neutral
@@ -173,7 +193,8 @@ expression: "ForgottenRealms::deities()"
     - Death
   symbol: A skull biting a scroll
 - name: Kelemvor
-  description: god of the dead
+  titles:
+    - god of the dead
   alignment:
     - Lawful
     - Neutral
@@ -181,7 +202,8 @@ expression: "ForgottenRealms::deities()"
     - Death
   symbol: Upright skeletal arm holding balanced scales
 - name: Kossuth
-  description: god of fire
+  titles:
+    - god of fire
   alignment:
     - Neutral
     - Neutral
@@ -189,7 +211,8 @@ expression: "ForgottenRealms::deities()"
     - Light
   symbol: Flame
 - name: Lathander
-  description: god of dawn and renewal
+  titles:
+    - god of dawn and renewal
   alignment:
     - Neutral
     - Good
@@ -198,7 +221,8 @@ expression: "ForgottenRealms::deities()"
     - Light
   symbol: Road traveling into a sunrise
 - name: Leira
-  description: goddess of illusion
+  titles:
+    - goddess of illusion
   alignment:
     - Chaotic
     - Neutral
@@ -206,7 +230,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: Point-down triangle containing a swirl of mist
 - name: Lliira
-  description: goddess of joy
+  titles:
+    - goddess of joy
   alignment:
     - Chaotic
     - Good
@@ -214,7 +239,8 @@ expression: "ForgottenRealms::deities()"
     - Life
   symbol: Triangle of three six-pointed stars
 - name: Loviatar
-  description: goddess of pain
+  titles:
+    - goddess of pain
   alignment:
     - Lawful
     - Evil
@@ -222,7 +248,8 @@ expression: "ForgottenRealms::deities()"
     - Death
   symbol: Nine-tailed barbed scourge
 - name: Malar
-  description: god of the hunt
+  titles:
+    - god of the hunt
   alignment:
     - Chaotic
     - Evil
@@ -230,7 +257,8 @@ expression: "ForgottenRealms::deities()"
     - Nature
   symbol: Clawed paw
 - name: Mask
-  description: god of thieves
+  titles:
+    - god of thieves
   alignment:
     - Chaotic
     - Neutral
@@ -238,7 +266,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: Black mask
 - name: Mielikki
-  description: goddess of forests
+  titles:
+    - goddess of forests
   alignment:
     - Neutral
     - Good
@@ -246,7 +275,8 @@ expression: "ForgottenRealms::deities()"
     - Nature
   symbol: "Unicorn's head"
 - name: Milil
-  description: god of poetry and song
+  titles:
+    - god of poetry and song
   alignment:
     - Neutral
     - Good
@@ -254,7 +284,8 @@ expression: "ForgottenRealms::deities()"
     - Light
   symbol: Five-stringed harp made of leaves
 - name: Myrkul
-  description: god of death
+  titles:
+    - god of death
   alignment:
     - Neutral
     - Evil
@@ -262,7 +293,8 @@ expression: "ForgottenRealms::deities()"
     - Death
   symbol: White human skull
 - name: Mystra
-  description: goddess of magic
+  titles:
+    - goddess of magic
   alignment:
     - Neutral
     - Good
@@ -271,7 +303,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: "Circle of seven stars, or nine stars encircling a flowing red mist, or a single star"
 - name: Oghma
-  description: god of knowledge
+  titles:
+    - god of knowledge
   alignment:
     - Neutral
     - Neutral
@@ -279,7 +312,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: Blank scroll
 - name: The Red Knight
-  description: goddess of strategy
+  titles:
+    - goddess of strategy
   alignment:
     - Lawful
     - Neutral
@@ -287,7 +321,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: Red knight lanceboard piece with stars for eyes
 - name: Savras
-  description: god of divination and fate
+  titles:
+    - god of divination and fate
   alignment:
     - Lawful
     - Neutral
@@ -296,7 +331,8 @@ expression: "ForgottenRealms::deities()"
     - Knowledge
   symbol: Crystal ball containing many kinds of eyes
 - name: Selûne
-  description: goddess of the moon
+  titles:
+    - goddess of the moon
   alignment:
     - Chaotic
     - Good
@@ -305,7 +341,8 @@ expression: "ForgottenRealms::deities()"
     - Life
   symbol: Pair of eyes surrounded by seven stars
 - name: Shar
-  description: goddess of darkness and loss
+  titles:
+    - goddess of darkness and loss
   alignment:
     - Neutral
     - Evil
@@ -314,7 +351,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: Black disk encircled with a purple border
 - name: Silvanus
-  description: god of wild nature
+  titles:
+    - god of wild nature
   alignment:
     - Neutral
     - Neutral
@@ -322,7 +360,8 @@ expression: "ForgottenRealms::deities()"
     - Nature
   symbol: Oak leaf
 - name: Sune
-  description: goddess of love and beauty
+  titles:
+    - goddess of love and beauty
   alignment:
     - Chaotic
     - Good
@@ -331,7 +370,8 @@ expression: "ForgottenRealms::deities()"
     - Light
   symbol: Face of a beautiful red-haired woman
 - name: Talona
-  description: goddess of poison and disease
+  titles:
+    - goddess of poison and disease
   alignment:
     - Chaotic
     - Evil
@@ -339,7 +379,8 @@ expression: "ForgottenRealms::deities()"
     - Death
   symbol: Three teardrops on a triangle
 - name: Talos
-  description: god of storms
+  titles:
+    - god of storms
   alignment:
     - Chaotic
     - Evil
@@ -347,7 +388,8 @@ expression: "ForgottenRealms::deities()"
     - Tempest
   symbol: Three lightning bolts radiating from a central point
 - name: Tempus
-  description: god of war
+  titles:
+    - god of war
   alignment:
     - Neutral
     - Neutral
@@ -355,7 +397,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: Upright flaming sword
 - name: Torm
-  description: god of courage and self-sacrifice
+  titles:
+    - god of courage and self-sacrifice
   alignment:
     - Lawful
     - Good
@@ -363,7 +406,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: White right gauntlet
 - name: Tymora
-  description: goddess of good fortune
+  titles:
+    - goddess of good fortune
   alignment:
     - Chaotic
     - Good
@@ -371,7 +415,8 @@ expression: "ForgottenRealms::deities()"
     - Trickery
   symbol: Face-up coin
 - name: Tyr
-  description: god of justice
+  titles:
+    - god of justice
   alignment:
     - Lawful
     - Good
@@ -379,7 +424,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: Balanced scales resting on a warhammer
 - name: Umberlee
-  description: goddess of the sea
+  titles:
+    - goddess of the sea
   alignment:
     - Chaotic
     - Evil
@@ -387,7 +433,8 @@ expression: "ForgottenRealms::deities()"
     - Tempest
   symbol: Wave curling left and right
 - name: Valkur
-  description: Northlander god of sailors
+  titles:
+    - Northlander god of sailors
   alignment:
     - Chaotic
     - Good
@@ -396,7 +443,8 @@ expression: "ForgottenRealms::deities()"
     - War
   symbol: A cloud and three lightning bolts
 - name: Waukeen
-  description: goddess of trade
+  titles:
+    - goddess of trade
   alignment:
     - Neutral
     - Neutral

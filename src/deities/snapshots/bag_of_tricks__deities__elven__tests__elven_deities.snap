@@ -1,0 +1,119 @@
+---
+source: src/deities/elven.rs
+expression: "Elven::deities()"
+
+---
+- name: Aerdrie Faenya
+  titles:
+    - goddess of the sky
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - Trickery
+  symbol: Bird silhouetted against a cloud
+- name: Angharradh
+  titles:
+    - triple goddess of wisdom and protection
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbol: Triangle with three interlocking circles within
+- name: Corellon Larathian
+  titles:
+    - god of art and magic
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Arcana
+    - Light
+  symbol: Crescent moon
+- name: Deep Sashelas
+  titles:
+    - god of the sea
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Nature
+    - Tempest
+  symbol: Dolphin
+- name: Erevan Ilesere
+  titles:
+    - god of mischief
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbol: Asymmetrical eight-armed star
+- name: Fenmarel Mestarine
+  titles:
+    - god of outcasts
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbol: Two peering elven eyes
+- name: Hanali Celanil
+  titles:
+    - goddess of love and beauty
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+  symbol: Golden heart
+- name: Labelas Enoreth
+  titles:
+    - "god of time, history, and philosophy"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Arcana
+    - Knowledge
+  symbol: Setting sun
+- name: Rillifane Rallathil
+  titles:
+    - god of nature
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Nature
+  symbol: Oak
+- name: Sehanine Moonbow
+  titles:
+    - "goddess of divination, dreams, travel, and death"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+  symbol: Full moon under a moonbow
+- name: Shevarash
+  titles:
+    - god of vengeance
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - War
+  symbol: Broken arrow over a tear
+- name: Solonor Thelandira
+  titles:
+    - god of archery
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbol: Silver arrow with green fletching
+

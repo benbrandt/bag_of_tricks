@@ -1,0 +1,52 @@
+---
+source: src/deities/elven.rs
+expression: "Drow::deities()"
+
+---
+- name: Eilistraee
+  titles:
+    - goddess of song and moonlight
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Light
+    - Nature
+  symbol: Sword-wielding dancing drow female silhouetted against the full moon
+- name: Kiaransalee
+  titles:
+    - goddess of necromancy
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Arcana
+  symbol: Female drow hand wearing many silver rings
+- name: Lolth
+  titles:
+    - goddess of spiders
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbol: Spider
+- name: Selvetarm
+  titles:
+    - god of warriors
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbol: Spider over crossed sword-and-mace
+- name: Vhaeraun
+  titles:
+    - god of thieves
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbol: Black mask with blue glass lenses inset over eyes
+
