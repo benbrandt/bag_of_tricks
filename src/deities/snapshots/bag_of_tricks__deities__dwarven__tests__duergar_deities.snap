@@ -12,7 +12,8 @@ expression: "Duergar::deities()"
   domains:
     - Arcana
     - War
-  symbol: Mind flayer skill
+  symbols:
+    - Mind flayer skill
 - name: Laduguer
   titles:
     - god of magic and slavery
@@ -22,5 +23,6 @@ expression: "Duergar::deities()"
   domains:
     - Arcana
     - Death
-  symbol: Broken arrow
+  symbols:
+    - Broken arrow
 

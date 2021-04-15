@@ -1,6 +1,7 @@
 mod dwarven;
 mod elven;
 mod forgotten_realms;
+mod gnomish;
 mod halfling;
 
 use serde::{Deserialize, Serialize};
@@ -11,6 +12,7 @@ use self::{
     dwarven::{Duergar, Dwarven},
     elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
+    gnomish::Gnomish,
     halfling::Halfling,
 };
 
@@ -33,7 +35,7 @@ pub(crate) struct Deity {
     titles: Vec<&'static str>,
     alignment: Alignment,
     domains: Vec<Domain>,
-    symbol: &'static str,
+    symbols: Vec<&'static str>,
 }
 
 pub(crate) trait Pantheon {
@@ -46,6 +48,7 @@ pub(crate) enum Pantheons {
     Dwarven,
     Elven,
     ForgottenRealms,
+    Gnomish,
     Halfling,
 }
 
@@ -57,6 +60,7 @@ impl Pantheons {
             Self::Duergar => Duergar::deities(),
             Self::Elven => Elven::deities(),
             Self::ForgottenRealms => ForgottenRealms::deities(),
+            Self::Gnomish => Gnomish::deities(),
             Self::Halfling => Halfling::deities(),
         }
     }

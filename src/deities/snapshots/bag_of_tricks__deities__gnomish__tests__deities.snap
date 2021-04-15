@@ -1,0 +1,101 @@
+---
+source: src/deities/gnomish.rs
+expression: "Gnomish::deities()"
+
+---
+- name: Baervan Wildwanderer
+  titles:
+    - god of woodlands
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Nature
+  symbols:
+    - Face of a raccoon
+- name: Baravar Cloakshadow
+  titles:
+    - god of illusion and deception
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Arcana
+    - Trickery
+  symbols:
+    - Dagger against a hooded cloak
+- name: Callarduran Smoothhands
+  titles:
+    - god of mining and carving stone
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+    - Nature
+  symbols:
+    - Golden signet ring wiht a six-pointed star
+- name: Flandal Steelskin
+  titles:
+    - god of metalwork
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Flaming hammer
+- name: Gaerdal Ironhand
+  titles:
+    - god of protection
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbols:
+    - Iron band
+- name: Garl Glittergold
+  titles:
+    - god of trickery and gems
+    - god of trickery and wiles
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Trickery
+  symbols:
+    - Gold nugget
+- name: Nebelun
+  titles:
+    - god of invention and luck
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Trickery
+  symbols:
+    - Bellows and a lizard tail
+- name: Segojan Earthcaller
+  titles:
+    - god of earth and the dead
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Glowing gemstone
+- name: Urdlen
+  titles:
+    - god of greed and murder
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Death
+    - War
+  symbols:
+    - White clawed mole emerging from ground
+

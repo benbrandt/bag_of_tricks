@@ -12,7 +12,8 @@ expression: "Drow::deities()"
   domains:
     - Light
     - Nature
-  symbol: Sword-wielding dancing drow female silhouetted against the full moon
+  symbols:
+    - Sword-wielding dancing drow female silhouetted against the full moon
 - name: Kiaransalee
   titles:
     - goddess of necromancy
@@ -21,7 +22,8 @@ expression: "Drow::deities()"
     - Evil
   domains:
     - Arcana
-  symbol: Female drow hand wearing many silver rings
+  symbols:
+    - Female drow hand wearing many silver rings
 - name: Lolth
   titles:
     - goddess of spiders
@@ -30,7 +32,8 @@ expression: "Drow::deities()"
     - Evil
   domains:
     - Trickery
-  symbol: Spider
+  symbols:
+    - Spider
 - name: Selvetarm
   titles:
     - god of warriors
@@ -39,7 +42,8 @@ expression: "Drow::deities()"
     - Evil
   domains:
     - War
-  symbol: Spider over crossed sword-and-mace
+  symbols:
+    - Spider over crossed sword-and-mace
 - name: Vhaeraun
   titles:
     - god of thieves
@@ -48,5 +52,6 @@ expression: "Drow::deities()"
     - Evil
   domains:
     - Trickery
-  symbol: Black mask with blue glass lenses inset over eyes
+  symbols:
+    - Black mask with blue glass lenses inset over eyes
 

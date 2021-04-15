@@ -12,7 +12,8 @@ expression: "Elven::deities()"
   domains:
     - Tempest
     - Trickery
-  symbol: Bird silhouetted against a cloud
+  symbols:
+    - Bird silhouetted against a cloud
 - name: Angharradh
   titles:
     - triple goddess of wisdom and protection
@@ -22,7 +23,8 @@ expression: "Elven::deities()"
   domains:
     - Knowledge
     - Life
-  symbol: Triangle with three interlocking circles within
+  symbols:
+    - Triangle with three interlocking circles within
 - name: Corellon Larathian
   titles:
     - god of art and magic
@@ -32,7 +34,10 @@ expression: "Elven::deities()"
   domains:
     - Arcana
     - Light
-  symbol: "Crescent moon, quarter moon, or starburst"
+  symbols:
+    - Crescent moon
+    - quarter moon
+    - starburst
 - name: Deep Sashelas
   titles:
     - god of the sea
@@ -42,7 +47,8 @@ expression: "Elven::deities()"
   domains:
     - Nature
     - Tempest
-  symbol: Dolphin
+  symbols:
+    - Dolphin
 - name: Erevan Ilesere
   titles:
     - god of mischief
@@ -51,7 +57,8 @@ expression: "Elven::deities()"
     - Neutral
   domains:
     - Trickery
-  symbol: Asymmetrical eight-armed star
+  symbols:
+    - Asymmetrical eight-armed star
 - name: Fenmarel Mestarine
   titles:
     - god of outcasts
@@ -60,7 +67,8 @@ expression: "Elven::deities()"
     - Neutral
   domains:
     - Trickery
-  symbol: Two peering elven eyes
+  symbols:
+    - Two peering elven eyes
 - name: Hanali Celanil
   titles:
     - goddess of love and beauty
@@ -69,7 +77,8 @@ expression: "Elven::deities()"
     - Good
   domains:
     - Life
-  symbol: Golden heart
+  symbols:
+    - Golden heart
 - name: Labelas Enoreth
   titles:
     - "god of time, history, and philosophy"
@@ -79,7 +88,8 @@ expression: "Elven::deities()"
   domains:
     - Arcana
     - Knowledge
-  symbol: Setting sun
+  symbols:
+    - Setting sun
 - name: Rillifane Rallathil
   titles:
     - god of nature
@@ -88,7 +98,8 @@ expression: "Elven::deities()"
     - Good
   domains:
     - Nature
-  symbol: Oak
+  symbols:
+    - Oak
 - name: Sehanine Moonbow
   titles:
     - goddess of the moon
@@ -98,7 +109,9 @@ expression: "Elven::deities()"
     - Good
   domains:
     - Knowledge
-  symbol: "Full moon under a moonbow, crescent moon"
+  symbols:
+    - Full moon under a moonbow
+    - crescent moon
 - name: Shevarash
   titles:
     - god of vengeance
@@ -107,7 +120,8 @@ expression: "Elven::deities()"
     - Neutral
   domains:
     - War
-  symbol: Broken arrow over a tear
+  symbols:
+    - Broken arrow over a tear
 - name: Solonor Thelandira
   titles:
     - god of archery
@@ -116,5 +130,6 @@ expression: "Elven::deities()"
     - Good
   domains:
     - War
-  symbol: Silver arrow with green fletching
+  symbols:
+    - Silver arrow with green fletching
 

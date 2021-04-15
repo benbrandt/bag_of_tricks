@@ -11,7 +11,8 @@ expression: "Dwarven::deities()"
     - Evil
   domains:
     - Trickery
-  symbol: "Jeweled dagger, point-down"
+  symbols:
+    - "Jeweled dagger, point-down"
 - name: Berronar Truesilver
   titles:
     - goddess of hearth and home
@@ -21,7 +22,8 @@ expression: "Dwarven::deities()"
   domains:
     - Life
     - Light
-  symbol: Intertwined silver rings
+  symbols:
+    - Intertwined silver rings
 - name: Clangeddin Silverbeard
   titles:
     - god of war
@@ -30,7 +32,8 @@ expression: "Dwarven::deities()"
     - Good
   domains:
     - War
-  symbol: Crossed silver battleaxes
+  symbols:
+    - Crossed silver battleaxes
 - name: Dugmaren Brightmantle
   titles:
     - god of discovery
@@ -39,7 +42,8 @@ expression: "Dwarven::deities()"
     - Good
   domains:
     - Knowledge
-  symbol: Open book
+  symbols:
+    - Open book
 - name: Dumathoin
   titles:
     - god of buried secrets
@@ -49,7 +53,8 @@ expression: "Dwarven::deities()"
   domains:
     - Death
     - Knowledge
-  symbol: Mountain silhouette with a central gemstone
+  symbols:
+    - Mountain silhouette with a central gemstone
 - name: Gorm Gulthyn
   titles:
     - god of vigilance
@@ -58,7 +63,8 @@ expression: "Dwarven::deities()"
     - Good
   domains:
     - War
-  symbol: Bronze half-mask
+  symbols:
+    - Bronze half-mask
 - name: Haela Brightaxe
   titles:
     - goddess of war-luck
@@ -67,7 +73,8 @@ expression: "Dwarven::deities()"
     - Good
   domains:
     - War
-  symbol: Upright sword whose blade is spiraled in flame
+  symbols:
+    - Upright sword whose blade is spiraled in flame
 - name: Marthammor Duin
   titles:
     - god of wanderers
@@ -77,7 +84,8 @@ expression: "Dwarven::deities()"
   domains:
     - Nature
     - Trickery
-  symbol: Upright mace in front of a tall boot
+  symbols:
+    - Upright mace in front of a tall boot
 - name: Moradin
   titles:
     - god of creation
@@ -86,7 +94,8 @@ expression: "Dwarven::deities()"
     - Good
   domains:
     - Knowledge
-  symbol: Hammer and anvil
+  symbols:
+    - Hammer and anvil
 - name: Sharindlar
   titles:
     - goddess of healing
@@ -95,7 +104,8 @@ expression: "Dwarven::deities()"
     - Good
   domains:
     - Life
-  symbol: Burning needle
+  symbols:
+    - Burning needle
 - name: Vergadain
   titles:
     - god of luck and wealth
@@ -104,5 +114,6 @@ expression: "Dwarven::deities()"
     - Neutral
   domains:
     - Trickery
-  symbol: Gold coin with the face of a dwarf
+  symbols:
+    - Gold coin with the face of a dwarf
 

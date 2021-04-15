@@ -11,7 +11,8 @@ expression: "Halfling::deities()"
     - Good
   domains:
     - War
-  symbol: Crossed short swords
+  symbols:
+    - Crossed short swords
 - name: Brandobaris
   titles:
     - god of thievery and adventure
@@ -20,7 +21,8 @@ expression: "Halfling::deities()"
     - Neutral
   domains:
     - Trickery
-  symbol: Halfling footprint
+  symbols:
+    - Halfling footprint
 - name: Cyrrollalee
   titles:
     - goddess of hearth and home
@@ -29,7 +31,8 @@ expression: "Halfling::deities()"
     - Good
   domains:
     - Life
-  symbol: An open door
+  symbols:
+    - An open door
 - name: Sheela Peryroyl
   titles:
     - goddess of agriculture and weather
@@ -39,7 +42,8 @@ expression: "Halfling::deities()"
   domains:
     - Nature
     - Tempest
-  symbol: Flower
+  symbols:
+    - Flower
 - name: Urogalan
   titles:
     - god of earth and death
@@ -49,7 +53,8 @@ expression: "Halfling::deities()"
   domains:
     - Death
     - Knowledge
-  symbol: "Silhouette of a dog's head"
+  symbols:
+    - "Silhouette of a dog's head"
 - name: Yondalla
   titles:
     - goddess of fertility and protection
@@ -58,5 +63,7 @@ expression: "Halfling::deities()"
     - Good
   domains:
     - Life
-  symbol: "Cornucopia on a shield, shield"
+  symbols:
+    - Cornucopia on a shield
+    - shield
 

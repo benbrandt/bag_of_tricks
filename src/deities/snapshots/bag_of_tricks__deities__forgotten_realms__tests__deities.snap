@@ -11,7 +11,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Tempest
-  symbol: Cloud
+  symbols:
+    - Cloud
 - name: Amaunator
   titles:
     - god of the sun
@@ -21,7 +22,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Life
     - Light
-  symbol: Golden sun
+  symbols:
+    - Golden sun
 - name: Asmodeus
   titles:
     - god of induldence
@@ -31,7 +33,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Knowledge
     - Trickery
-  symbol: Three inverted triangles arranged in a long triangle
+  symbols:
+    - Three inverted triangles arranged in a long triangle
 - name: Auril
   titles:
     - goddess of winter
@@ -41,7 +44,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Nature
     - Tempest
-  symbol: Six-pointed snowflake
+  symbols:
+    - Six-pointed snowflake
 - name: Azuth
   titles:
     - god of wizardry
@@ -51,7 +55,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Arcana
     - Knowledge
-  symbol: "Left hand pointing upward, outlined in fire"
+  symbols:
+    - "Left hand pointing upward, outlined in fire"
 - name: Bane
   titles:
     - god of tyranny
@@ -60,7 +65,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - War
-  symbol: "Upright black right hand, thumb and fingers together"
+  symbols:
+    - "Upright black right hand, thumb and fingers together"
 - name: Beshaba
   titles:
     - goddess of misfortune
@@ -69,7 +75,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Trickery
-  symbol: Black antlers
+  symbols:
+    - Black antlers
 - name: Bhaal
   titles:
     - god of murder
@@ -78,7 +85,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Death
-  symbol: Skull surrounded by a ring of blood droplets
+  symbols:
+    - Skull surrounded by a ring of blood droplets
 - name: Chauntea
   titles:
     - goddess of agriculture
@@ -87,7 +95,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - Life
-  symbol: Sheaf of grain or a blooming rose over grain
+  symbols:
+    - Sheaf of grain or a blooming rose over grain
 - name: Cyric
   titles:
     - god of lies
@@ -96,7 +105,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Trickery
-  symbol: White jawless skull on black or purple sunburst
+  symbols:
+    - White jawless skull on black or purple sunburst
 - name: Deneir
   titles:
     - god of writing
@@ -106,7 +116,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Arcana
     - Knowledge
-  symbol: Lit candle above an open eye
+  symbols:
+    - Lit candle above an open eye
 - name: Eldath
   titles:
     - goddess of peace
@@ -116,7 +127,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Life
     - Nature
-  symbol: Waterfall plunging into still pool
+  symbols:
+    - Waterfall plunging into still pool
 - name: Gond
   titles:
     - god of craft
@@ -125,7 +137,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Knowledge
-  symbol: Toothed cog with four spokes
+  symbols:
+    - Toothed cog with four spokes
 - name: Grumbar
   titles:
     - god of earth
@@ -134,7 +147,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Knowledge
-  symbol: Mountain
+  symbols:
+    - Mountain
 - name: Gwaeron Windstrom
   titles:
     - god of tracking
@@ -144,7 +158,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Knowledge
     - Nature
-  symbol: Paw print with a five-pointed star in its center
+  symbols:
+    - Paw print with a five-pointed star in its center
 - name: Helm
   titles:
     - god of watchfulness
@@ -154,7 +169,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Life
     - Light
-  symbol: Staring eye on upright left gauntlet
+  symbols:
+    - Staring eye on upright left gauntlet
 - name: Hoar
   titles:
     - god of revenge and retribution
@@ -163,7 +179,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - War
-  symbol: A coin with a two-faced head
+  symbols:
+    - A coin with a two-faced head
 - name: Ilmater
   titles:
     - god of endurance
@@ -172,7 +189,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - Life
-  symbol: Hands bound at the wrist with red cord
+  symbols:
+    - Hands bound at the wrist with red cord
 - name: Istishia
   titles:
     - god of water
@@ -181,7 +199,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Tempest
-  symbol: Wave
+  symbols:
+    - Wave
 - name: Jergal
   titles:
     - scribe of the dead
@@ -191,7 +210,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Knowledge
     - Death
-  symbol: A skull biting a scroll
+  symbols:
+    - A skull biting a scroll
 - name: Kelemvor
   titles:
     - god of the dead
@@ -200,7 +220,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Death
-  symbol: Upright skeletal arm holding balanced scales
+  symbols:
+    - Upright skeletal arm holding balanced scales
 - name: Kossuth
   titles:
     - god of fire
@@ -209,7 +230,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Light
-  symbol: Flame
+  symbols:
+    - Flame
 - name: Lathander
   titles:
     - god of dawn and renewal
@@ -219,7 +241,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Life
     - Light
-  symbol: Road traveling into a sunrise
+  symbols:
+    - Road traveling into a sunrise
 - name: Leira
   titles:
     - goddess of illusion
@@ -228,7 +251,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Trickery
-  symbol: Point-down triangle containing a swirl of mist
+  symbols:
+    - Point-down triangle containing a swirl of mist
 - name: Lliira
   titles:
     - goddess of joy
@@ -237,7 +261,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - Life
-  symbol: Triangle of three six-pointed stars
+  symbols:
+    - Triangle of three six-pointed stars
 - name: Loviatar
   titles:
     - goddess of pain
@@ -246,7 +271,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Death
-  symbol: Nine-tailed barbed scourge
+  symbols:
+    - Nine-tailed barbed scourge
 - name: Malar
   titles:
     - god of the hunt
@@ -255,7 +281,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Nature
-  symbol: Clawed paw
+  symbols:
+    - Clawed paw
 - name: Mask
   titles:
     - god of thieves
@@ -264,7 +291,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Trickery
-  symbol: Black mask
+  symbols:
+    - Black mask
 - name: Mielikki
   titles:
     - goddess of forests
@@ -273,7 +301,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - Nature
-  symbol: "Unicorn's head"
+  symbols:
+    - "Unicorn's head"
 - name: Milil
   titles:
     - god of poetry and song
@@ -282,7 +311,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - Light
-  symbol: Five-stringed harp made of leaves
+  symbols:
+    - Five-stringed harp made of leaves
 - name: Myrkul
   titles:
     - god of death
@@ -291,7 +321,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Death
-  symbol: White human skull
+  symbols:
+    - White human skull
 - name: Mystra
   titles:
     - goddess of magic
@@ -301,7 +332,10 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Arcana
     - Knowledge
-  symbol: "Circle of seven stars, or nine stars encircling a flowing red mist, or a single star"
+  symbols:
+    - Circle of seven stars
+    - nine stars encircling a flowing red mist
+    - a single star
 - name: Oghma
   titles:
     - god of knowledge
@@ -310,7 +344,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Knowledge
-  symbol: Blank scroll
+  symbols:
+    - Blank scroll
 - name: The Red Knight
   titles:
     - goddess of strategy
@@ -319,7 +354,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - War
-  symbol: Red knight lanceboard piece with stars for eyes
+  symbols:
+    - Red knight lanceboard piece with stars for eyes
 - name: Savras
   titles:
     - god of divination and fate
@@ -329,7 +365,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Arcana
     - Knowledge
-  symbol: Crystal ball containing many kinds of eyes
+  symbols:
+    - Crystal ball containing many kinds of eyes
 - name: Selûne
   titles:
     - goddess of the moon
@@ -339,7 +376,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Knowledge
     - Life
-  symbol: Pair of eyes surrounded by seven stars
+  symbols:
+    - Pair of eyes surrounded by seven stars
 - name: Shar
   titles:
     - goddess of darkness and loss
@@ -349,7 +387,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Death
     - Trickery
-  symbol: Black disk encircled with a purple border
+  symbols:
+    - Black disk encircled with a purple border
 - name: Silvanus
   titles:
     - god of wild nature
@@ -358,7 +397,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - Nature
-  symbol: Oak leaf
+  symbols:
+    - Oak leaf
 - name: Sune
   titles:
     - goddess of love and beauty
@@ -368,7 +408,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Life
     - Light
-  symbol: Face of a beautiful red-haired woman
+  symbols:
+    - Face of a beautiful red-haired woman
 - name: Talona
   titles:
     - goddess of poison and disease
@@ -377,7 +418,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Death
-  symbol: Three teardrops on a triangle
+  symbols:
+    - Three teardrops on a triangle
 - name: Talos
   titles:
     - god of storms
@@ -386,7 +428,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Tempest
-  symbol: Three lightning bolts radiating from a central point
+  symbols:
+    - Three lightning bolts radiating from a central point
 - name: Tempus
   titles:
     - god of war
@@ -395,7 +438,8 @@ expression: "ForgottenRealms::deities()"
     - Neutral
   domains:
     - War
-  symbol: Upright flaming sword
+  symbols:
+    - Upright flaming sword
 - name: Torm
   titles:
     - god of courage and self-sacrifice
@@ -404,7 +448,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - War
-  symbol: White right gauntlet
+  symbols:
+    - White right gauntlet
 - name: Tymora
   titles:
     - goddess of good fortune
@@ -413,7 +458,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - Trickery
-  symbol: Face-up coin
+  symbols:
+    - Face-up coin
 - name: Tyr
   titles:
     - god of justice
@@ -422,7 +468,8 @@ expression: "ForgottenRealms::deities()"
     - Good
   domains:
     - War
-  symbol: Balanced scales resting on a warhammer
+  symbols:
+    - Balanced scales resting on a warhammer
 - name: Umberlee
   titles:
     - goddess of the sea
@@ -431,7 +478,8 @@ expression: "ForgottenRealms::deities()"
     - Evil
   domains:
     - Tempest
-  symbol: Wave curling left and right
+  symbols:
+    - Wave curling left and right
 - name: Valkur
   titles:
     - Northlander god of sailors
@@ -441,7 +489,8 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Tempest
     - War
-  symbol: A cloud and three lightning bolts
+  symbols:
+    - A cloud and three lightning bolts
 - name: Waukeen
   titles:
     - goddess of trade
@@ -451,5 +500,6 @@ expression: "ForgottenRealms::deities()"
   domains:
     - Knowledge
     - Trickery
-  symbol: "Upright coin with Waukeen's profile facing left"
+  symbols:
+    - "Upright coin with Waukeen's profile facing left"
 
