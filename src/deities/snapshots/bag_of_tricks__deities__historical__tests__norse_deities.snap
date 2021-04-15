@@ -1,0 +1,214 @@
+---
+source: src/deities/historical.rs
+expression: "Norse::deities()"
+
+---
+- name: Odin
+  titles:
+    - god of knowledge and war
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - War
+  symbols:
+    - Watching blue eye
+- name: Aegir
+  titles:
+    - god of the sea and storms
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Tempest
+  symbols:
+    - Rough ocean waves
+- name: Balder
+  titles:
+    - god of beauty and poetry
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Light
+  symbols:
+    - Gem-encrusted silver chalice
+- name: Forseti
+  titles:
+    - god of justice and law
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Light
+  symbols:
+    - Head of a bearded man
+- name: Frey
+  titles:
+    - god of fertility and the sun
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Light
+  symbols:
+    - Ice-blue greatsword
+- name: Freya
+  titles:
+    - goddess of fertility and love
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+  symbols:
+    - Falcon
+- name: Frigga
+  titles:
+    - goddess of birth and fertility
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Life
+    - Light
+  symbols:
+    - Cat
+- name: Heimdall
+  titles:
+    - god of watchfulness and loyalty
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Light
+    - War
+  symbols:
+    - Curling musical horn
+- name: Hel
+  titles:
+    - goddess of the underworld
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - "Woman's face, rotting on one side"
+- name: Hermod
+  titles:
+    - god of luck
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Winged scroll
+- name: Loki
+  titles:
+    - god of thieves and trickery
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbols:
+    - Flame
+- name: Njord
+  titles:
+    - god of sea and wind
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Nature
+    - Tempest
+  symbols:
+    - Gold coin
+- name: Odur
+  titles:
+    - god of light and the sun
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Solar disk
+- name: Sif
+  titles:
+    - goddess of war
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbols:
+    - Upraised sword
+- name: Skadi
+  titles:
+    - god of earth and mountains
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Mountain peak
+- name: Surtur
+  titles:
+    - god of fire giants and war
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Flaming sword
+- name: Thor
+  titles:
+    - god of storms and thunder
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - War
+  symbols:
+    - Hammer
+- name: Thrym
+  titles:
+    - god of frost giants and cold
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - White double-bladed axe
+- name: Tyr
+  titles:
+    - god of courage and strategy
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Knowledge
+    - War
+  symbols:
+    - Sword
+- name: Uller
+  titles:
+    - god of hunting and winter
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Longbow
+

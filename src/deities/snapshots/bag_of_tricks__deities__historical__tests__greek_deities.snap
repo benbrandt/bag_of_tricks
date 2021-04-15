@@ -1,0 +1,202 @@
+---
+source: src/deities/historical.rs
+expression: "Greek::deities()"
+
+---
+- name: Zeus
+  titles:
+    - "god of the sky, ruler of the gods"
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Tempest
+  symbols:
+    - Fist full of lightning bolts
+- name: Aphrodite
+  titles:
+    - goddess of love and beauty
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Sea shell
+- name: Apollo
+  titles:
+    - "god of light, music, and healing"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Life
+    - Light
+  symbols:
+    - Lyre
+- name: Ares
+  titles:
+    - god of war and strife
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Spear
+- name: Artemis
+  titles:
+    - goddess of hunting and childbirth
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - Bow and arrow on lunar disk
+- name: Athena
+  titles:
+    - goddess of wisdom and civilization
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Knowledge
+    - War
+  symbols:
+    - Owl
+- name: Demeter
+  titles:
+    - goddess of agriculture
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+  symbols:
+    - "Mare's head"
+- name: Dionysus
+  titles:
+    - god of mirth and wine
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Life
+  symbols:
+    - Thyrsus (staff tipped with pine cone)
+- name: Hades
+  titles:
+    - god of the underworld
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Black ram
+- name: Hecate
+  titles:
+    - goddess of magic and the moon
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Knowledge
+    - Trickery
+  symbols:
+    - Setting moon
+- name: Hephaestus
+  titles:
+    - god of smithing and craft
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Hammer and anvil
+- name: Hera
+  titles:
+    - goddess of marriage and intrigue
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Fan of peacock feathers
+- name: Hercules
+  titles:
+    - god of strength and adventure
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - War
+  symbols:
+    - "Lion's head"
+- name: Hermes
+  titles:
+    - god of travel and commerce
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Trickery
+  symbols:
+    - Caduceus (winged staff and serpents)
+- name: Hestia
+  titles:
+    - goddess of home and family
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+  symbols:
+    - Hearth
+- name: Nike
+  titles:
+    - goddess of victory
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - War
+  symbols:
+    - Winged woman
+- name: Pan
+  titles:
+    - god of nature
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Syrinx (pan pipes)
+- name: Poseidon
+  titles:
+    - god of the sea and earthquakes
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Tempest
+  symbols:
+    - Trident
+- name: Tyche
+  titles:
+    - goddess of good fortune
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Red pentagram
+

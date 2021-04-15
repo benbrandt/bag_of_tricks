@@ -1,0 +1,152 @@
+---
+source: src/deities/historical.rs
+expression: "Celtic::deities()"
+
+---
+- name: The Daghdha
+  titles:
+    - god of weather and crops
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Nature
+    - Trickery
+  symbols:
+    - Bubbling cauldron
+    - shield
+- name: Arawn
+  titles:
+    - god of life and death
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Life
+    - Death
+  symbols:
+    - Black star on gray background
+- name: Belenus
+  titles:
+    - "god of sun, light, and warmth"
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Solar disk and standing stones
+- name: Brigantia
+  titles:
+    - goddess of rivers and livestock
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+  symbols:
+    - Footbridge
+- name: Diancecht
+  titles:
+    - god of medicine and healing
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+  symbols:
+    - Crossed oak and mistletoe branches
+- name: Dunatis
+  titles:
+    - god of mountains and peaks
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Red sun-capped mountain peak
+- name: Goibhniu
+  titles:
+    - god of smiths and healing
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbols:
+    - Giant mallet over sword
+- name: Lugh
+  titles:
+    - "god of arts, travel, and commerce"
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Knowledge
+    - Life
+  symbols:
+    - Pair of long hands
+- name: Manannan mac Lir
+  titles:
+    - god of oceans and sea creatures
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Nature
+    - Tempest
+  symbols:
+    - Wave of white water on green
+- name: Math Mathonwy
+  titles:
+    - god of magic
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Knowledge
+  symbols:
+    - Staff
+- name: Morrigan
+  titles:
+    - goddess of battle
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Two crossed spears
+- name: Nuada
+  titles:
+    - god of war and warriors
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - War
+  symbols:
+    - Silver hand on black background
+- name: Oghma
+  titles:
+    - god of speech and writing
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Unfurled scroll
+- name: Silvanus
+  titles:
+    - god of nature and forests
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Summer oak tree
+
