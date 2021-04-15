@@ -8,9 +8,9 @@ use strum::IntoEnumIterator;
 
 use super::{elf::Elf, human::Human, Race};
 use crate::{
+    alignment::{AlignmentInfluences, Attitude},
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{AlignmentInfluences, Attitude},
         attack::Resistances,
         backstory::Backstory,
         characteristics::{

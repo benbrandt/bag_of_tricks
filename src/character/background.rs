@@ -21,7 +21,10 @@ use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
-use crate::citation::Citations;
+use crate::{
+    alignment::{AlignmentInfluences, Attitude, Morality},
+    citation::Citations,
+};
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, criminal::Criminal, guild_artisan::GuildArtisan,
@@ -31,7 +34,6 @@ use self::{
 
 use super::{
     ability::{modifier_shift, modifier_weight, AbilityScores, Skill},
-    alignment::{AlignmentInfluences, Attitude, Morality},
     backstory::Backstory,
     equipment::StartingEquipment,
     features::Features,

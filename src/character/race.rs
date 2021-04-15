@@ -28,7 +28,7 @@ use std::fmt;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
-use crate::citation::Citations;
+use crate::{alignment::AlignmentInfluences, citation::Citations};
 
 use self::{
     aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,
@@ -39,9 +39,9 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScore, alignment::AlignmentInfluences, attack::Resistances,
-    backstory::Backstory, characteristics::CharacteristicDetails, features::Features,
-    languages::Languages, proficiencies::Proficiencies,
+    ability::AbilityScore, attack::Resistances, backstory::Backstory,
+    characteristics::CharacteristicDetails, features::Features, languages::Languages,
+    proficiencies::Proficiencies,
 };
 
 /// Shared racial traits each race should provide.

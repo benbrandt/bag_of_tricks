@@ -5,9 +5,9 @@ use strum::IntoEnumIterator;
 
 use super::Race;
 use crate::{
+    alignment::AlignmentInfluences,
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::AlignmentInfluences,
         attack::Resistances,
         backstory::Backstory,
         characteristics::{

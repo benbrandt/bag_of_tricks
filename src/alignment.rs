@@ -33,7 +33,7 @@ where
 
 /// Character alignment, both attitude and morality
 #[derive(Deserialize, Serialize)]
-pub(crate) struct Alignment(Attitude, Morality);
+pub(crate) struct Alignment(pub(crate) Attitude, pub(crate) Morality);
 
 impl Alignment {
     /// Generate alignment, weighted by influences from other choices on the character sheet

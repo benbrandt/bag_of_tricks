@@ -4,9 +4,9 @@ use std::fmt;
 
 use super::{human::Human, orc::Orc, Race};
 use crate::{
+    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
-        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::Resistances,
         backstory::Backstory,
         characteristics::{

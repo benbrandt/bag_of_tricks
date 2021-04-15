@@ -9,9 +9,9 @@ use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
 
 use crate::{
+    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{

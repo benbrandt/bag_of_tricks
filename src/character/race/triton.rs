@@ -4,9 +4,9 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
 use crate::{
+    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
-        alignment::{AlignmentInfluences, Attitude, Morality},
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{

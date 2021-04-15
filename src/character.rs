@@ -1,5 +1,4 @@
 mod ability;
-mod alignment;
 mod attack;
 mod background;
 mod backstory;
@@ -13,23 +12,22 @@ mod race;
 
 use std::{fmt, writeln};
 
-use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
-use background::{Background, BackgroundOption, Personality};
-use backstory::Backstory;
-use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 
 use ability::{AbilityScores, Skill};
 use attack::{DamageType, Resistances};
-use characteristics::CharacteristicDetails;
+use background::{Background, BackgroundOption, Personality};
+use backstory::Backstory;
+use characteristics::{CharacteristicDetails, Speed};
+use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use features::{Feature, Features};
 use languages::{Language, Languages};
 use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
 
-use self::characteristics::Speed;
+use super::alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Deserialize, Serialize)]
