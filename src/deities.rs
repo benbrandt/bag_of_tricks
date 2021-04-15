@@ -1,3 +1,4 @@
+mod dragonlance;
 mod dwarven;
 mod elven;
 mod forgotten_realms;
@@ -11,6 +12,7 @@ use serde::{Deserialize, Serialize};
 use crate::alignment::Alignment;
 
 use self::{
+    dragonlance::Dragonlance,
     dwarven::{Duergar, Dwarven},
     elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
@@ -46,6 +48,7 @@ pub(crate) trait Pantheon {
 }
 
 pub(crate) enum Pantheons {
+    Dragonlance,
     Drow,
     Duergar,
     Dwarven,
@@ -59,6 +62,7 @@ pub(crate) enum Pantheons {
 impl Pantheons {
     fn deities(&self) -> Vec<Deity> {
         match self {
+            Self::Dragonlance => Dragonlance::deities(),
             Self::Drow => Drow::deities(),
             Self::Dwarven => Dwarven::deities(),
             Self::Duergar => Duergar::deities(),

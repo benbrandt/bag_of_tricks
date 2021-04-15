@@ -1,0 +1,216 @@
+---
+source: src/deities/dragonlance.rs
+expression: "Dragonlance::deities()"
+
+---
+- name: Paladine
+  titles:
+    - god of rulers and guardians
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbols:
+    - Silver triangle
+- name: Branchala
+  titles:
+    - god of music
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Bard’s harp
+- name: Habbakuk
+  titles:
+    - god of animal life and the sea
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Nature
+    - Tempest
+  symbols:
+    - Blue bird
+- name: Kiri-Jolith
+  titles:
+    - god of honor and war
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbols:
+    - Bison’s horns
+- name: Majere
+  titles:
+    - god of meditation and order
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Copper spider
+- name: Mishakal
+  titles:
+    - goddess of healing
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbols:
+    - Blue infinity sign
+- name: Solinari
+  titles:
+    - god of good magic
+  alignment:
+    - Lawful
+    - Good
+  domains: []
+  symbols:
+    - White circle or sphere
+- name: Gilean
+  titles:
+    - god of knowledge
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Open book
+- name: Chislev
+  titles:
+    - goddess of nature
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Feather
+- name: Reorx
+  titles:
+    - god of craft
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Forging hammer
+- name: Shinare
+  titles:
+    - goddess of wealth and trade
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+    - Trickery
+  symbols:
+    - Griffon’s wing
+- name: Sirrion
+  titles:
+    - god of fire and change
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Multi-colored fire
+- name: Zivilyn
+  titles:
+    - god of wisdom
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Great green or gold tree
+- name: Lunitari
+  titles:
+    - goddess of neutral magic
+  alignment:
+    - Neutral
+    - Neutral
+  domains: []
+  symbols:
+    - Red circle or sphere
+- name: Takhisis
+  titles:
+    - goddess of night and hatred
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Black crescent
+- name: Chemosh
+  titles:
+    - god of the undead
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Yellow skull
+- name: Hiddukel
+  titles:
+    - god of lies and greed
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbols:
+    - Broken merchant’s scales
+- name: Morgion
+  titles:
+    - god of disease and secrecy
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Hood with two red eyes
+- name: Sargonnas
+  titles:
+    - god of vengeance and fire
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Stylized red condor
+- name: Zeboim
+  titles:
+    - goddess of the sea and storms
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Tempest
+  symbols:
+    - Turtle shell
+- name: Nuitari
+  titles:
+    - god of evil magic
+  alignment:
+    - Lawful
+    - Evil
+  domains: []
+  symbols:
+    - Black circle or sphere
+
