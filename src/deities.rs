@@ -3,6 +3,7 @@ mod elven;
 mod forgotten_realms;
 mod gnomish;
 mod halfling;
+mod orc;
 
 use serde::{Deserialize, Serialize};
 

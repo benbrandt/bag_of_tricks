@@ -1,0 +1,68 @@
+---
+source: src/deities/orc.rs
+expression: "Orc::deities()"
+
+---
+- name: Bahgtru
+  titles:
+    - god of strength
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Broken thigh bone
+- name: Gruumsh
+  titles:
+    - god of storms and war
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Tempest
+    - War
+  symbols:
+    - Unblinking eye
+- name: Ilneval
+  titles:
+    - god of strategy and hordes
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Upright blood-spattered sword
+- name: Luthic
+  titles:
+    - mother-goddess of fertility and healding
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - "Orcish rune meaning \"cave entrance\""
+- name: Shargaas
+  titles:
+    - god of stealth and darkness
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Trickery
+  symbols:
+    - "Red crescent moon with a skull between the moon's horns"
+- name: Yurtrus
+  titles:
+    - god of death and disease
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - "White hand, palm outward"
+
