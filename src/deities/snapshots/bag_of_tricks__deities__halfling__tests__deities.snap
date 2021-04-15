@@ -1,0 +1,62 @@
+---
+source: src/deities/halfling.rs
+expression: "Halfling::deities()"
+
+---
+- name: Arvoreen
+  titles:
+    - god of vigilance and war
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbol: Crossed short swords
+- name: Brandobaris
+  titles:
+    - god of thievery and adventure
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Trickery
+  symbol: Halfling footprint
+- name: Cyrrollalee
+  titles:
+    - goddess of hearth and home
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+  symbol: An open door
+- name: Sheela Peryroyl
+  titles:
+    - goddess of agriculture and weather
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+    - Tempest
+  symbol: Flower
+- name: Urogalan
+  titles:
+    - god of earth and death
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Death
+    - Knowledge
+  symbol: "Silhouette of a dog's head"
+- name: Yondalla
+  titles:
+    - goddess of fertility and protection
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+  symbol: "Cornucopia on a shield, shield"
+

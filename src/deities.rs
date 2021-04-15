@@ -1,6 +1,7 @@
 mod dwarven;
 mod elven;
 mod forgotten_realms;
+mod halfling;
 
 use serde::{Deserialize, Serialize};
 
@@ -10,6 +11,7 @@ use self::{
     dwarven::{Duergar, Dwarven},
     elven::{Drow, Elven},
     forgotten_realms::ForgottenRealms,
+    halfling::Halfling,
 };
 
 #[derive(Deserialize, Serialize)]
@@ -44,6 +46,7 @@ pub(crate) enum Pantheons {
     Dwarven,
     Elven,
     ForgottenRealms,
+    Halfling,
 }
 
 impl Pantheons {
@@ -54,6 +57,7 @@ impl Pantheons {
             Self::Duergar => Duergar::deities(),
             Self::Elven => Elven::deities(),
             Self::ForgottenRealms => ForgottenRealms::deities(),
+            Self::Halfling => Halfling::deities(),
         }
     }
 }

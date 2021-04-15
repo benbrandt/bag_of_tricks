@@ -26,7 +26,7 @@ impl Pantheon for Elven {
                 titles: vec!["god of art and magic"],
                 alignment: Alignment(Attitude::Chaotic, Morality::Good),
                 domains: vec![Domain::Arcana, Domain::Light],
-                symbol: "Crescent moon",
+                symbol: "Crescent moon, quarter moon, or starburst",
             },
             Deity {
                 name: "Deep Sashelas",
@@ -72,10 +72,13 @@ impl Pantheon for Elven {
             },
             Deity {
                 name: "Sehanine Moonbow",
-                titles: vec!["goddess of divination, dreams, travel, and death"],
+                titles: vec![
+                    "goddess of the moon",
+                    "goddess of divination, dreams, travel, and death",
+                ],
                 alignment: Alignment(Attitude::Chaotic, Morality::Good),
                 domains: vec![Domain::Knowledge],
-                symbol: "Full moon under a moonbow",
+                symbol: "Full moon under a moonbow, crescent moon",
             },
             Deity {
                 name: "Shevarash",

@@ -32,7 +32,7 @@ expression: "Elven::deities()"
   domains:
     - Arcana
     - Light
-  symbol: Crescent moon
+  symbol: "Crescent moon, quarter moon, or starburst"
 - name: Deep Sashelas
   titles:
     - god of the sea
@@ -91,13 +91,14 @@ expression: "Elven::deities()"
   symbol: Oak
 - name: Sehanine Moonbow
   titles:
+    - goddess of the moon
     - "goddess of divination, dreams, travel, and death"
   alignment:
     - Chaotic
     - Good
   domains:
     - Knowledge
-  symbol: Full moon under a moonbow
+  symbol: "Full moon under a moonbow, crescent moon"
 - name: Shevarash
   titles:
     - god of vengeance
