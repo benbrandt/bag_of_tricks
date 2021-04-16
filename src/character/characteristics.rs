@@ -6,6 +6,8 @@ use strum_macros::{Display, EnumIter};
 
 use crate::dice_roller::RollCmd;
 
+use super::names::human::Ethnicity;
+
 /// An range of ages a given adventurer could be.
 pub(crate) struct AgeRange(pub(crate) RangeInclusive<u16>);
 
@@ -105,6 +107,8 @@ pub(crate) struct CharacteristicDetails {
     pub(crate) age: u16,
     /// Base speed of the character
     pub(crate) base_speeds: Vec<Speed>,
+    // Human ethnicity (if applicable)
+    pub(crate) ethnicity: Option<Ethnicity>,
     /// Gender of the character (only used for name choices)
     pub(crate) gender: Gender,
     /// Height of the character
@@ -118,6 +122,10 @@ pub(crate) struct CharacteristicDetails {
 impl fmt::Display for CharacteristicDetails {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "Age: {}", self.age)?;
+        if let Some(ethnicity) = self.ethnicity {
+            writeln!(f, "Human ethnicity: {}", ethnicity)?;
+            writeln!(f, "Human language known: {}", ethnicity.human_language())?;
+        }
         writeln!(f, "Gender: {}", self.gender)?;
         writeln!(f, "Size: {}", self.size)?;
         writeln!(f, "Height: {}'{}\"", self.height / 12, self.height % 12)?;
@@ -131,6 +139,8 @@ impl fmt::Display for CharacteristicDetails {
 pub(crate) trait Characteristics {
     /// Age range to choose from
     const AGE_RANGE: AgeRange;
+    // Does this race have human ancestry?
+    const HUMAN_ANCESTRY: bool = false;
     /// Character size
     const SIZE: Size;
 
@@ -146,6 +156,11 @@ pub(crate) trait Characteristics {
         CharacteristicDetails {
             age: Self::AGE_RANGE.gen(rng),
             base_speeds: self.get_base_speeds(),
+            ethnicity: if Self::HUMAN_ANCESTRY {
+                Some(Ethnicity::gen(rng))
+            } else {
+                None
+            },
             gender: Gender::gen(rng),
             height,
             size: Self::SIZE,
@@ -174,6 +189,7 @@ mod tests {
         let characteristics = CharacteristicDetails {
             age: 100,
             base_speeds: vec![Speed::Walking(30)],
+            ethnicity: Some(Ethnicity::Chondathan),
             gender: Gender::gen(&mut rng),
             height: 75,
             size: Size::Medium,
@@ -189,6 +205,7 @@ mod tests {
         let characteristics = CharacteristicDetails {
             age: 100,
             base_speeds: vec![Speed::Walking(30)],
+            ethnicity: Some(Ethnicity::Chondathan),
             gender: Gender::gen(&mut rng),
             height: 75,
             size: Size::Medium,

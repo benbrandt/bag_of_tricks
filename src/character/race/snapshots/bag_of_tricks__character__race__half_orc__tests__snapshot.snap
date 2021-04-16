@@ -4,10 +4,11 @@ expression: half_orc
 
 ---
 - type: HalfOrc
-- Breltora Falone
+- Meilil Bone Crusher
 - age: 70
   base_speeds:
     - Walking: 30
+  ethnicity: Calishite
   gender: Female
   height: 66
   size: Medium

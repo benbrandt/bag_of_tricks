@@ -9,6 +9,7 @@ expression: bugbear
 - age: 16
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 83
   size: Medium

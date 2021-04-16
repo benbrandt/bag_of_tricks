@@ -12,6 +12,7 @@ expression: kobold
 - age: 16
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 32
   size: Small

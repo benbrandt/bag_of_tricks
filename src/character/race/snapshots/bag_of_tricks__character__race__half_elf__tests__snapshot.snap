@@ -9,11 +9,12 @@ expression: half_elf
       - 1
     - - Wisdom
       - 1
-- Del Chernin
+- Del Anskuld
 - age: 68
   base_speeds:
     - Walking: 30
-  gender: Female
+  ethnicity: Mulan
+  gender: Male
   height: 71
   size: Medium
   weight: 180

@@ -8,10 +8,11 @@ expression: aasimar
     name: Galladia
     nature: Compassionate and hopeful
   subrace: Scourge
-- Fodel Chernin
+- Hamun Anskuld
 - age: 23
   base_speeds:
     - Walking: 30
+  ethnicity: Mulan
   gender: Male
   height: 68
   size: Medium

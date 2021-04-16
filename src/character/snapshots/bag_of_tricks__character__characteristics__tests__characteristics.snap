@@ -6,6 +6,7 @@ expression: characteristics
 age: 100
 base_speeds:
   - Walking: 30
+ethnicity: Chondathan
 gender: Female
 height: 75
 size: Medium

@@ -8,6 +8,7 @@ expression: goliath
 - age: 94
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 82
   size: Medium

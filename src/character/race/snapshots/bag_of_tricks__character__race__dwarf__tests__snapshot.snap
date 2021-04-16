@@ -9,6 +9,7 @@ expression: dwarf
 - age: 125
   base_speeds:
     - Walking: 25
+  ethnicity: ~
   gender: Female
   height: 51
   size: Medium

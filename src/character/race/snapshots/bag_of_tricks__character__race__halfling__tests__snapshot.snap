@@ -9,6 +9,7 @@ expression: halfling
 - age: 140
   base_speeds:
     - Walking: 25
+  ethnicity: ~
   gender: Female
   height: 36
   size: Small

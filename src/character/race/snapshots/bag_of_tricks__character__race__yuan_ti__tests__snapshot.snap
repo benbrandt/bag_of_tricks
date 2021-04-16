@@ -12,10 +12,11 @@ expression: yuan_ti
   scale_pattern: Mottled
   skin_color: Yellow
   tongue_color: Orange
-- Kara Starag
+- Ceidil Rein
 - age: 21
   base_speeds:
     - Walking: 30
+  ethnicity: Calishite
   gender: Female
   height: 63
   size: Medium

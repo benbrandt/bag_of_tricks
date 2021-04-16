@@ -1,43 +1,116 @@
 use rand::{prelude::IteratorRandom, Rng};
+use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
-use strum_macros::EnumIter;
+use strum_macros::{Display, EnumIter};
 
 /// Ethnicity options, which determine name lists
-#[derive(EnumIter)]
-enum Ethnicity {
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
+pub(crate) enum Ethnicity {
+    Arkaiun,
+    Bedine,
     Calishite,
     Chondathan,
     Damaran,
+    Ffolk,
+    Gur,
+    Halruaan,
     Illuskan,
+    Imaskari,
     Mulan,
+    Nar,
     Rashemi,
+    Shaaran,
     Shou,
     Tethyrian,
+    Tuigan,
     Turami,
+    Ulutiun,
 }
 
-/// Name options for a given ethnicity
-pub(crate) struct Names<'a> {
-    pub(crate) female: &'a [&'a str],
-    pub(crate) male: &'a [&'a str],
-    pub(crate) surname: &'a [&'a str],
-}
+impl Ethnicity {
+    pub(crate) fn gen(rng: &mut impl Rng) -> Self {
+        Ethnicity::iter().choose(rng).unwrap()
+    }
 
-impl Names<'_> {
-    /// Choose a random ethnicity and then map to the name options
-    pub(crate) fn gen_names(rng: &mut impl Rng) -> Self {
-        match Ethnicity::iter().choose(rng).unwrap() {
-            Ethnicity::Calishite => CALISHITE,
-            Ethnicity::Chondathan | Ethnicity::Tethyrian => CHONDATHAN,
-            Ethnicity::Damaran => DAMARAN,
-            Ethnicity::Illuskan => ILLUSKAN,
-            Ethnicity::Mulan => MULAN,
-            Ethnicity::Rashemi => RASHEMI,
-            Ethnicity::Shou => SHOU,
-            Ethnicity::Turami => TURAMI,
+    pub(crate) fn human_language(self) -> &'static str {
+        match self {
+            Self::Arkaiun => "Dambrathan (written in Espruar)",
+            Self::Bedine => "Midani",
+            Self::Calishite => "Alzhedo",
+            Self::Chondathan | Self::Tethyrian => "Chondothan",
+            Self::Damaran => "Damaran (written in Dethek)",
+            Self::Ffolk => "Waelan",
+            Self::Gur => "Guran (a patois of Roushoum and Rashemi)",
+            Self::Halruaan => "Halruaan (written in Draconic)",
+            Self::Illuskan => "Illuskan",
+            Self::Imaskari => "Roushoum",
+            Self::Mulan => "Chessentan, Mulhorandi, Untheric, or Thayan",
+            Self::Nar => "Damaran",
+            Self::Rashemi => "Rashemi",
+            Self::Shaaran => "Shaaran (written in Dethek)",
+            Self::Shou => "Shou",
+            Self::Tuigan => "Tuigan",
+            Self::Turami => "Turmic",
+            Self::Ulutiun => "Uluik",
+        }
+    }
+
+    pub(crate) fn names(self) -> Names {
+        match self {
+            Self::Arkaiun => ARKAIUN,
+            Self::Bedine => BEDINE,
+            Self::Calishite => CALISHITE,
+            Self::Chondathan | Self::Tethyrian => CHONDATHAN,
+            Self::Damaran => DAMARAN,
+            Self::Ffolk => FFOLK,
+            Self::Gur => GUR,
+            Self::Halruaan => HALRUAAN,
+            Self::Illuskan => ILLUSKAN,
+            Self::Imaskari => IMASKARI,
+            Self::Mulan => MULAN,
+            Self::Nar => NAR,
+            Self::Rashemi => RASHEMI,
+            Self::Shaaran => SHAARAN,
+            Self::Shou => SHOU,
+            Self::Tuigan => TUIGAN,
+            Self::Turami => TURAMI,
+            Self::Ulutiun => ULUTIUN,
         }
     }
 }
+
+/// Name options for a given ethnicity
+pub(crate) struct Names {
+    pub(crate) female: &'static [&'static str],
+    pub(crate) male: &'static [&'static str],
+    pub(crate) surname: &'static [&'static str],
+}
+
+const ARKAIUN: Names = Names {
+    female: &["Glouris", "Maeve", "Sevaera", "Xaemarra", "Zraela"],
+    male: &["Houn", "Rhivaun", "Umbril", "Xaemar", "Zeltaebar"],
+    surname: &["Lharaendo", "Mristar", "Wyndael"],
+};
+
+const BEDINE: Names = Names {
+    female: &["Aisha", "Farah", "Nura", "Rashida", "Zalebyeh"],
+    male: &["Aali", "Rashid", "Tahnon", "Tanzim", "Whalide"],
+    surname: &[
+        "Alaii",
+        "Bordjia",
+        "Clelarra",
+        "Desai",
+        "Dakawa",
+        "Dursalai",
+        "Goldor",
+        "Iriphawa",
+        "Kellordrai",
+        "Lalajar",
+        "Qahtan",
+        "Yethai",
+        "Zazalaar",
+    ],
+};
 
 const CALISHITE: Names = Names {
     female: &[
@@ -137,7 +210,6 @@ const CHONDATHAN: Names = Names {
         "Ilzimmer",
         "Inchtarwurn",
         "Jhansczil",
-        "Kendrick",
         "Kreeg",
         "Kromlor",
         "Mammlar",
@@ -182,6 +254,31 @@ const DAMARAN: Names = Names {
     ],
 };
 
+const FFOLK: Names = Names {
+    female: &["Alicia", "Gennifer", "Meridith", "Elaine", "Olivia"],
+    male: &["Artur", "Bern", "Colin", "Manfred", "Tristan"],
+    surname: &["Archer", "Gareth", "Leed", "Kendrick", "Morgan", "Waters"],
+};
+
+const GUR: Names = Names {
+    female: &["Varra", "Ulmarra", "Imza", "Navarra", "Yuldra"],
+    male: &["Boriv", "Gardar", "Madevik", "Vlad"],
+    surname: &["Chergoba", "Drazlad", "Tazyara", "Vargoba", "Stayankina"],
+};
+
+const HALRUAAN: Names = Names {
+    female: &["Aithe", "Chalan", "Oloma", "Phaele", "Sarade"],
+    male: &[
+        "Aldym",
+        "Chand",
+        "Meleghost",
+        "Presmer",
+        "Sandrue",
+        "Uregaunt",
+    ],
+    surname: &["Avhoste", "Darante", "Maurmeril", "Stamaraster"],
+};
+
 const ILLUSKAN: Names = Names {
     female: &[
         "Amafrey", "Barri", "Betha", "Cefrey", "Dagmaer", "Druette", "Kethra", "Mara", "Olga",
@@ -220,6 +317,12 @@ const ILLUSKAN: Names = Names {
     ],
 };
 
+const IMASKARI: Names = Names {
+    female: &["Apret", "Bask", "Fanul", "Mokat", "Nismet", "Ril"],
+    male: &["Chavra", "Duma", "Hukir", "Jama", "Pradir", "Sikhil"],
+    surname: &["Datharathi", "Melpurvatta", "Nalambar", "Tiliputakas"],
+};
+
 const MULAN: Names = Names {
     female: &[
         "Arizima", "Chathi", "Nephis", "Nulara", "Murithi", "Sefris", "Thola", "Umara", "Zolis",
@@ -249,6 +352,22 @@ const MULAN: Names = Names {
     ],
 };
 
+const NAR: Names = Names {
+    female: &["Anva", "Dasha", "Dima", "Olga", "Westra", "Zlatara"],
+    male: &[
+        "Avan", "Ostaram", "Petro", "Stor", "Taman", "Thalaman", "Urth",
+    ],
+    surname: &[
+        "Dashkev",
+        "Hargoth",
+        "Laboda",
+        "Lackman",
+        "Stonar",
+        "Stormwind",
+        "Sulyma",
+    ],
+};
+
 const RASHEMI: Names = Names {
     female: &[
         "Fyevarra", "Hulmarra", "Immith", "Imzel", "Navarra", "Shevarra", "Tammith", "Yuldra",
@@ -275,6 +394,14 @@ const RASHEMI: Names = Names {
     ],
 };
 
+const SHAARAN: Names = Names {
+    female: &["Anet", "Bes", "Idim", "Lenet", "Moqem", "Neghet", "Sihvet"],
+    male: &[
+        "Awar", "Cohis", "Damota", "Gewar", "Hapah", "Laskaw", "Senesaw", "Tokhis",
+    ],
+    surname: &["Cor Marak", "Laumee Harr", "Moq Qu Harr", "Woraw Tarak"],
+};
+
 const SHOU: Names = Names {
     female: &["Bai", "Chao", "Jia", "Lei", "Mei", "Qiao", "Shui", "Tai"],
     male: &[
@@ -284,6 +411,12 @@ const SHOU: Names = Names {
     surname: &[
         "Chien", "Huang", "Kao", "Kung", "Lao", "Ling", "Mei", "Pin", "Shin", "Sum", "Tan", "Wan",
     ],
+};
+
+const TUIGAN: Names = Names {
+    female: &["Bolormaa", "Bortai", "Erdene", "Naran"],
+    male: &["Atlan", "Bayar", "Chingis", "Chinua", "Mongke", "Temur"],
+    surname: &[],
 };
 
 const TURAMI: Names = Names {
@@ -303,4 +436,10 @@ const TURAMI: Names = Names {
         "Pisacar",
         "Ramondo",
     ],
+};
+
+const ULUTIUN: Names = Names {
+    female: &["Akna", "Chena", "Kaya", "Sedna", "Ublereak"],
+    male: &["Amak", "Chu", "Imnek", "Kanut", "Siku"],
+    surname: &[],
 };

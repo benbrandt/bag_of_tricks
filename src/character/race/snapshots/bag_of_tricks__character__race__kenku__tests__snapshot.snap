@@ -8,6 +8,7 @@ expression: kenku
 - age: 42
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 59
   size: Medium

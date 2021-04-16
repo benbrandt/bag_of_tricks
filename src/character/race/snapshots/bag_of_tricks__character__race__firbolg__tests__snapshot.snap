@@ -9,6 +9,7 @@ expression: firbolg
 - age: 71
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 85
   size: Medium

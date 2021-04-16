@@ -10,6 +10,7 @@ expression: goblin
 - age: 55
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 46
   size: Small

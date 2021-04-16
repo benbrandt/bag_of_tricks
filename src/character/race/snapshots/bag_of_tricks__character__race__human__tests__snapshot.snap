@@ -4,10 +4,11 @@ expression: human
 
 ---
 - type: Human
-- Jalana Falone
+- Meilil Khalid
 - age: 94
   base_speeds:
     - Walking: 30
+  ethnicity: Calishite
   gender: Female
   height: 64
   size: Medium

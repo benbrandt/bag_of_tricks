@@ -16,7 +16,7 @@ use crate::{
         },
         features::Features,
         languages::{Language, Languages},
-        names::{human::Names, Name},
+        names::Name,
         proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
@@ -35,11 +35,14 @@ pub(crate) struct Human;
 
 impl Human {
     /// Separate function to make it easier to share with other races
-    pub(crate) fn gen_first_name<'a>(
+    pub(crate) fn gen_first_name(
         rng: &mut impl Rng,
-        names: &'a Names,
-        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
-    ) -> &'a str {
+        CharacteristicDetails {
+            ethnicity, gender, ..
+        }: &CharacteristicDetails,
+    ) -> &'static str {
+        // Should be set if using this
+        let names = ethnicity.unwrap().names();
         let first_names = match gender {
             Gender::Female => names.female,
             Gender::Male => names.male,
@@ -48,8 +51,13 @@ impl Human {
     }
 
     /// Separate function to make it easier to share with other races
-    pub(crate) fn gen_surname<'a>(rng: &mut impl Rng, names: &'a Names) -> &'a str {
-        names.surname.choose(rng).unwrap()
+    pub(crate) fn gen_surname(
+        rng: &mut impl Rng,
+        CharacteristicDetails { ethnicity, .. }: &CharacteristicDetails,
+    ) -> &'static str {
+        // Should be set if using this
+        let names = ethnicity.unwrap().names();
+        names.surname.choose(rng).unwrap_or(&"")
     }
 }
 
@@ -59,6 +67,7 @@ impl Backstory for Human {}
 
 impl Characteristics for Human {
     const AGE_RANGE: AgeRange = AgeRange(10..=100);
+    const HUMAN_ANCESTRY: bool = true;
     const SIZE: Size = Size::Medium;
 
     fn get_base_speeds(&self) -> Vec<Speed> {
@@ -90,11 +99,10 @@ impl Languages for Human {
 
 impl Name for Human {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
-        let names = Names::gen_names(rng);
         format!(
             "{} {}",
-            Self::gen_first_name(rng, &names, characteristics),
-            Self::gen_surname(rng, &names),
+            Self::gen_first_name(rng, characteristics),
+            Self::gen_surname(rng, characteristics),
         )
     }
 }

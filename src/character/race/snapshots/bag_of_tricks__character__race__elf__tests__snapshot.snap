@@ -9,6 +9,7 @@ expression: elf
 - age: 677
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 71
   size: Medium

@@ -11,6 +11,7 @@ expression: tabaxi
   base_speeds:
     - Walking: 30
     - Climbing: 20
+  ethnicity: ~
   gender: Female
   height: 68
   size: Medium

@@ -19,7 +19,7 @@ use crate::{
         },
         features::{Feature, Features},
         languages::{Language, Languages},
-        names::{human::Names, Name},
+        names::Name,
         proficiencies::{Proficiencies, ProficiencyOption},
     },
     citation::{Book, Citation, CitationList, Citations},
@@ -61,6 +61,7 @@ impl Backstory for HalfElf {}
 
 impl Characteristics for HalfElf {
     const AGE_RANGE: AgeRange = AgeRange(10..=180);
+    const HUMAN_ANCESTRY: bool = true;
     const SIZE: Size = Size::Medium;
 
     fn get_base_speeds(&self) -> Vec<Speed> {
@@ -108,16 +109,18 @@ impl Languages for HalfElf {
 impl Name for HalfElf {
     /// First and last names can be either elven or human
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
-        let names = Names::gen_names(rng);
         let first_name = *[
             Elf::gen_first_name(rng, characteristics),
-            Human::gen_first_name(rng, &names, characteristics),
+            Human::gen_first_name(rng, characteristics),
         ]
         .choose(rng)
         .unwrap();
-        let surname = *[Elf::gen_family_name(rng), Human::gen_surname(rng, &names)]
-            .choose(rng)
-            .unwrap();
+        let surname = *[
+            Elf::gen_family_name(rng),
+            Human::gen_surname(rng, characteristics),
+        ]
+        .choose(rng)
+        .unwrap();
         format!("{} {}", first_name, surname)
     }
 }

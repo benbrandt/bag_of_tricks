@@ -9,6 +9,7 @@ expression: hobgoblin
 - age: 20
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 65
   size: Medium

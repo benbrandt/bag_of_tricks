@@ -21,7 +21,7 @@ use crate::{
         },
         features::{Feature, Features},
         languages::{Language, Languages},
-        names::{human::Names, yuan_ti::NAMES, Name},
+        names::{yuan_ti::NAMES, Name},
         proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
@@ -305,6 +305,7 @@ impl Backstory for YuanTiPureblood {
 
 impl Characteristics for YuanTiPureblood {
     const AGE_RANGE: AgeRange = AgeRange(10..=100);
+    const HUMAN_ANCESTRY: bool = true;
     const SIZE: Size = Size::Medium;
 
     fn get_base_speeds(&self) -> Vec<Speed> {
@@ -358,14 +359,17 @@ impl Languages for YuanTiPureblood {
 impl Name for YuanTiPureblood {
     /// Name also requires getting a set of human names (for human lineage)
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
-        let names = Names::gen_names(rng);
         let first_name = *[
-            Human::gen_first_name(rng, &names, characteristics),
+            Human::gen_first_name(rng, characteristics),
             *NAMES.choose(rng).unwrap(),
         ]
         .choose(rng)
         .unwrap();
-        format!("{} {}", first_name, Human::gen_surname(rng, &names))
+        format!(
+            "{} {}",
+            first_name,
+            Human::gen_surname(rng, characteristics)
+        )
     }
 }
 

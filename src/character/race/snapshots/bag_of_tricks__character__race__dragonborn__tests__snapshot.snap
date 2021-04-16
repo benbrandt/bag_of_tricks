@@ -9,6 +9,7 @@ expression: dragonborn
 - age: 12
   base_speeds:
     - Walking: 30
+  ethnicity: ~
   gender: Female
   height: 74
   size: Medium
