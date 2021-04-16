@@ -64,8 +64,11 @@ impl AlignmentInfluences for Halfling {
 impl Backstory for Halfling {}
 
 impl Characteristics for Halfling {
-    const AGE_RANGE: AgeRange = AgeRange(10..=150);
     const SIZE: Size = Size::Small;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(10..=150)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(25)]

@@ -64,8 +64,11 @@ impl Backstory for Lizardfolk {
 }
 
 impl Characteristics for Lizardfolk {
-    const AGE_RANGE: AgeRange = AgeRange(7..=60);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(7..=60)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30), Speed::Swimming(30)]

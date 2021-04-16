@@ -88,8 +88,11 @@ impl AlignmentInfluences for Dwarf {
 impl Backstory for Dwarf {}
 
 impl Characteristics for Dwarf {
-    const AGE_RANGE: AgeRange = AgeRange(10..=350);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(10..=350)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(25)]
@@ -120,6 +123,11 @@ impl Citations for Dwarf {
 impl Features for Dwarf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
+            // Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+            Feature {
+                title: "Darkvision",
+                citation: Citation(Book::Phb, 20),
+            },
             // You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).
             Feature {
                 title: "Dwarven Resilience",
@@ -163,14 +171,6 @@ impl Features for Dwarf {
                     citation: Citation(Book::Scag, 104),
                 },
             ]);
-        } else {
-            features.push(
-                // Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
-                Feature {
-                    title: "Darkvision",
-                    citation: Citation(Book::Phb, 20),
-                },
-            )
         }
         features
     }

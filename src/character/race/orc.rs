@@ -73,8 +73,11 @@ impl Backstory for Orc {
 }
 
 impl Characteristics for Orc {
-    const AGE_RANGE: AgeRange = AgeRange(6..=50);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(6..=50)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

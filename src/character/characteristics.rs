@@ -137,12 +137,13 @@ impl fmt::Display for CharacteristicDetails {
 ///
 /// Separate from race since it uses associated constants (which can't be on a trait object)
 pub(crate) trait Characteristics {
-    /// Age range to choose from
-    const AGE_RANGE: AgeRange;
     // Does this race have human ancestry?
     const HUMAN_ANCESTRY: bool = false;
     /// Character size
     const SIZE: Size;
+
+    /// Age range to choose from
+    fn get_age_range(&self) -> AgeRange;
 
     /// Base speeds
     fn get_base_speeds(&self) -> Vec<Speed>;
@@ -154,7 +155,7 @@ pub(crate) trait Characteristics {
     fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {
         let (height, weight) = self.get_height_and_weight_table().gen(rng);
         CharacteristicDetails {
-            age: Self::AGE_RANGE.gen(rng),
+            age: self.get_age_range().gen(rng),
             base_speeds: self.get_base_speeds(),
             ethnicity: if Self::HUMAN_ANCESTRY {
                 Some(Ethnicity::gen(rng))

@@ -58,8 +58,11 @@ impl Backstory for Goblin {
 }
 
 impl Characteristics for Goblin {
-    const AGE_RANGE: AgeRange = AgeRange(4..=60);
     const SIZE: Size = Size::Small;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(4..=60)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

@@ -9,7 +9,7 @@ use strum_macros::{Display, EnumIter};
 
 use super::Race;
 use crate::{
-    alignment::{AlignmentInfluences, Morality},
+    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
@@ -37,11 +37,18 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     height_mod: RollCmd(2, Die::D4),
     weight_mod: WeightMod::Fixed(1),
 };
+const SVIRFNEBLIN_HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
+    base_height: in_inches(2, 11),
+    base_weight: 70,
+    height_mod: RollCmd(2, Die::D4),
+    weight_mod: WeightMod::Roll(RollCmd(2, Die::D4)),
+};
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum GnomeSubrace {
     Forest,
     Rock,
+    Svirfneblin,
 }
 
 #[derive(Deserialize, Serialize)]
@@ -51,23 +58,42 @@ pub(crate) struct Gnome {
 }
 
 impl AlignmentInfluences for Gnome {
+    fn attitude(&self) -> Vec<Attitude> {
+        match self.subrace {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => vec![],
+            GnomeSubrace::Svirfneblin => vec![Attitude::Neutral],
+        }
+    }
+
     fn morality(&self) -> Vec<Morality> {
-        vec![Morality::Good]
+        match self.subrace {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => vec![Morality::Good],
+            GnomeSubrace::Svirfneblin => vec![Morality::Neutral],
+        }
     }
 }
 
 impl Backstory for Gnome {}
 
 impl Characteristics for Gnome {
-    const AGE_RANGE: AgeRange = AgeRange(10..=500);
     const SIZE: Size = Size::Small;
+
+    fn get_age_range(&self) -> AgeRange {
+        match self.subrace {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => AgeRange(10..=500),
+            GnomeSubrace::Svirfneblin => AgeRange(12..=250),
+        }
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(25)]
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
-        &HEIGHT_AND_WEIGHT
+        match self.subrace {
+            GnomeSubrace::Forest | GnomeSubrace::Rock => &HEIGHT_AND_WEIGHT,
+            GnomeSubrace::Svirfneblin => &SVIRFNEBLIN_HEIGHT_AND_WEIGHT,
+        }
     }
 }
 
@@ -76,6 +102,7 @@ impl Citations for Gnome {
         let race = Citation(Book::Phb, 35);
         let subrace = match self.subrace {
             GnomeSubrace::Forest | GnomeSubrace::Rock => Citation(Book::Phb, 37),
+            GnomeSubrace::Svirfneblin => Citation(Book::Scag, 115),
         };
         CitationList(vec![race, subrace])
     }
@@ -125,6 +152,18 @@ impl Features for Gnome {
                     citation: Citation(Book::Phb, 37),
                 },
             ],
+            GnomeSubrace::Svirfneblin => vec![
+                // Your Darkvision has a radius of 120 ft
+                Feature {
+                    title: "Superior Darkvision",
+                    citation: Citation(Book::Scag, 115),
+                },
+                // You have advantage on Dexterity (Stealth) checks to hide in rocky terrain.
+                Feature {
+                    title: "Stone Camouflage",
+                    citation: Citation(Book::Scag, 115),
+                },
+            ],
         });
         features
     }
@@ -132,7 +171,11 @@ impl Features for Gnome {
 
 impl Languages for Gnome {
     fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Gnomish]
+        let mut languages = vec![Language::Common, Language::Gnomish];
+        if matches!(self.subrace, GnomeSubrace::Svirfneblin) {
+            languages.push(Language::Undercommon);
+        }
+        languages
     }
 }
 
@@ -181,7 +224,9 @@ impl Race for Gnome {
         vec![
             AbilityScore(AbilityScoreType::Intelligence, 2),
             match self.subrace {
-                GnomeSubrace::Forest => AbilityScore(AbilityScoreType::Dexterity, 1),
+                GnomeSubrace::Forest | GnomeSubrace::Svirfneblin => {
+                    AbilityScore(AbilityScoreType::Dexterity, 1)
+                }
                 GnomeSubrace::Rock => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ]

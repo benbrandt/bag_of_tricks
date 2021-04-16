@@ -47,8 +47,11 @@ impl AlignmentInfluences for Kenku {
 impl Backstory for Kenku {}
 
 impl Characteristics for Kenku {
-    const AGE_RANGE: AgeRange = AgeRange(6..=60);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(6..=60)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

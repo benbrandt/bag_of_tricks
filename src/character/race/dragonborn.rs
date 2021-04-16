@@ -133,8 +133,11 @@ impl AlignmentInfluences for Dragonborn {
 impl Backstory for Dragonborn {}
 
 impl Characteristics for Dragonborn {
-    const AGE_RANGE: AgeRange = AgeRange(3..=80);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(3..=80)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

@@ -54,8 +54,11 @@ impl Backstory for Hobgoblin {
 }
 
 impl Characteristics for Hobgoblin {
-    const AGE_RANGE: AgeRange = AgeRange(10..=100);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(10..=100)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

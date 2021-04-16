@@ -11,4 +11,8 @@ expression: "GnomeSubrace::iter().map(|subrace|\n                             (G
     - 35
   - - Phb
     - 37
+- - - Phb
+    - 35
+  - - Scag
+    - 115
 

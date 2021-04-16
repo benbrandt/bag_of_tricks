@@ -3,7 +3,11 @@ source: src/character/race/dwarf.rs
 expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
 
 ---
-- - title: Dwarven Resilience
+- - title: Darkvision
+    citation:
+      - Phb
+      - 20
+  - title: Dwarven Resilience
     citation:
       - Phb
       - 20
@@ -27,7 +31,11 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
     citation:
       - Scag
       - 104
-- - title: Dwarven Resilience
+- - title: Darkvision
+    citation:
+      - Phb
+      - 20
+  - title: Dwarven Resilience
     citation:
       - Phb
       - 20
@@ -39,11 +47,11 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
     citation:
       - Phb
       - 20
-  - title: Darkvision
+- - title: Darkvision
     citation:
       - Phb
       - 20
-- - title: Dwarven Resilience
+  - title: Dwarven Resilience
     citation:
       - Phb
       - 20
@@ -55,23 +63,11 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
     citation:
       - Phb
       - 20
-  - title: Darkvision
+- - title: Darkvision
     citation:
       - Phb
       - 20
-- - title: Dwarven Resilience
-    citation:
-      - Phb
-      - 20
-  - title: Stonecunning
-    citation:
-      - Phb
-      - 20
-  - title: Darkvision
-    citation:
-      - Phb
-      - 20
-- - title: Dwarven Resilience
+  - title: Dwarven Resilience
     citation:
       - Phb
       - 20
@@ -79,7 +75,15 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
     citation:
       - Phb
       - 20
-  - title: Darkvision
+- - title: Darkvision
+    citation:
+      - Phb
+      - 20
+  - title: Dwarven Resilience
+    citation:
+      - Phb
+      - 20
+  - title: Stonecunning
     citation:
       - Phb
       - 20

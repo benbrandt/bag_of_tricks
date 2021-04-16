@@ -65,8 +65,11 @@ impl Backstory for Triton {
 }
 
 impl Characteristics for Triton {
-    const AGE_RANGE: AgeRange = AgeRange(8..=200);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(8..=200)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30), Speed::Swimming(30)]

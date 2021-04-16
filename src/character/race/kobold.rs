@@ -153,8 +153,11 @@ impl Backstory for Kobold {
 }
 
 impl Characteristics for Kobold {
-    const AGE_RANGE: AgeRange = AgeRange(3..=120);
     const SIZE: Size = Size::Small;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(3..=120)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

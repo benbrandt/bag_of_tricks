@@ -110,8 +110,11 @@ impl AlignmentInfluences for Elf {
 impl Backstory for Elf {}
 
 impl Characteristics for Elf {
-    const AGE_RANGE: AgeRange = AgeRange(10..=750);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(10..=750)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![match self.subrace {

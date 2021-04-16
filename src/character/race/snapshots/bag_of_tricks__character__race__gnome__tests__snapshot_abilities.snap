@@ -11,4 +11,8 @@ expression: "GnomeSubrace::iter().map(|subrace|\n                             (G
     - 2
   - - Constitution
     - 1
+- - - Intelligence
+    - 2
+  - - Dexterity
+    - 1
 

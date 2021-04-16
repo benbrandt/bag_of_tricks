@@ -5,7 +5,7 @@ expression: "Gnomish::deities()"
 ---
 - name: Baervan Wildwanderer
   titles:
-    - god of woodlands
+    - god of forests and woodlands
   alignment:
     - Neutral
     - Good
@@ -16,6 +16,7 @@ expression: "Gnomish::deities()"
 - name: Baravar Cloakshadow
   titles:
     - god of illusion and deception
+    - Sly One
   alignment:
     - Neutral
     - Good
@@ -38,6 +39,9 @@ expression: "Gnomish::deities()"
 - name: Flandal Steelskin
   titles:
     - god of metalwork
+    - god of mining and smithcraft
+    - god of physical improvement and good health
+    - the Steelsmith
   alignment:
     - Neutral
     - Good
@@ -48,6 +52,7 @@ expression: "Gnomish::deities()"
 - name: Gaerdal Ironhand
   titles:
     - god of protection
+    - "god of war, vigilance, and defense"
   alignment:
     - Lawful
     - Good
@@ -57,8 +62,10 @@ expression: "Gnomish::deities()"
     - Iron band
 - name: Garl Glittergold
   titles:
-    - god of trickery and gems
+    - "god of humor, gemcutting, protection, and trickery"
     - god of trickery and wiles
+    - the Watchful Protector
+    - the king of the gnomish gods
   alignment:
     - Lawful
     - Good
@@ -69,6 +76,7 @@ expression: "Gnomish::deities()"
 - name: Nebelun
   titles:
     - god of invention and luck
+    - the Meddler
   alignment:
     - Chaotic
     - Good
@@ -80,6 +88,8 @@ expression: "Gnomish::deities()"
 - name: Segojan Earthcaller
   titles:
     - god of earth and the dead
+    - god of the wilds beneath the earth
+    - god of the burrows
   alignment:
     - Neutral
     - Good
@@ -90,6 +100,7 @@ expression: "Gnomish::deities()"
 - name: Urdlen
   titles:
     - god of greed and murder
+    - "great-clawed god of bloodlust and evil, of greed and uncontrolled impulses"
   alignment:
     - Chaotic
     - Evil

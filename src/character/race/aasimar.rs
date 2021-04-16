@@ -118,9 +118,12 @@ impl Backstory for Aasimar {
 }
 
 impl Characteristics for Aasimar {
-    const AGE_RANGE: AgeRange = AgeRange(10..=160);
     const HUMAN_ANCESTRY: bool = true;
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(10..=160)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

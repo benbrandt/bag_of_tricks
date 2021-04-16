@@ -35,4 +35,20 @@ expression: "GnomeSubrace::iter().map(|subrace|\n                             (G
     citation:
       - Phb
       - 37
+- - title: Darkvision
+    citation:
+      - Phb
+      - 37
+  - title: Gnome Cunning
+    citation:
+      - Phb
+      - 37
+  - title: Superior Darkvision
+    citation:
+      - Scag
+      - 115
+  - title: Stone Camouflage
+    citation:
+      - Scag
+      - 115
 

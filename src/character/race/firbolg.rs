@@ -67,8 +67,11 @@ impl Backstory for Firbolg {
 }
 
 impl Characteristics for Firbolg {
-    const AGE_RANGE: AgeRange = AgeRange(15..=500);
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(15..=500)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]

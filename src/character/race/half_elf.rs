@@ -60,9 +60,12 @@ impl AlignmentInfluences for HalfElf {
 impl Backstory for HalfElf {}
 
 impl Characteristics for HalfElf {
-    const AGE_RANGE: AgeRange = AgeRange(10..=180);
     const HUMAN_ANCESTRY: bool = true;
     const SIZE: Size = Size::Medium;
+
+    fn get_age_range(&self) -> AgeRange {
+        AgeRange(10..=180)
+    }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![Speed::Walking(30)]
