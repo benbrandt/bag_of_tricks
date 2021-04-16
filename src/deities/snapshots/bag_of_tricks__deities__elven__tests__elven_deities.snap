@@ -6,6 +6,8 @@ expression: "Elven::deities()"
 - name: Aerdrie Faenya
   titles:
     - goddess of the sky
+    - wild goddess of the winds and weather
+    - patron of the avariel
   alignment:
     - Chaotic
     - Good
@@ -17,6 +19,7 @@ expression: "Elven::deities()"
 - name: Angharradh
   titles:
     - triple goddess of wisdom and protection
+    - the fierce mother-protector of the elf people
   alignment:
     - Chaotic
     - Good
@@ -28,6 +31,7 @@ expression: "Elven::deities()"
 - name: Corellon Larathian
   titles:
     - god of art and magic
+    - "god of elves, magic, poetry, rulership, and warcraft"
   alignment:
     - Chaotic
     - Good
@@ -41,6 +45,7 @@ expression: "Elven::deities()"
 - name: Deep Sashelas
   titles:
     - god of the sea
+    - lord of the sea elves and of dolphins
   alignment:
     - Chaotic
     - Good
@@ -52,6 +57,7 @@ expression: "Elven::deities()"
 - name: Erevan Ilesere
   titles:
     - god of mischief
+    - trickster-god
   alignment:
     - Chaotic
     - Neutral
@@ -61,7 +67,7 @@ expression: "Elven::deities()"
     - Asymmetrical eight-armed star
 - name: Fenmarel Mestarine
   titles:
-    - god of outcasts
+    - god of outcasts and solitude
   alignment:
     - Chaotic
     - Neutral
@@ -71,7 +77,8 @@ expression: "Elven::deities()"
     - Two peering elven eyes
 - name: Hanali Celanil
   titles:
-    - goddess of love and beauty
+    - "goddess of love, beauty, art, and enchantment"
+    - the Winsome Rose
   alignment:
     - Chaotic
     - Good
@@ -82,6 +89,7 @@ expression: "Elven::deities()"
 - name: Labelas Enoreth
   titles:
     - "god of time, history, and philosophy"
+    - the philosopher god
   alignment:
     - Chaotic
     - Good
@@ -93,6 +101,9 @@ expression: "Elven::deities()"
 - name: Rillifane Rallathil
   titles:
     - god of nature
+    - god of the woodlands and wild places
+    - father of the wood elves
+    - protector of druids
   alignment:
     - Chaotic
     - Good
@@ -104,6 +115,8 @@ expression: "Elven::deities()"
   titles:
     - goddess of the moon
     - "goddess of divination, dreams, travel, and death"
+    - "goddess of all life's mysteries, including mysticism, prophecy, death, and dreams"
+    - the Moonlit Mystery
   alignment:
     - Chaotic
     - Good
@@ -124,7 +137,7 @@ expression: "Elven::deities()"
     - Broken arrow over a tear
 - name: Solonor Thelandira
   titles:
-    - god of archery
+    - "god of hunting, archery, and woodcraft"
   alignment:
     - Chaotic
     - Good

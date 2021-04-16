@@ -4,13 +4,13 @@ expression: elf
 
 ---
 - type: Elf
-  subrace: Dark
-- Vadania Graymantle
-- age: 694
+  subrace: High
+- Meriele Galanodel (Moonwhisper)
+- age: 677
   base_speeds:
     - Walking: 30
   gender: Female
-  height: 59
+  height: 71
   size: Medium
-  weight: 105
+  weight: 107
 

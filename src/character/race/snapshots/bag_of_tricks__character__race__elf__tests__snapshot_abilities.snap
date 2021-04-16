@@ -13,6 +13,14 @@ expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{s
     - 1
 - - - Dexterity
     - 2
+  - - Intelligence
+    - 1
+- - - Dexterity
+    - 2
+  - - Intelligence
+    - 1
+- - - Dexterity
+    - 2
   - - Wisdom
     - 1
 
