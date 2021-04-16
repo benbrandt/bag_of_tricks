@@ -3,6 +3,6 @@ source: src/character/race/firbolg.rs
 expression: "[female_name, male_name]"
 
 ---
-- Drusilia Amastacia (Starflower)
-- Paelias Galanodel (Moonwhisper)
+- Drusilia Graymantle
+- Paelias Xiloscient (Goldpetal)
 

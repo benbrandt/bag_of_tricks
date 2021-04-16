@@ -14,9 +14,11 @@ pub(crate) const FAMILY: &[&str] = &[
     "Thorngage",
     "Tosscobble",
     "Underbough",
+    "Wanderfoot",
 ];
 
 pub(crate) const FEMALE: &[&str] = &[
+    "Amarandine",
     "Andry",
     "Bree",
     "Callie",

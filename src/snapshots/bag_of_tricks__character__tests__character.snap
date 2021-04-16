@@ -4,18 +4,17 @@ expression: character
 
 ---
 abilities:
-  Strength: 8
-  Dexterity: 11
-  Constitution: 19
-  Intelligence: 15
-  Wisdom: 13
-  Charisma: 11
+  Strength: 11
+  Dexterity: 13
+  Constitution: 18
+  Intelligence: 13
+  Wisdom: 14
+  Charisma: 12
 alignment:
   - Lawful
   - Good
 background:
-  type: FolkHero
-  defining_event: I led a militia to fight off an invading army.
+  type: Acolyte
 characteristics:
   age: 317
   base_speeds:
@@ -25,21 +24,24 @@ characteristics:
   size: Medium
   weight: 165
 chosen_equipment:
-  - Tool:
-      ArtisansTools: SmithsTools
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
-chosen_languages: []
+  - Other: prayer wheel
+  - Gear:
+      HolySymbol: Emblem
+  - Other: A rank insignia from a lost legionnaire
+chosen_languages:
+  - Orc
+  - DeepSpeech
 level: 1
-name: Helja Fireforge
+name: Hlin Dankil
 personality:
-  bond: "My tools are symbols of my past life, and I carry them so that I will never forget my roots."
-  flaw: The tyrant who rules my land will stop at nothing to see me killed.
+  bond: Everything I do is for the common people.
+  flaw: "I judge others harshly, and myself even more severely."
   ideal:
-    - Destiny. Nothing and no one can steer me away from my higher calling.
+    - "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings."
     - Any
   traits:
-    - "If someone is in trouble, I'm always ready to lend help."
-    - I misuse long words in an attempt to sound smarter.
+    - "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
+    - "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -51,13 +53,10 @@ proficiencies:
       Specific: Warhammer
   - Armor: Light
   - Armor: Medium
-  - Vehicle: Land
-  - Skill: AnimalHandling
-  - Skill: Survival
+  - Skill: Insight
+  - Skill: Religion
   - Tool:
-      ArtisansTools: SmithsTools
-  - Tool:
-      ArtisansTools: WoodcarversTools
+      ArtisansTools: MasonsTools
 race:
   type: Dwarf
   subrace: Mountain

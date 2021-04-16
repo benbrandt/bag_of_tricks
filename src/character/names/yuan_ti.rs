@@ -1,10 +1,12 @@
 pub(crate) const NAMES: &[&str] = &[
     "Asutali",
+    "Dhosun",
     "Eztli",
     "Hessetal",
     "Hitotee",
     "Issahu",
     "Itstli",
+    "Jarant",
     "Manuya",
     "Meztli",
     "Nesalli",

@@ -6,7 +6,9 @@ pub(crate) const CHILD: &[&str] = &[
 pub(crate) const FAMILY: &[&str] = &[
     "Amakiir (Gemflower)",
     "Amastacia (Starflower)",
+    "Floshin",
     "Galanodel (Moonwhisper)",
+    "Graymantle",
     "Holimion (Diamonddew)",
     "Ilphelkiir (Gemblossom)",
     "Liadon (Silverfrond)",
@@ -18,6 +20,7 @@ pub(crate) const FAMILY: &[&str] = &[
 
 pub(crate) const FEMALE: &[&str] = &[
     "Adrie",
+    "Aedyn",
     "Althaea",
     "Anastrianna",
     "Andraste",
@@ -38,7 +41,9 @@ pub(crate) const FEMALE: &[&str] = &[
     "Meriele",
     "Mialee",
     "Miraal",
+    "Morgwais",
     "Naivara",
+    "Ordalf",
     "Quelenna",
     "Quillathe",
     "Sariel",
@@ -56,12 +61,14 @@ pub(crate) const FEMALE: &[&str] = &[
 pub(crate) const MALE: &[&str] = &[
     "Adran",
     "Aelar",
+    "Araithe",
     "Aramil",
     "Arannis",
     "Aust",
     "Beiro",
     "Berrian",
     "Carric",
+    "Darfin",
     "Enialis",
     "Erdan",
     "Erevan",
