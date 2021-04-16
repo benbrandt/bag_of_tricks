@@ -5,17 +5,19 @@ expression: half_elf
 ---
 - type: HalfElf
   addl_increases:
-    - - Constitution
-      - 1
     - - Wisdom
       - 1
-- Del Anskuld
-- age: 68
+    - - Intelligence
+      - 1
+  subrace: High
+  variant: SkillVersatility
+- Del Stamaraster
+- age: 32
   base_speeds:
     - Walking: 30
-  ethnicity: Mulan
+  ethnicity: Halruaan
   gender: Male
-  height: 71
+  height: 67
   size: Medium
-  weight: 180
+  weight: 140
 

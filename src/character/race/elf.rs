@@ -57,7 +57,7 @@ mod height_and_weight {
 }
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
-enum ElfSubrace {
+pub(crate) enum ElfSubrace {
     Dark,
     High,
     Moon,
@@ -89,6 +89,27 @@ impl Elf {
 
     pub(crate) fn gen_family_name<'a>(rng: &mut impl Rng) -> &'a str {
         FAMILY.choose(rng).unwrap()
+    }
+
+    pub(crate) fn weapon_training(subrace: &ElfSubrace) -> Vec<Proficiency> {
+        match subrace {
+            ElfSubrace::Dark => vec![
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            ],
+            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => vec![
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            ],
+            ElfSubrace::Wood => vec![
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            ],
+        }
     }
 }
 
@@ -224,25 +245,7 @@ impl Name for Elf {
 impl Proficiencies for Elf {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![Proficiency::Skill(Skill::Perception)];
-
-        proficiencies.extend(match self.subrace {
-            ElfSubrace::Dark => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
-            ],
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
-            ],
-            ElfSubrace::Wood => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
-            ],
-        });
+        proficiencies.extend(Self::weapon_training(&self.subrace));
         proficiencies
     }
 }
