@@ -4,9 +4,11 @@ A random D&amp;D character generator, written in Rust.
 
 Currently supports:
 
-| Book                    |          Races          | Classes |       Backgrounds       |
-| ----------------------- | :---------------------: | :-----: | :---------------------: |
-| Player's Handbook (PHB) | :ballot_box_with_check: |         | :ballot_box_with_check: |
+| Book                                  |       Races        |      Classes       |    Backgrounds     |
+| ------------------------------------- | :----------------: | :----------------: | :----------------: |
+| Player's Handbook (PHB)               | :white_check_mark: |        :x:         | :white_check_mark: |
+| Volo's Guide to Monsters (VGTM)       | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
+| Sword Coast Adventurer's Guide (SCAG) |        :x:         |        :x:         |        :x:         |
 
 I've been focusing on the necessary logic, so the "ui" is very bare-bones right now. To generate your first character:
 
@@ -14,7 +16,7 @@ I've been focusing on the necessary logic, so the "ui" is very bare-bones right 
 - Clone this repo
 - Run `cargo run` from the root of the project
 
-Go to `http://localhost:8000`, and you should see something like this:
+Go to `http://localhost:3000`, and you should see something like this:
 
 ```text
 CHARACTER NAME: Tordek Frostbeard
