@@ -5,10 +5,18 @@ expression: "HalflingSubrace::iter().map(|subrace|\n                            
 ---
 - - - Phb
     - 26
+  - - Scag
+    - 110
+- - - Phb
+    - 26
   - - Phb
     - 28
 - - - Phb
     - 26
   - - Phb
     - 28
+- - - Phb
+    - 26
+  - - Scag
+    - 109
 

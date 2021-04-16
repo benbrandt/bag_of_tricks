@@ -6,6 +6,8 @@ expression: "Halfling::deities()"
 - name: Arvoreen
   titles:
     - god of vigilance and war
+    - defender-god
+    - watchful protector
   alignment:
     - Lawful
     - Good
@@ -15,7 +17,7 @@ expression: "Halfling::deities()"
     - Crossed short swords
 - name: Brandobaris
   titles:
-    - god of thievery and adventure
+    - "god of thievery, stealth, and adventure"
   alignment:
     - Neutral
     - Neutral
@@ -25,7 +27,8 @@ expression: "Halfling::deities()"
     - Halfling footprint
 - name: Cyrrollalee
   titles:
-    - goddess of hearth and home
+    - "goddess of hearth, hospitality, and home"
+    - goddess of trust and handicrafts
   alignment:
     - Lawful
     - Good
@@ -36,6 +39,10 @@ expression: "Halfling::deities()"
 - name: Sheela Peryroyl
   titles:
     - goddess of agriculture and weather
+    - goddess of nature
+    - "goddess of love, song, and dance"
+    - "the lady of fields, streams, and the wilds found in shire and glen"
+    - the Green Sister of Yondalla
   alignment:
     - Neutral
     - Neutral
@@ -57,7 +64,9 @@ expression: "Halfling::deities()"
     - "Silhouette of a dog's head"
 - name: Yondalla
   titles:
-    - goddess of fertility and protection
+    - "goddess of bounty, fertility, and protection"
+    - "protector of hearth, home, and family"
+    - the Blessed One
   alignment:
     - Lawful
     - Good

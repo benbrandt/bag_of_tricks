@@ -4,9 +4,9 @@ expression: halfling
 
 ---
 - type: Halfling
-  subrace: Lightfoot
+  subrace: Stout
 - Trym Greenbottle
-- age: 104
+- age: 140
   base_speeds:
     - Walking: 25
   gender: Female

@@ -40,15 +40,19 @@ impl fmt::Display for CitationList {
                 .or_insert_with(HashSet::new)
                 .insert(c.1);
         }
-        for (book, page_nums) in citations {
-            let mut pages = page_nums
-                .iter()
-                .map(ToString::to_string)
-                .collect::<Vec<_>>();
-            pages.sort();
-            write!(f, "{} p{}", book, pages.join(","))?;
-        }
-        write!(f, "")
+        let mut books = citations
+            .iter()
+            .map(|(book, page_nums)| {
+                let mut pages = page_nums
+                    .iter()
+                    .map(ToString::to_string)
+                    .collect::<Vec<_>>();
+                pages.sort();
+                format!("{} p{}", book, pages.join(","))
+            })
+            .collect::<Vec<_>>();
+        books.sort();
+        write!(f, "{}", books.join(" "))
     }
 }
 
@@ -77,7 +81,11 @@ mod tests {
 
     #[test]
     fn test_citations_display() {
-        let citations = CitationList(vec![Citation(Book::Phb, 123), Citation(Book::Phb, 125)]);
-        assert_eq!(format!("{}", citations), "PHB p123,125");
+        let citations = CitationList(vec![
+            Citation(Book::Phb, 123),
+            Citation(Book::Phb, 125),
+            Citation(Book::Vgtm, 125),
+        ]);
+        assert_eq!(format!("{}", citations), "PHB p123,125 VGTM p125");
     }
 }

@@ -39,8 +39,10 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum HalflingSubrace {
+    Ghostwise,
     Lightfoot,
     Stout,
+    Strongheart,
 }
 
 #[derive(Deserialize, Serialize)]
@@ -78,7 +80,9 @@ impl Citations for Halfling {
     fn citations(&self) -> CitationList {
         let race = Citation(Book::Phb, 26);
         let subrace = match self.subrace {
+            HalflingSubrace::Ghostwise => Citation(Book::Scag, 110),
             HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation(Book::Phb, 28),
+            HalflingSubrace::Strongheart => Citation(Book::Scag, 109),
         };
         CitationList(vec![race, subrace])
     }
@@ -98,17 +102,22 @@ impl Features for Halfling {
                 citation: Citation(Book::Phb, 28),
             },
         ];
-        features.extend(match self.subrace {
+        features.push(match self.subrace {
+            // You can speak telepathically to any creature within 30 feet of you. The creature understands you only if the two of you share a language. You can speak telepathically in this way to one creature at a time.
+            HalflingSubrace::Ghostwise => Feature {
+                title: "Silent Speech",
+                citation: Citation(Book::Scag, 110),
+            },
             // You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.
-            HalflingSubrace::Lightfoot => vec![Feature {
+            HalflingSubrace::Lightfoot => Feature {
                 title: "Naturally Stealthy",
                 citation: Citation(Book::Phb, 28),
-            }],
+            },
             // You have advantage on saving throws against poison, and you have resistance against poison damage.
-            HalflingSubrace::Stout => vec![Feature {
+            HalflingSubrace::Stout | HalflingSubrace::Strongheart => Feature {
                 title: "Stout Resilience",
                 citation: Citation(Book::Phb, 28),
-            }],
+            },
         });
         features
     }
@@ -154,8 +163,11 @@ impl Race for Halfling {
         vec![
             AbilityScore(AbilityScoreType::Dexterity, 2),
             match self.subrace {
+                HalflingSubrace::Ghostwise => AbilityScore(AbilityScoreType::Wisdom, 1),
                 HalflingSubrace::Lightfoot => AbilityScore(AbilityScoreType::Charisma, 1),
-                HalflingSubrace::Stout => AbilityScore(AbilityScoreType::Constitution, 1),
+                HalflingSubrace::Stout | HalflingSubrace::Strongheart => {
+                    AbilityScore(AbilityScoreType::Constitution, 1)
+                }
             },
         ]
     }
@@ -164,8 +176,8 @@ impl Race for Halfling {
 impl Resistances for Halfling {
     fn resistances(&self) -> Vec<DamageType> {
         match self.subrace {
-            HalflingSubrace::Lightfoot => vec![],
-            HalflingSubrace::Stout => vec![DamageType::Poison],
+            HalflingSubrace::Ghostwise | HalflingSubrace::Lightfoot => vec![],
+            HalflingSubrace::Stout | HalflingSubrace::Strongheart => vec![DamageType::Poison],
         }
     }
 }

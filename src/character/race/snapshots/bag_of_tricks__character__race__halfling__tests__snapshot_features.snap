@@ -11,7 +11,31 @@ expression: "HalflingSubrace::iter().map(|subrace|\n                            
     citation:
       - Phb
       - 28
+  - title: Silent Speech
+    citation:
+      - Scag
+      - 110
+- - title: Brave
+    citation:
+      - Phb
+      - 28
+  - title: Halfling Nimbleness
+    citation:
+      - Phb
+      - 28
   - title: Naturally Stealthy
+    citation:
+      - Phb
+      - 28
+- - title: Brave
+    citation:
+      - Phb
+      - 28
+  - title: Halfling Nimbleness
+    citation:
+      - Phb
+      - 28
+  - title: Stout Resilience
     citation:
       - Phb
       - 28
