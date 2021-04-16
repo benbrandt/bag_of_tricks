@@ -10,6 +10,8 @@ use strum_macros::Display;
 pub(crate) enum Book {
     #[strum(serialize = "PHB")]
     Phb,
+    #[strum(serialize = "SCAG")]
+    Scag,
     #[strum(serialize = "VGTM")]
     Vgtm,
 }

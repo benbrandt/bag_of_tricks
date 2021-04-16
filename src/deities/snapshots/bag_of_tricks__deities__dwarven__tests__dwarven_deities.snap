@@ -16,6 +16,9 @@ expression: "Dwarven::deities()"
 - name: Berronar Truesilver
   titles:
     - goddess of hearth and home
+    - goddess of honesty and faithfulness
+    - "goddess of oaths, loyalty, and honor"
+    - the Revered Mother
   alignment:
     - Lawful
     - Good
@@ -26,7 +29,7 @@ expression: "Dwarven::deities()"
     - Intertwined silver rings
 - name: Clangeddin Silverbeard
   titles:
-    - god of war
+    - god of war and valor
   alignment:
     - Lawful
     - Good
@@ -36,7 +39,9 @@ expression: "Dwarven::deities()"
     - Crossed silver battleaxes
 - name: Dugmaren Brightmantle
   titles:
-    - god of discovery
+    - god of invention and discovery
+    - the Wandering Tinkerer
+    - the Gleam in the Eye
   alignment:
     - Chaotic
     - Good
@@ -47,6 +52,9 @@ expression: "Dwarven::deities()"
 - name: Dumathoin
   titles:
     - god of buried secrets
+    - "god of buried wealth, mining, gems, and exploration"
+    - the Keeper of Secrets under the Mountain
+    - the guardian of the dead
   alignment:
     - Neutral
     - Neutral
@@ -57,7 +65,10 @@ expression: "Dwarven::deities()"
     - Mountain silhouette with a central gemstone
 - name: Gorm Gulthyn
   titles:
-    - god of vigilance
+    - god of defense and vigilance
+    - Fire Eyes
+    - the Lord of the Bronze Mask
+    - the protector of dwarves
   alignment:
     - Lawful
     - Good
@@ -68,6 +79,7 @@ expression: "Dwarven::deities()"
 - name: Haela Brightaxe
   titles:
     - goddess of war-luck
+    - patron of dwarf fighters
   alignment:
     - Chaotic
     - Good
@@ -78,6 +90,9 @@ expression: "Dwarven::deities()"
 - name: Marthammor Duin
   titles:
     - god of wanderers
+    - "the traveler's god"
+    - patron of expatriates and guides
+    - deity of lightning and roads
   alignment:
     - Neutral
     - Good
@@ -89,6 +104,11 @@ expression: "Dwarven::deities()"
 - name: Moradin
   titles:
     - god of creation
+    - "god of \"dwarf-crafts\" (smithing and stonework)"
+    - god of protection
+    - the Soulforger
+    - Dwarf-father
+    - All-father
   alignment:
     - Lawful
     - Good
@@ -98,7 +118,8 @@ expression: "Dwarven::deities()"
     - Hammer and anvil
 - name: Sharindlar
   titles:
-    - goddess of healing
+    - "goddess of healing, romantic love, and fertility"
+    - Lady of Life and Mercy
   alignment:
     - Chaotic
     - Good
@@ -109,6 +130,9 @@ expression: "Dwarven::deities()"
 - name: Vergadain
   titles:
     - god of luck and wealth
+    - "god of thieves, luck, and chance"
+    - god of commerce and negotiation
+    - the Merchant King
   alignment:
     - Neutral
     - Neutral

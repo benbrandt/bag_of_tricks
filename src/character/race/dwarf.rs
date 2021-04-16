@@ -56,8 +56,11 @@ mod height_and_weight {
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum DwarfSubrace {
+    Duergar,
+    Gold,
     Hill,
     Mountain,
+    Shield,
 }
 
 #[derive(Deserialize, Serialize)]
@@ -72,7 +75,13 @@ impl AlignmentInfluences for Dwarf {
     }
 
     fn morality(&self) -> Vec<Morality> {
-        vec![Morality::Good]
+        vec![match self.subrace {
+            DwarfSubrace::Duergar => Morality::Evil,
+            DwarfSubrace::Gold
+            | DwarfSubrace::Hill
+            | DwarfSubrace::Mountain
+            | DwarfSubrace::Shield => Morality::Good,
+        }]
     }
 }
 
@@ -88,8 +97,10 @@ impl Characteristics for Dwarf {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         match self.subrace {
-            DwarfSubrace::Hill => &height_and_weight::HILL,
-            DwarfSubrace::Mountain => &height_and_weight::MOUNTAIN,
+            DwarfSubrace::Duergar | DwarfSubrace::Gold | DwarfSubrace::Hill => {
+                &height_and_weight::HILL
+            }
+            DwarfSubrace::Mountain | DwarfSubrace::Shield => &height_and_weight::MOUNTAIN,
         }
     }
 }
@@ -98,6 +109,8 @@ impl Citations for Dwarf {
     fn citations(&self) -> CitationList {
         let race = Citation(Book::Phb, 18);
         let subrace = match self.subrace {
+            DwarfSubrace::Duergar => Citation(Book::Scag, 104),
+            DwarfSubrace::Gold | DwarfSubrace::Shield => Citation(Book::Scag, 103),
             DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation(Book::Phb, 20),
         };
         CitationList(vec![race, subrace])
@@ -107,11 +120,6 @@ impl Citations for Dwarf {
 impl Features for Dwarf {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![
-            // Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
-            Feature {
-                title: "Darkvision",
-                citation: Citation(Book::Phb, 20),
-            },
             // You have advantage on saving throws against poison, and you have resistance against poison damage (explained in the \"Combat\" section).
             Feature {
                 title: "Dwarven Resilience",
@@ -123,14 +131,46 @@ impl Features for Dwarf {
                 citation: Citation(Book::Phb, 20),
             },
         ];
-        if let DwarfSubrace::Hill = self.subrace {
-            features.extend(vec![
+        if matches!(self.subrace, DwarfSubrace::Hill | DwarfSubrace::Gold) {
+            features.push(
                 // Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
                 Feature {
                     title: "Dwarven Toughness",
                     citation: Citation(Book::Phb, 20),
                 },
+            );
+        }
+        if matches!(self.subrace, DwarfSubrace::Duergar) {
+            features.extend(vec![
+                // Your darkvision has a radius of 120 feet.
+                Feature {
+                    title: "Superior Darkvision",
+                    citation: Citation(Book::Scag, 104),
+                },
+                // You have advantage on saving throws against illusions and against being charmed or paralyzed.
+                Feature {
+                    title: "Duergar Resiliance",
+                    citation: Citation(Book::Scag, 104),
+                },
+                // When you reach 3rd level, you can cast the Enlarge/Reduce spell on yourself once with this trait, using only the spell's enlarge option. When you reach 5th level, you can cast the Invisibility spell on yourself once with this trait. You don't need material components for either spell, and you can't cast them while you're in direct sunlight, although sunlight has no effect on them once cast. You regain the ability to cast these spells with this trait when you finish a long rest. Intelligence is your spellcasting ability for these spells.
+                Feature {
+                    title: "Duergar Magic",
+                    citation: Citation(Book::Scag, 104),
+                },
+                // You have disadvantage on Attack rolls and Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.
+                Feature {
+                    title: "Sunlight Sensitivity",
+                    citation: Citation(Book::Scag, 104),
+                },
             ]);
+        } else {
+            features.push(
+                // Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+                Feature {
+                    title: "Darkvision",
+                    citation: Citation(Book::Phb, 20),
+                },
+            )
         }
         features
     }
@@ -138,7 +178,11 @@ impl Features for Dwarf {
 
 impl Languages for Dwarf {
     fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Dwarvish]
+        let mut languages = vec![Language::Common, Language::Dwarvish];
+        if matches!(self.subrace, DwarfSubrace::Duergar) {
+            languages.push(Language::Undercommon);
+        }
+        languages
     }
 }
 
@@ -167,7 +211,7 @@ impl Proficiencies for Dwarf {
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Warhammer)),
         ];
-        if let DwarfSubrace::Mountain = self.subrace {
+        if matches!(self.subrace, DwarfSubrace::Mountain | DwarfSubrace::Shield) {
             proficiencies.extend(vec![
                 Proficiency::Armor(ArmorType::Light),
                 Proficiency::Armor(ArmorType::Medium),
@@ -206,8 +250,13 @@ impl Race for Dwarf {
         vec![
             AbilityScore(AbilityScoreType::Constitution, 2),
             match self.subrace {
-                DwarfSubrace::Hill => AbilityScore(AbilityScoreType::Wisdom, 1),
-                DwarfSubrace::Mountain => AbilityScore(AbilityScoreType::Strength, 2),
+                DwarfSubrace::Duergar => AbilityScore(AbilityScoreType::Strength, 1),
+                DwarfSubrace::Gold | DwarfSubrace::Hill => {
+                    AbilityScore(AbilityScoreType::Wisdom, 1)
+                }
+                DwarfSubrace::Mountain | DwarfSubrace::Shield => {
+                    AbilityScore(AbilityScoreType::Strength, 2)
+                }
             },
         ]
     }

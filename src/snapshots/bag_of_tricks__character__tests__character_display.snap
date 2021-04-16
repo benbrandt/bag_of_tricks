@@ -3,71 +3,72 @@ source: src/character.rs
 expression: "format!(\"{}\", character)"
 
 ---
-CHARACTER NAME: Hlin Dankil
-RACE: Mountain Dwarf (PHB p18,20)
-BACKGROUND: Acolyte (PHB p127)
+CHARACTER NAME: Hlin Loderr
+RACE: Gold Dwarf (PHB p18SCAG p103)
+BACKGROUND: Outlander (Exile or outcast) (PHB p136)
 ALIGNMENT: Lawful Good
 LEVEL: 1
 
-STR  +0 (11)
-DEX  +1 (13)
-CON  +4 (18)
-INT  +1 (13)
-WIS  +2 (14)
-CHA  +1 (12)
+STR  -3 (5)
+DEX  +1 (12)
+CON  +3 (17)
+INT  +2 (15)
+WIS  +3 (16)
+CHA  +1 (13)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
       DEX  Acrobatics       +1
-      WIS  Animal Handling  +2
-      INT  Arcana           +1
-      STR  Athletics        +0
+      WIS  Animal Handling  +3
+      INT  Arcana           +2
+ X    STR  Athletics        -1
       CHA  Deception        +1
-      INT  History          +1
- X    WIS  Insight          +4
+      INT  History          +2
+      WIS  Insight          +3
       CHA  Intimidation     +1
-      INT  Investigation    +1
-      WIS  Medicine         +2
-      INT  Nature           +1
-      WIS  Perception       +2
+      INT  Investigation    +2
+      WIS  Medicine         +3
+      INT  Nature           +2
+      WIS  Perception       +3
       CHA  Performance      +1
       CHA  Persuasion       +1
- X    INT  Religion         +3
+      INT  Religion         +2
       DEX  Sleight of Hand  +1
       DEX  Stealth          +1
-      WIS  Survival         +2
+ X    WIS  Survival         +5
 
 SPEED:
 Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish, Orc, Deep Speech
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Armor(Light), Armor(Medium), Tool(ArtisansTools(MasonsTools))
+LANGUAGES: Common, Dwarvish, Orc
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools)), Tool(MusicalInstrument(PanFlute))
 
 CHARACTERISTICS:
-Age: 317
+Age: 125
 Gender: Female
 Size: Medium
-Height: 4'6"
-Weight: 165 lb.
+Height: 4'3"
+Weight: 164 lb.
 
 PERSONALITY TRAITS:
-I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.
-I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.
-IDEAL: Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)
-BOND: Everything I do is for the common people.
-FLAW: I judge others harshly, and myself even more severely.
+I watch over my friends as if they were a litter of newborn pups.
+I feel far more comfortable around animals than people.
+IDEAL: Glory. I must earn glory in battle, for myself and my clan. (Any)
+BOND: I am the last of my tribe, and it is up to me to ensure their names enter legend.
+FLAW: I am too enamored of ale, wine, and other intoxicants.
 
 EQUIPMENT
-Other("5 sticks of incense"), Other("vestments"), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("prayer wheel"), Gear(HolySymbol(Emblem)), Other("A rank insignia from a lost legionnaire")
-COINS: 15gp
+Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A rank insignia from a lost legionnaire")
+COINS: 10gp
 
 FEATURES AND TRAITS:
-- Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
-- Shelter of the Faithful (PHB p127)
+- Dwarven Toughness (PHB p20)
+- Darkvision (PHB p20)
+- Wanderer (PHB p136)
 
 BACKSTORY:
 

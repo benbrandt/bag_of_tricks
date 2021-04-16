@@ -5,10 +5,22 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
 ---
 - - - Phb
     - 18
+  - - Scag
+    - 104
+- - - Phb
+    - 18
+  - - Scag
+    - 103
+- - - Phb
+    - 18
   - - Phb
     - 20
 - - - Phb
     - 18
   - - Phb
     - 20
+- - - Phb
+    - 18
+  - - Scag
+    - 103
 

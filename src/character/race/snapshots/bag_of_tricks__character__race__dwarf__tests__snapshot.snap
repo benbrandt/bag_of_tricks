@@ -4,13 +4,13 @@ expression: dwarf
 
 ---
 - type: Dwarf
-  subrace: Hill
-- Hlin Dankil
-- age: 49
+  subrace: Gold
+- Hlin Loderr
+- age: 125
   base_speeds:
     - Walking: 25
   gender: Female
-  height: 49
+  height: 51
   size: Medium
-  weight: 170
+  weight: 164
 

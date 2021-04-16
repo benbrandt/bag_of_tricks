@@ -3,11 +3,31 @@ source: src/character/race/dwarf.rs
 expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
 
 ---
-- - title: Darkvision
+- - title: Dwarven Resilience
     citation:
       - Phb
       - 20
-  - title: Dwarven Resilience
+  - title: Stonecunning
+    citation:
+      - Phb
+      - 20
+  - title: Superior Darkvision
+    citation:
+      - Scag
+      - 104
+  - title: Duergar Resiliance
+    citation:
+      - Scag
+      - 104
+  - title: Duergar Magic
+    citation:
+      - Scag
+      - 104
+  - title: Sunlight Sensitivity
+    citation:
+      - Scag
+      - 104
+- - title: Dwarven Resilience
     citation:
       - Phb
       - 20
@@ -19,15 +39,47 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
     citation:
       - Phb
       - 20
-- - title: Darkvision
+  - title: Darkvision
     citation:
       - Phb
       - 20
-  - title: Dwarven Resilience
+- - title: Dwarven Resilience
     citation:
       - Phb
       - 20
   - title: Stonecunning
+    citation:
+      - Phb
+      - 20
+  - title: Dwarven Toughness
+    citation:
+      - Phb
+      - 20
+  - title: Darkvision
+    citation:
+      - Phb
+      - 20
+- - title: Dwarven Resilience
+    citation:
+      - Phb
+      - 20
+  - title: Stonecunning
+    citation:
+      - Phb
+      - 20
+  - title: Darkvision
+    citation:
+      - Phb
+      - 20
+- - title: Dwarven Resilience
+    citation:
+      - Phb
+      - 20
+  - title: Stonecunning
+    citation:
+      - Phb
+      - 20
+  - title: Darkvision
     citation:
       - Phb
       - 20

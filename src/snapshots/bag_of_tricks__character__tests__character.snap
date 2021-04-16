@@ -4,44 +4,41 @@ expression: character
 
 ---
 abilities:
-  Strength: 11
-  Dexterity: 13
-  Constitution: 18
-  Intelligence: 13
-  Wisdom: 14
-  Charisma: 12
+  Strength: 5
+  Dexterity: 12
+  Constitution: 17
+  Intelligence: 15
+  Wisdom: 16
+  Charisma: 13
 alignment:
   - Lawful
   - Good
 background:
-  type: Acolyte
+  type: Outlander
+  origin: Exile
 characteristics:
-  age: 317
+  age: 125
   base_speeds:
     - Walking: 25
   gender: Female
-  height: 54
+  height: 51
   size: Medium
-  weight: 165
+  weight: 164
 chosen_equipment:
-  - Other: prayer wheel
-  - Gear:
-      HolySymbol: Emblem
   - Other: A rank insignia from a lost legionnaire
 chosen_languages:
   - Orc
-  - DeepSpeech
 level: 1
-name: Hlin Dankil
+name: Hlin Loderr
 personality:
-  bond: Everything I do is for the common people.
-  flaw: "I judge others harshly, and myself even more severely."
+  bond: "I am the last of my tribe, and it is up to me to ensure their names enter legend."
+  flaw: "I am too enamored of ale, wine, and other intoxicants."
   ideal:
-    - "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings."
+    - "Glory. I must earn glory in battle, for myself and my clan."
     - Any
   traits:
-    - "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
-    - "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
+    - I watch over my friends as if they were a litter of newborn pups.
+    - I feel far more comfortable around animals than people.
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -51,13 +48,13 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Armor: Light
-  - Armor: Medium
-  - Skill: Insight
-  - Skill: Religion
+  - Skill: Athletics
+  - Skill: Survival
   - Tool:
-      ArtisansTools: MasonsTools
+      ArtisansTools: SmithsTools
+  - Tool:
+      MusicalInstrument: PanFlute
 race:
   type: Dwarf
-  subrace: Mountain
+  subrace: Gold
 

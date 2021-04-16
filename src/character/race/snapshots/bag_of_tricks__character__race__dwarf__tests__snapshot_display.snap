@@ -3,6 +3,12 @@ source: src/character/race/dwarf.rs
 expression: "DwarfSubrace::iter().map(|subrace|\n                             format!(\"{}\", Dwarf\n                                     {\n                                         subrace\n                                     })).collect::<Vec<String>>().join(\"\\n\\n\")"
 
 ---
+Duergar Dwarf
+
+Gold Dwarf
+
 Hill Dwarf
 
 Mountain Dwarf
+
+Shield Dwarf

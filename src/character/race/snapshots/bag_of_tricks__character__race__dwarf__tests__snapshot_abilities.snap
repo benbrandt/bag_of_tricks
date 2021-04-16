@@ -5,8 +5,20 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             (D
 ---
 - - - Constitution
     - 2
+  - - Strength
+    - 1
+- - - Constitution
+    - 2
   - - Wisdom
     - 1
+- - - Constitution
+    - 2
+  - - Wisdom
+    - 1
+- - - Constitution
+    - 2
+  - - Strength
+    - 2
 - - - Constitution
     - 2
   - - Strength
