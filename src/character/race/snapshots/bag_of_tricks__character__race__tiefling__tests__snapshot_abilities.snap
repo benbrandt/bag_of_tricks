@@ -1,10 +1,14 @@
 ---
 source: src/character/race/tiefling.rs
-expression: tiefling.abilities()
+expression: "TieflingSubrace::iter().map(|subrace|\n                                Tiefling{appearance: vec![],\n                                         subrace,}.abilities()).collect::<Vec<Vec<AbilityScore>>>()"
 
 ---
-- - Charisma
-  - 2
-- - Intelligence
-  - 1
+- - - Charisma
+    - 2
+  - - Intelligence
+    - 1
+- - - Dexterity
+    - 2
+  - - Intelligence
+    - 1
 

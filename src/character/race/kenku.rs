@@ -10,8 +10,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -43,6 +43,8 @@ impl AlignmentInfluences for Kenku {
         vec![Morality::Neutral]
     }
 }
+
+impl Appearance for Kenku {}
 
 impl Backstory for Kenku {}
 

@@ -16,8 +16,8 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -282,11 +282,9 @@ impl AlignmentInfluences for YuanTiPureblood {
     }
 }
 
-impl Backstory for YuanTiPureblood {
-    fn backstory(&self) -> Vec<String> {
+impl Appearance for YuanTiPureblood {
+    fn appearance(&self) -> Vec<String> {
         vec![
-            format!("Origin: {}", self.origin),
-            String::from("APPEARANCE:"),
             format!("Eye color: {}", self.eye_color),
             format!(
                 "Pureblood characteristics: {}",
@@ -300,6 +298,12 @@ impl Backstory for YuanTiPureblood {
             format!("Skin color: {}", self.skin_color),
             format!("Tongue color: {}", self.tongue_color),
         ]
+    }
+}
+
+impl Backstory for YuanTiPureblood {
+    fn backstory(&self) -> Vec<String> {
+        vec![format!("Origin: {}", self.origin)]
     }
 }
 

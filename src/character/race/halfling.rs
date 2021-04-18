@@ -15,7 +15,7 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
@@ -60,6 +60,8 @@ impl AlignmentInfluences for Halfling {
         vec![Morality::Good]
     }
 }
+
+impl Appearance for Halfling {}
 
 impl Backstory for Halfling {}
 

@@ -16,7 +16,7 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
@@ -129,6 +129,8 @@ impl AlignmentInfluences for Dragonborn {
         }]
     }
 }
+
+impl Appearance for Dragonborn {}
 
 impl Backstory for Dragonborn {}
 

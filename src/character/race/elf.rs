@@ -15,8 +15,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
-            Speed,
+            AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
+            HeightAndWeightTable, Size, Speed,
         },
         equipment::weapons::WeaponType,
         features::{Feature, Features},
@@ -127,6 +127,8 @@ impl AlignmentInfluences for Elf {
         }]
     }
 }
+
+impl Appearance for Elf {}
 
 impl Backstory for Elf {}
 

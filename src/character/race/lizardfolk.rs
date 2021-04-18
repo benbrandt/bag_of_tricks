@@ -10,8 +10,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -56,6 +56,8 @@ impl AlignmentInfluences for Lizardfolk {
         vec![Morality::Neutral]
     }
 }
+
+impl Appearance for Lizardfolk {}
 
 impl Backstory for Lizardfolk {
     fn backstory(&self) -> Vec<String> {

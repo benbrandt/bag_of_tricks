@@ -1,6 +1,7 @@
 ---
 source: src/character/race/tiefling.rs
-expression: tiefling
+expression: tiefling.attitude()
 
 ---
-Asmodeus Tiefling
+- Chaotic
+

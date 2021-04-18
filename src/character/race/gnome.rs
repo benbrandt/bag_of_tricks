@@ -15,7 +15,7 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, Speed, WeightMod,
         },
         equipment::tools::{ArtisansTools, Tool},
@@ -72,6 +72,8 @@ impl AlignmentInfluences for Gnome {
         }
     }
 }
+
+impl Appearance for Gnome {}
 
 impl Backstory for Gnome {}
 

@@ -86,6 +86,7 @@ pub(crate) enum Size {
 #[derive(Clone, Copy, Debug, Deserialize, EnumIter, PartialEq, Serialize)]
 pub(crate) enum Speed {
     Climbing(u8),
+    Flying(u8),
     Swimming(u8),
     Walking(u8),
 }
@@ -94,6 +95,7 @@ impl fmt::Display for Speed {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::Climbing(s) => write!(f, "Climbing Speed: {}ft", s),
+            Self::Flying(s) => write!(f, "Flying Speed: {}ft", s),
             Self::Swimming(s) => write!(f, "Swimming Speed: {}ft", s),
             Self::Walking(s) => write!(f, "Walking Speed: {}ft", s),
         }
@@ -167,6 +169,12 @@ pub(crate) trait Characteristics {
             size: Self::SIZE,
             weight,
         }
+    }
+}
+
+pub(crate) trait Appearance {
+    fn appearance(&self) -> Vec<String> {
+        vec![]
     }
 }
 

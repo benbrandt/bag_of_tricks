@@ -10,8 +10,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         equipment::{armor::ArmorType, weapons::WeaponCategory},
         features::{Feature, Features},
@@ -46,6 +46,8 @@ impl AlignmentInfluences for Hobgoblin {
         vec![Morality::Evil]
     }
 }
+
+impl Appearance for Hobgoblin {}
 
 impl Backstory for Hobgoblin {
     fn backstory(&self) -> Vec<String> {

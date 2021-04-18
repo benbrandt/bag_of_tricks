@@ -15,8 +15,8 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            AgeRange, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable, Size,
-            Speed,
+            AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
+            HeightAndWeightTable, Size, Speed,
         },
         equipment::{
             armor::ArmorType,
@@ -84,6 +84,8 @@ impl AlignmentInfluences for Dwarf {
         }]
     }
 }
+
+impl Appearance for Dwarf {}
 
 impl Backstory for Dwarf {}
 

@@ -4,13 +4,17 @@ expression: tiefling
 
 ---
 - type: Tiefling
-- Meilil Mostana
-- age: 94
+  appearance:
+    - GoatLegs
+    - SmallHorns
+  subrace: Asmodeus
+- Glory Zianhur
+- age: 73
   base_speeds:
     - Walking: 30
-  ethnicity: Calishite
-  gender: Female
-  height: 64
+  ethnicity: Damaran
+  gender: Male
+  height: 62
   size: Medium
-  weight: 145
+  weight: 130
 

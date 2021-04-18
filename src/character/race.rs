@@ -39,8 +39,12 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScore, attack::Resistances, backstory::Backstory,
-    characteristics::CharacteristicDetails, features::Features, languages::Languages,
+    ability::AbilityScore,
+    attack::Resistances,
+    backstory::Backstory,
+    characteristics::{Appearance, CharacteristicDetails},
+    features::Features,
+    languages::Languages,
     proficiencies::Proficiencies,
 };
 
@@ -48,6 +52,7 @@ use super::{
 #[typetag::serde(tag = "type")]
 pub(crate) trait Race:
     AlignmentInfluences
+    + Appearance
     + Backstory
     + Citations
     + Features

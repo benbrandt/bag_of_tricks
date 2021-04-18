@@ -15,8 +15,8 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -99,6 +99,8 @@ impl AlignmentInfluences for Aasimar {
         }
     }
 }
+
+impl Appearance for Aasimar {}
 
 impl Backstory for Aasimar {
     fn backstory(&self) -> Vec<String> {

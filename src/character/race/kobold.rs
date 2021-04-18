@@ -15,8 +15,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -135,13 +135,12 @@ impl AlignmentInfluences for Kobold {
     }
 }
 
-impl Backstory for Kobold {
-    fn backstory(&self) -> Vec<String> {
+impl Appearance for Kobold {
+    fn appearance(&self) -> Vec<String> {
         vec![
-            format!("Origin: {}", self.origin),
+            format!("Scale Pattern: {}", self.scale_pattern,),
             format!(
-                "Appearance: {} {} scales",
-                self.scale_pattern,
+                "Scale Color: {}",
                 self.scale_color
                     .iter()
                     .map(|c| format!("{}", c))
@@ -149,6 +148,12 @@ impl Backstory for Kobold {
                     .join(" and ")
             ),
         ]
+    }
+}
+
+impl Backstory for Kobold {
+    fn backstory(&self) -> Vec<String> {
+        vec![format!("Origin: {}", self.origin)]
     }
 }
 
@@ -282,6 +287,13 @@ mod tests {
             scale_pattern: ScalePattern::Mottled,
         };
         insta::assert_yaml_snapshot!(kobold.morality());
+    }
+
+    #[test]
+    fn test_appearance() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (kobold, _name, _characteristics) = Kobold::gen(&mut rng);
+        insta::assert_yaml_snapshot!(kobold.appearance());
     }
 
     #[test]

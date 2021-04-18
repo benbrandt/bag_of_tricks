@@ -10,8 +10,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
         languages::{Language, Languages},
@@ -45,6 +45,8 @@ impl AlignmentInfluences for Bugbear {
         vec![Morality::Evil]
     }
 }
+
+impl Appearance for Bugbear {}
 
 impl Backstory for Bugbear {
     fn backstory(&self) -> Vec<String> {

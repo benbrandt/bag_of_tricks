@@ -10,7 +10,7 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
@@ -65,6 +65,8 @@ impl AlignmentInfluences for Orc {
         vec![Morality::Evil]
     }
 }
+
+impl Appearance for Orc {}
 
 impl Backstory for Orc {
     fn backstory(&self) -> Vec<String> {

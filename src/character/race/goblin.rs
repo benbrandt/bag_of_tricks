@@ -10,8 +10,8 @@ use crate::{
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, HeightAndWeightTable,
-            Size, Speed, WeightMod,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+            HeightAndWeightTable, Size, Speed, WeightMod,
         },
         equipment::trinkets::GOBLIN_STATUS_SYMBOLS,
         features::{Feature, Features},
@@ -48,12 +48,15 @@ impl AlignmentInfluences for Goblin {
     }
 }
 
+impl Appearance for Goblin {
+    fn appearance(&self) -> Vec<String> {
+        vec![format!("Status Symbol: {}", self.status_symbol)]
+    }
+}
+
 impl Backstory for Goblin {
     fn backstory(&self) -> Vec<String> {
-        vec![
-            format!("Origin: {}", self.origin),
-            format!("Status Symbol: {}", self.status_symbol),
-        ]
+        vec![format!("Origin: {}", self.origin)]
     }
 }
 
@@ -179,6 +182,13 @@ mod tests {
             status_symbol: String::new(),
         };
         insta::assert_yaml_snapshot!(goblin.morality());
+    }
+
+    #[test]
+    fn test_appearance() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (goblin, _name, _characteristics) = Goblin::gen(&mut rng);
+        insta::assert_yaml_snapshot!(goblin.appearance());
     }
 
     #[test]

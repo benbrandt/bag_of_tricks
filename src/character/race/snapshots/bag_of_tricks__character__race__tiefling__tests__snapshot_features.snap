@@ -1,14 +1,22 @@
 ---
 source: src/character/race/tiefling.rs
-expression: tiefling.features()
+expression: "TieflingSubrace::iter().map(|subrace|\n                                Tiefling{appearance: vec![],\n                                         subrace,}.features()).collect::<Vec<Vec<Feature>>>()"
 
 ---
-- title: Darkvision
-  citation:
-    - Phb
-    - 43
-- title: Infernal Legacy
-  citation:
-    - Phb
-    - 43
+- - title: Darkvision
+    citation:
+      - Phb
+      - 43
+  - title: Infernal Legacy
+    citation:
+      - Phb
+      - 43
+- - title: Darkvision
+    citation:
+      - Phb
+      - 43
+  - title: "Devil's Tongue"
+    citation:
+      - Scag
+      - 118
 

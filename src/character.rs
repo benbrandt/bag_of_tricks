@@ -27,6 +27,8 @@ use languages::{Language, Languages};
 use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
 
+use self::characteristics::Appearance;
+
 use super::alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 
 /// Character information. Mostly stores random choices made for this character.
@@ -187,6 +189,16 @@ impl AlignmentInfluences for Character {
             morality.extend(personality.morality());
         }
         morality
+    }
+}
+
+impl Appearance for Character {
+    fn appearance(&self) -> Vec<String> {
+        let mut appearance = vec![];
+        if let Some(race) = self.race.as_ref() {
+            appearance.extend(race.appearance());
+        }
+        appearance
     }
 }
 
@@ -387,6 +399,11 @@ impl fmt::Display for Character {
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {
             writeln!(f, "- {}", feature)?;
+        }
+        writeln!(f)?;
+        writeln!(f, "APPEARANCE:")?;
+        for appearance in self.appearance() {
+            writeln!(f, "{}", appearance)?;
         }
         writeln!(f)?;
         writeln!(f, "BACKSTORY:")?;

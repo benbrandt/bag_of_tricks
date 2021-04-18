@@ -10,7 +10,7 @@ use crate::{
         attack::{DamageType, Resistances},
         backstory::Backstory,
         characteristics::{
-            in_inches, AgeRange, CharacteristicDetails, Characteristics, Gender,
+            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
             HeightAndWeightTable, Size, Speed, WeightMod,
         },
         features::{Feature, Features},
@@ -57,6 +57,8 @@ impl AlignmentInfluences for Triton {
         vec![Morality::Good]
     }
 }
+
+impl Appearance for Triton {}
 
 impl Backstory for Triton {
     fn backstory(&self) -> Vec<String> {
