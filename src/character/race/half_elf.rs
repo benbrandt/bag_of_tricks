@@ -14,7 +14,7 @@ use super::{
 use crate::{
     alignment::{AlignmentInfluences, Attitude},
     character::{
-        ability::{AbilityScore, AbilityScoreType, Skill},
+        ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
         backstory::Backstory,
         characteristics::{
@@ -44,7 +44,6 @@ enum Variant {
     DrowMagic,
     ElfWeaponTraining,
     FleetOfFoot,
-    KeenSenses,
     MaskOfTheWild,
     SkillVersatility,
     // TODO: Once there are sea elves
@@ -53,7 +52,7 @@ enum Variant {
 
 impl Variant {
     fn gen(rng: &mut impl Rng, subrace: &ElfSubrace) -> Self {
-        let mut choices = vec![Self::SkillVersatility, Self::KeenSenses];
+        let mut choices = vec![Self::SkillVersatility];
         choices.extend(match subrace {
             ElfSubrace::Dark => vec![Self::DrowMagic],
             ElfSubrace::High(_) => {
@@ -206,7 +205,6 @@ impl Name for HalfElf {
 impl Proficiencies for HalfElf {
     fn proficiencies(&self) -> Vec<Proficiency> {
         match self.variant {
-            Variant::KeenSenses => vec![Proficiency::Skill(Skill::Perception)],
             Variant::ElfWeaponTraining => Elf::weapon_training(&self.subrace),
             _ => vec![],
         }
@@ -214,10 +212,7 @@ impl Proficiencies for HalfElf {
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         if matches!(self.variant, Variant::SkillVersatility) {
-            vec![
-                ProficiencyOption::Skill(None, 1),
-                ProficiencyOption::Skill(None, 1),
-            ]
+            vec![ProficiencyOption::Skill(None, 2)]
         } else {
             vec![]
         }

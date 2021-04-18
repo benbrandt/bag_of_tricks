@@ -10,7 +10,7 @@ expression: half_elf
     - - Dexterity
       - 1
   subrace: Dark
-  variant: KeenSenses
+  variant: DrowMagic
 - Ceidil Pashar
 - age: 57
   base_speeds:
