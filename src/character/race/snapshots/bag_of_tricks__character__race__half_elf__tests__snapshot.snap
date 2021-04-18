@@ -5,19 +5,19 @@ expression: half_elf
 ---
 - type: HalfElf
   addl_increases:
-    - - Wisdom
-      - 1
     - - Intelligence
       - 1
-  subrace: High
-  variant: SkillVersatility
-- Del Stamaraster
-- age: 32
+    - - Dexterity
+      - 1
+  subrace: Dark
+  variant: KeenSenses
+- Ceidil Pashar
+- age: 57
   base_speeds:
     - Walking: 30
-  ethnicity: Halruaan
-  gender: Male
-  height: 67
+  ethnicity: Calishite
+  gender: Female
+  height: 61
   size: Medium
-  weight: 140
+  weight: 134
 

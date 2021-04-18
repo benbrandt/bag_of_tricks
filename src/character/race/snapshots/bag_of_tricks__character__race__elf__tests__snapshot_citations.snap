@@ -13,14 +13,6 @@ expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{s
     - 23
 - - - Phb
     - 21
-  - - Scag
-    - 105
-- - - Phb
-    - 21
-  - - Scag
-    - 106
-- - - Phb
-    - 21
   - - Phb
     - 24
 

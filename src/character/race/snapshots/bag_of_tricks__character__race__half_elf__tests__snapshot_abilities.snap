@@ -5,8 +5,8 @@ expression: half_elf.abilities()
 ---
 - - Charisma
   - 2
-- - Wisdom
-  - 1
 - - Intelligence
+  - 1
+- - Dexterity
   - 1
 

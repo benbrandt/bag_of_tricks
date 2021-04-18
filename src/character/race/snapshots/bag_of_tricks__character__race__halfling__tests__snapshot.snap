@@ -4,9 +4,9 @@ expression: halfling
 
 ---
 - type: Halfling
-  subrace: Stout
+  subrace: Ghostwise
 - Trym Greenbottle
-- age: 140
+- age: 104
   base_speeds:
     - Walking: 25
   ethnicity: ~

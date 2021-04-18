@@ -3,64 +3,64 @@ source: src/character.rs
 expression: "format!(\"{}\", character)"
 
 ---
-CHARACTER NAME: Hlin Loderr
+CHARACTER NAME: Harnoth Foehammer
 RACE: Hill Dwarf (PHB p18,20)
-BACKGROUND: Outlander (Exile or outcast) (PHB p136)
+BACKGROUND: Folk Hero (PHB p131)
 ALIGNMENT: Lawful Good
 LEVEL: 1
 
-STR  -3 (5)
-DEX  +1 (12)
-CON  +3 (17)
+STR  -2 (6)
+DEX  +0 (11)
+CON  +4 (19)
 INT  +2 (15)
-WIS  +3 (16)
-CHA  +1 (13)
+WIS  +2 (14)
+CHA  +0 (11)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
-      DEX  Acrobatics       +1
-      WIS  Animal Handling  +3
+      DEX  Acrobatics       +0
+ X    WIS  Animal Handling  +4
       INT  Arcana           +2
- X    STR  Athletics        -1
-      CHA  Deception        +1
+      STR  Athletics        -2
+      CHA  Deception        +0
       INT  History          +2
-      WIS  Insight          +3
-      CHA  Intimidation     +1
+      WIS  Insight          +2
+      CHA  Intimidation     +0
       INT  Investigation    +2
-      WIS  Medicine         +3
+      WIS  Medicine         +2
       INT  Nature           +2
-      WIS  Perception       +3
-      CHA  Performance      +1
-      CHA  Persuasion       +1
+      WIS  Perception       +2
+      CHA  Performance      +0
+      CHA  Persuasion       +0
       INT  Religion         +2
-      DEX  Sleight of Hand  +1
-      DEX  Stealth          +1
- X    WIS  Survival         +5
+      DEX  Sleight of Hand  +0
+      DEX  Stealth          +0
+ X    WIS  Survival         +4
 
 SPEED:
 Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish, Orc
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools)), Tool(MusicalInstrument(PanFlute))
+LANGUAGES: Common, Dwarvish
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Vehicle(Land), Tool(ArtisansTools(SmithsTools)), Tool(ArtisansTools(WoodcarversTools))
 
 CHARACTERISTICS:
-Age: 317
-Gender: Female
+Age: 39
+Gender: Male
 Size: Medium
 Height: 4'1"
-Weight: 150 lb.
+Weight: 160 lb.
 
 PERSONALITY TRAITS:
-I watch over my friends as if they were a litter of newborn pups.
-I feel far more comfortable around animals than people.
-IDEAL: Glory. I must earn glory in battle, for myself and my clan. (Any)
-BOND: I am the last of my tribe, and it is up to me to ensure their names enter legend.
-FLAW: I am too enamored of ale, wine, and other intoxicants.
+If someone is in trouble, I'm always ready to lend help.
+I misuse long words in an attempt to sound smarter.
+IDEAL: Destiny. Nothing and no one can steer me away from my higher calling. (Any)
+BOND: My tools are symbols of my past life, and I carry them so that I will never forget my roots.
+FLAW: The tyrant who rules my land will stop at nothing to see me killed.
 
 EQUIPMENT
-Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A rank insignia from a lost legionnaire")
+Gear(Other(Shovel)), Gear(Other(PotIron)), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Tool(ArtisansTools(SmithsTools)), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
 COINS: 10gp
 
 FEATURES AND TRAITS:
@@ -68,9 +68,10 @@ FEATURES AND TRAITS:
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
 - Dwarven Toughness (PHB p20)
-- Wanderer (PHB p136)
+- Rustic Hospitality (PHB p131)
 
 APPEARANCE:
 
 BACKSTORY:
+Defining Event: I led a militia to fight off an invading army.
 

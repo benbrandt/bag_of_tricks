@@ -1,3 +1,4 @@
+#![allow(clippy::default_trait_access)]
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -91,7 +92,7 @@ impl DwarfSubrace {
         match subrace {
             Self::Hill(_) => Self::Hill(HillVariant::iter().choose(rng).unwrap()),
             Self::Mountain(_) => Self::Mountain(MountainVariant::iter().choose(rng).unwrap()),
-            _ => subrace,
+            Self::Duergar => subrace,
         }
     }
 }
@@ -281,7 +282,7 @@ impl Proficiencies for Dwarf {
 impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
-            subrace: DwarfSubrace::iter().choose(rng).unwrap(),
+            subrace: DwarfSubrace::gen(rng),
         });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);

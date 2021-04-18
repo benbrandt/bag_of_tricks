@@ -15,8 +15,4 @@ expression: "HalflingSubrace::iter().map(|subrace|\n                            
     - 2
   - - Constitution
     - 1
-- - - Dexterity
-    - 2
-  - - Constitution
-    - 1
 

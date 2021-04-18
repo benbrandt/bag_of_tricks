@@ -56,7 +56,7 @@ impl Variant {
         let mut choices = vec![Self::SkillVersatility, Self::KeenSenses];
         choices.extend(match subrace {
             ElfSubrace::Dark => vec![Self::DrowMagic],
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => {
+            ElfSubrace::High(_) => {
                 vec![Self::ElfWeaponTraining, Self::Cantrip]
             }
             ElfSubrace::Wood => vec![
@@ -227,7 +227,7 @@ impl Proficiencies for HalfElf {
 #[typetag::serde]
 impl Race for HalfElf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let subrace = ElfSubrace::iter().choose(rng).unwrap();
+        let subrace = ElfSubrace::gen(rng);
         let variant = Variant::gen(rng, &subrace);
         let race = Self {
             addl_increases: Self::gen_ability_increases(rng),

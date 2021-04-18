@@ -1,3 +1,4 @@
+#![allow(clippy::default_trait_access)]
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -38,11 +39,42 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 };
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+enum StoutVariant {
+    Stout,
+    Strongheart,
+}
+
+impl Default for StoutVariant {
+    fn default() -> Self {
+        Self::Stout
+    }
+}
+
+#[derive(Debug, Deserialize, EnumIter, PartialEq, Serialize)]
 enum HalflingSubrace {
     Ghostwise,
     Lightfoot,
-    Stout,
-    Strongheart,
+    Stout(StoutVariant),
+}
+
+impl HalflingSubrace {
+    fn gen(rng: &mut impl Rng) -> Self {
+        let subrace = Self::iter().choose(rng).unwrap();
+        match subrace {
+            Self::Stout(_) => Self::Stout(StoutVariant::iter().choose(rng).unwrap()),
+            Self::Ghostwise | Self::Lightfoot => subrace,
+        }
+    }
+}
+
+impl fmt::Display for HalflingSubrace {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Ghostwise => write!(f, "Ghostwise"),
+            Self::Lightfoot => write!(f, "Lightfoot"),
+            Self::Stout(v) => write!(f, "{}", v),
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize)]
@@ -86,8 +118,10 @@ impl Citations for Halfling {
         let race = Citation(Book::Phb, 26);
         let subrace = match self.subrace {
             HalflingSubrace::Ghostwise => Citation(Book::Scag, 110),
-            HalflingSubrace::Lightfoot | HalflingSubrace::Stout => Citation(Book::Phb, 28),
-            HalflingSubrace::Strongheart => Citation(Book::Scag, 109),
+            HalflingSubrace::Lightfoot | HalflingSubrace::Stout(StoutVariant::Stout) => {
+                Citation(Book::Phb, 28)
+            }
+            HalflingSubrace::Stout(StoutVariant::Strongheart) => Citation(Book::Scag, 109),
         };
         CitationList(vec![race, subrace])
     }
@@ -119,7 +153,7 @@ impl Features for Halfling {
                 citation: Citation(Book::Phb, 28),
             },
             // You have advantage on saving throws against poison, and you have resistance against poison damage.
-            HalflingSubrace::Stout | HalflingSubrace::Strongheart => Feature {
+            HalflingSubrace::Stout(_) => Feature {
                 title: "Stout Resilience",
                 citation: Citation(Book::Phb, 28),
             },
@@ -157,7 +191,7 @@ impl Proficiencies for Halfling {}
 impl Race for Halfling {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
-            subrace: HalflingSubrace::iter().choose(rng).unwrap(),
+            subrace: HalflingSubrace::gen(rng),
         });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
@@ -170,9 +204,7 @@ impl Race for Halfling {
             match self.subrace {
                 HalflingSubrace::Ghostwise => AbilityScore(AbilityScoreType::Wisdom, 1),
                 HalflingSubrace::Lightfoot => AbilityScore(AbilityScoreType::Charisma, 1),
-                HalflingSubrace::Stout | HalflingSubrace::Strongheart => {
-                    AbilityScore(AbilityScoreType::Constitution, 1)
-                }
+                HalflingSubrace::Stout(_) => AbilityScore(AbilityScoreType::Constitution, 1),
             },
         ]
     }
@@ -182,7 +214,7 @@ impl Resistances for Halfling {
     fn resistances(&self) -> Vec<DamageType> {
         match self.subrace {
             HalflingSubrace::Ghostwise | HalflingSubrace::Lightfoot => vec![],
-            HalflingSubrace::Stout | HalflingSubrace::Strongheart => vec![DamageType::Poison],
+            HalflingSubrace::Stout(_) => vec![DamageType::Poison],
         }
     }
 }

@@ -39,16 +39,4 @@ expression: "HalflingSubrace::iter().map(|subrace|\n                            
     citation:
       - Phb
       - 28
-- - title: Brave
-    citation:
-      - Phb
-      - 28
-  - title: Halfling Nimbleness
-    citation:
-      - Phb
-      - 28
-  - title: Stout Resilience
-    citation:
-      - Phb
-      - 28
 

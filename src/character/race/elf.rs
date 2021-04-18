@@ -1,3 +1,4 @@
+#![allow(clippy::default_trait_access)]
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -57,12 +58,43 @@ mod height_and_weight {
 }
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
-pub(crate) enum ElfSubrace {
-    Dark,
+pub(crate) enum HighVariant {
     High,
     Moon,
     Sun,
+}
+
+impl Default for HighVariant {
+    fn default() -> Self {
+        Self::High
+    }
+}
+
+#[derive(Deserialize, EnumIter, Serialize)]
+pub(crate) enum ElfSubrace {
+    Dark,
+    High(HighVariant),
     Wood,
+}
+
+impl ElfSubrace {
+    pub(crate) fn gen(rng: &mut impl Rng) -> Self {
+        let subrace = Self::iter().choose(rng).unwrap();
+        match subrace {
+            Self::High(_) => Self::High(HighVariant::iter().choose(rng).unwrap()),
+            Self::Dark | Self::Wood => subrace,
+        }
+    }
+}
+
+impl fmt::Display for ElfSubrace {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Dark => write!(f, "Dark"),
+            Self::High(v) => write!(f, "{}", v),
+            Self::Wood => write!(f, "Wood"),
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize)]
@@ -98,7 +130,7 @@ impl Elf {
                 Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
                 Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
             ],
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => vec![
+            ElfSubrace::High(_) => vec![
                 Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
                 Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
                 Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
@@ -121,9 +153,7 @@ impl AlignmentInfluences for Elf {
     fn morality(&self) -> Vec<Morality> {
         vec![match self.subrace {
             ElfSubrace::Dark => Morality::Evil,
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun | ElfSubrace::Wood => {
-                Morality::Good
-            }
+            ElfSubrace::High(_) | ElfSubrace::Wood => Morality::Good,
         }]
     }
 }
@@ -141,9 +171,7 @@ impl Characteristics for Elf {
 
     fn get_base_speeds(&self) -> Vec<Speed> {
         vec![match self.subrace {
-            ElfSubrace::Dark | ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => {
-                Speed::Walking(30)
-            }
+            ElfSubrace::Dark | ElfSubrace::High(_) => Speed::Walking(30),
             ElfSubrace::Wood => Speed::Walking(35),
         }]
     }
@@ -151,7 +179,7 @@ impl Characteristics for Elf {
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         match self.subrace {
             ElfSubrace::Dark => &height_and_weight::DARK,
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => &height_and_weight::HIGH,
+            ElfSubrace::High(_) => &height_and_weight::HIGH,
             ElfSubrace::Wood => &height_and_weight::WOOD,
         }
     }
@@ -162,9 +190,9 @@ impl Citations for Elf {
         let race = Citation(Book::Phb, 21);
         let subrace = match self.subrace {
             ElfSubrace::Dark | ElfSubrace::Wood => Citation(Book::Phb, 24),
-            ElfSubrace::High => Citation(Book::Phb, 23),
-            ElfSubrace::Moon => Citation(Book::Scag, 105),
-            ElfSubrace::Sun => Citation(Book::Scag, 106),
+            ElfSubrace::High(HighVariant::High) => Citation(Book::Phb, 23),
+            ElfSubrace::High(HighVariant::Moon) => Citation(Book::Scag, 105),
+            ElfSubrace::High(HighVariant::Sun) => Citation(Book::Scag, 106),
         };
         CitationList(vec![race, subrace])
     }
@@ -208,7 +236,7 @@ impl Features for Elf {
                 },
             ],
             // You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => vec![Feature {
+            ElfSubrace::High(_) => vec![Feature {
                 title: "Cantrip",
                 citation: Citation(Book::Phb, 24),
             }],
@@ -229,7 +257,7 @@ impl Languages for Elf {
 
     fn addl_languages(&self) -> usize {
         match self.subrace {
-            ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => 1,
+            ElfSubrace::High(_) => 1,
             ElfSubrace::Dark | ElfSubrace::Wood => 0,
         }
     }
@@ -255,7 +283,7 @@ impl Proficiencies for Elf {
 #[typetag::serde]
 impl Race for Elf {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let subrace = ElfSubrace::iter().choose(rng).unwrap();
+        let subrace = ElfSubrace::gen(rng);
         let race = Box::new(Self { subrace });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
@@ -267,9 +295,7 @@ impl Race for Elf {
             AbilityScore(AbilityScoreType::Dexterity, 2),
             match self.subrace {
                 ElfSubrace::Dark => AbilityScore(AbilityScoreType::Charisma, 1),
-                ElfSubrace::High | ElfSubrace::Moon | ElfSubrace::Sun => {
-                    AbilityScore(AbilityScoreType::Intelligence, 1)
-                }
+                ElfSubrace::High(_) => AbilityScore(AbilityScoreType::Intelligence, 1),
                 ElfSubrace::Wood => AbilityScore(AbilityScoreType::Wisdom, 1),
             },
         ]
