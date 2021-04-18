@@ -4,14 +4,14 @@ expression: dwarf
 
 ---
 - type: Dwarf
-  subrace: Gold
+  subrace: Duergar
 - Hlin Loderr
-- age: 125
+- age: 49
   base_speeds:
     - Walking: 25
   ethnicity: ~
   gender: Female
-  height: 51
+  height: 49
   size: Medium
-  weight: 164
+  weight: 170
 

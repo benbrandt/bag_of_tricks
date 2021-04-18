@@ -55,12 +55,55 @@ mod height_and_weight {
 }
 
 #[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
-enum DwarfSubrace {
-    Duergar,
+enum HillVariant {
     Gold,
     Hill,
+}
+
+impl Default for HillVariant {
+    fn default() -> Self {
+        Self::Hill
+    }
+}
+
+#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+enum MountainVariant {
     Mountain,
     Shield,
+}
+
+impl Default for MountainVariant {
+    fn default() -> Self {
+        Self::Mountain
+    }
+}
+
+#[derive(Debug, Deserialize, EnumIter, PartialEq, Serialize)]
+enum DwarfSubrace {
+    Duergar,
+    Hill(HillVariant),
+    Mountain(MountainVariant),
+}
+
+impl DwarfSubrace {
+    fn gen(rng: &mut impl Rng) -> Self {
+        let subrace = Self::iter().choose(rng).unwrap();
+        match subrace {
+            Self::Hill(_) => Self::Hill(HillVariant::iter().choose(rng).unwrap()),
+            Self::Mountain(_) => Self::Mountain(MountainVariant::iter().choose(rng).unwrap()),
+            _ => subrace,
+        }
+    }
+}
+
+impl fmt::Display for DwarfSubrace {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Duergar => write!(f, "Duergar"),
+            Self::Hill(v) => write!(f, "{}", v),
+            Self::Mountain(v) => write!(f, "{}", v),
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize)]
@@ -77,10 +120,7 @@ impl AlignmentInfluences for Dwarf {
     fn morality(&self) -> Vec<Morality> {
         vec![match self.subrace {
             DwarfSubrace::Duergar => Morality::Evil,
-            DwarfSubrace::Gold
-            | DwarfSubrace::Hill
-            | DwarfSubrace::Mountain
-            | DwarfSubrace::Shield => Morality::Good,
+            DwarfSubrace::Hill(_) | DwarfSubrace::Mountain(_) => Morality::Good,
         }]
     }
 }
@@ -102,10 +142,8 @@ impl Characteristics for Dwarf {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         match self.subrace {
-            DwarfSubrace::Duergar | DwarfSubrace::Gold | DwarfSubrace::Hill => {
-                &height_and_weight::HILL
-            }
-            DwarfSubrace::Mountain | DwarfSubrace::Shield => &height_and_weight::MOUNTAIN,
+            DwarfSubrace::Duergar | DwarfSubrace::Hill(_) => &height_and_weight::HILL,
+            DwarfSubrace::Mountain(_) => &height_and_weight::MOUNTAIN,
         }
     }
 }
@@ -115,8 +153,10 @@ impl Citations for Dwarf {
         let race = Citation(Book::Phb, 18);
         let subrace = match self.subrace {
             DwarfSubrace::Duergar => Citation(Book::Scag, 104),
-            DwarfSubrace::Gold | DwarfSubrace::Shield => Citation(Book::Scag, 103),
-            DwarfSubrace::Hill | DwarfSubrace::Mountain => Citation(Book::Phb, 20),
+            DwarfSubrace::Hill(HillVariant::Gold)
+            | DwarfSubrace::Mountain(MountainVariant::Shield) => Citation(Book::Scag, 103),
+            DwarfSubrace::Hill(HillVariant::Hill)
+            | DwarfSubrace::Mountain(MountainVariant::Mountain) => Citation(Book::Phb, 20),
         };
         CitationList(vec![race, subrace])
     }
@@ -141,7 +181,7 @@ impl Features for Dwarf {
                 citation: Citation(Book::Phb, 20),
             },
         ];
-        if matches!(self.subrace, DwarfSubrace::Hill | DwarfSubrace::Gold) {
+        if matches!(self.subrace, DwarfSubrace::Hill(_)) {
             features.push(
                 // Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
                 Feature {
@@ -213,7 +253,7 @@ impl Proficiencies for Dwarf {
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
             Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Warhammer)),
         ];
-        if matches!(self.subrace, DwarfSubrace::Mountain | DwarfSubrace::Shield) {
+        if matches!(self.subrace, DwarfSubrace::Mountain(_)) {
             proficiencies.extend(vec![
                 Proficiency::Armor(ArmorType::Light),
                 Proficiency::Armor(ArmorType::Medium),
@@ -253,12 +293,8 @@ impl Race for Dwarf {
             AbilityScore(AbilityScoreType::Constitution, 2),
             match self.subrace {
                 DwarfSubrace::Duergar => AbilityScore(AbilityScoreType::Strength, 1),
-                DwarfSubrace::Gold | DwarfSubrace::Hill => {
-                    AbilityScore(AbilityScoreType::Wisdom, 1)
-                }
-                DwarfSubrace::Mountain | DwarfSubrace::Shield => {
-                    AbilityScore(AbilityScoreType::Strength, 2)
-                }
+                DwarfSubrace::Hill(_) => AbilityScore(AbilityScoreType::Wisdom, 1),
+                DwarfSubrace::Mountain(_) => AbilityScore(AbilityScoreType::Strength, 2),
             },
         ]
     }

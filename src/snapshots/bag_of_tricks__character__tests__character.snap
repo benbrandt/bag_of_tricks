@@ -17,14 +17,14 @@ background:
   type: Outlander
   origin: Exile
 characteristics:
-  age: 125
+  age: 317
   base_speeds:
     - Walking: 25
   ethnicity: ~
   gender: Female
-  height: 51
+  height: 49
   size: Medium
-  weight: 164
+  weight: 150
 chosen_equipment:
   - Other: A rank insignia from a lost legionnaire
 chosen_languages:
@@ -57,5 +57,6 @@ proficiencies:
       MusicalInstrument: PanFlute
 race:
   type: Dwarf
-  subrace: Gold
+  subrace:
+    Hill: Hill
 

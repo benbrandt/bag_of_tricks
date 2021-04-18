@@ -4,7 +4,7 @@ expression: "format!(\"{}\", character)"
 
 ---
 CHARACTER NAME: Hlin Loderr
-RACE: Gold Dwarf (PHB p18 SCAG p103)
+RACE: Hill Dwarf (PHB p18,20)
 BACKGROUND: Outlander (Exile or outcast) (PHB p136)
 ALIGNMENT: Lawful Good
 LEVEL: 1
@@ -46,11 +46,11 @@ LANGUAGES: Common, Dwarvish, Orc
 PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools)), Tool(MusicalInstrument(PanFlute))
 
 CHARACTERISTICS:
-Age: 125
+Age: 317
 Gender: Female
 Size: Medium
-Height: 4'3"
-Weight: 164 lb.
+Height: 4'1"
+Weight: 150 lb.
 
 PERSONALITY TRAITS:
 I watch over my friends as if they were a litter of newborn pups.

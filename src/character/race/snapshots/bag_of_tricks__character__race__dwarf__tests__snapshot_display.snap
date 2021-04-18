@@ -5,10 +5,6 @@ expression: "DwarfSubrace::iter().map(|subrace|\n                             fo
 ---
 Duergar Dwarf
 
-Gold Dwarf
-
 Hill Dwarf
 
 Mountain Dwarf
-
-Shield Dwarf
