@@ -17,11 +17,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::Arcana, Skill::History];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Specialty {
@@ -44,7 +47,7 @@ pub(crate) struct Sage {
 
 #[typetag::serde]
 impl Background for Sage {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
         });
@@ -52,7 +55,7 @@ impl Background for Sage {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Arcana, Skill::History]
+        SKILLS.to_vec()
     }
 }
 
@@ -137,7 +140,7 @@ impl PersonalityOptions for Sage {
 
 impl Proficiencies for Sage {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        Self::skills().into_iter().map(Proficiency::Skill).collect()
+        SKILLS.iter().map(|&s| Proficiency::Skill(s)).collect()
     }
 }
 

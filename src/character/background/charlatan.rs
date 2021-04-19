@@ -16,6 +16,7 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
@@ -31,6 +32,8 @@ const SCAMS: &[&str] = &[
     "I convince people that worthless junk is worth their hard-earned money.",
 ];
 
+const SKILLS: &[Skill] = &[Skill::Deception, Skill::SleightOfHand];
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Charlatan {
     scam: String,
@@ -44,7 +47,7 @@ impl Charlatan {
 
 #[typetag::serde]
 impl Background for Charlatan {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             scam: Self::gen_scam(rng),
         });
@@ -52,7 +55,7 @@ impl Background for Charlatan {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Deception, Skill::SleightOfHand]
+        SKILLS.to_vec()
     }
 }
 
@@ -145,7 +148,7 @@ impl Proficiencies for Charlatan {
             Proficiency::Tool(Tool::DisguiseKit),
             Proficiency::Tool(Tool::ForgerySet),
         ];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 }

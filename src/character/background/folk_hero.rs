@@ -16,6 +16,7 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
@@ -35,6 +36,8 @@ const DEFINING_EVENTS: &[&str] = &[
     "Recruited into a lord's army, I rose to leadership and was commended for my heroism.",
 ];
 
+const SKILLS: &[Skill] = &[Skill::AnimalHandling, Skill::Survival];
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct FolkHero {
     defining_event: String,
@@ -48,7 +51,7 @@ impl FolkHero {
 
 #[typetag::serde]
 impl Background for FolkHero {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             defining_event: Self::gen_defining_event(rng),
         });
@@ -56,7 +59,7 @@ impl Background for FolkHero {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::AnimalHandling, Skill::Survival]
+        SKILLS.to_vec()
     }
 }
 
@@ -124,7 +127,7 @@ impl PersonalityOptions for FolkHero {
 impl Proficiencies for FolkHero {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![Proficiency::Vehicle(VehicleProficiency::Land)];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 

@@ -16,23 +16,26 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
 
+const SKILLS: &[Skill] = &[Skill::SleightOfHand, Skill::Stealth];
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Urchin;
 
 #[typetag::serde]
 impl Background for Urchin {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::SleightOfHand, Skill::Stealth]
+        SKILLS.to_vec()
     }
 }
 
@@ -99,7 +102,7 @@ impl Proficiencies for Urchin {
             Proficiency::Tool(Tool::DisguiseKit),
             Proficiency::Tool(Tool::ThievesTools),
         ];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 }

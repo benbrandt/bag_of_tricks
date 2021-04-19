@@ -15,23 +15,26 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
 
+const SKILLS: &[Skill] = &[Skill::Insight, Skill::Religion];
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Acolyte;
 
 #[typetag::serde]
 impl Background for Acolyte {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         (Box::new(Self), Self::gen_personality(rng))
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Insight, Skill::Religion]
+        SKILLS.to_vec()
     }
 }
 
@@ -99,7 +102,7 @@ impl PersonalityOptions for Acolyte {
 
 impl Proficiencies for Acolyte {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        Self::skills().into_iter().map(Proficiency::Skill).collect()
+        SKILLS.iter().map(|&s| Proficiency::Skill(s)).collect()
     }
 }
 

@@ -21,11 +21,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::Athletics, Skill::Perception];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Variant {
@@ -40,7 +43,7 @@ pub(crate) struct Sailor {
 
 #[typetag::serde]
 impl Background for Sailor {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             variant: Variant::iter().choose(rng).unwrap(),
         });
@@ -48,7 +51,7 @@ impl Background for Sailor {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Athletics, Skill::Perception]
+        SKILLS.to_vec()
     }
 }
 
@@ -126,7 +129,7 @@ impl Proficiencies for Sailor {
             Proficiency::Tool(Tool::NavigatorsTools),
             Proficiency::Vehicle(VehicleProficiency::Water),
         ];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 }

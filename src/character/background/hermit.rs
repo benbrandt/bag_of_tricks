@@ -16,6 +16,7 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
@@ -33,6 +34,8 @@ const LIFE_OF_SECLUSION: &[&str] = &[
     "I was a pilgrim in search of a person, place, or relic of spiritual significance.",
 ];
 
+const SKILLS: &[Skill] = &[Skill::Medicine, Skill::Religion];
+
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Hermit {
     life_of_seclusion: String,
@@ -46,7 +49,7 @@ impl Hermit {
 
 #[typetag::serde]
 impl Background for Hermit {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             life_of_seclusion: Self::gen_life_of_seclusion(rng),
         });
@@ -54,7 +57,7 @@ impl Background for Hermit {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Medicine, Skill::Religion]
+        SKILLS.to_vec()
     }
 }
 
@@ -127,7 +130,7 @@ impl PersonalityOptions for Hermit {
 impl Proficiencies for Hermit {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![Proficiency::Tool(Tool::HerbalismKit)];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 }

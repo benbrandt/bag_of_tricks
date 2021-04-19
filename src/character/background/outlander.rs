@@ -17,11 +17,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::Athletics, Skill::Survival];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Origin {
@@ -49,7 +52,7 @@ pub(crate) struct Outlander {
 
 #[typetag::serde]
 impl Background for Outlander {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             origin: Origin::iter().choose(rng).unwrap(),
         });
@@ -57,7 +60,7 @@ impl Background for Outlander {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Athletics, Skill::Survival]
+        SKILLS.to_vec()
     }
 }
 
@@ -124,7 +127,7 @@ impl PersonalityOptions for Outlander {
 
 impl Proficiencies for Outlander {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        Self::skills().into_iter().map(Proficiency::Skill).collect()
+        SKILLS.iter().map(|&s| Proficiency::Skill(s)).collect()
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

@@ -1,5 +1,6 @@
 mod acolyte;
 mod charlatan;
+mod city_watch;
 mod criminal;
 mod entertainer;
 mod folk_hero;
@@ -27,18 +28,19 @@ use crate::{
 };
 
 use self::{
-    acolyte::Acolyte, charlatan::Charlatan, criminal::Criminal, guild_artisan::GuildArtisan,
-    hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage, sailor::Sailor,
-    soldier::Soldier, urchin::Urchin,
+    acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, criminal::Criminal,
+    guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage,
+    sailor::Sailor, soldier::Soldier, urchin::Urchin,
 };
 
 use super::{
-    ability::{modifier_shift, modifier_weight, AbilityScores, Skill},
+    ability::{modifier_shift, modifier_weight, Skill},
     backstory::Backstory,
     equipment::StartingEquipment,
     features::Features,
     languages::Languages,
     proficiencies::Proficiencies,
+    Character,
 };
 
 /// Types of alignment influence from personality traits
@@ -134,13 +136,21 @@ pub(crate) trait PersonalityOptions {
     }
 }
 
+pub(crate) fn skill_weight(skills: &[Skill], character: &Character) -> i16 {
+    skills
+        .iter()
+        .map(|s| character.abilities.modifier(s.ability_score_type()))
+        .max()
+        .unwrap_or(0)
+}
+
 /// Trait for backgrounds to build from
 #[typetag::serde(tag = "type")]
 pub(crate) trait Background:
     Backstory + Citations + Features + Languages + Proficiencies + StartingEquipment + fmt::Display
 {
     /// Generate a new instance of the background
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality)
+    fn gen(rng: &mut impl Rng, character: &Character) -> (Box<dyn Background>, Personality)
     where
         Self: Sized;
 
@@ -148,6 +158,14 @@ pub(crate) trait Background:
     fn skills() -> Vec<Skill>
     where
         Self: Sized;
+
+    /// Max skill modifier of background for weighting
+    fn weight(character: &Character) -> i16
+    where
+        Self: Sized,
+    {
+        skill_weight(&Self::skills(), character)
+    }
 }
 
 /// List of currently supported background options
@@ -155,6 +173,7 @@ pub(crate) trait Background:
 pub(crate) enum BackgroundOption {
     Acolyte,
     Charlatan,
+    CityWatch,
     Criminal,
     Entertainer,
     FolkHero,
@@ -172,51 +191,48 @@ impl BackgroundOption {
     /// Choose a random background option, weighted by proficiency bonuses, and map to corresponding generator
     pub(crate) fn gen(
         rng: &mut impl Rng,
-        abilities: &AbilityScores,
+        character: &Character,
     ) -> (Box<dyn Background>, Personality) {
         let options: Vec<BackgroundOption> = Self::iter().collect();
-        let shift = modifier_shift(Self::iter().map(|o| o.skill_modifier(abilities)));
+        let shift = modifier_shift(Self::iter().map(|o| o.weight(character)));
         let option = options
-            .choose_weighted(rng, |o| modifier_weight(o.skill_modifier(abilities), shift))
+            .choose_weighted(rng, |o| modifier_weight(o.weight(character), shift))
             .unwrap();
         match option {
-            Self::Acolyte => Acolyte::gen(rng),
-            Self::Charlatan => Charlatan::gen(rng),
-            Self::Criminal => Criminal::gen(rng),
-            Self::Entertainer => Entertainer::gen(rng),
-            Self::FolkHero => FolkHero::gen(rng),
-            Self::GuildArtisan => GuildArtisan::gen(rng),
-            Self::Hermit => Hermit::gen(rng),
-            Self::Noble => Noble::gen(rng),
-            Self::Outlander => Outlander::gen(rng),
-            Self::Sage => Sage::gen(rng),
-            Self::Sailor => Sailor::gen(rng),
-            Self::Soldier => Soldier::gen(rng),
-            Self::Urchin => Urchin::gen(rng),
+            Self::Acolyte => Acolyte::gen(rng, character),
+            Self::Charlatan => Charlatan::gen(rng, character),
+            Self::CityWatch => CityWatch::gen(rng, character),
+            Self::Criminal => Criminal::gen(rng, character),
+            Self::Entertainer => Entertainer::gen(rng, character),
+            Self::FolkHero => FolkHero::gen(rng, character),
+            Self::GuildArtisan => GuildArtisan::gen(rng, character),
+            Self::Hermit => Hermit::gen(rng, character),
+            Self::Noble => Noble::gen(rng, character),
+            Self::Outlander => Outlander::gen(rng, character),
+            Self::Sage => Sage::gen(rng, character),
+            Self::Sailor => Sailor::gen(rng, character),
+            Self::Soldier => Soldier::gen(rng, character),
+            Self::Urchin => Urchin::gen(rng, character),
         }
     }
 
     /// Max skill modifier of background for weighting
-    fn skill_modifier(&self, abilities: &AbilityScores) -> i16 {
-        let skills = match self {
-            Self::Acolyte => Acolyte::skills(),
-            Self::Charlatan => Charlatan::skills(),
-            Self::Criminal => Criminal::skills(),
-            Self::Entertainer => Entertainer::skills(),
-            Self::FolkHero => FolkHero::skills(),
-            Self::GuildArtisan => GuildArtisan::skills(),
-            Self::Hermit => Hermit::skills(),
-            Self::Noble => Noble::skills(),
-            Self::Outlander => Outlander::skills(),
-            Self::Sage => Sage::skills(),
-            Self::Sailor => Sailor::skills(),
-            Self::Soldier => Soldier::skills(),
-            Self::Urchin => Urchin::skills(),
-        };
-        skills
-            .iter()
-            .map(|s| abilities.modifier(s.ability_score_type()))
-            .max()
-            .unwrap_or(0)
+    fn weight(&self, character: &Character) -> i16 {
+        match self {
+            Self::Acolyte => Acolyte::weight(character),
+            Self::Charlatan => Charlatan::weight(character),
+            Self::CityWatch => CityWatch::weight(character),
+            Self::Criminal => Criminal::weight(character),
+            Self::Entertainer => Entertainer::weight(character),
+            Self::FolkHero => FolkHero::weight(character),
+            Self::GuildArtisan => GuildArtisan::weight(character),
+            Self::Hermit => Hermit::weight(character),
+            Self::Noble => Noble::weight(character),
+            Self::Outlander => Outlander::weight(character),
+            Self::Sage => Sage::weight(character),
+            Self::Sailor => Sailor::weight(character),
+            Self::Soldier => Soldier::weight(character),
+            Self::Urchin => Urchin::weight(character),
+        }
     }
 }

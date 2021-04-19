@@ -17,11 +17,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::History, Skill::Persuasion];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Variant {
@@ -36,7 +39,7 @@ pub(crate) struct Noble {
 
 #[typetag::serde]
 impl Background for Noble {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             variant: Variant::iter().choose(rng).unwrap(),
         });
@@ -44,7 +47,7 @@ impl Background for Noble {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::History, Skill::Persuasion]
+        SKILLS.to_vec()
     }
 }
 
@@ -122,7 +125,7 @@ impl PersonalityOptions for Noble {
 
 impl Proficiencies for Noble {
     fn proficiencies(&self) -> Vec<Proficiency> {
-        Self::skills().into_iter().map(Proficiency::Skill).collect()
+        SKILLS.iter().map(|&s| Proficiency::Skill(s)).collect()
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

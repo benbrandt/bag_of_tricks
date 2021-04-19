@@ -18,11 +18,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::Deception, Skill::Stealth];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Specialty {
@@ -52,7 +55,7 @@ pub(crate) struct Criminal {
 
 #[typetag::serde]
 impl Background for Criminal {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let background = Box::new(Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
             variant: Variant::iter().choose(rng).unwrap(),
@@ -61,7 +64,7 @@ impl Background for Criminal {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Deception, Skill::Stealth]
+        SKILLS.to_vec()
     }
 }
 
@@ -137,7 +140,7 @@ impl PersonalityOptions for Criminal {
 impl Proficiencies for Criminal {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![Proficiency::Tool(Tool::ThievesTools)];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 

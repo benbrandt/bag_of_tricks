@@ -19,11 +19,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::Insight, Skill::Persuasion];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Business {
@@ -116,7 +119,7 @@ pub(crate) struct GuildArtisan {
 
 #[typetag::serde]
 impl Background for GuildArtisan {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let variant = Variant::iter().choose(rng).unwrap();
         let background = Box::new(Self {
             business: Business::iter().choose(rng).unwrap(),
@@ -130,7 +133,7 @@ impl Background for GuildArtisan {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Insight, Skill::Persuasion]
+        SKILLS.to_vec()
     }
 }
 
@@ -207,7 +210,7 @@ impl PersonalityOptions for GuildArtisan {
 impl Proficiencies for GuildArtisan {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies: Vec<Proficiency> =
-            Self::skills().into_iter().map(Proficiency::Skill).collect();
+            SKILLS.iter().map(|&s| Proficiency::Skill(s)).collect();
         if let Variant::Artisan = self.variant {
             proficiencies.push(Proficiency::Tool(Tool::ArtisansTools(
                 self.business.tools(),

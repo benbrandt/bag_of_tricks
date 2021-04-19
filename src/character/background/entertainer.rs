@@ -18,11 +18,14 @@ use crate::{
         features::{Feature, Features},
         languages::Languages,
         proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+        Character,
     },
     citation::{Book, Citation, CitationList, Citations},
 };
 
 use super::{Background, Influence, Personality, PersonalityOptions};
+
+const SKILLS: &[Skill] = &[Skill::Acrobatics, Skill::Performance];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Routine {
@@ -53,7 +56,7 @@ pub(crate) struct Entertainer {
 
 #[typetag::serde]
 impl Background for Entertainer {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
         let num_routines = rng.gen_range(1..=3);
         let background = Box::new(Self {
             routines: Routine::iter().choose_multiple(rng, num_routines),
@@ -63,7 +66,7 @@ impl Background for Entertainer {
     }
 
     fn skills() -> Vec<Skill> {
-        vec![Skill::Acrobatics, Skill::Performance]
+        SKILLS.to_vec()
     }
 }
 
@@ -145,7 +148,7 @@ impl PersonalityOptions for Entertainer {
 impl Proficiencies for Entertainer {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![Proficiency::Tool(Tool::DisguiseKit)];
-        proficiencies.extend(Self::skills().into_iter().map(Proficiency::Skill));
+        proficiencies.extend(SKILLS.iter().map(|&s| Proficiency::Skill(s)));
         proficiencies
     }
 

@@ -78,9 +78,9 @@ impl Character {
         };
         let (race, name, characteristics) = RaceOptions::gen(rng);
         let mut abilities = AbilityScores::gen(rng);
-        let (background, personality) = BackgroundOption::gen(rng, &abilities);
         abilities.increase(race.abilities());
         character.abilities = abilities;
+        let (background, personality) = BackgroundOption::gen(rng, &character);
         character.race = Some(race);
         character.name = name;
         character.characteristics = Some(characteristics);
