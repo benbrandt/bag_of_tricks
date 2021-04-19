@@ -166,7 +166,12 @@ impl AlignmentInfluences for Tiefling {
 
 impl Appearance for Tiefling {
     fn appearance(&self) -> Vec<String> {
-        self.appearance.iter().map(|a| format!("{}", a)).collect()
+        let mut appearance: Vec<String> =
+            self.appearance.iter().map(|a| format!("{}", a)).collect();
+        if matches!(self.subrace, TieflingSubrace::Feral(FeralVariant::Winged)) {
+            appearance.push("Bat-like wings jut from your shoulder blades. You have a flying speed of 30ft while not wearing heavy armor".to_string());
+        }
+        appearance
     }
 }
 

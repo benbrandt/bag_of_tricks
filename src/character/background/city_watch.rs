@@ -26,6 +26,7 @@ use super::{skill_weight, soldier::Soldier, Background, Personality, Personality
 
 #[derive(Copy, Clone, Deserialize, Display, EnumIter, Serialize)]
 enum Variant {
+    #[strum(serialize = "City Watch")]
     CityWatch,
     Investigator,
 }
