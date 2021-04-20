@@ -127,7 +127,11 @@ impl Characteristics for HalfElf {
 
 impl Citations for HalfElf {
     fn citations(&self) -> CitationList {
-        CitationList(vec![Citation(Book::Phb, 38)])
+        let mut citations = vec![Citation(Book::Phb, 38)];
+        if !matches!(self.variant, Variant::SkillVersatility) {
+            citations.push(Citation(Book::Scag, 116))
+        }
+        CitationList(citations)
     }
 }
 
