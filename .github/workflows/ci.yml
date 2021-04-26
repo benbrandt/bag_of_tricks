@@ -45,6 +45,7 @@ jobs:
         with:
           profile: minimal
           toolchain: nightly
+          override: true
           components: llvm-tools-preview
 
       - uses: Swatinem/rust-cache@v1
@@ -69,6 +70,16 @@ jobs:
         env:
           RUSTFLAGS: "-Zinstrument-coverage"
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
+
+      - name: Pre-installing rust-covfix
+        uses: actions-rs/install@v0.1
+        with:
+          crate: rust-covfix
+          version: latest
+
+      - name: Fix coverage data
+        id: fix-coverage
+        run: rust-covfix lcov.info -o lcov.info
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
