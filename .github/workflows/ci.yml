@@ -12,27 +12,6 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v2
-
-      - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-
-      - uses: Swatinem/rust-cache@v1
-
-      - name: Run cargo build
-        uses: actions-rs/cargo@v1.0.3
-        with:
-          command: build
-          args: --workspace --release --all-features
-
   test:
     name: Test Suite
     runs-on: ubuntu-latest
@@ -43,11 +22,24 @@ jobs:
       - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: nightly
-          override: true
           components: llvm-tools-preview
+          override: true
+          profile: minimal
+          toolchain: nightly
 
       - uses: Swatinem/rust-cache@v1
+
+      - name: Run cargo build
+        uses: actions-rs/cargo@v1.0.3
+        with:
+          command: build
+          args: --workspace --release --all-features
+        env:
+          CARGO_INCREMENTAL: 0
+          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
+          RUST_BACKTRACE: 1
+          RUSTFLAGS: "-Zprofile -Zinstrument-coverage -Cdebuginfo=2 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests"
+          RUSTDOCFLAGS: '-Zprofile -Zinstrument-coverage -Cdebuginfo=2 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
 
       - name: Execute tests
         uses: actions-rs/cargo@v1
@@ -56,6 +48,7 @@ jobs:
             args: --workspace --all-features --no-fail-fast
         env:
           CARGO_INCREMENTAL: 0
+          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUST_BACKTRACE: 1
           RUSTFLAGS: "-Zprofile -Zinstrument-coverage -Cdebuginfo=2 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests"
           RUSTDOCFLAGS: '-Zprofile -Zinstrument-coverage -Cdebuginfo=2 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
@@ -79,11 +72,6 @@ jobs:
       - name: Fix coverage data
         id: fix-coverage
         run: rust-covfix lcov.info -o lcov.info
-
-      # - name: Run cargo-tarpaulin
-      #   uses: actions-rs/tarpaulin@v0.1
-      #   with:
-      #     args: --workspace --all-features --no-fail-fast --verbose
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
