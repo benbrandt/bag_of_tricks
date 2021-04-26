@@ -1,6 +1,7 @@
 mod acolyte;
 mod charlatan;
 mod city_watch;
+mod clan_crafter;
 mod criminal;
 mod entertainer;
 mod folk_hero;
@@ -28,9 +29,9 @@ use crate::{
 };
 
 use self::{
-    acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, criminal::Criminal,
-    guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage,
-    sailor::Sailor, soldier::Soldier, urchin::Urchin,
+    acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
+    criminal::Criminal, guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble,
+    outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier, urchin::Urchin,
 };
 
 use super::{
@@ -174,6 +175,7 @@ pub(crate) enum BackgroundOption {
     Acolyte,
     Charlatan,
     CityWatch,
+    ClanCrafter,
     Criminal,
     Entertainer,
     FolkHero,
@@ -202,6 +204,7 @@ impl BackgroundOption {
             Self::Acolyte => Acolyte::gen(rng, character),
             Self::Charlatan => Charlatan::gen(rng, character),
             Self::CityWatch => CityWatch::gen(rng, character),
+            Self::ClanCrafter => ClanCrafter::gen(rng, character),
             Self::Criminal => Criminal::gen(rng, character),
             Self::Entertainer => Entertainer::gen(rng, character),
             Self::FolkHero => FolkHero::gen(rng, character),
@@ -222,6 +225,7 @@ impl BackgroundOption {
             Self::Acolyte => Acolyte::weight(character),
             Self::Charlatan => Charlatan::weight(character),
             Self::CityWatch => CityWatch::weight(character),
+            Self::ClanCrafter => ClanCrafter::weight(character),
             Self::Criminal => Criminal::weight(character),
             Self::Entertainer => Entertainer::weight(character),
             Self::FolkHero => FolkHero::weight(character),

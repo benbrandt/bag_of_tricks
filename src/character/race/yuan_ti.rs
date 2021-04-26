@@ -225,7 +225,7 @@ impl PurebloodCharacteristics {
             .collect::<Vec<_>>()
             .choose_multiple_weighted(rng, 2, |c| c.weight())
             .unwrap()
-            .cloned()
+            .copied()
             .collect::<Vec<_>>()
     }
 

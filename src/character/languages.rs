@@ -1,5 +1,9 @@
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
+use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter};
+
+use super::Character;
 
 /// Available languages for a character to learn.
 #[allow(dead_code)]
@@ -23,6 +27,15 @@ pub(crate) enum Language {
     Primordial,
     Sylvan,
     Undercommon,
+}
+
+impl Language {
+    // Sometimes you end up with dupes. Consume and replace with a new option
+    pub(crate) fn gen(rng: &mut impl Rng, character: &Character, amount: usize) -> Vec<Self> {
+        Language::iter()
+            .filter(|l| !character.languages.contains(l))
+            .choose_multiple(rng, amount)
+    }
 }
 
 /// Trait for describing what languages are provided by a given object.

@@ -11,11 +11,10 @@ abilities:
   Wisdom: 14
   Charisma: 11
 alignment:
-  - Lawful
+  - Chaotic
   - Good
 background:
-  type: FolkHero
-  defining_event: I led a militia to fight off an invading army.
+  type: ClanCrafter
 characteristics:
   age: 39
   base_speeds:
@@ -27,20 +26,23 @@ characteristics:
   weight: 160
 chosen_equipment:
   - Tool:
-      ArtisansTools: SmithsTools
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
-chosen_languages: []
+      ArtisansTools: CarpentersTools
+  - Other: A tiny cage with no door
+languages:
+  - Common
+  - Dwarvish
+  - Orc
 level: 1
 name: Harnoth Foehammer
 personality:
-  bond: "My tools are symbols of my past life, and I carry them so that I will never forget my roots."
-  flaw: The tyrant who rules my land will stop at nothing to see me killed.
+  bond: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
+  flaw: "I'm never satisfied with what I have — I always want more."
   ideal:
-    - Destiny. Nothing and no one can steer me away from my higher calling.
-    - Any
+    - Freedom. Everyone should be free to pursue his or her own livelihood.
+    - Chaotic
   traits:
-    - "If someone is in trouble, I'm always ready to lend help."
-    - I misuse long words in an attempt to sound smarter.
+    - "I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist."
+    - "I'm a snob who looks down on those who can't appreciate fine art."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -50,13 +52,12 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Vehicle: Land
-  - Skill: AnimalHandling
-  - Skill: Survival
+  - Skill: History
+  - Skill: Insight
   - Tool:
       ArtisansTools: SmithsTools
   - Tool:
-      ArtisansTools: WoodcarversTools
+      ArtisansTools: CarpentersTools
 race:
   type: Dwarf
   subrace:

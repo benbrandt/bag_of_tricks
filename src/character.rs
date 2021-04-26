@@ -12,7 +12,7 @@ mod race;
 
 use std::{fmt, writeln};
 
-use rand::{prelude::IteratorRandom, Rng};
+use rand::Rng;
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 
@@ -23,7 +23,7 @@ use backstory::Backstory;
 use characteristics::{CharacteristicDetails, Speed};
 use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use features::{Feature, Features};
-use languages::{Language, Languages};
+use languages::Language;
 use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
 
@@ -45,7 +45,7 @@ pub struct Character {
     /// Equipment randomly chosen for the character.
     chosen_equipment: Vec<Equipment>,
     /// Languages randomly chosen for the character.
-    chosen_languages: Vec<Language>,
+    languages: Vec<Language>,
     /// Current level of the character.
     level: u8,
     /// Character's name.
@@ -109,11 +109,37 @@ impl Character {
 
     /// Generate any additional languages, ensuring no overlap with current languages.
     fn gen_languages(&mut self, rng: &mut impl Rng) {
-        let amount = self.addl_languages();
-        let current = self.languages();
-        self.chosen_languages = Language::iter()
-            .filter(|l| !current.contains(l))
-            .choose_multiple(rng, amount);
+        let mut languages = vec![];
+
+        if let Some(race) = self.race.as_ref() {
+            languages.extend(race.languages());
+        }
+        if let Some(background) = self.background.as_ref() {
+            languages.extend(background.languages());
+        }
+
+        let addl_languages = self
+            .race
+            .as_ref()
+            .map(|r| r.addl_languages())
+            .unwrap_or_default()
+            + self
+                .background
+                .as_ref()
+                .map(|b| b.addl_languages())
+                .unwrap_or_default();
+
+        // Handle any dupes across these options
+        for l in languages {
+            if self.languages.contains(&l) {
+                self.languages.extend(Language::gen(rng, self, 1));
+            } else {
+                self.languages.push(l);
+            }
+        }
+
+        self.languages
+            .extend(Language::gen(rng, self, addl_languages));
     }
 
     /// Generate additional proficiencies, each looking at the current character sheet.
@@ -230,33 +256,6 @@ impl Features for Character {
     }
 }
 
-/// Combine all languages for the character, both statically assigned and randomly chosen.
-impl Languages for Character {
-    fn languages(&self) -> Vec<Language> {
-        let mut languages = vec![];
-        if let Some(race) = self.race.as_ref() {
-            languages.extend(race.languages());
-        }
-        if let Some(background) = self.background.as_ref() {
-            languages.extend(background.languages());
-        }
-        languages.extend(self.chosen_languages.clone());
-        languages
-    }
-
-    fn addl_languages(&self) -> usize {
-        self.race
-            .as_ref()
-            .map(|r| r.addl_languages())
-            .unwrap_or_default()
-            + self
-                .background
-                .as_ref()
-                .map(|b| b.addl_languages())
-                .unwrap_or_default()
-    }
-}
-
 /// Combine all resistances the character has.
 impl Resistances for Character {
     fn immunities(&self) -> Vec<DamageType> {
@@ -355,7 +354,7 @@ impl fmt::Display for Character {
         writeln!(
             f,
             "LANGUAGES: {}",
-            self.languages()
+            self.languages
                 .iter()
                 .map(|r| format!("{}", r))
                 .collect::<Vec<String>>()

@@ -5,8 +5,8 @@ expression: "format!(\"{}\", character)"
 ---
 CHARACTER NAME: Harnoth Foehammer
 RACE: Hill Dwarf (PHB p18,20)
-BACKGROUND: Folk Hero (PHB p131)
-ALIGNMENT: Lawful Good
+BACKGROUND: Clan Crafter (SCAG p145)
+ALIGNMENT: Chaotic Good
 LEVEL: 1
 
 STR  -2 (6)
@@ -19,12 +19,12 @@ CHA  +0 (11)
 SKILLS:
 PROF  MOD  SKILL            BONUS:
       DEX  Acrobatics       +0
- X    WIS  Animal Handling  +4
+      WIS  Animal Handling  +2
       INT  Arcana           +2
       STR  Athletics        -2
       CHA  Deception        +0
-      INT  History          +2
-      WIS  Insight          +2
+ X    INT  History          +4
+ X    WIS  Insight          +4
       CHA  Intimidation     +0
       INT  Investigation    +2
       WIS  Medicine         +2
@@ -35,15 +35,15 @@ PROF  MOD  SKILL            BONUS:
       INT  Religion         +2
       DEX  Sleight of Hand  +0
       DEX  Stealth          +0
- X    WIS  Survival         +4
+      WIS  Survival         +2
 
 SPEED:
 Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Vehicle(Land), Tool(ArtisansTools(SmithsTools)), Tool(ArtisansTools(WoodcarversTools))
+LANGUAGES: Common, Dwarvish, Orc
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools)), Tool(ArtisansTools(CarpentersTools))
 
 CHARACTERISTICS:
 Age: 39
@@ -53,25 +53,24 @@ Height: 4'1"
 Weight: 160 lb.
 
 PERSONALITY TRAITS:
-If someone is in trouble, I'm always ready to lend help.
-I misuse long words in an attempt to sound smarter.
-IDEAL: Destiny. Nothing and no one can steer me away from my higher calling. (Any)
-BOND: My tools are symbols of my past life, and I carry them so that I will never forget my roots.
-FLAW: The tyrant who rules my land will stop at nothing to see me killed.
+I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist.
+I'm a snob who looks down on those who can't appreciate fine art.
+IDEAL: Freedom. Everyone should be free to pursue his or her own livelihood. (Chaotic)
+BOND: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
+FLAW: I'm never satisfied with what I have — I always want more.
 
 EQUIPMENT
-Gear(Other(Shovel)), Gear(Other(PotIron)), Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Tool(ArtisansTools(SmithsTools)), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
-COINS: 10gp
+Other("a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(ArtisansTools(CarpentersTools)), Other("A tiny cage with no door")
+COINS: 15gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
 - Dwarven Toughness (PHB p20)
-- Rustic Hospitality (PHB p131)
+- Respect of the Stout Folk (SCAG p145)
 
 APPEARANCE:
 
 BACKSTORY:
-Defining Event: I led a militia to fight off an invading army.
 

@@ -1,0 +1,7 @@
+---
+source: src/character/background/clan_crafter.rs
+expression: background.languages()
+
+---
+- Dwarvish
+

@@ -65,7 +65,7 @@ impl Equipment {
 }
 
 /// A way to encapsulate a equipment that needs to be chosen for a character.
-#[derive(Eq, Ord, PartialEq, PartialOrd)]
+#[derive(Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum EquipmentOption {
     /// Choose from a given list of equipment options.
     From(Vec<Equipment>),
