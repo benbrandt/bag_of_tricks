@@ -6,6 +6,7 @@ mod cloistered_scholar;
 mod courtier;
 mod criminal;
 mod entertainer;
+mod faction_agent;
 mod folk_hero;
 mod guild_artisan;
 mod hermit;
@@ -33,8 +34,8 @@ use crate::{
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
     cloistered_scholar::CloisteredScholar, courtier::Courtier, criminal::Criminal,
-    guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage,
-    sailor::Sailor, soldier::Soldier, urchin::Urchin,
+    faction_agent::FactionAgent, guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble,
+    outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier, urchin::Urchin,
 };
 
 use super::{
@@ -183,7 +184,7 @@ pub(crate) enum BackgroundOption {
     Courtier,
     Criminal,
     Entertainer,
-    // FactionAgent 147
+    FactionAgent,
     // FarTraveler 148, 149
     FolkHero,
     GuildArtisan,
@@ -222,6 +223,7 @@ impl BackgroundOption {
             Self::Courtier => Courtier::gen(rng, character),
             Self::Criminal => Criminal::gen(rng, character),
             Self::Entertainer => Entertainer::gen(rng, character),
+            Self::FactionAgent => FactionAgent::gen(rng, character),
             Self::FolkHero => FolkHero::gen(rng, character),
             Self::GuildArtisan => GuildArtisan::gen(rng, character),
             Self::Hermit => Hermit::gen(rng, character),
@@ -245,6 +247,7 @@ impl BackgroundOption {
             Self::Courtier => Courtier::weight(character),
             Self::Criminal => Criminal::weight(character),
             Self::Entertainer => Entertainer::weight(character),
+            Self::FactionAgent => FactionAgent::weight(character),
             Self::FolkHero => FolkHero::weight(character),
             Self::GuildArtisan => GuildArtisan::weight(character),
             Self::Hermit => Hermit::weight(character),

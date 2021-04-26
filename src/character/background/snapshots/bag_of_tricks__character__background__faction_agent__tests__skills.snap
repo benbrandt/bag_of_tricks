@@ -1,0 +1,21 @@
+---
+source: src/character/background/faction_agent.rs
+expression: "FactionAgent::skills()"
+
+---
+- Insight
+- AnimalHandling
+- Arcana
+- Deception
+- History
+- Insight
+- Intimidation
+- Investigation
+- Medicine
+- Nature
+- Perception
+- Performance
+- Persuasion
+- Religion
+- Survival
+

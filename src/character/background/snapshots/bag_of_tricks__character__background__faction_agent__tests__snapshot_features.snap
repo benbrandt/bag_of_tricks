@@ -1,0 +1,10 @@
+---
+source: src/character/background/faction_agent.rs
+expression: background.features()
+
+---
+- title: Safe Haven
+  citation:
+    - Scag
+    - 147
+
