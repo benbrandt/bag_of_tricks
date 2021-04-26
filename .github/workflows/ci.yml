@@ -12,35 +12,18 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v2
-
-      - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-
-      - uses: Swatinem/rust-cache@v1
-
-      - name: Run cargo build
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --workspace --release --all-features
-
   test:
     name: Test Suite
     runs-on: ubuntu-latest
+    env:
+      CARGO_INCREMENTAL: 0
+      RUSTFLAGS: "-Zinstrument-coverage -Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
+      LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Install stable toolchain
+      - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -52,9 +35,12 @@ jobs:
 
       - name: Run cargo build
         uses: actions-rs/cargo@v1
-        env:
-          RUSTFLAGS: "-Zinstrument-coverage"
-          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
+        with:
+          command: build
+          args: --workspace --release --all-features
+
+      - name: Run cargo test
+        uses: actions-rs/cargo@v1
         with:
           command: test
           args: --workspace --all-features --no-fail-fast
@@ -66,10 +52,7 @@ jobs:
           version: latest
 
       - name: grcov
-        run: grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --llvm --ignore "*cargo*" -o ./lcov.info
-        env:
-          RUSTFLAGS: "-Zinstrument-coverage"
-          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
+        run: grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --llvm --ignore "/*" -o ./lcov.info
 
       - name: Pre-installing rust-covfix
         uses: actions-rs/install@v0.1
