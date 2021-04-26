@@ -1,0 +1,11 @@
+---
+source: src/character/background/cloistered_scholar.rs
+expression: background.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - Nature
+      - Religion
+    - 1
+

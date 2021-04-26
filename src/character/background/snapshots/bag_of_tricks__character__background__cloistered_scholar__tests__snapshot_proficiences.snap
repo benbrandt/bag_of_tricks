@@ -1,0 +1,7 @@
+---
+source: src/character/background/cloistered_scholar.rs
+expression: background.proficiencies()
+
+---
+- Skill: History
+

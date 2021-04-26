@@ -14,7 +14,7 @@ alignment:
   - Chaotic
   - Good
 background:
-  type: ClanCrafter
+  type: CloisteredScholar
 characteristics:
   age: 39
   base_speeds:
@@ -25,24 +25,23 @@ characteristics:
   size: Medium
   weight: 160
 chosen_equipment:
-  - Tool:
-      ArtisansTools: CarpentersTools
-  - Other: A tiny cage with no door
+  - Other: A silver spoon with an M engraved on the handle
 languages:
   - Common
   - Dwarvish
   - Orc
+  - DeepSpeech
 level: 1
 name: Harnoth Foehammer
 personality:
-  bond: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
-  flaw: "I'm never satisfied with what I have — I always want more."
+  bond: I sold my soul for knowledge. I hope to do great deeds and win it back.
+  flaw: I overlook obvious solutions in favor of complicated ones.
   ideal:
-    - Freedom. Everyone should be free to pursue his or her own livelihood.
-    - Chaotic
+    - Logic. Emotions must not cloud our logical thinking.
+    - Lawful
   traits:
-    - "I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist."
-    - "I'm a snob who looks down on those who can't appreciate fine art."
+    - I use polysyllabic words that convey the impression of great erudition.
+    - "I've read every book in the world's greatest libraries — or I like to boast that I have."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -53,11 +52,9 @@ proficiencies:
   - Weapon:
       Specific: Warhammer
   - Skill: History
-  - Skill: Insight
   - Tool:
-      ArtisansTools: SmithsTools
-  - Tool:
-      ArtisansTools: CarpentersTools
+      ArtisansTools: MasonsTools
+  - Skill: Religion
 race:
   type: Dwarf
   subrace:

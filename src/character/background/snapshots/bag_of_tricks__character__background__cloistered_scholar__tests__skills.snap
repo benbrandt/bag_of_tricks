@@ -1,0 +1,10 @@
+---
+source: src/character/background/cloistered_scholar.rs
+expression: "CloisteredScholar::skills()"
+
+---
+- History
+- Arcana
+- Nature
+- Religion
+
