@@ -38,7 +38,7 @@ jobs:
           CARGO_INCREMENTAL: 0
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUST_BACKTRACE: 1
-          RUSTFLAGS: "-Zprofile -Zinstrument-coverage -Cdebuginfo=1 -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort"
+          RUSTFLAGS: "-Zinstrument-coverage -Cdebuginfo=1 -Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
           RUSTDOCFLAGS: "-Cpanic=abort"
 
       - name: Execute tests
@@ -50,7 +50,7 @@ jobs:
           CARGO_INCREMENTAL: 0
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUST_BACKTRACE: 1
-          RUSTFLAGS: "-Zprofile -Zinstrument-coverage -Cdebuginfo=1 -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort"
+          RUSTFLAGS: "-Zinstrument-coverage -Cdebuginfo=1 -Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
           RUSTDOCFLAGS: "-Cpanic=abort"
 
       - name: Pre-installing grcov
