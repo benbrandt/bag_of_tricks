@@ -41,7 +41,7 @@ SPEED:
 Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
-IMMUNITIES: 
+IMMUNITIES:
 LANGUAGES: Common, Dwarvish, Orc
 PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools)), Tool(ArtisansTools(CarpentersTools))
 
@@ -60,7 +60,7 @@ BOND: I will get revenge on the evil forces that destroyed my place of business 
 FLAW: I'm never satisfied with what I have — I always want more.
 
 EQUIPMENT
-Other("a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(ArtisansTools(CarpentersTools)), Other("A tiny cage with no door")
+Other("a maker\'s mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(ArtisansTools(CarpentersTools)), Other("A tiny cage with no door")
 COINS: 15gp
 
 FEATURES AND TRAITS:
@@ -73,4 +73,3 @@ FEATURES AND TRAITS:
 APPEARANCE:
 
 BACKSTORY:
-

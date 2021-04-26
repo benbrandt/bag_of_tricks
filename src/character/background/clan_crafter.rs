@@ -94,7 +94,7 @@ impl StartingEquipment for ClanCrafter {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a maker\'s mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from".into()),
+            Equipment::Other("a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from".into()),
             Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
             Equipment::Gear(Gear::Other(OtherGear::Pouch)),
         ]
