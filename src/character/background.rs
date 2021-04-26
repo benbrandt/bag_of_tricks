@@ -3,6 +3,7 @@ mod charlatan;
 mod city_watch;
 mod clan_crafter;
 mod cloistered_scholar;
+mod courtier;
 mod criminal;
 mod entertainer;
 mod folk_hero;
@@ -31,9 +32,9 @@ use crate::{
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
-    cloistered_scholar::CloisteredScholar, criminal::Criminal, guild_artisan::GuildArtisan,
-    hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage, sailor::Sailor,
-    soldier::Soldier, urchin::Urchin,
+    cloistered_scholar::CloisteredScholar, courtier::Courtier, criminal::Criminal,
+    guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage,
+    sailor::Sailor, soldier::Soldier, urchin::Urchin,
 };
 
 use super::{
@@ -179,17 +180,26 @@ pub(crate) enum BackgroundOption {
     CityWatch,
     ClanCrafter,
     CloisteredScholar,
+    Courtier,
     Criminal,
     Entertainer,
+    // FactionAgent 147
+    // FarTraveler 148, 149
     FolkHero,
     GuildArtisan,
     Hermit,
+    // Inheritor 150
+    // KnightOfTheOrder 151
+    // MercenaryVeteran 152
     Noble,
     Outlander,
     Sage,
     Sailor,
     Soldier,
+    // UrbanBountyHunter 153
     Urchin,
+    // UthgardtTribeMember 153, 154
+    // WaterdhavianNoble 154
 }
 
 impl BackgroundOption {
@@ -209,6 +219,7 @@ impl BackgroundOption {
             Self::CityWatch => CityWatch::gen(rng, character),
             Self::ClanCrafter => ClanCrafter::gen(rng, character),
             Self::CloisteredScholar => CloisteredScholar::gen(rng, character),
+            Self::Courtier => Courtier::gen(rng, character),
             Self::Criminal => Criminal::gen(rng, character),
             Self::Entertainer => Entertainer::gen(rng, character),
             Self::FolkHero => FolkHero::gen(rng, character),
@@ -231,6 +242,7 @@ impl BackgroundOption {
             Self::CityWatch => CityWatch::weight(character),
             Self::ClanCrafter => ClanCrafter::weight(character),
             Self::CloisteredScholar => CloisteredScholar::weight(character),
+            Self::Courtier => Courtier::weight(character),
             Self::Criminal => Criminal::weight(character),
             Self::Entertainer => Entertainer::weight(character),
             Self::FolkHero => FolkHero::weight(character),
