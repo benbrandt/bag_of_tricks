@@ -38,8 +38,8 @@ jobs:
           CARGO_INCREMENTAL: 0
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUST_BACKTRACE: 1
-          RUSTFLAGS: "-Zprofile -Zinstrument-coverage -Cdebuginfo=2 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests"
-          RUSTDOCFLAGS: '-Zprofile -Zinstrument-coverage -Cdebuginfo=2 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+          RUSTFLAGS: "-Zprofile -Zinstrument-coverage -Cdebuginfo=1 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests"
+          RUSTDOCFLAGS: '-Zprofile -Zinstrument-coverage -Cdebuginfo=1 -Ccodegen-units=1 -Copt-level=0 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
 
       - name: Execute tests
         uses: actions-rs/cargo@v1
@@ -76,6 +76,7 @@ jobs:
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
         with:
+          path-to-lcov: ${{ steps.coverage.outputs.report }}
           token: ${{secrets.CODECOV_TOKEN}}
 
   lints:
