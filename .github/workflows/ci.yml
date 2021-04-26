@@ -44,14 +44,31 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
+          components: llvm-tools-preview
 
       - uses: Swatinem/rust-cache@v1
 
-      - name: Run cargo-tarpaulin
-        uses: actions-rs/tarpaulin@v0.1
+      - name: Run cargo build
+        uses: actions-rs/cargo@v1
+        env:
+          RUSTFLAGS: "-Zinstrument-coverage"
+          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
         with:
-          args: --workspace --all-features --no-fail-fast --verbose
+          command: test
+          args: --workspace --all-features --no-fail-fast
+
+      - name: Pre-installing grcov
+        uses: actions-rs/install@v0.1
+        with:
+          crate: grcov
+          version: latest
+
+      - name: grcov
+        run: grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --llvm --ignore "*cargo*" -o ./lcov.info
+        env:
+          RUSTFLAGS: "-Zinstrument-coverage"
+          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
