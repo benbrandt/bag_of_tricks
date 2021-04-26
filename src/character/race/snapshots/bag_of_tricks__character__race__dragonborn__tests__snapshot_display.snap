@@ -1,6 +1,6 @@
 ---
 source: src/character/race/dragonborn.rs
-expression: "format!(\"{}\", dragonborn)"
+expression: dragonborn
 
 ---
 Blue Dragonborn
