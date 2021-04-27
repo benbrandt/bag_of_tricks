@@ -88,7 +88,7 @@ impl Languages for Charlatan {
 }
 
 impl PersonalityOptions for Charlatan {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",
         "I owe everything to my mentor \u{2014} a horrible person who's probably rotting in jail somewhere.",
         "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.",
@@ -96,7 +96,7 @@ impl PersonalityOptions for Charlatan {
         "A powerful person killed someone I love. Some day soon, I'll have my revenge.",
         "I swindled and ruined a person who didn't deserve it. I seek to atone for my misdeeds but might never be able to forgive myself.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I can't resist a pretty face.",
         "I'm always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in.",
         "I'm convinced that no one could ever fool me the way I fool others.",
@@ -104,7 +104,7 @@ impl PersonalityOptions for Charlatan {
         "I can't resist swindling people who are more powerful than me.",
         "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         (
             "Independence. I am a free spirit \u{2014} no one tells me what to do.",
             Influence::Chaotic,
@@ -130,7 +130,7 @@ impl PersonalityOptions for Charlatan {
             Influence::Any,
         ),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I fall in and out of love easily, and am always pursuing someone.",
         "I have a joke for every occasion, especially occasions where humor is inappropriate.",
         "Flattery is my preferred trick for getting what I want.",

@@ -89,7 +89,7 @@ impl Features for Criminal {
 impl Languages for Criminal {}
 
 impl PersonalityOptions for Criminal {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I'm trying to pay off an old debt I owe to a generous benefactor.",
         "My ill-gotten gains go to support my family.",
         "Something important was taken from me, and I aim to steal it back.",
@@ -97,7 +97,7 @@ impl PersonalityOptions for Criminal {
         "I'm guilty of a terrible crime. I hope I can redeem myself for it.",
         "Someone I loved died because of a mistake I made. That will never happen again.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "When I see something valuable, I can't think about anything but how to steal it.",
         "When faced with a choice between money and my friends, I usually choose the money.",
         "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.",
@@ -105,7 +105,7 @@ impl PersonalityOptions for Criminal {
         "I turn tail and run when things look bad.",
         "An innocent person is in prison for a crime that I committed. I'm okay with that.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         (
             "Honor. I don't steal from others in the trade.",
             Influence::Lawful,
@@ -125,7 +125,7 @@ impl PersonalityOptions for Criminal {
         ("People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.", Influence::Neutral),
         ("Redemption. There's a spark of good in everyone.", Influence::Good),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I always have a plan for what to do when things go wrong.",
         "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.",
         "The first thing I do in a new place is note the locations of everything valuable \u{2014} or where such things could be hidden.",

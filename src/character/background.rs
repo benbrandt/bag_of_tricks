@@ -7,6 +7,7 @@ mod courtier;
 mod criminal;
 mod entertainer;
 mod faction_agent;
+mod far_traveler;
 mod folk_hero;
 mod guild_artisan;
 mod hermit;
@@ -34,8 +35,9 @@ use crate::{
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
     cloistered_scholar::CloisteredScholar, courtier::Courtier, criminal::Criminal,
-    faction_agent::FactionAgent, guild_artisan::GuildArtisan, hermit::Hermit, noble::Noble,
-    outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier, urchin::Urchin,
+    faction_agent::FactionAgent, far_traveler::FarTraveler, guild_artisan::GuildArtisan,
+    hermit::Hermit, noble::Noble, outlander::Outlander, sage::Sage, sailor::Sailor,
+    soldier::Soldier, urchin::Urchin,
 };
 
 use super::{
@@ -117,14 +119,14 @@ impl fmt::Display for Personality {
 
 /// Trait to store associated constants for each background's personality tables.
 pub(crate) trait PersonalityOptions {
-    /// List of 6 bonds to choose from
-    const BONDS: [&'static str; 6];
-    /// List of 6 flaws to choose from
-    const FLAWS: [&'static str; 6];
-    /// List of 6 ideals to choose from, and their corresponding alignment influence
-    const IDEALS: [(&'static str, Influence); 6];
-    /// List of 8 traits to choose from
-    const TRAITS: [&'static str; 8];
+    /// List of bonds to choose from
+    const BONDS: &'static [&'static str];
+    /// List of flaws to choose from
+    const FLAWS: &'static [&'static str];
+    /// List of ideals to choose from, and their corresponding alignment influence
+    const IDEALS: &'static [(&'static str, Influence)];
+    /// List of traits to choose from
+    const TRAITS: &'static [&'static str];
 
     /// Generate personality descriptions from the associated constants
     fn gen_personality(rng: &mut impl Rng) -> Personality {
@@ -185,7 +187,7 @@ pub(crate) enum BackgroundOption {
     Criminal,
     Entertainer,
     FactionAgent,
-    // FarTraveler 148, 149
+    FarTraveler,
     FolkHero,
     GuildArtisan,
     Hermit,
@@ -224,6 +226,7 @@ impl BackgroundOption {
             Self::Criminal => Criminal::gen(rng, character),
             Self::Entertainer => Entertainer::gen(rng, character),
             Self::FactionAgent => FactionAgent::gen(rng, character),
+            Self::FarTraveler => FarTraveler::gen(rng, character),
             Self::FolkHero => FolkHero::gen(rng, character),
             Self::GuildArtisan => GuildArtisan::gen(rng, character),
             Self::Hermit => Hermit::gen(rng, character),
@@ -248,6 +251,7 @@ impl BackgroundOption {
             Self::Criminal => Criminal::weight(character),
             Self::Entertainer => Entertainer::weight(character),
             Self::FactionAgent => FactionAgent::weight(character),
+            Self::FarTraveler => FarTraveler::weight(character),
             Self::FolkHero => FolkHero::weight(character),
             Self::GuildArtisan => GuildArtisan::weight(character),
             Self::Hermit => Hermit::weight(character),

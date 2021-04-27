@@ -88,7 +88,7 @@ impl Features for FolkHero {
 impl Languages for FolkHero {}
 
 impl PersonalityOptions for FolkHero {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I have a family, but I have no idea where they are. One day, I hope to see them again.",
         "I worked the land, I love the land, and I will protect the land.",
         "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.",
@@ -96,7 +96,7 @@ impl PersonalityOptions for FolkHero {
         "I protect those who cannot protect themselves.",
         "I wish my childhood sweetheart had come with me to pursue my destiny.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "The tyrant who rules my land will stop at nothing to see me killed.",
         "I'm convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure.",
         "The people who knew me when I was young know my shameful secret, so I can never go home again.",
@@ -104,7 +104,7 @@ impl PersonalityOptions for FolkHero {
         "Secretly, I believe that things would be better if I were a tyrant lording over the land.",
         "I have trouble trusting in my allies.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Respect. People deserve to be treated with dignity and respect.", Influence::Good),
         ("Fairness. No one should get preferential treatment before the law, and no one is above the law.", Influence::Lawful),
         ("Freedom. Tyrants must not be allowed to oppress the people.", Influence::Chaotic),
@@ -112,7 +112,7 @@ impl PersonalityOptions for FolkHero {
         ("Sincerity. There's no good in pretending to be something I'm not.", Influence::Neutral),
         ("Destiny. Nothing and no one can steer me away from my higher calling.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I judge people by their actions, not their words.",
         "If someone is in trouble, I'm always ready to lend help.",
         "When I set my mind to something, I follow through no matter what gets in my way.",

@@ -89,7 +89,7 @@ impl Languages for Outlander {
 }
 
 impl PersonalityOptions for Outlander {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "My family, clan, or tribe is the most important thing in my life, even when they are far from me.",
         "An injury to the unspoiled wilderness of my home is an injury to me.",
         "I will bring terrible wrath down on the evildoers who destroyed my homeland.",
@@ -97,7 +97,7 @@ impl PersonalityOptions for Outlander {
         "I suffer awful visions of a coming disaster and will do anything to prevent it.",
         "It is my duty to provide children to sustain my tribe.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I am too enamored of ale, wine, and other intoxicants.",
         "There's no room for caution in a life lived to the fullest.",
         "I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me.",
@@ -105,7 +105,7 @@ impl PersonalityOptions for Outlander {
         "Violence is my answer to almost any challenge.",
         "Don't expect me to save those who can't save themselves. It is nature's way that the strong thrive and the weak perish.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Change. Life is like the seasons, in constant change, and we must change with it.", Influence::Chaotic),
         ("Greater Good. It is each person's responsibility to make the most happiness for the whole tribe.", Influence::Good),
         ("Honor. If I dishonor myself, I dishonor my whole clan.", Influence::Lawful),
@@ -113,7 +113,7 @@ impl PersonalityOptions for Outlander {
         ("Nature. The natural world is more important than all the constructs of civilization.", Influence::Neutral),
         ("Glory. I must earn glory in battle, for myself and my clan.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I'm driven by a wanderlust that led me away from home.",
         "I watch over my friends as if they were a litter of newborn pups.",
         "I once ran twenty-five miles without stopping to warn to my clan of an approaching orc horde. I'd do it again if I had to.",

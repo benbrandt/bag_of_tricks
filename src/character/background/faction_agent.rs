@@ -103,7 +103,7 @@ impl Languages for FactionAgent {
 }
 
 impl PersonalityOptions for FactionAgent {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I would die to recover an ancient relic of my faction that was lost long ago.",
         "I will someday get revenge on the corrupt faction hierarchy who branded me a traitor.",
         "I owe my life to the faction member who took me in when my parents died.",
@@ -111,7 +111,7 @@ impl PersonalityOptions for FactionAgent {
         "I will do anything to protect the network where I served.",
         "I seek to preserve a secret text that my enemies consider heretical and seek to destroy.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I judge others harshly, and myself even more severely.",
         "I put too much trust in those who wield power within my faction's hierarchy.",
         "My loyalty sometimes leads me to blindly trust those that profess membership in my faction.",
@@ -119,7 +119,7 @@ impl PersonalityOptions for FactionAgent {
         "I am suspicious of strangers and expect the worst of them.",
         "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Tradition. The ancient traditions of membership and secrecy must be preserved and upheld.", Influence::Lawful),
         ("Charity. I always try to help those in need, no matter what the personal cost.", Influence::Good),
         ("Change. We must help bring about the changes the faction is constantly working in the world", Influence::Chaotic),
@@ -127,7 +127,7 @@ impl PersonalityOptions for FactionAgent {
         ("Faith. I trust that my faction will guide my actions. I have faith that if I work hard, things will go well.", Influence::Lawful),
         ("Aspiration. I seek to prove myself worthy of my faction's favor by matching my actions against their teachings.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I idolize a particular hero of my faction, and constantly refer to that person's deeds and example.",
         "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.",
         "I see omens in every event and action. The gods try to speak to us, we just need to listen.",

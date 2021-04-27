@@ -14,7 +14,7 @@ alignment:
   - Chaotic
   - Good
 background:
-  type: CloisteredScholar
+  type: Courtier
 characteristics:
   age: 39
   base_speeds:
@@ -34,14 +34,14 @@ languages:
 level: 1
 name: Harnoth Foehammer
 personality:
-  bond: I sold my soul for knowledge. I hope to do great deeds and win it back.
-  flaw: I overlook obvious solutions in favor of complicated ones.
+  bond: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
+  flaw: "I'm never satisfied with what I have — I always want more."
   ideal:
-    - Logic. Emotions must not cloud our logical thinking.
-    - Lawful
+    - Freedom. Everyone should be free to pursue his or her own livelihood.
+    - Chaotic
   traits:
-    - I use polysyllabic words that convey the impression of great erudition.
-    - "I've read every book in the world's greatest libraries — or I like to boast that I have."
+    - "I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist."
+    - "I'm a snob who looks down on those who can't appreciate fine art."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -51,10 +51,10 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Skill: History
+  - Skill: Insight
+  - Skill: Persuasion
   - Tool:
       ArtisansTools: MasonsTools
-  - Skill: Religion
 race:
   type: Dwarf
   subrace:

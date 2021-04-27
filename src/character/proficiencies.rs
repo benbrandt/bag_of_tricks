@@ -31,6 +31,8 @@ pub(crate) enum WeaponProficiency {
 pub(crate) enum ProficiencyOption {
     /// Choose from a given list of proficiency options.
     From(Vec<Proficiency>, usize),
+    /// Choose from multiple options (usually Musical Instrument _OR_ Gaming Set)
+    FromOptions(Vec<ProficiencyOption>),
     /// Choose a random artisan's tools to be proficient in.
     ArtisansTools,
     /// Choose a random gaming set to be proficient in.
@@ -52,6 +54,7 @@ impl ProficiencyOption {
                 .into_iter()
                 .filter(|p| !character.proficiencies.contains(p))
                 .choose_multiple(rng, *amount),
+            Self::FromOptions(choices) => choices.choose(rng).unwrap().gen(rng, character),
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|g| Proficiency::Tool(Tool::ArtisansTools(g)))

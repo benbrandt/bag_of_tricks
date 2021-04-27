@@ -91,7 +91,7 @@ impl Languages for Hermit {
 }
 
 impl PersonalityOptions for Hermit {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "Nothing is more important than the other members of my hermitage, order, or association.",
         "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.",
         "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.",
@@ -99,7 +99,7 @@ impl PersonalityOptions for Hermit {
         "Should my discovery come to light, it could bring ruin to the world.",
         "My isolation gave me great insight into a great evil that only I can destroy.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "Now that I've returned to the world, I enjoy its delights a little too much.",
         "I harbor dark, bloodthirsty thoughts that my isolation and meditation failed to quell.",
         "I am dogmatic in my thoughts and philosophy.",
@@ -107,7 +107,7 @@ impl PersonalityOptions for Hermit {
         "I'd risk too much to uncover a lost bit of knowledge.",
         "I like keeping secrets and won't share them with anyone.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Greater Good. My gifts are meant to be shared with all, not used for my own benefit.", Influence::Good),
         ("Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking.", Influence::Lawful),
         ("Free Thinking. Inquiry and curiosity are the pillars of progress. ", Influence::Chaotic),
@@ -115,7 +115,7 @@ impl PersonalityOptions for Hermit {
         ("Live and Let Live. Meddling in the affairs of others only causes trouble.", Influence::Neutral),
         ("Self-Knowledge. If you know yourself, there's nothing left to know.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I've been isolated for so long that I rarely speak, preferring gestures and the occasional grunt.",
         "I am utterly serene, even in the face of disaster.",
         "The leader of my community had something wise to say on every topic, and I am eager to share that wisdom.",

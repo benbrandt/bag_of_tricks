@@ -87,7 +87,7 @@ impl Features for Sailor {
 impl Languages for Sailor {}
 
 impl PersonalityOptions for Sailor {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I'm loyal to my captain first, everything else second.",
         "The ship is most important \u{2014} crewmates and captains come and go.",
         "I'll always remember my first ship.",
@@ -95,7 +95,7 @@ impl PersonalityOptions for Sailor {
         "I was cheated out of my fair share of the profits, and I want to get my due.",
         "Ruthless pirates murdered my captain and crewmates, plundered our ship, and left me to die. Vengeance will be mine.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I follow orders, even if I think they're wrong.",
         "I'll say anything to avoid having to do extra work.",
         "Once someone questions my courage, I never back down no matter how dangerous the situation.",
@@ -103,7 +103,7 @@ impl PersonalityOptions for Sailor {
         "I can't help but pocket loose coins and other trinkets I come across.",
         "My pride will probably lead to my destruction.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Respect. The thing that keeps a ship together is mutual respect between captain and crew.", Influence::Good),
         ("Fairness. We all do the work, so we all share in the rewards.", Influence::Lawful),
         ("Freedom. The sea is freedom \u{2014} the freedom to go anywhere and do anything.", Influence::Chaotic),
@@ -111,7 +111,7 @@ impl PersonalityOptions for Sailor {
         ("People. I'm committed to my crewmates, not to ideals.", Influence::Neutral),
         ("Aspiration. Someday I'll own my own ship and chart my own destiny.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "My friends know they can rely on me, no matter what.",
         "I work hard so that I can play hard when the work is done.",
         "I enjoy sailing into new ports and making new friends over a flagon of ale.",

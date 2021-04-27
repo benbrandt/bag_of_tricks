@@ -5,7 +5,7 @@ expression: character
 ---
 CHARACTER NAME: Harnoth Foehammer
 RACE: Hill Dwarf (PHB p18,20)
-BACKGROUND: Cloistered Scholar (SCAG p146)
+BACKGROUND: Courtier (SCAG p146)
 ALIGNMENT: Chaotic Good
 LEVEL: 1
 
@@ -23,16 +23,16 @@ PROF  MOD  SKILL            BONUS:
       INT  Arcana           +2
       STR  Athletics        -2
       CHA  Deception        +0
- X    INT  History          +4
-      WIS  Insight          +2
+      INT  History          +2
+ X    WIS  Insight          +4
       CHA  Intimidation     +0
       INT  Investigation    +2
       WIS  Medicine         +2
       INT  Nature           +2
       WIS  Perception       +2
       CHA  Performance      +0
-      CHA  Persuasion       +0
- X    INT  Religion         +4
+ X    CHA  Persuasion       +2
+      INT  Religion         +2
       DEX  Sleight of Hand  +0
       DEX  Stealth          +0
       WIS  Survival         +2
@@ -53,22 +53,22 @@ Height: 4'1"
 Weight: 160 lb.
 
 PERSONALITY TRAITS:
-I use polysyllabic words that convey the impression of great erudition.
-I've read every book in the world's greatest libraries — or I like to boast that I have.
-IDEAL: Logic. Emotions must not cloud our logical thinking. (Lawful)
-BOND: I sold my soul for knowledge. I hope to do great deeds and win it back.
-FLAW: I overlook obvious solutions in favor of complicated ones.
+I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist.
+I'm a snob who looks down on those who can't appreciate fine art.
+IDEAL: Freedom. Everyone should be free to pursue his or her own livelihood. (Chaotic)
+BOND: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
+FLAW: I'm never satisfied with what I have — I always want more.
 
 EQUIPMENT
-Other("the scholar's robes of your cloister"), Other("a writing kit (small pouch with a quill, a bottle of ink, folded parchment, and a small penknife)"), Other("a borrowed book on the subject of your current study"), Gear(Other(Pouch)), Other("A silver spoon with an M engraved on the handle")
-COINS: 10gp
+Gear(Other(ClothesFine)), Gear(Other(Pouch)), Other("A silver spoon with an M engraved on the handle")
+COINS: 5gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
 - Dwarven Toughness (PHB p20)
-- Library Access (SCAG p146)
+- Court Functionary (SCAG p147)
 
 APPEARANCE:
 

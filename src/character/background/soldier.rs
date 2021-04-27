@@ -81,7 +81,7 @@ impl Features for Soldier {
 impl Languages for Soldier {}
 
 impl PersonalityOptions for Soldier {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I would still lay down my life for the people I served with.",
         "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.",
         "My honor is my life.",
@@ -89,7 +89,7 @@ impl PersonalityOptions for Soldier {
         "Those who fight beside me are those worth dying for.",
         "I fight for those who cannot fight for themselves.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "The monstrous enemy we faced in battle still leaves me quivering with fear.",
         "I have little respect for anyone who is not a proven warrior.",
         "I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.",
@@ -97,7 +97,7 @@ impl PersonalityOptions for Soldier {
         "I obey the law, even if the law causes misery.",
         "I'd rather eat my armor than admit when I'm wrong.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         (
             "Greater Good. Our lot is to lay down our lives in defense of others.",
             Influence::Good,
@@ -123,7 +123,7 @@ impl PersonalityOptions for Soldier {
             Influence::Any,
         ),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I'm always polite and respectful.",
         "I'm haunted by memories of war. I can't get the images of violence out of my mind.",
         "I've lost too many friends, and I'm slow to make new ones.",

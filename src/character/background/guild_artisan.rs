@@ -171,7 +171,7 @@ impl Languages for GuildArtisan {
 }
 
 impl PersonalityOptions for GuildArtisan {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "The workshop where I learned my trade is the most important place in the world to me.",
         "I created a great work for someone, and then found them unworthy to receive it. I'm still looking for someone worthy.",
         "I owe my guild a great debt for forging me into the person I am today.",
@@ -179,7 +179,7 @@ impl PersonalityOptions for GuildArtisan {
         "One day I will return to my guild and prove that I am the greatest artisan of them all.",
         "I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I'll do anything to get my hands on something rare or priceless.",
         "I'm quick to assume that someone is trying to cheat me.",
         "No one must ever learn that I once stole money from guild coffers.",
@@ -187,7 +187,7 @@ impl PersonalityOptions for GuildArtisan {
         "I would kill to acquire a noble title.",
         "I'm horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I'm surrounded by rivals.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Community. It is the duty of all civilized people to strengthen the bonds of community and the security of civilization.", Influence::Lawful),
         ("Generosity. My talents were given to me so that I could use them to benefit the world.", Influence::Good),
         ("Freedom. Everyone should be free to pursue his or her own livelihood.", Influence::Chaotic),
@@ -195,7 +195,7 @@ impl PersonalityOptions for GuildArtisan {
         ("People. I'm committed to the people I care about, not to ideals.", Influence::Neutral),
         ("Aspiration. I work hard to be the best there is at my craft.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I believe that anything worth doing is worth doing right. I can't help it \u{2014} I'm a perfectionist.",
         "I'm a snob who looks down on those who can't appreciate fine art.",
         "I always want to know how things work and what makes people tick.",

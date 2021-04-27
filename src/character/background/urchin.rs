@@ -60,7 +60,7 @@ impl Features for Urchin {
 impl Languages for Urchin {}
 
 impl PersonalityOptions for Urchin {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "My town or city is my home, and I'll fight to defend it.",
         "I sponsor an orphanage to keep others from enduring what I was forced to endure.",
         "I owe my survival to another urchin who taught me to live on the streets.",
@@ -68,7 +68,7 @@ impl PersonalityOptions for Urchin {
         "I escaped my life of poverty by robbing an important person, and I'm wanted for it.",
         "No one else should have to endure the hardships I've been through.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "If I'm outnumbered, I will run away from a fight.",
         "Gold seems like a lot of money to me, and I'll do just about anything for more of it.",
         "I will never fully trust anyone other than myself.",
@@ -76,7 +76,7 @@ impl PersonalityOptions for Urchin {
         "It's not stealing if I need it more than someone else.",
         "People who can't take care of themselves get what they deserve.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Respect. All people, rich or poor, deserve respect.", Influence::Good),
         ("Community. We have to take care of each other, because no one else is going to do it.", Influence::Lawful),
         ("Change. The low are lifted up, and the high and mighty are brought down. Change is the nature of things.", Influence::Chaotic),
@@ -84,7 +84,7 @@ impl PersonalityOptions for Urchin {
         ("People. I help the people who help me \u{2014} that's what keeps us alive.", Influence::Neutral),
         ("Aspiration. I'm going to prove that I'm worthy of a better life.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I hide scraps of food and trinkets away in my pockets.",
         "I ask a lot of questions.",
         "I like to squeeze into small places where no one else can get to me.",

@@ -103,7 +103,7 @@ impl Features for Entertainer {
 impl Languages for Entertainer {}
 
 impl PersonalityOptions for Entertainer {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "My instrument is my most treasured possession, and it reminds me of someone I love.",
         "Someone stole my precious instrument, and someday I'll get it back.",
         "I want to be famous, whatever it takes.",
@@ -111,7 +111,7 @@ impl PersonalityOptions for Entertainer {
         "I will do anything to prove myself superior to my hated rival.",
         "I would do anything for the other members of my old troupe.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I'll do anything to win fame and renown.",
         "I'm a sucker for a pretty face.",
         "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.",
@@ -119,7 +119,7 @@ impl PersonalityOptions for Entertainer {
         "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.",
         "Despite my best efforts, I am unreliable to my friends.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         (
             "Beauty. When I perform, I make the world better than it was.",
             Influence::Good,
@@ -133,7 +133,7 @@ impl PersonalityOptions for Entertainer {
         ("People. I like seeing the smiles on people's faces when I perform. That's all that matters.", Influence::Neutral),
         ("Honesty. Art should reflect the soul; it should come from within and reveal who we really are.", Influence::Any),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I know a story relevant to almost every situation.",
         "Whenever I come to a new place, I collect local rumors and spread gossip.",
         "I'm a hopeless romantic, always searching for that \"special someone.\"",

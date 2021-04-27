@@ -84,7 +84,7 @@ impl Languages for Sage {
 }
 
 impl PersonalityOptions for Sage {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "It is my duty to protect my students.",
         "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",
         "I work to preserve a library, university, scriptorium, or monastery.",
@@ -92,7 +92,7 @@ impl PersonalityOptions for Sage {
         "I've been searching my whole life for the answer to a certain question.",
         "I sold my soul for knowledge. I hope to do great deeds and win it back.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I am easily distracted by the promise of information.",
         "Most people scream and run when they see a demon. I stop and take notes on its anatomy.",
         "Unlocking an ancient mystery is worth the price of a civilization.",
@@ -100,7 +100,7 @@ impl PersonalityOptions for Sage {
         "I speak without really thinking through my words, invariably insulting others.",
         "I can't keep a secret to save my life, or anyone else's.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         (
             "Knowledge. The path to power and self-improvement is through knowledge.",
             Influence::Neutral,
@@ -126,7 +126,7 @@ impl PersonalityOptions for Sage {
             Influence::Any,
         ),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "I use polysyllabic words that convey the impression of great erudition.",
         "I've read every book in the world's greatest libraries \u{2014} or I like to boast that I have.",
         "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",

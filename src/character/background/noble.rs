@@ -87,7 +87,7 @@ impl Languages for Noble {
 }
 
 impl PersonalityOptions for Noble {
-    const BONDS: [&'static str; 6] = [
+    const BONDS: &'static [&'static str] = &[
         "I will face any challenge to win the approval of my family.",
         "My house's alliance with another noble family must be sustained at all costs.",
         "Nothing is more important than the other members of my family.",
@@ -95,7 +95,7 @@ impl PersonalityOptions for Noble {
         "My loyalty to my sovereign is unwavering.",
         "The common folk must see me as a hero of the people.",
     ];
-    const FLAWS: [&'static str; 6] = [
+    const FLAWS: &'static [&'static str] = &[
         "I secretly believe that everyone is beneath me.",
         "I hide a truly scandalous secret that could ruin my family forever.",
         "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.",
@@ -103,7 +103,7 @@ impl PersonalityOptions for Noble {
         "In fact, the world does revolve around me.",
         "By my words and actions, I often bring shame to my family.",
     ];
-    const IDEALS: [(&'static str, Influence); 6] = [
+    const IDEALS: &'static [(&'static str, Influence)] = &[
         ("Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity.", Influence::Good),
         ("Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine.", Influence::Lawful),
         ("Independence. I must prove that I can handle myself without the coddling of my family.", Influence::Chaotic),
@@ -111,7 +111,7 @@ impl PersonalityOptions for Noble {
         ("Family. Blood runs thicker than water.", Influence::Any),
         ("Noble Obligation. It is my duty to protect and care for the people beneath me.", Influence::Good),
     ];
-    const TRAITS: [&'static str; 8] = [
+    const TRAITS: &'static [&'static str] = &[
         "My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world.",
         "The common folk love me for my kindness and generosity.",
         "No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses.",
