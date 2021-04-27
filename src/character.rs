@@ -432,7 +432,6 @@ mod tests {
     fn test_character_display() {
         let mut rng = Pcg64::seed_from_u64(1);
         let character = Character::gen(&mut rng);
-        // fmt::Display Snapshot
-        insta::assert_snapshot!(format!("{}", character));
+        insta::assert_display_snapshot!(character);
     }
 }

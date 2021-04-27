@@ -1,6 +1,6 @@
 ---
 source: src/character.rs
-expression: "format!(\"{}\", character)"
+expression: character
 
 ---
 CHARACTER NAME: Harnoth Foehammer
