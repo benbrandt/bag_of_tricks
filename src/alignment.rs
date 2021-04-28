@@ -1,4 +1,4 @@
-use std::fmt;
+use std::{convert::TryFrom, f64::consts::E, fmt};
 
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -27,7 +27,9 @@ where
 {
     *options
         .collect::<Vec<T>>()
-        .choose_weighted(rng, |t| 1 + influences.iter().filter(|i| t == *i).count())
+        .choose_weighted(rng, |t| {
+            E.powi(i32::try_from(influences.iter().filter(|i| t == *i).count()).unwrap_or(1))
+        })
         .unwrap()
 }
 
