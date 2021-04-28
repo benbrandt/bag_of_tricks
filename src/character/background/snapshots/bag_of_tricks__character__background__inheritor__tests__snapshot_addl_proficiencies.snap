@@ -1,0 +1,14 @@
+---
+source: src/character/background/inheritor.rs
+expression: background.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - History
+      - Religion
+    - 1
+- FromOptions:
+    - GamingSet
+    - MusicalInstrument
+

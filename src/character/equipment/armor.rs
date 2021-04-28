@@ -3,7 +3,7 @@ use strum_macros::{Display, EnumIter};
 
 /// Classes of armor different items fall under
 #[derive(
-    Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+    Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
 pub(crate) enum ArmorType {
     Light,
@@ -12,7 +12,7 @@ pub(crate) enum ArmorType {
     Shield,
 }
 #[derive(
-    Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+    Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
 pub(crate) enum Armor {
     Padded,
@@ -37,7 +37,7 @@ pub(crate) enum Armor {
 }
 
 impl Armor {
-    pub(crate) fn armor_type(&self) -> ArmorType {
+    pub(crate) fn armor_type(self) -> ArmorType {
         match self {
             Self::Padded | Self::Leather | Self::StuddedLeather => ArmorType::Light,
             Self::Hide

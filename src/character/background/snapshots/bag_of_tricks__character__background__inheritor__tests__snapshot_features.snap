@@ -1,0 +1,10 @@
+---
+source: src/character/background/inheritor.rs
+expression: background.features()
+
+---
+- title: Inheritance
+  citation:
+    - Scag
+    - 150
+

@@ -15,7 +15,7 @@ pub(crate) enum WeaponClassification {
 
 #[allow(dead_code)]
 #[derive(
-    Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+    Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
 pub(crate) enum WeaponType {
     Battleaxe,
@@ -63,7 +63,7 @@ pub(crate) enum WeaponType {
 }
 
 impl WeaponType {
-    pub(crate) fn category(&self) -> WeaponCategory {
+    pub(crate) fn category(self) -> WeaponCategory {
         match self {
             Self::Club
             | Self::Dagger
@@ -105,7 +105,7 @@ impl WeaponType {
         }
     }
 
-    pub(crate) fn classification(&self) -> WeaponClassification {
+    pub(crate) fn classification(self) -> WeaponClassification {
         match self {
             Self::Club
             | Self::Dagger
