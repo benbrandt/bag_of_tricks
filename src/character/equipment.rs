@@ -16,7 +16,14 @@ use tools::{ArtisansTools, MusicalInstrument};
 use trinkets::TRINKETS;
 use vehicles::Vehicle;
 
-use self::{adventuring_gear::Gear, armor::Armor, currency::Coin, tools::{GamingSet, Tool}, vehicles::VehicleProficiency, weapons::WeaponType};
+use self::{
+    adventuring_gear::Gear,
+    armor::Armor,
+    currency::Coin,
+    tools::{GamingSet, Tool},
+    vehicles::VehicleProficiency,
+    weapons::WeaponType,
+};
 
 use super::{
     proficiencies::{Proficiency, WeaponProficiency},
