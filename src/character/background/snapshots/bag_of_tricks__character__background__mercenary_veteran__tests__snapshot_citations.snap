@@ -1,0 +1,8 @@
+---
+source: src/character/background/mercenary_veteran.rs
+expression: background.citations()
+
+---
+- - Scag
+  - 152
+

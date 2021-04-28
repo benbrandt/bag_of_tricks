@@ -1,0 +1,15 @@
+---
+source: src/character/background/mercenary_veteran.rs
+expression: background
+
+---
+- type: MercenaryVeteran
+- bond: "Someone saved my life on the battlefield. To this day, I will never leave a friend behind."
+  flaw: "I obey the law, even if the law causes misery."
+  ideal:
+    - "Might. In life as in war, the stronger force wins."
+    - Evil
+  traits:
+    - I have a crude sense of humor.
+    - "I face problems head-on. A simple, direct solution is the best path to success."
+

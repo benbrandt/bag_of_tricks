@@ -16,10 +16,7 @@ use tools::{ArtisansTools, MusicalInstrument};
 use trinkets::TRINKETS;
 use vehicles::Vehicle;
 
-use self::{
-    adventuring_gear::Gear, armor::Armor, currency::Coin, tools::Tool,
-    vehicles::VehicleProficiency, weapons::WeaponType,
-};
+use self::{adventuring_gear::Gear, armor::Armor, currency::Coin, tools::{GamingSet, Tool}, vehicles::VehicleProficiency, weapons::WeaponType};
 
 use super::{
     proficiencies::{Proficiency, WeaponProficiency},
@@ -71,6 +68,8 @@ pub(crate) enum EquipmentOption {
     From(Vec<Equipment>),
     /// Choose a random artisan's tools.
     ArtisansTools,
+    /// Choose a random gaming set.
+    GamingSet,
     /// Choose a random holy symbol.
     HolySymbol,
     /// Choose a random musical instrument.
@@ -99,6 +98,12 @@ impl EquipmentOption {
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|t| Equipment::Tool(Tool::ArtisansTools(t)))
+                    .collect(),
+            )
+            .gen(rng, character),
+            Self::GamingSet => Self::From(
+                GamingSet::iter()
+                    .map(|m| Equipment::Tool(Tool::GamingSet(m)))
                     .collect(),
             )
             .gen(rng, character),
