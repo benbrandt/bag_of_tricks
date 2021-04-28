@@ -1,4 +1,4 @@
-use std::{collections::BTreeMap, f64::consts::E, fmt};
+use std::{collections::BTreeMap, convert::TryFrom, f64::consts::E, fmt};
 
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -15,21 +15,11 @@ fn modifier(score: i16) -> i16 {
     (score - score % 2 - 10) / 2
 }
 
-// Used for weighting ability scores. Get value to shift all other values by to have lowest be 1
-pub(crate) fn modifier_shift<L>(modifiers: L) -> i16
+pub(crate) fn exp_weight<T>(val: T) -> f64
 where
-    L: Iterator<Item = i16> + Clone,
+    i32: TryFrom<T>,
 {
-    let min = modifiers.min().unwrap_or(0);
-    if min <= 0 {
-        min.abs()
-    } else {
-        -min
-    }
-}
-
-pub(crate) fn modifier_weight(modifier: i16, shift: i16) -> f64 {
-    E.powi(i32::from(modifier + shift))
+    E.powi(i32::try_from(val).unwrap_or(0))
 }
 
 /// All possible ability score types to choose from
@@ -182,6 +172,11 @@ impl Skill {
     pub(crate) fn proficient(self, character: &Character) -> bool {
         character.proficiencies.contains(&Proficiency::Skill(self))
     }
+
+    /// Return weighting of skill based on character
+    pub(crate) fn weight(self, character: &Character) -> f64 {
+        exp_weight(self.modifier(character))
+    }
 }
 
 #[cfg(test)]
@@ -261,21 +256,5 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let scores = AbilityScores::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", scores));
-    }
-
-    #[test]
-    fn test_modifier_shift() {
-        let mods = vec![-5, 1].into_iter();
-        assert_eq!(modifier_shift(mods), 5);
-        let mods = vec![4, 5].into_iter();
-        assert_eq!(modifier_shift(mods), -4);
-        let mods = vec![-1, 0, 1].into_iter();
-        assert_eq!(modifier_shift(mods), 1);
-        let mods = vec![0, 1].into_iter();
-        assert_eq!(modifier_shift(mods), 0);
-        let mods = vec![1, 1].into_iter();
-        assert_eq!(modifier_shift(mods), -1);
-        let mods = vec![0, 0].into_iter();
-        assert_eq!(modifier_shift(mods), 0);
     }
 }

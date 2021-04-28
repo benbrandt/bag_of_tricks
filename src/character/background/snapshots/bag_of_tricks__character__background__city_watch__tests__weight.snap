@@ -3,5 +3,5 @@ source: src/character/background/city_watch.rs
 expression: "CityWatch::weight(&Character::default())"
 
 ---
--5
+0.006737946999085469
 

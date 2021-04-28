@@ -7,7 +7,7 @@ use strum_macros::{Display, EnumIter};
 
 use crate::{
     character::{
-        ability::{modifier_shift, modifier_weight, Skill},
+        ability::Skill,
         backstory::Backstory,
         equipment::{
             adventuring_gear::{Gear, OtherGear},
@@ -22,7 +22,7 @@ use crate::{
     citation::{Book, Citation, CitationList, Citations},
 };
 
-use super::{skill_weight, soldier::Soldier, Background, Personality, PersonalityOptions};
+use super::{max_skill_weight, soldier::Soldier, Background, Personality, PersonalityOptions};
 
 #[derive(Copy, Clone, Deserialize, Display, EnumIter, Serialize)]
 enum Variant {
@@ -33,10 +33,9 @@ enum Variant {
 
 impl Variant {
     fn gen(rng: &mut impl Rng, character: &Character) -> Self {
-        let variants: Vec<_> = Self::iter().collect();
-        let shift = modifier_shift(Self::iter().map(|v| v.weight(character)));
-        *variants
-            .choose_weighted(rng, |v| modifier_weight(v.weight(character), shift))
+        *Self::iter()
+            .collect::<Vec<_>>()
+            .choose_weighted(rng, |v| v.weight(character))
             .unwrap()
     }
 
@@ -47,8 +46,8 @@ impl Variant {
         }
     }
 
-    fn weight(self, character: &Character) -> i16 {
-        skill_weight(&self.skills(), character)
+    fn weight(self, character: &Character) -> f64 {
+        max_skill_weight(&self.skills(), character)
     }
 }
 
@@ -70,11 +69,11 @@ impl Background for CityWatch {
         vec![Skill::Athletics, Skill::Insight, Skill::Investigation]
     }
 
-    fn weight(character: &Character) -> i16 {
+    fn weight(character: &Character) -> f64 {
         Variant::iter()
             .map(|v| v.weight(character))
-            .max()
-            .unwrap_or(0)
+            .max_by(|a, b| a.partial_cmp(b).unwrap())
+            .unwrap_or(0.0)
     }
 }
 

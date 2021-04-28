@@ -45,13 +45,8 @@ use self::{
 };
 
 use super::{
-    ability::{modifier_shift, modifier_weight, Skill},
-    backstory::Backstory,
-    equipment::StartingEquipment,
-    features::Features,
-    languages::Languages,
-    proficiencies::Proficiencies,
-    Character,
+    ability::Skill, backstory::Backstory, equipment::StartingEquipment, features::Features,
+    languages::Languages, proficiencies::Proficiencies, Character,
 };
 
 /// Types of alignment influence from personality traits
@@ -147,12 +142,12 @@ pub(crate) trait PersonalityOptions {
     }
 }
 
-pub(crate) fn skill_weight(skills: &[Skill], character: &Character) -> i16 {
+pub(crate) fn max_skill_weight(skills: &[Skill], character: &Character) -> f64 {
     skills
         .iter()
-        .map(|s| character.abilities.modifier(s.ability_score_type()))
-        .max()
-        .unwrap_or(0)
+        .map(|s| s.weight(character))
+        .max_by(|a, b| a.partial_cmp(b).unwrap())
+        .unwrap_or(0.0)
 }
 
 /// Trait for backgrounds to build from
@@ -171,11 +166,11 @@ pub(crate) trait Background:
         Self: Sized;
 
     /// Max skill modifier of background for weighting
-    fn weight(character: &Character) -> i16
+    fn weight(character: &Character) -> f64
     where
         Self: Sized,
     {
-        skill_weight(&Self::skills(), character)
+        max_skill_weight(&Self::skills(), character)
     }
 }
 
@@ -216,9 +211,8 @@ impl BackgroundOption {
         character: &Character,
     ) -> (Box<dyn Background>, Personality) {
         let options: Vec<BackgroundOption> = Self::iter().collect();
-        let shift = modifier_shift(Self::iter().map(|o| o.weight(character)));
         let option = options
-            .choose_weighted(rng, |o| modifier_weight(o.weight(character), shift))
+            .choose_weighted(rng, |o| o.weight(character))
             .unwrap();
         match option {
             Self::Acolyte => Acolyte::gen(rng, character),
@@ -247,7 +241,7 @@ impl BackgroundOption {
     }
 
     /// Max skill modifier of background for weighting
-    fn weight(&self, character: &Character) -> i16 {
+    fn weight(&self, character: &Character) -> f64 {
         match self {
             Self::Acolyte => Acolyte::weight(character),
             Self::Charlatan => Charlatan::weight(character),

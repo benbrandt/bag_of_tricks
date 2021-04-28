@@ -7,7 +7,7 @@ use strum::IntoEnumIterator;
 use strum_macros::Display;
 
 use super::{
-    ability::{modifier_shift, modifier_weight, Skill},
+    ability::Skill,
     equipment::{
         armor::ArmorType,
         tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
@@ -82,17 +82,9 @@ impl ProficiencyOption {
                     .unwrap_or_else(|| Skill::iter().collect())
                     .into_iter()
                     .filter(|&s| !character.proficiencies.contains(&Proficiency::Skill(s)));
-                // Weight the proficiencies based on their underlying ability score.
-                let shift = modifier_shift(
-                    available_skills
-                        .clone()
-                        .map(|s| character.abilities.modifier(s.ability_score_type())),
-                );
                 let mut skills = available_skills
                     .collect::<Vec<_>>()
-                    .choose_multiple_weighted(rng, *amount, |s| {
-                        modifier_weight(character.abilities.modifier(s.ability_score_type()), shift)
-                    })
+                    .choose_multiple_weighted(rng, *amount, |s| s.weight(character))
                     .unwrap()
                     .map(|&s| Proficiency::Skill(s))
                     .collect::<Vec<_>>();
