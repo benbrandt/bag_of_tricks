@@ -12,7 +12,7 @@ use crate::{
         equipment::{
             adventuring_gear::{Gear, OtherGear},
             currency::Coin,
-            Equipment, StartingEquipment,
+            Equipment, EquipmentOption, StartingEquipment,
         },
         features::{Feature, Features},
         languages::Languages,
@@ -156,13 +156,28 @@ impl StartingEquipment for FactionAgent {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("the badge or emblem of your faction".to_string()),
-            Equipment::Other(
-                "a copy of a seminal faction text (or a code-book for a covert faction)"
-                    .to_string(),
-            ),
             Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
             Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::From(
+                ["badge", "emblem"]
+                    .iter()
+                    .map(|i| Equipment::Other(format!("the {} of your faction", i)))
+                    .collect(),
+            ),
+            EquipmentOption::From(
+                [
+                    "a copy of a seminal faction text",
+                    "a code-book for a covert faction",
+                ]
+                .iter()
+                .map(|&i| Equipment::Other(i.to_string()))
+                .collect(),
+            ),
         ]
     }
 }
@@ -252,5 +267,13 @@ mod tests {
             faction: Faction::EmeraldEnclave,
         };
         insta::assert_yaml_snapshot!(background.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let background = FactionAgent {
+            faction: Faction::EmeraldEnclave,
+        };
+        insta::assert_yaml_snapshot!(background.addl_equipment());
     }
 }

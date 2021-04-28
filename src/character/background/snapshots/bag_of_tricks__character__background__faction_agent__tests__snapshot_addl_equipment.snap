@@ -1,0 +1,12 @@
+---
+source: src/character/background/faction_agent.rs
+expression: background.addl_equipment()
+
+---
+- From:
+    - Other: the badge of your faction
+    - Other: the emblem of your faction
+- From:
+    - Other: a copy of a seminal faction text
+    - Other: a code-book for a covert faction
+

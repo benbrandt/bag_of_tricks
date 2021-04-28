@@ -66,13 +66,13 @@ impl Inheritance {
 
     fn weight(self) -> usize {
         match self {
-            Inheritance::Trinket => 2,
-            Inheritance::Document
-            | Inheritance::Clothing
-            | Inheritance::Jewelry
-            | Inheritance::Book
-            | Inheritance::Story
-            | Inheritance::Tattoo => 1,
+            Self::Trinket => 2,
+            Self::Document
+            | Self::Clothing
+            | Self::Jewelry
+            | Self::Book
+            | Self::Story
+            | Self::Tattoo => 1,
         }
     }
 }

@@ -3,8 +3,6 @@ source: src/character/background/faction_agent.rs
 expression: background.equipment()
 
 ---
-- Other: the badge or emblem of your faction
-- Other: a copy of a seminal faction text (or a code-book for a covert faction)
 - Gear:
     Other: ClothesCommon
 - Gear:

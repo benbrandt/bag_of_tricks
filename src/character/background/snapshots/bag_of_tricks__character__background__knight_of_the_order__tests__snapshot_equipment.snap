@@ -1,0 +1,10 @@
+---
+source: src/character/background/knight_of_the_order.rs
+expression: background.equipment()
+
+---
+- Gear:
+    Other: ClothesTravelers
+- Gear:
+    Other: Pouch
+

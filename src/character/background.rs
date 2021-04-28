@@ -12,6 +12,7 @@ mod folk_hero;
 mod guild_artisan;
 mod hermit;
 mod inheritor;
+mod knight_of_the_order;
 mod noble;
 mod outlander;
 mod sage;
@@ -37,8 +38,8 @@ use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
     cloistered_scholar::CloisteredScholar, courtier::Courtier, criminal::Criminal,
     faction_agent::FactionAgent, far_traveler::FarTraveler, guild_artisan::GuildArtisan,
-    hermit::Hermit, inheritor::Inheritor, noble::Noble, outlander::Outlander, sage::Sage,
-    sailor::Sailor, soldier::Soldier, urchin::Urchin,
+    hermit::Hermit, inheritor::Inheritor, knight_of_the_order::KnightOfTheOrder, noble::Noble,
+    outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier, urchin::Urchin,
 };
 
 use super::{
@@ -193,7 +194,7 @@ pub(crate) enum BackgroundOption {
     GuildArtisan,
     Hermit,
     Inheritor,
-    // KnightOfTheOrder 151
+    KnightOfTheOrder,
     // MercenaryVeteran 152
     Noble,
     Outlander,
@@ -232,6 +233,7 @@ impl BackgroundOption {
             Self::GuildArtisan => GuildArtisan::gen(rng, character),
             Self::Hermit => Hermit::gen(rng, character),
             Self::Inheritor => Inheritor::gen(rng, character),
+            Self::KnightOfTheOrder => KnightOfTheOrder::gen(rng, character),
             Self::Noble => Noble::gen(rng, character),
             Self::Outlander => Outlander::gen(rng, character),
             Self::Sage => Sage::gen(rng, character),
@@ -258,6 +260,7 @@ impl BackgroundOption {
             Self::GuildArtisan => GuildArtisan::weight(character),
             Self::Hermit => Hermit::weight(character),
             Self::Inheritor => Inheritor::weight(character),
+            Self::KnightOfTheOrder => KnightOfTheOrder::weight(character),
             Self::Noble => Noble::weight(character),
             Self::Outlander => Outlander::weight(character),
             Self::Sage => Sage::weight(character),

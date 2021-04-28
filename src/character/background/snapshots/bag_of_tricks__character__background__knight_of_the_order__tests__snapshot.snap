@@ -1,0 +1,16 @@
+---
+source: src/character/background/knight_of_the_order.rs
+expression: background
+
+---
+- type: KnightOfTheOrder
+  knightly_order: Shield
+- bond: Those who fight beside me are those worth dying for.
+  flaw: "I'd rather eat my armor than admit when I'm wrong."
+  ideal:
+    - Responsibility. I do what I must and obey just authority.
+    - Lawful
+  traits:
+    - "I'm always polite and respectful."
+    - "I face problems head-on. A simple, direct solution is the best path to success."
+
