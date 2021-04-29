@@ -28,7 +28,7 @@ where
     *options
         .collect::<Vec<T>>()
         .choose_weighted(rng, |t| {
-            E.powi(i32::try_from(influences.iter().filter(|i| t == *i).count()).unwrap_or(1))
+            E.powi(i32::try_from(influences.iter().filter(|i| t == *i).count()).unwrap_or(0))
         })
         .unwrap()
 }

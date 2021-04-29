@@ -25,6 +25,7 @@ use std::fmt;
 
 use entertainer::Entertainer;
 use folk_hero::FolkHero;
+use itertools::Itertools;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -143,11 +144,17 @@ pub(crate) trait PersonalityOptions {
 }
 
 pub(crate) fn max_skill_weight(skills: &[Skill], character: &Character) -> f64 {
-    skills
-        .iter()
-        .map(|s| s.weight(character))
-        .max_by(|a, b| a.partial_cmp(b).unwrap())
-        .unwrap_or(0.0)
+    let mut sorted = skills.iter().sorted_by(|a, b| {
+        b.weight(character)
+            .partial_cmp(&a.weight(character))
+            .unwrap()
+    });
+    let main_weight = sorted.next().map_or(0.0, |s| s.weight(character));
+    // Not exponential, just minor bump for second highest
+    let secondary = sorted.next().map_or(0.0, |s| {
+        f64::from(s.modifier(character) + character.abilities.shift_weight_by())
+    });
+    main_weight + secondary
 }
 
 /// Trait for backgrounds to build from

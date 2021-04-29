@@ -1,4 +1,4 @@
-use std::{collections::BTreeMap, convert::TryFrom, f64::consts::E, fmt};
+use std::{collections::BTreeMap, f64::consts::E, fmt};
 
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -15,11 +15,11 @@ fn modifier(score: i16) -> i16 {
     (score - score % 2 - 10) / 2
 }
 
-pub(crate) fn exp_weight<T>(val: T) -> f64
+pub(crate) fn exp_weight<T>(val: T, shift: T) -> f64
 where
-    i32: TryFrom<T>,
+    i32: From<T>,
 {
-    E.powi(i32::try_from(val).unwrap_or(0))
+    E.powi(i32::from(val) + i32::from(shift))
 }
 
 /// All possible ability score types to choose from
@@ -93,6 +93,16 @@ impl AbilityScores {
     /// Get modifier for a given ability score type
     pub(crate) fn modifier(&self, ability: AbilityScoreType) -> i16 {
         modifier(*self.0.get(&ability).unwrap_or(&0))
+    }
+
+    /// Get the amount to shift modifiers by based on lowest modifier (used for shifting weights)
+    pub(crate) fn shift_weight_by(&self) -> i16 {
+        let min = modifier(*self.0.values().min().unwrap_or(&0));
+        if min <= 0 {
+            min.abs()
+        } else {
+            -min
+        }
     }
 }
 
@@ -175,7 +185,10 @@ impl Skill {
 
     /// Return weighting of skill based on character
     pub(crate) fn weight(self, character: &Character) -> f64 {
-        exp_weight(self.modifier(character))
+        exp_weight(
+            self.modifier(character),
+            character.abilities.shift_weight_by(),
+        )
     }
 }
 
