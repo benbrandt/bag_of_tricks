@@ -5,7 +5,7 @@ expression: gnome
 ---
 - type: Gnome
   subrace: Forest
-- "Ellywick \"Ashhearth\" Murnig"
+- "Lorilla \"Jerr\" Folkor"
 - age: 340
   base_speeds:
     - Walking: 25

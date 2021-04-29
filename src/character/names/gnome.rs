@@ -31,6 +31,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Ella",
     "Ellyjobell",
     "Ellywick",
+    "Erris",
     "Facktor\u{e9}",
     "Jabby",
     "Joybell",

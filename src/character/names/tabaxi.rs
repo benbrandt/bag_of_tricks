@@ -15,4 +15,5 @@ pub(crate) const NAMES: &[&str] = &[
     "Skirt of Snakes (Snake)",
     "Smoking Mirror (Smoke)",
     "Stands in Tar (Tar)",
+    "Two Dry Cloaks (Cloak)",
 ];

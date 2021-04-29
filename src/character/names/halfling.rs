@@ -33,6 +33,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Lidda",
     "Merla",
     "Merrygold",
+    "Molley",
     "Nedda",
     "Nib",
     "Qelline",
@@ -41,6 +42,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Seraphina",
     "Shaena",
     "Silla",
+    "Streams",
     "Trym",
     "Vani",
     "Verna",
@@ -48,6 +50,6 @@ pub(crate) const FEMALE: &[&str] = &[
 
 pub(crate) const MALE: &[&str] = &[
     "Alton", "Ander", "Cade", "Carp", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Lindal",
-    "Lyle", "Merric", "Milo", "Osborn", "Otis", "Patsy", "Perrin", "Quinn", "Reed", "Rosco",
-    "Roscoe", "Wellby",
+    "Lyle", "Marks", "Merric", "Milo", "Osborn", "Otis", "Patsy", "Perrin", "Pieter", "Quinn",
+    "Reed", "Rosco", "Roscoe", "Wellby",
 ];

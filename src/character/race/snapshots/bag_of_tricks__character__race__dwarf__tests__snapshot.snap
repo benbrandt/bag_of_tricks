@@ -5,7 +5,7 @@ expression: dwarf
 ---
 - type: Dwarf
   subrace: Duergar
-- Hlin Foehammer
+- Helja Foehammer
 - age: 49
   base_speeds:
     - Walking: 25

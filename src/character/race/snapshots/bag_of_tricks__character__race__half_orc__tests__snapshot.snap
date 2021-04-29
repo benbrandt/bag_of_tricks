@@ -4,7 +4,7 @@ expression: half_orc
 
 ---
 - type: HalfOrc
-- Meilil Bone Crusher
+- Meilil Dumein
 - age: 70
   base_speeds:
     - Walking: 30

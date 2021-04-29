@@ -2,6 +2,7 @@ pub(crate) const NAMES: &[&str] = &[
     "Achuak (green)",
     "Aryte (war)",
     "Baeshra (animal)",
+    "Bracus",
     "Darastrix (dragon)",
     "Garurt (axe)",
     "Hissain",

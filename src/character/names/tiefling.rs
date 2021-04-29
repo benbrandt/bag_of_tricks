@@ -6,6 +6,7 @@ pub(crate) const FEMALE_ABYSSAL: &[&str] = &[
     "Damaia",
     "Ea",
     "Hania",
+    "Incindorita",
     "Kallista",
     "Lerissa",
     "Makaria",

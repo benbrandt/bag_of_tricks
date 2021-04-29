@@ -71,6 +71,7 @@ pub(crate) const MALE: &[&str] = &[
     "Arannis",
     "Aust",
     "Beiro",
+    "Bendari",
     "Berrian",
     "Carric",
     "Daran",
