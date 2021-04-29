@@ -15,6 +15,7 @@ pub(crate) const FEMALE_ABYSSAL: &[&str] = &[
     "Phelaia",
     "Rashaa",
     "Rieta",
+    "Talanatha",
     "Zaar",
 ];
 
@@ -31,6 +32,7 @@ pub(crate) const VIRTUE_NAMES: &[&str] = &[
     "Chant",
     "Creed",
     "Despair",
+    "Devil Dog",
     "Excellence",
     "Fear",
     "Glory",

@@ -5,7 +5,7 @@ expression: hobgoblin
 ---
 - type: Hobgoblin
   origin: You are the victim of a curse or polymorph spell.
-- Targor Bloodsword
+- Grunka
 - age: 20
   base_speeds:
     - Walking: 30

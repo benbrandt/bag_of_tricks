@@ -5,7 +5,7 @@ expression: gnome
 ---
 - type: Gnome
   subrace: Forest
-- "Mardnab \"Cloak\" Daergel"
+- "Ellywick \"Ashhearth\" Murnig"
 - age: 340
   base_speeds:
     - Walking: 25

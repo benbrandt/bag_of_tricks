@@ -17,6 +17,7 @@ pub(crate) const NAMES: &[&str] = &[
     "Othokent (smart)",
     "Sauriv (eye)",
     "Slosh",
+    "Thetsis",
     "Throden (many)",
     "Thurkear (night)",
     "Usk (iron)",

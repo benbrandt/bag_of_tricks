@@ -8,6 +8,7 @@ pub(crate) const CHILD: &[&str] = &[
 ];
 
 pub(crate) const CLAN: &[&str] = &[
+    "Blaakberz",
     "Clethtinthiallor",
     "Daardendrian",
     "Delmirev",
@@ -38,6 +39,7 @@ pub(crate) const MALE: &[&str] = &[
     "Balasar",
     "Bharash",
     "Donaar",
+    "Drahkso",
     "Ghesh",
     "Heskan",
     "Kristoffen",

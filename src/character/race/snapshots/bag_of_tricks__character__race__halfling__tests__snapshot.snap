@@ -5,7 +5,7 @@ expression: halfling
 ---
 - type: Halfling
   subrace: Ghostwise
-- Trym Greenbottle
+- Trym Goodbarrel
 - age: 104
   base_speeds:
     - Walking: 25

@@ -24,5 +24,5 @@ pub(crate) const MALE: &[&str] = &[
     "Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Mhurren", "Ront", "Shump",
     "Thokk", "Grutok", "Lortar", "Abzug", "Shugog", "Urzul", "Ruhk", "Mobad", "Shamog", "Mugrub",
     "Bajok", "Rhorog", "Jahrukk", "Brughor", "Flenz", "Narux", "Yargath", "Moesko", "Grannoc",
-    "Oshgir",
+    "Oshgir", "Jolly",
 ];

@@ -6,7 +6,7 @@ expression: goblin
 - type: Goblin
   origin: You are the victim of a curse or polymorph spell.
   status_symbol: Special breed of rat kept as pet
-- Yeemik
+- Splug
 - age: 55
   base_speeds:
     - Walking: 30
