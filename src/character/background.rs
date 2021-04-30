@@ -19,6 +19,7 @@ mod outlander;
 mod sage;
 mod sailor;
 mod soldier;
+mod urban_bounty_hunter;
 mod urchin;
 
 use std::fmt;
@@ -42,7 +43,7 @@ use self::{
     faction_agent::FactionAgent, far_traveler::FarTraveler, guild_artisan::GuildArtisan,
     hermit::Hermit, inheritor::Inheritor, knight_of_the_order::KnightOfTheOrder,
     mercenary_veteran::MercenaryVeteran, noble::Noble, outlander::Outlander, sage::Sage,
-    sailor::Sailor, soldier::Soldier, urchin::Urchin,
+    sailor::Sailor, soldier::Soldier, urban_bounty_hunter::UrbanBountyHunter, urchin::Urchin,
 };
 
 use super::{
@@ -205,7 +206,7 @@ pub(crate) enum BackgroundOption {
     Sage,
     Sailor,
     Soldier,
-    // UrbanBountyHunter 153
+    UrbanBountyHunter,
     Urchin,
     // UthgardtTribeMember 153, 154
     // WaterdhavianNoble 154
@@ -243,6 +244,7 @@ impl BackgroundOption {
             Self::Sage => Sage::gen(rng, character),
             Self::Sailor => Sailor::gen(rng, character),
             Self::Soldier => Soldier::gen(rng, character),
+            Self::UrbanBountyHunter => UrbanBountyHunter::gen(rng, character),
             Self::Urchin => Urchin::gen(rng, character),
         }
     }
@@ -271,6 +273,7 @@ impl BackgroundOption {
             Self::Sage => Sage::weight(character),
             Self::Sailor => Sailor::weight(character),
             Self::Soldier => Soldier::weight(character),
+            Self::UrbanBountyHunter => UrbanBountyHunter::weight(character),
             Self::Urchin => Urchin::weight(character),
         }
     }

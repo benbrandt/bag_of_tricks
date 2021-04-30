@@ -1,0 +1,8 @@
+---
+source: src/character/background/urban_bounty_hunter.rs
+expression: background.citations()
+
+---
+- - Scag
+  - 153
+

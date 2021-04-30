@@ -110,10 +110,13 @@ impl Proficiencies for KnightOfTheOrder {
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
         vec![
             ProficiencyOption::Skill(Some(ADDL_SKILLS.to_vec()), 1),
-            ProficiencyOption::FromOptions(vec![
-                ProficiencyOption::GamingSet,
-                ProficiencyOption::MusicalInstrument,
-            ]),
+            ProficiencyOption::FromOptions(
+                vec![
+                    ProficiencyOption::GamingSet,
+                    ProficiencyOption::MusicalInstrument,
+                ],
+                1,
+            ),
         ]
     }
 }

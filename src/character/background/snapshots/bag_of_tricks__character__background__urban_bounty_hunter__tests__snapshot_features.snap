@@ -1,0 +1,10 @@
+---
+source: src/character/background/urban_bounty_hunter.rs
+expression: background.features()
+
+---
+- title: Ear to the Ground
+  citation:
+    - Scag
+    - 153
+

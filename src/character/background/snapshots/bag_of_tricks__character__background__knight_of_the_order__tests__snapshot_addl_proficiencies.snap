@@ -10,6 +10,7 @@ expression: background.addl_proficiencies()
       - Religion
     - 1
 - FromOptions:
-    - GamingSet
-    - MusicalInstrument
+    - - GamingSet
+      - MusicalInstrument
+    - 1
 

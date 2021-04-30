@@ -143,10 +143,13 @@ impl Proficiencies for FarTraveler {
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
-        vec![ProficiencyOption::FromOptions(vec![
-            ProficiencyOption::GamingSet,
-            ProficiencyOption::MusicalInstrument,
-        ])]
+        vec![ProficiencyOption::FromOptions(
+            vec![
+                ProficiencyOption::GamingSet,
+                ProficiencyOption::MusicalInstrument,
+            ],
+            1,
+        )]
     }
 }
 
