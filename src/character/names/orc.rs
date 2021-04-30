@@ -23,8 +23,8 @@ pub(crate) const FEMALE: &[&str] = &[
 ];
 
 pub(crate) const MALE: &[&str] = &[
-    "Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Mhurren", "Ront", "Shump",
-    "Thokk", "Grutok", "Lortar", "Abzug", "Shugog", "Urzul", "Ruhk", "Mobad", "Shamog", "Mugrub",
-    "Bajok", "Rhorog", "Jahrukk", "Brughor", "Flenz", "Narux", "Yargath", "Moesko", "Grannoc",
-    "Oshgir", "Jolly",
+    "Abzug", "Bajok", "Brughor", "Dench", "Feng", "Flenz", "Gell", "Grannoc", "Grutok", "Henk",
+    "Holg", "Imsh", "Jahrukk", "Jolly", "Keth", "Krusk", "Lortar", "Mhurren", "Mobad", "Moesko",
+    "Mugrub", "Narux", "Oshgir", "Rhorog", "Ront", "Ruhk", "Shamog", "Shugog", "Shump", "Thokk",
+    "Urzul", "Yargath",
 ];
