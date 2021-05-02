@@ -24,26 +24,22 @@ mod urchin;
 
 use std::fmt;
 
-use entertainer::Entertainer;
-use folk_hero::FolkHero;
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use itertools::Itertools;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
-use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
-    citation::Citations,
-};
+use crate::citation::Citations;
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
     cloistered_scholar::CloisteredScholar, courtier::Courtier, criminal::Criminal,
-    faction_agent::FactionAgent, far_traveler::FarTraveler, guild_artisan::GuildArtisan,
-    hermit::Hermit, inheritor::Inheritor, knight_of_the_order::KnightOfTheOrder,
-    mercenary_veteran::MercenaryVeteran, noble::Noble, outlander::Outlander, sage::Sage,
-    sailor::Sailor, soldier::Soldier, urban_bounty_hunter::UrbanBountyHunter, urchin::Urchin,
+    entertainer::Entertainer, faction_agent::FactionAgent, far_traveler::FarTraveler,
+    folk_hero::FolkHero, guild_artisan::GuildArtisan, hermit::Hermit, inheritor::Inheritor,
+    knight_of_the_order::KnightOfTheOrder, mercenary_veteran::MercenaryVeteran, noble::Noble,
+    outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier,
+    urban_bounty_hunter::UrbanBountyHunter, urchin::Urchin,
 };
 
 use super::{

@@ -1,0 +1,148 @@
+---
+source: deities/src/elven.rs
+expression: "Elven::deities()"
+
+---
+- name: Aerdrie Faenya
+  titles:
+    - goddess of the sky
+    - wild goddess of the winds and weather
+    - patron of the avariel
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - Trickery
+  symbols:
+    - Bird silhouetted against a cloud
+- name: Angharradh
+  titles:
+    - triple goddess of wisdom and protection
+    - the fierce mother-protector of the elf people
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbols:
+    - Triangle with three interlocking circles within
+- name: Corellon Larathian
+  titles:
+    - god of art and magic
+    - "god of elves, magic, poetry, rulership, and warcraft"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Arcana
+    - Light
+  symbols:
+    - Crescent moon
+    - quarter moon
+    - starburst
+- name: Deep Sashelas
+  titles:
+    - god of the sea
+    - lord of the sea elves and of dolphins
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Nature
+    - Tempest
+  symbols:
+    - Dolphin
+- name: Erevan Ilesere
+  titles:
+    - god of mischief
+    - trickster-god
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Asymmetrical eight-armed star
+- name: Fenmarel Mestarine
+  titles:
+    - god of outcasts and solitude
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Two peering elven eyes
+- name: Hanali Celanil
+  titles:
+    - "goddess of love, beauty, art, and enchantment"
+    - the Winsome Rose
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+  symbols:
+    - Golden heart
+- name: Labelas Enoreth
+  titles:
+    - "god of time, history, and philosophy"
+    - the philosopher god
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Arcana
+    - Knowledge
+  symbols:
+    - Setting sun
+- name: Rillifane Rallathil
+  titles:
+    - god of nature
+    - god of the woodlands and wild places
+    - father of the wood elves
+    - protector of druids
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Nature
+  symbols:
+    - Oak
+- name: Sehanine Moonbow
+  titles:
+    - goddess of the moon
+    - "goddess of divination, dreams, travel, and death"
+    - "goddess of all life's mysteries, including mysticism, prophecy, death, and dreams"
+    - the Moonlit Mystery
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Full moon under a moonbow
+    - crescent moon
+- name: Shevarash
+  titles:
+    - god of vengeance
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - War
+  symbols:
+    - Broken arrow over a tear
+- name: Solonor Thelandira
+  titles:
+    - "god of hunting, archery, and woodcraft"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbols:
+    - Silver arrow with green fletching
+

@@ -1,15 +1,14 @@
 use std::fmt;
 
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},

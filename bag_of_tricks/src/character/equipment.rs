@@ -6,18 +6,16 @@ pub(crate) mod trinkets;
 pub(crate) mod vehicles;
 pub(crate) mod weapons;
 
-use adventuring_gear::HolySymbol;
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::Display;
+use strum::{Display, IntoEnumIterator};
 
 use tools::{ArtisansTools, MusicalInstrument};
 use trinkets::TRINKETS;
 use vehicles::Vehicle;
 
 use self::{
-    adventuring_gear::Gear,
+    adventuring_gear::{Gear, HolySymbol},
     armor::Armor,
     currency::Coin,
     tools::{GamingSet, Tool},

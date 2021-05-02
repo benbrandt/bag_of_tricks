@@ -3,8 +3,7 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::Display;
+use strum::{Display, IntoEnumIterator};
 
 use super::{
     ability::Skill,

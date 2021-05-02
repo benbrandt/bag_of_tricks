@@ -1,10 +1,10 @@
 use std::fmt;
 
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
         attack::Resistances,

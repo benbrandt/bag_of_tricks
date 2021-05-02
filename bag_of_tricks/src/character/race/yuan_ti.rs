@@ -1,16 +1,14 @@
 use std::fmt;
 
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::{human::Human, origins::MONSTROUS_ORIGIN, Race};
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},
@@ -27,6 +25,8 @@ use crate::{
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
+
+use super::{human::Human, origins::MONSTROUS_ORIGIN, Race};
 
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum SkinColor {

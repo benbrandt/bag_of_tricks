@@ -1,0 +1,226 @@
+---
+source: deities/src/eberron.rs
+expression: "Eberron::deities()"
+
+---
+- name: Arawai
+  titles:
+    - goddess of fertility
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - Sheaf of wheat tied with green ribbon
+- name: Aureon
+  titles:
+    - god of law and knowledge
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Open tome
+- name: Balinor
+  titles:
+    - god of beasts and the hunt
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - Pair of antlers
+- name: Boldrei
+  titles:
+    - goddess of community and home
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+  symbols:
+    - Fire in a stone hearth
+- name: Dol Arrah
+  titles:
+    - goddess of sunlight and honor
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Light
+    - War
+  symbols:
+    - Rising sun
+- name: Dol Dorn
+  titles:
+    - god of strength at arms
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbols:
+    - Longsword crossed over a shield
+- name: Kol Korran
+  titles:
+    - god of trade and wealth
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Nine-sided gold coin
+- name: Olladra
+  titles:
+    - goddess of good fortune
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Trickery
+  symbols:
+    - Domino
+- name: Onatar
+  titles:
+    - god of craft
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Crossed hammer and tongs
+- name: The Devourer
+  titles:
+    - "god of nature's wrath"
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Tempest
+  symbols:
+    - Bundle of five sharpened bones
+- name: The Fury
+  titles:
+    - goddess of wrath and madness
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - War
+  symbols:
+    - "Winged wyrm with woman's head and upper body"
+- name: The Keeper
+  titles:
+    - god of greed and death
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Dragonshard stone in the shape of a fang
+- name: The Mockery
+  titles:
+    - god of violence and treachery
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Five blood-spattered tools
+- name: The Shadow
+  titles:
+    - god of dark magic
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Knowledge
+  symbols:
+    - Obsidian tower
+- name: The Traveler
+  titles:
+    - deity of chaos and change
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Knowledge
+    - Trickery
+  symbols:
+    - "Four crossed, rune-inscribed bones"
+- name: The Silver Flame
+  titles:
+    - deity of protection and good
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+    - Light
+    - War
+  symbols:
+    - Flame drawn on silver or molded from silver
+- name: The Blood of Vol
+  titles:
+    - philosophy of immortality and undeath
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Death
+    - Life
+  symbols:
+    - Stylized dragon skull on red teardrop gem
+- name: Cults of the Dragon Below
+  titles:
+    - deities of madness
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Trickery
+  symbols:
+    - Varies
+- name: The Path of Light
+  titles:
+    - philosophy of light and self-improvement
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Life
+    - Light
+  symbols:
+    - Brilliant crystal
+- name: The Undying Court
+  titles:
+    - elven ancestors
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbols:
+    - Varies
+- name: The Spirits of the Past
+  titles:
+    - elven ancestors
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbols:
+    - Varies
+

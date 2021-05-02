@@ -1,7 +1,7 @@
 use std::fmt;
-use strum_macros::Display;
 
 use rand::Rng;
+use strum::Display;
 
 /// Dice types
 #[allow(dead_code)]

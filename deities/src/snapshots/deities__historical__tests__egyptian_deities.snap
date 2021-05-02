@@ -1,0 +1,153 @@
+---
+source: deities/src/historical.rs
+expression: "Egyptian::deities()"
+
+---
+- name: Re-Horakhty
+  titles:
+    - "god of the sun, ruler of the gods"
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+    - Light
+  symbols:
+    - Solar disk encircled by serpent
+- name: Anubis
+  titles:
+    - god of judgment and death
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Death
+  symbols:
+    - Black jackal
+- name: Apep
+  titles:
+    - "god of evil, fire, and serpents"
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Trickery
+  symbols:
+    - Flaming snake
+- name: Bast
+  titles:
+    - goddess of cats and vengeance
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbols:
+    - Cat
+- name: Bes
+  titles:
+    - god of luck and music
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Image of the misshapen deity
+- name: Hathor
+  titles:
+    - "goddess of love, music, and motherhood"
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Light
+  symbols:
+    - "Horned cow's head with lunar disk"
+- name: Imhotep
+  titles:
+    - god of crafts and medicine
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - Step pyramid
+- name: Isis
+  titles:
+    - goddess of fertility and magic
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - Life
+  symbols:
+    - Ankh and star
+- name: Nephthys
+  titles:
+    - goddess of death and grief
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Death
+  symbols:
+    - Horns around a lunar disk
+- name: Osiris
+  titles:
+    - god of nature and the underworld
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - Crook and flail
+- name: Ptah
+  titles:
+    - "god of crafts, knowledge, and secrets"
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Bull
+- name: Set
+  titles:
+    - god of darkness and desert storms
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Death
+    - Tempest
+    - Trickery
+  symbols:
+    - Coiled cobra
+- name: Sobek
+  titles:
+    - god of water and crocodiles
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Nature
+    - Tempest
+  symbols:
+    - Crocodile head with horns and plumes
+- name: Thoth
+  titles:
+    - god of knowledge and wisdom
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Ibis
+

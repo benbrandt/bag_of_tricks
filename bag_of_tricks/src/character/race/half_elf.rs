@@ -1,18 +1,14 @@
+use std::fmt;
+
+use alignment::{AlignmentInfluences, Attitude};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use std::fmt;
 use strum::IntoEnumIterator;
 
-use super::{
-    elf::{Elf, ElfSubrace},
-    human::Human,
-    Race,
-};
 use crate::{
-    alignment::{AlignmentInfluences, Attitude},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
@@ -28,6 +24,12 @@ use crate::{
     },
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
+};
+
+use super::{
+    elf::{Elf, ElfSubrace},
+    human::Human,
+    Race,
 };
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {

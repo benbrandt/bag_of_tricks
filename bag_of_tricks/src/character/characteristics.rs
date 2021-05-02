@@ -1,8 +1,8 @@
+use std::{fmt, ops::RangeInclusive};
+
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use std::{fmt, ops::RangeInclusive};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::dice_roller::RollCmd;
 

@@ -1,10 +1,10 @@
-use rand::{prelude::SliceRandom, Rng};
-use serde::{Deserialize, Serialize};
 use std::fmt;
 
-use super::{human::Human, orc::Orc, Race};
+use alignment::{AlignmentInfluences, Attitude, Morality};
+use rand::{prelude::SliceRandom, Rng};
+use serde::{Deserialize, Serialize};
+
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType, Skill},
         attack::Resistances,
@@ -21,6 +21,8 @@ use crate::{
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
+
+use super::{human::Human, orc::Orc, Race};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 10),

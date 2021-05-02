@@ -1,3 +1,3 @@
 [workspace]
 
-members = ["bag_of_tricks"]
+members = ["alignment", "bag_of_tricks", "deities"]

@@ -22,13 +22,13 @@ mod tiefling;
 mod triton;
 mod yuan_ti;
 
+use alignment::AlignmentInfluences;
 use rand::prelude::IteratorRandom;
 use rand::Rng;
 use std::fmt;
-use strum::IntoEnumIterator;
-use strum_macros::EnumIter;
+use strum::{EnumIter, IntoEnumIterator};
 
-use crate::{alignment::AlignmentInfluences, citation::Citations};
+use crate::citation::Citations;
 
 use self::{
     aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,

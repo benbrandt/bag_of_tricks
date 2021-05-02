@@ -1,15 +1,14 @@
+use std::fmt;
+
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use std::fmt;
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::Race;
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::Resistances,
@@ -30,6 +29,8 @@ use crate::{
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
+
+use super::Race;
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 11),

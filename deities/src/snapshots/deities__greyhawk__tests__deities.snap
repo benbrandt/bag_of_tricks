@@ -1,0 +1,262 @@
+---
+source: deities/src/greyhawk.rs
+expression: "Greyhawk::deities()"
+
+---
+- name: Beory
+  titles:
+    - goddess of nature
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Green disk
+- name: Boccob
+  titles:
+    - god of magic
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Eye within a pentagram
+- name: Celestian
+  titles:
+    - god of stars and wanderers
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Arc of seven stars inside a circle
+- name: Ehlonna
+  titles:
+    - goddess of woodlands
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - Unicorn horn
+- name: Erythnul
+  titles:
+    - god of envy and slaughter
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Blood drop
+- name: Fharlanghn
+  titles:
+    - god of horizons and travel
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - Trickery
+  symbols:
+    - Circle crossed by a curved horizon line
+- name: Heironeous
+  titles:
+    - god of chivalry and valor
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - War
+  symbols:
+    - Lightning bolt
+- name: Hextor
+  titles:
+    - god of war and discord
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Six arrows facing downward in a fan
+- name: Kord
+  titles:
+    - god of athletics and sport
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - War
+  symbols:
+    - Four spears and four maces radiating out from a central point
+- name: Incabulos
+  titles:
+    - god of plague and famine
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Reptilian eye with a horizontal diamond
+- name: Istus
+  titles:
+    - goddess of fate and destiny
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - "Weaver's spindle with three strands"
+- name: Iuz
+  titles:
+    - god of pain and oppression
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Grinning human skull
+- name: Nerull
+  titles:
+    - god of death
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Death
+  symbols:
+    - Skull with either a sickle or a scythe
+- name: Obad-Hai
+  titles:
+    - god of nature
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Nature
+  symbols:
+    - Oak leaf and acorn
+- name: Olidammara
+  titles:
+    - god of revelry
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Laughing mask
+- name: Pelor
+  titles:
+    - god of the sun and healing
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Light
+  symbols:
+    - Sun
+- name: Pholtus
+  titles:
+    - god of light and law
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Silver sun or full moon partially eclipsed by a smaller crescent moon
+- name: Ralishaz
+  titles:
+    - god of ill luck and insanity
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Three bone fate-casting sticks
+- name: Rao
+  titles:
+    - god of peace and reason
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Knowledge
+  symbols:
+    - White heart
+- name: St. Cuthbert
+  titles:
+    - god of common sense and zeal
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Circle at the center of a starburst of lines
+- name: Tharizdun
+  titles:
+    - god of eternal darkness
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+  symbols:
+    - Dark spiral or inverted ziggurat
+- name: Trithereon
+  titles:
+    - god of liberty and retribution
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - War
+  symbols:
+    - Triskelion
+- name: Ulaa
+  titles:
+    - goddess of hills and mountains
+  alignment:
+    - Lawful
+    - Good
+  domains:
+    - Life
+    - War
+  symbols:
+    - Mountain with a circle at its heart
+- name: Vecna
+  titles:
+    - god of evil secrets
+  alignment:
+    - Neutral
+    - Evil
+  domains:
+    - Knowledge
+  symbols:
+    - Hand with eye in the palm
+- name: Wee Jas
+  titles:
+    - goddess of magic and death
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Death
+    - Knowledge
+  symbols:
+    - Red skull in front of fireball
+

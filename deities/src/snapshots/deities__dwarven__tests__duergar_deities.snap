@@ -1,0 +1,28 @@
+---
+source: deities/src/dwarven.rs
+expression: "Duergar::deities()"
+
+---
+- name: Deep Duerra
+  titles:
+    - goddess of conquest and psionics
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Arcana
+    - War
+  symbols:
+    - Mind flayer skill
+- name: Laduguer
+  titles:
+    - god of magic and slavery
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Arcana
+    - Death
+  symbols:
+    - Broken arrow
+

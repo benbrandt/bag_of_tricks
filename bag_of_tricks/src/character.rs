@@ -12,6 +12,7 @@ mod race;
 
 use std::{fmt, writeln};
 
+use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -28,8 +29,6 @@ use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
 
 use self::characteristics::Appearance;
-
-use super::alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Default, Deserialize, Serialize)]

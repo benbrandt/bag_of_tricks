@@ -1,0 +1,47 @@
+---
+source: deities/src/giant.rs
+expression: "Giant::deities()"
+
+---
+- name: Grolantor
+  titles:
+    - hill giant god of war
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Wooden club
+- name: Skoraeus Stonebones
+  titles:
+    - god of stone giants and art
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Stalactite
+- name: Surtur
+  titles:
+    - god of fire giants and craft
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - Knowledge
+    - War
+  symbols:
+    - Flaming sword
+- name: Thrym
+  titles:
+    - god of frost giants and strength
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - White double-bladed axe
+

@@ -1,0 +1,16 @@
+---
+source: deities/src/goblinoid.rs
+expression: "Goblin::deities()"
+
+---
+- name: Maglubiyet
+  titles:
+    - god of war
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Bloody axe
+

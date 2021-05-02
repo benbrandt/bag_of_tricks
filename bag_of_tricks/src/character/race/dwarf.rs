@@ -1,16 +1,15 @@
 #![allow(clippy::default_trait_access)]
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
 use std::fmt;
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use super::Race;
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},

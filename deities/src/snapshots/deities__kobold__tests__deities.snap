@@ -1,0 +1,16 @@
+---
+source: deities/src/kobold.rs
+expression: "Kobold::deities()"
+
+---
+- name: Kurtulmak
+  titles:
+    - god of war and mining
+  alignment:
+    - Lawful
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Gnome skull
+

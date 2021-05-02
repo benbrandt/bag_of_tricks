@@ -10,6 +10,8 @@ resolver = "2"
 [dependencies]
 actix-http = "2"
 actix-web = "3"
+alignment = { path = "../alignment" }
+deities = { path = "../deities" }
 env_logger = "0.8"
 itertools = "0.10"
 rand = "0.8"
@@ -17,8 +19,7 @@ rand_pcg = "0.3"
 sentry = "0.22.0"
 sentry-actix = "0.22.0"
 serde = { version = "1", features = ["derive"] }
-strum = "0.20"
-strum_macros = "0.20"
+strum = { version = "0.20", features = ["derive"] }
 tera = "1"
 typetag = "0.1"
 

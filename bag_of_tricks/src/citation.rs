@@ -1,9 +1,10 @@
-use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet},
     fmt,
 };
-use strum_macros::Display;
+
+use serde::{Deserialize, Serialize};
+use strum::Display;
 
 /// Titles of the available D&D Books.
 #[derive(Clone, Copy, Debug, Deserialize, Display, Eq, Hash, PartialEq, Serialize)]

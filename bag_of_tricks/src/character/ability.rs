@@ -2,8 +2,7 @@ use std::{collections::BTreeMap, f64::consts::E, fmt};
 
 use rand::Rng;
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::dice_roller::{Die, RollCmd};
 

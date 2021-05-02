@@ -288,6 +288,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "alignment"
+version = "0.1.0"
+dependencies = [
+ "rand 0.8.3",
+ "rand_pcg",
+ "serde",
+ "strum",
+]
+
+[[package]]
 name = "async-trait"
 version = "0.1.50"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -360,6 +370,8 @@ version = "0.1.0"
 dependencies = [
  "actix-http",
  "actix-web",
+ "alignment",
+ "deities",
  "env_logger",
  "insta",
  "itertools",
@@ -370,7 +382,6 @@ dependencies = [
  "serde",
  "serde_yaml",
  "strum",
- "strum_macros",
  "tera",
  "typetag",
 ]
@@ -635,6 +646,16 @@ checksum = "f91cf5a8c2f2097e2a32627123508635d47ce10563d999ec1a95addf08b502ba"
 dependencies = [
  "serde",
  "uuid",
+]
+
+[[package]]
+name = "deities"
+version = "0.1.0"
+dependencies = [
+ "alignment",
+ "insta",
+ "serde",
+ "serde_yaml",
 ]
 
 [[package]]
@@ -2332,6 +2353,9 @@ name = "strum"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7318c509b5ba57f18533982607f24070a55d353e90d4cae30c467cdb2ad5ac5c"
+dependencies = [
+ "strum_macros",
+]
 
 [[package]]
 name = "strum_macros"

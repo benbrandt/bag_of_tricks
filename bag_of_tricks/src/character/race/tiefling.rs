@@ -1,16 +1,15 @@
 #![allow(clippy::default_trait_access)]
+use std::fmt;
+
+use alignment::{AlignmentInfluences, Attitude, Morality};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use std::fmt;
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::{human::Human, Race};
 use crate::{
-    alignment::{AlignmentInfluences, Attitude, Morality},
     character::{
         ability::{AbilityScore, AbilityScoreType},
         attack::{DamageType, Resistances},
@@ -30,6 +29,8 @@ use crate::{
     citation::{Book, Citation, CitationList, Citations},
     dice_roller::{Die, RollCmd},
 };
+
+use super::{human::Human, Race};
 
 /// Tiefling height and weight table
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {

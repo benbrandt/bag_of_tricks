@@ -2,8 +2,7 @@ use std::fmt;
 
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
     character::{

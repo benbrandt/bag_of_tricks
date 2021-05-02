@@ -1,7 +1,7 @@
 use std::fmt;
 
 use serde::{Deserialize, Serialize};
-use strum_macros::Display;
+use strum::Display;
 
 use crate::dice_roller::RollCmd;
 

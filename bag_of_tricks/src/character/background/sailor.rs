@@ -2,9 +2,7 @@ use std::fmt;
 
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use strum_macros::{Display, EnumIter};
-use trinkets::TRINKETS;
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
     character::{
@@ -14,7 +12,7 @@ use crate::{
             adventuring_gear::{Gear, OtherGear},
             currency::Coin,
             tools::Tool,
-            trinkets,
+            trinkets::TRINKETS,
             vehicles::VehicleProficiency,
             Equipment, EquipmentOption, StartingEquipment,
         },

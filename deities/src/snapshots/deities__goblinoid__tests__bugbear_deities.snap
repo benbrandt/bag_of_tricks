@@ -1,0 +1,16 @@
+---
+source: deities/src/goblinoid.rs
+expression: "Bugbear::deities()"
+
+---
+- name: Hruggek
+  titles:
+    - god of violence
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Morningstar
+
