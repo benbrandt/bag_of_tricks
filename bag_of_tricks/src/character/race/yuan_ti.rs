@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -9,21 +10,18 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType},
-        attack::{DamageType, Resistances},
-        backstory::Backstory,
-        characteristics::{
-            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
-            HeightAndWeightTable, Size, Speed, WeightMod,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{yuan_ti::NAMES, Name},
-        proficiencies::Proficiencies,
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType},
+    attack::{DamageType, Resistances},
+    backstory::Backstory,
+    characteristics::{
+        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+        HeightAndWeightTable, Size, Speed, WeightMod,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{yuan_ti::NAMES, Name},
+    proficiencies::Proficiencies,
 };
 
 use super::{human::Human, origins::MONSTROUS_ORIGIN, Race};

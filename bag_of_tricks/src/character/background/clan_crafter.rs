@@ -1,23 +1,21 @@
 use std::fmt;
 
+use citation::{Book, Citation, CitationList, Citations};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    character::{
-        ability::Skill,
-        backstory::Backstory,
-        equipment::{
-            adventuring_gear::{Gear, OtherGear},
-            currency::Coin,
-            Equipment, EquipmentOption, StartingEquipment,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
-        Character,
+use crate::character::{
+    ability::Skill,
+    backstory::Backstory,
+    equipment::{
+        adventuring_gear::{Gear, OtherGear},
+        currency::Coin,
+        Equipment, EquipmentOption, StartingEquipment,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+    Character,
 };
 
 use super::{guild_artisan::GuildArtisan, Background, Personality, PersonalityOptions};

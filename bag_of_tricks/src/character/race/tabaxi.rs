@@ -1,28 +1,26 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, Skill},
-        attack::Resistances,
-        backstory::Backstory,
-        characteristics::{
-            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
-            HeightAndWeightTable, Size, Speed, WeightMod,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{
-            tabaxi::{CLANS, NAMES},
-            Name,
-        },
-        proficiencies::{Proficiencies, Proficiency},
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType, Skill},
+    attack::Resistances,
+    backstory::Backstory,
+    characteristics::{
+        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+        HeightAndWeightTable, Size, Speed, WeightMod,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{
+        tabaxi::{CLANS, NAMES},
+        Name,
+    },
+    proficiencies::{Proficiencies, Proficiency},
 };
 
 use super::Race;

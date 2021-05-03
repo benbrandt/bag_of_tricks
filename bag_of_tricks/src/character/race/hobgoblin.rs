@@ -1,26 +1,24 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType},
-        attack::Resistances,
-        backstory::Backstory,
-        characteristics::{
-            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
-            HeightAndWeightTable, Size, Speed, WeightMod,
-        },
-        equipment::{armor::ArmorType, weapons::WeaponCategory},
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{goblinoid::HOBGOBLIN, Name},
-        proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType},
+    attack::Resistances,
+    backstory::Backstory,
+    characteristics::{
+        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+        HeightAndWeightTable, Size, Speed, WeightMod,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    equipment::{armor::ArmorType, weapons::WeaponCategory},
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{goblinoid::HOBGOBLIN, Name},
+    proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
 use super::{origins::MONSTROUS_ORIGIN, Race};

@@ -1,34 +1,34 @@
 #![allow(clippy::default_trait_access)]
+use std::fmt;
+
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use std::fmt;
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::Race;
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType, Skill},
-        attack::Resistances,
-        backstory::Backstory,
-        characteristics::{
-            AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, Speed,
-        },
-        equipment::weapons::WeaponType,
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{
-            elf::{CHILD, FAMILY, FEMALE, MALE},
-            Name,
-        },
-        proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType, Skill},
+    attack::Resistances,
+    backstory::Backstory,
+    characteristics::{
+        AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+        Size, Speed,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    equipment::weapons::WeaponType,
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{
+        elf::{CHILD, FAMILY, FEMALE, MALE},
+        Name,
+    },
+    proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
 };
+
+use super::Race;
 
 mod height_and_weight {
     use dice_roller::{Die, RollCmd};

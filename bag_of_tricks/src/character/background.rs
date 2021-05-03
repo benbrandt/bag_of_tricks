@@ -25,12 +25,11 @@ mod urchin;
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::Citations;
 use itertools::Itertools;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
-
-use crate::citation::Citations;
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,

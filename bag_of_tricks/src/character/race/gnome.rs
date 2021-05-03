@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -9,25 +10,22 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType},
-        attack::Resistances,
-        backstory::Backstory,
-        characteristics::{
-            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, Speed, WeightMod,
-        },
-        equipment::tools::{ArtisansTools, Tool},
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{
-            gnome::{CLAN, FEMALE, MALE, NICKNAMES},
-            Name,
-        },
-        proficiencies::{Proficiencies, Proficiency},
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType},
+    attack::Resistances,
+    backstory::Backstory,
+    characteristics::{
+        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
+        HeightAndWeightTable, Size, Speed, WeightMod,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    equipment::tools::{ArtisansTools, Tool},
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{
+        gnome::{CLAN, FEMALE, MALE, NICKNAMES},
+        Name,
+    },
+    proficiencies::{Proficiencies, Proficiency},
 };
 
 use super::Race;

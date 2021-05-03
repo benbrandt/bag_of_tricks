@@ -1,26 +1,24 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType},
-        attack::Resistances,
-        backstory::Backstory,
-        characteristics::{
-            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
-            HeightAndWeightTable, Size, Speed, WeightMod,
-        },
-        equipment::trinkets::GOBLIN_STATUS_SYMBOLS,
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{goblinoid::GOBLIN, Name},
-        proficiencies::Proficiencies,
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType},
+    attack::Resistances,
+    backstory::Backstory,
+    characteristics::{
+        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+        HeightAndWeightTable, Size, Speed, WeightMod,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    equipment::trinkets::GOBLIN_STATUS_SYMBOLS,
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{goblinoid::GOBLIN, Name},
+    proficiencies::Proficiencies,
 };
 
 use super::{origins::MONSTROUS_ORIGIN, Race};

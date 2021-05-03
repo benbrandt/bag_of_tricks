@@ -1,24 +1,22 @@
 use std::fmt;
 
+use citation::{Book, Citation, CitationList, Citations};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use crate::{
-    character::{
-        ability::Skill,
-        backstory::Backstory,
-        equipment::{
-            adventuring_gear::{Gear, OtherGear},
-            currency::Coin,
-            Equipment, StartingEquipment,
-        },
-        features::{Feature, Features},
-        languages::Languages,
-        proficiencies::{Proficiencies, Proficiency},
-        Character,
+use crate::character::{
+    ability::Skill,
+    backstory::Backstory,
+    equipment::{
+        adventuring_gear::{Gear, OtherGear},
+        currency::Coin,
+        Equipment, StartingEquipment,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    features::{Feature, Features},
+    languages::Languages,
+    proficiencies::{Proficiencies, Proficiency},
+    Character,
 };
 
 use super::{max_skill_weight, soldier::Soldier, Background, Personality, PersonalityOptions};

@@ -1,7 +1,7 @@
-use serde::{Deserialize, Serialize};
 use std::fmt;
 
-use crate::citation::Citation;
+use citation::Citation;
+use serde::{Deserialize, Serialize};
 
 /// A feature or trait a character has.
 #[derive(Clone, Copy, Debug, Deserialize, Serialize)]
@@ -29,7 +29,7 @@ pub(crate) trait Features {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::citation::Book;
+    use citation::Book;
 
     #[test]
     fn test_display() {

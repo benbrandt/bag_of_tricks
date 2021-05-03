@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Morality};
+use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -9,26 +10,24 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::Race;
-use crate::{
-    character::{
-        ability::{AbilityScore, AbilityScoreType},
-        attack::{DamageType, Resistances},
-        backstory::Backstory,
-        characteristics::{
-            in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-            HeightAndWeightTable, Size, Speed, WeightMod,
-        },
-        features::{Feature, Features},
-        languages::{Language, Languages},
-        names::{
-            dragonborn::{CHILD, CLAN, FEMALE, MALE},
-            Name,
-        },
-        proficiencies::Proficiencies,
+use crate::character::{
+    ability::{AbilityScore, AbilityScoreType},
+    attack::{DamageType, Resistances},
+    backstory::Backstory,
+    characteristics::{
+        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
+        HeightAndWeightTable, Size, Speed, WeightMod,
     },
-    citation::{Book, Citation, CitationList, Citations},
+    features::{Feature, Features},
+    languages::{Language, Languages},
+    names::{
+        dragonborn::{CHILD, CLAN, FEMALE, MALE},
+        Name,
+    },
+    proficiencies::Proficiencies,
 };
+
+use super::Race;
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(5, 6),
