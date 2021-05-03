@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
@@ -19,7 +20,6 @@ use crate::{
         proficiencies::{Proficiencies, Proficiency},
     },
     citation::{Book, Citation, CitationList, Citations},
-    dice_roller::{Die, RollCmd},
 };
 
 use super::{origins::MONSTROUS_ORIGIN, Race};

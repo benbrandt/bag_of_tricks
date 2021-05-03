@@ -1,10 +1,9 @@
 use std::{fmt, ops::RangeInclusive};
 
+use dice_roller::RollCmd;
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
-
-use crate::dice_roller::RollCmd;
 
 use super::names::human::Ethnicity;
 

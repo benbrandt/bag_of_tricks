@@ -31,10 +31,9 @@ use crate::{
 };
 
 mod height_and_weight {
-    use crate::{
-        character::characteristics::{in_inches, HeightAndWeightTable, WeightMod},
-        dice_roller::{Die, RollCmd},
-    };
+    use dice_roller::{Die, RollCmd};
+
+    use crate::character::characteristics::{in_inches, HeightAndWeightTable, WeightMod};
 
     pub(crate) const DARK: HeightAndWeightTable = HeightAndWeightTable {
         base_height: in_inches(4, 5),

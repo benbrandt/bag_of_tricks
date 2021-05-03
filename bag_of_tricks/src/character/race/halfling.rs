@@ -2,6 +2,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use dice_roller::{Die, RollCmd};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -27,7 +28,6 @@ use crate::{
         proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
-    dice_roller::{Die, RollCmd},
 };
 
 use super::Race;

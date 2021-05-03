@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::AlignmentInfluences;
+use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -20,7 +21,6 @@ use crate::{
         proficiencies::Proficiencies,
     },
     citation::{Book, Citation, CitationList, Citations},
-    dice_roller::{Die, RollCmd},
 };
 
 use super::Race;

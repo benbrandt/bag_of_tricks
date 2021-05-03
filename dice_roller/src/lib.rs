@@ -6,7 +6,7 @@ use strum::Display;
 /// Dice types
 #[allow(dead_code)]
 #[derive(Clone, Copy, Debug, Display, PartialEq)]
-pub(crate) enum Die {
+pub enum Die {
     #[strum(serialize = "d4")]
     D4 = 4,
     #[strum(serialize = "d6")]
@@ -24,17 +24,17 @@ pub(crate) enum Die {
 }
 
 /// Rolled value of a die
-pub(crate) struct DieResult {
+pub struct DieResult {
     /// Rolled number
-    pub(crate) roll: u8,
+    pub roll: u8,
 }
 
 /// Result of dice rolls (multiple if more than one was requested)
-pub(crate) struct RollResult(pub(crate) Vec<DieResult>);
+pub struct RollResult(pub Vec<DieResult>);
 
 impl RollResult {
     /// Total of all rolls
-    pub(crate) fn total(&self) -> usize {
+    pub fn total(&self) -> usize {
         self.0.iter().fold(0, |acc, d| acc + usize::from(d.roll))
     }
 }
@@ -48,10 +48,10 @@ fn roll_die(rng: &mut impl Rng, die: Die) -> DieResult {
 
 /// Roll multiple dice
 #[derive(Debug, PartialEq)]
-pub(crate) struct RollCmd(pub(crate) usize, pub(crate) Die);
+pub struct RollCmd(pub usize, pub Die);
 
 impl RollCmd {
-    pub(crate) fn roll(&self, rng: &mut impl Rng) -> RollResult {
+    pub fn roll(&self, rng: &mut impl Rng) -> RollResult {
         RollResult((1..=self.0).map(|_| roll_die(rng, self.1)).collect())
     }
 }

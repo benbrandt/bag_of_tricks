@@ -1,9 +1,8 @@
 use std::fmt;
 
+use dice_roller::RollCmd;
 use serde::{Deserialize, Serialize};
 use strum::Display;
-
-use crate::dice_roller::RollCmd;
 
 /// List of types of damage available
 #[allow(dead_code)]

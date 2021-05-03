@@ -1,10 +1,9 @@
 use std::{collections::BTreeMap, f64::consts::E, fmt};
 
+use dice_roller::{Die, RollCmd};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
-
-use crate::dice_roller::{Die, RollCmd};
 
 use super::{proficiencies::Proficiency, Character};
 

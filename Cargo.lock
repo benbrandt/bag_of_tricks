@@ -372,6 +372,7 @@ dependencies = [
  "actix-web",
  "alignment",
  "deities",
+ "dice_roller",
  "env_logger",
  "insta",
  "itertools",
@@ -675,6 +676,15 @@ name = "deunicode"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "850878694b7933ca4c9569d30a34b55031b9b139ee1fc7b94a527c4ef960d690"
+
+[[package]]
+name = "dice_roller"
+version = "0.1.0"
+dependencies = [
+ "rand 0.8.3",
+ "rand_pcg",
+ "strum",
+]
 
 [[package]]
 name = "digest"
