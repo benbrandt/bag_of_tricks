@@ -371,6 +371,7 @@ dependencies = [
  "actix-http",
  "actix-web",
  "alignment",
+ "characteristics",
  "citation",
  "deities",
  "dice_roller",
@@ -521,6 +522,19 @@ name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "characteristics"
+version = "0.1.0"
+dependencies = [
+ "dice_roller",
+ "insta",
+ "rand 0.8.3",
+ "rand_pcg",
+ "serde",
+ "serde_yaml",
+ "strum",
+]
 
 [[package]]
 name = "chrono"

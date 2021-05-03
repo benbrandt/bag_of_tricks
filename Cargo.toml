@@ -1,3 +1,10 @@
 [workspace]
-members = ["alignment", "bag_of_tricks", "citation", "deities", "dice_roller"]
+members = [
+    "alignment",
+    "bag_of_tricks",
+    "characteristics",
+    "citation",
+    "deities",
+    "dice_roller",
+]
 resolver = "2"

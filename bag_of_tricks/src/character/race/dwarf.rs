@@ -2,6 +2,14 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    names::{
+        dwarf::{CLAN, FEMALE, MALE},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+    Size, Speed,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -14,10 +22,6 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType},
     attack::{DamageType, Resistances},
     backstory::Backstory,
-    characteristics::{
-        AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
-        Size, Speed,
-    },
     equipment::{
         armor::ArmorType,
         tools::{ArtisansTools, Tool},
@@ -25,19 +29,14 @@ use crate::character::{
     },
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        dwarf::{CLAN, FEMALE, MALE},
-        Name,
-    },
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
 use super::Race;
 
 mod height_and_weight {
+    use characteristics::{in_inches, HeightAndWeightTable, WeightMod};
     use dice_roller::{Die, RollCmd};
-
-    use crate::character::characteristics::{in_inches, HeightAndWeightTable, WeightMod};
 
     pub(crate) const HILL: HeightAndWeightTable = HeightAndWeightTable {
         base_height: in_inches(3, 8),

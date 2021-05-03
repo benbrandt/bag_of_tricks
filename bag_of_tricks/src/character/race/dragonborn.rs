@@ -1,6 +1,15 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Morality};
+use characteristics::{
+    in_inches,
+    names::{
+        dragonborn::{CHILD, CLAN, FEMALE, MALE},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+    Size, Speed, WeightMod,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{
@@ -14,16 +23,8 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType},
     attack::{DamageType, Resistances},
     backstory::Backstory,
-    characteristics::{
-        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-        HeightAndWeightTable, Size, Speed, WeightMod,
-    },
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        dragonborn::{CHILD, CLAN, FEMALE, MALE},
-        Name,
-    },
     proficiencies::Proficiencies,
 };
 

@@ -1,6 +1,10 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    in_inches, names::Name, AgeRange, Appearance, CharacteristicDetails, Characteristics,
+    HeightAndWeightTable, Size, Speed, WeightMod,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
@@ -10,13 +14,8 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType},
     attack::Resistances,
     backstory::Backstory,
-    characteristics::{
-        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
-        HeightAndWeightTable, Size, Speed, WeightMod,
-    },
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::Name,
     proficiencies::Proficiencies,
 };
 
@@ -159,7 +158,7 @@ impl fmt::Display for Firbolg {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::character::characteristics::Gender;
+    use characteristics::Gender;
     use rand::SeedableRng;
     use rand_pcg::Pcg64;
 

@@ -1,5 +1,5 @@
 ---
-source: src/character/characteristics.rs
+source: characteristics/src/lib.rs
 expression: "format!(\"{}\", characteristics)"
 
 ---

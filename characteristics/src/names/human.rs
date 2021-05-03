@@ -4,7 +4,7 @@ use strum::{Display, EnumIter, IntoEnumIterator};
 
 /// Ethnicity options, which determine name lists
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
-pub(crate) enum Ethnicity {
+pub enum Ethnicity {
     Arkaiun,
     Bedine,
     Calishite,
@@ -27,11 +27,11 @@ pub(crate) enum Ethnicity {
 }
 
 impl Ethnicity {
-    pub(crate) fn gen(rng: &mut impl Rng) -> Self {
+    pub fn gen(rng: &mut impl Rng) -> Self {
         Ethnicity::iter().choose(rng).unwrap()
     }
 
-    pub(crate) fn human_language(self) -> &'static str {
+    pub fn human_language(self) -> &'static str {
         match self {
             Self::Arkaiun => "Dambrathan (written in Espruar)",
             Self::Bedine => "Midani",
@@ -54,7 +54,7 @@ impl Ethnicity {
         }
     }
 
-    pub(crate) fn names(self) -> Names {
+    pub fn names(self) -> Names {
         match self {
             Self::Arkaiun => ARKAIUN,
             Self::Bedine => BEDINE,
@@ -79,10 +79,10 @@ impl Ethnicity {
 }
 
 /// Name options for a given ethnicity
-pub(crate) struct Names {
-    pub(crate) female: &'static [&'static str],
-    pub(crate) male: &'static [&'static str],
-    pub(crate) surname: &'static [&'static str],
+pub struct Names {
+    pub female: &'static [&'static str],
+    pub male: &'static [&'static str],
+    pub surname: &'static [&'static str],
 }
 
 const ARKAIUN: Names = Names {

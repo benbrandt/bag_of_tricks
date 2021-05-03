@@ -1,4 +1,4 @@
-pub(crate) const CHILD: &[&str] = &[
+pub const CHILD: &[&str] = &[
     "Climber",
     "Earbender",
     "Leaper",
@@ -7,7 +7,7 @@ pub(crate) const CHILD: &[&str] = &[
     "Zealous",
 ];
 
-pub(crate) const CLAN: &[&str] = &[
+pub const CLAN: &[&str] = &[
     "Blaakberz",
     "Clethtinthiallor",
     "Daardendrian",
@@ -29,12 +29,12 @@ pub(crate) const CLAN: &[&str] = &[
     "Yarjerit",
 ];
 
-pub(crate) const FEMALE: &[&str] = &[
+pub const FEMALE: &[&str] = &[
     "Akra", "Biri", "Daar", "Farideh", "Harann", "Havilar", "Jheri", "Kava", "Korinn", "Mishann",
     "Nala", "Perra", "Raiann", "Sora", "Surina", "Thava", "Uadjit",
 ];
 
-pub(crate) const MALE: &[&str] = &[
+pub const MALE: &[&str] = &[
     "Arjhan",
     "Balasar",
     "Bharash",

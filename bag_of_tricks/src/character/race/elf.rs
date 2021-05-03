@@ -2,6 +2,14 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    names::{
+        elf::{CHILD, FAMILY, FEMALE, MALE},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+    Size, Speed,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -14,26 +22,17 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType, Skill},
     attack::Resistances,
     backstory::Backstory,
-    characteristics::{
-        AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
-        Size, Speed,
-    },
     equipment::weapons::WeaponType,
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        elf::{CHILD, FAMILY, FEMALE, MALE},
-        Name,
-    },
     proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
 };
 
 use super::Race;
 
 mod height_and_weight {
+    use characteristics::{in_inches, HeightAndWeightTable, WeightMod};
     use dice_roller::{Die, RollCmd};
-
-    use crate::character::characteristics::{in_inches, HeightAndWeightTable, WeightMod};
 
     pub(crate) const DARK: HeightAndWeightTable = HeightAndWeightTable {
         base_height: in_inches(4, 5),

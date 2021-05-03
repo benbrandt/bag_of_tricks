@@ -2,11 +2,9 @@ mod ability;
 mod attack;
 mod background;
 mod backstory;
-mod characteristics;
 mod equipment;
 mod features;
 mod languages;
-mod names;
 mod proficiencies;
 mod race;
 
@@ -21,14 +19,12 @@ use ability::{AbilityScores, Skill};
 use attack::{DamageType, Resistances};
 use background::{Background, BackgroundOption, Personality};
 use backstory::Backstory;
-use characteristics::{CharacteristicDetails, Speed};
+use characteristics::{Appearance, CharacteristicDetails, Speed};
 use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use features::{Feature, Features};
 use languages::Language;
 use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
-
-use self::characteristics::Appearance;
 
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Default, Deserialize, Serialize)]

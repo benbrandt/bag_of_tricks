@@ -1,10 +1,10 @@
-pub(crate) const BIRTH_NAMES: &[&str] = &[
+pub const BIRTH_NAMES: &[&str] = &[
     "Aukan", "Eglath", "Gae-El", "Gauthak", "Ilikan", "Keothi", "Kuori", "Lo-Kag", "Manneo",
     "Maveith", "Nalla", "Orilo", "Paavu", "Pethani", "Thalai", "Thotham", "Uthal", "Vaunea",
     "Vimak",
 ];
 
-pub(crate) const CLAN_NAMES: &[&str] = &[
+pub const CLAN_NAMES: &[&str] = &[
     "Anakalathai",
     "Elanithino",
     "Gathakanathi",
@@ -17,7 +17,7 @@ pub(crate) const CLAN_NAMES: &[&str] = &[
     "Vaimei-Laga",
 ];
 
-pub(crate) const NICKNAMES: &[&str] = &[
+pub const NICKNAMES: &[&str] = &[
     "Bearkiller",
     "Dawncaller",
     "Fearless",

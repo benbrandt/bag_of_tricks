@@ -1,4 +1,4 @@
-pub(crate) const CLANS: &[&str] = &[
+pub const CLANS: &[&str] = &[
     "Bright Cliffs",
     "Distant Rain",
     "Mountain Tree",
@@ -6,7 +6,7 @@ pub(crate) const CLANS: &[&str] = &[
     "Snoring Mountain",
 ];
 
-pub(crate) const NAMES: &[&str] = &[
+pub const NAMES: &[&str] = &[
     "Cloud on the Mountaintop (Cloud)",
     "Five Timber (Timber)",
     "Jade Shoe (Jade)",

@@ -1,9 +1,9 @@
-pub(crate) const CHILD: &[&str] = &[
+pub const CHILD: &[&str] = &[
     "Ara", "Bryn", "Del", "Eryn", "Faen", "Innil", "Lael", "Mella", "Naill", "Naeris", "Phann",
     "Rael", "Rinn", "Sai", "Syllin", "Thia", "Vall",
 ];
 
-pub(crate) const FAMILY: &[&str] = &[
+pub const FAMILY: &[&str] = &[
     "Amakiir (Gemflower)",
     "Amastacia (Starflower)",
     "Edermath",
@@ -22,7 +22,7 @@ pub(crate) const FAMILY: &[&str] = &[
     "Xiloscient (Goldpetal)",
 ];
 
-pub(crate) const FEMALE: &[&str] = &[
+pub const FEMALE: &[&str] = &[
     "Adrie",
     "Aedyn",
     "Althaea",
@@ -63,7 +63,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Xanaphia",
 ];
 
-pub(crate) const MALE: &[&str] = &[
+pub const MALE: &[&str] = &[
     "Adran",
     "Aelar",
     "Araithe",

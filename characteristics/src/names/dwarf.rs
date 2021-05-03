@@ -1,4 +1,4 @@
-pub(crate) const CLAN: &[&str] = &[
+pub const CLAN: &[&str] = &[
     "Arnskull",
     "Balderk",
     "Battlehammer",
@@ -67,7 +67,7 @@ pub(crate) const CLAN: &[&str] = &[
     "Yund",
 ];
 
-pub(crate) const FEMALE: &[&str] = &[
+pub const FEMALE: &[&str] = &[
     "Aela",
     "Amara",
     "Amber",
@@ -109,7 +109,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Vistra",
 ];
 
-pub(crate) const MALE: &[&str] = &[
+pub const MALE: &[&str] = &[
     "Adrik",
     "Alberich",
     "Baern",

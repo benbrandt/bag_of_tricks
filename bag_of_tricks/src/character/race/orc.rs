@@ -1,6 +1,15 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    in_inches,
+    names::{
+        orc::{EPITHET, FEMALE, MALE},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+    Size, Speed, WeightMod,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
@@ -10,16 +19,8 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType, Skill},
     attack::Resistances,
     backstory::Backstory,
-    characteristics::{
-        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-        HeightAndWeightTable, Size, Speed, WeightMod,
-    },
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        orc::{EPITHET, FEMALE, MALE},
-        Name,
-    },
     proficiencies::{Proficiencies, Proficiency},
 };
 

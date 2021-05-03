@@ -1,6 +1,15 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    in_inches,
+    names::{
+        gnome::{CLAN, FEMALE, MALE, NICKNAMES},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+    Size, Speed, WeightMod,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{
@@ -14,17 +23,9 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType},
     attack::Resistances,
     backstory::Backstory,
-    characteristics::{
-        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-        HeightAndWeightTable, Size, Speed, WeightMod,
-    },
     equipment::tools::{ArtisansTools, Tool},
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        gnome::{CLAN, FEMALE, MALE, NICKNAMES},
-        Name,
-    },
     proficiencies::{Proficiencies, Proficiency},
 };
 

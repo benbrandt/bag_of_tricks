@@ -1,6 +1,15 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    in_inches,
+    names::{
+        goliath::{BIRTH_NAMES, CLAN_NAMES, NICKNAMES},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, HeightAndWeightTable, Size,
+    Speed, WeightMod,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
@@ -10,16 +19,8 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType, Skill},
     attack::Resistances,
     backstory::Backstory,
-    characteristics::{
-        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics,
-        HeightAndWeightTable, Size, Speed, WeightMod,
-    },
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        goliath::{BIRTH_NAMES, CLAN_NAMES, NICKNAMES},
-        Name,
-    },
     proficiencies::{Proficiencies, Proficiency},
 };
 

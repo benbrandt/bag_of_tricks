@@ -1,4 +1,4 @@
-pub(crate) const FAMILY: &[&str] = &[
+pub const FAMILY: &[&str] = &[
     "Adalgrim",
     "Addlespur",
     "Alderleaf",
@@ -20,7 +20,7 @@ pub(crate) const FAMILY: &[&str] = &[
     "Wanderfoot",
 ];
 
-pub(crate) const FEMALE: &[&str] = &[
+pub const FEMALE: &[&str] = &[
     "Amarandine",
     "Andry",
     "Bree",
@@ -48,7 +48,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Verna",
 ];
 
-pub(crate) const MALE: &[&str] = &[
+pub const MALE: &[&str] = &[
     "Alton", "Ander", "Cade", "Carp", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Lindal",
     "Lyle", "Marks", "Merric", "Milo", "Osborn", "Otis", "Patsy", "Perrin", "Pieter", "Quinn",
     "Reed", "Rosco", "Roscoe", "Wellby",

@@ -1,4 +1,4 @@
-pub(crate) const NAMES: &[&str] = &[
+pub const NAMES: &[&str] = &[
     "Smasher",
     "Clanger",
     "Slicer",

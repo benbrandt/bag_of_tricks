@@ -1,14 +1,15 @@
+pub mod names;
+
 use std::{fmt, ops::RangeInclusive};
 
 use dice_roller::RollCmd;
+use names::human::Ethnicity;
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::names::human::Ethnicity;
-
 /// An range of ages a given adventurer could be.
-pub(crate) struct AgeRange(pub(crate) RangeInclusive<u16>);
+pub struct AgeRange(pub RangeInclusive<u16>);
 
 impl AgeRange {
     /// Generate a random age within the given range.
@@ -19,7 +20,7 @@ impl AgeRange {
 
 /// Really only here to help decide on names, not core to a character choice.
 #[derive(Deserialize, Display, EnumIter, Serialize)]
-pub(crate) enum Gender {
+pub enum Gender {
     Female,
     Male,
 }
@@ -33,7 +34,7 @@ impl Gender {
 
 /// Weight modifier
 #[derive(Debug, PartialEq)]
-pub(crate) enum WeightMod {
+pub enum WeightMod {
     /// Fixed additional weight
     Fixed(u16),
     /// Role to find additional weight
@@ -41,26 +42,26 @@ pub(crate) enum WeightMod {
 }
 
 /// Convert feet + inches to just inches (allow for better readability in tables)
-pub(crate) const fn in_inches(feet: u8, inches: u8) -> u8 {
+pub const fn in_inches(feet: u8, inches: u8) -> u8 {
     feet * 12 + inches
 }
 
 /// Data from a table to generate a height and weight for a given character.
 #[derive(Debug, PartialEq)]
-pub(crate) struct HeightAndWeightTable {
+pub struct HeightAndWeightTable {
     /// Base height for this character
-    pub(crate) base_height: u8,
+    pub base_height: u8,
     /// Base weight for this character
-    pub(crate) base_weight: u16,
+    pub base_weight: u16,
     /// Modifier to apply to the height
-    pub(crate) height_mod: RollCmd,
+    pub height_mod: RollCmd,
     /// Modifier to apply to the weight (informed by height)
-    pub(crate) weight_mod: WeightMod,
+    pub weight_mod: WeightMod,
 }
 
 impl HeightAndWeightTable {
     /// Generate a random height and weight for a character
-    pub(crate) fn gen(&self, rng: &mut impl Rng) -> (usize, usize) {
+    pub fn gen(&self, rng: &mut impl Rng) -> (usize, usize) {
         let h = self.height_mod.roll(rng).total();
         // Weight modifier is multiplied by height
         let w = h * match &self.weight_mod {
@@ -76,14 +77,14 @@ impl HeightAndWeightTable {
 
 /// Size of character (there are more options for monsters)
 #[derive(Deserialize, Display, EnumIter, Serialize)]
-pub(crate) enum Size {
+pub enum Size {
     Small,
     Medium,
 }
 
 /// Types of movement speeds
 #[derive(Clone, Copy, Debug, Deserialize, EnumIter, PartialEq, Serialize)]
-pub(crate) enum Speed {
+pub enum Speed {
     Climbing(u8),
     Flying(u8),
     Swimming(u8),
@@ -103,21 +104,21 @@ impl fmt::Display for Speed {
 
 /// Physical characteristics about a character.
 #[derive(Deserialize, Serialize)]
-pub(crate) struct CharacteristicDetails {
+pub struct CharacteristicDetails {
     /// Age of the character
-    pub(crate) age: u16,
+    pub age: u16,
     /// Base speed of the character
-    pub(crate) base_speeds: Vec<Speed>,
+    pub base_speeds: Vec<Speed>,
     // Human ethnicity (if applicable)
-    pub(crate) ethnicity: Option<Ethnicity>,
+    pub ethnicity: Option<Ethnicity>,
     /// Gender of the character (only used for name choices)
-    pub(crate) gender: Gender,
+    pub gender: Gender,
     /// Height of the character
-    pub(crate) height: usize,
+    pub height: usize,
     /// Size of the character
-    pub(crate) size: Size,
+    pub size: Size,
     /// Weight of the character
-    pub(crate) weight: usize,
+    pub weight: usize,
 }
 
 impl fmt::Display for CharacteristicDetails {
@@ -137,7 +138,7 @@ impl fmt::Display for CharacteristicDetails {
 /// Trait for object (usually race) to generate appropriate characteristics about a character
 ///
 /// Separate from race since it uses associated constants (which can't be on a trait object)
-pub(crate) trait Characteristics {
+pub trait Characteristics {
     // Does this race have human ancestry?
     const HUMAN_ANCESTRY: bool = false;
     /// Character size
@@ -171,7 +172,7 @@ pub(crate) trait Characteristics {
     }
 }
 
-pub(crate) trait Appearance {
+pub trait Appearance {
     fn appearance(&self) -> Vec<String> {
         vec![]
     }

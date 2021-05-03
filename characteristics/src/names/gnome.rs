@@ -1,4 +1,4 @@
-pub(crate) const CLAN: &[&str] = &[
+pub const CLAN: &[&str] = &[
     "Beren",
     "Daergel",
     "Folkor",
@@ -18,7 +18,7 @@ pub(crate) const CLAN: &[&str] = &[
     "Wigglehoof",
 ];
 
-pub(crate) const FEMALE: &[&str] = &[
+pub const FEMALE: &[&str] = &[
     "Bimpnottin",
     "Breena",
     "Caramip",
@@ -55,7 +55,7 @@ pub(crate) const FEMALE: &[&str] = &[
     "Zanna",
 ];
 
-pub(crate) const MALE: &[&str] = &[
+pub const MALE: &[&str] = &[
     "Alston",
     "Alvyn",
     "Anverth",
@@ -91,7 +91,7 @@ pub(crate) const MALE: &[&str] = &[
     "Zook",
 ];
 
-pub(crate) const NICKNAMES: &[&str] = &[
+pub const NICKNAMES: &[&str] = &[
     "Aleslosh",
     "Ashhearth",
     "Badger",

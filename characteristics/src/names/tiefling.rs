@@ -1,4 +1,4 @@
-pub(crate) const FEMALE_ABYSSAL: &[&str] = &[
+pub const FEMALE_ABYSSAL: &[&str] = &[
     "Akta",
     "Anakis",
     "Bryseis",
@@ -20,12 +20,12 @@ pub(crate) const FEMALE_ABYSSAL: &[&str] = &[
     "Zaar",
 ];
 
-pub(crate) const MALE_ABYSSAL: &[&str] = &[
+pub const MALE_ABYSSAL: &[&str] = &[
     "Akmenos", "Amnon", "Barakas", "Damakos", "Ekemon", "Haroun", "Iados", "Ishaq", "Kairon",
     "Leucis", "Melech", "Mordai", "Morthos", "Nizam", "Pelaios", "Skamos", "Therai",
 ];
 
-pub(crate) const VIRTUE_NAMES: &[&str] = &[
+pub const VIRTUE_NAMES: &[&str] = &[
     "Art",
     "Aybtep (\"horned\")",
     "Bahati (\"wise soul\")",
@@ -56,4 +56,4 @@ pub(crate) const VIRTUE_NAMES: &[&str] = &[
     "Weary",
 ];
 
-pub(crate) const SURNAMES: &[&str] = &["Al-Khem", "Beni-Asmodai", "Zianhur", "Siasobek"];
+pub const SURNAMES: &[&str] = &["Al-Khem", "Beni-Asmodai", "Zianhur", "Siasobek"];

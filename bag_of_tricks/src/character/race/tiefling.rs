@@ -2,6 +2,15 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use characteristics::{
+    in_inches,
+    names::{
+        tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, SURNAMES, VIRTUE_NAMES},
+        Name,
+    },
+    AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
+    Size, Speed, WeightMod,
+};
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{
@@ -15,16 +24,8 @@ use crate::character::{
     ability::{AbilityScore, AbilityScoreType},
     attack::{DamageType, Resistances},
     backstory::Backstory,
-    characteristics::{
-        in_inches, AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender,
-        HeightAndWeightTable, Size, Speed, WeightMod,
-    },
     features::{Feature, Features},
     languages::{Language, Languages},
-    names::{
-        tiefling::{FEMALE_ABYSSAL, MALE_ABYSSAL, SURNAMES, VIRTUE_NAMES},
-        Name,
-    },
     proficiencies::Proficiencies,
 };
 
@@ -292,7 +293,7 @@ impl fmt::Display for Tiefling {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::character::characteristics::Gender;
+    use characteristics::Gender;
     use rand::SeedableRng;
     use rand_pcg::Pcg64;
 
