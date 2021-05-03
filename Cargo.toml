@@ -1,3 +1,4 @@
 [workspace]
 
 members = ["alignment", "bag_of_tricks", "deities"]
+resolver = "2"
