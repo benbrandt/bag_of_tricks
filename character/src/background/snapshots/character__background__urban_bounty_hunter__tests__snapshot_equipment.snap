@@ -1,0 +1,9 @@
+---
+source: character/src/background/urban_bounty_hunter.rs
+expression: background.equipment()
+
+---
+- Other: a set of clothes appropriate to your duties
+- Gear:
+    Other: Pouch
+

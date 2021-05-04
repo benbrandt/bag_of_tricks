@@ -1,0 +1,7 @@
+---
+source: character/src/race/bugbear.rs
+expression: bugbear.backstory()
+
+---
+- "Origin: You are the victim of a curse or polymorph spell."
+

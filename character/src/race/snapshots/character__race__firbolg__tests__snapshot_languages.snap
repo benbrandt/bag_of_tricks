@@ -1,0 +1,9 @@
+---
+source: character/src/race/firbolg.rs
+expression: firbolg.languages()
+
+---
+- Common
+- Elvish
+- Giant
+

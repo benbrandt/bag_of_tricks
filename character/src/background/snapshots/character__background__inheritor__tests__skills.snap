@@ -1,0 +1,10 @@
+---
+source: character/src/background/inheritor.rs
+expression: "Inheritor::skills()"
+
+---
+- Survival
+- Arcana
+- History
+- Religion
+

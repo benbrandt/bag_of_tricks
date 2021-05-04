@@ -1,0 +1,9 @@
+---
+source: character/src/race/yuan_ti.rs
+expression: yuan_ti.languages()
+
+---
+- Common
+- Abyssal
+- Draconic
+

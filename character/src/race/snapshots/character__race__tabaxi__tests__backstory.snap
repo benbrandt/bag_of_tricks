@@ -1,0 +1,8 @@
+---
+source: character/src/race/tabaxi.rs
+expression: tabaxi.backstory()
+
+---
+- My curiousity is currently fixed on a monster
+- "Quirk: You keep a small ball of yarn in your hand, which you constantly fidget with."
+

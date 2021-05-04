@@ -27,10 +27,14 @@ pub enum Ethnicity {
 }
 
 impl Ethnicity {
+    /// # Panics
+    ///
+    /// Will panic if no Ethnicities available
     pub fn gen(rng: &mut impl Rng) -> Self {
         Ethnicity::iter().choose(rng).unwrap()
     }
 
+    #[must_use]
     pub fn human_language(self) -> &'static str {
         match self {
             Self::Arkaiun => "Dambrathan (written in Espruar)",
@@ -54,6 +58,7 @@ impl Ethnicity {
         }
     }
 
+    #[must_use]
     pub fn names(self) -> Names {
         match self {
             Self::Arkaiun => ARKAIUN,

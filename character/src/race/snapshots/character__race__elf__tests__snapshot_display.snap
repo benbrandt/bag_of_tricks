@@ -1,0 +1,10 @@
+---
+source: character/src/race/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           format!(\"{}\", Elf\n                                   {\n                                       subrace\n                                   })).collect::<Vec<String>>().join(\"\\n\\n\")"
+
+---
+Dark Elf
+
+High Elf
+
+Wood Elf

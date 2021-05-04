@@ -1,0 +1,11 @@
+---
+source: character/src/background/far_traveler.rs
+expression: background.equipment()
+
+---
+- Other: poorly wrought maps from your homeland that depict where you are in Faerûn
+- Gear:
+    Other: ClothesTravelers
+- Gear:
+    Other: Pouch
+

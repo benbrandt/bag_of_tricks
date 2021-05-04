@@ -1,8 +1,0 @@
----
-source: src/character/race/firbolg.rs
-expression: firbolg.citations()
-
----
-- - Vgtm
-  - 106
-

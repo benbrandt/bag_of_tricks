@@ -1,8 +1,0 @@
----
-source: src/character/race/dragonborn.rs
-expression: dragonborn.languages()
-
----
-- Common
-- Draconic
-

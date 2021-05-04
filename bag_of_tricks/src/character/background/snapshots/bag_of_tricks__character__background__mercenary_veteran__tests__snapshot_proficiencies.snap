@@ -1,9 +1,0 @@
----
-source: src/character/background/mercenary_veteran.rs
-expression: background.proficiencies()
-
----
-- Skill: Athletics
-- Skill: Persuasion
-- Vehicle: Land
-

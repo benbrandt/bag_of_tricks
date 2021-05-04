@@ -1,0 +1,22 @@
+---
+source: character/src/background/faction_agent.rs
+expression: background.addl_proficiencies()
+
+---
+- Skill:
+    - - AnimalHandling
+      - Arcana
+      - Deception
+      - History
+      - Insight
+      - Intimidation
+      - Investigation
+      - Medicine
+      - Nature
+      - Perception
+      - Performance
+      - Persuasion
+      - Religion
+      - Survival
+    - 1
+

@@ -1,8 +1,0 @@
----
-source: src/character/background/courtier.rs
-expression: "Courtier::skills()"
-
----
-- Insight
-- Persuasion
-

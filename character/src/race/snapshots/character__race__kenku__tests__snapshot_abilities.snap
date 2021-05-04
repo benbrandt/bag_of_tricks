@@ -1,0 +1,10 @@
+---
+source: character/src/race/kenku.rs
+expression: kenku.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Wisdom
+  - 1
+

@@ -1,0 +1,8 @@
+---
+source: character/src/background/faction_agent.rs
+expression: background.coins()
+
+---
+- Gold
+- 15
+

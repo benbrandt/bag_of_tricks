@@ -1,0 +1,17 @@
+---
+source: character/src/race/bugbear.rs
+expression: bugbear
+
+---
+- type: Bugbear
+  origin: You are the victim of a curse or polymorph spell.
+- Klarg
+- age: 16
+  base_speeds:
+    - Walking: 30
+  ethnicity: ~
+  gender: Female
+  height: 83
+  size: Medium
+  weight: 321
+

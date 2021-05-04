@@ -1,0 +1,17 @@
+---
+source: character/src/race/halfling.rs
+expression: halfling
+
+---
+- type: Halfling
+  subrace: Ghostwise
+- Trym Goodbarrel
+- age: 104
+  base_speeds:
+    - Walking: 25
+  ethnicity: ~
+  gender: Female
+  height: 36
+  size: Small
+  weight: 40
+

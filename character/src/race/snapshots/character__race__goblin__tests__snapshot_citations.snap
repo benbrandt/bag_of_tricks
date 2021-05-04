@@ -1,0 +1,8 @@
+---
+source: character/src/race/goblin.rs
+expression: goblin.citations()
+
+---
+- - Vgtm
+  - 119
+

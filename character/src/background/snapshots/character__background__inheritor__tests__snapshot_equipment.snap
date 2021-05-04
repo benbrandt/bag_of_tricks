@@ -1,0 +1,11 @@
+---
+source: character/src/background/inheritor.rs
+expression: background.equipment()
+
+---
+- Other: "Inheritance: A written story, song, poem, or secret"
+- Gear:
+    Other: ClothesTravelers
+- Gear:
+    Other: Pouch
+

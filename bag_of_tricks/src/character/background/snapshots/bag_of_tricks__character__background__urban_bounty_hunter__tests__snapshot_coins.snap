@@ -1,8 +1,0 @@
----
-source: src/character/background/urban_bounty_hunter.rs
-expression: background.coins()
-
----
-- Gold
-- 20
-

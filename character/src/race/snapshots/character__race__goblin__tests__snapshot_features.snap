@@ -1,0 +1,18 @@
+---
+source: character/src/race/goblin.rs
+expression: goblin.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 119
+- title: Fury of the Small
+  citation:
+    - Vgtm
+    - 119
+- title: Nimble Escape
+  citation:
+    - Vgtm
+    - 119
+

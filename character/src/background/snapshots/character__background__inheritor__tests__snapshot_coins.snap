@@ -1,0 +1,8 @@
+---
+source: character/src/background/inheritor.rs
+expression: background.coins()
+
+---
+- Gold
+- 15
+

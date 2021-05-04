@@ -1,0 +1,6 @@
+---
+source: character/src/race/half_elf.rs
+expression: "format!(\"{}\", half_elf)"
+
+---
+Half-Elf

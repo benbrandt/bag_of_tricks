@@ -1,0 +1,62 @@
+---
+source: character/src/lib.rs
+expression: character
+
+---
+abilities:
+  Strength: 6
+  Dexterity: 11
+  Constitution: 19
+  Intelligence: 15
+  Wisdom: 14
+  Charisma: 11
+alignment:
+  - Chaotic
+  - Good
+background:
+  type: Courtier
+characteristics:
+  age: 39
+  base_speeds:
+    - Walking: 25
+  ethnicity: ~
+  gender: Male
+  height: 49
+  size: Medium
+  weight: 160
+chosen_equipment:
+  - Other: A silver spoon with an M engraved on the handle
+languages:
+  - Common
+  - Dwarvish
+  - Orc
+  - DeepSpeech
+level: 1
+name: Ilgostrogue Foehammer
+personality:
+  bond: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
+  flaw: "I'm never satisfied with what I have — I always want more."
+  ideal:
+    - Freedom. Everyone should be free to pursue his or her own livelihood.
+    - Chaotic
+  traits:
+    - "I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist."
+    - "I'm a snob who looks down on those who can't appreciate fine art."
+proficiencies:
+  - Weapon:
+      Specific: Battleaxe
+  - Weapon:
+      Specific: Handaxe
+  - Weapon:
+      Specific: LightHammer
+  - Weapon:
+      Specific: Warhammer
+  - Skill: Insight
+  - Skill: Persuasion
+  - Tool:
+      ArtisansTools: MasonsTools
+race:
+  type: Dwarf
+  subrace:
+    Hill: Hill
+

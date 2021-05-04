@@ -1,0 +1,18 @@
+---
+source: character/src/race/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{subrace,}).citations()).collect::<Vec<CitationList>>()"
+
+---
+- - - Phb
+    - 21
+  - - Phb
+    - 24
+- - - Phb
+    - 21
+  - - Phb
+    - 23
+- - - Phb
+    - 21
+  - - Phb
+    - 24
+

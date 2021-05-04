@@ -1,3 +1,5 @@
+#![deny(clippy::all)]
+#![warn(clippy::pedantic)]
 use std::fmt;
 
 use rand::Rng;
@@ -34,6 +36,7 @@ pub struct RollResult(pub Vec<DieResult>);
 
 impl RollResult {
     /// Total of all rolls
+    #[must_use]
     pub fn total(&self) -> usize {
         self.0.iter().fold(0, |acc, d| acc + usize::from(d.roll))
     }

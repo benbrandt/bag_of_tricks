@@ -1,0 +1,18 @@
+---
+source: character/src/race/half_elf.rs
+expression: half_elf.features()
+
+---
+- title: Darkvision
+  citation:
+    - Phb
+    - 39
+- title: Fey Ancestry
+  citation:
+    - Phb
+    - 39
+- title: Drow Magic
+  citation:
+    - Phb
+    - 24
+

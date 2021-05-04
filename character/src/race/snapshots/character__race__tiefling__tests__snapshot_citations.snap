@@ -1,0 +1,12 @@
+---
+source: character/src/race/tiefling.rs
+expression: "TieflingSubrace::iter().map(|subrace|\n                                Tiefling{appearance: vec![],\n                                         subrace,}.citations()).collect::<Vec<CitationList>>()"
+
+---
+- - - Phb
+    - 42
+- - - Phb
+    - 42
+  - - Scag
+    - 118
+

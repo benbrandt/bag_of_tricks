@@ -1,0 +1,7 @@
+---
+source: character/src/race/human.rs
+expression: human.features()
+
+---
+[]
+

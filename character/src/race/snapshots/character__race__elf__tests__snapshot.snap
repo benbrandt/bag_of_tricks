@@ -1,0 +1,17 @@
+---
+source: character/src/race/elf.rs
+expression: elf
+
+---
+- type: Elf
+  subrace: Dark
+- Vadania Graymantle
+- age: 694
+  base_speeds:
+    - Walking: 30
+  ethnicity: ~
+  gender: Female
+  height: 59
+  size: Medium
+  weight: 105
+

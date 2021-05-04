@@ -1,7 +1,0 @@
----
-source: src/character/race/hobgoblin.rs
-expression: hobgoblin.morality()
-
----
-- Evil
-

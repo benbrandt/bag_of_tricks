@@ -1,8 +1,0 @@
----
-source: src/character/background/far_traveler.rs
-expression: "FarTraveler::skills()"
-
----
-- Insight
-- Perception
-

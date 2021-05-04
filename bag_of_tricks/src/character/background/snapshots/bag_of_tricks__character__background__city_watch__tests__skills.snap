@@ -1,9 +1,0 @@
----
-source: src/character/background/city_watch.rs
-expression: "CityWatch::skills()"
-
----
-- Athletics
-- Insight
-- Investigation
-

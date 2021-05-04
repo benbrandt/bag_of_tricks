@@ -370,23 +370,13 @@ version = "0.1.0"
 dependencies = [
  "actix-http",
  "actix-web",
- "alignment",
- "characteristics",
- "citation",
- "deities",
- "dice_roller",
+ "character",
  "env_logger",
- "insta",
- "itertools",
  "rand 0.8.3",
  "rand_pcg",
  "sentry",
  "sentry-actix",
- "serde",
- "serde_yaml",
- "strum",
  "tera",
- "typetag",
 ]
 
 [[package]]
@@ -522,6 +512,25 @@ name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "character"
+version = "0.1.0"
+dependencies = [
+ "alignment",
+ "characteristics",
+ "citation",
+ "deities",
+ "dice_roller",
+ "insta",
+ "itertools",
+ "rand 0.8.3",
+ "rand_pcg",
+ "serde",
+ "serde_yaml",
+ "strum",
+ "typetag",
+]
 
 [[package]]
 name = "characteristics"

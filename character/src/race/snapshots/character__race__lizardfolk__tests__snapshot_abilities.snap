@@ -1,0 +1,10 @@
+---
+source: character/src/race/lizardfolk.rs
+expression: lizardfolk.abilities()
+
+---
+- - Constitution
+  - 2
+- - Wisdom
+  - 1
+

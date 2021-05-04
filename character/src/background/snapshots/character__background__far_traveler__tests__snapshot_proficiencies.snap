@@ -1,0 +1,8 @@
+---
+source: character/src/background/far_traveler.rs
+expression: background.proficiencies()
+
+---
+- Skill: Insight
+- Skill: Perception
+

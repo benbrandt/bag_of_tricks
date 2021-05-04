@@ -1,0 +1,7 @@
+---
+source: character/src/race/orc.rs
+expression: orc.morality()
+
+---
+- Evil
+

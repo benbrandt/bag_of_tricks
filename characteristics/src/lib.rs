@@ -1,3 +1,5 @@
+#![deny(clippy::all)]
+#![warn(clippy::pedantic)]
 pub mod names;
 
 use std::{fmt, ops::RangeInclusive};
@@ -42,6 +44,7 @@ pub enum WeightMod {
 }
 
 /// Convert feet + inches to just inches (allow for better readability in tables)
+#[must_use]
 pub const fn in_inches(feet: u8, inches: u8) -> u8 {
     feet * 12 + inches
 }

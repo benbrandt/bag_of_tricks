@@ -1,0 +1,16 @@
+---
+source: character/src/race/dragonborn.rs
+expression: "DraconicAncestry::iter().map(|ancestry|\n                                 Dragonborn{ancestry,}.resistances()).collect::<Vec<Vec<DamageType>>>()"
+
+---
+- - Acid
+- - Lightning
+- - Fire
+- - Lightning
+- - Acid
+- - Fire
+- - Poison
+- - Fire
+- - Cold
+- - Cold
+

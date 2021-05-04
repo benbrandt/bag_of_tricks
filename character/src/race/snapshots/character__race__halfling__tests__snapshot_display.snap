@@ -1,0 +1,10 @@
+---
+source: character/src/race/halfling.rs
+expression: "HalflingSubrace::iter().map(|subrace|\n                                format!(\"{}\", Halfling\n                                        {\n                                            subrace\n                                        })).collect::<Vec<String>>().join(\"\\n\\n\")"
+
+---
+Ghostwise Halfling
+
+Lightfoot Halfling
+
+Stout Halfling

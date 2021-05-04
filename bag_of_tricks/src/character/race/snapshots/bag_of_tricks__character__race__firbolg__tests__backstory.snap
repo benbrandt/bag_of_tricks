@@ -1,7 +1,0 @@
----
-source: src/character/race/firbolg.rs
-expression: firbolg.backstory()
-
----
-- "Reason for adventuring: Outcast for severely damaging home territory"
-

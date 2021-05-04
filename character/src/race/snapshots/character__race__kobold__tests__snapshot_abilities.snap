@@ -1,0 +1,10 @@
+---
+source: character/src/race/kobold.rs
+expression: kobold.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Strength
+  - -2
+

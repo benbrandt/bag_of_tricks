@@ -1,0 +1,8 @@
+---
+source: character/src/background/cloistered_scholar.rs
+expression: background.coins()
+
+---
+- Gold
+- 10
+

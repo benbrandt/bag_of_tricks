@@ -1,0 +1,10 @@
+---
+source: character/src/race/half_elf.rs
+expression: half_elf.citations()
+
+---
+- - Phb
+  - 38
+- - Scag
+  - 116
+

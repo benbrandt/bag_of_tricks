@@ -1,0 +1,8 @@
+---
+source: character/src/race/human.rs
+expression: human.citations()
+
+---
+- - Phb
+  - 29
+

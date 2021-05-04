@@ -1,0 +1,8 @@
+---
+source: character/src/race/tiefling.rs
+expression: tiefling.appearance()
+
+---
+- goatlike legs
+- small horns
+

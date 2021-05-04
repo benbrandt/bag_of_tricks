@@ -1,0 +1,18 @@
+---
+source: character/src/race/lizardfolk.rs
+expression: lizardfolk
+
+---
+- type: Lizardfolk
+  quirk: You sleep best while mostly submerged in water.
+- Mirik (song)
+- age: 13
+  base_speeds:
+    - Walking: 30
+    - Swimming: 30
+  ethnicity: ~
+  gender: Female
+  height: 66
+  size: Medium
+  weight: 219
+

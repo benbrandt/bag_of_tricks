@@ -1,0 +1,10 @@
+---
+source: character/src/race/yuan_ti.rs
+expression: yuan_ti.abilities()
+
+---
+- - Charisma
+  - 2
+- - Intelligence
+  - 1
+

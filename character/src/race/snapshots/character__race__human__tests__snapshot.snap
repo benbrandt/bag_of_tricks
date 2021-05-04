@@ -1,0 +1,16 @@
+---
+source: character/src/race/human.rs
+expression: human
+
+---
+- type: Human
+- Meilil Khalid
+- age: 94
+  base_speeds:
+    - Walking: 30
+  ethnicity: Calishite
+  gender: Female
+  height: 64
+  size: Medium
+  weight: 150
+

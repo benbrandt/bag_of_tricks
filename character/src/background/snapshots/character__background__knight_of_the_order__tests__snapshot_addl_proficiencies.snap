@@ -1,0 +1,16 @@
+---
+source: character/src/background/knight_of_the_order.rs
+expression: background.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - History
+      - Nature
+      - Religion
+    - 1
+- FromOptions:
+    - - GamingSet
+      - MusicalInstrument
+    - 1
+

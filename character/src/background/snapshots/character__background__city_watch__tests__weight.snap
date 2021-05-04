@@ -1,0 +1,7 @@
+---
+source: character/src/background/city_watch.rs
+expression: "CityWatch::weight(&Character::default())"
+
+---
+1.0
+

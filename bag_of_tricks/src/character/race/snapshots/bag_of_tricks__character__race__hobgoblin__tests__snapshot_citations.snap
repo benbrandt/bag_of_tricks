@@ -1,8 +1,0 @@
----
-source: src/character/race/hobgoblin.rs
-expression: hobgoblin.citations()
-
----
-- - Vgtm
-  - 119
-

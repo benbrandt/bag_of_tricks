@@ -1,0 +1,7 @@
+---
+source: character/src/background/mercenary_veteran.rs
+expression: background.addl_equipment()
+
+---
+- GamingSet
+

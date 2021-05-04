@@ -17,7 +17,7 @@ use rand::SeedableRng;
 use rand_pcg::Pcg64;
 use tera::{Context, Tera};
 
-use bag_of_tricks::character::Character;
+use character::Character;
 
 #[get("/")]
 async fn index(tmpl: Data<Tera>) -> Result<HttpResponse, Error> {

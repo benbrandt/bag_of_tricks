@@ -1,0 +1,17 @@
+---
+source: character/src/background/inheritor.rs
+expression: background
+
+---
+- type: Inheritor
+  inheritance:
+    Other: "Inheritance: A written story, song, poem, or secret"
+- bond: "I worked the land, I love the land, and I will protect the land."
+  flaw: "Secretly, I believe that things would be better if I were a tyrant lording over the land."
+  ideal:
+    - "Might. If I become strong, I can take what I want — what I deserve."
+    - Evil
+  traits:
+    - I misuse long words in an attempt to sound smarter.
+    - I get bored easily. When am I going to get on with my destiny?
+

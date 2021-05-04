@@ -1,0 +1,7 @@
+---
+source: character/src/race/goblin.rs
+expression: goblin.attitude()
+
+---
+- Neutral
+

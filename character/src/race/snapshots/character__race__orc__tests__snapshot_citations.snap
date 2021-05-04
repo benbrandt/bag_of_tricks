@@ -1,0 +1,8 @@
+---
+source: character/src/race/orc.rs
+expression: orc.citations()
+
+---
+- - Vgtm
+  - 120
+

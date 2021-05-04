@@ -1,0 +1,7 @@
+---
+source: character/src/race/triton.rs
+expression: triton.morality()
+
+---
+- Good
+

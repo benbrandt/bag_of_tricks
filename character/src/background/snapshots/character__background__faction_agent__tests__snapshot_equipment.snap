@@ -1,0 +1,10 @@
+---
+source: character/src/background/faction_agent.rs
+expression: background.equipment()
+
+---
+- Gear:
+    Other: ClothesCommon
+- Gear:
+    Other: Pouch
+

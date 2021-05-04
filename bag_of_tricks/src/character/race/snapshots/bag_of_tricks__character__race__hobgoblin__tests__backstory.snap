@@ -1,7 +1,0 @@
----
-source: src/character/race/hobgoblin.rs
-expression: hobgoblin.backstory()
-
----
-- "Origin: You are the victim of a curse or polymorph spell."
-

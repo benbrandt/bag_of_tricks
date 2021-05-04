@@ -1,0 +1,8 @@
+---
+source: character/src/race/kenku.rs
+expression: kenku.languages()
+
+---
+- Common
+- Auran
+

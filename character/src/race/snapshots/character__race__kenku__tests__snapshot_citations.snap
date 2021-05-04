@@ -1,0 +1,8 @@
+---
+source: character/src/race/kenku.rs
+expression: kenku.citations()
+
+---
+- - Vgtm
+  - 109
+

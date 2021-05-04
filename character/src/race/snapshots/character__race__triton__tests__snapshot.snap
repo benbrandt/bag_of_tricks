@@ -1,0 +1,18 @@
+---
+source: character/src/race/triton.rs
+expression: triton
+
+---
+- type: Triton
+  quirk: You assume that people are telling you the truth about local customs and expectations.
+- Otanyn Pumanath
+- age: 181
+  base_speeds:
+    - Walking: 30
+    - Swimming: 30
+  ethnicity: ~
+  gender: Female
+  height: 64
+  size: Medium
+  weight: 140
+

@@ -1,0 +1,23 @@
+[package]
+name = "character"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+alignment = { path = "../alignment" }
+characteristics = { path = "../characteristics" }
+citation = { path = "../citation" }
+deities = { path = "../deities" }
+dice_roller = { path = "../dice_roller" }
+itertools = "0.10"
+rand = "0.8"
+rand_pcg = "0.3"
+serde = { version = "1", features = ["derive"] }
+strum = { version = "0.20", features = ["derive"] }
+typetag = "0.1"
+
+[dev-dependencies]
+insta = "1"
+serde_yaml = "0.8"

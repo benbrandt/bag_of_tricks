@@ -1,0 +1,12 @@
+---
+source: character/src/race/kenku.rs
+expression: kenku.addl_proficiencies()
+
+---
+- Skill:
+    - - Acrobatics
+      - Deception
+      - Stealth
+      - SleightOfHand
+    - 2
+

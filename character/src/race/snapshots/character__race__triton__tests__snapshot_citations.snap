@@ -1,0 +1,8 @@
+---
+source: character/src/race/triton.rs
+expression: triton.citations()
+
+---
+- - Vgtm
+  - 115
+

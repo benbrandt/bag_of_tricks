@@ -1,0 +1,23 @@
+---
+source: character/src/race/half_elf.rs
+expression: half_elf
+
+---
+- type: HalfElf
+  addl_increases:
+    - - Intelligence
+      - 1
+    - - Dexterity
+      - 1
+  subrace: Dark
+  variant: DrowMagic
+- Ceidil Mostana
+- age: 57
+  base_speeds:
+    - Walking: 30
+  ethnicity: Calishite
+  gender: Female
+  height: 61
+  size: Medium
+  weight: 134
+

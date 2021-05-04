@@ -1,0 +1,7 @@
+---
+source: character/src/race/kobold.rs
+expression: kobold.morality()
+
+---
+- Evil
+

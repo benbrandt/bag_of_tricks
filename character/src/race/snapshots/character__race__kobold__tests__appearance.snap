@@ -1,0 +1,8 @@
+---
+source: character/src/race/kobold.rs
+expression: kobold.appearance()
+
+---
+- "Scale Pattern: Reticulated"
+- "Scale Color: Orange-brown"
+

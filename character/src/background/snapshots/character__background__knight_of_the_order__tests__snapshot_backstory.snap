@@ -1,0 +1,7 @@
+---
+source: character/src/background/knight_of_the_order.rs
+expression: background.backstory()
+
+---
+- "Knightly Order: Knights of the Shield"
+

@@ -1,0 +1,18 @@
+---
+source: character/src/race/dwarf.rs
+expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,}).citations()).collect::<Vec<CitationList>>()"
+
+---
+- - - Phb
+    - 18
+  - - Scag
+    - 104
+- - - Phb
+    - 18
+  - - Phb
+    - 20
+- - - Phb
+    - 18
+  - - Phb
+    - 20
+

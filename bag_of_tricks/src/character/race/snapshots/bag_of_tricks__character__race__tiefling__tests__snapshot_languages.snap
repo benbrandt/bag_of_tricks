@@ -1,8 +1,0 @@
----
-source: src/character/race/tiefling.rs
-expression: tiefling.languages()
-
----
-- Common
-- Infernal
-

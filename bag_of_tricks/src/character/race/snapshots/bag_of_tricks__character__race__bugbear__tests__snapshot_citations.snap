@@ -1,8 +1,0 @@
----
-source: src/character/race/bugbear.rs
-expression: bugbear.citations()
-
----
-- - Vgtm
-  - 119
-

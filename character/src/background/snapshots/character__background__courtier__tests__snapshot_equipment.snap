@@ -1,0 +1,10 @@
+---
+source: character/src/background/courtier.rs
+expression: background.equipment()
+
+---
+- Gear:
+    Other: ClothesFine
+- Gear:
+    Other: Pouch
+

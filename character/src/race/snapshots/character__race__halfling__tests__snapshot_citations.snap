@@ -1,0 +1,18 @@
+---
+source: character/src/race/halfling.rs
+expression: "HalflingSubrace::iter().map(|subrace|\n                                (Halfling{subrace,}).citations()).collect::<Vec<CitationList>>()"
+
+---
+- - - Phb
+    - 26
+  - - Scag
+    - 110
+- - - Phb
+    - 26
+  - - Phb
+    - 28
+- - - Phb
+    - 26
+  - - Phb
+    - 28
+

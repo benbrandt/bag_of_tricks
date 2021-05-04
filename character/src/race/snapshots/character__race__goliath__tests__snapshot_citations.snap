@@ -1,0 +1,8 @@
+---
+source: character/src/race/goliath.rs
+expression: goliath.citations()
+
+---
+- - Vgtm
+  - 108
+

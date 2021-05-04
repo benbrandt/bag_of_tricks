@@ -1,0 +1,8 @@
+---
+source: character/src/race/aasimar.rs
+expression: aasimar.languages()
+
+---
+- Common
+- Celestial
+

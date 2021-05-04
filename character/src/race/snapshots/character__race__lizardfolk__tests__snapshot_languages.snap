@@ -1,0 +1,8 @@
+---
+source: character/src/race/lizardfolk.rs
+expression: lizardfolk.languages()
+
+---
+- Common
+- Draconic
+

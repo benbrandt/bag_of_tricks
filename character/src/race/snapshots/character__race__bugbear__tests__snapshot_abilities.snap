@@ -1,0 +1,10 @@
+---
+source: character/src/race/bugbear.rs
+expression: bugbear.abilities()
+
+---
+- - Strength
+  - 2
+- - Dexterity
+  - 1
+

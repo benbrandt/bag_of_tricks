@@ -2,6 +2,7 @@
 members = [
     "alignment",
     "bag_of_tricks",
+    "character",
     "characteristics",
     "citation",
     "deities",
