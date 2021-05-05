@@ -5,8 +5,8 @@ expression: character
 ---
 CHARACTER NAME: Ilgostrogue Foehammer
 RACE: Hill Dwarf (PHB p18,20)
-BACKGROUND: Gladiator (PHB p130)
-ALIGNMENT: Lawful Neutral
+BACKGROUND: The Emerald Enclave Faction Agent (SCAG p147)
+ALIGNMENT: Lawful Good
 LEVEL: 1
 
 STR  -2 (6)
@@ -18,19 +18,19 @@ CHA  +0 (11)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
- X    DEX  Acrobatics       +2
+      DEX  Acrobatics       +0
       WIS  Animal Handling  +2
-      INT  Arcana           +2
+ X    INT  Arcana           +4
       STR  Athletics        -2
       CHA  Deception        +0
       INT  History          +2
-      WIS  Insight          +2
+ X    WIS  Insight          +4
       CHA  Intimidation     +0
       INT  Investigation    +2
       WIS  Medicine         +2
       INT  Nature           +2
       WIS  Perception       +2
- X    CHA  Performance      +2
+      CHA  Performance      +0
       CHA  Persuasion       +0
       INT  Religion         +2
       DEX  Sleight of Hand  +0
@@ -42,8 +42,8 @@ Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(DisguiseKit), Tool(ArtisansTools(MasonsTools)), Tool(MusicalInstrument(Flute))
+LANGUAGES: Common, Dwarvish, Orc, Deep Speech
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(MasonsTools))
 
 CHARACTERISTICS:
 Age: 39
@@ -53,14 +53,14 @@ Height: 4'1"
 Weight: 160 lb.
 
 PERSONALITY TRAITS:
-I get bitter if I'm not the center of attention.
-I know a story relevant to almost every situation.
-IDEAL: Greed. I'm only in it for the money and fame. (Evil)
-BOND: I would do anything for the other members of my old troupe.
-FLAW: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
+I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.
+I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me.
+IDEAL: Aspiration. I seek to prove myself worthy of my faction's favor by matching my actions against their teachings. (Any)
+BOND: Everything I do is for the common people.
+FLAW: I judge others harshly, and myself even more severely.
 
 EQUIPMENT
-Gear(Other(ClothesCostume)), Gear(Other(Pouch)), Other("love letter (the favor of an admirer)"), Tool(MusicalInstrument(Flute)), Other("A tiny cage with no door")
+Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("a code-book for a covert faction"), Other("the badge of your faction"), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
 COINS: 15gp
 
 FEATURES AND TRAITS:
@@ -68,10 +68,9 @@ FEATURES AND TRAITS:
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
 - Dwarven Toughness (PHB p20)
-- By Popular Demand (PHB p130)
+- Safe Haven (SCAG p147)
 
 APPEARANCE:
 
 BACKSTORY:
-Entertainer Routine: Poet
 

@@ -72,7 +72,7 @@ impl Proficiencies for WaterdhavianNoble {
                 ProficiencyOption::GamingSet,
                 ProficiencyOption::MusicalInstrument,
             ],
-            2,
+            1,
         )]
     }
 }

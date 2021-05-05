@@ -1,0 +1,8 @@
+---
+source: character/src/background/uthgardt_tribe_member.rs
+expression: "UthgardtTribeMember::skills()"
+
+---
+- Athletics
+- Survival
+

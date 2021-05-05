@@ -21,6 +21,7 @@ mod sailor;
 mod soldier;
 mod urban_bounty_hunter;
 mod urchin;
+mod uthgardt_tribe_member;
 mod waterdhavian_noble;
 
 use std::fmt;
@@ -39,7 +40,8 @@ use self::{
     folk_hero::FolkHero, guild_artisan::GuildArtisan, hermit::Hermit, inheritor::Inheritor,
     knight_of_the_order::KnightOfTheOrder, mercenary_veteran::MercenaryVeteran, noble::Noble,
     outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier,
-    urban_bounty_hunter::UrbanBountyHunter, urchin::Urchin, waterdhavian_noble::WaterdhavianNoble,
+    urban_bounty_hunter::UrbanBountyHunter, urchin::Urchin,
+    uthgardt_tribe_member::UthgardtTribeMember, waterdhavian_noble::WaterdhavianNoble,
 };
 
 use super::{
@@ -204,7 +206,7 @@ pub(crate) enum BackgroundOption {
     Soldier,
     UrbanBountyHunter,
     Urchin,
-    // UthgardtTribeMember 153, 154
+    UthgardtTribeMember,
     WaterdhavianNoble,
 }
 
@@ -242,6 +244,7 @@ impl BackgroundOption {
             Self::Soldier => Soldier::gen(rng, character),
             Self::UrbanBountyHunter => UrbanBountyHunter::gen(rng, character),
             Self::Urchin => Urchin::gen(rng, character),
+            Self::UthgardtTribeMember => UthgardtTribeMember::gen(rng, character),
             Self::WaterdhavianNoble => WaterdhavianNoble::gen(rng, character),
         }
     }
@@ -272,6 +275,7 @@ impl BackgroundOption {
             Self::Soldier => Soldier::weight(character),
             Self::UrbanBountyHunter => UrbanBountyHunter::weight(character),
             Self::Urchin => Urchin::weight(character),
+            Self::UthgardtTribeMember => UthgardtTribeMember::weight(character),
             Self::WaterdhavianNoble => WaterdhavianNoble::weight(character),
         }
     }

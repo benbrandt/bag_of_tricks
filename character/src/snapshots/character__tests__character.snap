@@ -12,12 +12,10 @@ abilities:
   Charisma: 11
 alignment:
   - Lawful
-  - Neutral
+  - Good
 background:
-  type: Entertainer
-  routines:
-    - Poet
-  variant: Gladiator
+  type: FactionAgent
+  faction: EmeraldEnclave
 characteristics:
   age: 39
   base_speeds:
@@ -28,24 +26,25 @@ characteristics:
   size: Medium
   weight: 160
 chosen_equipment:
-  - Other: love letter (the favor of an admirer)
-  - Tool:
-      MusicalInstrument: Flute
-  - Other: A tiny cage with no door
+  - Other: a code-book for a covert faction
+  - Other: the badge of your faction
+  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
 languages:
   - Common
   - Dwarvish
+  - Orc
+  - DeepSpeech
 level: 1
 name: Ilgostrogue Foehammer
 personality:
-  bond: I would do anything for the other members of my old troupe.
-  flaw: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
+  bond: Everything I do is for the common people.
+  flaw: "I judge others harshly, and myself even more severely."
   ideal:
-    - "Greed. I'm only in it for the money and fame."
-    - Evil
+    - "Aspiration. I seek to prove myself worthy of my faction's favor by matching my actions against their teachings."
+    - Any
   traits:
-    - "I get bitter if I'm not the center of attention."
-    - I know a story relevant to almost every situation.
+    - "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
+    - "I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -55,13 +54,10 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Tool: DisguiseKit
-  - Skill: Acrobatics
-  - Skill: Performance
+  - Skill: Insight
   - Tool:
       ArtisansTools: MasonsTools
-  - Tool:
-      MusicalInstrument: Flute
+  - Skill: Arcana
 race:
   type: Dwarf
   subrace:

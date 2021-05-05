@@ -1,0 +1,16 @@
+---
+source: character/src/background/uthgardt_tribe_member.rs
+expression: background
+
+---
+- type: UthgardtTribeMember
+  tribal_totem: Griffon
+- bond: I suffer awful visions of a coming disaster and will do anything to prevent it.
+  flaw: "Don't expect me to save those who can't save themselves. It is nature's way that the strong thrive and the weak perish."
+  ideal:
+    - "Greater Good. It is each person's responsibility to make the most happiness for the whole tribe."
+    - Good
+  traits:
+    - "I'm driven by a wanderlust that led me away from home."
+    - "I was, in fact, raised by wolves."
+
