@@ -35,6 +35,6 @@ async fn main() -> tide::Result<()> {
             &context! { "character" => format!("{}", Character::gen(&mut rng)) },
         )
     });
-    app.listen(format!("127.0.0.1:{}", port)).await?;
+    app.listen(format!("0.0.0.0:{}", port)).await?;
     Ok(())
 }
