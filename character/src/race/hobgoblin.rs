@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::Resistances;
 use characteristics::{
     in_inches,
     names::{goblinoid::HOBGOBLIN, Name},
@@ -14,7 +15,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    attack::Resistances,
     backstory::Backstory,
     equipment::{armor::ArmorType, weapons::WeaponCategory},
     features::{Feature, Features},

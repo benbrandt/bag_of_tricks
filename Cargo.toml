@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "alignment",
+    "attack",
     "bag_of_tricks",
     "character",
     "characteristics",

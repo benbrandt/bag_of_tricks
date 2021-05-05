@@ -25,6 +25,7 @@ mod yuan_ti;
 use std::fmt;
 
 use alignment::AlignmentInfluences;
+use attack::Resistances;
 use characteristics::{Appearance, CharacteristicDetails};
 use citation::Citations;
 use rand::prelude::IteratorRandom;
@@ -40,8 +41,8 @@ use self::{
 };
 
 use super::{
-    ability::AbilityScore, attack::Resistances, backstory::Backstory, features::Features,
-    languages::Languages, proficiencies::Proficiencies,
+    ability::AbilityScore, backstory::Backstory, features::Features, languages::Languages,
+    proficiencies::Proficiencies,
 };
 
 /// Shared racial traits each race should provide.

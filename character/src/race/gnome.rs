@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::Resistances;
 use characteristics::{
     in_inches,
     names::{
@@ -21,7 +22,6 @@ use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    attack::Resistances,
     backstory::Backstory,
     equipment::tools::{ArtisansTools, Tool},
     features::{Feature, Features},

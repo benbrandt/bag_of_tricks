@@ -1,3 +1,6 @@
+#![deny(clippy::all)]
+#![warn(clippy::pedantic)]
+
 use std::fmt;
 
 use dice_roller::RollCmd;
@@ -7,7 +10,7 @@ use strum::Display;
 /// List of types of damage available
 #[allow(dead_code)]
 #[derive(Deserialize, Display, Serialize)]
-pub(crate) enum DamageType {
+pub enum DamageType {
     Acid,
     Bludgeoning,
     Cold,
@@ -24,13 +27,13 @@ pub(crate) enum DamageType {
 }
 
 /// Damage information for a given object or attack
-pub(crate) struct Damage {
+pub struct Damage {
     /// Type of damage the attack does
-    pub(crate) damage_type: DamageType,
+    pub damage_type: DamageType,
     /// Modifier to add to the roll
-    pub(crate) modifier: i16,
+    pub modifier: i16,
     /// Damage roll
-    pub(crate) roll: RollCmd,
+    pub roll: RollCmd,
 }
 
 impl fmt::Display for Damage {
@@ -72,7 +75,7 @@ impl fmt::Display for Damage {
 // }
 
 /// Trait to encapuslate resistances
-pub(crate) trait Resistances {
+pub trait Resistances {
     /// Return list of immunities for this object
     fn immunities(&self) -> Vec<DamageType> {
         vec![]

@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::Resistances;
 use characteristics::{
     in_inches, names::Name, AgeRange, Appearance, CharacteristicDetails, Characteristics,
     HeightAndWeightTable, Size, Speed, WeightMod,
@@ -12,7 +13,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    attack::Resistances,
     backstory::Backstory,
     features::{Feature, Features},
     languages::{Language, Languages},

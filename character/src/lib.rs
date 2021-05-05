@@ -2,7 +2,6 @@
 #![warn(clippy::pedantic)]
 
 mod ability;
-mod attack;
 mod background;
 mod backstory;
 mod equipment;

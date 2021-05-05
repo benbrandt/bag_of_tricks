@@ -2,6 +2,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::{DamageType, Resistances};
 use characteristics::{
     names::{
         dwarf::{CLAN, FEMALE, MALE},
@@ -20,7 +21,6 @@ use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    attack::{DamageType, Resistances},
     backstory::Backstory,
     equipment::{
         armor::ArmorType,

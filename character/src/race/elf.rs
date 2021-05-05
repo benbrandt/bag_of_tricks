@@ -2,6 +2,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::Resistances;
 use characteristics::{
     names::{
         elf::{CHILD, FAMILY, FEMALE, MALE},
@@ -20,7 +21,6 @@ use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
-    attack::Resistances,
     backstory::Backstory,
     equipment::weapons::WeaponType,
     features::{Feature, Features},

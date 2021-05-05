@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude};
+use attack::Resistances;
 use characteristics::{
     in_inches, names::Name, AgeRange, Appearance, CharacteristicDetails, Characteristics,
     HeightAndWeightTable, Size, Speed, WeightMod,
@@ -16,7 +17,6 @@ use strum::IntoEnumIterator;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    attack::Resistances,
     backstory::Backstory,
     features::{Feature, Features},
     languages::{Language, Languages},

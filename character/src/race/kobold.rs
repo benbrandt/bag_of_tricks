@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::Resistances;
 use characteristics::{
     in_inches,
     names::{kobold::NAMES, Name},
@@ -18,7 +19,6 @@ use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    attack::Resistances,
     backstory::Backstory,
     features::{Feature, Features},
     languages::{Language, Languages},

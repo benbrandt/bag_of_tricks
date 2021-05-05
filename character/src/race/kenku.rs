@@ -1,6 +1,7 @@
 use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::Resistances;
 use characteristics::{
     in_inches,
     names::{kenku::NAMES, Name},
@@ -14,7 +15,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
-    attack::Resistances,
     backstory::Backstory,
     features::{Feature, Features},
     languages::{Language, Languages},
