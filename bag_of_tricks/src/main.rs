@@ -20,7 +20,7 @@ async fn main() -> tide::Result<()> {
         sentry::ClientOptions::default(),
     ));
 
-    let port: String = env::var("PORT")
+    let port: i32 = env::var("PORT")
         .unwrap_or_else(|_| "3000".to_string())
         .parse()
         .expect("PORT must be a number");
