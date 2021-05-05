@@ -160,5 +160,5 @@ pub(crate) enum AmmunitionType {
     SlingBullets,
 }
 
-/// Ammunition type and quantity
-struct Ammunition(AmmunitionType, u8);
+// /// Ammunition type and quantity
+// struct Ammunition(AmmunitionType, u8);
