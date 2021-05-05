@@ -1,0 +1,10 @@
+---
+source: character/src/background/waterdhavian_noble.rs
+expression: background.addl_proficiencies()
+
+---
+- FromOptions:
+    - - GamingSet
+      - MusicalInstrument
+    - 2
+

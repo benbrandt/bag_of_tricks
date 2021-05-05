@@ -1,0 +1,12 @@
+---
+source: character/src/background/waterdhavian_noble.rs
+expression: background.addl_equipment()
+
+---
+- From:
+    - Other: signet ring
+    - Other: brooch
+- From:
+    - Other: a skin of fine zzar
+    - Other: a skin of fine wine
+

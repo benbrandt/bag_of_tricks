@@ -1,0 +1,10 @@
+---
+source: character/src/background/waterdhavian_noble.rs
+expression: background.features()
+
+---
+- title: Kept in Style
+  citation:
+    - Scag
+    - 154
+

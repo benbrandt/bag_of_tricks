@@ -11,10 +11,13 @@ abilities:
   Wisdom: 14
   Charisma: 11
 alignment:
-  - Chaotic
-  - Good
+  - Lawful
+  - Neutral
 background:
-  type: Courtier
+  type: Entertainer
+  routines:
+    - Poet
+  variant: Gladiator
 characteristics:
   age: 39
   base_speeds:
@@ -25,23 +28,24 @@ characteristics:
   size: Medium
   weight: 160
 chosen_equipment:
-  - Other: A silver spoon with an M engraved on the handle
+  - Other: love letter (the favor of an admirer)
+  - Tool:
+      MusicalInstrument: Flute
+  - Other: A tiny cage with no door
 languages:
   - Common
   - Dwarvish
-  - Orc
-  - DeepSpeech
 level: 1
 name: Ilgostrogue Foehammer
 personality:
-  bond: I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.
-  flaw: "I'm never satisfied with what I have — I always want more."
+  bond: I would do anything for the other members of my old troupe.
+  flaw: I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.
   ideal:
-    - Freedom. Everyone should be free to pursue his or her own livelihood.
-    - Chaotic
+    - "Greed. I'm only in it for the money and fame."
+    - Evil
   traits:
-    - "I believe that anything worth doing is worth doing right. I can't help it — I'm a perfectionist."
-    - "I'm a snob who looks down on those who can't appreciate fine art."
+    - "I get bitter if I'm not the center of attention."
+    - I know a story relevant to almost every situation.
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -51,10 +55,13 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Skill: Insight
-  - Skill: Persuasion
+  - Tool: DisguiseKit
+  - Skill: Acrobatics
+  - Skill: Performance
   - Tool:
       ArtisansTools: MasonsTools
+  - Tool:
+      MusicalInstrument: Flute
 race:
   type: Dwarf
   subrace:
