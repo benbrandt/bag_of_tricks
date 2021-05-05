@@ -3,6 +3,6 @@ source: character/src/race/tiefling.rs
 expression: tiefling.appearance()
 
 ---
-- goatlike legs
-- small horns
+- Large Antelope horns
+- sharp teeth
 

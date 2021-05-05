@@ -5,8 +5,42 @@ expression: "TieflingSubrace::iter().map(|subrace|\n                            
 ---
 - - - Phb
     - 42
+  - - Mtof
+    - 21
+- - - Phb
+    - 42
+  - - Mtof
+    - 21
+- - - Phb
+    - 42
+  - - Mtof
+    - 21
 - - - Phb
     - 42
   - - Scag
     - 118
+- - - Phb
+    - 42
+  - - Mtof
+    - 21
+- - - Phb
+    - 42
+  - - Mtof
+    - 22
+- - - Phb
+    - 42
+  - - Mtof
+    - 22
+- - - Phb
+    - 42
+  - - Mtof
+    - 22
+- - - Phb
+    - 42
+  - - Mtof
+    - 23
+- - - Phb
+    - 42
+  - - Mtof
+    - 23
 

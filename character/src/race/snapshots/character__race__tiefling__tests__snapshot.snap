@@ -5,16 +5,18 @@ expression: tiefling
 ---
 - type: Tiefling
   appearance:
-    - GoatLegs
-    - SmallHorns
-  subrace: Asmodeus
-- Fear Zianhur
-- age: 73
+    - Horns:
+        - Large
+        - Antelope
+    - Teeth: Sharp
+  subrace: Baalzebul
+- "Skamos "
+- age: 85
   base_speeds:
     - Walking: 30
-  ethnicity: Damaran
+  ethnicity: Ulutiun
   gender: Male
-  height: 62
+  height: 65
   size: Medium
-  weight: 130
+  weight: 166
 

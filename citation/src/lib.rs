@@ -11,6 +11,8 @@ use strum::Display;
 /// Titles of the available D&D Books.
 #[derive(Clone, Copy, Debug, Deserialize, Display, Eq, Hash, PartialEq, Serialize)]
 pub enum Book {
+    #[strum(serialize = "MTOF")]
+    Mtof,
     #[strum(serialize = "PHB")]
     Phb,
     #[strum(serialize = "SCAG")]

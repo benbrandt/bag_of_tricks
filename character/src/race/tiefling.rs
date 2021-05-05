@@ -40,37 +40,131 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 };
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
-enum PhysicalAppearance {
-    #[strum(serialize = "exude a smell of brimstone")]
-    Brimstone,
-    #[strum(serialize = "catlike eyes")]
-    CatlikeEyes,
-    #[strum(serialize = "cloven hooves")]
-    ClovenHooves,
-    #[strum(serialize = "fangs or sharp teeth")]
+enum HornShape {
+    Antelope,
+    Gazelle,
+    Ram,
+}
+
+impl Default for HornShape {
+    fn default() -> Self {
+        Self::Antelope
+    }
+}
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum HornSize {
+    Large,
+    Small,
+}
+
+impl Default for HornSize {
+    fn default() -> Self {
+        Self::Large
+    }
+}
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum SkinColor {
+    #[strum(serialize = "Dark Blue")]
+    DarkBlue,
+    Red,
+}
+
+impl Default for SkinColor {
+    fn default() -> Self {
+        Self::DarkBlue
+    }
+}
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum SkinTexture {
+    Leathery,
+    Scaly,
+}
+
+impl Default for SkinTexture {
+    fn default() -> Self {
+        Self::Leathery
+    }
+}
+
+#[derive(Deserialize, Display, EnumIter, Serialize)]
+enum Teeth {
     Fangs,
-    #[strum(serialize = "a forked tail")]
+    #[strum(serialize = "sharp teeth")]
+    Sharp,
+}
+
+impl Default for Teeth {
+    fn default() -> Self {
+        Self::Fangs
+    }
+}
+
+#[derive(Deserialize, EnumIter, Serialize)]
+enum PhysicalAppearance {
+    Brimstone,
+    CatlikeEyes,
+    ClovenHooves,
     ForkedTail,
-    #[strum(serialize = "a forked tongue")]
     ForkedTongue,
-    #[strum(serialize = "goatlike legs")]
     GoatLegs,
-    #[strum(serialize = "leathery or scaly skin")]
-    LeatherySkin,
-    #[strum(serialize = "cast no shadow or reflection")]
+    Horns(HornSize, HornShape),
     NoShadow,
-    #[strum(serialize = "red or dark blue skin")]
-    RedSkin,
-    #[strum(serialize = "six fingers on each hand")]
+    SkinColor(SkinColor),
+    SkinTexture(SkinTexture),
     SixFingers,
-    #[strum(serialize = "small horns")]
-    SmallHorns,
+    Teeth(Teeth),
 }
 
 impl PhysicalAppearance {
-    fn gen(rng: &mut impl Rng) -> Vec<PhysicalAppearance> {
+    fn gen(rng: &mut impl Rng) -> Vec<Self> {
         let amount = RollCmd(1, Die::D4).roll(rng).total() + 1;
-        PhysicalAppearance::iter().choose_multiple(rng, amount)
+        PhysicalAppearance::iter()
+            .choose_multiple(rng, amount)
+            .into_iter()
+            .map(|a| match a {
+                Self::Brimstone
+                | Self::CatlikeEyes
+                | Self::ClovenHooves
+                | Self::ForkedTail
+                | Self::ForkedTongue
+                | Self::GoatLegs
+                | Self::NoShadow
+                | Self::SixFingers => a,
+                Self::Horns(_, _) => Self::Horns(
+                    HornSize::iter().choose(rng).unwrap(),
+                    HornShape::iter().choose(rng).unwrap(),
+                ),
+                Self::SkinColor(_) => Self::SkinColor(SkinColor::iter().choose(rng).unwrap()),
+                Self::SkinTexture(_) => Self::SkinTexture(SkinTexture::iter().choose(rng).unwrap()),
+                Self::Teeth(_) => Self::Teeth(Teeth::iter().choose(rng).unwrap()),
+            })
+            .collect()
+    }
+}
+
+impl fmt::Display for PhysicalAppearance {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Self::Brimstone => "exude a smell of brimstone".to_string(),
+                Self::CatlikeEyes => "catlike eyes".to_string(),
+                Self::ClovenHooves => "cloven hooves".to_string(),
+                Self::ForkedTail => "a forked tail".to_string(),
+                Self::ForkedTongue => "a forked tongue".to_string(),
+                Self::GoatLegs => "goatlike legs".to_string(),
+                Self::Horns(size, shape) => format!("{} {} horns", size, shape),
+                Self::NoShadow => "cast no shadow or reflection".to_string(),
+                Self::SkinColor(c) => format!("{}", c),
+                Self::SkinTexture(t) => format!("{}", t),
+                Self::SixFingers => "six fingers on each hand".to_string(),
+                Self::Teeth(t) => format!("{}", t),
+            }
+        )
     }
 }
 
@@ -109,7 +203,15 @@ impl Default for FeralVariant {
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum TieflingSubrace {
     Asmodeus,
+    Baalzebul,
+    Dispater,
     Feral(FeralVariant),
+    Fierna,
+    Glasya,
+    Levistus,
+    Mammon,
+    Mephistopheles,
+    Zariel,
 }
 
 impl TieflingSubrace {
@@ -201,9 +303,17 @@ impl Characteristics for Tiefling {
 impl Citations for Tiefling {
     fn citations(&self) -> CitationList {
         let mut citations = vec![Citation(Book::Phb, 42)];
-        if matches!(self.subrace, TieflingSubrace::Feral(_)) {
-            citations.push(Citation(Book::Scag, 118));
-        }
+        citations.push(match self.subrace {
+            TieflingSubrace::Asmodeus
+            | TieflingSubrace::Baalzebul
+            | TieflingSubrace::Dispater
+            | TieflingSubrace::Fierna => Citation(Book::Mtof, 21),
+            TieflingSubrace::Feral(_) => Citation(Book::Scag, 118),
+            TieflingSubrace::Glasya | TieflingSubrace::Levistus | TieflingSubrace::Mammon => {
+                Citation(Book::Mtof, 22)
+            }
+            TieflingSubrace::Mephistopheles | TieflingSubrace::Zariel => Citation(Book::Mtof, 23),
+        });
         CitationList(citations)
     }
 }
@@ -225,7 +335,47 @@ impl Features for Tiefling {
                     citation: Citation(Book::Phb, 43),
                 }]
             }
+            // You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Ray of Sickness spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Crown of Madness spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Baalzebul => vec![Feature {
+                title: "Legacy of Maladomini",
+                citation: Citation(Book::Mtof, 21),
+            }],
+            // You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Disguise Self spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Detect Thoughts spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Dispater => vec![Feature {
+                title: "Legacy of Dis",
+                citation: Citation(Book::Mtof, 21),
+            }],
             TieflingSubrace::Feral(v) => v.features(),
+            // You know the Friends cantrip. Once you reach 3rd level, you can cast the Charm Person spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Suggestion spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Fierna => vec![Feature {
+                title: "Legacy of Phlegethos",
+                citation: Citation(Book::Mtof, 21),
+            }],
+            // You know the Minor Illusion cantrip. Once you reach 3rd level, you can cast the Disguise Self spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Invisibility spell once as a 2nd-level spell. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Glasya => vec![Feature {
+                title: "Legacy of Malbolge",
+                citation: Citation(Book::Mtof, 22),
+            }],
+            // You know the Ray of Frost cantrip. Once you reach 3rd level, you can cast the Armor of Agathys spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Darkness spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Levistus => vec![Feature {
+                title: "Legacy of Stygia",
+                citation: Citation(Book::Mtof, 22),
+            }],
+            // You know the Mage Hand cantrip. Once you reach 3rd level, you can cast the Tenser's Floating Disk spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Arcane Lock spell once. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Mammon => vec![Feature {
+                title: "Legacy of Minauros",
+                citation: Citation(Book::Mtof, 22),
+            }],
+            // You know the Mage Hand cantrip. Once you reach 3rd level, you can cast the Burning Hands spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Flame Blade spell once as a 3rd-level spell. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Mephistopheles => vec![Feature {
+                title: "Legacy of Cania",
+                citation: Citation(Book::Mtof, 23),
+            }],
+            // You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Searing Smite spell once as a 2nd-level spell. Once you reach 5th level, you can also cast the Branding Smite spell once as a 3rd-level spell. You must finish a long rest to cast these spells again with this trait. Charisma is your spellcasting ability for these spells.
+            TieflingSubrace::Zariel => vec![Feature {
+                title: "Legacy of Avernus",
+                citation: Citation(Book::Mtof, 23),
+            }],
         });
 
         features
@@ -266,13 +416,34 @@ impl Race for Tiefling {
 
     fn abilities(&self) -> Vec<AbilityScore> {
         match self.subrace {
-            TieflingSubrace::Asmodeus => vec![
+            TieflingSubrace::Asmodeus
+            | TieflingSubrace::Baalzebul
+            | TieflingSubrace::Mammon
+            | TieflingSubrace::Mephistopheles => {
+                vec![
+                    AbilityScore(AbilityScoreType::Charisma, 2),
+                    AbilityScore(AbilityScoreType::Intelligence, 1),
+                ]
+            }
+            TieflingSubrace::Dispater | TieflingSubrace::Glasya => vec![
                 AbilityScore(AbilityScoreType::Charisma, 2),
-                AbilityScore(AbilityScoreType::Intelligence, 1),
+                AbilityScore(AbilityScoreType::Dexterity, 1),
             ],
             TieflingSubrace::Feral(_) => vec![
                 AbilityScore(AbilityScoreType::Dexterity, 2),
                 AbilityScore(AbilityScoreType::Intelligence, 1),
+            ],
+            TieflingSubrace::Fierna => vec![
+                AbilityScore(AbilityScoreType::Charisma, 2),
+                AbilityScore(AbilityScoreType::Wisdom, 1),
+            ],
+            TieflingSubrace::Levistus => vec![
+                AbilityScore(AbilityScoreType::Charisma, 2),
+                AbilityScore(AbilityScoreType::Constitution, 1),
+            ],
+            TieflingSubrace::Zariel => vec![
+                AbilityScore(AbilityScoreType::Charisma, 2),
+                AbilityScore(AbilityScoreType::Strength, 1),
             ],
         }
     }
