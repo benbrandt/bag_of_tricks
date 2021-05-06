@@ -15,6 +15,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -164,6 +165,8 @@ impl Resistances for Triton {
         vec![DamageType::Cold]
     }
 }
+
+impl Trinkets for Triton {}
 
 impl fmt::Display for Triton {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

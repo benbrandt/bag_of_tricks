@@ -11,6 +11,7 @@ use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -130,6 +131,8 @@ impl Race for Human {
 }
 
 impl Resistances for Human {}
+
+impl Trinkets for Human {}
 
 impl fmt::Display for Human {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

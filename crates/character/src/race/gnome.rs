@@ -19,6 +19,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -236,6 +237,8 @@ impl Race for Gnome {
 }
 
 impl Resistances for Gnome {}
+
+impl Trinkets for Gnome {}
 
 impl fmt::Display for Gnome {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

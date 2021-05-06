@@ -20,6 +20,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -454,6 +455,8 @@ impl Resistances for Tiefling {
         vec![DamageType::Fire]
     }
 }
+
+impl Trinkets for Tiefling {}
 
 impl fmt::Display for Tiefling {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

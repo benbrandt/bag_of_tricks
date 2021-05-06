@@ -19,6 +19,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -218,6 +219,8 @@ impl Resistances for Dragonborn {
         vec![self.damage_type()]
     }
 }
+
+impl Trinkets for Dragonborn {}
 
 impl fmt::Display for Dragonborn {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

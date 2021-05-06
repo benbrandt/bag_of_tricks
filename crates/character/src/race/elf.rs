@@ -18,6 +18,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
@@ -300,6 +301,8 @@ impl Race for Elf {
 }
 
 impl Resistances for Elf {}
+
+impl Trinkets for Elf {}
 
 impl fmt::Display for Elf {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

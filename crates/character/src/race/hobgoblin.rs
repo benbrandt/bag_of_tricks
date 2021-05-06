@@ -12,17 +12,18 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
+    backstory::{Backstory, MONSTROUS_ORIGIN},
     equipment::{armor::ArmorType, weapons::WeaponCategory},
     features::{Feature, Features},
     languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
-use super::{origins::MONSTROUS_ORIGIN, Race};
+use super::Race;
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 8),
@@ -139,6 +140,8 @@ impl Race for Hobgoblin {
 }
 
 impl Resistances for Hobgoblin {}
+
+impl Trinkets for Hobgoblin {}
 
 impl fmt::Display for Hobgoblin {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

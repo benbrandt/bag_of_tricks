@@ -16,16 +16,17 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
+    backstory::{Backstory, MONSTROUS_ORIGIN},
     features::{Feature, Features},
     languages::{Language, Languages},
     proficiencies::Proficiencies,
 };
 
-use super::{origins::MONSTROUS_ORIGIN, Race};
+use super::Race;
 
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum ScaleColor {
@@ -240,6 +241,8 @@ impl Race for Kobold {
 }
 
 impl Resistances for Kobold {}
+
+impl Trinkets for Kobold {}
 
 impl fmt::Display for Kobold {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

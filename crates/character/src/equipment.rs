@@ -2,16 +2,18 @@ pub(crate) mod adventuring_gear;
 pub(crate) mod armor;
 pub(crate) mod currency;
 pub(crate) mod tools;
-pub(crate) mod trinkets;
 pub(crate) mod vehicles;
 pub(crate) mod weapons;
 
-use rand::{prelude::IteratorRandom, Rng};
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 
 use tools::{ArtisansTools, MusicalInstrument};
-use trinkets::TRINKETS;
+use trinkets::{TrinketOption, Trinkets};
 use vehicles::Vehicle;
 
 use self::{
@@ -80,7 +82,7 @@ pub(crate) enum EquipmentOption {
     /// Choose a random musical instrument.
     MusicalInstrument,
     /// Choose a random trinket.
-    Trinket,
+    Trinket(Option<&'static str>, Option<TrinketOption>, bool),
 }
 
 impl EquipmentOption {
@@ -124,13 +126,26 @@ impl EquipmentOption {
                     .collect(),
             )
             .gen(rng, character),
-            Self::Trinket => Self::From(
-                TRINKETS
-                    .iter()
-                    .map(|t| Equipment::Other(String::from(*t)))
-                    .collect(),
-            )
-            .gen(rng, character),
+            Self::Trinket(label, addl_option, use_all) => {
+                let mut options = use_all
+                    .then(|| character.trinket_options())
+                    .unwrap_or_default();
+                if let Some(option) = addl_option {
+                    options.push(option.clone());
+                }
+                Self::From(
+                    options
+                        .choose(rng)
+                        .unwrap()
+                        .trinkets()
+                        .iter()
+                        .map(|t| {
+                            Equipment::Other(label.map_or(t.clone(), |l| format!("{} ({})", t, l)))
+                        })
+                        .collect(),
+                )
+                .gen(rng, character)
+            }
         }
     }
 }

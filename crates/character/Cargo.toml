@@ -17,6 +17,7 @@ rand = "0.8"
 rand_pcg = "0.3"
 serde = { version = "1", features = ["derive"] }
 strum = { version = "0.20", features = ["derive"] }
+trinkets = { path = "../trinkets" }
 typetag = "0.1"
 
 [dev-dependencies]

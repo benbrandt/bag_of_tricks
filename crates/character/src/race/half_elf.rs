@@ -14,6 +14,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -245,6 +246,8 @@ impl Race for HalfElf {
 }
 
 impl Resistances for HalfElf {}
+
+impl Trinkets for HalfElf {}
 
 impl fmt::Display for HalfElf {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

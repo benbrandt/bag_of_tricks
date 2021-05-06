@@ -20,6 +20,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -218,6 +219,8 @@ impl Resistances for Halfling {
         }
     }
 }
+
+impl Trinkets for Halfling {}
 
 impl fmt::Display for Halfling {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

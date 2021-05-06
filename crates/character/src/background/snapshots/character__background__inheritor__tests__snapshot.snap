@@ -1,11 +1,10 @@
 ---
-source: character/src/background/inheritor.rs
+source: crates/character/src/background/inheritor.rs
 expression: background
 
 ---
 - type: Inheritor
-  inheritance:
-    Other: "Inheritance: A written story, song, poem, or secret"
+  inheritance: Story
 - bond: "I worked the land, I love the land, and I will protect the land."
   flaw: "Secretly, I believe that things would be better if I were a tyrant lording over the land."
   ideal:

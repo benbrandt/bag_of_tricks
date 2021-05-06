@@ -12,17 +12,17 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::{TrinketOption, Trinkets};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
-    equipment::trinkets::GOBLIN_STATUS_SYMBOLS,
+    backstory::{Backstory, MONSTROUS_ORIGIN},
     features::{Feature, Features},
     languages::{Language, Languages},
     proficiencies::Proficiencies,
 };
 
-use super::{origins::MONSTROUS_ORIGIN, Race};
+use super::Race;
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(3, 5),
@@ -34,7 +34,6 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Goblin {
     origin: String,
-    status_symbol: String,
 }
 
 impl AlignmentInfluences for Goblin {
@@ -47,11 +46,7 @@ impl AlignmentInfluences for Goblin {
     }
 }
 
-impl Appearance for Goblin {
-    fn appearance(&self) -> Vec<String> {
-        vec![format!("Status Symbol: {}", self.status_symbol)]
-    }
-}
+impl Appearance for Goblin {}
 
 impl Backstory for Goblin {
     fn backstory(&self) -> Vec<String> {
@@ -122,7 +117,6 @@ impl Race for Goblin {
     fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
         let race = Box::new(Self {
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
-            status_symbol: (*GOBLIN_STATUS_SYMBOLS.choose(rng).unwrap()).to_string(),
         });
         let characteristics = race.gen_characteristics(rng);
         let name = Self::gen_name(rng, &characteristics);
@@ -138,6 +132,12 @@ impl Race for Goblin {
 }
 
 impl Resistances for Goblin {}
+
+impl Trinkets for Goblin {
+    fn trinket_options(&self) -> Vec<TrinketOption> {
+        vec![TrinketOption::Goblin]
+    }
+}
 
 impl fmt::Display for Goblin {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -169,7 +169,6 @@ mod tests {
     fn test_attitude() {
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         insta::assert_yaml_snapshot!(goblin.attitude());
     }
@@ -178,16 +177,8 @@ mod tests {
     fn test_morality() {
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         insta::assert_yaml_snapshot!(goblin.morality());
-    }
-
-    #[test]
-    fn test_appearance() {
-        let mut rng = Pcg64::seed_from_u64(1);
-        let (goblin, _name, _characteristics) = Goblin::gen(&mut rng);
-        insta::assert_yaml_snapshot!(goblin.appearance());
     }
 
     #[test]
@@ -201,7 +192,6 @@ mod tests {
     fn test_characteristics() {
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         assert_eq!(goblin.get_base_speeds(), vec![Speed::Walking(30)]);
         assert_eq!(goblin.get_height_and_weight_table(), &HEIGHT_AND_WEIGHT);
@@ -218,7 +208,6 @@ mod tests {
     fn test_snapshot_features() {
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         insta::assert_yaml_snapshot!(goblin.features());
     }
@@ -227,7 +216,6 @@ mod tests {
     fn test_snapshot_languages() {
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         insta::assert_yaml_snapshot!(goblin.languages());
     }
@@ -237,7 +225,6 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         let characteristics = goblin.gen_characteristics(&mut rng);
         let name = Goblin::gen_name(&mut rng, &characteristics);
@@ -248,8 +235,15 @@ mod tests {
     fn test_snapshot_abilities() {
         let goblin = Goblin {
             origin: String::new(),
-            status_symbol: String::new(),
         };
         insta::assert_yaml_snapshot!(goblin.abilities());
+    }
+
+    #[test]
+    fn test_snapshot_trinket_options() {
+        let goblin = Goblin {
+            origin: String::new(),
+        };
+        insta::assert_yaml_snapshot!(goblin.trinket_options());
     }
 }

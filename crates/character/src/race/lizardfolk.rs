@@ -12,6 +12,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
@@ -164,6 +165,8 @@ impl Race for Lizardfolk {
 }
 
 impl Resistances for Lizardfolk {}
+
+impl Trinkets for Lizardfolk {}
 
 impl fmt::Display for Lizardfolk {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

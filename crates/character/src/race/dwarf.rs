@@ -18,6 +18,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -303,6 +304,8 @@ impl Resistances for Dwarf {
         vec![DamageType::Poison]
     }
 }
+
+impl Trinkets for Dwarf {}
 
 impl fmt::Display for Dwarf {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

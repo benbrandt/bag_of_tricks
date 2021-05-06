@@ -10,6 +10,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
@@ -139,6 +140,8 @@ impl Race for HalfOrc {
 }
 
 impl Resistances for HalfOrc {}
+
+impl Trinkets for HalfOrc {}
 
 impl fmt::Display for HalfOrc {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

@@ -16,16 +16,17 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
+    backstory::{Backstory, MONSTROUS_ORIGIN},
     features::{Feature, Features},
     languages::{Language, Languages},
     proficiencies::Proficiencies,
 };
 
-use super::{human::Human, origins::MONSTROUS_ORIGIN, Race};
+use super::{human::Human, Race};
 
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum SkinColor {
@@ -411,6 +412,8 @@ impl Resistances for YuanTiPureblood {
         vec![DamageType::Poison]
     }
 }
+
+impl Trinkets for YuanTiPureblood {}
 
 impl fmt::Display for YuanTiPureblood {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

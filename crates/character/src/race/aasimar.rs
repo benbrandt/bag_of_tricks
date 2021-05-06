@@ -14,6 +14,7 @@ use rand::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -229,6 +230,8 @@ impl Resistances for Aasimar {
         vec![DamageType::Necrotic, DamageType::Radiant]
     }
 }
+
+impl Trinkets for Aasimar {}
 
 impl fmt::Display for Aasimar {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

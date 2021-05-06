@@ -1,7 +1,0 @@
----
-source: character/src/race/goblin.rs
-expression: goblin.appearance()
-
----
-- "Status Symbol: Special breed of rat kept as pet"
-

@@ -16,7 +16,6 @@ mod kenku;
 mod kobold;
 mod lizardfolk;
 mod orc;
-mod origins;
 mod tabaxi;
 mod tiefling;
 mod triton;
@@ -31,6 +30,7 @@ use citation::Citations;
 use rand::prelude::IteratorRandom;
 use rand::Rng;
 use strum::{EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use self::{
     aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,
@@ -56,6 +56,7 @@ pub(crate) trait Race:
     + Languages
     + Proficiencies
     + Resistances
+    + Trinkets
     + fmt::Display
 {
     /// Method to generate a new instance of the struct

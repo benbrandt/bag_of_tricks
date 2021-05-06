@@ -4,6 +4,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::TrinketOption;
 
 use crate::{
     ability::Skill,
@@ -12,7 +13,6 @@ use crate::{
         adventuring_gear::{Gear, OtherGear},
         currency::Coin,
         tools::Tool,
-        trinkets::TRINKETS,
         vehicles::VehicleProficiency,
         Equipment, EquipmentOption, StartingEquipment,
     },
@@ -145,13 +145,13 @@ impl StartingEquipment for Sailor {
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
-        let mut options = vec!["a rabbit foot", "a small stone with a hole in the center"];
-        options.extend(TRINKETS);
-        vec![EquipmentOption::From(
-            options
-                .iter()
-                .map(|o| Equipment::Other(format!("{} (lucky charm)", o)))
-                .collect(),
+        vec![EquipmentOption::Trinket(
+            Some("lucky charm"),
+            Some(TrinketOption::Custom(vec![
+                "a rabbit foot".to_string(),
+                "a small stone with a hole in the center".to_string(),
+            ])),
+            true,
         )]
     }
 }

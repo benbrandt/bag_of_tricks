@@ -12,6 +12,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
@@ -130,6 +131,8 @@ impl Race for Kenku {
 }
 
 impl Resistances for Kenku {}
+
+impl Trinkets for Kenku {}
 
 impl fmt::Display for Kenku {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

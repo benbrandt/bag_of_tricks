@@ -1,5 +1,5 @@
 ---
-source: character/src/background/inheritor.rs
+source: crates/character/src/background/inheritor.rs
 expression: background.addl_equipment()
 
 ---
@@ -32,4 +32,12 @@ expression: background.addl_equipment()
         MusicalInstrument: Shawm
     - Tool:
         MusicalInstrument: Viol
+- Trinket:
+    - inheritance
+    - Custom:
+        - a written story
+        - a written song
+        - a written poem
+        - a written secret
+    - false
 

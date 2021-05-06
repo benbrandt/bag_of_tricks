@@ -3,7 +3,8 @@ use std::fmt;
 use citation::{Book, Citation, CitationList, Citations};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
+use strum::{EnumIter, IntoEnumIterator};
+use trinkets::TrinketOption;
 
 use crate::{
     ability::Skill,
@@ -12,7 +13,6 @@ use crate::{
         adventuring_gear::{Gear, OtherGear},
         currency::Coin,
         tools::{GamingSet, MusicalInstrument, Tool},
-        trinkets::TRINKETS,
         Equipment, EquipmentOption, StartingEquipment,
     },
     features::{Feature, Features},
@@ -26,39 +26,56 @@ use super::{folk_hero::FolkHero, Background, Personality, PersonalityOptions};
 const SKILLS: &[Skill] = &[Skill::Survival];
 const ADDL_SKILLS: &[Skill] = &[Skill::Arcana, Skill::History, Skill::Religion];
 
-#[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
+#[derive(Clone, Copy, Deserialize, EnumIter, Serialize)]
 enum Inheritance {
-    #[strum(serialize = "A document such as a map, a letter, or a journal")]
     Document,
-    #[strum(serialize = "A trinket")]
     Trinket,
-    #[strum(serialize = "An article of clothing")]
     Clothing,
-    #[strum(serialize = "A piece of jewelry")]
     Jewelry,
-    #[strum(serialize = "An arcane book or formulary")]
     Book,
-    #[strum(serialize = "A written story, song, poem, or secret")]
     Story,
     #[strum(serialize = "A tattoo or other body marking")]
     Tattoo,
 }
 
 impl Inheritance {
-    fn gen(rng: &mut impl Rng) -> Equipment {
+    fn gen(rng: &mut impl Rng) -> Self {
         let options = Self::iter().collect::<Vec<_>>();
-        let inheritance = options.choose_weighted(rng, |i| i.weight()).unwrap();
-        match inheritance {
-            Self::Trinket => {
-                Equipment::Other(format!("Inheritance: {}", TRINKETS.choose(rng).unwrap()))
-            }
-            Self::Document
-            | Self::Clothing
-            | Self::Jewelry
-            | Self::Book
-            | Self::Story
-            | Self::Tattoo => Equipment::Other(format!("Inheritance: {}", inheritance)),
+        *options.choose_weighted(rng, |i| i.weight()).unwrap()
+    }
+
+    fn equipment_option(self) -> EquipmentOption {
+        match self {
+            Inheritance::Trinket => EquipmentOption::Trinket(Some("inheritance"), None, true),
+            Inheritance::Document
+            | Inheritance::Clothing
+            | Inheritance::Jewelry
+            | Inheritance::Book
+            | Inheritance::Story
+            | Inheritance::Tattoo => EquipmentOption::Trinket(
+                Some("inheritance"),
+                Some(TrinketOption::Custom(self.items())),
+                false,
+            ),
         }
+    }
+
+    fn items(self) -> Vec<String> {
+        let items: &[&str] = match self {
+            Inheritance::Trinket => &[],
+            Inheritance::Document => &["a map", "a letter", "a journal"],
+            Inheritance::Clothing => &["an article of clothing"],
+            Inheritance::Jewelry => &["a piece of jewelry"],
+            Inheritance::Book => &["an arcane book", "a formulary"],
+            Inheritance::Story => &[
+                "a written story",
+                "a written song",
+                "a written poem",
+                "a written secret",
+            ],
+            Inheritance::Tattoo => &["a tattoo or other body marking"],
+        };
+        items.iter().map(|&t| t.to_string()).collect()
     }
 
     fn weight(self) -> usize {
@@ -76,7 +93,7 @@ impl Inheritance {
 
 #[derive(Deserialize, Serialize)]
 pub(crate) struct Inheritor {
-    inheritance: Equipment,
+    inheritance: Inheritance,
 }
 
 #[typetag::serde]
@@ -149,7 +166,6 @@ impl StartingEquipment for Inheritor {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            self.inheritance.clone(),
             Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
             Equipment::Gear(Gear::Other(OtherGear::Pouch)),
         ]
@@ -161,7 +177,10 @@ impl StartingEquipment for Inheritor {
             .collect();
         options
             .extend(MusicalInstrument::iter().map(|m| Equipment::Tool(Tool::MusicalInstrument(m))));
-        vec![EquipmentOption::From(options)]
+        vec![
+            EquipmentOption::From(options),
+            self.inheritance.equipment_option(),
+        ]
     }
 }
 

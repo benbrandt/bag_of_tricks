@@ -10,6 +10,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
@@ -148,6 +149,8 @@ impl Race for Firbolg {
 }
 
 impl Resistances for Firbolg {}
+
+impl Trinkets for Firbolg {}
 
 impl fmt::Display for Firbolg {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

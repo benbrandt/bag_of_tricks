@@ -26,6 +26,7 @@ use race::{Race, RaceOptions};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
+use trinkets::{TrinketOption, Trinkets};
 
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Default, Deserialize, Serialize)]
@@ -291,8 +292,20 @@ impl StartingEquipment for Character {
             addl_equipment.extend(background.addl_equipment());
         }
         // Choose a trinket
-        addl_equipment.push(EquipmentOption::Trinket);
+        addl_equipment.push(EquipmentOption::Trinket(None, None, true));
         addl_equipment
+    }
+}
+
+impl Trinkets for Character {
+    fn trinket_options(&self) -> Vec<TrinketOption> {
+        let mut options = vec![TrinketOption::Default];
+        if let Some(race) = self.race.as_ref() {
+            options.extend(race.trinket_options());
+        }
+        options.sort();
+        options.dedup();
+        options
     }
 }
 
