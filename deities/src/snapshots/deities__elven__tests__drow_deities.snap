@@ -6,54 +6,105 @@ expression: "Drow::deities()"
 - name: Eilistraee
   titles:
     - "goddess of song, beauty, swordwork, hunting, and moonlight"
+    - "Province: freedom, moonlight, song"
   alignment:
     - Chaotic
     - Good
   domains:
+    - Life
     - Light
     - Nature
   symbols:
     - Sword-wielding dancing drow female silhouetted against the full moon
-- name: Kiaransalee
+- name: Ghaunadaur
   titles:
-    - goddess of necromancy
-    - goddess of the undead
-  alignment:
-    - Chaotic
-    - Evil
-  domains:
-    - Arcana
-  symbols:
-    - Female drow hand wearing many silver rings
-- name: Lolth
-  titles:
-    - goddess of spiders
-    - the Demon Queen of Spiders
-  alignment:
-    - Chaotic
-    - Evil
-  domains:
-    - Trickery
-  symbols:
-    - Spider
-- name: Selvetarm
-  titles:
-    - god of warriors
+    - "Province: oozes, slimes, outcasts"
   alignment:
     - Chaotic
     - Evil
   domains:
     - War
   symbols:
-    - Spider over crossed sword-and-mace
-- name: Vhaeraun
+    - Purple eye with black sclera
+- name: Keptolo
   titles:
-    - god of thieves
+    - "Province: beauty, hedonism, fertility"
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Nature
+    - Trickery
+  symbols:
+    - Mushroom
+- name: Kiaransalee
+  titles:
+    - goddess of necromancy
+    - goddess of the undead
+    - "Province: necromancy"
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Arcana
+    - Death
+  symbols:
+    - Female drow hand wearing many silver rings
+- name: Malyk
+  titles:
+    - "Province: chaos, rebellion, wild magic"
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Tempest
+    - Trickery
+  symbols:
+    - A flame in a tear or a multihued vortex
+- name: Lolth
+  titles:
+    - goddess of spiders
+    - the Demon Queen of Spiders
+    - "Province: primary god of drow, spiders"
   alignment:
     - Chaotic
     - Evil
   domains:
     - Trickery
+    - War
+  symbols:
+    - Spider
+- name: Selvetarm
+  titles:
+    - god of warriors
+    - "Province: warriors, slaughter"
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - War
+  symbols:
+    - Spider over crossed sword and mace
+- name: Vhaeraun
+  titles:
+    - god of thieves
+    - "Province: arrogance, thieves"
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Trickery
+    - War
   symbols:
     - Black mask with blue glass lenses inset over eyes
+- name: Zinzerena
+  titles:
+    - "Province: assassination, illusion, lies"
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Shortsword draped with cloth
 

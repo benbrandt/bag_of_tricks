@@ -8,10 +8,12 @@ expression: "Elven::deities()"
     - goddess of the sky
     - wild goddess of the winds and weather
     - patron of the avariel
+    - "Province: air, rain, fertility, birth"
   alignment:
     - Chaotic
     - Good
   domains:
+    - Life
     - Tempest
     - Trickery
   symbols:
@@ -20,44 +22,108 @@ expression: "Elven::deities()"
   titles:
     - triple goddess of wisdom and protection
     - the fierce mother-protector of the elf people
+    - "Province: wisdom, growth, protection"
   alignment:
     - Chaotic
     - Good
   domains:
     - Knowledge
     - Life
+    - War
   symbols:
     - Triangle with three interlocking circles within
+    - Three interlocking circles
+- name: Alathrien Druanna
+  titles:
+    - "Province: runes, writing, spellcasting"
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Arcana
+    - Knowledge
+  symbols:
+    - A quill or glyph
+- name: Alobal Lorfiril
+  titles:
+    - "Province: revelry, mirth"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+    - Trickery
+  symbols:
+    - Wine Glass
+- name: Araleth Letheranil
+  titles:
+    - "Province: light, stars, revelations"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Light
+  symbols:
+    - Shaft of light
 - name: Corellon Larathian
   titles:
     - god of art and magic
     - "god of elves, magic, poetry, rulership, and warcraft"
+    - Primary god of elves
   alignment:
     - Chaotic
     - Good
   domains:
     - Arcana
+    - Life
     - Light
+    - War
   symbols:
     - Crescent moon
     - quarter moon
     - starburst
+- name: Darahl Tilvenar
+  titles:
+    - "Province: fire, earth, metalwork"
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Forge
+    - Light
+  symbols:
+    - Flame between hands
 - name: Deep Sashelas
   titles:
     - god of the sea
     - lord of the sea elves and of dolphins
+    - "Province: creativity, knowledge, sea"
   alignment:
     - Chaotic
     - Good
   domains:
+    - Knowledge
     - Nature
     - Tempest
   symbols:
     - Dolphin
+- name: Elebrin Liothiel
+  titles:
+    - "Province: abundance, gardens, the harvest"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+    - Nature
+  symbols:
+    - Acorn
 - name: Erevan Ilesere
   titles:
     - god of mischief
     - trickster-god
+    - "Province: mischief, change"
   alignment:
     - Chaotic
     - Neutral
@@ -65,20 +131,35 @@ expression: "Elven::deities()"
     - Trickery
   symbols:
     - Asymmetrical eight-armed star
+    - Asymmetrical starburst
 - name: Fenmarel Mestarine
   titles:
     - god of outcasts and solitude
+    - "Province: solitude, outcasts"
   alignment:
     - Chaotic
     - Neutral
   domains:
+    - Nature
     - Trickery
   symbols:
     - Two peering elven eyes
+- name: Gadhelyn
+  titles:
+    - "Province: independence, outlawry"
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Nature
+    - Trickery
+  symbols:
+    - Leaf-shaped arrowhead
 - name: Hanali Celanil
   titles:
     - "goddess of love, beauty, art, and enchantment"
     - the Winsome Rose
+    - "Province: love, beauty, the arts"
   alignment:
     - Chaotic
     - Good
@@ -86,24 +167,83 @@ expression: "Elven::deities()"
     - Life
   symbols:
     - Golden heart
+- name: Kirith Sotheril
+  titles:
+    - "Province: divination, illusion"
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Knowledge
+    - Trickery
+  symbols:
+    - Rainbow sphere
 - name: Labelas Enoreth
   titles:
     - "god of time, history, and philosophy"
     - the philosopher god
+    - "Province: time, history, memory"
   alignment:
     - Chaotic
     - Good
   domains:
     - Arcana
     - Knowledge
+    - Life
   symbols:
     - Setting sun
+- name: Melira Taralen
+  titles:
+    - "Province: poetry, songs"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Knowledge
+    - Life
+    - Trickery
+  symbols:
+    - Lute
+- name: Mythrien Sarath
+  titles:
+    - "Province: abjuration, mythals"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Arcana
+    - Forge
+    - Knowledge
+  symbols:
+    - Row of three intertwined rings
+- name: Naralis Analor
+  titles:
+    - "Province: healing, suffering, death"
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Life
+    - Grave
+  symbols:
+    - White dove
+- name: Rellavar Danuvien
+  titles:
+    - "Province: winter, harsh weather"
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - Tempest
+  symbols:
+    - Spear between two circles
 - name: Rillifane Rallathil
   titles:
     - god of nature
     - god of the woodlands and wild places
     - father of the wood elves
     - protector of druids
+    - "Province: nature, beasts, the seasons"
   alignment:
     - Chaotic
     - Good
@@ -111,23 +251,38 @@ expression: "Elven::deities()"
     - Nature
   symbols:
     - Oak
+- name: Sarula Iliene
+  titles:
+    - "Province: lakes, streams"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Tempest
+    - Trickery
+  symbols:
+    - Three lines symbolizing waves
 - name: Sehanine Moonbow
   titles:
     - goddess of the moon
     - "goddess of divination, dreams, travel, and death"
     - "goddess of all life's mysteries, including mysticism, prophecy, death, and dreams"
     - the Moonlit Mystery
+    - "Province: dreams, death, travel"
   alignment:
     - Chaotic
     - Good
   domains:
+    - Grave
     - Knowledge
+    - Light
   symbols:
     - Full moon under a moonbow
     - crescent moon
 - name: Shevarash
   titles:
     - god of vengeance
+    - "Province: vengeance, loss, hatred"
   alignment:
     - Chaotic
     - Neutral
@@ -138,11 +293,66 @@ expression: "Elven::deities()"
 - name: Solonor Thelandira
   titles:
     - "god of hunting, archery, and woodcraft"
+    - "Province: archery, hunting, survival"
   alignment:
     - Chaotic
     - Good
   domains:
+    - Nature
     - War
   symbols:
     - Silver arrow with green fletching
+- name: Tarsellis Meunniduin
+  titles:
+    - "Province: mountains, rivers, wild places"
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Nature
+    - Tempest
+  symbols:
+    - Mountain with a river
+- name: Tethrin Varaldé
+  titles:
+    - "Province: battle, sword fighting"
+  alignment:
+    - Neutral
+    - Good
+  domains:
+    - War
+  symbols:
+    - Crossed swords beneath a quarter moon and above a full moon
+- name: Vandria Gilmadrith
+  titles:
+    - "Province: war, grief, justice, vigilance"
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Grave
+    - War
+  symbols:
+    - Weeping eye
+- name: "Ye'Cind"
+  titles:
+    - "Province: music, enchantment"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Life
+    - Trickery
+  symbols:
+    - Recorder
+- name: Zandilar
+  titles:
+    - "Province: romance, lust, dance"
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - Life
+  symbols:
+    - Lips
 

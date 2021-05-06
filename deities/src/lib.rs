@@ -42,6 +42,8 @@ use self::{
 pub enum Domain {
     Arcana,
     Death,
+    Forge,
+    Grave,
     Knowledge,
     Life,
     Light,
