@@ -25,7 +25,7 @@ async fn main() -> tide::Result<()> {
         .parse()
         .expect("PORT must be a number");
 
-    let mut app = tide::with_state(Tera::new("bag_of_tricks/templates/**/*")?);
+    let mut app = tide::with_state(Tera::new("templates/**/*")?);
     app.with(CompressMiddleware::new());
     app.at("/").get(|req: tide::Request<Tera>| async move {
         let mut rng = Pcg64::from_entropy();
