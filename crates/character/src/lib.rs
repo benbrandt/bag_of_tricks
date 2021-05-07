@@ -146,6 +146,12 @@ impl Character {
         let mut flaws = vec![];
         let mut ideals = vec![];
         let mut traits = vec![];
+        if let Some(race) = self.race.as_ref() {
+            bonds.extend(race.bonds());
+            flaws.extend(race.flaws());
+            ideals.extend(race.ideals());
+            traits.extend(race.traits());
+        }
         if let Some(background) = self.background.as_ref() {
             bonds.extend(background.bonds());
             flaws.extend(background.flaws());
