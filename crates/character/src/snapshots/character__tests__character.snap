@@ -1,5 +1,5 @@
 ---
-source: character/src/lib.rs
+source: crates/character/src/lib.rs
 expression: character
 
 ---
@@ -37,11 +37,11 @@ languages:
 level: 1
 name: Ilgostrogue Foehammer
 personality:
-  bond: Everything I do is for the common people.
-  flaw: "I judge others harshly, and myself even more severely."
+  bond: I seek to preserve a secret text that my enemies consider heretical and seek to destroy.
+  flaw: I am inflexible in my thinking.
   ideal:
-    - "Aspiration. I seek to prove myself worthy of my faction's favor by matching my actions against their teachings."
-    - Any
+    - Tradition. The ancient traditions of membership and secrecy must be preserved and upheld.
+    - Lawful
   traits:
     - "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
     - "I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me."

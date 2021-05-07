@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -19,9 +20,43 @@ use crate::{
     Character,
 };
 
-use super::{Background, Influence, Personality, PersonalityOptions};
+use super::Background;
 
 const SKILLS: &[Skill] = &[Skill::Insight];
+const BONDS: &[&str] = &[
+    "I would die to recover an ancient relic of my faction that was lost long ago.",
+    "I will someday get revenge on the corrupt faction hierarchy who branded me a traitor.",
+    "I owe my life to the faction member who took me in when my parents died.",
+    "Everything I do is for the common people.",
+    "I will do anything to protect the network where I served.",
+    "I seek to preserve a secret text that my enemies consider heretical and seek to destroy.",
+];
+const FLAWS: &[&str] = &[
+    "I judge others harshly, and myself even more severely.",
+    "I put too much trust in those who wield power within my faction's hierarchy.",
+    "My loyalty sometimes leads me to blindly trust those that profess membership in my faction.",
+    "I am inflexible in my thinking.",
+    "I am suspicious of strangers and expect the worst of them.",
+    "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.",
+];
+const IDEALS: &[(&str, Influence)] = &[
+    ("Tradition. The ancient traditions of membership and secrecy must be preserved and upheld.", Influence::Lawful),
+    ("Charity. I always try to help those in need, no matter what the personal cost.", Influence::Good),
+    ("Change. We must help bring about the changes the faction is constantly working in the world", Influence::Chaotic),
+    ("Power. I hope to one day rise to the top of my faction's hierarchy.", Influence::Lawful),
+    ("Faith. I trust that my faction will guide my actions. I have faith that if I work hard, things will go well.", Influence::Lawful),
+    ("Aspiration. I seek to prove myself worthy of my faction's favor by matching my actions against their teachings.", Influence::Any),
+];
+const TRAITS: &[&str] = &[
+    "I idolize a particular hero of my faction, and constantly refer to that person's deeds and example.",
+    "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.",
+    "I see omens in every event and action. The gods try to speak to us, we just need to listen.",
+    "Nothing can shake my optimistic attitude.",
+    "I quote (or misquote) faction texts and proverbs in almost every situation.",
+    "I am tolerant (or intolerant) of other factions and respect (or condemn) the membership in other factions.",
+    "I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me.",
+    "I've spent so long in the faction that I have little practical experience dealing with people in the outside world.",
+];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Faction {
@@ -59,13 +94,10 @@ impl FactionAgent {
 
 #[typetag::serde]
 impl Background for FactionAgent {
-    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
-        (
-            Box::new(Self {
-                faction: Faction::iter().choose(rng).unwrap(),
-            }),
-            Self::gen_personality(rng),
-        )
+    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+        Box::new(Self {
+            faction: Faction::iter().choose(rng).unwrap(),
+        })
     }
 
     fn skills() -> Vec<Skill> {
@@ -100,40 +132,21 @@ impl Languages for FactionAgent {
 }
 
 impl PersonalityOptions for FactionAgent {
-    const BONDS: &'static [&'static str] = &[
-        "I would die to recover an ancient relic of my faction that was lost long ago.",
-        "I will someday get revenge on the corrupt faction hierarchy who branded me a traitor.",
-        "I owe my life to the faction member who took me in when my parents died.",
-        "Everything I do is for the common people.",
-        "I will do anything to protect the network where I served.",
-        "I seek to preserve a secret text that my enemies consider heretical and seek to destroy.",
-    ];
-    const FLAWS: &'static [&'static str] = &[
-        "I judge others harshly, and myself even more severely.",
-        "I put too much trust in those who wield power within my faction's hierarchy.",
-        "My loyalty sometimes leads me to blindly trust those that profess membership in my faction.",
-        "I am inflexible in my thinking.",
-        "I am suspicious of strangers and expect the worst of them.",
-        "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life.",
-    ];
-    const IDEALS: &'static [(&'static str, Influence)] = &[
-        ("Tradition. The ancient traditions of membership and secrecy must be preserved and upheld.", Influence::Lawful),
-        ("Charity. I always try to help those in need, no matter what the personal cost.", Influence::Good),
-        ("Change. We must help bring about the changes the faction is constantly working in the world", Influence::Chaotic),
-        ("Power. I hope to one day rise to the top of my faction's hierarchy.", Influence::Lawful),
-        ("Faith. I trust that my faction will guide my actions. I have faith that if I work hard, things will go well.", Influence::Lawful),
-        ("Aspiration. I seek to prove myself worthy of my faction's favor by matching my actions against their teachings.", Influence::Any),
-    ];
-    const TRAITS: &'static [&'static str] = &[
-        "I idolize a particular hero of my faction, and constantly refer to that person's deeds and example.",
-        "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.",
-        "I see omens in every event and action. The gods try to speak to us, we just need to listen.",
-        "Nothing can shake my optimistic attitude.",
-        "I quote (or misquote) faction texts and proverbs in almost every situation.",
-        "I am tolerant (or intolerant) of other factions and respect (or condemn) the membership in other factions.",
-        "I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me.",
-        "I've spent so long in the faction that I have little practical experience dealing with people in the outside world.",
-    ];
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
 }
 
 impl Proficiencies for FactionAgent {
@@ -201,8 +214,36 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (background, _personality) = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &Character::default());
         insta::assert_display_snapshot!(background);
+    }
+
+    #[test]
+    fn test_bonds() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = FactionAgent::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.bonds());
+    }
+
+    #[test]
+    fn test_flaws() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = FactionAgent::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.flaws());
+    }
+
+    #[test]
+    fn test_ideals() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = FactionAgent::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.ideals());
+    }
+
+    #[test]
+    fn test_traits() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = FactionAgent::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.traits());
     }
 
     #[test]

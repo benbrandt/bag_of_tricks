@@ -15,15 +15,16 @@ use std::{fmt, writeln};
 use ability::{AbilityScores, Skill};
 use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
-use background::{Background, BackgroundOption, Personality};
+use background::{Background, BackgroundOption};
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
 use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
 use features::{Feature, Features};
 use languages::Language;
+use personality::Personality;
 use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
-use rand::Rng;
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
 use trinkets::{TrinketOption, Trinkets};
@@ -77,12 +78,12 @@ impl Character {
         let mut abilities = AbilityScores::gen(rng);
         abilities.increase(race.abilities());
         character.abilities = abilities;
-        let (background, personality) = BackgroundOption::gen(rng, &character);
+        let background = BackgroundOption::gen(rng, &character);
         character.race = Some(race);
         character.name = name;
         character.characteristics = Some(characteristics);
         character.background = Some(background);
-        character.personality = Some(personality);
+        character.gen_personality(rng);
         character.gen_alignment(rng);
         character.gen_languages(rng);
         character.gen_proficiences(rng);
@@ -137,6 +138,26 @@ impl Character {
 
         self.languages
             .extend(Language::gen(rng, self, addl_languages));
+    }
+
+    /// Generate personality descriptions from the associated constants
+    fn gen_personality(&mut self, rng: &mut impl Rng) {
+        let mut bonds = vec![];
+        let mut flaws = vec![];
+        let mut ideals = vec![];
+        let mut traits = vec![];
+        if let Some(background) = self.background.as_ref() {
+            bonds.extend(background.bonds());
+            flaws.extend(background.flaws());
+            ideals.extend(background.ideals());
+            traits.extend(background.traits());
+        }
+        self.personality = Some(Personality {
+            bond: bonds.choose(rng).unwrap().clone(),
+            flaw: flaws.choose(rng).unwrap().clone(),
+            ideal: ideals.choose(rng).unwrap().clone(),
+            traits: traits.choose_multiple(rng, 2).cloned().collect(),
+        });
     }
 
     /// Generate additional proficiencies, each looking at the current character sheet.

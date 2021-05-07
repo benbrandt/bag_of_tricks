@@ -1,15 +1,7 @@
 ---
-source: character/src/background/waterdhavian_noble.rs
+source: crates/character/src/background/waterdhavian_noble.rs
 expression: background
 
 ---
-- type: WaterdhavianNoble
-- bond: "My house's alliance with another noble family must be sustained at all costs."
-  flaw: "In fact, the world does revolve around me."
-  ideal:
-    - "Power. If I can attain more power, no one will tell me what to do."
-    - Evil
-  traits:
-    - "My favor, once lost, is lost forever."
-    - "If you do me an injury, I will crush you, ruin your name, and salt your fields."
+type: WaterdhavianNoble
 

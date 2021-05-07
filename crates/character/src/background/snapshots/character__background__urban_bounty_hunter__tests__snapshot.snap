@@ -1,15 +1,7 @@
 ---
-source: character/src/background/urban_bounty_hunter.rs
+source: crates/character/src/background/urban_bounty_hunter.rs
 expression: background
 
 ---
-- type: UrbanBountyHunter
-- bond: My ill-gotten gains go to support my family.
-  flaw: I turn tail and run when things look bad.
-  ideal:
-    - Greed. I will do whatever it takes to become wealthy.
-    - Evil
-  traits:
-    - "The best way to get me to do something is to tell me I can't do it."
-    - I blow up at the slightest insult.
+type: UrbanBountyHunter
 

@@ -1,0 +1,12 @@
+---
+source: crates/character/src/background/cloistered_scholar.rs
+expression: background.bonds()
+
+---
+- It is my duty to protect my students.
+- I have an ancient text that holds terrible secrets that must not fall into the wrong hands.
+- "I work to preserve a library, university, scriptorium, or monastery."
+- "My life's work is a series of tomes related to a specific field of lore."
+- "I've been searching my whole life for the answer to a certain question."
+- I sold my soul for knowledge. I hope to do great deeds and win it back.
+

@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -19,9 +20,61 @@ use crate::{
     Character,
 };
 
-use super::{Background, Influence, Personality, PersonalityOptions};
+use super::Background;
 
 const SKILLS: &[Skill] = &[Skill::Arcana, Skill::History];
+pub(crate) const BONDS: &[&str] = &[
+    "It is my duty to protect my students.",
+    "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",
+    "I work to preserve a library, university, scriptorium, or monastery.",
+    "My life's work is a series of tomes related to a specific field of lore.",
+    "I've been searching my whole life for the answer to a certain question.",
+    "I sold my soul for knowledge. I hope to do great deeds and win it back.",
+];
+pub(crate) const FLAWS: &[&str] = &[
+    "I am easily distracted by the promise of information.",
+    "Most people scream and run when they see a demon. I stop and take notes on its anatomy.",
+    "Unlocking an ancient mystery is worth the price of a civilization.",
+    "I overlook obvious solutions in favor of complicated ones.",
+    "I speak without really thinking through my words, invariably insulting others.",
+    "I can't keep a secret to save my life, or anyone else's.",
+];
+pub(crate) const IDEALS: &[(&str, Influence)] = &[
+    (
+        "Knowledge. The path to power and self-improvement is through knowledge.",
+        Influence::Neutral,
+    ),
+    (
+        "Beauty. What is beautiful points us beyond itself toward what is true.",
+        Influence::Good,
+    ),
+    (
+        "Logic. Emotions must not cloud our logical thinking.",
+        Influence::Lawful,
+    ),
+    (
+        "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
+        Influence::Chaotic,
+    ),
+    (
+        "Power. Knowledge is the path to power and domination.",
+        Influence::Evil,
+    ),
+    (
+        "Self-Improvement. The goal of a life of study is the betterment of oneself.",
+        Influence::Any,
+    ),
+];
+pub(crate) const TRAITS: &[&str] = &[
+    "I use polysyllabic words that convey the impression of great erudition.",
+    "I've read every book in the world's greatest libraries \u{2014} or I like to boast that I have.",
+    "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
+    "There's nothing I like more than a good mystery.",
+    "I'm willing to listen to every side of an argument before I make my own judgment.",
+    "I . . . speak . . . slowly . . . when talking . . . to idiots, . . . which . . . almost . . . everyone . . . is . . . compared . . . to me.",
+    "I am horribly, horribly awkward in social situations.",
+    "I'm convinced that people are always trying to steal my secrets.",
+];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Specialty {
@@ -44,11 +97,10 @@ pub(crate) struct Sage {
 
 #[typetag::serde]
 impl Background for Sage {
-    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
-        let background = Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+        Box::new(Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
-        });
-        (background, Self::gen_personality(rng))
+        })
     }
 
     fn skills() -> Vec<Skill> {
@@ -81,58 +133,21 @@ impl Languages for Sage {
 }
 
 impl PersonalityOptions for Sage {
-    const BONDS: &'static [&'static str] = &[
-        "It is my duty to protect my students.",
-        "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",
-        "I work to preserve a library, university, scriptorium, or monastery.",
-        "My life's work is a series of tomes related to a specific field of lore.",
-        "I've been searching my whole life for the answer to a certain question.",
-        "I sold my soul for knowledge. I hope to do great deeds and win it back.",
-    ];
-    const FLAWS: &'static [&'static str] = &[
-        "I am easily distracted by the promise of information.",
-        "Most people scream and run when they see a demon. I stop and take notes on its anatomy.",
-        "Unlocking an ancient mystery is worth the price of a civilization.",
-        "I overlook obvious solutions in favor of complicated ones.",
-        "I speak without really thinking through my words, invariably insulting others.",
-        "I can't keep a secret to save my life, or anyone else's.",
-    ];
-    const IDEALS: &'static [(&'static str, Influence)] = &[
-        (
-            "Knowledge. The path to power and self-improvement is through knowledge.",
-            Influence::Neutral,
-        ),
-        (
-            "Beauty. What is beautiful points us beyond itself toward what is true.",
-            Influence::Good,
-        ),
-        (
-            "Logic. Emotions must not cloud our logical thinking.",
-            Influence::Lawful,
-        ),
-        (
-            "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
-            Influence::Chaotic,
-        ),
-        (
-            "Power. Knowledge is the path to power and domination.",
-            Influence::Evil,
-        ),
-        (
-            "Self-Improvement. The goal of a life of study is the betterment of oneself.",
-            Influence::Any,
-        ),
-    ];
-    const TRAITS: &'static [&'static str] = &[
-        "I use polysyllabic words that convey the impression of great erudition.",
-        "I've read every book in the world's greatest libraries \u{2014} or I like to boast that I have.",
-        "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
-        "There's nothing I like more than a good mystery.",
-        "I'm willing to listen to every side of an argument before I make my own judgment.",
-        "I . . . speak . . . slowly . . . when talking . . . to idiots, . . . which . . . almost . . . everyone . . . is . . . compared . . . to me.",
-        "I am horribly, horribly awkward in social situations.",
-        "I'm convinced that people are always trying to steal my secrets.",
-    ];
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
 }
 
 impl Proficiencies for Sage {

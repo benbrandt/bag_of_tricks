@@ -1,0 +1,18 @@
+---
+source: crates/character/src/background/uthgardt_tribe_member.rs
+expression: background.ideals()
+
+---
+- - "Change. Life is like the seasons, in constant change, and we must change with it."
+  - Chaotic
+- - "Greater Good. It is each person's responsibility to make the most happiness for the whole tribe."
+  - Good
+- - "Honor. If I dishonor myself, I dishonor my whole clan."
+  - Lawful
+- - Might. The strongest are meant to rule.
+  - Evil
+- - Nature. The natural world is more important than all the constructs of civilization.
+  - Neutral
+- - "Glory. I must earn glory in battle, for myself and my clan."
+  - Any
+

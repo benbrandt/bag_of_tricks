@@ -1,15 +1,7 @@
 ---
-source: character/src/background/cloistered_scholar.rs
+source: crates/character/src/background/cloistered_scholar.rs
 expression: background
 
 ---
-- type: CloisteredScholar
-- bond: I have an ancient text that holds terrible secrets that must not fall into the wrong hands.
-  flaw: "I speak without really thinking through my words, invariably insulting others."
-  ideal:
-    - No Limits. Nothing should fetter the infinite possibility inherent in all existence.
-    - Chaotic
-  traits:
-    - "I am horribly, horribly awkward in social situations."
-    - "I'm convinced that people are always trying to steal my secrets."
+type: CloisteredScholar
 

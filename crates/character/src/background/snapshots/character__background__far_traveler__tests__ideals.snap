@@ -1,0 +1,18 @@
+---
+source: crates/character/src/background/far_traveler.rs
+expression: background.ideals()
+
+---
+- - Open. I have much to learn from the kindly folk I meet along my way.
+  - Good
+- - "Reserved. As someone new to these strange lands, I am cautious and respectful in my dealings."
+  - Lawful
+- - "Adventure. I'm far from home, and everything is strange and wonderful!"
+  - Chaotic
+- - "Cunning. Though I may not know their ways, neither do they know mine, which can be to my advantage."
+  - Evil
+- - "Inquisitive. Everything is new, but I have a thirst to learn."
+  - Neutral
+- - "Suspicious. I must be careful, for I have no way of telling friend from foe here."
+  - Any
+

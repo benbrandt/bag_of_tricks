@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -21,9 +22,43 @@ use crate::{
     Character,
 };
 
-use super::{Background, Influence, Personality, PersonalityOptions};
+use super::Background;
 
 const SKILLS: &[Skill] = &[Skill::Insight, Skill::Persuasion];
+pub(crate) const BONDS: &[&str] = &[
+    "The workshop where I learned my trade is the most important place in the world to me.",
+    "I created a great work for someone, and then found them unworthy to receive it. I'm still looking for someone worthy.",
+    "I owe my guild a great debt for forging me into the person I am today.",
+    "I pursue wealth to secure someone's love.",
+    "One day I will return to my guild and prove that I am the greatest artisan of them all.",
+    "I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.",
+];
+pub(crate) const FLAWS: &[&str] = &[
+    "I'll do anything to get my hands on something rare or priceless.",
+    "I'm quick to assume that someone is trying to cheat me.",
+    "No one must ever learn that I once stole money from guild coffers.",
+    "I'm never satisfied with what I have \u{2014} I always want more.",
+    "I would kill to acquire a noble title.",
+    "I'm horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I'm surrounded by rivals.",
+];
+pub(crate) const IDEALS: &[(&str, Influence)] = &[
+    ("Community. It is the duty of all civilized people to strengthen the bonds of community and the security of civilization.", Influence::Lawful),
+    ("Generosity. My talents were given to me so that I could use them to benefit the world.", Influence::Good),
+    ("Freedom. Everyone should be free to pursue his or her own livelihood.", Influence::Chaotic),
+    ("Greed. I'm only in it for the money.", Influence::Evil),
+    ("People. I'm committed to the people I care about, not to ideals.", Influence::Neutral),
+    ("Aspiration. I work hard to be the best there is at my craft.", Influence::Any),
+];
+pub(crate) const TRAITS: &[&str] = &[
+    "I believe that anything worth doing is worth doing right. I can't help it \u{2014} I'm a perfectionist.",
+    "I'm a snob who looks down on those who can't appreciate fine art.",
+    "I always want to know how things work and what makes people tick.",
+    "I'm full of witty aphorisms and have a proverb for every occasion.",
+    "I'm rude to people who lack my commitment to hard work and fair play.",
+    "I like to talk at length about my profession.",
+    "I don't part with my money easily and will haggle tirelessly to get the best deal possible.",
+    "I'm well known for my work, and I want to make sure everyone appreciates it. I'm always taken aback when people haven't heard of me.",
+];
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Business {
@@ -116,17 +151,16 @@ pub(crate) struct GuildArtisan {
 
 #[typetag::serde]
 impl Background for GuildArtisan {
-    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
+    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
         let variant = Variant::iter().choose(rng).unwrap();
-        let background = Box::new(Self {
+        Box::new(Self {
             business: Business::iter().choose(rng).unwrap(),
             proficiency: match variant {
                 Variant::Artisan => None,
                 Variant::Merchant => Some(MerchantVariant::iter().choose(rng).unwrap()),
             },
             variant,
-        });
-        (background, Self::gen_personality(rng))
+        })
     }
 
     fn skills() -> Vec<Skill> {
@@ -168,40 +202,21 @@ impl Languages for GuildArtisan {
 }
 
 impl PersonalityOptions for GuildArtisan {
-    const BONDS: &'static [&'static str] = &[
-        "The workshop where I learned my trade is the most important place in the world to me.",
-        "I created a great work for someone, and then found them unworthy to receive it. I'm still looking for someone worthy.",
-        "I owe my guild a great debt for forging me into the person I am today.",
-        "I pursue wealth to secure someone's love.",
-        "One day I will return to my guild and prove that I am the greatest artisan of them all.",
-        "I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.",
-    ];
-    const FLAWS: &'static [&'static str] = &[
-        "I'll do anything to get my hands on something rare or priceless.",
-        "I'm quick to assume that someone is trying to cheat me.",
-        "No one must ever learn that I once stole money from guild coffers.",
-        "I'm never satisfied with what I have \u{2014} I always want more.",
-        "I would kill to acquire a noble title.",
-        "I'm horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I'm surrounded by rivals.",
-    ];
-    const IDEALS: &'static [(&'static str, Influence)] = &[
-        ("Community. It is the duty of all civilized people to strengthen the bonds of community and the security of civilization.", Influence::Lawful),
-        ("Generosity. My talents were given to me so that I could use them to benefit the world.", Influence::Good),
-        ("Freedom. Everyone should be free to pursue his or her own livelihood.", Influence::Chaotic),
-        ("Greed. I'm only in it for the money.", Influence::Evil),
-        ("People. I'm committed to the people I care about, not to ideals.", Influence::Neutral),
-        ("Aspiration. I work hard to be the best there is at my craft.", Influence::Any),
-    ];
-    const TRAITS: &'static [&'static str] = &[
-        "I believe that anything worth doing is worth doing right. I can't help it \u{2014} I'm a perfectionist.",
-        "I'm a snob who looks down on those who can't appreciate fine art.",
-        "I always want to know how things work and what makes people tick.",
-        "I'm full of witty aphorisms and have a proverb for every occasion.",
-        "I'm rude to people who lack my commitment to hard work and fair play.",
-        "I like to talk at length about my profession.",
-        "I don't part with my money easily and will haggle tirelessly to get the best deal possible.",
-        "I'm well known for my work, and I want to make sure everyone appreciates it. I'm always taken aback when people haven't heard of me.",
-    ];
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
 }
 
 impl Proficiencies for GuildArtisan {

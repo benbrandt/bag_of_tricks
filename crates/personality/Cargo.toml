@@ -1,0 +1,13 @@
+[package]
+name = "personality"
+version = "0.1.0"
+authors = ["Ben Brandt <benjamin.j.brandt@gmail.com>"]
+edition = "2018"
+resolver = "2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+alignment = { path = "../alignment" }
+serde = { version = "1", features = ["derive"] }
+strum = { version = "0.20", features = ["derive"] }

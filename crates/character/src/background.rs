@@ -26,12 +26,11 @@ mod waterdhavian_noble;
 
 use std::fmt;
 
-use alignment::{AlignmentInfluences, Attitude, Morality};
 use citation::Citations;
 use itertools::Itertools;
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
-use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
+use strum::{EnumIter, IntoEnumIterator};
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
@@ -48,99 +47,6 @@ use super::{
     ability::Skill, backstory::Backstory, equipment::StartingEquipment, features::Features,
     languages::Languages, proficiencies::Proficiencies, Character,
 };
-
-/// Types of alignment influence from personality traits
-#[derive(Clone, Copy, Deserialize, Display, Serialize)]
-pub(crate) enum Influence {
-    Any,
-    Chaotic,
-    Evil,
-    Good,
-    Lawful,
-    Neutral,
-}
-
-impl AlignmentInfluences for Influence {
-    /// Return attitude influence from personality.
-    /// Doubled because personality should be a major indicator of alignment.
-    fn attitude(&self) -> Vec<Attitude> {
-        match self {
-            Self::Chaotic => vec![Attitude::Chaotic; 2],
-            Self::Lawful => vec![Attitude::Lawful; 2],
-            Self::Neutral => vec![Attitude::Neutral; 2],
-            _ => vec![],
-        }
-    }
-
-    /// Return morality influence from personality.
-    /// Doubled because personality should be a major indicator of alignment.
-    fn morality(&self) -> Vec<Morality> {
-        match self {
-            Self::Good => vec![Morality::Good; 2],
-            Self::Evil => vec![Morality::Evil; 2],
-            Self::Neutral => vec![Morality::Neutral; 2],
-            _ => vec![],
-        }
-    }
-}
-
-/// Description of a character's personality
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Personality {
-    bond: String,
-    flaw: String,
-    ideal: (String, Influence),
-    traits: Vec<String>,
-}
-
-/// Return attitude/morality influences from character's ideal
-impl AlignmentInfluences for Personality {
-    fn attitude(&self) -> Vec<Attitude> {
-        self.ideal.1.attitude()
-    }
-
-    fn morality(&self) -> Vec<Morality> {
-        self.ideal.1.morality()
-    }
-}
-
-impl fmt::Display for Personality {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(f, "PERSONALITY TRAITS:")?;
-        for t in &self.traits {
-            writeln!(f, "{}", t)?;
-        }
-        writeln!(f, "IDEAL: {} ({})", self.ideal.0, self.ideal.1)?;
-        writeln!(f, "BOND: {}", self.bond)?;
-        writeln!(f, "FLAW: {}", self.flaw)
-    }
-}
-
-/// Trait to store associated constants for each background's personality tables.
-pub(crate) trait PersonalityOptions {
-    /// List of bonds to choose from
-    const BONDS: &'static [&'static str];
-    /// List of flaws to choose from
-    const FLAWS: &'static [&'static str];
-    /// List of ideals to choose from, and their corresponding alignment influence
-    const IDEALS: &'static [(&'static str, Influence)];
-    /// List of traits to choose from
-    const TRAITS: &'static [&'static str];
-
-    /// Generate personality descriptions from the associated constants
-    fn gen_personality(rng: &mut impl Rng) -> Personality {
-        let ideal = *Self::IDEALS.choose(rng).unwrap();
-        Personality {
-            bond: String::from(*Self::BONDS.choose(rng).unwrap()),
-            flaw: String::from(*Self::FLAWS.choose(rng).unwrap()),
-            ideal: (String::from(ideal.0), ideal.1),
-            traits: Self::TRAITS
-                .choose_multiple(rng, 2)
-                .map(|s| String::from(*s))
-                .collect(),
-        }
-    }
-}
 
 pub(crate) fn max_skill_weight(skills: &[Skill], character: &Character) -> f64 {
     let mut sorted = skills.iter().sorted_by(|a, b| {
@@ -159,10 +65,17 @@ pub(crate) fn max_skill_weight(skills: &[Skill], character: &Character) -> f64 {
 /// Trait for backgrounds to build from
 #[typetag::serde(tag = "type")]
 pub(crate) trait Background:
-    Backstory + Citations + Features + Languages + Proficiencies + StartingEquipment + fmt::Display
+    Backstory
+    + Citations
+    + Features
+    + Languages
+    + PersonalityOptions
+    + Proficiencies
+    + StartingEquipment
+    + fmt::Display
 {
     /// Generate a new instance of the background
-    fn gen(rng: &mut impl Rng, character: &Character) -> (Box<dyn Background>, Personality)
+    fn gen(rng: &mut impl Rng, character: &Character) -> Box<dyn Background>
     where
         Self: Sized;
 
@@ -212,10 +125,7 @@ pub(crate) enum BackgroundOption {
 
 impl BackgroundOption {
     /// Choose a random background option, weighted by proficiency bonuses, and map to corresponding generator
-    pub(crate) fn gen(
-        rng: &mut impl Rng,
-        character: &Character,
-    ) -> (Box<dyn Background>, Personality) {
+    pub(crate) fn gen(rng: &mut impl Rng, character: &Character) -> Box<dyn Background> {
         let options: Vec<BackgroundOption> = Self::iter().collect();
         let option = options
             .choose_weighted(rng, |o| o.weight(character))

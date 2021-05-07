@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
@@ -19,7 +20,7 @@ use crate::{
     Character,
 };
 
-use super::{Background, Influence, Personality, PersonalityOptions};
+use super::Background;
 
 const SCAMS: &[&str] = &[
     "I cheat at games of chance.",
@@ -45,11 +46,10 @@ impl Charlatan {
 
 #[typetag::serde]
 impl Background for Charlatan {
-    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
-        let background = Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+        Box::new(Self {
             scam: Self::gen_scam(rng),
-        });
-        (background, Self::gen_personality(rng))
+        })
     }
 
     fn skills() -> Vec<Skill> {
@@ -86,58 +86,71 @@ impl Languages for Charlatan {
 }
 
 impl PersonalityOptions for Charlatan {
-    const BONDS: &'static [&'static str] = &[
-        "I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",
-        "I owe everything to my mentor \u{2014} a horrible person who's probably rotting in jail somewhere.",
-        "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.",
-        "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.",
-        "A powerful person killed someone I love. Some day soon, I'll have my revenge.",
-        "I swindled and ruined a person who didn't deserve it. I seek to atone for my misdeeds but might never be able to forgive myself.",
-    ];
-    const FLAWS: &'static [&'static str] = &[
-        "I can't resist a pretty face.",
-        "I'm always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in.",
-        "I'm convinced that no one could ever fool me the way I fool others.",
-        "I'm too greedy for my own good. I can't resist taking a risk if there's money involved.",
-        "I can't resist swindling people who are more powerful than me.",
-        "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough.",
-    ];
-    const IDEALS: &'static [(&'static str, Influence)] = &[
-        (
-            "Independence. I am a free spirit \u{2014} no one tells me what to do.",
-            Influence::Chaotic,
-        ),
-        (
-            "Fairness. I never target people who can't afford to lose a few coins.",
-            Influence::Lawful,
-        ),
-        (
-            "Charity. I distribute the money I acquire to the people who really need it.",
-            Influence::Good,
-        ),
-        (
-            "Creativity. I never run the same con twice.",
-            Influence::Chaotic,
-        ),
-        (
-            "Friendship. Material goods come and go. Bonds of friendship last forever.",
-            Influence::Good,
-        ),
-        (
-            "Aspiration. I'm determined to make something of myself.",
-            Influence::Any,
-        ),
-    ];
-    const TRAITS: &'static [&'static str] = &[
-        "I fall in and out of love easily, and am always pursuing someone.",
-        "I have a joke for every occasion, especially occasions where humor is inappropriate.",
-        "Flattery is my preferred trick for getting what I want.",
-        "I'm a born gambler who can't resist taking a risk for a potential payoff.",
-        "I lie about almost everything, even when there's no good reason to.",
-        "Sarcasm and insults are my weapons of choice.",
-        "I keep multiple holy symbols on me and invoke whatever deity might come in useful at any given moment.",
-        "I pocket anything I see that might have some value.",
-    ];
+    fn bonds(&self) -> Vec<String> {
+        [
+            "I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",
+            "I owe everything to my mentor \u{2014} a horrible person who's probably rotting in jail somewhere.",
+            "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.",
+            "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.",
+            "A powerful person killed someone I love. Some day soon, I'll have my revenge.",
+            "I swindled and ruined a person who didn't deserve it. I seek to atone for my misdeeds but might never be able to forgive myself.",
+        ].iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        [
+            "I can't resist a pretty face.",
+            "I'm always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in.",
+            "I'm convinced that no one could ever fool me the way I fool others.",
+            "I'm too greedy for my own good. I can't resist taking a risk if there's money involved.",
+            "I can't resist swindling people who are more powerful than me.",
+            "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough.",
+        ].iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, Influence)> {
+        vec![
+            (
+                "Independence. I am a free spirit \u{2014} no one tells me what to do.".to_string(),
+                Influence::Chaotic,
+            ),
+            (
+                "Fairness. I never target people who can't afford to lose a few coins.".to_string(),
+                Influence::Lawful,
+            ),
+            (
+                "Charity. I distribute the money I acquire to the people who really need it."
+                    .to_string(),
+                Influence::Good,
+            ),
+            (
+                "Creativity. I never run the same con twice.".to_string(),
+                Influence::Chaotic,
+            ),
+            (
+                "Friendship. Material goods come and go. Bonds of friendship last forever."
+                    .to_string(),
+                Influence::Good,
+            ),
+            (
+                "Aspiration. I'm determined to make something of myself.".to_string(),
+                Influence::Any,
+            ),
+        ]
+    }
+
+    fn traits(&self) -> Vec<String> {
+        vec![
+            "I fall in and out of love easily, and am always pursuing someone.",
+            "I have a joke for every occasion, especially occasions where humor is inappropriate.",
+            "Flattery is my preferred trick for getting what I want.",
+            "I'm a born gambler who can't resist taking a risk for a potential payoff.",
+            "I lie about almost everything, even when there's no good reason to.",
+            "Sarcasm and insults are my weapons of choice.",
+            "I keep multiple holy symbols on me and invoke whatever deity might come in useful at any given moment.",
+            "I pocket anything I see that might have some value.",
+        ].iter().map(|&s| s.to_string()).collect()
+    }
 }
 
 impl Proficiencies for Charlatan {

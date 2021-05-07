@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
@@ -19,7 +20,7 @@ use crate::{
     Character,
 };
 
-use super::{Background, Influence, Personality, PersonalityOptions};
+use super::Background;
 
 const LIFE_OF_SECLUSION: &[&str] = &[
     "I was searching for spiritual enlightenment.",
@@ -30,6 +31,40 @@ const LIFE_OF_SECLUSION: &[&str] = &[
     "I needed to commune with nature, far from civilization.",
     "I was the caretaker of an ancient ruin or relic.",
     "I was a pilgrim in search of a person, place, or relic of spiritual significance.",
+];
+const BONDS: &[&str] = &[
+    "Nothing is more important than the other members of my hermitage, order, or association.",
+    "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.",
+    "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.",
+    "I entered seclusion because I loved someone I could not have.",
+    "Should my discovery come to light, it could bring ruin to the world.",
+    "My isolation gave me great insight into a great evil that only I can destroy.",
+];
+const FLAWS: &[&str] = &[
+    "Now that I've returned to the world, I enjoy its delights a little too much.",
+    "I harbor dark, bloodthirsty thoughts that my isolation and meditation failed to quell.",
+    "I am dogmatic in my thoughts and philosophy.",
+    "I let my need to win arguments overshadow friendships and harmony.",
+    "I'd risk too much to uncover a lost bit of knowledge.",
+    "I like keeping secrets and won't share them with anyone.",
+];
+const IDEALS: &[(&str, Influence)] = &[
+    ("Greater Good. My gifts are meant to be shared with all, not used for my own benefit.", Influence::Good),
+    ("Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking.", Influence::Lawful),
+    ("Free Thinking. Inquiry and curiosity are the pillars of progress. ", Influence::Chaotic),
+    ("Power. Solitude and contemplation are paths toward mystical or magical power.", Influence::Evil),
+    ("Live and Let Live. Meddling in the affairs of others only causes trouble.", Influence::Neutral),
+    ("Self-Knowledge. If you know yourself, there's nothing left to know.", Influence::Any),
+];
+const TRAITS: &[&str] = &[
+    "I've been isolated for so long that I rarely speak, preferring gestures and the occasional grunt.",
+    "I am utterly serene, even in the face of disaster.",
+    "The leader of my community had something wise to say on every topic, and I am eager to share that wisdom.",
+    "I feel tremendous empathy for all who suffer.",
+    "I'm oblivious to etiquette and social expectations.",
+    "I connect everything that happens to me to a grand, cosmic plan.",
+    "I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings.",
+    "I am working on a grand philosophical theory and love sharing my ideas.",
 ];
 
 const SKILLS: &[Skill] = &[Skill::Medicine, Skill::Religion];
@@ -47,11 +82,10 @@ impl Hermit {
 
 #[typetag::serde]
 impl Background for Hermit {
-    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
-        let background = Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+        Box::new(Self {
             life_of_seclusion: Self::gen_life_of_seclusion(rng),
-        });
-        (background, Self::gen_personality(rng))
+        })
     }
 
     fn skills() -> Vec<Skill> {
@@ -89,40 +123,21 @@ impl Languages for Hermit {
 }
 
 impl PersonalityOptions for Hermit {
-    const BONDS: &'static [&'static str] = &[
-        "Nothing is more important than the other members of my hermitage, order, or association.",
-        "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.",
-        "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.",
-        "I entered seclusion because I loved someone I could not have.",
-        "Should my discovery come to light, it could bring ruin to the world.",
-        "My isolation gave me great insight into a great evil that only I can destroy.",
-    ];
-    const FLAWS: &'static [&'static str] = &[
-        "Now that I've returned to the world, I enjoy its delights a little too much.",
-        "I harbor dark, bloodthirsty thoughts that my isolation and meditation failed to quell.",
-        "I am dogmatic in my thoughts and philosophy.",
-        "I let my need to win arguments overshadow friendships and harmony.",
-        "I'd risk too much to uncover a lost bit of knowledge.",
-        "I like keeping secrets and won't share them with anyone.",
-    ];
-    const IDEALS: &'static [(&'static str, Influence)] = &[
-        ("Greater Good. My gifts are meant to be shared with all, not used for my own benefit.", Influence::Good),
-        ("Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking.", Influence::Lawful),
-        ("Free Thinking. Inquiry and curiosity are the pillars of progress. ", Influence::Chaotic),
-        ("Power. Solitude and contemplation are paths toward mystical or magical power.", Influence::Evil),
-        ("Live and Let Live. Meddling in the affairs of others only causes trouble.", Influence::Neutral),
-        ("Self-Knowledge. If you know yourself, there's nothing left to know.", Influence::Any),
-    ];
-    const TRAITS: &'static [&'static str] = &[
-        "I've been isolated for so long that I rarely speak, preferring gestures and the occasional grunt.",
-        "I am utterly serene, even in the face of disaster.",
-        "The leader of my community had something wise to say on every topic, and I am eager to share that wisdom.",
-        "I feel tremendous empathy for all who suffer.",
-        "I'm oblivious to etiquette and social expectations.",
-        "I connect everything that happens to me to a grand, cosmic plan.",
-        "I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings.",
-        "I am working on a grand philosophical theory and love sharing my ideas.",
-    ];
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
 }
 
 impl Proficiencies for Hermit {

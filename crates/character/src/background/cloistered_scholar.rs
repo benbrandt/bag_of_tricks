@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use personality::PersonalityOptions;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 
@@ -18,7 +19,10 @@ use crate::{
     Character,
 };
 
-use super::{sage::Sage, Background, Personality, PersonalityOptions};
+use super::{
+    sage::{BONDS, FLAWS, IDEALS, TRAITS},
+    Background,
+};
 
 const SKILLS: &[Skill] = &[Skill::History];
 const ADDL_SKILLS: &[Skill] = &[Skill::Arcana, Skill::Nature, Skill::Religion];
@@ -28,8 +32,8 @@ pub(crate) struct CloisteredScholar;
 
 #[typetag::serde]
 impl Background for CloisteredScholar {
-    fn gen(rng: &mut impl Rng, _: &Character) -> (Box<dyn Background>, Personality) {
-        (Box::new(Self), Sage::gen_personality(rng))
+    fn gen(_: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+        Box::new(Self)
     }
 
     fn skills() -> Vec<Skill> {
@@ -62,6 +66,24 @@ impl Features for CloisteredScholar {
 impl Languages for CloisteredScholar {
     fn addl_languages(&self) -> usize {
         2
+    }
+}
+
+impl PersonalityOptions for CloisteredScholar {
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
     }
 }
 
@@ -112,13 +134,41 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (background, _personality) = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &Character::default());
         insta::assert_display_snapshot!(background);
     }
 
     #[test]
     fn test_skills() {
         insta::assert_yaml_snapshot!(CloisteredScholar::skills());
+    }
+
+    #[test]
+    fn test_bonds() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.bonds());
+    }
+
+    #[test]
+    fn test_flaws() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.flaws());
+    }
+
+    #[test]
+    fn test_ideals() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.ideals());
+    }
+
+    #[test]
+    fn test_traits() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        insta::assert_yaml_snapshot!(background.traits());
     }
 
     #[test]

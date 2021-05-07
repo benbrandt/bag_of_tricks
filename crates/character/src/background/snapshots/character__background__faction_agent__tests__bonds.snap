@@ -1,0 +1,12 @@
+---
+source: crates/character/src/background/faction_agent.rs
+expression: background.bonds()
+
+---
+- I would die to recover an ancient relic of my faction that was lost long ago.
+- I will someday get revenge on the corrupt faction hierarchy who branded me a traitor.
+- I owe my life to the faction member who took me in when my parents died.
+- Everything I do is for the common people.
+- I will do anything to protect the network where I served.
+- I seek to preserve a secret text that my enemies consider heretical and seek to destroy.
+

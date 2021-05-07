@@ -1,0 +1,14 @@
+---
+source: crates/character/src/background/mercenary_veteran.rs
+expression: background.traits()
+
+---
+- "I'm always polite and respectful."
+- "I'm haunted by memories of war. I can't get the images of violence out of my mind."
+- "I've lost too many friends, and I'm slow to make new ones."
+- "I'm full of inspiring and cautionary tales from my military experience relevant to almost every combat situation."
+- I can stare down a hell hound without flinching.
+- I enjoy being strong and like breaking things.
+- I have a crude sense of humor.
+- "I face problems head-on. A simple, direct solution is the best path to success."
+
