@@ -1,5 +1,5 @@
 ---
-source: character/src/race/half_elf.rs
+source: crates/character/src/race/half_elf.rs
 expression: half_elf.features()
 
 ---
@@ -11,8 +11,4 @@ expression: half_elf.features()
   citation:
     - Phb
     - 39
-- title: Drow Magic
-  citation:
-    - Phb
-    - 24
 

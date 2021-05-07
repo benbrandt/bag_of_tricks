@@ -9,6 +9,7 @@ use super::Character;
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, Eq, Hash, PartialEq, Serialize)]
 pub(crate) enum Language {
     Abyssal,
+    Aquan,
     Auran,
     Celestial,
     Common,

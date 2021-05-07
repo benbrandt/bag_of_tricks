@@ -8,7 +8,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
-use personality::PersonalityOptions;
+use personality::{Influence, PersonalityOptions};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -47,7 +47,6 @@ enum Variant {
     FleetOfFoot,
     MaskOfTheWild,
     SkillVersatility,
-    // TODO: Once there are sea elves
     Swimming,
 }
 
@@ -55,15 +54,17 @@ impl Variant {
     fn gen(rng: &mut impl Rng, subrace: &ElfSubrace) -> Self {
         let mut choices = vec![Self::SkillVersatility];
         choices.extend(match subrace {
-            ElfSubrace::Dark => vec![Self::DrowMagic],
+            ElfSubrace::Dark(_) => vec![Self::DrowMagic],
             ElfSubrace::High(_) => {
                 vec![Self::ElfWeaponTraining, Self::Cantrip]
             }
+            ElfSubrace::Sea => vec![Self::Swimming],
             ElfSubrace::Wood => vec![
                 Self::ElfWeaponTraining,
                 Self::FleetOfFoot,
                 Self::MaskOfTheWild,
-            ], // TODO: Sea Elf
+            ],
+            ElfSubrace::Eladrin(_) | ElfSubrace::ShadarKai => vec![],
         });
         *choices.choose(rng).unwrap()
     }
@@ -207,7 +208,23 @@ impl Name for HalfElf {
     }
 }
 
-impl PersonalityOptions for HalfElf {}
+impl PersonalityOptions for HalfElf {
+    fn bonds(&self) -> Vec<String> {
+        self.subrace.bonds()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        self.subrace.flaws()
+    }
+
+    fn ideals(&self) -> Vec<(String, Influence)> {
+        self.subrace.ideals()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        self.subrace.traits()
+    }
+}
 
 impl Proficiencies for HalfElf {
     fn proficiencies(&self) -> Vec<Proficiency> {

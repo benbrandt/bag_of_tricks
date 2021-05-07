@@ -32,8 +32,8 @@ chosen_equipment:
 languages:
   - Common
   - Dwarvish
-  - Orc
-  - DeepSpeech
+  - Infernal
+  - Celestial
 level: 1
 name: Ilgostrogue Foehammer
 personality:
@@ -56,8 +56,8 @@ proficiencies:
       Specific: Warhammer
   - Skill: Insight
   - Tool:
-      ArtisansTools: MasonsTools
-  - Skill: Arcana
+      ArtisansTools: SmithsTools
+  - Skill: Religion
 race:
   type: Dwarf
   subrace:

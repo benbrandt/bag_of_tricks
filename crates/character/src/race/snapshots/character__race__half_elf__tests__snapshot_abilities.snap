@@ -1,12 +1,12 @@
 ---
-source: character/src/race/half_elf.rs
+source: crates/character/src/race/half_elf.rs
 expression: half_elf.abilities()
 
 ---
 - - Charisma
   - 2
-- - Intelligence
+- - Wisdom
   - 1
-- - Dexterity
+- - Intelligence
   - 1
 

@@ -20,7 +20,7 @@ SKILLS:
 PROF  MOD  SKILL            BONUS:
       DEX  Acrobatics       +0
       WIS  Animal Handling  +2
- X    INT  Arcana           +4
+      INT  Arcana           +2
       STR  Athletics        -2
       CHA  Deception        +0
       INT  History          +2
@@ -32,7 +32,7 @@ PROF  MOD  SKILL            BONUS:
       WIS  Perception       +2
       CHA  Performance      +0
       CHA  Persuasion       +0
-      INT  Religion         +2
+ X    INT  Religion         +4
       DEX  Sleight of Hand  +0
       DEX  Stealth          +0
       WIS  Survival         +2
@@ -42,8 +42,8 @@ Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish, Orc, Deep Speech
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(MasonsTools))
+LANGUAGES: Common, Dwarvish, Infernal, Celestial
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools))
 
 CHARACTERISTICS:
 Age: 39

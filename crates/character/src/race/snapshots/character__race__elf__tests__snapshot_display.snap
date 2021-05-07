@@ -1,10 +1,16 @@
 ---
-source: character/src/race/elf.rs
-expression: "ElfSubrace::iter().map(|subrace|\n                           format!(\"{}\", Elf\n                                   {\n                                       subrace\n                                   })).collect::<Vec<String>>().join(\"\\n\\n\")"
+source: crates/character/src/race/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           format!(\"{}\", Elf\n                                   {\n                                       story_hook : String :: new(), subrace\n                                   })).collect::<Vec<String>>().join(\"\\n\\n\")"
 
 ---
 Dark Elf
 
+Autumn Eladrin Elf
+
 High Elf
+
+Sea Elf
+
+Shadar-kai Elf
 
 Wood Elf

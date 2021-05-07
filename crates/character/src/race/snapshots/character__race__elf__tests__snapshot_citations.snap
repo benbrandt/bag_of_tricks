@@ -1,6 +1,6 @@
 ---
-source: character/src/race/elf.rs
-expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{subrace,}).citations()).collect::<Vec<CitationList>>()"
+source: crates/character/src/race/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{story_hook: String::new(),\n                                subrace,}).citations()).collect::<Vec<CitationList>>()"
 
 ---
 - - - Phb
@@ -9,8 +9,20 @@ expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{s
     - 24
 - - - Phb
     - 21
+  - - Mtof
+    - 61
+- - - Phb
+    - 21
   - - Phb
     - 23
+- - - Phb
+    - 21
+  - - Mtof
+    - 62
+- - - Phb
+    - 21
+  - - Mtof
+    - 62
 - - - Phb
     - 21
   - - Phb

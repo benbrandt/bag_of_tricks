@@ -1,6 +1,6 @@
 ---
-source: character/src/race/elf.rs
-expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
+source: crates/character/src/race/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{story_hook: String::new(),\n                                subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
 
 ---
 - - title: Darkvision
@@ -39,10 +39,62 @@ expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{s
     citation:
       - Phb
       - 23
+  - title: Fey Step
+    citation:
+      - Mtof
+      - 62
+- - title: Darkvision
+    citation:
+      - Phb
+      - 23
+  - title: Fey Ancestry
+    citation:
+      - Phb
+      - 23
+  - title: Trance
+    citation:
+      - Phb
+      - 23
   - title: Cantrip
     citation:
       - Phb
       - 24
+- - title: Darkvision
+    citation:
+      - Phb
+      - 23
+  - title: Fey Ancestry
+    citation:
+      - Phb
+      - 23
+  - title: Trance
+    citation:
+      - Phb
+      - 23
+  - title: Child of the Sea
+    citation:
+      - Mtof
+      - 62
+  - title: Friend of the Sea
+    citation:
+      - Mtof
+      - 62
+- - title: Darkvision
+    citation:
+      - Phb
+      - 23
+  - title: Fey Ancestry
+    citation:
+      - Phb
+      - 23
+  - title: Trance
+    citation:
+      - Phb
+      - 23
+  - title: Blessing of the Raven Queen
+    citation:
+      - Mtof
+      - 63
 - - title: Darkvision
     citation:
       - Phb
