@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -98,6 +99,8 @@ impl Name for Kenku {
         (*NAMES.choose(rng).unwrap()).to_string()
     }
 }
+
+impl PersonalityOptions for Kenku {}
 
 impl Proficiencies for Kenku {
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

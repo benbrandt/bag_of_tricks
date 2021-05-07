@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -216,6 +217,8 @@ impl Name for Kobold {
         (*NAMES.choose(rng).unwrap()).to_string()
     }
 }
+
+impl PersonalityOptions for Kobold {}
 
 impl Proficiencies for Kobold {}
 

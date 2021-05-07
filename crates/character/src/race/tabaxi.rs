@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -148,6 +149,8 @@ impl Name for Tabaxi {
         )
     }
 }
+
+impl PersonalityOptions for Tabaxi {}
 
 impl Proficiencies for Tabaxi {
     fn proficiencies(&self) -> Vec<Proficiency> {

@@ -8,6 +8,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -205,6 +206,8 @@ impl Name for HalfElf {
         format!("{} {}", first_name, surname)
     }
 }
+
+impl PersonalityOptions for HalfElf {}
 
 impl Proficiencies for HalfElf {
     fn proficiencies(&self) -> Vec<Proficiency> {

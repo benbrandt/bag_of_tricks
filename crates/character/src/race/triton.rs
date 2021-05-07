@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -137,6 +138,8 @@ impl Name for Triton {
         )
     }
 }
+
+impl PersonalityOptions for Triton {}
 
 impl Proficiencies for Triton {}
 

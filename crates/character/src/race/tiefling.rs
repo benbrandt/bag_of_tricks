@@ -14,6 +14,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -400,6 +401,8 @@ impl Name for Tiefling {
         )
     }
 }
+
+impl PersonalityOptions for Tiefling {}
 
 impl Proficiencies for Tiefling {}
 

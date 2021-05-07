@@ -8,6 +8,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -20,7 +21,11 @@ use crate::{
     proficiencies::{Proficiencies, Proficiency},
 };
 
-use super::{human::Human, orc::Orc, Race};
+use super::{
+    human::Human,
+    orc::{Orc, BONDS, FLAWS, IDEALS, TRAITS},
+    Race,
+};
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(4, 10),
@@ -116,6 +121,24 @@ impl Name for HalfOrc {
     }
 }
 
+impl PersonalityOptions for HalfOrc {
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
+}
+
 impl Proficiencies for HalfOrc {
     fn proficiencies(&self) -> Vec<Proficiency> {
         vec![Proficiency::Skill(Skill::Intimidation)]
@@ -185,5 +208,29 @@ mod tests {
     fn test_snapshot_features() {
         let half_orc = HalfOrc;
         insta::assert_yaml_snapshot!(half_orc.features());
+    }
+
+    #[test]
+    fn test_bonds() {
+        let half_orc = HalfOrc;
+        insta::assert_yaml_snapshot!(half_orc.bonds());
+    }
+
+    #[test]
+    fn test_flaws() {
+        let half_orc = HalfOrc;
+        insta::assert_yaml_snapshot!(half_orc.flaws());
+    }
+
+    #[test]
+    fn test_ideals() {
+        let half_orc = HalfOrc;
+        insta::assert_yaml_snapshot!(half_orc.ideals());
+    }
+
+    #[test]
+    fn test_traits() {
+        let half_orc = HalfOrc;
+        insta::assert_yaml_snapshot!(half_orc.traits());
     }
 }

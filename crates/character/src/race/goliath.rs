@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -111,6 +112,8 @@ impl Name for Goliath {
         )
     }
 }
+
+impl PersonalityOptions for Goliath {}
 
 impl Proficiencies for Goliath {
     fn proficiencies(&self) -> Vec<Proficiency> {

@@ -1,8 +1,8 @@
 ---
-source: character/src/race/dragonborn.rs
+source: crates/character/src/race/dragonborn.rs
 expression: "[female_name, male_name]"
 
 ---
-- "Daardendrian Harann \"Leaper\""
-- "Nemmonis Patrin \"Earbender\""
+- "Daar Earbender \"Kerrhylon\""
+- "Nadarr Shieldbiter \"Drachedandion\""
 

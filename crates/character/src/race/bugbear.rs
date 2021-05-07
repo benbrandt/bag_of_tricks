@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -114,6 +115,8 @@ impl Name for Bugbear {
         (*BUGBEAR.choose(rng).unwrap()).to_string()
     }
 }
+
+impl PersonalityOptions for Bugbear {}
 
 impl Proficiencies for Bugbear {
     fn proficiencies(&self) -> Vec<Proficiency> {

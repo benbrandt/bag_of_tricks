@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -175,7 +176,6 @@ impl Languages for Dragonborn {
 }
 
 impl Name for Dragonborn {
-    /// Order is: Clan Name, First Name, Child/Nickname
     fn gen_name(
         rng: &mut impl Rng,
         CharacteristicDetails { gender, .. }: &CharacteristicDetails,
@@ -186,12 +186,14 @@ impl Name for Dragonborn {
         };
         format!(
             "{} {} \"{}\"",
-            CLAN.choose(rng).unwrap(),
             first_names.choose(rng).unwrap(),
             CHILD.choose(rng).unwrap(),
+            CLAN.choose(rng).unwrap(),
         )
     }
 }
+
+impl PersonalityOptions for Dragonborn {}
 
 impl Proficiencies for Dragonborn {}
 

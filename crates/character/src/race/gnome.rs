@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -199,6 +200,8 @@ impl Name for Gnome {
         )
     }
 }
+
+impl PersonalityOptions for Gnome {}
 
 impl Proficiencies for Gnome {
     fn proficiencies(&self) -> Vec<Proficiency> {

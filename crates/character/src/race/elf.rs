@@ -12,6 +12,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -270,6 +271,9 @@ impl Name for Elf {
         )
     }
 }
+
+impl PersonalityOptions for Elf {}
+
 impl Proficiencies for Elf {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![Proficiency::Skill(Skill::Perception)];

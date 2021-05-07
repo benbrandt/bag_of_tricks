@@ -27,7 +27,7 @@ use alignment::AlignmentInfluences;
 use attack::Resistances;
 use characteristics::{Appearance, CharacteristicDetails};
 use citation::Citations;
-// use personality::PersonalityOptions;
+use personality::PersonalityOptions;
 use rand::prelude::IteratorRandom;
 use rand::Rng;
 use strum::{EnumIter, IntoEnumIterator};
@@ -55,7 +55,7 @@ pub(crate) trait Race:
     + Citations
     + Features
     + Languages
-    // + PersonalityOptions
+    + PersonalityOptions
     + Proficiencies
     + Resistances
     + Trinkets

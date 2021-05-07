@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::{TrinketOption, Trinkets};
@@ -109,6 +110,8 @@ impl Name for Goblin {
         (*GOBLIN.choose(rng).unwrap()).to_string()
     }
 }
+
+impl PersonalityOptions for Goblin {}
 
 impl Proficiencies for Goblin {}
 

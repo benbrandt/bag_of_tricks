@@ -1,0 +1,14 @@
+---
+source: crates/character/src/race/yuan_ti.rs
+expression: yuan_ti.traits()
+
+---
+- I see omens in every event and action. The serpent gods continue to advise us.
+- "I have very high standards for food, drink, and physical pleasures."
+- "I prefer to be alone rather than among other creatures, including my own kind."
+- I sometimes become consumed by philosophy.
+- I believe I am superior to others of my caste.
+- I am driven by wanderlust and want to explore lands far from our cities.
+- "I am interested in modern human culture, even as primitive as it is."
+- "I await the day when we again conquer lands by force, as we did in the old times."
+

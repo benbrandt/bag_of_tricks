@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::{Influence, PersonalityOptions};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -27,6 +28,41 @@ use crate::{
 };
 
 use super::{human::Human, Race};
+
+const BONDS: &[&str] = &[
+    "I will see our empire rise again and, in so doing, win the favor of the serpent gods.",
+    "I am enamored with the culture and trappings of another society and wish to be part of it.",
+    "I respect my superiors and obey them without question. My fate is theirs to decide.",
+    "I have an interest in an unsuitable mate, which I can't suppress.",
+    "I respect and emulate a great hero or ancestor.",
+    "An enemy destroyed something of value to me, and I will find where it lives and kill the offender.",
+];
+const FLAWS: &[&str] = &[
+    "I feel twinges of emotion, and it shames me that I am imperfect in this way.",
+    "I put too much credence in the dictates of a particular god.",
+    "I frequently overindulge in food and wine, and I am impaired and lethargic for days afterward.",
+    "I worship a forbidden god.",
+    "I secretly believe things would be better if I was in charge.",
+    "If I could get away with it, I would gladly kill and eat a superior yuan-ti.",
+];
+const IDEALS: &[(&str, Influence)] = &[
+    ("Greed. I display my wealth as a sign of my power and prosperity.", Influence::Evil),
+    ("Aspiration. I strive to follow the path toward becoming an anathema.", Influence::Evil),
+    ("Unity. No leader shall put personal goals above those of our race.", Influence::Any),
+    ("Kinship. My allegiance is to my caste and my city. Other settlements can burn for all I care.", Influence::Any),
+    ("Inspiration. My actions set an example for the lesser castes to emulate.", Influence::Any),
+    ("Power. Everything I choose to do is determined by whether it will make me smarter and stronger.", Influence::Evil),
+];
+const TRAITS: &[&str] = &[
+    "I see omens in every event and action. The serpent gods continue to advise us.",
+    "I have very high standards for food, drink, and physical pleasures.",
+    "I prefer to be alone rather than among other creatures, including my own kind.",
+    "I sometimes become consumed by philosophy.",
+    "I believe I am superior to others of my caste.",
+    "I am driven by wanderlust and want to explore lands far from our cities.",
+    "I am interested in modern human culture, even as primitive as it is.",
+    "I await the day when we again conquer lands by force, as we did in the old times.",
+];
 
 #[derive(Clone, Copy, Deserialize, Display, EnumIter, Serialize)]
 enum SkinColor {
@@ -380,6 +416,24 @@ impl Name for YuanTiPureblood {
     }
 }
 
+impl PersonalityOptions for YuanTiPureblood {
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
+}
+
 impl Proficiencies for YuanTiPureblood {}
 
 #[typetag::serde]
@@ -517,5 +571,33 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.immunities());
+    }
+
+    #[test]
+    fn test_bonds() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.bonds());
+    }
+
+    #[test]
+    fn test_flaws() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.flaws());
+    }
+
+    #[test]
+    fn test_ideals() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.ideals());
+    }
+
+    #[test]
+    fn test_traits() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        insta::assert_yaml_snapshot!(yuan_ti.traits());
     }
 }

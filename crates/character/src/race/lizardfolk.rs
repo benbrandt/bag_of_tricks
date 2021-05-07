@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -130,6 +131,8 @@ impl Name for Lizardfolk {
         (*NAMES.choose(rng).unwrap()).to_string()
     }
 }
+
+impl PersonalityOptions for Lizardfolk {}
 
 impl Proficiencies for Lizardfolk {
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {

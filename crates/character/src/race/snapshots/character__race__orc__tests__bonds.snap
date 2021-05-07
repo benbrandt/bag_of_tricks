@@ -1,0 +1,12 @@
+---
+source: crates/character/src/race/orc.rs
+expression: orc.bonds()
+
+---
+- I will defend my tribe to the death.
+- Every serious choice I make must be decided by signs or omens from the gods.
+- I carry the teeth of a great warrior. They inspire me to commit great deeds in battle.
+- "To avenge Gruumsh, I will kill every elf I see."
+- I will seek and destroy those who murdered my tribe.
+- I owe my survival to a non-orc.
+

@@ -8,6 +8,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::IntoEnumIterator;
@@ -111,6 +112,8 @@ impl Name for Human {
         )
     }
 }
+
+impl PersonalityOptions for Human {}
 
 impl Proficiencies for Human {}
 

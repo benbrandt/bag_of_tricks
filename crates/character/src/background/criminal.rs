@@ -140,7 +140,7 @@ impl PersonalityOptions for Criminal {
         FLAWS.iter().map(|&s| s.to_string()).collect()
     }
 
-    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+    fn ideals(&self) -> Vec<(String, Influence)> {
         IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
     }
 

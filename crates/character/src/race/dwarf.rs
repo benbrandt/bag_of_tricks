@@ -12,6 +12,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -243,6 +244,8 @@ impl Name for Dwarf {
         )
     }
 }
+
+impl PersonalityOptions for Dwarf {}
 
 impl Proficiencies for Dwarf {
     fn proficiencies(&self) -> Vec<Proficiency> {

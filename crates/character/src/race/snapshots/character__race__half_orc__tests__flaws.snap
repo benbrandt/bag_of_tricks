@@ -1,0 +1,12 @@
+---
+source: crates/character/src/race/half_orc.rs
+expression: half_orc.flaws()
+
+---
+- I have a calm temperament and let insults roll off my back.
+- "I don't fear the gods and have no patience for superstitions."
+- "I am slow to anger, but when I do become enraged I fight until my enemies are dead, no matter the cost."
+- I understand the value of civilization and the order that society brings.
+- "I don't trust anyone."
+- I believe in living to fight another day.
+

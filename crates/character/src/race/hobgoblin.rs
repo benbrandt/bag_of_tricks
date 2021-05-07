@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -105,6 +106,8 @@ impl Name for Hobgoblin {
         (*HOBGOBLIN.choose(rng).unwrap()).to_string()
     }
 }
+
+impl PersonalityOptions for Hobgoblin {}
 
 impl Proficiencies for Hobgoblin {
     fn proficiencies(&self) -> Vec<Proficiency> {

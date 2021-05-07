@@ -1,7 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
-use personality::PersonalityOptions;
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -111,7 +111,7 @@ impl PersonalityOptions for CityWatch {
         FLAWS.iter().map(|&s| s.to_string()).collect()
     }
 
-    fn ideals(&self) -> Vec<(String, personality::Influence)> {
+    fn ideals(&self) -> Vec<(String, Influence)> {
         IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
     }
 

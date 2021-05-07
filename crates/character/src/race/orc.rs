@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use trinkets::Trinkets;
@@ -26,6 +27,54 @@ use crate::{
 };
 
 use super::Race;
+
+pub(crate) const BONDS: &[&str] = &[
+    "I will defend my tribe to the death.",
+    "Every serious choice I make must be decided by signs or omens from the gods.",
+    "I carry the teeth of a great warrior. They inspire me to commit great deeds in battle.",
+    "To avenge Gruumsh, I will kill every elf I see.",
+    "I will seek and destroy those who murdered my tribe.",
+    "I owe my survival to a non-orc.",
+];
+pub(crate) const FLAWS: &[&str] = &[
+    "I have a calm temperament and let insults roll off my back.",
+    "I don't fear the gods and have no patience for superstitions.",
+    "I am slow to anger, but when I do become enraged I fight until my enemies are dead, no matter the cost.",
+    "I understand the value of civilization and the order that society brings.",
+    "I don't trust anyone.",
+    "I believe in living to fight another day.",
+];
+pub(crate) const IDEALS: &[(&str, Influence)] = &[
+    (
+        "Strength. Showing superior strength brings honor to Gruumsh.",
+        Influence::Any,
+    ),
+    (
+        "Prowess. Killing all your enemies is the path to greatness.",
+        Influence::Evil,
+    ),
+    (
+        "Dominance. I will have achieved glory when all cower before my might.",
+        Influence::Evil,
+    ),
+    (
+        "Intimidation. I can get what I want from weaklings that fear me.",
+        Influence::Evil,
+    ),
+    (
+        "Glory. The goals of the tribe don't concern me. Personal glory is what I crave.",
+        Influence::Chaotic,
+    ),
+    ("Savagery. I will not be controlled.", Influence::Chaotic),
+];
+pub(crate) const TRAITS: &[&str] = &[
+    "I never relinquish my weapon.",
+    "I welcome any chance to prove my battle skills.",
+    "I always appear like I am about to kill everyone around me.",
+    "I love a good brawl.",
+    "I drink the blood of monsters to consume their power.",
+    "I chant orcish war dirges during combat.",
+];
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(5, 4),
@@ -131,6 +180,24 @@ impl Name for Orc {
             Self::gen_first_name(rng, characteristics),
             Self::gen_epithet(rng)
         )
+    }
+}
+
+impl PersonalityOptions for Orc {
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
     }
 }
 
@@ -254,6 +321,34 @@ mod tests {
         let characteristics = orc.gen_characteristics(&mut rng);
         let name = Orc::gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_bonds() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        insta::assert_yaml_snapshot!(orc.bonds());
+    }
+
+    #[test]
+    fn test_flaws() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        insta::assert_yaml_snapshot!(orc.flaws());
+    }
+
+    #[test]
+    fn test_ideals() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        insta::assert_yaml_snapshot!(orc.ideals());
+    }
+
+    #[test]
+    fn test_traits() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        insta::assert_yaml_snapshot!(orc.traits());
     }
 
     #[test]
