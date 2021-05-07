@@ -1,17 +1,22 @@
 ---
-source: character/src/race/dwarf.rs
+source: crates/character/src/race/dwarf.rs
 expression: dwarf
 
 ---
 - type: Dwarf
+  clan_status: Beleaguered. Surrounded by drow and illithid foes
+  clan_trait: Conducts trade with the City of Brass
+  clan_vocation: Potter
+  quirk: "Humans fascinate you, and you collect odd trinkets of their culture."
+  story_hook: "You are a heretic, drawn to worship of Moradin."
   subrace: Duergar
-- Helja Foehammer
-- age: 49
+- Bardryn Earthlord
+- age: 188
   base_speeds:
     - Walking: 25
   ethnicity: ~
   gender: Female
-  height: 49
+  height: 50
   size: Medium
-  weight: 170
+  weight: 145
 

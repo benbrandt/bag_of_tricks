@@ -348,7 +348,7 @@ impl Appearance for Elf {}
 
 impl Backstory for Elf {
     fn backstory(&self) -> Vec<String> {
-        let mut backstory = vec![format!("Adventurer Story Hook: {}", self.story_hook)];
+        let mut backstory = vec![format!("Reason for Adventuring: {}", self.story_hook)];
         if let ElfSubrace::Dark(s) = &self.subrace {
             backstory.push(format!("Drow House Specialty: {}", s));
         }

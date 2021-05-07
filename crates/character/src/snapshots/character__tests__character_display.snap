@@ -3,38 +3,38 @@ source: crates/character/src/lib.rs
 expression: character
 
 ---
-CHARACTER NAME: Ilgostrogue Foehammer
+CHARACTER NAME: Connerad Runehammer
 RACE: Hill Dwarf (PHB p18,20)
-BACKGROUND: The Emerald Enclave Faction Agent (SCAG p147)
+BACKGROUND: Knight (PHB p135)
 ALIGNMENT: Lawful Good
 LEVEL: 1
 
-STR  -2 (6)
-DEX  +0 (11)
-CON  +4 (19)
-INT  +2 (15)
-WIS  +2 (14)
-CHA  +0 (11)
+STR  +2 (15)
+DEX  +2 (15)
+CON  +3 (17)
+INT  +1 (13)
+WIS  +2 (15)
+CHA  +0 (10)
 
 SKILLS:
 PROF  MOD  SKILL            BONUS:
-      DEX  Acrobatics       +0
+      DEX  Acrobatics       +2
       WIS  Animal Handling  +2
-      INT  Arcana           +2
-      STR  Athletics        -2
+      INT  Arcana           +1
+      STR  Athletics        +2
       CHA  Deception        +0
-      INT  History          +2
- X    WIS  Insight          +4
+ X    INT  History          +3
+      WIS  Insight          +2
       CHA  Intimidation     +0
-      INT  Investigation    +2
+      INT  Investigation    +1
       WIS  Medicine         +2
-      INT  Nature           +2
+      INT  Nature           +1
       WIS  Perception       +2
       CHA  Performance      +0
-      CHA  Persuasion       +0
- X    INT  Religion         +4
-      DEX  Sleight of Hand  +0
-      DEX  Stealth          +0
+ X    CHA  Persuasion       +2
+      INT  Religion         +1
+      DEX  Sleight of Hand  +2
+      DEX  Stealth          +2
       WIS  Survival         +2
 
 SPEED:
@@ -42,35 +42,40 @@ Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish, Infernal, Celestial
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools))
+LANGUAGES: Common, Dwarvish, Halfling
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(MasonsTools)), Tool(GamingSet(Dice))
 
 CHARACTERISTICS:
-Age: 39
+Age: 135
 Gender: Male
 Size: Medium
-Height: 4'1"
-Weight: 160 lb.
+Height: 3'11"
+Weight: 124 lb.
 
 PERSONALITY TRAITS:
-I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.
-I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me.
-IDEAL: Tradition. The ancient traditions of membership and secrecy must be preserved and upheld. (Lawful)
-BOND: I seek to preserve a secret text that my enemies consider heretical and seek to destroy.
-FLAW: I am inflexible in my thinking.
+If you do me an injury, I will crush you, ruin your name, and salt your fields.
+Despite my noble birth, I do not place myself above other folk. We all have the same blood.
+IDEAL: Family. Blood runs thicker than water. (Any)
+BOND: Nothing is more important than the other members of my family.
+FLAW: I hide a truly scandalous secret that could ruin my family forever.
 
 EQUIPMENT
-Gear(Other(ClothesCommon)), Gear(Other(Pouch)), Other("a code-book for a covert faction"), Other("the badge of your faction"), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
-COINS: 15gp
+Gear(Other(ClothesFine)), Gear(Other(SignetRing)), Other("a scroll of pedigree"), Other("a purse"), Other("a banner or other token from a noble lord or lady to whom you have given your heart — in a chaste sort of devotion"), Other("A white, sequined glove sized for a human")
+COINS: 25gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
 - Dwarven Resilience (PHB p20)
 - Stonecunning (PHB p20)
 - Dwarven Toughness (PHB p20)
-- Safe Haven (SCAG p147)
+- Retainers (PHB p136)
 
 APPEARANCE:
 
 BACKSTORY:
+Clan's Status: Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city
+Clan's Notable Trait: Clan owns a powerful artifact, such as an Axe of the Dwarvish Lords
+Clan Vocation: Weaponsmith
+Quirk: You prefer to sleep during the day.
+Reason for Adventuring: You were assigned to become a merchant by the priests of Moradin and have yet to forgive them for their mistake. You should be working a forge, not wandering the outside world!
 

@@ -4,47 +4,44 @@ expression: character
 
 ---
 abilities:
-  Strength: 6
-  Dexterity: 11
-  Constitution: 19
-  Intelligence: 15
-  Wisdom: 14
-  Charisma: 11
+  Strength: 15
+  Dexterity: 15
+  Constitution: 17
+  Intelligence: 13
+  Wisdom: 15
+  Charisma: 10
 alignment:
   - Lawful
   - Good
 background:
-  type: FactionAgent
-  faction: EmeraldEnclave
+  type: Noble
+  variant: Knight
 characteristics:
-  age: 39
+  age: 135
   base_speeds:
     - Walking: 25
   ethnicity: ~
   gender: Male
-  height: 49
+  height: 47
   size: Medium
-  weight: 160
+  weight: 124
 chosen_equipment:
-  - Other: a code-book for a covert faction
-  - Other: the badge of your faction
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
+  - Other: "A white, sequined glove sized for a human"
 languages:
   - Common
   - Dwarvish
-  - Infernal
-  - Celestial
+  - Halfling
 level: 1
-name: Ilgostrogue Foehammer
+name: Connerad Runehammer
 personality:
-  bond: I seek to preserve a secret text that my enemies consider heretical and seek to destroy.
-  flaw: I am inflexible in my thinking.
+  bond: Nothing is more important than the other members of my family.
+  flaw: I hide a truly scandalous secret that could ruin my family forever.
   ideal:
-    - Tradition. The ancient traditions of membership and secrecy must be preserved and upheld.
-    - Lawful
+    - Family. Blood runs thicker than water.
+    - Any
   traits:
-    - "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
-    - "I've enjoyed fine food, drink, and high society among my faction's elite. Rough living grates on me."
+    - "If you do me an injury, I will crush you, ruin your name, and salt your fields."
+    - "Despite my noble birth, I do not place myself above other folk. We all have the same blood."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -54,12 +51,19 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Skill: Insight
+  - Skill: History
+  - Skill: Persuasion
   - Tool:
-      ArtisansTools: SmithsTools
-  - Skill: Religion
+      ArtisansTools: MasonsTools
+  - Tool:
+      GamingSet: Dice
 race:
   type: Dwarf
+  clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"
+  clan_trait: "Clan owns a powerful artifact, such as an Axe of the Dwarvish Lords"
+  clan_vocation: Weaponsmith
+  quirk: You prefer to sleep during the day.
+  story_hook: "You were assigned to become a merchant by the priests of Moradin and have yet to forgive them for their mistake. You should be working a forge, not wandering the outside world!"
   subrace:
     Hill: Hill
 
