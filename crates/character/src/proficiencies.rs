@@ -26,7 +26,7 @@ pub(crate) enum WeaponProficiency {
 }
 
 /// A way to encapsulate a proficiency that needs to be chosen for a character.
-#[derive(Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Clone, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum ProficiencyOption {
     /// Choose from a given list of proficiency options.
     From(Vec<Proficiency>, usize),
@@ -40,6 +40,8 @@ pub(crate) enum ProficiencyOption {
     MusicalInstrument,
     /// Choose a random skill to be proficient in (weighted towards you highest modifiers)
     Skill(Option<Vec<Skill>>, usize),
+    /// Choose a random tool to be proficient in
+    Tool(usize),
     /// Choose a random weapon.
     Weapon(Option<WeaponCategory>, Option<WeaponClassification>, usize),
 }
@@ -53,10 +55,20 @@ impl ProficiencyOption {
                 .into_iter()
                 .filter(|p| !character.proficiencies.contains(p))
                 .choose_multiple(rng, *amount),
-            Self::FromOptions(choices, amount) => choices
-                .choose_multiple(rng, *amount)
-                .flat_map(|c| c.gen(rng, character))
-                .collect(),
+            Self::FromOptions(choices, amount) => {
+                let mut options: Vec<Proficiency> = choices
+                    .choose_multiple(rng, *amount)
+                    .flat_map(|c| c.gen(rng, character))
+                    .collect();
+                // Add some more if we didn't get enough
+                if options.len() < *amount {
+                    options.extend(
+                        Self::FromOptions(choices.clone(), *amount - options.len())
+                            .gen(rng, character),
+                    );
+                }
+                options
+            }
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|g| Proficiency::Tool(Tool::ArtisansTools(g)))
@@ -96,6 +108,28 @@ impl ProficiencyOption {
                 }
                 skills
             }
+            Self::Tool(amount) => {
+                let mut tools = Self::FromOptions(
+                    Tool::iter()
+                        .filter_map(|t| match t {
+                            Tool::ArtisansTools(_) => Some(ProficiencyOption::ArtisansTools),
+                            Tool::GamingSet(_) => Some(ProficiencyOption::GamingSet),
+                            Tool::MusicalInstrument(_) => {
+                                Some(ProficiencyOption::MusicalInstrument)
+                            }
+                            _ => (!character.proficiencies.contains(&Proficiency::Tool(t)))
+                                .then(|| ProficiencyOption::From(vec![Proficiency::Tool(t)], 1)),
+                        })
+                        .collect(),
+                    *amount,
+                )
+                .gen(rng, character);
+                // Add some more if we didn't get enough
+                if tools.len() < *amount {
+                    tools.extend(Self::Tool(*amount - tools.len()).gen(rng, character));
+                }
+                tools
+            }
             Self::Weapon(category, classification, amount) => Self::From(
                 WeaponType::iter()
                     .filter(|w| {
@@ -134,7 +168,9 @@ impl Proficiency {
     pub(crate) fn gen_replacement(self, rng: &mut impl Rng, character: &Character) -> Vec<Self> {
         match self {
             Self::Skill(_) => ProficiencyOption::Skill(None, 1).gen(rng, character),
-            Self::Armor(_) | Self::Tool(_) | Self::Vehicle(_) | Self::Weapon(_) => todo!(),
+            Self::Tool(_) => ProficiencyOption::Tool(1).gen(rng, character),
+            Self::Weapon(_) => ProficiencyOption::Weapon(None, None, 1).gen(rng, character),
+            Self::Armor(_) | Self::Vehicle(_) => todo!(),
         }
     }
 }

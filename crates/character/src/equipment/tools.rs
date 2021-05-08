@@ -1,3 +1,4 @@
+#![allow(clippy::default_trait_access)]
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
@@ -41,6 +42,12 @@ pub(crate) enum ArtisansTools {
     WoodcarversTools,
 }
 
+impl Default for ArtisansTools {
+    fn default() -> Self {
+        Self::AlchemistsSupplies
+    }
+}
+
 #[derive(
     Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
@@ -53,6 +60,12 @@ pub(crate) enum GamingSet {
     PlayingCard,
     #[strum(serialize = "Three-Dragon Ante Set")]
     ThreeDragonAnte,
+}
+
+impl Default for GamingSet {
+    fn default() -> Self {
+        Self::Dice
+    }
 }
 
 #[derive(
@@ -72,7 +85,15 @@ pub(crate) enum MusicalInstrument {
     Viol,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+impl Default for MusicalInstrument {
+    fn default() -> Self {
+        Self::Bagpipes
+    }
+}
+
+#[derive(
+    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+)]
 pub(crate) enum Tool {
     ArtisansTools(ArtisansTools),
     #[strum(serialize = "Disguise Kit")]

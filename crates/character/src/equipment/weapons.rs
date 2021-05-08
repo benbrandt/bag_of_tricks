@@ -7,7 +7,7 @@ pub(crate) enum WeaponCategory {
     Martial,
 }
 
-#[derive(Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum WeaponClassification {
     Melee,
     Ranged,
