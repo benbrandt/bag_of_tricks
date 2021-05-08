@@ -1,5 +1,5 @@
 ---
-source: deities/src/halfling.rs
+source: crates/deities/src/halfling.rs
 expression: "Halfling::deities()"
 
 ---
@@ -8,6 +8,7 @@ expression: "Halfling::deities()"
     - god of vigilance and war
     - defender-god
     - watchful protector
+    - "Province: vigilance, war"
   alignment:
     - Lawful
     - Good
@@ -18,6 +19,7 @@ expression: "Halfling::deities()"
 - name: Brandobaris
   titles:
     - "god of thievery, stealth, and adventure"
+    - "Province: adventure, thievery"
   alignment:
     - Neutral
     - Neutral
@@ -25,10 +27,21 @@ expression: "Halfling::deities()"
     - Trickery
   symbols:
     - Halfling footprint
+- name: Charmalaine
+  titles:
+    - "Province: keen senses, luck"
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Trickery
+  symbols:
+    - Burning boot print
 - name: Cyrrollalee
   titles:
     - "goddess of hearth, hospitality, and home"
     - goddess of trust and handicrafts
+    - "Province: hearty, home"
   alignment:
     - Lawful
     - Good
@@ -43,9 +56,10 @@ expression: "Halfling::deities()"
     - "goddess of love, song, and dance"
     - "the lady of fields, streams, and the wilds found in shire and glen"
     - the Green Sister of Yondalla
+    - "Province: agriculture, nature, weather"
   alignment:
     - Neutral
-    - Neutral
+    - Good
   domains:
     - Nature
     - Tempest
@@ -54,11 +68,13 @@ expression: "Halfling::deities()"
 - name: Urogalan
   titles:
     - god of earth and death
+    - "Province: earth, death"
   alignment:
     - Lawful
     - Neutral
   domains:
     - Death
+    - Grave
     - Knowledge
   symbols:
     - "Silhouette of a dog's head"
@@ -67,6 +83,7 @@ expression: "Halfling::deities()"
     - "goddess of bounty, fertility, and protection"
     - "protector of hearth, home, and family"
     - the Blessed One
+    - Primary goddess of halflings
   alignment:
     - Lawful
     - Good
@@ -75,4 +92,5 @@ expression: "Halfling::deities()"
   symbols:
     - Cornucopia on a shield
     - shield
+    - cornucopia
 

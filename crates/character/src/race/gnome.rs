@@ -13,7 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
-use personality::PersonalityOptions;
+use personality::{Influence, PersonalityOptions};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -32,6 +32,37 @@ use crate::{
 };
 
 use super::Race;
+
+const BONDS: &[&str] = &[
+    "You pledge to bring something of immense value back to your burrow.",
+    "Anything of great quality and artisanship is to be protected, respected, and cared for.",
+    "Kobolds have caused you and your people nothing but trouble. You will avenge those wrongs.",
+    "You are searching for your lost love.",
+    "You will recover a keepsake stolen from your clan.",
+    "You are willing to take risks to learn about the world.",
+];
+const FLAWS: &[&str] = &[
+    "You embody the typical absent-minded professor. If you could forget where you put your head, you would.",
+    "You prefer to hide during a fight.",
+    "There is no difference between what you think and what you say.",
+    "You can't keep a secret.",
+];
+const IDEALS: &[(&str, Influence)] = &[
+    ("Love. You love little (and big) critters and go out of your way to help them.", Influence::Good),
+    ("Curiosity. You can't stand an unsolved mystery or an unopened door.", Influence::Chaotic),
+    ("Knowledge. You are interested in everything. You never know when what you learn will come in handy.", Influence::Neutral),
+    ("Compassion. You never turn down a plea for help.", Influence::Good),
+    ("Helpfulness. Whether you see a broken contraption or a broken heart, you have to try to fix it.", Influence::Good),
+    ("Excellence. You strive to be and do the best you can.", Influence::Any),
+];
+const TRAITS: &[&str] = &[
+    "Once you develop a liking for something, you quickly become obsessed with it.",
+    "You live life like a leaf on the breeze, letting it take you where it will.",
+    "The world is a miraculous place, and you are fascinated by everything in it.",
+    "You study your friends and take notes about how they act, jotting down things they say that interest you.",
+    "Your curiosity is so wide-ranging that you sometimes have trouble concentrating on any one thing.",
+    "You like to make little objects and creatures out of twigs or bits of metal and give them to friends.",
+];
 
 const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     base_height: in_inches(2, 11),
@@ -106,7 +137,7 @@ impl Citations for Gnome {
         let race = Citation(Book::Phb, 35);
         let subrace = match self.subrace {
             GnomeSubrace::Forest | GnomeSubrace::Rock => Citation(Book::Phb, 37),
-            GnomeSubrace::Svirfneblin => Citation(Book::Scag, 115),
+            GnomeSubrace::Svirfneblin => Citation(Book::Mtof, 113),
         };
         CitationList(vec![race, subrace])
     }
@@ -160,12 +191,12 @@ impl Features for Gnome {
                 // Your Darkvision has a radius of 120 ft
                 Feature {
                     title: "Superior Darkvision",
-                    citation: Citation(Book::Scag, 115),
+                    citation: Citation(Book::Mtof, 114),
                 },
                 // You have advantage on Dexterity (Stealth) checks to hide in rocky terrain.
                 Feature {
                     title: "Stone Camouflage",
-                    citation: Citation(Book::Scag, 115),
+                    citation: Citation(Book::Mtof, 114),
                 },
             ],
         });
@@ -201,7 +232,23 @@ impl Name for Gnome {
     }
 }
 
-impl PersonalityOptions for Gnome {}
+impl PersonalityOptions for Gnome {
+    fn bonds(&self) -> Vec<String> {
+        BONDS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn flaws(&self) -> Vec<String> {
+        FLAWS.iter().map(|&s| s.to_string()).collect()
+    }
+
+    fn ideals(&self) -> Vec<(String, Influence)> {
+        IDEALS.iter().map(|&(s, i)| (s.to_string(), i)).collect()
+    }
+
+    fn traits(&self) -> Vec<String> {
+        TRAITS.iter().map(|&s| s.to_string()).collect()
+    }
+}
 
 impl Proficiencies for Gnome {
     fn proficiencies(&self) -> Vec<Proficiency> {

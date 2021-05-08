@@ -1,11 +1,12 @@
 ---
-source: deities/src/gnomish.rs
+source: crates/deities/src/gnomish.rs
 expression: "Gnomish::deities()"
 
 ---
 - name: Baervan Wildwanderer
   titles:
     - god of forests and woodlands
+    - "Province: woodlands"
   alignment:
     - Neutral
     - Good
@@ -17,6 +18,7 @@ expression: "Gnomish::deities()"
   titles:
     - god of illusion and deception
     - Sly One
+    - "Province: illusion, deception"
   alignment:
     - Neutral
     - Good
@@ -25,9 +27,21 @@ expression: "Gnomish::deities()"
     - Trickery
   symbols:
     - Dagger against a hooded cloak
+- name: Bleredd
+  titles:
+    - "Province: labor, craft"
+  alignment:
+    - Neutral
+    - Neutral
+  domains:
+    - Forge
+    - Light
+  symbols:
+    - Iron mule
 - name: Callarduran Smoothhands
   titles:
     - god of mining and carving stone
+    - "Province: mining, stone carving"
   alignment:
     - Neutral
     - Neutral
@@ -35,17 +49,19 @@ expression: "Gnomish::deities()"
     - Knowledge
     - Nature
   symbols:
-    - Golden signet ring wiht a six-pointed star
+    - Golden signet ring with a six-pointed star
 - name: Flandal Steelskin
   titles:
     - god of metalwork
     - god of mining and smithcraft
     - god of physical improvement and good health
     - the Steelsmith
+    - "Province: metalwork"
   alignment:
     - Neutral
     - Good
   domains:
+    - Forge
     - Knowledge
   symbols:
     - Flaming hammer
@@ -53,6 +69,7 @@ expression: "Gnomish::deities()"
   titles:
     - god of protection
     - "god of war, vigilance, and defense"
+    - "Province: protection"
   alignment:
     - Lawful
     - Good
@@ -66,6 +83,7 @@ expression: "Gnomish::deities()"
     - god of trickery and wiles
     - the Watchful Protector
     - the king of the gnomish gods
+    - Primary god of gnomes
   alignment:
     - Lawful
     - Good
@@ -73,34 +91,69 @@ expression: "Gnomish::deities()"
     - Trickery
   symbols:
     - Gold nugget
+- name: Gelf Darkhearth
+  titles:
+    - "Province: frustration, destruction"
+  alignment:
+    - Chaotic
+    - Neutral
+  domains:
+    - War
+  symbols:
+    - Broken anvil
 - name: Nebelun
   titles:
     - god of invention and luck
     - the Meddler
+    - "Province: invention, luck"
   alignment:
     - Chaotic
     - Good
   domains:
+    - Forge
     - Knowledge
     - Trickery
   symbols:
     - Bellows and a lizard tail
+- name: Rill Cleverthrush
+  titles:
+    - "Province: law, thought"
+  alignment:
+    - Lawful
+    - Neutral
+  domains:
+    - Knowledge
+  symbols:
+    - Interlocking gears
 - name: Segojan Earthcaller
   titles:
     - god of earth and the dead
     - god of the wilds beneath the earth
     - god of the burrows
+    - "Province: earth, the dead"
   alignment:
     - Neutral
     - Good
   domains:
+    - Grave
     - Light
   symbols:
     - Glowing gemstone
+- name: Sheyanna Flaxenstrand
+  titles:
+    - "Province: love, beauty, passion"
+  alignment:
+    - Chaotic
+    - Good
+  domains:
+    - Light
+  symbols:
+    - Two silver goblets
 - name: Urdlen
   titles:
     - god of greed and murder
     - "great-clawed god of bloodlust and evil, of greed and uncontrolled impulses"
+    - "Province: greed, murder"
   alignment:
     - Chaotic
     - Evil

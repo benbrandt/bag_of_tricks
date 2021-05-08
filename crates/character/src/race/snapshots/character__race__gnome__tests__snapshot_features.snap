@@ -1,5 +1,5 @@
 ---
-source: character/src/race/gnome.rs
+source: crates/character/src/race/gnome.rs
 expression: "GnomeSubrace::iter().map(|subrace|\n                             (Gnome{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
 
 ---
@@ -45,10 +45,10 @@ expression: "GnomeSubrace::iter().map(|subrace|\n                             (G
       - 37
   - title: Superior Darkvision
     citation:
-      - Scag
-      - 115
+      - Mtof
+      - 114
   - title: Stone Camouflage
     citation:
-      - Scag
-      - 115
+      - Mtof
+      - 114
 

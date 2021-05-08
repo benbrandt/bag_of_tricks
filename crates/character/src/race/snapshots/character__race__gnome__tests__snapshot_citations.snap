@@ -1,5 +1,5 @@
 ---
-source: character/src/race/gnome.rs
+source: crates/character/src/race/gnome.rs
 expression: "GnomeSubrace::iter().map(|subrace|\n                             (Gnome{subrace,}).citations()).collect::<Vec<CitationList>>()"
 
 ---
@@ -13,6 +13,6 @@ expression: "GnomeSubrace::iter().map(|subrace|\n                             (G
     - 37
 - - - Phb
     - 35
-  - - Scag
-    - 115
+  - - Mtof
+    - 113
 
