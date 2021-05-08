@@ -42,8 +42,8 @@ Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish, Halfling
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(MasonsTools)), Tool(GamingSet(Dice))
+LANGUAGES: Common, Dwarvish, Goblin
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(BrewersSupplies)), Tool(GamingSet(Dragonchess))
 
 CHARACTERISTICS:
 Age: 135
@@ -60,7 +60,7 @@ BOND: Nothing is more important than the other members of my family.
 FLAW: I hide a truly scandalous secret that could ruin my family forever.
 
 EQUIPMENT
-Gear(Other(ClothesFine)), Gear(Other(SignetRing)), Other("a scroll of pedigree"), Other("a purse"), Other("a banner or other token from a noble lord or lady to whom you have given your heart — in a chaste sort of devotion"), Other("A white, sequined glove sized for a human")
+Gear(Other(ClothesFine)), Gear(Other(SignetRing)), Other("a scroll of pedigree"), Other("a purse"), Other("a banner or other token from a noble lord or lady to whom you have given your heart — in a chaste sort of devotion"), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
 COINS: 25gp
 
 FEATURES AND TRAITS:

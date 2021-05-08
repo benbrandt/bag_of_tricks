@@ -26,11 +26,11 @@ characteristics:
   size: Medium
   weight: 124
 chosen_equipment:
-  - Other: "A white, sequined glove sized for a human"
+  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
 languages:
   - Common
   - Dwarvish
-  - Halfling
+  - Goblin
 level: 1
 name: Connerad Runehammer
 personality:
@@ -54,9 +54,9 @@ proficiencies:
   - Skill: History
   - Skill: Persuasion
   - Tool:
-      ArtisansTools: MasonsTools
+      ArtisansTools: BrewersSupplies
   - Tool:
-      GamingSet: Dice
+      GamingSet: Dragonchess
 race:
   type: Dwarf
   clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"

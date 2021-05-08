@@ -4,6 +4,7 @@ mod dragonborn;
 mod dwarf;
 mod elf;
 mod firbolg;
+mod gith;
 mod gnome;
 mod goblin;
 mod goliath;
@@ -35,10 +36,10 @@ use trinkets::Trinkets;
 
 use self::{
     aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,
-    firbolg::Firbolg, gnome::Gnome, goblin::Goblin, goliath::Goliath, half_elf::HalfElf,
-    half_orc::HalfOrc, halfling::Halfling, hobgoblin::Hobgoblin, human::Human, kenku::Kenku,
-    kobold::Kobold, lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi, tiefling::Tiefling,
-    triton::Triton, yuan_ti::YuanTiPureblood,
+    firbolg::Firbolg, gith::Gith, gnome::Gnome, goblin::Goblin, goliath::Goliath,
+    half_elf::HalfElf, half_orc::HalfOrc, halfling::Halfling, hobgoblin::Hobgoblin, human::Human,
+    kenku::Kenku, kobold::Kobold, lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi,
+    tiefling::Tiefling, triton::Triton, yuan_ti::YuanTiPureblood,
 };
 
 use super::{
@@ -79,6 +80,7 @@ pub(crate) enum RaceOptions {
     Dwarf,
     Elf,
     Firbolg,
+    Gith,
     Gnome,
     Goblin,
     Goliath,
@@ -107,6 +109,7 @@ impl RaceOptions {
             Self::Dwarf => Dwarf::gen(rng),
             Self::Elf => Elf::gen(rng),
             Self::Firbolg => Firbolg::gen(rng),
+            Self::Gith => Gith::gen(rng),
             Self::Gnome => Gnome::gen(rng),
             Self::Goblin => Goblin::gen(rng),
             Self::Goliath => Goliath::gen(rng),

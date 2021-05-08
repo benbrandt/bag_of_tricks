@@ -19,6 +19,7 @@ pub(crate) enum Language {
     Dwarvish,
     Elvish,
     Giant,
+    Gith,
     Gnomish,
     Goblin,
     Halfling,

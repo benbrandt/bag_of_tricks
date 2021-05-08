@@ -1,6 +1,7 @@
 pub mod dragonborn;
 pub mod dwarf;
 pub mod elf;
+pub mod gith;
 pub mod gnome;
 pub mod goblinoid;
 pub mod goliath;

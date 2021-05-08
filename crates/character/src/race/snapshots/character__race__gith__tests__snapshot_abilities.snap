@@ -1,0 +1,14 @@
+---
+source: crates/character/src/race/gith.rs
+expression: "GithSubrace::iter().map(|subrace|\n                            (Gith{subrace,}).abilities()).collect::<Vec<Vec<AbilityScore>>>()"
+
+---
+- - - Intelligence
+    - 1
+  - - Strength
+    - 2
+- - - Intelligence
+    - 1
+  - - Wisdom
+    - 2
+

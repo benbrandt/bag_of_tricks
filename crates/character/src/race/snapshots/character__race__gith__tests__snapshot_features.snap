@@ -1,0 +1,18 @@
+---
+source: crates/character/src/race/gith.rs
+expression: "GithSubrace::iter().map(|subrace|\n                            (Gith{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
+
+---
+- - title: Githyanki Psionics
+    citation:
+      - Mtof
+      - 96
+- - title: Mental Discipline
+    citation:
+      - Mtof
+      - 96
+  - title: Githzerai Psionics
+    citation:
+      - Mtof
+      - 96
+
