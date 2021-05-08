@@ -185,7 +185,7 @@ impl Name for Dragonborn {
             Gender::Male => MALE,
         };
         format!(
-            "{} {} \"{}\"",
+            "{} \"{}\" {}",
             first_names.choose(rng).unwrap(),
             CHILD.choose(rng).unwrap(),
             CLAN.choose(rng).unwrap(),

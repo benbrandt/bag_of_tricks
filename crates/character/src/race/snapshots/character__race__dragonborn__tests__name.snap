@@ -3,6 +3,6 @@ source: crates/character/src/race/dragonborn.rs
 expression: "[female_name, male_name]"
 
 ---
-- "Daar Earbender \"Kerrhylon\""
-- "Nadarr Shieldbiter \"Drachedandion\""
+- "Daar \"Earbender\" Kerrhylon"
+- "Nadarr \"Shieldbiter\" Drachedandion"
 
