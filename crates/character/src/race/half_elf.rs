@@ -115,11 +115,15 @@ impl Characteristics for HalfElf {
     }
 
     fn get_base_speeds(&self) -> Vec<Speed> {
-        if matches!(self.variant, Variant::FleetOfFoot) {
+        let mut speeds = if matches!(self.variant, Variant::FleetOfFoot) {
             vec![Speed::Walking(35)]
         } else {
             vec![Speed::Walking(30)]
+        };
+        if matches!(self.variant, Variant::Swimming) {
+            speeds.push(Speed::Swimming(30));
         }
+        speeds
     }
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {

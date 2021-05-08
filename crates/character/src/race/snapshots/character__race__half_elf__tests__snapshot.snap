@@ -15,6 +15,7 @@ expression: half_elf
 - age: 32
   base_speeds:
     - Walking: 30
+    - Swimming: 30
   ethnicity: Halruaan
   gender: Male
   height: 67
