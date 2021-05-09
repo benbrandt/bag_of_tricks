@@ -4,10 +4,7 @@ use std::fmt;
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
 use characteristics::{
-    names::{
-        dwarf::{CLAN, FEMALE, MALE},
-        Name,
-    },
+    names::dwarf::{CLAN, DUERGAR_CLAN, FEMALE, MALE},
     AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
     Size, Speed,
 };
@@ -54,7 +51,7 @@ mod height_and_weight {
     };
 }
 
-#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum HillVariant {
     Gold,
     Hill,
@@ -66,7 +63,7 @@ impl Default for HillVariant {
     }
 }
 
-#[derive(Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum MountainVariant {
     Mountain,
     Shield,
@@ -78,7 +75,7 @@ impl Default for MountainVariant {
     }
 }
 
-#[derive(Debug, Deserialize, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, EnumIter, PartialEq, Serialize)]
 enum DwarfSubrace {
     Duergar,
     Hill(HillVariant),
@@ -95,7 +92,27 @@ impl DwarfSubrace {
         }
     }
 
-    fn clan_status(&self, rng: &mut impl Rng) -> String {
+    fn gen_name(
+        self,
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
+        let first_names = match gender {
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
+        };
+        let clan_names = match self {
+            Self::Duergar => DUERGAR_CLAN,
+            Self::Hill(_) | Self::Mountain(_) => CLAN,
+        };
+        format!(
+            "{} {}",
+            first_names.choose(rng).unwrap(),
+            clan_names.choose(rng).unwrap()
+        )
+    }
+
+    fn clan_status(self, rng: &mut impl Rng) -> String {
         (*match self {
             Self::Duergar => [
                 "Mighty. Conquered several dwarven strongholds, dominates Underdark region",
@@ -116,7 +133,7 @@ impl DwarfSubrace {
         }.choose(rng).unwrap()).to_string()
     }
 
-    fn clan_trait(&self, rng: &mut impl Rng) -> String {
+    fn clan_trait(self, rng: &mut impl Rng) -> String {
         (*match self {
             Self::Duergar => vec![
                 "Stole a mighty dwarven artifact",
@@ -175,7 +192,7 @@ impl DwarfSubrace {
         .to_string()
     }
 
-    fn quirk(&self, rng: &mut impl Rng) -> String {
+    fn quirk(self, rng: &mut impl Rng) -> String {
         (*match self {
             Self::Duergar => vec![
                 "A separate personality in your mind provides advice and guidance to you.",
@@ -198,7 +215,7 @@ impl DwarfSubrace {
         }.choose(rng).unwrap()).to_string()
     }
 
-    fn story_hook(&self, rng: &mut impl Rng) -> String {
+    fn story_hook(self, rng: &mut impl Rng) -> String {
         (*match self {
             Self::Duergar => [
                 "You are a heretic, drawn to worship of Moradin.",
@@ -367,23 +384,6 @@ impl Languages for Dwarf {
     }
 }
 
-impl Name for Dwarf {
-    fn gen_name(
-        rng: &mut impl Rng,
-        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
-    ) -> String {
-        let first_names = match gender {
-            Gender::Female => FEMALE,
-            Gender::Male => MALE,
-        };
-        format!(
-            "{} {}",
-            first_names.choose(rng).unwrap(),
-            CLAN.choose(rng).unwrap()
-        )
-    }
-}
-
 impl PersonalityOptions for Dwarf {}
 
 impl Proficiencies for Dwarf {
@@ -431,7 +431,7 @@ impl Race for Dwarf {
             subrace,
         });
         let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
+        let name = subrace.gen_name(rng, &characteristics);
         (race, name, characteristics)
     }
 

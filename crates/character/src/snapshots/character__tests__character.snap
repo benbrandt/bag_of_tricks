@@ -4,18 +4,18 @@ expression: character
 
 ---
 abilities:
-  Strength: 15
-  Dexterity: 15
-  Constitution: 17
+  Strength: 16
+  Dexterity: 13
+  Constitution: 16
   Intelligence: 13
-  Wisdom: 15
-  Charisma: 10
+  Wisdom: 12
+  Charisma: 12
 alignment:
   - Lawful
   - Good
 background:
-  type: Noble
-  variant: Knight
+  type: Outlander
+  origin: TribalNomad
 characteristics:
   age: 135
   base_speeds:
@@ -26,22 +26,22 @@ characteristics:
   size: Medium
   weight: 124
 chosen_equipment:
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
+  - Other: A tiny cage with no door
 languages:
   - Common
   - Dwarvish
   - Goblin
 level: 1
-name: Connerad Runehammer
+name: Connerad Orothiar
 personality:
-  bond: Nothing is more important than the other members of my family.
-  flaw: I hide a truly scandalous secret that could ruin my family forever.
+  bond: I suffer awful visions of a coming disaster and will do anything to prevent it.
+  flaw: "I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me."
   ideal:
-    - Family. Blood runs thicker than water.
-    - Any
+    - Might. The strongest are meant to rule.
+    - Evil
   traits:
-    - "If you do me an injury, I will crush you, ruin your name, and salt your fields."
-    - "Despite my noble birth, I do not place myself above other folk. We all have the same blood."
+    - "I was, in fact, raised by wolves."
+    - I feel far more comfortable around animals than people.
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -51,12 +51,12 @@ proficiencies:
       Specific: LightHammer
   - Weapon:
       Specific: Warhammer
-  - Skill: History
-  - Skill: Persuasion
+  - Skill: Athletics
+  - Skill: Survival
   - Tool:
-      ArtisansTools: BrewersSupplies
+      ArtisansTools: SmithsTools
   - Tool:
-      GamingSet: Dragonchess
+      MusicalInstrument: Flute
 race:
   type: Dwarf
   clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"
