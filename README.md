@@ -4,11 +4,12 @@ A random D&amp;D character generator, written in Rust.
 
 Currently supports:
 
-| Book                                  |       Races        |      Classes       |    Backgrounds     |
-| ------------------------------------- | :----------------: | :----------------: | :----------------: |
-| Player's Handbook (PHB)               | :white_check_mark: |        :x:         | :white_check_mark: |
-| Volo's Guide to Monsters (VGTM)       | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
-| Sword Coast Adventurer's Guide (SCAG) | :white_check_mark: |        :x:         |        :x:         |
+| Book                                  |       Races        |      Classes       |    Backgrounds     |       Spells       |
+| ------------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: |
+| Player's Handbook (PHB)               | :white_check_mark: |        :x:         | :white_check_mark: |        :x:         |
+| Volo's Guide to Monsters (VGTM)       | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: |
+| Sword Coast Adventurer's Guide (SCAG) | :white_check_mark: |        :x:         |        :x:         |        :x:         |
+| Mordenkainen's Tome of Foes (MTOF)    | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: |
 
 I've been focusing on the necessary logic, so the "ui" is very bare-bones right now. To generate your first character:
 
