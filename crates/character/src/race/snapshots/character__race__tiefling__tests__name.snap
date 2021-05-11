@@ -1,8 +1,0 @@
----
-source: crates/character/src/race/tiefling.rs
-expression: "[female_name, male_name]"
-
----
-- "Kohl (\"dark eyed\") Siasobek"
-- Meleghost Maurmeril
-

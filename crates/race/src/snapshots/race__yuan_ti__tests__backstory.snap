@@ -1,0 +1,7 @@
+---
+source: crates/race/src/yuan_ti.rs
+expression: yuan_ti.backstory()
+
+---
+- "Origin: You were raised by humans, elves, or dwarves and have adopted their culture."
+

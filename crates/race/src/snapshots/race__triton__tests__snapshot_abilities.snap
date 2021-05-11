@@ -1,0 +1,12 @@
+---
+source: crates/race/src/triton.rs
+expression: triton.abilities()
+
+---
+- - Charisma
+  - 1
+- - Constitution
+  - 1
+- - Strength
+  - 1
+

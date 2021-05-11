@@ -1,0 +1,17 @@
+---
+source: crates/race/src/firbolg.rs
+expression: firbolg
+
+---
+- type: Firbolg
+  reason_for_adventuring: Outcast for severely damaging home territory
+- Naeris Liadon (Silverfrond)
+- age: 71
+  base_speeds:
+    - Walking: 30
+  ethnicity: ~
+  gender: Female
+  height: 85
+  size: Medium
+  weight: 296
+

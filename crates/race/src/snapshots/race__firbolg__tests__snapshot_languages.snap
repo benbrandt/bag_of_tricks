@@ -1,0 +1,9 @@
+---
+source: crates/race/src/firbolg.rs
+expression: firbolg.languages()
+
+---
+- Common
+- Elvish
+- Giant
+

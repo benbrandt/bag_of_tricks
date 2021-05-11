@@ -1,8 +1,0 @@
----
-source: crates/character/src/race/triton.rs
-expression: "[female_name, male_name]"
-
----
-- Belthyn Ahlorsath
-- Delnis Vuuvaxath
-

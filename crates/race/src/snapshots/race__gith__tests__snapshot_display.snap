@@ -1,0 +1,8 @@
+---
+source: crates/race/src/gith.rs
+expression: "GithSubrace::iter().map(|subrace|\n                            format!(\"{}\", Gith\n                                    {\n                                        subrace\n                                    })).collect::<Vec<String>>().join(\"\\n\\n\")"
+
+---
+Githyanki
+
+Githzerai

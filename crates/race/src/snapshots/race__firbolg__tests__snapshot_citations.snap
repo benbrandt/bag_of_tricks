@@ -1,0 +1,8 @@
+---
+source: crates/race/src/firbolg.rs
+expression: firbolg.citations()
+
+---
+- - Vgtm
+  - 106
+

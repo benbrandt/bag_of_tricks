@@ -1,0 +1,9 @@
+---
+source: crates/race/src/aasimar.rs
+expression: "AasimarSubrace::iter().map(|subrace|\n                               Aasimar{guide: AngelicGuide::gen(&mut rng),\n                                       subrace,}.attitude()).collect::<Vec<Vec<Attitude>>>()"
+
+---
+- - Neutral
+- []
+- []
+

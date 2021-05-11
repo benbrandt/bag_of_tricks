@@ -1,0 +1,7 @@
+---
+source: crates/race/src/goblin.rs
+expression: goblin.backstory()
+
+---
+- "Origin: You are the victim of a curse or polymorph spell."
+

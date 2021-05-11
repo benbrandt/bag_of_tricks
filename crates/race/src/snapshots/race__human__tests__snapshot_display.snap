@@ -1,0 +1,6 @@
+---
+source: crates/race/src/human.rs
+expression: "format!(\"{}\", human)"
+
+---
+Human

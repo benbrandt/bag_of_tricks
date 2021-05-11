@@ -1,8 +1,0 @@
----
-source: crates/character/src/race/tiefling.rs
-expression: tiefling.appearance()
-
----
-- Large Antelope horns
-- sharp teeth
-

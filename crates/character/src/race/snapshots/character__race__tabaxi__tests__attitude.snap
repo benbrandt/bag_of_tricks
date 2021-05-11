@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/tabaxi.rs
-expression: tabaxi.attitude()
-
----
-- Chaotic
-

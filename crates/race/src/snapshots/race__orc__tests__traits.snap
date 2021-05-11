@@ -1,0 +1,12 @@
+---
+source: crates/race/src/orc.rs
+expression: orc.traits()
+
+---
+- I never relinquish my weapon.
+- I welcome any chance to prove my battle skills.
+- I always appear like I am about to kill everyone around me.
+- I love a good brawl.
+- I drink the blood of monsters to consume their power.
+- I chant orcish war dirges during combat.
+

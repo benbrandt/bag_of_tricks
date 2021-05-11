@@ -1,0 +1,12 @@
+---
+source: crates/race/src/yuan_ti.rs
+expression: yuan_ti.flaws()
+
+---
+- "I feel twinges of emotion, and it shames me that I am imperfect in this way."
+- I put too much credence in the dictates of a particular god.
+- "I frequently overindulge in food and wine, and I am impaired and lethargic for days afterward."
+- I worship a forbidden god.
+- I secretly believe things would be better if I was in charge.
+- "If I could get away with it, I would gladly kill and eat a superior yuan-ti."
+

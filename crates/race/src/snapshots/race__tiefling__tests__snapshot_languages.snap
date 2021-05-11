@@ -1,0 +1,8 @@
+---
+source: crates/race/src/tiefling.rs
+expression: tiefling.languages()
+
+---
+- Common
+- Infernal
+

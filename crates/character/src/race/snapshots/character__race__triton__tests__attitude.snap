@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/triton.rs
-expression: triton.attitude()
-
----
-- Lawful
-

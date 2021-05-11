@@ -1,8 +1,0 @@
----
-source: crates/character/src/race/triton.rs
-expression: triton.languages()
-
----
-- Common
-- Primordial
-

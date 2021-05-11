@@ -1,0 +1,7 @@
+---
+source: crates/race/src/orc.rs
+expression: orc.backstory()
+
+---
+- "Origin: You are the victim of a curse or polymorph spell."
+

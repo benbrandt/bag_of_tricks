@@ -1,0 +1,8 @@
+---
+source: crates/race/src/dragonborn.rs
+expression: dragonborn.languages()
+
+---
+- Common
+- Draconic
+

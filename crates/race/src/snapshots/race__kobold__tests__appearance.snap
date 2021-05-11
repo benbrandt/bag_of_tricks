@@ -1,0 +1,8 @@
+---
+source: crates/race/src/kobold.rs
+expression: kobold.appearance()
+
+---
+- "Scale Pattern: Reticulated"
+- "Scale Color: Orange-brown"
+

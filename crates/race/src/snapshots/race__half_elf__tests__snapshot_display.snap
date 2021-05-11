@@ -1,0 +1,6 @@
+---
+source: crates/race/src/half_elf.rs
+expression: "format!(\"{}\", half_elf)"
+
+---
+Half-Elf

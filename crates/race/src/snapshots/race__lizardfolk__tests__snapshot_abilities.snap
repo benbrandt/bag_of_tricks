@@ -1,0 +1,10 @@
+---
+source: crates/race/src/lizardfolk.rs
+expression: lizardfolk.abilities()
+
+---
+- - Constitution
+  - 2
+- - Wisdom
+  - 1
+

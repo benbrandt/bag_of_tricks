@@ -1,0 +1,8 @@
+---
+source: crates/race/src/hobgoblin.rs
+expression: hobgoblin.languages()
+
+---
+- Common
+- Goblin
+

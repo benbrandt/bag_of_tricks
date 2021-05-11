@@ -1,0 +1,10 @@
+---
+source: crates/race/src/kobold.rs
+expression: kobold.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Strength
+  - -2
+

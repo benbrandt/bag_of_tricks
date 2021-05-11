@@ -1,0 +1,14 @@
+---
+source: crates/race/src/hobgoblin.rs
+expression: hobgoblin.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 119
+- title: Saving Face
+  citation:
+    - Vgtm
+    - 119
+

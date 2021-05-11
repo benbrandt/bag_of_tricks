@@ -2,7 +2,6 @@
 #![warn(clippy::pedantic)]
 
 mod background;
-mod race;
 
 use std::fmt;
 

@@ -1,0 +1,10 @@
+---
+source: crates/race/src/half_elf.rs
+expression: half_elf.citations()
+
+---
+- - Phb
+  - 38
+- - Scag
+  - 116
+

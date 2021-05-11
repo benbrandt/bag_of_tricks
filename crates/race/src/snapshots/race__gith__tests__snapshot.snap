@@ -1,0 +1,17 @@
+---
+source: crates/race/src/gith.rs
+expression: gith
+
+---
+- type: Gith
+  subrace: Githyanki
+- Vaira
+- age: 20
+  base_speeds:
+    - Walking: 30
+  ethnicity: ~
+  gender: Female
+  height: 71
+  size: Medium
+  weight: 177
+

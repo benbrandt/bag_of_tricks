@@ -1,6 +1,0 @@
----
-source: crates/character/src/race/half_orc.rs
-expression: "format!(\"{}\", half_orc)"
-
----
-Half-Orc

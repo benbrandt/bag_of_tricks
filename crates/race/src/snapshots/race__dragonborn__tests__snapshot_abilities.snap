@@ -1,0 +1,10 @@
+---
+source: crates/race/src/dragonborn.rs
+expression: dragonborn.abilities()
+
+---
+- - Charisma
+  - 1
+- - Strength
+  - 2
+

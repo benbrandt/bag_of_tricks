@@ -1,0 +1,22 @@
+---
+source: crates/race/src/dwarf.rs
+expression: dwarf
+
+---
+- type: Dwarf
+  clan_status: Beleaguered. Surrounded by drow and illithid foes
+  clan_trait: Conducts trade with the City of Brass
+  clan_vocation: Potter
+  quirk: "Humans fascinate you, and you collect odd trinkets of their culture."
+  story_hook: "You are a heretic, drawn to worship of Moradin."
+  subrace: Duergar
+- Bardryn Firetamer
+- age: 188
+  base_speeds:
+    - Walking: 25
+  ethnicity: ~
+  gender: Female
+  height: 50
+  size: Medium
+  weight: 145
+

@@ -1,8 +1,0 @@
----
-source: crates/character/src/race/kenku.rs
-expression: kenku.languages()
-
----
-- Common
-- Primordial
-

@@ -1,0 +1,8 @@
+---
+source: crates/race/src/tabaxi.rs
+expression: tabaxi.citations()
+
+---
+- - Vgtm
+  - 113
+

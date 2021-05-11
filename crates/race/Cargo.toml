@@ -1,5 +1,5 @@
 [package]
-name = "character"
+name = "race"
 version = "0.1.0"
 authors = ["Ben Brandt <benjamin.j.brandt@gmail.com>"]
 edition = "2018"
@@ -13,14 +13,11 @@ attack = { path = "../attack" }
 backstory = { path = "../backstory" }
 characteristics = { path = "../characteristics" }
 citation = { path = "../citation" }
-deities = { path = "../deities" }
 dice_roller = { path = "../dice_roller" }
 features = { path = "../features" }
 gear = { path = "../gear" }
-itertools = "0.10"
 languages = { path = "../languages" }
 personality = { path = "../personality" }
-race = { path = "../race" }
 rand = "0.8"
 rand_pcg = "0.3"
 serde = { version = "1", features = ["derive"] }

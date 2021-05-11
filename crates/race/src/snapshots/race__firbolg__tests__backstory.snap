@@ -1,0 +1,7 @@
+---
+source: crates/race/src/firbolg.rs
+expression: firbolg.backstory()
+
+---
+- "Reason for adventuring: Outcast for severely damaging home territory"
+

@@ -1,0 +1,7 @@
+---
+source: crates/race/src/goliath.rs
+expression: goliath.morality()
+
+---
+- Neutral
+

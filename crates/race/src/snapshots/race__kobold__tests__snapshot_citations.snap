@@ -1,0 +1,8 @@
+---
+source: crates/race/src/kobold.rs
+expression: kobold.citations()
+
+---
+- - Vgtm
+  - 119
+

@@ -1,0 +1,54 @@
+---
+source: crates/race/src/aasimar.rs
+expression: "AasimarSubrace::iter().map(|subrace|\n                               Aasimar{guide: AngelicGuide::gen(&mut rng),\n                                       subrace,}.features()).collect::<Vec<Vec<Feature>>>()"
+
+---
+- - title: Darkvision
+    citation:
+      - Vgtm
+      - 105
+  - title: Healing Hands
+    citation:
+      - Vgtm
+      - 105
+  - title: Light Bearer
+    citation:
+      - Vgtm
+      - 105
+  - title: Necrotic Shroud
+    citation:
+      - Vgtm
+      - 105
+- - title: Darkvision
+    citation:
+      - Vgtm
+      - 105
+  - title: Healing Hands
+    citation:
+      - Vgtm
+      - 105
+  - title: Light Bearer
+    citation:
+      - Vgtm
+      - 105
+  - title: Radiant Soul
+    citation:
+      - Vgtm
+      - 105
+- - title: Darkvision
+    citation:
+      - Vgtm
+      - 105
+  - title: Healing Hands
+    citation:
+      - Vgtm
+      - 105
+  - title: Light Bearer
+    citation:
+      - Vgtm
+      - 105
+  - title: Radiant Consumption
+    citation:
+      - Vgtm
+      - 105
+

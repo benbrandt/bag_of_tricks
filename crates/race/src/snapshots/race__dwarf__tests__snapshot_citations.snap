@@ -1,0 +1,18 @@
+---
+source: crates/race/src/dwarf.rs
+expression: "DwarfSubrace::iter().map(|subrace|\n                             (Dwarf{subrace,\n                                    clan_status: String::new(),\n                                    clan_trait: String::new(),\n                                    clan_vocation: String::new(),\n                                    quirk: String::new(),\n                                    story_hook:\n                                        String::new(),}).citations()).collect::<Vec<CitationList>>()"
+
+---
+- - - Phb
+    - 18
+  - - Mtof
+    - 81
+- - - Phb
+    - 18
+  - - Phb
+    - 20
+- - - Phb
+    - 18
+  - - Phb
+    - 20
+

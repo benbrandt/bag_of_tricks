@@ -1,0 +1,10 @@
+---
+source: crates/race/src/firbolg.rs
+expression: firbolg.abilities()
+
+---
+- - Wisdom
+  - 2
+- - Strength
+  - 1
+

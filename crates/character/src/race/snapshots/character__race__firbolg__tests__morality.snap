@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/firbolg.rs
-expression: firbolg.morality()
-
----
-- Good
-

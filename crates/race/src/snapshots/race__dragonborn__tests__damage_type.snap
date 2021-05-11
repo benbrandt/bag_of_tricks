@@ -1,0 +1,16 @@
+---
+source: crates/race/src/dragonborn.rs
+expression: "DraconicAncestry::iter().map(|ancestry|\n                                 Dragonborn{ancestry,}.damage_type()).collect::<Vec<DamageType>>()"
+
+---
+- Acid
+- Lightning
+- Fire
+- Lightning
+- Acid
+- Fire
+- Poison
+- Fire
+- Cold
+- Cold
+

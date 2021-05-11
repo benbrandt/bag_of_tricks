@@ -1,0 +1,8 @@
+---
+source: crates/race/src/goblin.rs
+expression: goblin.citations()
+
+---
+- - Vgtm
+  - 119
+

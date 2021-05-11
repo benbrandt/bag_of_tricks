@@ -1,0 +1,18 @@
+---
+source: crates/race/src/goliath.rs
+expression: goliath.features()
+
+---
+- title: "Stone's Endurance"
+  citation:
+    - Vgtm
+    - 109
+- title: Powerful Build
+  citation:
+    - Vgtm
+    - 109
+- title: Mountain Born
+  citation:
+    - Vgtm
+    - 109
+

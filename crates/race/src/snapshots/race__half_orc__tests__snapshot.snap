@@ -1,0 +1,16 @@
+---
+source: crates/race/src/half_orc.rs
+expression: half_orc
+
+---
+- type: HalfOrc
+- Meilil Dumein
+- age: 70
+  base_speeds:
+    - Walking: 30
+  ethnicity: Calishite
+  gender: Female
+  height: 66
+  size: Medium
+  weight: 196
+

@@ -1,0 +1,10 @@
+---
+source: crates/race/src/gith.rs
+expression: "GithSubrace::iter().map(|subrace|\n                            (Gith{subrace,}).citations()).collect::<Vec<CitationList>>()"
+
+---
+- - - Mtof
+    - 96
+- - - Mtof
+    - 96
+

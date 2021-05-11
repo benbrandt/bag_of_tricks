@@ -1,0 +1,8 @@
+---
+source: crates/race/src/lizardfolk.rs
+expression: lizardfolk.citations()
+
+---
+- - Vgtm
+  - 111
+

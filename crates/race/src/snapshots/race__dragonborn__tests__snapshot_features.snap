@@ -1,0 +1,10 @@
+---
+source: crates/race/src/dragonborn.rs
+expression: dragonborn.features()
+
+---
+- title: Breath Weapon
+  citation:
+    - Phb
+    - 34
+

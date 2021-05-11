@@ -1,0 +1,10 @@
+---
+source: crates/race/src/goblin.rs
+expression: goblin.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Constitution
+  - 1
+

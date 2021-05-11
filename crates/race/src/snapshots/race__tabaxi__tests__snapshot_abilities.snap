@@ -1,0 +1,10 @@
+---
+source: crates/race/src/tabaxi.rs
+expression: tabaxi.abilities()
+
+---
+- - Dexterity
+  - 2
+- - Charisma
+  - 1
+

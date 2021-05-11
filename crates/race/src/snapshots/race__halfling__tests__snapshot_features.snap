@@ -1,0 +1,42 @@
+---
+source: crates/race/src/halfling.rs
+expression: "HalflingSubrace::iter().map(|subrace|\n                                (Halfling{subrace,\n                                          reason_for_adventuring:\n                                              String::new(),}).features()).collect::<Vec<Vec<Feature>>>()"
+
+---
+- - title: Brave
+    citation:
+      - Phb
+      - 28
+  - title: Halfling Nimbleness
+    citation:
+      - Phb
+      - 28
+  - title: Silent Speech
+    citation:
+      - Scag
+      - 110
+- - title: Brave
+    citation:
+      - Phb
+      - 28
+  - title: Halfling Nimbleness
+    citation:
+      - Phb
+      - 28
+  - title: Naturally Stealthy
+    citation:
+      - Phb
+      - 28
+- - title: Brave
+    citation:
+      - Phb
+      - 28
+  - title: Halfling Nimbleness
+    citation:
+      - Phb
+      - 28
+  - title: Stout Resilience
+    citation:
+      - Phb
+      - 28
+

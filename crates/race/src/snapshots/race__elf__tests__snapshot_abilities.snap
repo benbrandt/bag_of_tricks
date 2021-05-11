@@ -1,0 +1,30 @@
+---
+source: crates/race/src/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{story_hook: String::new(),\n                                subrace,}).abilities()).collect::<Vec<Vec<AbilityScore>>>()"
+
+---
+- - - Dexterity
+    - 2
+  - - Charisma
+    - 1
+- - - Dexterity
+    - 2
+  - - Charisma
+    - 1
+- - - Dexterity
+    - 2
+  - - Intelligence
+    - 1
+- - - Dexterity
+    - 2
+  - - Constitution
+    - 1
+- - - Dexterity
+    - 2
+  - - Constitution
+    - 1
+- - - Dexterity
+    - 2
+  - - Wisdom
+    - 1
+

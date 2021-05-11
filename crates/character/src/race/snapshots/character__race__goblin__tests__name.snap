@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/goblin.rs
-expression: name
-
----
-Yegg
-

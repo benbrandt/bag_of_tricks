@@ -1,0 +1,10 @@
+---
+source: crates/race/src/aasimar.rs
+expression: aasimar.citations()
+
+---
+- - Vgtm
+  - 104
+- - Vgtm
+  - 105
+

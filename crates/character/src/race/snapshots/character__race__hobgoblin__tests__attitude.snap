@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/hobgoblin.rs
-expression: hobgoblin.attitude()
-
----
-- Lawful
-

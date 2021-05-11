@@ -1,0 +1,22 @@
+---
+source: crates/race/src/bugbear.rs
+expression: bugbear.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 119
+- title: Long-Limbed
+  citation:
+    - Vgtm
+    - 119
+- title: Powerful Build
+  citation:
+    - Vgtm
+    - 119
+- title: Surprise Attack
+  citation:
+    - Vgtm
+    - 119
+

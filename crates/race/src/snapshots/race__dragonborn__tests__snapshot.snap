@@ -1,0 +1,17 @@
+---
+source: crates/race/src/dragonborn.rs
+expression: dragonborn
+
+---
+- type: Dragonborn
+  ancestry: Blue
+- "Mishann \"Pious\" Fenkenkabradon"
+- age: 12
+  base_speeds:
+    - Walking: 30
+  ethnicity: ~
+  gender: Female
+  height: 74
+  size: Medium
+  weight: 263
+

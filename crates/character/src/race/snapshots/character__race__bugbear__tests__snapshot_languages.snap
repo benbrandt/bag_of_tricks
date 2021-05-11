@@ -1,8 +1,0 @@
----
-source: crates/character/src/race/bugbear.rs
-expression: bugbear.languages()
-
----
-- Common
-- Goblin
-

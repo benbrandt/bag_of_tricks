@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/kenku.rs
-expression: kenku.morality()
-
----
-- Neutral
-

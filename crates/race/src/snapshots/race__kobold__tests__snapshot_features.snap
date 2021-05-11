@@ -1,0 +1,22 @@
+---
+source: crates/race/src/kobold.rs
+expression: kobold.features()
+
+---
+- title: Darkvision
+  citation:
+    - Vgtm
+    - 119
+- title: "Grovel, Cower, and Beg"
+  citation:
+    - Vgtm
+    - 119
+- title: Pack Tactics
+  citation:
+    - Vgtm
+    - 119
+- title: Sunlight Sensitivity
+  citation:
+    - Vgtm
+    - 119
+

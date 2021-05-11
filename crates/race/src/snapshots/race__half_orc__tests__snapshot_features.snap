@@ -1,0 +1,18 @@
+---
+source: crates/race/src/half_orc.rs
+expression: half_orc.features()
+
+---
+- title: Darkvision
+  citation:
+    - Phb
+    - 41
+- title: Relentless Endurance
+  citation:
+    - Phb
+    - 41
+- title: Savage Attacks
+  citation:
+    - Phb
+    - 41
+

@@ -1,0 +1,10 @@
+---
+source: crates/race/src/hobgoblin.rs
+expression: hobgoblin.abilities()
+
+---
+- - Constitution
+  - 2
+- - Intelligence
+  - 1
+

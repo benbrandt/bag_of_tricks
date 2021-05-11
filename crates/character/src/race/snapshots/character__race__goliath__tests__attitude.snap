@@ -1,7 +1,0 @@
----
-source: crates/character/src/race/goliath.rs
-expression: goliath.attitude()
-
----
-- Lawful
-

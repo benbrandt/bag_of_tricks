@@ -1,0 +1,8 @@
+---
+source: crates/race/src/aasimar.rs
+expression: aasimar.resistances()
+
+---
+- Necrotic
+- Radiant
+

@@ -1,0 +1,17 @@
+---
+source: crates/race/src/hobgoblin.rs
+expression: hobgoblin
+
+---
+- type: Hobgoblin
+  origin: You are the victim of a curse or polymorph spell.
+- Grunka
+- age: 20
+  base_speeds:
+    - Walking: 30
+  ethnicity: ~
+  gender: Female
+  height: 65
+  size: Medium
+  weight: 173
+
