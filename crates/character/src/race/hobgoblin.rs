@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -20,7 +21,6 @@ use crate::{
     backstory::{Backstory, MONSTROUS_ORIGIN},
     equipment::{armor::ArmorType, weapons::WeaponCategory},
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 

@@ -9,6 +9,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{Language, LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -23,7 +24,6 @@ use crate::{
     backstory::Backstory,
     equipment::{armor::ArmorType, weapons::WeaponType},
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -235,11 +235,14 @@ impl Languages for Gith {
         vec![Language::Common, Language::Gith]
     }
 
-    fn addl_languages(&self) -> usize {
-        match self.subrace {
-            GithSubrace::Githyanki => 1,
-            GithSubrace::Githzerai => 0,
-        }
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (
+            match self.subrace {
+                GithSubrace::Githyanki => 1,
+                GithSubrace::Githzerai => 0,
+            },
+            None,
+        )
     }
 }
 

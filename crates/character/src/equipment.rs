@@ -5,10 +5,7 @@ pub(crate) mod tools;
 pub(crate) mod vehicles;
 pub(crate) mod weapons;
 
-use rand::{
-    prelude::{IteratorRandom, SliceRandom},
-    Rng,
-};
+use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 
@@ -135,10 +132,8 @@ impl EquipmentOption {
                 }
                 Self::From(
                     options
-                        .choose(rng)
-                        .unwrap()
-                        .trinkets()
                         .iter()
+                        .flat_map(TrinketOption::trinkets)
                         .map(|t| {
                             Equipment::Other(label.map_or(t.clone(), |l| format!("{} ({})", t, l)))
                         })

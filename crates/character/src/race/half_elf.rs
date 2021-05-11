@@ -8,6 +8,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use languages::{Language, LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -21,7 +22,6 @@ use crate::{
     ability::{AbilityScore, AbilityScoreType},
     backstory::Backstory,
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -188,8 +188,8 @@ impl Languages for HalfElf {
         vec![Language::Common, Language::Elvish]
     }
 
-    fn addl_languages(&self) -> usize {
-        1
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (1, None)
     }
 }
 

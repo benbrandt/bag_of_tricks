@@ -1,8 +1,8 @@
 ---
-source: character/src/race/kenku.rs
+source: crates/character/src/race/kenku.rs
 expression: kenku.languages()
 
 ---
 - Common
-- Auran
+- Primordial
 

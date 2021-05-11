@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -15,7 +16,6 @@ use crate::{
         Equipment, StartingEquipment,
     },
     features::{Feature, Features},
-    languages::Languages,
     proficiencies::{Proficiencies, Proficiency},
     Character,
 };
@@ -117,8 +117,8 @@ impl Features for Hermit {
 }
 
 impl Languages for Hermit {
-    fn addl_languages(&self) -> usize {
-        1
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (1, None)
     }
 }
 

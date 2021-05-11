@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use languages::Languages;
 use personality::{Influence, PersonalityOptions};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -15,7 +16,6 @@ use crate::{
         Equipment, StartingEquipment,
     },
     features::{Feature, Features},
-    languages::Languages,
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
     Character,
 };

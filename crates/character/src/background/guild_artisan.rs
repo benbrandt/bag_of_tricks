@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -17,7 +18,6 @@ use crate::{
         Equipment, EquipmentOption, StartingEquipment,
     },
     features::{Feature, Features},
-    languages::Languages,
     proficiencies::{Proficiencies, Proficiency},
     Character,
 };
@@ -193,11 +193,14 @@ impl Features for GuildArtisan {
 }
 
 impl Languages for GuildArtisan {
-    fn addl_languages(&self) -> usize {
-        match self.proficiency {
-            Some(MerchantVariant::Language) => 2,
-            _ => 1,
-        }
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (
+            match self.proficiency {
+                Some(MerchantVariant::Language) => 2,
+                _ => 1,
+            },
+            None,
+        )
     }
 }
 

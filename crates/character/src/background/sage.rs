@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -15,7 +16,6 @@ use crate::{
         Equipment, StartingEquipment,
     },
     features::{Feature, Features},
-    languages::Languages,
     proficiencies::{Proficiencies, Proficiency},
     Character,
 };
@@ -127,8 +127,8 @@ impl Features for Sage {
 }
 
 impl Languages for Sage {
-    fn addl_languages(&self) -> usize {
-        2
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (2, None)
     }
 }
 

@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use languages::{Language, LanguageType, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -22,7 +23,6 @@ use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
     backstory::Backstory,
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency},
 };
 
@@ -135,8 +135,8 @@ impl Languages for Tabaxi {
         vec![Language::Common]
     }
 
-    fn addl_languages(&self) -> usize {
-        1
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (1, None)
     }
 }
 
@@ -272,7 +272,7 @@ mod tests {
             quirk: String::new(),
         };
         insta::assert_yaml_snapshot!(tabaxi.languages());
-        assert_eq!(tabaxi.addl_languages(), 1);
+        assert_eq!(tabaxi.addl_languages(), (1, None));
     }
 
     #[test]

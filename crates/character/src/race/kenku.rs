@@ -10,6 +10,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -19,7 +20,6 @@ use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
     backstory::Backstory,
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, ProficiencyOption},
 };
 
@@ -90,7 +90,7 @@ impl Features for Kenku {
 
 impl Languages for Kenku {
     fn languages(&self) -> Vec<Language> {
-        vec![Language::Common, Language::Auran]
+        vec![Language::Common, Language::Primordial]
     }
 }
 

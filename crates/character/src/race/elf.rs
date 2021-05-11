@@ -12,6 +12,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{Language, LanguageType, Languages};
 use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -26,7 +27,6 @@ use crate::{
     backstory::Backstory,
     equipment::weapons::WeaponType,
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
 };
 
@@ -493,20 +493,23 @@ impl Languages for Elf {
     fn languages(&self) -> Vec<Language> {
         let mut languages = vec![Language::Common, Language::Elvish];
         if matches!(self.subrace, ElfSubrace::Sea) {
-            languages.push(Language::Aquan);
+            languages.push(Language::Primordial);
         }
         languages
     }
 
-    fn addl_languages(&self) -> usize {
-        match self.subrace {
-            ElfSubrace::High(_) => 1,
-            ElfSubrace::Dark(_)
-            | ElfSubrace::Eladrin(_)
-            | ElfSubrace::Sea
-            | ElfSubrace::ShadarKai
-            | ElfSubrace::Wood => 0,
-        }
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (
+            match self.subrace {
+                ElfSubrace::High(_) => 1,
+                ElfSubrace::Dark(_)
+                | ElfSubrace::Eladrin(_)
+                | ElfSubrace::Sea
+                | ElfSubrace::ShadarKai
+                | ElfSubrace::Wood => 0,
+            },
+            None,
+        )
     }
 }
 

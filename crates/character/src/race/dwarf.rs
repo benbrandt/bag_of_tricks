@@ -9,6 +9,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -27,7 +28,6 @@ use crate::{
         weapons::WeaponType,
     },
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 

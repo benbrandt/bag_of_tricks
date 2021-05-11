@@ -28,6 +28,7 @@ use std::fmt;
 
 use citation::Citations;
 use itertools::Itertools;
+use languages::Languages;
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use strum::{EnumIter, IntoEnumIterator};
@@ -45,7 +46,7 @@ use self::{
 
 use super::{
     ability::Skill, backstory::Backstory, equipment::StartingEquipment, features::Features,
-    languages::Languages, proficiencies::Proficiencies, Character,
+    proficiencies::Proficiencies, Character,
 };
 
 pub(crate) fn max_skill_weight(skills: &[Skill], character: &Character) -> f64 {

@@ -13,6 +13,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use languages::{Language, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -27,7 +28,6 @@ use crate::{
     backstory::Backstory,
     equipment::tools::{ArtisansTools, Tool},
     features::{Feature, Features},
-    languages::{Language, Languages},
     proficiencies::{Proficiencies, Proficiency},
 };
 

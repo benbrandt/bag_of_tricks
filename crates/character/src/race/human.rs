@@ -8,6 +8,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use languages::{Language, LanguageType, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -18,7 +19,6 @@ use crate::{
     ability::{AbilityScore, AbilityScoreType},
     backstory::Backstory,
     features::Features,
-    languages::{Language, Languages},
     proficiencies::Proficiencies,
 };
 
@@ -98,8 +98,8 @@ impl Languages for Human {
         vec![Language::Common]
     }
 
-    fn addl_languages(&self) -> usize {
-        1
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (1, None)
     }
 }
 

@@ -13,6 +13,7 @@ citation = { path = "../citation" }
 deities = { path = "../deities" }
 dice_roller = { path = "../dice_roller" }
 itertools = "0.10"
+languages = { path = "../languages" }
 personality = { path = "../personality" }
 rand = "0.8"
 rand_pcg = "0.3"

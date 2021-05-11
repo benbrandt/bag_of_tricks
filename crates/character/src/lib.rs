@@ -6,7 +6,6 @@ mod background;
 mod backstory;
 mod equipment;
 mod features;
-mod languages;
 mod proficiencies;
 mod race;
 
@@ -116,28 +115,28 @@ impl Character {
             languages.extend(background.languages());
         }
 
-        let addl_languages = self
-            .race
-            .as_ref()
-            .map(|r| r.addl_languages())
-            .unwrap_or_default()
-            + self
-                .background
-                .as_ref()
-                .map(|b| b.addl_languages())
-                .unwrap_or_default();
+        let mut addl_languages = vec![];
+        if let Some(race) = self.race.as_ref() {
+            addl_languages.push(race.addl_languages());
+        }
+        if let Some(background) = self.background.as_ref() {
+            addl_languages.push(background.addl_languages());
+        }
 
         // Handle any dupes across these options
         for l in languages {
             if self.languages.contains(&l) {
-                self.languages.extend(Language::gen(rng, self, 1));
+                self.languages
+                    .extend(Language::gen(rng, &self.languages, (1, None)));
             } else {
                 self.languages.push(l);
             }
         }
 
-        self.languages
-            .extend(Language::gen(rng, self, addl_languages));
+        for a in addl_languages {
+            self.languages
+                .extend(Language::gen(rng, &self.languages, a));
+        }
     }
 
     /// Generate personality descriptions from the associated constants

@@ -595,6 +595,7 @@ dependencies = [
  "dice_roller",
  "insta",
  "itertools",
+ "languages",
  "personality",
  "rand 0.8.3",
  "rand_pcg",
@@ -1514,6 +1515,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0de8b303297635ad57c9f5059fd9cee7a47f8e8daa09df0fcd07dd39fb22977f"
 dependencies = [
  "log",
+]
+
+[[package]]
+name = "languages"
+version = "0.1.0"
+dependencies = [
+ "rand 0.8.3",
+ "rand_pcg",
+ "serde",
+ "strum",
 ]
 
 [[package]]

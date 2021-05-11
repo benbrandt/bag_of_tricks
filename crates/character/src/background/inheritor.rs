@@ -1,6 +1,7 @@
 use std::fmt;
 
 use citation::{Book, Citation, CitationList, Citations};
+use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -17,7 +18,6 @@ use crate::{
         Equipment, EquipmentOption, StartingEquipment,
     },
     features::{Feature, Features},
-    languages::Languages,
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
     Character,
 };
@@ -136,8 +136,8 @@ impl Features for Inheritor {
 }
 
 impl Languages for Inheritor {
-    fn addl_languages(&self) -> usize {
-        1
+    fn addl_languages(&self) -> (usize, Option<LanguageType>) {
+        (1, None)
     }
 }
 

@@ -42,8 +42,8 @@ Walking Speed: 25ft
 PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
-LANGUAGES: Common, Dwarvish, Goblin
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(SmithsTools)), Tool(MusicalInstrument(Flute))
+LANGUAGES: Common, Dwarvish, Celestial
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Tool(ArtisansTools(BrewersSupplies)), Tool(MusicalInstrument(Viol))
 
 CHARACTERISTICS:
 Age: 135
@@ -60,7 +60,7 @@ BOND: I suffer awful visions of a coming disaster and will do anything to preven
 FLAW: I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me.
 
 EQUIPMENT
-Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A tiny cage with no door")
+Gear(ArcaneFocus(Staff)), Gear(Other(HuntingTrap)), Other("a trophy from an animal you killed"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Other("A rectangular metal device with two tiny metal cups on one end that throws sparks when wet")
 COINS: 10gp
 
 FEATURES AND TRAITS:

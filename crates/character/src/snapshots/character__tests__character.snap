@@ -26,11 +26,11 @@ characteristics:
   size: Medium
   weight: 124
 chosen_equipment:
-  - Other: A tiny cage with no door
+  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
 languages:
   - Common
   - Dwarvish
-  - Goblin
+  - Celestial
 level: 1
 name: Connerad Orothiar
 personality:
@@ -54,9 +54,9 @@ proficiencies:
   - Skill: Athletics
   - Skill: Survival
   - Tool:
-      ArtisansTools: SmithsTools
+      ArtisansTools: BrewersSupplies
   - Tool:
-      MusicalInstrument: Flute
+      MusicalInstrument: Viol
 race:
   type: Dwarf
   clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"
