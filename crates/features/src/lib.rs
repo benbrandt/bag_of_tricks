@@ -5,11 +5,11 @@ use serde::{Deserialize, Serialize};
 
 /// A feature or trait a character has.
 #[derive(Clone, Copy, Debug, Deserialize, Serialize)]
-pub(crate) struct Feature {
+pub struct Feature {
     /// Name of the feature or trait.
-    pub(crate) title: &'static str,
+    pub title: &'static str,
     /// Citation for where more information about this feature is available.
-    pub(crate) citation: Citation,
+    pub citation: Citation,
 }
 
 impl fmt::Display for Feature {
@@ -19,7 +19,7 @@ impl fmt::Display for Feature {
 }
 
 /// Trait for objects that provide features to a character.
-pub(crate) trait Features {
+pub trait Features {
     // Return a list of features this thing provides
     fn features(&self) -> Vec<Feature> {
         vec![]

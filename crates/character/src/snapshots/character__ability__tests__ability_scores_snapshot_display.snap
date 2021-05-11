@@ -1,5 +1,5 @@
 ---
-source: character/src/ability.rs
+source: crates/character/src/ability.rs
 expression: "format!(\"{}\", scores)"
 
 ---

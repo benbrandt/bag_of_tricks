@@ -1,5 +1,5 @@
 ---
-source: character/src/race/half_elf.rs
+source: crates/character/src/race/half_elf.rs
 expression: "format!(\"{}\", half_elf)"
 
 ---

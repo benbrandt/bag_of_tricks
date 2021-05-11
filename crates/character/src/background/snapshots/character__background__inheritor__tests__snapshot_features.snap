@@ -1,5 +1,5 @@
 ---
-source: character/src/background/inheritor.rs
+source: crates/character/src/background/inheritor.rs
 expression: background.features()
 
 ---

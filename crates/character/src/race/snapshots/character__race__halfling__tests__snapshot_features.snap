@@ -1,6 +1,6 @@
 ---
-source: character/src/race/halfling.rs
-expression: "HalflingSubrace::iter().map(|subrace|\n                                (Halfling{subrace,}).features()).collect::<Vec<Vec<Feature>>>()"
+source: crates/character/src/race/halfling.rs
+expression: "HalflingSubrace::iter().map(|subrace|\n                                (Halfling{subrace,\n                                          reason_for_adventuring:\n                                              String::new(),}).features()).collect::<Vec<Vec<Feature>>>()"
 
 ---
 - - title: Brave

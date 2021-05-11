@@ -1,5 +1,5 @@
 ---
-source: character/src/race/tiefling.rs
+source: crates/character/src/race/tiefling.rs
 expression: tiefling.resistances()
 
 ---

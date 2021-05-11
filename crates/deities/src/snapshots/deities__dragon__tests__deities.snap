@@ -1,5 +1,5 @@
 ---
-source: deities/src/dragon.rs
+source: crates/deities/src/dragon.rs
 expression: "Dragon::deities()"
 
 ---

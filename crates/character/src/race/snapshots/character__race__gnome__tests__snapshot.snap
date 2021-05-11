@@ -1,5 +1,5 @@
 ---
-source: character/src/race/gnome.rs
+source: crates/character/src/race/gnome.rs
 expression: gnome
 
 ---

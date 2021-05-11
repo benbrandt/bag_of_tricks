@@ -1,9 +1,9 @@
 #![allow(clippy::default_trait_access)]
 use std::fmt;
 
-use backstory::Backstory;
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
+use backstory::Backstory;
 use characteristics::{
     names::{
         elf::{CHILD, FAMILY, FEMALE, MALE},
@@ -13,6 +13,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use features::{Feature, Features};
 use languages::{Language, LanguageType, Languages};
 use personality::PersonalityOptions;
 use rand::{
@@ -26,7 +27,6 @@ use trinkets::{TrinketOption, Trinkets};
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
     equipment::weapons::WeaponType,
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
 };
 

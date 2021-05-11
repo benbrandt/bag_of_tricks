@@ -1,5 +1,5 @@
 ---
-source: character/src/background/cloistered_scholar.rs
+source: crates/character/src/background/cloistered_scholar.rs
 expression: background.features()
 
 ---

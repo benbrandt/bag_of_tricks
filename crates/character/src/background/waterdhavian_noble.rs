@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use features::{Feature, Features};
 use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::Rng;
@@ -14,7 +15,6 @@ use crate::{
         currency::Coin,
         Equipment, EquipmentOption, StartingEquipment,
     },
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 

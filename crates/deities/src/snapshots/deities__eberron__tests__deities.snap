@@ -1,5 +1,5 @@
 ---
-source: deities/src/eberron.rs
+source: crates/deities/src/eberron.rs
 expression: "Eberron::deities()"
 
 ---

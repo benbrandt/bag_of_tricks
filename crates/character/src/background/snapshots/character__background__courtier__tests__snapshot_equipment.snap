@@ -1,5 +1,5 @@
 ---
-source: character/src/background/courtier.rs
+source: crates/character/src/background/courtier.rs
 expression: background.equipment()
 
 ---

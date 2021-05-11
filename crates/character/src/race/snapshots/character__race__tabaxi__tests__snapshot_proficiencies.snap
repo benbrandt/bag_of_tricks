@@ -1,5 +1,5 @@
 ---
-source: character/src/race/tabaxi.rs
+source: crates/character/src/race/tabaxi.rs
 expression: tabaxi.proficiencies()
 
 ---

@@ -1,5 +1,6 @@
 use std::fmt;
 
+use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude};
 use attack::Resistances;
 use backstory::Backstory;
@@ -21,7 +22,6 @@ use trinkets::{TrinketOption, Trinkets};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 

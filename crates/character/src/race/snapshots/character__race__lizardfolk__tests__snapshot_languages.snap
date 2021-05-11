@@ -1,5 +1,5 @@
 ---
-source: character/src/race/lizardfolk.rs
+source: crates/character/src/race/lizardfolk.rs
 expression: lizardfolk.languages()
 
 ---

@@ -15,6 +15,7 @@ characteristics = { path = "../characteristics" }
 citation = { path = "../citation" }
 deities = { path = "../deities" }
 dice_roller = { path = "../dice_roller" }
+features = { path = "../features" }
 itertools = "0.10"
 languages = { path = "../languages" }
 personality = { path = "../personality" }

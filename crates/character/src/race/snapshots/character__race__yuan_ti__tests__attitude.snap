@@ -1,5 +1,5 @@
 ---
-source: character/src/race/yuan_ti.rs
+source: crates/character/src/race/yuan_ti.rs
 expression: yuan_ti.attitude()
 
 ---

@@ -1,5 +1,6 @@
 use std::fmt;
 
+use features::{Feature, Features};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use languages::{LanguageType, Languages};
@@ -14,7 +15,6 @@ use crate::{
         currency::Coin,
         Equipment, StartingEquipment,
     },
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 

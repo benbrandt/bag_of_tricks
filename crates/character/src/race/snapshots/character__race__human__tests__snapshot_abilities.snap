@@ -1,5 +1,5 @@
 ---
-source: character/src/race/human.rs
+source: crates/character/src/race/human.rs
 expression: human.abilities()
 
 ---

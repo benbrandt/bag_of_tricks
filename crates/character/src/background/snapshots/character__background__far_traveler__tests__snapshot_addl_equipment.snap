@@ -1,5 +1,5 @@
 ---
-source: character/src/background/far_traveler.rs
+source: crates/character/src/background/far_traveler.rs
 expression: background.addl_equipment()
 
 ---

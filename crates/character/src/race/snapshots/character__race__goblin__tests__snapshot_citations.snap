@@ -1,5 +1,5 @@
 ---
-source: character/src/race/goblin.rs
+source: crates/character/src/race/goblin.rs
 expression: goblin.citations()
 
 ---

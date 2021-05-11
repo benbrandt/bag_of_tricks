@@ -28,13 +28,18 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::Citations;
+use features::Features;
 use itertools::Itertools;
 use languages::Languages;
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use strum::{EnumIter, IntoEnumIterator};
 
-use crate::{ability::AbilityScores, proficiencies::Proficiency};
+use crate::{
+    ability::{AbilityScores, Skill},
+    equipment::StartingEquipment,
+    proficiencies::{Proficiencies, Proficiency},
+};
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,
@@ -45,10 +50,6 @@ use self::{
     outlander::Outlander, sage::Sage, sailor::Sailor, soldier::Soldier,
     urban_bounty_hunter::UrbanBountyHunter, urchin::Urchin,
     uthgardt_tribe_member::UthgardtTribeMember, waterdhavian_noble::WaterdhavianNoble,
-};
-
-use super::{
-    ability::Skill, equipment::StartingEquipment, features::Features, proficiencies::Proficiencies,
 };
 
 pub(crate) fn max_skill_weight(

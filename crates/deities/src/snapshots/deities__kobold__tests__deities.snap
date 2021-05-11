@@ -1,5 +1,5 @@
 ---
-source: deities/src/kobold.rs
+source: crates/deities/src/kobold.rs
 expression: "Kobold::deities()"
 
 ---

@@ -29,6 +29,7 @@ use attack::Resistances;
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails};
 use citation::Citations;
+use features::Features;
 use languages::Languages;
 use personality::PersonalityOptions;
 use rand::prelude::IteratorRandom;
@@ -44,7 +45,7 @@ use self::{
     tiefling::Tiefling, triton::Triton, yuan_ti::YuanTiPureblood,
 };
 
-use super::{ability::AbilityScore, features::Features, proficiencies::Proficiencies};
+use super::{ability::AbilityScore, proficiencies::Proficiencies};
 
 /// Shared racial traits each race should provide.
 #[typetag::serde(tag = "type")]

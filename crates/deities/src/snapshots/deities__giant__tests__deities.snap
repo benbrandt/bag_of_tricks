@@ -1,5 +1,5 @@
 ---
-source: deities/src/giant.rs
+source: crates/deities/src/giant.rs
 expression: "Giant::deities()"
 
 ---

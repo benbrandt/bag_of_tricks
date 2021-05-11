@@ -1,5 +1,5 @@
 ---
-source: character/src/race/hobgoblin.rs
+source: crates/character/src/race/hobgoblin.rs
 expression: hobgoblin.languages()
 
 ---

@@ -11,6 +11,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
 use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
@@ -19,7 +20,6 @@ use trinkets::{TrinketOption, Trinkets};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    features::{Feature, Features},
     proficiencies::Proficiencies,
 };
 

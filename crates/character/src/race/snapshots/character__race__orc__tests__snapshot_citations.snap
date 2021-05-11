@@ -1,5 +1,5 @@
 ---
-source: character/src/race/orc.rs
+source: crates/character/src/race/orc.rs
 expression: orc.citations()
 
 ---

@@ -1,5 +1,5 @@
 ---
-source: character/src/race/gnome.rs
+source: crates/character/src/race/gnome.rs
 expression: "GnomeSubrace::iter().map(|subrace|\n                             format!(\"{}\", Gnome\n                                     {\n                                         subrace\n                                     })).collect::<Vec<String>>().join(\"\\n\\n\")"
 
 ---

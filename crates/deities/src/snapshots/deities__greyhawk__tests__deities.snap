@@ -1,5 +1,5 @@
 ---
-source: deities/src/greyhawk.rs
+source: crates/deities/src/greyhawk.rs
 expression: "Greyhawk::deities()"
 
 ---

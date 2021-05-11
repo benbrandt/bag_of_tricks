@@ -1,5 +1,5 @@
 ---
-source: deities/src/orc.rs
+source: crates/deities/src/orc.rs
 expression: "Orc::deities()"
 
 ---

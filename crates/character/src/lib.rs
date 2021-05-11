@@ -4,11 +4,10 @@
 mod ability;
 mod background;
 mod equipment;
-mod features;
 mod proficiencies;
 mod race;
 
-use std::{fmt, writeln};
+use std::fmt;
 
 use ability::{AbilityScores, Skill};
 use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};

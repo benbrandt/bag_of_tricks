@@ -1,15 +1,16 @@
 #![allow(clippy::default_trait_access)]
 use std::fmt;
 
-use backstory::Backstory;
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
+use backstory::Backstory;
 use characteristics::{
     names::dwarf::{CLAN, DUERGAR_CLAN, FEMALE, MALE},
     AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use features::{Feature, Features};
 use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{
@@ -27,7 +28,6 @@ use crate::{
         tools::{ArtisansTools, Tool},
         weapons::WeaponType,
     },
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 

@@ -1,5 +1,6 @@
 use std::fmt;
 
+use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
 use backstory::{Backstory, MONSTROUS_ORIGIN};
@@ -20,7 +21,6 @@ use trinkets::Trinkets;
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
     equipment::{armor::ArmorType, weapons::WeaponCategory},
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 

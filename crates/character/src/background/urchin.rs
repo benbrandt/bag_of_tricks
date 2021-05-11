@@ -1,5 +1,6 @@
 use std::fmt;
 
+use features::{Feature, Features};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use languages::Languages;
@@ -15,7 +16,6 @@ use crate::{
         tools::Tool,
         Equipment, StartingEquipment,
     },
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
 };
 

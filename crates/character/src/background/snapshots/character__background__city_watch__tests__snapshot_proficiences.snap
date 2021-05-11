@@ -1,5 +1,5 @@
 ---
-source: character/src/background/city_watch.rs
+source: crates/character/src/background/city_watch.rs
 expression: "Variant::iter().map(|variant|\n                        CityWatch{variant,}.proficiencies()).collect::<Vec<Vec<Proficiency>>>()"
 
 ---

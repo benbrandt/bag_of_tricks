@@ -1,5 +1,5 @@
 ---
-source: character/src/background/city_watch.rs
+source: crates/character/src/background/city_watch.rs
 expression: background.equipment()
 
 ---

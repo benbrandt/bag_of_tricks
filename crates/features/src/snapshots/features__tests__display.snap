@@ -1,5 +1,5 @@
 ---
-source: character/src/features.rs
+source: crates/features/src/lib.rs
 expression: "format!(\"{}\", feature)"
 
 ---

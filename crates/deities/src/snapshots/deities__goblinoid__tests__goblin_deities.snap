@@ -1,5 +1,5 @@
 ---
-source: deities/src/goblinoid.rs
+source: crates/deities/src/goblinoid.rs
 expression: "Goblin::deities()"
 
 ---

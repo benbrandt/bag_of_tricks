@@ -1,5 +1,5 @@
 ---
-source: deities/src/forgotten_realms.rs
+source: crates/deities/src/forgotten_realms.rs
 expression: "ForgottenRealms::deities()"
 
 ---

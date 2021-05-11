@@ -1,5 +1,6 @@
 use std::fmt;
 
+use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
 use characteristics::{
@@ -23,7 +24,6 @@ use backstory::{Backstory, MONSTROUS_ORIGIN};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    features::{Feature, Features},
     proficiencies::Proficiencies,
 };
 

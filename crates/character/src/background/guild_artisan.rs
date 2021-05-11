@@ -1,5 +1,6 @@
 use std::fmt;
 
+use features::{Feature, Features};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use languages::{LanguageType, Languages};
@@ -17,7 +18,6 @@ use crate::{
         vehicles::{LandVehicle, Mount, Vehicle},
         Equipment, EquipmentOption, StartingEquipment,
     },
-    features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
 };
 

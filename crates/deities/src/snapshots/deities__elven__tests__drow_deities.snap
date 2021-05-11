@@ -1,5 +1,5 @@
 ---
-source: deities/src/elven.rs
+source: crates/deities/src/elven.rs
 expression: "Drow::deities()"
 
 ---

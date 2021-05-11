@@ -1,6 +1,6 @@
 ---
-source: character/src/race/halfling.rs
-expression: "HalflingSubrace::iter().map(|subrace|\n                                format!(\"{}\", Halfling\n                                        {\n                                            subrace\n                                        })).collect::<Vec<String>>().join(\"\\n\\n\")"
+source: crates/character/src/race/halfling.rs
+expression: "HalflingSubrace::iter().map(|subrace|\n                                format!(\"{}\", Halfling\n                                        {\n                                            subrace, reason_for_adventuring :\n                                            String :: new()\n                                        })).collect::<Vec<String>>().join(\"\\n\\n\")"
 
 ---
 Ghostwise Halfling

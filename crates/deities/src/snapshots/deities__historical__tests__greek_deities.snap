@@ -1,5 +1,5 @@
 ---
-source: deities/src/historical.rs
+source: crates/deities/src/historical.rs
 expression: "Greek::deities()"
 
 ---

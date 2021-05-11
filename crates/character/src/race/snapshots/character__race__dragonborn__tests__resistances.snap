@@ -1,5 +1,5 @@
 ---
-source: character/src/race/dragonborn.rs
+source: crates/character/src/race/dragonborn.rs
 expression: "DraconicAncestry::iter().map(|ancestry|\n                                 Dragonborn{ancestry,}.resistances()).collect::<Vec<Vec<DamageType>>>()"
 
 ---
