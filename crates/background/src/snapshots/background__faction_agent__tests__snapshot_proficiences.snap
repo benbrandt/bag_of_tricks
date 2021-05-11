@@ -1,0 +1,7 @@
+---
+source: crates/background/src/faction_agent.rs
+expression: background.proficiencies()
+
+---
+- Skill: Insight
+

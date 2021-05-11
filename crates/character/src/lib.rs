@@ -1,8 +1,6 @@
 #![deny(clippy::all)]
 #![warn(clippy::pedantic)]
 
-mod background;
-
 use std::fmt;
 
 use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};

@@ -1,0 +1,19 @@
+---
+source: crates/background/src/urban_bounty_hunter.rs
+expression: background.addl_proficiencies()
+
+---
+- Skill:
+    - - Deception
+      - Insight
+      - Persuasion
+      - Stealth
+    - 2
+- FromOptions:
+    - - GamingSet
+      - MusicalInstrument
+      - From:
+          - - Tool: ThievesTools
+          - 1
+    - 2
+

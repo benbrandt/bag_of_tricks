@@ -1,0 +1,8 @@
+---
+source: crates/background/src/clan_crafter.rs
+expression: "ClanCrafter::skills()"
+
+---
+- History
+- Insight
+

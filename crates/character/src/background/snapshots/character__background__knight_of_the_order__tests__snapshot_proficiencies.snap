@@ -1,7 +1,0 @@
----
-source: crates/character/src/background/knight_of_the_order.rs
-expression: background.proficiencies()
-
----
-- Skill: Persuasion
-

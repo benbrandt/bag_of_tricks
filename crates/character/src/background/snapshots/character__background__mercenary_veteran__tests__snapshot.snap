@@ -1,7 +1,0 @@
----
-source: crates/character/src/background/mercenary_veteran.rs
-expression: background
-
----
-type: MercenaryVeteran
-

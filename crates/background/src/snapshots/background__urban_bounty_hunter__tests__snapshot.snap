@@ -1,0 +1,7 @@
+---
+source: crates/background/src/urban_bounty_hunter.rs
+expression: background
+
+---
+type: UrbanBountyHunter
+

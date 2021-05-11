@@ -1,7 +1,0 @@
----
-source: crates/character/src/background/far_traveler.rs
-expression: background.backstory()
-
----
-- "Homeland: Mulhorand"
-

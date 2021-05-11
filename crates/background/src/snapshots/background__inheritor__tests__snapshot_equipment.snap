@@ -1,0 +1,10 @@
+---
+source: crates/background/src/inheritor.rs
+expression: background.equipment()
+
+---
+- Gear:
+    Other: ClothesTravelers
+- Gear:
+    Other: Pouch
+

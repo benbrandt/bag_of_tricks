@@ -1,0 +1,9 @@
+---
+source: crates/background/src/far_traveler.rs
+expression: background
+
+---
+type: FarTraveler
+homeland: Mulhorand
+reason: Exile
+

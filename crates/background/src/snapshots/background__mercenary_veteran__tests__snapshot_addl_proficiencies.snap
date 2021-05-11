@@ -1,0 +1,7 @@
+---
+source: crates/background/src/mercenary_veteran.rs
+expression: background.addl_proficiencies()
+
+---
+- GamingSet
+

@@ -1,0 +1,14 @@
+---
+source: crates/background/src/cloistered_scholar.rs
+expression: background.traits()
+
+---
+- I use polysyllabic words that convey the impression of great erudition.
+- "I've read every book in the world's greatest libraries — or I like to boast that I have."
+- "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others."
+- "There's nothing I like more than a good mystery."
+- "I'm willing to listen to every side of an argument before I make my own judgment."
+- "I . . . speak . . . slowly . . . when talking . . . to idiots, . . . which . . . almost . . . everyone . . . is . . . compared . . . to me."
+- "I am horribly, horribly awkward in social situations."
+- "I'm convinced that people are always trying to steal my secrets."
+

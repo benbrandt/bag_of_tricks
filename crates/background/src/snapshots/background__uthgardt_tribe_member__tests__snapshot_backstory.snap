@@ -1,0 +1,7 @@
+---
+source: crates/background/src/uthgardt_tribe_member.rs
+expression: background.backstory()
+
+---
+- "Tribal Totem: Griffon"
+

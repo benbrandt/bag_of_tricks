@@ -1,0 +1,7 @@
+---
+source: crates/background/src/inheritor.rs
+expression: background.proficiencies()
+
+---
+- Skill: Survival
+

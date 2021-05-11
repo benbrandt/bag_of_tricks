@@ -1,0 +1,12 @@
+---
+source: crates/background/src/cloistered_scholar.rs
+expression: background.flaws()
+
+---
+- I am easily distracted by the promise of information.
+- Most people scream and run when they see a demon. I stop and take notes on its anatomy.
+- Unlocking an ancient mystery is worth the price of a civilization.
+- I overlook obvious solutions in favor of complicated ones.
+- "I speak without really thinking through my words, invariably insulting others."
+- "I can't keep a secret to save my life, or anyone else's."
+

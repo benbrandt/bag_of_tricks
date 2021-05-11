@@ -1,0 +1,11 @@
+---
+source: crates/background/src/waterdhavian_noble.rs
+expression: background.equipment()
+
+---
+- Other: a scroll of pedigree
+- Gear:
+    Other: ClothesFine
+- Gear:
+    Other: Pouch
+

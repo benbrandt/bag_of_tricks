@@ -1,0 +1,7 @@
+---
+source: crates/background/src/clan_crafter.rs
+expression: background.addl_equipment()
+
+---
+- ArtisansTools
+

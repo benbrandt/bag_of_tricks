@@ -1,7 +1,0 @@
----
-source: crates/character/src/background/waterdhavian_noble.rs
-expression: background
-
----
-type: WaterdhavianNoble
-

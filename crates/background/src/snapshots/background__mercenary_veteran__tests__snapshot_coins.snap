@@ -1,0 +1,8 @@
+---
+source: crates/background/src/mercenary_veteran.rs
+expression: background.coins()
+
+---
+- Gold
+- 10
+

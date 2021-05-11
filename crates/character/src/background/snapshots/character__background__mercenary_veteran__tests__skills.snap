@@ -1,8 +1,0 @@
----
-source: crates/character/src/background/mercenary_veteran.rs
-expression: "MercenaryVeteran::skills()"
-
----
-- Athletics
-- Persuasion
-

@@ -1,0 +1,18 @@
+---
+source: crates/background/src/waterdhavian_noble.rs
+expression: background.ideals()
+
+---
+- - "Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity."
+  - Good
+- - "Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine."
+  - Lawful
+- - Independence. I must prove that I can handle myself without the coddling of my family.
+  - Chaotic
+- - "Power. If I can attain more power, no one will tell me what to do."
+  - Evil
+- - Family. Blood runs thicker than water.
+  - Any
+- - Noble Obligation. It is my duty to protect and care for the people beneath me.
+  - Good
+

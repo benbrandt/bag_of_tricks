@@ -1,0 +1,10 @@
+---
+source: crates/background/src/clan_crafter.rs
+expression: background.features()
+
+---
+- title: Respect of the Stout Folk
+  citation:
+    - Scag
+    - 145
+

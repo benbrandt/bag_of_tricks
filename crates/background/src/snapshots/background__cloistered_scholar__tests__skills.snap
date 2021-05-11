@@ -1,0 +1,10 @@
+---
+source: crates/background/src/cloistered_scholar.rs
+expression: "CloisteredScholar::skills()"
+
+---
+- History
+- Arcana
+- Nature
+- Religion
+

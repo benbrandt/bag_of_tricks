@@ -1,0 +1,7 @@
+---
+source: crates/background/src/city_watch.rs
+expression: "CityWatch::weight(&AbilityScores::default(), &[], 2)"
+
+---
+1.0
+

@@ -1,0 +1,12 @@
+---
+source: crates/background/src/far_traveler.rs
+expression: background.flaws()
+
+---
+- I am secretly (or not so secretly) convinced of the superiority of my own culture over that of this foreign land.
+- I pretend not to understand the local language in order to avoid interactions I would rather not have.
+- I have a weakness for the new intoxicants and other pleasures of this land.
+- "I don't take kindly to some of the actions and motivations of the people of this land, because these folk are different from me."
+- "I consider the adherents of other gods to be deluded innocents at best, or ignorant fools at worst."
+- I have a weakness for the exotic beauty of the people of these lands.
+

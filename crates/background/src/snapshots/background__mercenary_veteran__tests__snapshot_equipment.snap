@@ -1,0 +1,11 @@
+---
+source: crates/background/src/mercenary_veteran.rs
+expression: background.equipment()
+
+---
+- Other: an insignia of your rank
+- Gear:
+    Other: ClothesTravelers
+- Gear:
+    Other: Pouch
+

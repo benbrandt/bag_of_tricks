@@ -1,0 +1,18 @@
+---
+source: crates/background/src/courtier.rs
+expression: background.ideals()
+
+---
+- - Community. It is the duty of all civilized people to strengthen the bonds of community and the security of civilization.
+  - Lawful
+- - Generosity. My talents were given to me so that I could use them to benefit the world.
+  - Good
+- - Freedom. Everyone should be free to pursue his or her own livelihood.
+  - Chaotic
+- - "Greed. I'm only in it for the money."
+  - Evil
+- - "People. I'm committed to the people I care about, not to ideals."
+  - Neutral
+- - Aspiration. I work hard to be the best there is at my craft.
+  - Any
+

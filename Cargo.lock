@@ -374,6 +374,28 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cdb031dd78e28731d87d56cc8ffef4a8f36ca26c38fe2de700543e627f8a464a"
 
 [[package]]
+name = "background"
+version = "0.1.0"
+dependencies = [
+ "backstory",
+ "citation",
+ "features",
+ "gear",
+ "insta",
+ "itertools",
+ "languages",
+ "personality",
+ "rand 0.8.3",
+ "rand_pcg",
+ "serde",
+ "serde_yaml",
+ "stats",
+ "strum",
+ "trinkets",
+ "typetag",
+]
+
+[[package]]
 name = "backstory"
 version = "0.1.0"
 
@@ -593,15 +615,12 @@ version = "0.1.0"
 dependencies = [
  "alignment",
  "attack",
+ "background",
  "backstory",
  "characteristics",
- "citation",
- "deities",
- "dice_roller",
  "features",
  "gear",
  "insta",
- "itertools",
  "languages",
  "personality",
  "race",
@@ -612,7 +631,6 @@ dependencies = [
  "stats",
  "strum",
  "trinkets",
- "typetag",
 ]
 
 [[package]]

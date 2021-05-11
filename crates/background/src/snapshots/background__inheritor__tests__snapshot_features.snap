@@ -1,0 +1,10 @@
+---
+source: crates/background/src/inheritor.rs
+expression: background.features()
+
+---
+- title: Inheritance
+  citation:
+    - Scag
+    - 150
+

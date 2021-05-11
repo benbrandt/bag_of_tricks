@@ -1,7 +1,0 @@
----
-source: crates/character/src/background/courtier.rs
-expression: background
-
----
-type: Courtier
-

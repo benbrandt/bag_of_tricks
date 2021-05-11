@@ -1,0 +1,10 @@
+---
+source: crates/background/src/urban_bounty_hunter.rs
+expression: "UrbanBountyHunter::skills()"
+
+---
+- Deception
+- Insight
+- Persuasion
+- Stealth
+

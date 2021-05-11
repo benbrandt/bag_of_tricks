@@ -1,0 +1,10 @@
+---
+source: crates/background/src/mercenary_veteran.rs
+expression: background.features()
+
+---
+- title: Mercenary Life
+  citation:
+    - Scag
+    - 152
+

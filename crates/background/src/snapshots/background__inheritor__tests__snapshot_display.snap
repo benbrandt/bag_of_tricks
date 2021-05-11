@@ -1,0 +1,6 @@
+---
+source: crates/background/src/inheritor.rs
+expression: background
+
+---
+Inheritor

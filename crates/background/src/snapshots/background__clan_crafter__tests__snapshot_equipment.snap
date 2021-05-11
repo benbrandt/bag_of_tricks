@@ -1,0 +1,11 @@
+---
+source: crates/background/src/clan_crafter.rs
+expression: background.equipment()
+
+---
+- Other: "a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from"
+- Gear:
+    Other: ClothesTravelers
+- Gear:
+    Other: Pouch
+

@@ -1,0 +1,11 @@
+---
+source: crates/background/src/knight_of_the_order.rs
+expression: "KnightOfTheOrder::skills()"
+
+---
+- Persuasion
+- Arcana
+- History
+- Nature
+- Religion
+

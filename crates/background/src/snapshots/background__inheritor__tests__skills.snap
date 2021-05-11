@@ -1,0 +1,10 @@
+---
+source: crates/background/src/inheritor.rs
+expression: "Inheritor::skills()"
+
+---
+- Survival
+- Arcana
+- History
+- Religion
+

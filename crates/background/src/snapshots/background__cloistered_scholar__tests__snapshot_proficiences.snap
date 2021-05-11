@@ -1,0 +1,7 @@
+---
+source: crates/background/src/cloistered_scholar.rs
+expression: background.proficiencies()
+
+---
+- Skill: History
+
