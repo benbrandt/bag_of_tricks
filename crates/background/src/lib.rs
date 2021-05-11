@@ -10,6 +10,7 @@ mod faction_agent;
 mod far_traveler;
 mod folk_hero;
 mod guild_artisan;
+mod haunted_one;
 mod hermit;
 mod inheritor;
 mod knight_of_the_order;
@@ -29,6 +30,7 @@ use std::fmt;
 use backstory::Backstory;
 use citation::Citations;
 use features::Features;
+use haunted_one::HauntedOne;
 use itertools::Itertools;
 use languages::Languages;
 use personality::PersonalityOptions;
@@ -136,6 +138,7 @@ pub enum BackgroundOption {
     FolkHero,
     GuildArtisan,
     Hermit,
+    HauntedOne,
     Inheritor,
     KnightOfTheOrder,
     MercenaryVeteran,
@@ -194,6 +197,9 @@ impl BackgroundOption {
                 GuildArtisan::gen(rng, ability_scores, proficiencies, proficiency_bonus)
             }
             Self::Hermit => Hermit::gen(rng, ability_scores, proficiencies, proficiency_bonus),
+            Self::HauntedOne => {
+                HauntedOne::gen(rng, ability_scores, proficiencies, proficiency_bonus)
+            }
             Self::Inheritor => {
                 Inheritor::gen(rng, ability_scores, proficiencies, proficiency_bonus)
             }
@@ -256,6 +262,9 @@ impl BackgroundOption {
                 GuildArtisan::weight(ability_scores, proficiencies, proficiency_bonus)
             }
             Self::Hermit => Hermit::weight(ability_scores, proficiencies, proficiency_bonus),
+            Self::HauntedOne => {
+                HauntedOne::weight(ability_scores, proficiencies, proficiency_bonus)
+            }
             Self::Inheritor => Inheritor::weight(ability_scores, proficiencies, proficiency_bonus),
             Self::KnightOfTheOrder => {
                 KnightOfTheOrder::weight(ability_scores, proficiencies, proficiency_bonus)

@@ -1,0 +1,10 @@
+---
+source: crates/background/src/haunted_one.rs
+expression: background.features()
+
+---
+- title: Heart of Darkness
+  citation:
+    - Cos
+    - 209
+

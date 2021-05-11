@@ -1,0 +1,12 @@
+---
+source: crates/background/src/haunted_one.rs
+expression: background.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - Investigation
+      - Religion
+      - Survival
+    - 2
+

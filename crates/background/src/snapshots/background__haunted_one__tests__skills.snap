@@ -1,0 +1,10 @@
+---
+source: crates/background/src/haunted_one.rs
+expression: "HauntedOne::skills()"
+
+---
+- Arcana
+- Investigation
+- Religion
+- Survival
+

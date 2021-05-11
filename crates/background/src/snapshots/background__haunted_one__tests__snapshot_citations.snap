@@ -1,0 +1,8 @@
+---
+source: crates/background/src/haunted_one.rs
+expression: background.citations()
+
+---
+- - Cos
+  - 209
+

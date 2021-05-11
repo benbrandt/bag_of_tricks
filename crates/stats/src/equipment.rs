@@ -4,7 +4,7 @@ use strum::{Display, IntoEnumIterator};
 use trinkets::TrinketOption;
 
 use gear::{
-    adventuring_gear::{Gear, HolySymbol},
+    adventuring_gear::{Gear, HolySymbol, OtherGear},
     armor::Armor,
     currency::Coin,
     tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
@@ -151,5 +151,36 @@ pub trait StartingEquipment {
     /// Equipment options given by an entity/object that need to be chosen.
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
         vec![]
+    }
+}
+
+pub enum Pack {
+    MonsterHunter,
+}
+
+impl StartingEquipment for Pack {
+    fn equipment(&self) -> Vec<Equipment> {
+        match self {
+            Pack::MonsterHunter => vec![
+                Equipment::Gear(Gear::Other(OtherGear::Chest)),
+                Equipment::Gear(Gear::Other(OtherGear::Crowbar)),
+                Equipment::Gear(Gear::Other(OtherGear::Hammer)),
+                Equipment::Gear(Gear::Other(OtherGear::HolyWater)),
+                Equipment::Gear(Gear::Other(OtherGear::Manacles)),
+                Equipment::Gear(Gear::Other(OtherGear::MirrorSteel)),
+                Equipment::Gear(Gear::Other(OtherGear::Oil)),
+                Equipment::Gear(Gear::Other(OtherGear::Tinderbox)),
+                Equipment::Gear(Gear::Other(OtherGear::Torch)),
+                Equipment::Gear(Gear::Other(OtherGear::Torch)),
+                Equipment::Gear(Gear::Other(OtherGear::Torch)),
+                Equipment::Other("three wooden stakes".into()),
+            ],
+        }
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        match self {
+            Pack::MonsterHunter => vec![EquipmentOption::HolySymbol],
+        }
     }
 }

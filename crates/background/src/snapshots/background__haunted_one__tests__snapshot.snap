@@ -1,0 +1,8 @@
+---
+source: crates/background/src/haunted_one.rs
+expression: background
+
+---
+type: HauntedOne
+harrowing_event: "An apparition that has haunted your family for generations now haunts you. You don’t know what it wants, and it won’t leave you alone."
+

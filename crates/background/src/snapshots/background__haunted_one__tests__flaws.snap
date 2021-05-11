@@ -1,0 +1,12 @@
+---
+source: crates/background/src/haunted_one.rs
+expression: background.flaws()
+
+---
+- I have certain rituals that I must follow every day. I can never break them.
+- I assume the worst in people.
+- I feel no compassion for the dead. They’re the lucky ones.
+- I have an addiction.
+- I am a purveyor of doom and gloom who lives in a world without hope.
+- I talk to spirits that no one else can see.
+
