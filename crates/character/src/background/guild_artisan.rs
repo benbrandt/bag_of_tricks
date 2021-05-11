@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -19,7 +19,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
-    Character,
 };
 
 use super::Background;
@@ -151,7 +150,12 @@ pub(crate) struct GuildArtisan {
 
 #[typetag::serde]
 impl Background for GuildArtisan {
-    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        _: &AbilityScores,
+        _: &[Proficiency],
+        _: i16,
+    ) -> Box<dyn Background> {
         let variant = Variant::iter().choose(rng).unwrap();
         Box::new(Self {
             business: Business::iter().choose(rng).unwrap(),

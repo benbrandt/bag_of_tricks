@@ -14,3 +14,9 @@ pub(crate) enum Coin {
     #[strum(serialize = "pp")]
     Platinum,
 }
+
+impl Default for Coin {
+    fn default() -> Self {
+        Self::Gold
+    }
+}

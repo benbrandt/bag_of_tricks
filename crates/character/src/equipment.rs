@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 
 use tools::{ArtisansTools, MusicalInstrument};
-use trinkets::{TrinketOption, Trinkets};
+use trinkets::TrinketOption;
 use vehicles::Vehicle;
 
 use self::{
@@ -22,10 +22,7 @@ use self::{
     weapons::WeaponType,
 };
 
-use super::{
-    proficiencies::{Proficiency, WeaponProficiency},
-    Character,
-};
+use super::proficiencies::{Proficiency, WeaponProficiency};
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub(crate) enum Equipment {
@@ -38,23 +35,21 @@ pub(crate) enum Equipment {
 }
 
 impl Equipment {
-    fn proficient(&self, character: &Character) -> bool {
+    fn proficient(&self, proficiencies: &[Proficiency]) -> bool {
         match self {
-            Self::Armor(armor) => character
-                .proficiencies
+            Self::Armor(armor) => proficiencies
                 .iter()
                 .any(|p| matches!(p, Proficiency::Armor(a) if a == &armor.armor_type())),
-            Self::Tool(tool) => character
-                .proficiencies
+            Self::Tool(tool) => proficiencies
                 .iter()
                 .any(|p| matches!(p, Proficiency::Tool(t) if t == tool)),
-            Self::Vehicle(vehicle) => character.proficiencies.iter().any(|p| {
+            Self::Vehicle(vehicle) => proficiencies.iter().any(|p| {
                 matches!(p, Proficiency::Vehicle(v) if v == match vehicle {
                     Vehicle::Land(_) | Vehicle::Mount(_) => &VehicleProficiency::Land,
                     Vehicle::Water(_) => &VehicleProficiency::Water,
                 })
             }),
-            Self::Weapon(weapon) => character.proficiencies.iter().any(|p| {
+            Self::Weapon(weapon) => proficiencies.iter().any(|p| {
                 matches!(p, Proficiency::Weapon(w) if match w {
                     WeaponProficiency::Category(category) => category == &weapon.category(),
                     WeaponProficiency::Specific(weapon_type) => weapon_type == weapon,
@@ -84,15 +79,21 @@ pub(crate) enum EquipmentOption {
 
 impl EquipmentOption {
     /// Randomly choose a given proficiency option, avoiding already existing proficiencies.
-    pub(crate) fn gen(&self, rng: &mut impl Rng, character: &Character) -> Equipment {
+    pub(crate) fn gen(
+        &self,
+        rng: &mut impl Rng,
+        equipment: &[Equipment],
+        proficiencies: &[Proficiency],
+        trinket_options: &[TrinketOption],
+    ) -> Equipment {
         match self {
             Self::From(list) => {
-                let list = list
-                    .clone()
-                    .into_iter()
-                    .filter(|e| !character.equipment().contains(e));
+                let list = list.clone().into_iter().filter(|e| !equipment.contains(e));
                 // Choose proficient equipment if available
-                let mut proficient = list.clone().filter(|e| e.proficient(character)).peekable();
+                let mut proficient = list
+                    .clone()
+                    .filter(|e| e.proficient(proficiencies))
+                    .peekable();
                 if proficient.peek().is_some() {
                     proficient.choose(rng).unwrap()
                 } else {
@@ -104,28 +105,28 @@ impl EquipmentOption {
                     .map(|t| Equipment::Tool(Tool::ArtisansTools(t)))
                     .collect(),
             )
-            .gen(rng, character),
+            .gen(rng, equipment, proficiencies, trinket_options),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
                     .map(|m| Equipment::Tool(Tool::GamingSet(m)))
                     .collect(),
             )
-            .gen(rng, character),
+            .gen(rng, equipment, proficiencies, trinket_options),
             Self::HolySymbol => Self::From(
                 HolySymbol::iter()
                     .map(|h| Equipment::Gear(Gear::HolySymbol(h)))
                     .collect(),
             )
-            .gen(rng, character),
+            .gen(rng, equipment, proficiencies, trinket_options),
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Equipment::Tool(Tool::MusicalInstrument(m)))
                     .collect(),
             )
-            .gen(rng, character),
+            .gen(rng, equipment, proficiencies, trinket_options),
             Self::Trinket(label, addl_option, use_all) => {
                 let mut options = use_all
-                    .then(|| character.trinket_options())
+                    .then(|| trinket_options.to_vec())
                     .unwrap_or_default();
                 if let Some(option) = addl_option {
                     options.push(option.clone());
@@ -139,7 +140,7 @@ impl EquipmentOption {
                         })
                         .collect(),
                 )
-                .gen(rng, character)
+                .gen(rng, equipment, proficiencies, trinket_options)
             }
         }
     }

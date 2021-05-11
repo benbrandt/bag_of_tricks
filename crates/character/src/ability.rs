@@ -5,7 +5,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-use super::{proficiencies::Proficiency, Character};
+use super::proficiencies::Proficiency;
 
 /// Return modifier based on ability score.
 fn modifier(score: i16) -> i16 {
@@ -167,25 +167,35 @@ impl Skill {
     }
 
     /// Return the modifier for a skill, adding proficiency bonus if applicable
-    pub(crate) fn modifier(self, character: &Character) -> i16 {
-        character.abilities.modifier(self.ability_score_type())
-            + if self.proficient(character) {
-                character.proficiency_bonus()
+    pub(crate) fn modifier(
+        self,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> i16 {
+        ability_scores.modifier(self.ability_score_type())
+            + if self.proficient(proficiencies) {
+                proficiency_bonus
             } else {
                 0
             }
     }
 
     /// Check if the character is proficient in this skill
-    pub(crate) fn proficient(self, character: &Character) -> bool {
-        character.proficiencies.contains(&Proficiency::Skill(self))
+    pub(crate) fn proficient(self, proficiencies: &[Proficiency]) -> bool {
+        proficiencies.contains(&Proficiency::Skill(self))
     }
 
     /// Return weighting of skill based on character
-    pub(crate) fn weight(self, character: &Character) -> f64 {
+    pub(crate) fn weight(
+        self,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> f64 {
         exp_weight(
-            self.modifier(character),
-            character.abilities.shift_weight_by(),
+            self.modifier(ability_scores, proficiencies, proficiency_bonus),
+            ability_scores.shift_weight_by(),
         )
     }
 }

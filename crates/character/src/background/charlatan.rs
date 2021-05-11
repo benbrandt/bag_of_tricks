@@ -7,7 +7,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -17,7 +17,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
-    Character,
 };
 
 use super::Background;
@@ -46,7 +45,12 @@ impl Charlatan {
 
 #[typetag::serde]
 impl Background for Charlatan {
-    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        _: &AbilityScores,
+        _: &[Proficiency],
+        _: i16,
+    ) -> Box<dyn Background> {
         Box::new(Self {
             scam: Self::gen_scam(rng),
         })

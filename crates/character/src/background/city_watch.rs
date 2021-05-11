@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -17,7 +17,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
-    Character,
 };
 
 use super::{
@@ -34,10 +33,17 @@ enum Variant {
 }
 
 impl Variant {
-    fn gen(rng: &mut impl Rng, character: &Character) -> Self {
+    fn gen(
+        rng: &mut impl Rng,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> Self {
         *Self::iter()
             .collect::<Vec<_>>()
-            .choose_weighted(rng, |v| v.weight(character))
+            .choose_weighted(rng, |v| {
+                v.weight(ability_scores, proficiencies, proficiency_bonus)
+            })
             .unwrap()
     }
 
@@ -48,8 +54,18 @@ impl Variant {
         }
     }
 
-    fn weight(self, character: &Character) -> f64 {
-        max_skill_weight(&self.skills(), character)
+    fn weight(
+        self,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> f64 {
+        max_skill_weight(
+            &self.skills(),
+            ability_scores,
+            proficiencies,
+            proficiency_bonus,
+        )
     }
 }
 
@@ -60,9 +76,14 @@ pub(crate) struct CityWatch {
 
 #[typetag::serde]
 impl Background for CityWatch {
-    fn gen(rng: &mut impl Rng, character: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> Box<dyn Background> {
         Box::new(Self {
-            variant: Variant::gen(rng, character),
+            variant: Variant::gen(rng, ability_scores, proficiencies, proficiency_bonus),
         })
     }
 
@@ -70,9 +91,13 @@ impl Background for CityWatch {
         vec![Skill::Athletics, Skill::Insight, Skill::Investigation]
     }
 
-    fn weight(character: &Character) -> f64 {
+    fn weight(
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> f64 {
         Variant::iter()
-            .map(|v| v.weight(character))
+            .map(|v| v.weight(ability_scores, proficiencies, proficiency_bonus))
             .max_by(|a, b| a.partial_cmp(b).unwrap())
             .unwrap_or(0.0)
     }
@@ -162,42 +187,42 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CityWatch::gen(&mut rng, &Character::default());
+        let background = CityWatch::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CityWatch::gen(&mut rng, &Character::default());
+        let background = CityWatch::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_display_snapshot!(background);
     }
 
     #[test]
     fn test_bonds() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CityWatch::gen(&mut rng, &Character::default());
+        let background = CityWatch::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.bonds());
     }
 
     #[test]
     fn test_flaws() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CityWatch::gen(&mut rng, &Character::default());
+        let background = CityWatch::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.flaws());
     }
 
     #[test]
     fn test_ideals() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CityWatch::gen(&mut rng, &Character::default());
+        let background = CityWatch::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.ideals());
     }
 
     #[test]
     fn test_traits() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CityWatch::gen(&mut rng, &Character::default());
+        let background = CityWatch::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.traits());
     }
 
@@ -208,7 +233,7 @@ mod tests {
 
     #[test]
     fn test_weight() {
-        insta::assert_yaml_snapshot!(CityWatch::weight(&Character::default()));
+        insta::assert_yaml_snapshot!(CityWatch::weight(&AbilityScores::default(), &[], 2));
     }
 
     #[test]

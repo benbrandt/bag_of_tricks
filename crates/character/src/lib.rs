@@ -17,7 +17,7 @@ use attack::{DamageType, Resistances};
 use background::{Background, BackgroundOption};
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
-use equipment::{currency::Coin, Equipment, EquipmentOption, StartingEquipment};
+use equipment::{currency::Coin, Equipment, EquipmentOption};
 use features::{Feature, Features};
 use languages::Language;
 use personality::Personality;
@@ -39,8 +39,10 @@ pub struct Character {
     background: Option<Box<dyn Background>>,
     /// Characteristics of the character.
     characteristics: Option<CharacteristicDetails>,
+    /// Currency
+    coins: (Coin, u8),
     /// Equipment randomly chosen for the character.
-    chosen_equipment: Vec<Equipment>,
+    equipment: Vec<Equipment>,
     /// Languages randomly chosen for the character.
     languages: Vec<Language>,
     /// Current level of the character.
@@ -77,7 +79,12 @@ impl Character {
         let mut abilities = AbilityScores::gen(rng);
         abilities.increase(race.abilities());
         character.abilities = abilities;
-        let background = BackgroundOption::gen(rng, &character);
+        let background = BackgroundOption::gen(
+            rng,
+            &character.abilities,
+            &character.proficiencies,
+            character.proficiency_bonus(),
+        );
         character.race = Some(race);
         character.name = name;
         character.characteristics = Some(characteristics);
@@ -97,10 +104,23 @@ impl Character {
 
     /// Generate any additional equipment.
     fn gen_equipment(&mut self, rng: &mut impl Rng) {
-        let mut options = self.addl_equipment();
-        options.sort();
-        for option in options {
-            self.chosen_equipment.push(option.gen(rng, &self));
+        // Choose a trinket
+        let mut addl_equipment = vec![EquipmentOption::Trinket(None, None, true)];
+
+        if let Some(background) = self.background.as_ref() {
+            self.coins = background.coins();
+            self.equipment.extend(background.equipment());
+            addl_equipment.extend(background.addl_equipment());
+        }
+
+        addl_equipment.sort();
+        for option in addl_equipment {
+            self.equipment.push(option.gen(
+                rng,
+                &self.equipment,
+                &self.proficiencies,
+                &self.trinket_options(),
+            ));
         }
     }
 
@@ -183,7 +203,12 @@ impl Character {
         // Handle any dupes across these options
         for p in proficiencies {
             if self.proficiencies.contains(&p) {
-                self.proficiencies.extend(p.gen_replacement(rng, self));
+                self.proficiencies.extend(p.gen_replacement(
+                    rng,
+                    &self.abilities,
+                    &self.proficiencies,
+                    self.proficiency_bonus(),
+                ));
             } else {
                 self.proficiencies.push(p);
             }
@@ -192,7 +217,12 @@ impl Character {
         // Sort so that the options with the least amount are chosen first.
         addl_proficiencies.sort();
         for option in addl_proficiencies {
-            self.proficiencies.extend(option.gen(rng, &self));
+            self.proficiencies.extend(option.gen(
+                rng,
+                &self.abilities,
+                &self.proficiencies,
+                self.proficiency_bonus(),
+            ));
         }
     }
 
@@ -296,33 +326,6 @@ impl Resistances for Character {
     }
 }
 
-impl StartingEquipment for Character {
-    fn coins(&self) -> (Coin, u8) {
-        self.background
-            .as_ref()
-            .map_or((Coin::Gold, 0), |r| r.coins())
-    }
-
-    fn equipment(&self) -> Vec<Equipment> {
-        let mut equipment = vec![];
-        if let Some(background) = self.background.as_ref() {
-            equipment.extend(background.equipment());
-        }
-        equipment.extend(self.chosen_equipment.clone());
-        equipment
-    }
-
-    fn addl_equipment(&self) -> Vec<EquipmentOption> {
-        let mut addl_equipment = vec![];
-        if let Some(background) = self.background.as_ref() {
-            addl_equipment.extend(background.addl_equipment());
-        }
-        // Choose a trinket
-        addl_equipment.push(EquipmentOption::Trinket(None, None, true));
-        addl_equipment
-    }
-}
-
 impl Trinkets for Character {
     fn trinket_options(&self) -> Vec<TrinketOption> {
         let mut options = vec![TrinketOption::Default];
@@ -356,10 +359,18 @@ impl fmt::Display for Character {
             writeln!(
                 f,
                 "{:4}  {}  {:15}  {:+}",
-                if skill.proficient(self) { " X" } else { "" },
+                if skill.proficient(&self.proficiencies,) {
+                    " X"
+                } else {
+                    ""
+                },
                 skill.ability_score_type(),
                 skill,
-                skill.modifier(self),
+                skill.modifier(
+                    &self.abilities,
+                    &self.proficiencies,
+                    self.proficiency_bonus(),
+                ),
             )?;
         }
         writeln!(f)?;
@@ -422,13 +433,13 @@ impl fmt::Display for Character {
         writeln!(
             f,
             "{}",
-            self.equipment()
+            self.equipment
                 .iter()
                 .map(|e| format!("{:?}", e))
                 .collect::<Vec<String>>()
                 .join(", ")
         )?;
-        writeln!(f, "COINS: {}{}", self.coins().1, self.coins().0)?;
+        writeln!(f, "COINS: {}{}", self.coins.1, self.coins.0)?;
         writeln!(f)?;
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {

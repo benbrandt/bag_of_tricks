@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    ability::{AbilityScoreType, Skill},
+    ability::{AbilityScoreType, AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -17,7 +17,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
-    Character,
 };
 
 use super::Background;
@@ -94,7 +93,12 @@ impl FactionAgent {
 
 #[typetag::serde]
 impl Background for FactionAgent {
-    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        _: &AbilityScores,
+        _: &[Proficiency],
+        _: i16,
+    ) -> Box<dyn Background> {
         Box::new(Self {
             faction: Faction::iter().choose(rng).unwrap(),
         })
@@ -207,42 +211,42 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_display_snapshot!(background);
     }
 
     #[test]
     fn test_bonds() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.bonds());
     }
 
     #[test]
     fn test_flaws() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.flaws());
     }
 
     #[test]
     fn test_ideals() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.ideals());
     }
 
     #[test]
     fn test_traits() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = FactionAgent::gen(&mut rng, &Character::default());
+        let background = FactionAgent::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.traits());
     }
 

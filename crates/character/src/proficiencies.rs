@@ -5,6 +5,8 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 
+use crate::ability::AbilityScores;
+
 use super::{
     ability::Skill,
     equipment::{
@@ -13,7 +15,6 @@ use super::{
         vehicles::VehicleProficiency,
         weapons::{WeaponCategory, WeaponClassification, WeaponType},
     },
-    Character,
 };
 
 /// Types of weapons a character is proficient in.
@@ -48,23 +49,34 @@ pub(crate) enum ProficiencyOption {
 
 impl ProficiencyOption {
     /// Randomly choose a given proficiency option, avoiding already existing proficiencies.
-    pub(crate) fn gen(&self, rng: &mut impl Rng, character: &Character) -> Vec<Proficiency> {
+    #[allow(clippy::too_many_lines)]
+    pub(crate) fn gen(
+        &self,
+        rng: &mut impl Rng,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> Vec<Proficiency> {
         match self {
             Self::From(list, amount) => list
                 .clone()
                 .into_iter()
-                .filter(|p| !character.proficiencies.contains(p))
+                .filter(|p| !proficiencies.contains(p))
                 .choose_multiple(rng, *amount),
             Self::FromOptions(choices, amount) => {
                 let mut options: Vec<Proficiency> = choices
                     .choose_multiple(rng, *amount)
-                    .flat_map(|c| c.gen(rng, character))
+                    .flat_map(|c| c.gen(rng, ability_scores, proficiencies, proficiency_bonus))
                     .collect();
                 // Add some more if we didn't get enough
                 if options.len() < *amount {
                     options.extend(
-                        Self::FromOptions(choices.clone(), *amount - options.len())
-                            .gen(rng, character),
+                        Self::FromOptions(choices.clone(), *amount - options.len()).gen(
+                            rng,
+                            ability_scores,
+                            proficiencies,
+                            proficiency_bonus,
+                        ),
                     );
                 }
                 options
@@ -75,36 +87,43 @@ impl ProficiencyOption {
                     .collect(),
                 1,
             )
-            .gen(rng, character),
+            .gen(rng, ability_scores, proficiencies, proficiency_bonus),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
                     .map(|g| Proficiency::Tool(Tool::GamingSet(g)))
                     .collect(),
                 1,
             )
-            .gen(rng, character),
+            .gen(rng, ability_scores, proficiencies, proficiency_bonus),
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Proficiency::Tool(Tool::MusicalInstrument(m)))
                     .collect(),
                 1,
             )
-            .gen(rng, character),
+            .gen(rng, ability_scores, proficiencies, proficiency_bonus),
             Self::Skill(skills, amount) => {
                 let available_skills = skills
                     .clone()
                     .unwrap_or_else(|| Skill::iter().collect())
                     .into_iter()
-                    .filter(|&s| !character.proficiencies.contains(&Proficiency::Skill(s)));
+                    .filter(|&s| !proficiencies.contains(&Proficiency::Skill(s)));
                 let mut skills = available_skills
                     .collect::<Vec<_>>()
-                    .choose_multiple_weighted(rng, *amount, |s| s.weight(character))
+                    .choose_multiple_weighted(rng, *amount, |s| {
+                        s.weight(ability_scores, proficiencies, proficiency_bonus)
+                    })
                     .unwrap()
                     .map(|&s| Proficiency::Skill(s))
                     .collect::<Vec<_>>();
                 // Add some more if we didn't get enough
                 if skills.len() < *amount {
-                    skills.extend(Self::Skill(None, *amount - skills.len()).gen(rng, character));
+                    skills.extend(Self::Skill(None, *amount - skills.len()).gen(
+                        rng,
+                        ability_scores,
+                        proficiencies,
+                        proficiency_bonus,
+                    ));
                 }
                 skills
             }
@@ -117,16 +136,21 @@ impl ProficiencyOption {
                             Tool::MusicalInstrument(_) => {
                                 Some(ProficiencyOption::MusicalInstrument)
                             }
-                            _ => (!character.proficiencies.contains(&Proficiency::Tool(t)))
+                            _ => (!proficiencies.contains(&Proficiency::Tool(t)))
                                 .then(|| ProficiencyOption::From(vec![Proficiency::Tool(t)], 1)),
                         })
                         .collect(),
                     *amount,
                 )
-                .gen(rng, character);
+                .gen(rng, ability_scores, proficiencies, proficiency_bonus);
                 // Add some more if we didn't get enough
                 if tools.len() < *amount {
-                    tools.extend(Self::Tool(*amount - tools.len()).gen(rng, character));
+                    tools.extend(Self::Tool(*amount - tools.len()).gen(
+                        rng,
+                        ability_scores,
+                        proficiencies,
+                        proficiency_bonus,
+                    ));
                 }
                 tools
             }
@@ -148,7 +172,7 @@ impl ProficiencyOption {
                     .collect(),
                 *amount,
             )
-            .gen(rng, character),
+            .gen(rng, ability_scores, proficiencies, proficiency_bonus),
         }
     }
 }
@@ -165,11 +189,32 @@ pub(crate) enum Proficiency {
 
 impl Proficiency {
     // Sometimes you end up with dupes. Consume and replace with a new option
-    pub(crate) fn gen_replacement(self, rng: &mut impl Rng, character: &Character) -> Vec<Self> {
+    pub(crate) fn gen_replacement(
+        self,
+        rng: &mut impl Rng,
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> Vec<Self> {
         match self {
-            Self::Skill(_) => ProficiencyOption::Skill(None, 1).gen(rng, character),
-            Self::Tool(_) => ProficiencyOption::Tool(1).gen(rng, character),
-            Self::Weapon(_) => ProficiencyOption::Weapon(None, None, 1).gen(rng, character),
+            Self::Skill(_) => ProficiencyOption::Skill(None, 1).gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            ),
+            Self::Tool(_) => ProficiencyOption::Tool(1).gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            ),
+            Self::Weapon(_) => ProficiencyOption::Weapon(None, None, 1).gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            ),
             Self::Armor(_) | Self::Vehicle(_) => todo!(),
         }
     }

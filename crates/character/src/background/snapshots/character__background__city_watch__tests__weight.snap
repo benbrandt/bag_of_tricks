@@ -1,7 +1,6 @@
 ---
 source: character/src/background/city_watch.rs
-expression: "CityWatch::weight(&Character::default())"
+expression: "CityWatch::weight(&AbilityScores::default(), &[], 2)"
 
 ---
 1.0
-

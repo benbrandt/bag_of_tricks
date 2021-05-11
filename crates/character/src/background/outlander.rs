@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{ArcaneFocus, Gear, OtherGear},
@@ -17,7 +17,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
-    Character,
 };
 
 use super::Background;
@@ -84,7 +83,12 @@ pub(crate) struct Outlander {
 
 #[typetag::serde]
 impl Background for Outlander {
-    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        _: &AbilityScores,
+        _: &[Proficiency],
+        _: i16,
+    ) -> Box<dyn Background> {
         Box::new(Self {
             origin: Origin::iter().choose(rng).unwrap(),
         })

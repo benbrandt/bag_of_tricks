@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -17,7 +17,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
-    Character,
 };
 
 use super::{
@@ -58,7 +57,12 @@ pub(crate) struct KnightOfTheOrder {
 
 #[typetag::serde]
 impl Background for KnightOfTheOrder {
-    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        _: &AbilityScores,
+        _: &[Proficiency],
+        _: i16,
+    ) -> Box<dyn Background> {
         Box::new(Self {
             knightly_order: KnightlyOrder::iter().choose(rng).unwrap(),
         })
@@ -179,42 +183,42 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_display_snapshot!(background);
     }
 
     #[test]
     fn test_bonds() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.bonds());
     }
 
     #[test]
     fn test_flaws() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.flaws());
     }
 
     #[test]
     fn test_ideals() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.ideals());
     }
 
     #[test]
     fn test_traits() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.traits());
     }
 
@@ -226,63 +230,63 @@ mod tests {
     #[test]
     fn test_snapshot_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.backstory());
     }
 
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.features());
     }
 
     #[test]
     fn test_snapshot_languages() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.addl_languages());
     }
 
     #[test]
     fn test_snapshot_proficiencies() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.proficiencies());
     }
 
     #[test]
     fn test_snapshot_addl_proficiencies() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.addl_proficiencies());
     }
 
     #[test]
     fn test_snapshot_coins() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.coins());
     }
 
     #[test]
     fn test_snapshot_equipment() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.equipment());
     }
 
     #[test]
     fn test_snapshot_addl_equipment() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = KnightOfTheOrder::gen(&mut rng, &Character::default());
+        let background = KnightOfTheOrder::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.addl_equipment());
     }
 }

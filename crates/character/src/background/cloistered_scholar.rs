@@ -7,7 +7,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -16,7 +16,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
-    Character,
 };
 
 use super::{
@@ -32,7 +31,7 @@ pub(crate) struct CloisteredScholar;
 
 #[typetag::serde]
 impl Background for CloisteredScholar {
-    fn gen(_: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
         Box::new(Self)
     }
 
@@ -127,14 +126,14 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_display_snapshot!(background);
     }
 
@@ -146,28 +145,28 @@ mod tests {
     #[test]
     fn test_bonds() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.bonds());
     }
 
     #[test]
     fn test_flaws() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.flaws());
     }
 
     #[test]
     fn test_ideals() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.ideals());
     }
 
     #[test]
     fn test_traits() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let background = CloisteredScholar::gen(&mut rng, &Character::default());
+        let background = CloisteredScholar::gen(&mut rng, &AbilityScores::default(), &[], 2);
         insta::assert_yaml_snapshot!(background.traits());
     }
 

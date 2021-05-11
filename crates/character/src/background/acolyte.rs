@@ -7,7 +7,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -16,7 +16,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
-    Character,
 };
 
 use super::Background;
@@ -28,7 +27,7 @@ pub(crate) struct Acolyte;
 
 #[typetag::serde]
 impl Background for Acolyte {
-    fn gen(_: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
         Box::new(Self)
     }
 

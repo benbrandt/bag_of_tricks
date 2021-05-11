@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
 use crate::{
-    ability::Skill,
+    ability::{AbilityScores, Skill},
     backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
@@ -18,7 +18,6 @@ use crate::{
     },
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
-    Character,
 };
 
 use super::Background;
@@ -99,7 +98,12 @@ pub(crate) struct Criminal {
 
 #[typetag::serde]
 impl Background for Criminal {
-    fn gen(rng: &mut impl Rng, _: &Character) -> Box<dyn Background> {
+    fn gen(
+        rng: &mut impl Rng,
+        _: &AbilityScores,
+        _: &[Proficiency],
+        _: i16,
+    ) -> Box<dyn Background> {
         Box::new(Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
             variant: Variant::iter().choose(rng).unwrap(),

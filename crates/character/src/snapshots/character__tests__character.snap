@@ -25,7 +25,19 @@ characteristics:
   height: 47
   size: Medium
   weight: 124
-chosen_equipment:
+coins:
+  - Gold
+  - 10
+equipment:
+  - Gear:
+      ArcaneFocus: Staff
+  - Gear:
+      Other: HuntingTrap
+  - Other: a trophy from an animal you killed
+  - Gear:
+      Other: ClothesTravelers
+  - Gear:
+      Other: Pouch
   - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
 languages:
   - Common
