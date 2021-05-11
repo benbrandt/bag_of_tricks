@@ -1,5 +1,6 @@
 use std::fmt;
 
+use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
@@ -8,7 +9,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     ability::{AbilityScores, Skill},
-    backstory::Backstory,
     equipment::{
         adventuring_gear::{Gear, OtherGear},
         currency::Coin,

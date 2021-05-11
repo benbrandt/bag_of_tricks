@@ -26,6 +26,7 @@ mod waterdhavian_noble;
 
 use std::fmt;
 
+use backstory::Backstory;
 use citation::Citations;
 use itertools::Itertools;
 use languages::Languages;
@@ -47,8 +48,7 @@ use self::{
 };
 
 use super::{
-    ability::Skill, backstory::Backstory, equipment::StartingEquipment, features::Features,
-    proficiencies::Proficiencies,
+    ability::Skill, equipment::StartingEquipment, features::Features, proficiencies::Proficiencies,
 };
 
 pub(crate) fn max_skill_weight(

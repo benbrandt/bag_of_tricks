@@ -1,12 +1,12 @@
 /// Basic trait to return a list of backstory descriptions
-pub(crate) trait Backstory {
+pub trait Backstory {
     /// List of backstory descriptions for this entity
     fn backstory(&self) -> Vec<String> {
         vec![]
     }
 }
 
-pub(crate) const MONSTROUS_ORIGIN: &[&str] = &[
+pub const MONSTROUS_ORIGIN: &[&str] = &[
     "You are a spy sent to undermine your enemies from within.",
     "You are the victim of a curse or polymorph spell.",
     "You were raised by humans, elves, or dwarves and have adopted their culture.",

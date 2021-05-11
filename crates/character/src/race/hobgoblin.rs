@@ -2,6 +2,7 @@ use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
+use backstory::{Backstory, MONSTROUS_ORIGIN};
 use characteristics::{
     in_inches,
     names::{goblinoid::HOBGOBLIN, Name},
@@ -18,7 +19,6 @@ use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::{Backstory, MONSTROUS_ORIGIN},
     equipment::{armor::ArmorType, weapons::WeaponCategory},
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},

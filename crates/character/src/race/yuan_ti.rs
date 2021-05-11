@@ -2,6 +2,7 @@ use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
+use backstory::{Backstory, MONSTROUS_ORIGIN};
 use characteristics::{
     in_inches,
     names::{yuan_ti::NAMES, Name},
@@ -22,7 +23,6 @@ use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::{Backstory, MONSTROUS_ORIGIN},
     features::{Feature, Features},
     proficiencies::Proficiencies,
 };

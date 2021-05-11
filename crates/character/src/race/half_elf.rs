@@ -2,6 +2,7 @@ use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude};
 use attack::Resistances;
+use backstory::Backstory;
 use characteristics::{
     in_inches, names::Name, AgeRange, Appearance, CharacteristicDetails, Characteristics,
     HeightAndWeightTable, Size, Speed, WeightMod,
@@ -20,7 +21,6 @@ use trinkets::{TrinketOption, Trinkets};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };

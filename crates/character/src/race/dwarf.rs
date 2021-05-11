@@ -1,6 +1,7 @@
 #![allow(clippy::default_trait_access)]
 use std::fmt;
 
+use backstory::Backstory;
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
 use characteristics::{
@@ -21,7 +22,6 @@ use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
     equipment::{
         armor::ArmorType,
         tools::{ArtisansTools, Tool},

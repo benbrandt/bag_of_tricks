@@ -2,6 +2,7 @@ use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
+use backstory::Backstory;
 use characteristics::{
     in_inches,
     names::{lizardfolk::NAMES, Name},
@@ -18,7 +19,6 @@ use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
-    backstory::Backstory,
     features::{Feature, Features},
     proficiencies::{Proficiencies, ProficiencyOption},
 };

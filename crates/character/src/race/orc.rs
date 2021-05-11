@@ -17,11 +17,11 @@ use languages::{Language, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use backstory::{Backstory, MONSTROUS_ORIGIN};
 use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType, Skill},
-    backstory::{Backstory, MONSTROUS_ORIGIN},
     features::{Feature, Features},
     proficiencies::{Proficiencies, Proficiency},
 };

@@ -3,6 +3,7 @@ use std::fmt;
 
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
+use backstory::Backstory;
 use characteristics::{
     in_inches,
     names::{
@@ -26,7 +27,6 @@ use trinkets::Trinkets;
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::Backstory,
     features::{Feature, Features},
     proficiencies::Proficiencies,
 };

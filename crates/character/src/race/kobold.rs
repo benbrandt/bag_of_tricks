@@ -19,10 +19,10 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 use trinkets::Trinkets;
+use backstory::{Backstory, MONSTROUS_ORIGIN};
 
 use crate::{
     ability::{AbilityScore, AbilityScoreType},
-    backstory::{Backstory, MONSTROUS_ORIGIN},
     features::{Feature, Features},
     proficiencies::Proficiencies,
 };
