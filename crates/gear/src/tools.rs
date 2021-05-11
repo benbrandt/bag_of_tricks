@@ -5,7 +5,7 @@ use strum::{Display, EnumIter};
 #[derive(
     Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum ArtisansTools {
+pub enum ArtisansTools {
     #[strum(serialize = "Alchemist's Supplies")]
     AlchemistsSupplies,
     #[strum(serialize = "Brewer's Supplies")]
@@ -51,7 +51,7 @@ impl Default for ArtisansTools {
 #[derive(
     Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum GamingSet {
+pub enum GamingSet {
     #[strum(serialize = "Dice Set")]
     Dice,
     #[strum(serialize = "Dragonchess Set")]
@@ -71,7 +71,7 @@ impl Default for GamingSet {
 #[derive(
     Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum MusicalInstrument {
+pub enum MusicalInstrument {
     Bagpipes,
     Drum,
     Dulcimer,
@@ -94,7 +94,7 @@ impl Default for MusicalInstrument {
 #[derive(
     Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum Tool {
+pub enum Tool {
     ArtisansTools(ArtisansTools),
     #[strum(serialize = "Disguise Kit")]
     DisguiseKit,

@@ -13,7 +13,7 @@ fn modifier(score: i16) -> i16 {
     (score - score % 2 - 10) / 2
 }
 
-pub(crate) fn exp_weight<T>(val: T, shift: T) -> f64
+pub fn exp_weight<T>(val: T, shift: T) -> f64
 where
     i32: From<T>,
 {
@@ -35,7 +35,7 @@ where
     PartialOrd,
     Serialize,
 )]
-pub(crate) enum AbilityScoreType {
+pub enum AbilityScoreType {
     #[strum(serialize = "STR")]
     Strength,
     #[strum(serialize = "DEX")]
@@ -52,7 +52,7 @@ pub(crate) enum AbilityScoreType {
 
 /// Value of a base ability score or increase
 #[derive(Copy, Clone, Debug, Deserialize, Serialize)]
-pub(crate) struct AbilityScore(pub(crate) AbilityScoreType, pub(crate) i16);
+pub struct AbilityScore(pub AbilityScoreType, pub i16);
 
 impl AbilityScore {
     /// Generate an ability score by rolling 4d6 and keeping the highest 3
@@ -69,11 +69,11 @@ impl AbilityScore {
 
 /// Full set of ability scores a character could have
 #[derive(Debug, Default, Deserialize, Serialize)]
-pub(crate) struct AbilityScores(pub(crate) BTreeMap<AbilityScoreType, i16>);
+pub struct AbilityScores(pub BTreeMap<AbilityScoreType, i16>);
 
 impl AbilityScores {
     /// Generate a set of ability scores for a character
-    pub(crate) fn gen(rng: &mut impl Rng) -> Self {
+    pub fn gen(rng: &mut impl Rng) -> Self {
         let mut scores = BTreeMap::new();
         for a in AbilityScoreType::iter() {
             scores.insert(a, i16::from(AbilityScore::gen(rng)));
@@ -82,19 +82,19 @@ impl AbilityScores {
     }
 
     /// Add list of ability score increases to the totals
-    pub(crate) fn increase(&mut self, addl_scores: Vec<AbilityScore>) {
+    pub fn increase(&mut self, addl_scores: Vec<AbilityScore>) {
         for AbilityScore(score_type, val) in addl_scores {
             *self.0.entry(score_type).or_insert(0) += val;
         }
     }
 
     /// Get modifier for a given ability score type
-    pub(crate) fn modifier(&self, ability: AbilityScoreType) -> i16 {
+    pub fn modifier(&self, ability: AbilityScoreType) -> i16 {
         modifier(*self.0.get(&ability).unwrap_or(&0))
     }
 
     /// Get the amount to shift modifiers by based on lowest modifier (used for shifting weights)
-    pub(crate) fn shift_weight_by(&self) -> i16 {
+    pub fn shift_weight_by(&self) -> i16 {
         let min = modifier(*self.0.values().min().unwrap_or(&0));
         if min <= 0 {
             min.abs()
@@ -119,7 +119,7 @@ impl fmt::Display for AbilityScores {
 #[derive(
     Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum Skill {
+pub enum Skill {
     Acrobatics,
     #[strum(serialize = "Animal Handling")]
     AnimalHandling,
@@ -144,7 +144,7 @@ pub(crate) enum Skill {
 
 impl Skill {
     /// Return corresponding ability score type for a given skill
-    pub(crate) fn ability_score_type(self) -> AbilityScoreType {
+    pub fn ability_score_type(self) -> AbilityScoreType {
         match self {
             Skill::Athletics => AbilityScoreType::Strength,
             Skill::Acrobatics | Skill::SleightOfHand | Skill::Stealth => {
@@ -167,7 +167,7 @@ impl Skill {
     }
 
     /// Return the modifier for a skill, adding proficiency bonus if applicable
-    pub(crate) fn modifier(
+    pub fn modifier(
         self,
         ability_scores: &AbilityScores,
         proficiencies: &[Proficiency],
@@ -182,12 +182,12 @@ impl Skill {
     }
 
     /// Check if the character is proficient in this skill
-    pub(crate) fn proficient(self, proficiencies: &[Proficiency]) -> bool {
+    pub fn proficient(self, proficiencies: &[Proficiency]) -> bool {
         proficiencies.contains(&Proficiency::Skill(self))
     }
 
     /// Return weighting of skill based on character
-    pub(crate) fn weight(
+    pub fn weight(
         self,
         ability_scores: &AbilityScores,
         proficiencies: &[Proficiency],

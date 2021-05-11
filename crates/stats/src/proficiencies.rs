@@ -1,3 +1,9 @@
+use gear::{
+    armor::ArmorType,
+    tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
+    vehicles::VehicleProficiency,
+    weapons::{WeaponCategory, WeaponClassification, WeaponType},
+};
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
@@ -5,21 +11,11 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 
-use crate::ability::AbilityScores;
-
-use super::{
-    ability::Skill,
-    equipment::{
-        armor::ArmorType,
-        tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
-        vehicles::VehicleProficiency,
-        weapons::{WeaponCategory, WeaponClassification, WeaponType},
-    },
-};
+use super::ability::{AbilityScores, Skill};
 
 /// Types of weapons a character is proficient in.
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum WeaponProficiency {
+pub enum WeaponProficiency {
     /// Proficiency in an entire category of weapons
     Category(WeaponCategory),
     /// Proficiency in a specific weapon type
@@ -28,7 +24,7 @@ pub(crate) enum WeaponProficiency {
 
 /// A way to encapsulate a proficiency that needs to be chosen for a character.
 #[derive(Clone, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum ProficiencyOption {
+pub enum ProficiencyOption {
     /// Choose from a given list of proficiency options.
     From(Vec<Proficiency>, usize),
     /// Choose from multiple options (usually Musical Instrument _OR_ Gaming Set)
@@ -50,7 +46,7 @@ pub(crate) enum ProficiencyOption {
 impl ProficiencyOption {
     /// Randomly choose a given proficiency option, avoiding already existing proficiencies.
     #[allow(clippy::too_many_lines)]
-    pub(crate) fn gen(
+    pub fn gen(
         &self,
         rng: &mut impl Rng,
         ability_scores: &AbilityScores,
@@ -179,7 +175,7 @@ impl ProficiencyOption {
 
 /// Types of proficiencies
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum Proficiency {
+pub enum Proficiency {
     Armor(ArmorType),
     Skill(Skill),
     Tool(Tool),
@@ -189,7 +185,7 @@ pub(crate) enum Proficiency {
 
 impl Proficiency {
     // Sometimes you end up with dupes. Consume and replace with a new option
-    pub(crate) fn gen_replacement(
+    pub fn gen_replacement(
         self,
         rng: &mut impl Rng,
         ability_scores: &AbilityScores,
@@ -221,7 +217,7 @@ impl Proficiency {
 }
 
 /// Trait to describe proficiencies given by an entity and any additional choices that can be made.
-pub(crate) trait Proficiencies {
+pub trait Proficiencies {
     /// Proficiencies given by an entity/object
     fn proficiencies(&self) -> Vec<Proficiency> {
         vec![]

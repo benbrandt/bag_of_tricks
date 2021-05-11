@@ -1,28 +1,28 @@
 #![deny(clippy::all)]
 #![warn(clippy::pedantic)]
 
-mod ability;
 mod background;
-mod equipment;
-mod proficiencies;
 mod race;
 
 use std::fmt;
 
-use ability::{AbilityScores, Skill};
 use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
 use background::{Background, BackgroundOption};
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
-use equipment::{currency::Coin, Equipment, EquipmentOption};
 use features::{Feature, Features};
+use gear::currency::Coin;
 use languages::Language;
 use personality::Personality;
-use proficiencies::Proficiency;
 use race::{Race, RaceOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use stats::{
+    ability::{AbilityScores, Skill},
+    equipment::{Equipment, EquipmentOption},
+    proficiencies::Proficiency,
+};
 use strum::IntoEnumIterator;
 use trinkets::{TrinketOption, Trinkets};
 

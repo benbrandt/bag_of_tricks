@@ -1,8 +1,8 @@
 use std::fmt;
 
-use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
+use backstory::{Backstory, MONSTROUS_ORIGIN};
 use characteristics::{
     in_inches,
     names::{kobold::NAMES, Name},
@@ -11,6 +11,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
 use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{
@@ -18,14 +19,12 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-use trinkets::Trinkets;
-use backstory::{Backstory, MONSTROUS_ORIGIN};
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
     proficiencies::Proficiencies,
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use super::Race;
 

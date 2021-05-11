@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum ArcaneFocus {
+pub enum ArcaneFocus {
     Crystal,
     Orb,
     Rod,
@@ -11,7 +11,7 @@ pub(crate) enum ArcaneFocus {
 }
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum DruidicFocus {
+pub enum DruidicFocus {
     #[strum(serialize = "Sprig of mistletoe")]
     SprigOfMistletoe,
     Totem,
@@ -24,14 +24,14 @@ pub(crate) enum DruidicFocus {
 #[derive(
     Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum HolySymbol {
+pub enum HolySymbol {
     Amulet,
     Emblem,
     Reliquary,
 }
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum OtherGear {
+pub enum OtherGear {
     Abacus,
     #[strum(serialize = "Acid (vial)")]
     Acid,
@@ -170,7 +170,7 @@ pub(crate) enum OtherGear {
 }
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum Gear {
+pub enum Gear {
     ArcaneFocus(ArcaneFocus),
     DruidicFocus(DruidicFocus),
     HolySymbol(HolySymbol),

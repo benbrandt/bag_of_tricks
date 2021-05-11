@@ -1,25 +1,24 @@
 use std::fmt;
 
-use features::{Feature, Features};
-use backstory::Backstory;
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
+use backstory::Backstory;
 use characteristics::{
     in_inches, names::Name, AgeRange, Appearance, CharacteristicDetails, Characteristics,
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
 use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use trinkets::Trinkets;
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
     proficiencies::Proficiencies,
 };
+use trinkets::Trinkets;
 
 use super::{elf::Elf, Race};
 

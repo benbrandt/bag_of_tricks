@@ -3,22 +3,21 @@ use std::fmt;
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use features::{Feature, Features};
+use gear::{
+    adventuring_gear::{Gear, OtherGear},
+    currency::Coin,
+    vehicles::VehicleProficiency,
+};
 use languages::Languages;
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-
-use crate::{
+use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{
-        adventuring_gear::{Gear, OtherGear},
-        currency::Coin,
-        vehicles::VehicleProficiency,
-        Equipment, EquipmentOption, StartingEquipment,
-    },
+    equipment::{Equipment, EquipmentOption, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use super::Background;
 

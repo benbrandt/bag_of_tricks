@@ -1,21 +1,20 @@
 use std::fmt;
 
-use features::{Feature, Features};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use features::{Feature, Features};
+use gear::{
+    adventuring_gear::{Gear, OtherGear},
+    currency::Coin,
+    tools::Tool,
+};
 use languages::Languages;
 use personality::{Influence, PersonalityOptions};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
-
-use crate::{
+use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{
-        adventuring_gear::{Gear, OtherGear},
-        currency::Coin,
-        tools::Tool,
-        Equipment, StartingEquipment,
-    },
+    equipment::{Equipment, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 

@@ -2,13 +2,13 @@ use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum WeaponCategory {
+pub enum WeaponCategory {
     Simple,
     Martial,
 }
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum WeaponClassification {
+pub enum WeaponClassification {
     Melee,
     Ranged,
 }
@@ -17,7 +17,7 @@ pub(crate) enum WeaponClassification {
 #[derive(
     Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum WeaponType {
+pub enum WeaponType {
     Battleaxe,
     Blowgun,
     Club,
@@ -63,7 +63,7 @@ pub(crate) enum WeaponType {
 }
 
 impl WeaponType {
-    pub(crate) fn category(self) -> WeaponCategory {
+    pub fn category(self) -> WeaponCategory {
         match self {
             Self::Club
             | Self::Dagger
@@ -105,7 +105,7 @@ impl WeaponType {
         }
     }
 
-    pub(crate) fn classification(self) -> WeaponClassification {
+    pub fn classification(self) -> WeaponClassification {
         match self {
             Self::Club
             | Self::Dagger
@@ -150,7 +150,7 @@ impl WeaponType {
 
 /// Types of ammunition available
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum AmmunitionType {
+pub enum AmmunitionType {
     Arrows,
     #[strum(serialize = "Blowgun needles")]
     BlowgunNeedles,

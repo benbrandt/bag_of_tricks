@@ -1,7 +1,6 @@
 #![allow(clippy::default_trait_access)]
 use std::fmt;
 
-use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
 use backstory::Backstory;
@@ -16,6 +15,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
 use languages::{Language, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
@@ -23,13 +23,12 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-use trinkets::Trinkets;
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
     proficiencies::Proficiencies,
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use super::Race;
 

@@ -19,12 +19,11 @@ use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use trinkets::Trinkets;
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
     proficiencies::Proficiencies,
 };
+use trinkets::Trinkets;
 
 use super::Race;
 

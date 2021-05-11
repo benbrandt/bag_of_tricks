@@ -1,9 +1,8 @@
 use std::fmt;
 
-use features::{Feature, Features};
-use backstory::Backstory;
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
+use backstory::Backstory;
 use characteristics::{
     in_inches,
     names::{
@@ -15,6 +14,8 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
+use gear::tools::{ArtisansTools, Tool};
 use languages::{Language, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
@@ -22,14 +23,12 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-use trinkets::Trinkets;
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
-    equipment::tools::{ArtisansTools, Tool},
     proficiencies::{Proficiencies, Proficiency},
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use super::Race;
 

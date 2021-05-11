@@ -5,7 +5,7 @@ use strum::{Display, EnumIter};
 #[derive(
     Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum ArmorType {
+pub enum ArmorType {
     Light,
     Medium,
     Heavy,
@@ -14,7 +14,7 @@ pub(crate) enum ArmorType {
 #[derive(
     Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub(crate) enum Armor {
+pub enum Armor {
     Padded,
     Leather,
     #[strum(serialize = "Studded leather")]
@@ -37,7 +37,7 @@ pub(crate) enum Armor {
 }
 
 impl Armor {
-    pub(crate) fn armor_type(self) -> ArmorType {
+    pub fn armor_type(self) -> ArmorType {
         match self {
             Self::Padded | Self::Leather | Self::StuddedLeather => ArmorType::Light,
             Self::Hide

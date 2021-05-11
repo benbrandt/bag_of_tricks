@@ -1,6 +1,5 @@
 use std::fmt;
 
-use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude};
 use attack::Resistances;
 use backstory::Backstory;
@@ -10,6 +9,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
 use languages::{Language, LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
@@ -17,13 +17,12 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
-use trinkets::{TrinketOption, Trinkets};
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
+use strum::IntoEnumIterator;
+use trinkets::{TrinketOption, Trinkets};
 
 use super::{
     elf::{Elf, ElfSubrace},

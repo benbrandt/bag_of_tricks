@@ -14,6 +14,7 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use features::{Feature, Features};
+use gear::weapons::WeaponType;
 use languages::{Language, LanguageType, Languages};
 use personality::PersonalityOptions;
 use rand::{
@@ -21,14 +22,12 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-use trinkets::{TrinketOption, Trinkets};
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType, Skill},
-    equipment::weapons::WeaponType,
     proficiencies::{Proficiencies, Proficiency, WeaponProficiency},
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::{TrinketOption, Trinkets};
 
 use super::Race;
 

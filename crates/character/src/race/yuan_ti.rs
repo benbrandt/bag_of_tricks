@@ -19,13 +19,12 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-use trinkets::Trinkets;
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
     proficiencies::Proficiencies,
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
+use trinkets::Trinkets;
 
 use super::{human::Human, Race};
 

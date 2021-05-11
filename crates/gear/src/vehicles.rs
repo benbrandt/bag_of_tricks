@@ -2,13 +2,13 @@ use serde::{Deserialize, Serialize};
 use strum::Display;
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum VehicleProficiency {
+pub enum VehicleProficiency {
     Land,
     Water,
 }
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum Mount {
+pub enum Mount {
     Camel,
     Donkey,
     Mule,
@@ -23,7 +23,7 @@ pub(crate) enum Mount {
 }
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum LandVehicle {
+pub enum LandVehicle {
     Carriage,
     Cart,
     Chariot,
@@ -32,7 +32,7 @@ pub(crate) enum LandVehicle {
 }
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum WaterVehicle {
+pub enum WaterVehicle {
     Galley,
     Keelboat,
     Longship,
@@ -43,7 +43,7 @@ pub(crate) enum WaterVehicle {
 }
 
 #[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum Vehicle {
+pub enum Vehicle {
     Land(LandVehicle),
     Mount(Mount),
     Water(WaterVehicle),

@@ -1,25 +1,24 @@
 use std::fmt;
 
-use features::{Feature, Features};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use features::{Feature, Features};
+use gear::{
+    adventuring_gear::{Gear, OtherGear},
+    currency::Coin,
+    tools::{GamingSet, MusicalInstrument, Tool},
+};
 use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::{EnumIter, IntoEnumIterator};
-use trinkets::TrinketOption;
-
-use crate::{
+use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{
-        adventuring_gear::{Gear, OtherGear},
-        currency::Coin,
-        tools::{GamingSet, MusicalInstrument, Tool},
-        Equipment, EquipmentOption, StartingEquipment,
-    },
+    equipment::{Equipment, EquipmentOption, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
+use strum::{EnumIter, IntoEnumIterator};
+use trinkets::TrinketOption;
 
 use super::{
     folk_hero::{BONDS, FLAWS, IDEALS, TRAITS},

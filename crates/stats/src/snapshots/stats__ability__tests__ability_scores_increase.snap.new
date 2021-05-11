@@ -1,5 +1,5 @@
 ---
-source: crates/character/src/ability.rs
+source: crates/stats/src/ability.rs
 expression: scores
 
 ---

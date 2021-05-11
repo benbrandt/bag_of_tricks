@@ -33,13 +33,12 @@ use itertools::Itertools;
 use languages::Languages;
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
-use strum::{EnumIter, IntoEnumIterator};
-
-use crate::{
+use stats::{
     ability::{AbilityScores, Skill},
     equipment::StartingEquipment,
     proficiencies::{Proficiencies, Proficiency},
 };
+use strum::{EnumIter, IntoEnumIterator};
 
 use self::{
     acolyte::Acolyte, charlatan::Charlatan, city_watch::CityWatch, clan_crafter::ClanCrafter,

@@ -34,6 +34,7 @@ use languages::Languages;
 use personality::PersonalityOptions;
 use rand::prelude::IteratorRandom;
 use rand::Rng;
+use stats::{ability::AbilityScore, proficiencies::Proficiencies};
 use strum::{EnumIter, IntoEnumIterator};
 use trinkets::Trinkets;
 
@@ -44,8 +45,6 @@ use self::{
     kenku::Kenku, kobold::Kobold, lizardfolk::Lizardfolk, orc::Orc, tabaxi::Tabaxi,
     tiefling::Tiefling, triton::Triton, yuan_ti::YuanTiPureblood,
 };
-
-use super::{ability::AbilityScore, proficiencies::Proficiencies};
 
 /// Shared racial traits each race should provide.
 #[typetag::serde(tag = "type")]

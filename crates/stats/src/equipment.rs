@@ -1,31 +1,21 @@
-pub(crate) mod adventuring_gear;
-pub(crate) mod armor;
-pub(crate) mod currency;
-pub(crate) mod tools;
-pub(crate) mod vehicles;
-pub(crate) mod weapons;
-
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
-
-use tools::{ArtisansTools, MusicalInstrument};
 use trinkets::TrinketOption;
-use vehicles::Vehicle;
 
-use self::{
+use gear::{
     adventuring_gear::{Gear, HolySymbol},
     armor::Armor,
     currency::Coin,
-    tools::{GamingSet, Tool},
-    vehicles::VehicleProficiency,
+    tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
+    vehicles::{Vehicle, VehicleProficiency},
     weapons::WeaponType,
 };
 
 use super::proficiencies::{Proficiency, WeaponProficiency};
 
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum Equipment {
+pub enum Equipment {
     Armor(Armor),
     Gear(Gear),
     Tool(Tool),
@@ -62,7 +52,7 @@ impl Equipment {
 
 /// A way to encapsulate a equipment that needs to be chosen for a character.
 #[derive(Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub(crate) enum EquipmentOption {
+pub enum EquipmentOption {
     /// Choose from a given list of equipment options.
     From(Vec<Equipment>),
     /// Choose a random artisan's tools.
@@ -79,7 +69,7 @@ pub(crate) enum EquipmentOption {
 
 impl EquipmentOption {
     /// Randomly choose a given proficiency option, avoiding already existing proficiencies.
-    pub(crate) fn gen(
+    pub fn gen(
         &self,
         rng: &mut impl Rng,
         equipment: &[Equipment],
@@ -147,7 +137,7 @@ impl EquipmentOption {
 }
 
 /// Trait to describe starting equipment given by a background or class and any additional choices that can be made
-pub(crate) trait StartingEquipment {
+pub trait StartingEquipment {
     /// Starting coins
     fn coins(&self) -> (Coin, u8) {
         (Coin::Gold, 0)

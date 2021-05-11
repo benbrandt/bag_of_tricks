@@ -1,23 +1,22 @@
 use std::fmt;
 
-use features::{Feature, Features};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use features::{Feature, Features};
+use gear::{
+    adventuring_gear::{ArcaneFocus, Gear, OtherGear},
+    currency::Coin,
+};
 use languages::{LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
-use strum::{Display, EnumIter, IntoEnumIterator};
-
-use crate::{
+use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{
-        adventuring_gear::{ArcaneFocus, Gear, OtherGear},
-        currency::Coin,
-        Equipment, StartingEquipment,
-    },
+    equipment::{Equipment, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
+use strum::{Display, EnumIter, IntoEnumIterator};
 
 use super::Background;
 

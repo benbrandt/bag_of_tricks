@@ -1,6 +1,5 @@
 use std::fmt;
 
-use features::{Feature, Features};
 use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
 use backstory::{Backstory, MONSTROUS_ORIGIN};
@@ -12,17 +11,17 @@ use characteristics::{
 };
 use citation::{Book, Citation, CitationList, Citations};
 use dice_roller::{Die, RollCmd};
+use features::{Feature, Features};
+use gear::{armor::ArmorType, weapons::WeaponCategory};
 use languages::{Language, Languages};
 use personality::PersonalityOptions;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
-use trinkets::Trinkets;
-
-use crate::{
+use stats::{
     ability::{AbilityScore, AbilityScoreType},
-    equipment::{armor::ArmorType, weapons::WeaponCategory},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
+use trinkets::Trinkets;
 
 use super::Race;
 
