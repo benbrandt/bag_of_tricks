@@ -28,7 +28,7 @@ jobs:
       - uses: Swatinem/rust-cache@v1
 
       - name: Run cargo build
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1.0.3
         with:
           command: build
           args: --workspace --release --all-features
@@ -75,7 +75,7 @@ jobs:
       - uses: Swatinem/rust-cache@v1
 
       - name: Run cargo fmt
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1.0.3
         with:
           command: fmt
           args: -- --check
