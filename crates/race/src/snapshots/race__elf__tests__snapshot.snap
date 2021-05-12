@@ -6,7 +6,7 @@ expression: elf
 - type: Elf
   story_hook: "A raven brought you a cryptic message from an old friend who needs your help, but the message was vague about the friend's location. You're trying to follow a years-old trail and save your friend."
   subrace: Sea
-- Meriele Liadon (Silverfrond)
+- Mergen Liethennson
 - age: 677
   base_speeds:
     - Walking: 30

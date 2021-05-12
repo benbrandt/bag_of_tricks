@@ -4,18 +4,17 @@ expression: character
 
 ---
 abilities:
-  Strength: 16
-  Dexterity: 13
-  Constitution: 16
+  Strength: 15
+  Dexterity: 15
+  Constitution: 17
   Intelligence: 13
-  Wisdom: 12
-  Charisma: 12
+  Wisdom: 15
+  Charisma: 10
 alignment:
-  - Lawful
+  - Chaotic
   - Good
 background:
-  type: Outlander
-  origin: TribalNomad
+  type: MercenaryVeteran
 characteristics:
   age: 135
   base_speeds:
@@ -29,31 +28,28 @@ coins:
   - Gold
   - 10
 equipment:
-  - Gear:
-      ArcaneFocus: Staff
-  - Gear:
-      Other: HuntingTrap
-  - Other: a trophy from an animal you killed
+  - Other: an insignia of your rank
   - Gear:
       Other: ClothesTravelers
   - Gear:
       Other: Pouch
-  - Other: A rectangular metal device with two tiny metal cups on one end that throws sparks when wet
+  - Tool:
+      GamingSet: PlayingCard
+  - Other: A silver spoon with an M engraved on the handle
 languages:
   - Common
   - Dwarvish
-  - Celestial
 level: 1
-name: Connerad Orothiar
+name: Connerad Rustfire
 personality:
-  bond: I suffer awful visions of a coming disaster and will do anything to prevent it.
-  flaw: "I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me."
+  bond: I fight for those who cannot fight for themselves.
+  flaw: The monstrous enemy we faced in battle still leaves me quivering with fear.
   ideal:
-    - Might. The strongest are meant to rule.
-    - Evil
+    - "Independence. When people follow orders blindly, they embrace a kind of tyranny."
+    - Chaotic
   traits:
-    - "I was, in fact, raised by wolves."
-    - I feel far more comfortable around animals than people.
+    - "I face problems head-on. A simple, direct solution is the best path to success."
+    - "I'm haunted by memories of war. I can't get the images of violence out of my mind."
 proficiencies:
   - Weapon:
       Specific: Battleaxe
@@ -64,11 +60,12 @@ proficiencies:
   - Weapon:
       Specific: Warhammer
   - Skill: Athletics
-  - Skill: Survival
+  - Skill: Persuasion
+  - Vehicle: Land
   - Tool:
       ArtisansTools: BrewersSupplies
   - Tool:
-      MusicalInstrument: Viol
+      GamingSet: PlayingCard
 race:
   type: Dwarf
   clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"

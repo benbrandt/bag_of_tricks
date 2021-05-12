@@ -73,6 +73,7 @@ pub const MALE: &[&str] = &[
     "Gimble",
     "Glim",
     "Gnerkli",
+    "Griballix",
     "Hoobur",
     "Jebeddo",
     "Jerronimous",

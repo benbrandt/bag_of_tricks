@@ -1,26 +1,27 @@
 pub const GITHYANKI_FEMALE: &[&str] = &[
     "Aaryl",
-    "Quorstyl",
     "B'noor",
-    "Sirruth",
     "Fenelzi'ir",
-    "Vaira",
     "Jen'lig",
-    "Yessune",
     "Pah'zel",
+    "Quorstyl",
+    "Sirruth",
+    "Vaira",
+    "Yessune",
     "Zar'ryth",
 ];
 
 pub const GITHYANKI_MALE: &[&str] = &[
     "Elirdain",
-    "Quith",
     "Gaath",
-    "Ris'a'an",
     "Ja'adoc",
-    "Tropos",
     "Kar'i'nas",
-    "Viran",
     "Lykus",
+    "Meldavh",
+    "Quith",
+    "Ris'a'an",
+    "Tropos",
+    "Viran",
     "Xamodas",
 ];
 

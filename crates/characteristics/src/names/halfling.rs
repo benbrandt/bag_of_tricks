@@ -5,6 +5,7 @@ pub const FAMILY: &[&str] = &[
     "Bosh",
     "Brightshine",
     "Brushgather",
+    "Fishskipper",
     "Goodbarrel",
     "Greenbottle",
     "High-hill",
@@ -49,7 +50,7 @@ pub const FEMALE: &[&str] = &[
 ];
 
 pub const MALE: &[&str] = &[
-    "Alton", "Ander", "Cade", "Carp", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Lindal",
-    "Lyle", "Marks", "Merric", "Milo", "Osborn", "Otis", "Patsy", "Perrin", "Pieter", "Quinn",
-    "Reed", "Rosco", "Roscoe", "Wellby",
+    "Alton", "Ander", "Cade", "Carp", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Harkin",
+    "Lindal", "Lyle", "Marks", "Merric", "Milo", "Osborn", "Otis", "Patsy", "Perrin", "Pieter",
+    "Quinn", "Reed", "Rosco", "Roscoe", "Wellby",
 ];

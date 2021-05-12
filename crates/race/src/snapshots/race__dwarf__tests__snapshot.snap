@@ -10,7 +10,7 @@ expression: dwarf
   quirk: "Humans fascinate you, and you collect odd trinkets of their culture."
   story_hook: "You are a heretic, drawn to worship of Moradin."
   subrace: Duergar
-- Bardryn Firetamer
+- Grista Necksnapper
 - age: 188
   base_speeds:
     - Walking: 25

@@ -5,7 +5,7 @@ expression: gith
 ---
 - type: Gith
   subrace: Githyanki
-- Vaira
+- Quorstyl
 - age: 20
   base_speeds:
     - Walking: 30
