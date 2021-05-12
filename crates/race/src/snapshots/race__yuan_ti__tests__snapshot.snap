@@ -12,12 +12,12 @@ expression: yuan_ti
   scale_pattern: Mottled
   skin_color: Yellow
   tongue_color: Orange
-- Ceidil Rein
+- Talash Stayankina
 - age: 21
   base_speeds:
     - Walking: 30
-  ethnicity: Calishite
-  gender: Female
+  ethnicity: Gur
+  gender: Male
   height: 63
   size: Medium
   weight: 145

@@ -4,11 +4,11 @@ expression: human
 
 ---
 - type: Human
-- Meilil Khalid
+- Nura Desai
 - age: 94
   base_speeds:
     - Walking: 30
-  ethnicity: Calishite
+  ethnicity: Bedine
   gender: Female
   height: 64
   size: Medium

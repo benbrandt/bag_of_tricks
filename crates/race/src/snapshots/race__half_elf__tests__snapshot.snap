@@ -11,12 +11,12 @@ expression: half_elf
       - 1
   subrace: Sea
   variant: Swimming
-- Del Maurmeril
+- Madevik Stayankina
 - age: 32
   base_speeds:
     - Walking: 30
     - Swimming: 30
-  ethnicity: Halruaan
+  ethnicity: Gur
   gender: Male
   height: 67
   size: Medium

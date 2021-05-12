@@ -8,12 +8,12 @@ expression: aasimar
     name: Galladia
     nature: Compassionate and hopeful
   subrace: Scourge
-- Hamun Anskuld
+- Bask Melpurvatta
 - age: 23
   base_speeds:
     - Walking: 30
-  ethnicity: Mulan
-  gender: Male
+  ethnicity: Imaskari
+  gender: Female
   height: 68
   size: Medium
   weight: 182

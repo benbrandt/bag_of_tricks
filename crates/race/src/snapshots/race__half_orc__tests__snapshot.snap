@@ -4,11 +4,11 @@ expression: half_orc
 
 ---
 - type: HalfOrc
-- Meilil Dumein
+- Nura Desai
 - age: 70
   base_speeds:
     - Walking: 30
-  ethnicity: Calishite
+  ethnicity: Bedine
   gender: Female
   height: 66
   size: Medium

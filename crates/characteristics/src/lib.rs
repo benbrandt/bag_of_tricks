@@ -129,7 +129,9 @@ impl fmt::Display for CharacteristicDetails {
         writeln!(f, "Age: {}", self.age)?;
         if let Some(ethnicity) = self.ethnicity {
             writeln!(f, "Human ethnicity: {}", ethnicity)?;
-            writeln!(f, "Human language known: {}", ethnicity.human_language())?;
+            if let Some(language) = ethnicity.human_language() {
+                writeln!(f, "Human language known: {}", language)?;
+            }
         }
         writeln!(f, "Gender: {}", self.gender)?;
         writeln!(f, "Size: {}", self.size)?;
