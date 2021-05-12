@@ -49,7 +49,7 @@ jobs:
       - uses: Swatinem/rust-cache@v1
 
       - name: Run cargo-tarpaulin
-        uses: actions-rs/tarpaulin@v0.1
+        uses: actions-rs/tarpaulin@v0.1.3
         with:
           args: --workspace --all-features --no-fail-fast --verbose
 
