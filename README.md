@@ -10,6 +10,7 @@ Currently supports:
 | Volo's Guide to Monsters (VGTM)       | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: |
 | Sword Coast Adventurer's Guide (SCAG) | :white_check_mark: |        :x:         |        :x:         |        :x:         |
 | Mordenkainen's Tome of Foes (MTOF)    | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: |
+| Curse of Strahd (COS)                 | :heavy_minus_sign: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: |
 
 I've been focusing on the necessary logic, so the "ui" is very bare-bones right now. To generate your first character:
 
