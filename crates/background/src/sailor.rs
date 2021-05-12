@@ -1,10 +1,5 @@
 use std::fmt;
 
-use stats::{
-    ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
-    proficiencies::{Proficiencies, Proficiency},
-};
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use features::{Feature, Features};
@@ -18,6 +13,11 @@ use languages::Languages;
 use personality::{Influence, PersonalityOptions};
 use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
+use stats::{
+    ability::{AbilityScores, Skill},
+    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    proficiencies::{Proficiencies, Proficiency},
+};
 use strum::{Display, EnumIter, IntoEnumIterator};
 use trinkets::TrinketOption;
 
