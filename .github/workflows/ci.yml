@@ -33,7 +33,7 @@ jobs:
         uses: actions-rs/cargo@v1.0.3
         with:
           command: build
-          args: --workspace --release --all-features
+          args: --workspace --all-features
         env:
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUSTFLAGS: "-Zinstrument-coverage"
