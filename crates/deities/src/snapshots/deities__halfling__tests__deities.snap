@@ -8,7 +8,6 @@ expression: "Halfling::deities()"
     - god of vigilance and war
     - defender-god
     - watchful protector
-    - "Province: vigilance, war"
   alignment:
     - Lawful
     - Good
@@ -19,7 +18,7 @@ expression: "Halfling::deities()"
 - name: Brandobaris
   titles:
     - "god of thievery, stealth, and adventure"
-    - "Province: adventure, thievery"
+    - god of adventure and thievery
   alignment:
     - Neutral
     - Neutral
@@ -29,7 +28,7 @@ expression: "Halfling::deities()"
     - Halfling footprint
 - name: Charmalaine
   titles:
-    - "Province: keen senses, luck"
+    - deity of keen senses and luck
   alignment:
     - Neutral
     - Neutral
@@ -41,7 +40,7 @@ expression: "Halfling::deities()"
   titles:
     - "goddess of hearth, hospitality, and home"
     - goddess of trust and handicrafts
-    - "Province: hearty, home"
+    - goddess of hearth and home
   alignment:
     - Lawful
     - Good
@@ -56,7 +55,7 @@ expression: "Halfling::deities()"
     - "goddess of love, song, and dance"
     - "the lady of fields, streams, and the wilds found in shire and glen"
     - the Green Sister of Yondalla
-    - "Province: agriculture, nature, weather"
+    - "goddess of agriculture, nature, and weather"
   alignment:
     - Neutral
     - Good
@@ -68,7 +67,6 @@ expression: "Halfling::deities()"
 - name: Urogalan
   titles:
     - god of earth and death
-    - "Province: earth, death"
   alignment:
     - Lawful
     - Neutral

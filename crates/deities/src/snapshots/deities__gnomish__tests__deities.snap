@@ -6,7 +6,7 @@ expression: "Gnomish::deities()"
 - name: Baervan Wildwanderer
   titles:
     - god of forests and woodlands
-    - "Province: woodlands"
+    - god of woodlands
   alignment:
     - Neutral
     - Good
@@ -18,7 +18,6 @@ expression: "Gnomish::deities()"
   titles:
     - god of illusion and deception
     - Sly One
-    - "Province: illusion, deception"
   alignment:
     - Neutral
     - Good
@@ -29,7 +28,7 @@ expression: "Gnomish::deities()"
     - Dagger against a hooded cloak
 - name: Bleredd
   titles:
-    - "Province: labor, craft"
+    - deity of labor and craft
   alignment:
     - Neutral
     - Neutral
@@ -41,7 +40,6 @@ expression: "Gnomish::deities()"
 - name: Callarduran Smoothhands
   titles:
     - god of mining and carving stone
-    - "Province: mining, stone carving"
   alignment:
     - Neutral
     - Neutral
@@ -56,7 +54,6 @@ expression: "Gnomish::deities()"
     - god of mining and smithcraft
     - god of physical improvement and good health
     - the Steelsmith
-    - "Province: metalwork"
   alignment:
     - Neutral
     - Good
@@ -69,7 +66,6 @@ expression: "Gnomish::deities()"
   titles:
     - god of protection
     - "god of war, vigilance, and defense"
-    - "Province: protection"
   alignment:
     - Lawful
     - Good
@@ -93,7 +89,7 @@ expression: "Gnomish::deities()"
     - Gold nugget
 - name: Gelf Darkhearth
   titles:
-    - "Province: frustration, destruction"
+    - deity of frustration and destruction
   alignment:
     - Chaotic
     - Neutral
@@ -105,7 +101,6 @@ expression: "Gnomish::deities()"
   titles:
     - god of invention and luck
     - the Meddler
-    - "Province: invention, luck"
   alignment:
     - Chaotic
     - Good
@@ -117,7 +112,7 @@ expression: "Gnomish::deities()"
     - Bellows and a lizard tail
 - name: Rill Cleverthrush
   titles:
-    - "Province: law, thought"
+    - deity of law and thought
   alignment:
     - Lawful
     - Neutral
@@ -130,7 +125,6 @@ expression: "Gnomish::deities()"
     - god of earth and the dead
     - god of the wilds beneath the earth
     - god of the burrows
-    - "Province: earth, the dead"
   alignment:
     - Neutral
     - Good
@@ -141,7 +135,7 @@ expression: "Gnomish::deities()"
     - Glowing gemstone
 - name: Sheyanna Flaxenstrand
   titles:
-    - "Province: love, beauty, passion"
+    - "deity of love, beauty, and passion"
   alignment:
     - Chaotic
     - Good
@@ -153,7 +147,6 @@ expression: "Gnomish::deities()"
   titles:
     - god of greed and murder
     - "great-clawed god of bloodlust and evil, of greed and uncontrolled impulses"
-    - "Province: greed, murder"
   alignment:
     - Chaotic
     - Evil

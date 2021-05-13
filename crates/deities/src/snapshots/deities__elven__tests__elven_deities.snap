@@ -8,7 +8,7 @@ expression: "Elven::deities()"
     - goddess of the sky
     - wild goddess of the winds and weather
     - patron of the avariel
-    - "Province: air, rain, fertility, birth"
+    - "goddess of air, rain, fertility, and birth"
   alignment:
     - Chaotic
     - Good
@@ -22,7 +22,7 @@ expression: "Elven::deities()"
   titles:
     - triple goddess of wisdom and protection
     - the fierce mother-protector of the elf people
-    - "Province: wisdom, growth, protection"
+    - "goddess of wisdom, growth, and protection"
   alignment:
     - Chaotic
     - Good
@@ -35,7 +35,7 @@ expression: "Elven::deities()"
     - Three interlocking circles
 - name: Alathrien Druanna
   titles:
-    - "Province: runes, writing, spellcasting"
+    - "deity of runes, writing, and spellcasting"
   alignment:
     - Neutral
     - Neutral
@@ -46,7 +46,7 @@ expression: "Elven::deities()"
     - A quill or glyph
 - name: Alobal Lorfiril
   titles:
-    - "Province: revelry, mirth"
+    - deity of revelry and mirth
   alignment:
     - Chaotic
     - Good
@@ -57,7 +57,7 @@ expression: "Elven::deities()"
     - Wine Glass
 - name: Araleth Letheranil
   titles:
-    - "Province: light, stars, revelations"
+    - "deity of light, stars, and revelations"
   alignment:
     - Chaotic
     - Good
@@ -85,7 +85,7 @@ expression: "Elven::deities()"
     - starburst
 - name: Darahl Tilvenar
   titles:
-    - "Province: fire, earth, metalwork"
+    - "deity of fire, earth, and metalwork"
   alignment:
     - Lawful
     - Neutral
@@ -98,7 +98,7 @@ expression: "Elven::deities()"
   titles:
     - god of the sea
     - lord of the sea elves and of dolphins
-    - "Province: creativity, knowledge, sea"
+    - "god of creativity, knowledge, and the sea"
   alignment:
     - Chaotic
     - Good
@@ -110,7 +110,7 @@ expression: "Elven::deities()"
     - Dolphin
 - name: Elebrin Liothiel
   titles:
-    - "Province: abundance, gardens, the harvest"
+    - "deity of abundance, gardens, and the harvest"
   alignment:
     - Chaotic
     - Good
@@ -123,7 +123,7 @@ expression: "Elven::deities()"
   titles:
     - god of mischief
     - trickster-god
-    - "Province: mischief, change"
+    - god of mischief and change
   alignment:
     - Chaotic
     - Neutral
@@ -135,7 +135,6 @@ expression: "Elven::deities()"
 - name: Fenmarel Mestarine
   titles:
     - god of outcasts and solitude
-    - "Province: solitude, outcasts"
   alignment:
     - Chaotic
     - Neutral
@@ -146,7 +145,7 @@ expression: "Elven::deities()"
     - Two peering elven eyes
 - name: Gadhelyn
   titles:
-    - "Province: independence, outlawry"
+    - deity of independence and outlawry
   alignment:
     - Chaotic
     - Neutral
@@ -159,7 +158,6 @@ expression: "Elven::deities()"
   titles:
     - "goddess of love, beauty, art, and enchantment"
     - the Winsome Rose
-    - "Province: love, beauty, the arts"
   alignment:
     - Chaotic
     - Good
@@ -169,7 +167,7 @@ expression: "Elven::deities()"
     - Golden heart
 - name: Kirith Sotheril
   titles:
-    - "Province: divination, illusion"
+    - deity of divination and illusion
   alignment:
     - Neutral
     - Good
@@ -182,7 +180,7 @@ expression: "Elven::deities()"
   titles:
     - "god of time, history, and philosophy"
     - the philosopher god
-    - "Province: time, history, memory"
+    - "god of time, history, and memory"
   alignment:
     - Chaotic
     - Good
@@ -194,7 +192,7 @@ expression: "Elven::deities()"
     - Setting sun
 - name: Melira Taralen
   titles:
-    - "Province: poetry, songs"
+    - deity of poetry and songs
   alignment:
     - Chaotic
     - Good
@@ -206,7 +204,7 @@ expression: "Elven::deities()"
     - Lute
 - name: Mythrien Sarath
   titles:
-    - "Province: abjuration, mythals"
+    - deity of abjuration and mythals
   alignment:
     - Chaotic
     - Good
@@ -218,7 +216,7 @@ expression: "Elven::deities()"
     - Row of three intertwined rings
 - name: Naralis Analor
   titles:
-    - "Province: healing, suffering, death"
+    - "deity of healing, suffering, and death"
   alignment:
     - Neutral
     - Good
@@ -229,7 +227,7 @@ expression: "Elven::deities()"
     - White dove
 - name: Rellavar Danuvien
   titles:
-    - "Province: winter, harsh weather"
+    - deity of winter and harsh weather
   alignment:
     - Neutral
     - Good
@@ -243,7 +241,7 @@ expression: "Elven::deities()"
     - god of the woodlands and wild places
     - father of the wood elves
     - protector of druids
-    - "Province: nature, beasts, the seasons"
+    - "god of nature, beasts, and the seasons"
   alignment:
     - Chaotic
     - Good
@@ -253,7 +251,7 @@ expression: "Elven::deities()"
     - Oak
 - name: Sarula Iliene
   titles:
-    - "Province: lakes, streams"
+    - deity of lakes and streams
   alignment:
     - Chaotic
     - Good
@@ -268,7 +266,6 @@ expression: "Elven::deities()"
     - "goddess of divination, dreams, travel, and death"
     - "goddess of all life's mysteries, including mysticism, prophecy, death, and dreams"
     - the Moonlit Mystery
-    - "Province: dreams, death, travel"
   alignment:
     - Chaotic
     - Good
@@ -282,7 +279,7 @@ expression: "Elven::deities()"
 - name: Shevarash
   titles:
     - god of vengeance
-    - "Province: vengeance, loss, hatred"
+    - "god of vengeance, loss, and hatred"
   alignment:
     - Chaotic
     - Neutral
@@ -293,7 +290,7 @@ expression: "Elven::deities()"
 - name: Solonor Thelandira
   titles:
     - "god of hunting, archery, and woodcraft"
-    - "Province: archery, hunting, survival"
+    - "god of archery, hunting, and survival"
   alignment:
     - Chaotic
     - Good
@@ -304,7 +301,7 @@ expression: "Elven::deities()"
     - Silver arrow with green fletching
 - name: Tarsellis Meunniduin
   titles:
-    - "Province: mountains, rivers, wild places"
+    - "deity of mountains, rivers, and wild places"
   alignment:
     - Chaotic
     - Neutral
@@ -315,7 +312,7 @@ expression: "Elven::deities()"
     - Mountain with a river
 - name: Tethrin Varaldé
   titles:
-    - "Province: battle, sword fighting"
+    - "deity of battle, and sword fighting"
   alignment:
     - Neutral
     - Good
@@ -325,7 +322,7 @@ expression: "Elven::deities()"
     - Crossed swords beneath a quarter moon and above a full moon
 - name: Vandria Gilmadrith
   titles:
-    - "Province: war, grief, justice, vigilance"
+    - "deity of war, grief, justice, and vigilance"
   alignment:
     - Lawful
     - Neutral
@@ -336,7 +333,7 @@ expression: "Elven::deities()"
     - Weeping eye
 - name: "Ye'Cind"
   titles:
-    - "Province: music, enchantment"
+    - deity of music and enchantment
   alignment:
     - Chaotic
     - Good
@@ -347,7 +344,7 @@ expression: "Elven::deities()"
     - Recorder
 - name: Zandilar
   titles:
-    - "Province: romance, lust, dance"
+    - "deity of romance, lust, and dance"
   alignment:
     - Chaotic
     - Neutral

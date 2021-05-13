@@ -6,7 +6,7 @@ expression: "Drow::deities()"
 - name: Eilistraee
   titles:
     - "goddess of song, beauty, swordwork, hunting, and moonlight"
-    - "Province: freedom, moonlight, song"
+    - "goddess of freedom, moonlight, and song"
   alignment:
     - Chaotic
     - Good
@@ -18,7 +18,7 @@ expression: "Drow::deities()"
     - Sword-wielding dancing drow female silhouetted against the full moon
 - name: Ghaunadaur
   titles:
-    - "Province: oozes, slimes, outcasts"
+    - "deity of oozes, slimes, and outcasts"
   alignment:
     - Chaotic
     - Evil
@@ -28,7 +28,7 @@ expression: "Drow::deities()"
     - Purple eye with black sclera
 - name: Keptolo
   titles:
-    - "Province: beauty, hedonism, fertility"
+    - "deity of beauty, hedonism, and fertility"
   alignment:
     - Chaotic
     - Evil
@@ -41,7 +41,6 @@ expression: "Drow::deities()"
   titles:
     - goddess of necromancy
     - goddess of the undead
-    - "Province: necromancy"
   alignment:
     - Chaotic
     - Evil
@@ -52,7 +51,7 @@ expression: "Drow::deities()"
     - Female drow hand wearing many silver rings
 - name: Malyk
   titles:
-    - "Province: chaos, rebellion, wild magic"
+    - "deity of chaos, rebellion, and wild magic"
   alignment:
     - Chaotic
     - Evil
@@ -65,7 +64,7 @@ expression: "Drow::deities()"
   titles:
     - goddess of spiders
     - the Demon Queen of Spiders
-    - "Province: primary god of drow, spiders"
+    - primary god of drow
   alignment:
     - Chaotic
     - Evil
@@ -77,7 +76,7 @@ expression: "Drow::deities()"
 - name: Selvetarm
   titles:
     - god of warriors
-    - "Province: warriors, slaughter"
+    - god of warriors and slaughter
   alignment:
     - Chaotic
     - Evil
@@ -88,7 +87,7 @@ expression: "Drow::deities()"
 - name: Vhaeraun
   titles:
     - god of thieves
-    - "Province: arrogance, thieves"
+    - god of arrogance and thieves
   alignment:
     - Chaotic
     - Evil
@@ -99,7 +98,7 @@ expression: "Drow::deities()"
     - Black mask with blue glass lenses inset over eyes
 - name: Zinzerena
   titles:
-    - "Province: assassination, illusion, lies"
+    - "deity of assassination, illusion, and lies"
   alignment:
     - Chaotic
     - Neutral

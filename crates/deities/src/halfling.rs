@@ -13,7 +13,6 @@ impl<'a> Deities<'a> for Halfling {
                     "god of vigilance and war",
                     "defender-god",
                     "watchful protector",
-                    "Province: vigilance, war",
                 ],
                 alignment: Alignment(Attitude::Lawful, Morality::Good),
                 domains: vec![Domain::War],
@@ -23,7 +22,7 @@ impl<'a> Deities<'a> for Halfling {
                 name: "Brandobaris",
                 titles: vec![
                     "god of thievery, stealth, and adventure",
-                    "Province: adventure, thievery",
+                    "god of adventure and thievery",
                 ],
                 alignment: Alignment(Attitude::Neutral, Morality::Neutral),
                 domains: vec![Domain::Trickery],
@@ -31,7 +30,7 @@ impl<'a> Deities<'a> for Halfling {
             },
             Deity {
                 name: "Charmalaine",
-                titles: vec!["Province: keen senses, luck"],
+                titles: vec!["deity of keen senses and luck"],
                 alignment: Alignment(Attitude::Neutral, Morality::Neutral),
                 domains: vec![Domain::Trickery],
                 symbols: vec!["Burning boot print"],
@@ -41,7 +40,7 @@ impl<'a> Deities<'a> for Halfling {
                 titles: vec![
                     "goddess of hearth, hospitality, and home",
                     "goddess of trust and handicrafts",
-                    "Province: hearty, home",
+                    "goddess of hearth and home",
                 ],
                 alignment: Alignment(Attitude::Lawful, Morality::Good),
                 domains: vec![Domain::Life],
@@ -55,7 +54,7 @@ impl<'a> Deities<'a> for Halfling {
                     "goddess of love, song, and dance",
                     "the lady of fields, streams, and the wilds found in shire and glen",
                     "the Green Sister of Yondalla",
-                    "Province: agriculture, nature, weather",
+                    "goddess of agriculture, nature, and weather",
                 ],
                 alignment: Alignment(Attitude::Neutral, Morality::Good),
                 domains: vec![Domain::Nature, Domain::Tempest],
@@ -63,7 +62,7 @@ impl<'a> Deities<'a> for Halfling {
             },
             Deity {
                 name: "Urogalan",
-                titles: vec!["god of earth and death", "Province: earth, death"],
+                titles: vec!["god of earth and death"],
                 alignment: Alignment(Attitude::Lawful, Morality::Neutral),
                 domains: vec![Domain::Death, Domain::Grave, Domain::Knowledge],
                 symbols: vec!["Silhouette of a dog's head"],

@@ -6,7 +6,6 @@ expression: "Duergar::deities()"
 - name: Deep Duerra
   titles:
     - goddess of conquest and psionics
-    - "Province: conquest, psionics"
   alignment:
     - Lawful
     - Evil
@@ -19,7 +18,7 @@ expression: "Duergar::deities()"
 - name: Laduguer
   titles:
     - god of magic and slavery
-    - "Province: labor, slavery"
+    - god of labor and slavery
   alignment:
     - Lawful
     - Evil

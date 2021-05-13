@@ -6,7 +6,6 @@ expression: "Dwarven::deities()"
 - name: Abbathor
   titles:
     - god of greed
-    - "Province: greed"
   alignment:
     - Neutral
     - Evil
@@ -20,7 +19,7 @@ expression: "Dwarven::deities()"
     - goddess of honesty and faithfulness
     - "goddess of oaths, loyalty, and honor"
     - the Revered Mother
-    - "Province: hearth, home, truth"
+    - "goddess of hearth, home, and truth"
   alignment:
     - Lawful
     - Good
@@ -32,7 +31,7 @@ expression: "Dwarven::deities()"
 - name: Clangeddin Silverbeard
   titles:
     - god of war and valor
-    - "Province: war, strategy"
+    - god of war and strategy
   alignment:
     - Lawful
     - Good
@@ -45,7 +44,7 @@ expression: "Dwarven::deities()"
     - god of invention and discovery
     - the Wandering Tinkerer
     - the Gleam in the Eye
-    - "Province: discovery"
+    - god of discovery
   alignment:
     - Chaotic
     - Good
@@ -59,7 +58,6 @@ expression: "Dwarven::deities()"
     - "god of buried wealth, mining, gems, and exploration"
     - the Keeper of Secrets under the Mountain
     - the guardian of the dead
-    - "Province: buried secrets"
   alignment:
     - Neutral
     - Neutral
@@ -76,7 +74,7 @@ expression: "Dwarven::deities()"
     - Fire Eyes
     - the Lord of the Bronze Mask
     - the protector of dwarves
-    - "Province: vigilance"
+    - god of vigilance
   alignment:
     - Lawful
     - Good
@@ -88,7 +86,7 @@ expression: "Dwarven::deities()"
   titles:
     - goddess of war-luck
     - patron of dwarf fighters
-    - "Province: combat prowess, luck in battle"
+    - god of combat prowess and luck in battle
   alignment:
     - Chaotic
     - Good
@@ -99,7 +97,7 @@ expression: "Dwarven::deities()"
     - Upright sword with blade sheathed in flame
 - name: Hanseath
   titles:
-    - "Province: festivity, brewing, song"
+    - "deity of festivity, brewing, and song"
   alignment:
     - Chaotic
     - Neutral
@@ -114,7 +112,7 @@ expression: "Dwarven::deities()"
     - "the traveler's god"
     - patron of expatriates and guides
     - deity of lightning and roads
-    - "Province: explorers, wanderers, the lost"
+    - "god of explorers, wanderers, and the lost"
   alignment:
     - Neutral
     - Good
@@ -142,7 +140,7 @@ expression: "Dwarven::deities()"
     - Hammer and anvil
 - name: Muamman Duathal
   titles:
-    - "Province: storms, travel"
+    - deity of storms and travel
   alignment:
     - Neutral
     - Good
@@ -152,7 +150,7 @@ expression: "Dwarven::deities()"
     - Mace held in gauntlets
 - name: Mya
   titles:
-    - "Province: clan, family, wisdom"
+    - "deity of clan, family, and wisdom"
   alignment:
     - Neutral
     - Good
@@ -163,7 +161,7 @@ expression: "Dwarven::deities()"
     - A faceless mother figure
 - name: Roknar
   titles:
-    - "Province: lies, intrigue"
+    - deity of lies and intrigue
   alignment:
     - Neutral
     - Evil
@@ -175,7 +173,7 @@ expression: "Dwarven::deities()"
   titles:
     - "goddess of healing, romantic love, and fertility"
     - Lady of Life and Mercy
-    - "Province: healing, love"
+    - goddess of healing and love
   alignment:
     - Chaotic
     - Good
@@ -185,7 +183,7 @@ expression: "Dwarven::deities()"
     - Burning needle
 - name: Thard Harr
   titles:
-    - "Province: wilderness, hunting"
+    - deity of wilderness and hunting
   alignment:
     - Chaotic
     - Good
@@ -195,7 +193,7 @@ expression: "Dwarven::deities()"
     - Two clawed guantlets
 - name: Tharmekhûl
   titles:
-    - "Province: fire, forges, molten rock"
+    - "deity of fire, forges, and molten rock"
   alignment:
     - Neutral
     - Neutral
@@ -206,7 +204,7 @@ expression: "Dwarven::deities()"
     - Fiery axe
 - name: Thautam
   titles:
-    - "Province: mysteries, darkness, lost treasures"
+    - "deity of mysteries, darkness, and lost treasures"
   alignment:
     - Neutral
     - Neutral
@@ -217,7 +215,7 @@ expression: "Dwarven::deities()"
     - Blindfold
 - name: Ulaa
   titles:
-    - "Province: mining, quarrying"
+    - deity of mining and quarrying
   alignment:
     - Lawful
     - Good
@@ -227,7 +225,7 @@ expression: "Dwarven::deities()"
     - "A miner's pick"
 - name: Valkauna
   titles:
-    - "Province: oaths, birth, aging, death"
+    - "deity of oaths, birth, aging, and death"
   alignment:
     - Lawful
     - Neutral
@@ -242,7 +240,6 @@ expression: "Dwarven::deities()"
     - "god of thieves, luck, and chance"
     - god of commerce and negotiation
     - the Merchant King
-    - "Province: luck, wealth"
   alignment:
     - Neutral
     - Neutral
