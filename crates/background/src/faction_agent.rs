@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -58,15 +59,15 @@ const TRAITS: &[&str] = &[
 
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Faction {
-    #[strum(serialize = "The Harpers")]
+    #[strum(serialize = "Harpers")]
     Harpers,
-    #[strum(serialize = "The Order of the Gauntlet")]
+    #[strum(serialize = "Order of the Gauntlet")]
     OrderOfTheGauntlet,
-    #[strum(serialize = "The Emerald Enclave")]
+    #[strum(serialize = "Emerald Enclave")]
     EmeraldEnclave,
-    #[strum(serialize = "The Lord's Alliance")]
+    #[strum(serialize = "Lord's Alliance")]
     LordsAlliance,
-    #[strum(serialize = "The Zhentarim")]
+    #[strum(serialize = "Zhentarim")]
     Zhentarim,
 }
 
@@ -133,6 +134,8 @@ impl Languages for FactionAgent {
         (2, None)
     }
 }
+
+impl Pantheons for FactionAgent {}
 
 impl PersonalityOptions for FactionAgent {
     fn bonds(&self) -> Vec<String> {

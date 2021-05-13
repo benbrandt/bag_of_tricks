@@ -8,6 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use dice_roller::{Die, RollCmd};
 use features::Features;
 use languages::{Language, LanguageType, Languages};
@@ -111,6 +112,8 @@ impl Name for Human {
         )
     }
 }
+
+impl Pantheons for Human {}
 
 impl PersonalityOptions for Human {}
 

@@ -1,0 +1,10 @@
+---
+source: crates/background/src/acolyte.rs
+expression: background.addl_equipment()
+
+---
+- HolySymbol
+- From:
+    - Other: prayer book
+    - Other: prayer wheel
+

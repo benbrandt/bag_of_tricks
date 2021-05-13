@@ -10,6 +10,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use gear::{armor::ArmorType, weapons::WeaponCategory};
@@ -103,6 +104,12 @@ impl Languages for Hobgoblin {
 impl Name for Hobgoblin {
     fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*HOBGOBLIN.choose(rng).unwrap()).to_string()
+    }
+}
+
+impl Pantheons for Hobgoblin {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Goblin]
     }
 }
 
@@ -235,6 +242,14 @@ mod tests {
         let characteristics = hobgoblin.gen_characteristics(&mut rng);
         let name = Hobgoblin::gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let hobgoblin = Hobgoblin {
+            origin: String::new(),
+        };
+        insta::assert_yaml_snapshot!(hobgoblin.addl_pantheons());
     }
 
     #[test]

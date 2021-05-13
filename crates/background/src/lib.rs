@@ -29,6 +29,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::Citations;
+use deities::Pantheons;
 use features::Features;
 use haunted_one::HauntedOne;
 use itertools::Itertools;
@@ -84,6 +85,7 @@ pub trait Background:
     + Citations
     + Features
     + Languages
+    + Pantheons
     + PersonalityOptions
     + Proficiencies
     + StartingEquipment

@@ -4,8 +4,8 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct Celtic;
 
-impl Deities for Celtic {
-    fn deities() -> Vec<Deity> {
+impl<'a> Deities<'a> for Celtic {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "The Daghdha",
@@ -111,9 +111,9 @@ impl Deities for Celtic {
 
 pub(crate) struct Greek;
 
-impl Deities for Greek {
+impl<'a> Deities<'a> for Greek {
     #[allow(clippy::too_many_lines)]
-    fn deities() -> Vec<Deity> {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Zeus",
@@ -254,8 +254,8 @@ impl Deities for Greek {
 
 pub(crate) struct Egyptian;
 
-impl Deities for Egyptian {
-    fn deities() -> Vec<Deity> {
+impl<'a> Deities<'a> for Egyptian {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Re-Horakhty",
@@ -361,9 +361,9 @@ impl Deities for Egyptian {
 
 pub(crate) struct Norse;
 
-impl Deities for Norse {
+impl<'a> Deities<'a> for Norse {
     #[allow(clippy::too_many_lines)]
-    fn deities() -> Vec<Deity> {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Odin",

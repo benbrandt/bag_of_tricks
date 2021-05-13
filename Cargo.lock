@@ -379,6 +379,7 @@ version = "0.1.0"
 dependencies = [
  "backstory",
  "citation",
+ "deities",
  "features",
  "gear",
  "insta",
@@ -618,6 +619,7 @@ dependencies = [
  "background",
  "backstory",
  "characteristics",
+ "deities",
  "features",
  "gear",
  "insta",
@@ -870,8 +872,11 @@ version = "0.1.0"
 dependencies = [
  "alignment",
  "insta",
+ "rand 0.8.3",
+ "rand_pcg",
  "serde",
  "serde_yaml",
+ "strum",
 ]
 
 [[package]]
@@ -1963,6 +1968,7 @@ dependencies = [
  "backstory",
  "characteristics",
  "citation",
+ "deities",
  "dice_roller",
  "features",
  "gear",

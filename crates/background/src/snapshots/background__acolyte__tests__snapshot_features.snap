@@ -1,0 +1,10 @@
+---
+source: crates/background/src/acolyte.rs
+expression: background.features()
+
+---
+- title: Shelter of the Faithful
+  citation:
+    - Phb
+    - 127
+

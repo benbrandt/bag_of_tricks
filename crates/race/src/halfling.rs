@@ -14,6 +14,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -235,6 +236,12 @@ impl Name for Halfling {
     }
 }
 
+impl Pantheons for Halfling {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Halfling]
+    }
+}
+
 impl PersonalityOptions for Halfling {
     fn bonds(&self) -> Vec<String> {
         BONDS.iter().map(|&s| s.to_string()).collect()
@@ -354,5 +361,14 @@ mod tests {
             })
             .features())
             .collect::<Vec<Vec<Feature>>>());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let hobgoblin = Halfling {
+            subrace: HalflingSubrace::Ghostwise,
+            reason_for_adventuring: String::new()
+        };
+        insta::assert_yaml_snapshot!(hobgoblin.addl_pantheons());
     }
 }

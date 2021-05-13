@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -57,6 +58,12 @@ impl Features for Acolyte {
 impl Languages for Acolyte {
     fn addl_languages(&self) -> (usize, Option<LanguageType>) {
         (2, None)
+    }
+}
+
+impl Pantheons for Acolyte {
+    fn deity_required(&self) -> bool {
+        true
     }
 }
 
@@ -144,5 +151,108 @@ impl StartingEquipment for Acolyte {
 impl fmt::Display for Acolyte {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "Acolyte")
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = Acolyte::gen(&mut rng, &AbilityScores::default(), &[], 2);
+        insta::assert_yaml_snapshot!(background);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = Acolyte::gen(&mut rng, &AbilityScores::default(), &[], 2);
+        insta::assert_display_snapshot!(background);
+    }
+
+    #[test]
+    fn test_skills() {
+        insta::assert_yaml_snapshot!(Acolyte::skills());
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.citations());
+    }
+
+    #[test]
+    fn test_snapshot_features() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.features());
+    }
+
+    #[test]
+    fn test_snapshot_addl_languages() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.addl_languages());
+    }
+
+    #[test]
+    fn test_snapshot_deity_required() {
+        let background = Acolyte;
+        assert!(background.deity_required());
+    }
+
+    #[test]
+    fn test_bonds() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = Acolyte::gen(&mut rng, &AbilityScores::default(), &[], 2);
+        insta::assert_yaml_snapshot!(background.bonds());
+    }
+
+    #[test]
+    fn test_flaws() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = Acolyte::gen(&mut rng, &AbilityScores::default(), &[], 2);
+        insta::assert_yaml_snapshot!(background.flaws());
+    }
+
+    #[test]
+    fn test_ideals() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = Acolyte::gen(&mut rng, &AbilityScores::default(), &[], 2);
+        insta::assert_yaml_snapshot!(background.ideals());
+    }
+
+    #[test]
+    fn test_traits() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let background = Acolyte::gen(&mut rng, &AbilityScores::default(), &[], 2);
+        insta::assert_yaml_snapshot!(background.traits());
+    }
+
+    #[test]
+    fn test_snapshot_proficiences() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_coins() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.coins());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let background = Acolyte;
+        insta::assert_yaml_snapshot!(background.addl_equipment());
     }
 }

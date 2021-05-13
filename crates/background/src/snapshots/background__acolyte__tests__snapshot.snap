@@ -1,0 +1,7 @@
+---
+source: crates/background/src/acolyte.rs
+expression: background
+
+---
+type: Acolyte
+

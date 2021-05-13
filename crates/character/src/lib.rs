@@ -8,6 +8,7 @@ use attack::{DamageType, Resistances};
 use background::{Background, BackgroundOption};
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
+use deities::{Deity, Pantheon};
 use features::{Feature, Features};
 use gear::currency::Coin;
 use languages::Language;
@@ -25,7 +26,7 @@ use trinkets::{TrinketOption, Trinkets};
 
 /// Character information. Mostly stores random choices made for this character.
 #[derive(Default, Deserialize, Serialize)]
-pub struct Character {
+pub struct Character<'a> {
     /// Ability scores for the character.
     abilities: AbilityScores,
     /// The character's alignment.
@@ -36,6 +37,9 @@ pub struct Character {
     characteristics: Option<CharacteristicDetails>,
     /// Currency
     coins: (Coin, u8),
+    /// Character's chosen deity
+    #[serde(borrow)]
+    deity: Option<Deity<'a>>,
     /// Equipment randomly chosen for the character.
     equipment: Vec<Equipment>,
     /// Languages randomly chosen for the character.
@@ -44,6 +48,8 @@ pub struct Character {
     level: u8,
     /// Character's name.
     name: String,
+    /// Pantheon of Deities this character believes in
+    pantheon: Option<Pantheon>,
     /// Personality traits of the chracacter.
     personality: Option<Personality>,
     /// Proficiencies for the character.
@@ -52,7 +58,7 @@ pub struct Character {
     race: Option<Box<dyn Race>>,
 }
 
-impl Character {
+impl<'a> Character<'a> {
     /// Generate a new random character
     ///
     /// The methodolgy is to gather together as many static inputs as possible (based on some initial random choices),
@@ -85,6 +91,7 @@ impl Character {
         character.characteristics = Some(characteristics);
         character.background = Some(background);
         character.gen_personality(rng);
+        character.gen_deity(rng);
         character.gen_alignment(rng);
         character.gen_languages(rng);
         character.gen_proficiences(rng);
@@ -95,6 +102,24 @@ impl Character {
     /// Generate character's alignment, feeding in any inputs we have for attitude and morality.
     fn gen_alignment(&mut self, rng: &mut impl Rng) {
         self.alignment = Some(Alignment::gen(rng, &self.attitude(), &self.morality()));
+    }
+
+    /// Generate a character's pantheon and Deity
+    fn gen_deity(&mut self, rng: &mut impl Rng) {
+        let mut addl_pantheons = vec![];
+        let mut required = vec![];
+        let domain = None;
+        if let Some(race) = self.race.as_ref() {
+            addl_pantheons.extend(race.addl_pantheons());
+            required.push(race.deity_required());
+        }
+        if let Some(background) = self.background.as_ref() {
+            addl_pantheons.extend(background.addl_pantheons());
+            required.push(background.deity_required());
+        }
+        let pantheon = Pantheon::choose(rng, addl_pantheons, domain, required.contains(&true));
+        self.pantheon = Some(pantheon);
+        self.deity = pantheon.choose_deity(rng, &self.attitude(), &self.morality(), domain)
     }
 
     /// Generate any additional equipment.
@@ -242,7 +267,7 @@ impl Character {
 }
 
 /// Combine all attitude and morality influences for the character (race and personality)
-impl AlignmentInfluences for Character {
+impl<'a> AlignmentInfluences for Character<'a> {
     fn attitude(&self) -> Vec<Attitude> {
         let mut attitude = vec![];
         if let Some(race) = self.race.as_ref() {
@@ -250,6 +275,9 @@ impl AlignmentInfluences for Character {
         }
         if let Some(personality) = self.personality.as_ref() {
             attitude.extend(personality.attitude());
+        }
+        if let Some(deity) = self.deity.as_ref() {
+            attitude.extend(deity.alignment.attitude());
         }
         attitude
     }
@@ -262,11 +290,14 @@ impl AlignmentInfluences for Character {
         if let Some(personality) = self.personality.as_ref() {
             morality.extend(personality.morality());
         }
+        if let Some(deity) = self.deity.as_ref() {
+            morality.extend(deity.alignment.morality());
+        }
         morality
     }
 }
 
-impl Appearance for Character {
+impl<'a> Appearance for Character<'a> {
     fn appearance(&self) -> Vec<String> {
         let mut appearance = vec![];
         if let Some(race) = self.race.as_ref() {
@@ -277,7 +308,7 @@ impl Appearance for Character {
 }
 
 /// Combine all backstory items for the character.
-impl Backstory for Character {
+impl<'a> Backstory for Character<'a> {
     fn backstory(&self) -> Vec<String> {
         let mut backstory = vec![];
         if let Some(race) = self.race.as_ref() {
@@ -291,7 +322,7 @@ impl Backstory for Character {
 }
 
 /// Combine all features and traits for the characters (race and background)
-impl Features for Character {
+impl<'a> Features for Character<'a> {
     fn features(&self) -> Vec<Feature> {
         let mut features = vec![];
         if let Some(race) = self.race.as_ref() {
@@ -305,7 +336,7 @@ impl Features for Character {
 }
 
 /// Combine all resistances the character has.
-impl Resistances for Character {
+impl<'a> Resistances for Character<'a> {
     fn immunities(&self) -> Vec<DamageType> {
         self.race
             .as_ref()
@@ -321,7 +352,7 @@ impl Resistances for Character {
     }
 }
 
-impl Trinkets for Character {
+impl<'a> Trinkets for Character<'a> {
     fn trinket_options(&self) -> Vec<TrinketOption> {
         let mut options = vec![TrinketOption::Default];
         if let Some(race) = self.race.as_ref() {
@@ -334,7 +365,7 @@ impl Trinkets for Character {
 }
 
 /// Render a text version of the character. Useful for CLI or other output.
-impl fmt::Display for Character {
+impl<'a> fmt::Display for Character<'a> {
     #[allow(clippy::too_many_lines)]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "CHARACTER NAME: {}", self.name)?;
@@ -449,6 +480,13 @@ impl fmt::Display for Character {
         writeln!(f, "BACKSTORY:")?;
         for backstory in self.backstory() {
             writeln!(f, "{}", backstory)?;
+        }
+        writeln!(f)?;
+        if let Some(pantheon) = self.pantheon.as_ref() {
+            writeln!(f, "PANTHEON: {}", pantheon)?;
+        }
+        if let Some(deity) = self.deity.as_ref() {
+            writeln!(f, "{}", deity)?;
         }
         write!(f, "")
     }

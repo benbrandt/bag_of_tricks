@@ -4,8 +4,8 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct Bugbear;
 
-impl Deities for Bugbear {
-    fn deities() -> Vec<Deity> {
+impl<'a> Deities<'a> for Bugbear {
+    fn deities() -> Vec<Deity<'a>> {
         vec![Deity {
             name: "Hruggek",
             titles: vec!["god of violence"],
@@ -18,8 +18,8 @@ impl Deities for Bugbear {
 
 pub(crate) struct Goblin;
 
-impl Deities for Goblin {
-    fn deities() -> Vec<Deity> {
+impl<'a> Deities<'a> for Goblin {
+    fn deities() -> Vec<Deity<'a>> {
         vec![Deity {
             name: "Maglubiyet",
             titles: vec!["god of war"],

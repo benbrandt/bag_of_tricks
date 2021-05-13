@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -141,6 +142,8 @@ impl Features for Entertainer {
 }
 
 impl Languages for Entertainer {}
+
+impl Pantheons for Entertainer {}
 
 impl PersonalityOptions for Entertainer {
     fn bonds(&self) -> Vec<String> {

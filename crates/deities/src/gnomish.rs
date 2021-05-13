@@ -4,9 +4,9 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct Gnomish;
 
-impl Deities for Gnomish {
+impl<'a> Deities<'a> for Gnomish {
     #[allow(clippy::too_many_lines)]
-    fn deities() -> Vec<Deity> {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Baervan Wildwanderer",

@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{ArcaneFocus, Gear, OtherGear},
@@ -121,6 +122,8 @@ impl Languages for Outlander {
         (1, None)
     }
 }
+
+impl Pantheons for Outlander {}
 
 impl PersonalityOptions for Outlander {
     fn bonds(&self) -> Vec<String> {

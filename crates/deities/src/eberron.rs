@@ -4,9 +4,9 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct Eberron;
 
-impl Deities for Eberron {
+impl<'a> Deities<'a> for Eberron {
     #[allow(clippy::too_many_lines)]
-    fn deities() -> Vec<Deity> {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Arawai",

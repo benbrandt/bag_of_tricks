@@ -4,9 +4,9 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct ForgottenRealms;
 
-impl Deities for ForgottenRealms {
+impl<'a> Deities<'a> for ForgottenRealms {
     #[allow(clippy::too_many_lines)]
-    fn deities() -> Vec<Deity> {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Adaki",

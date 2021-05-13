@@ -13,6 +13,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, LanguageType, Languages};
@@ -148,6 +149,8 @@ impl Name for Tabaxi {
         )
     }
 }
+
+impl Pantheons for Tabaxi {}
 
 impl PersonalityOptions for Tabaxi {}
 

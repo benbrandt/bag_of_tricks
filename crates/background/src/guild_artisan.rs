@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -206,6 +207,8 @@ impl Languages for GuildArtisan {
         )
     }
 }
+
+impl Pantheons for GuildArtisan {}
 
 impl PersonalityOptions for GuildArtisan {
     fn bonds(&self) -> Vec<String> {

@@ -8,6 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -124,6 +125,12 @@ impl Languages for Firbolg {
 impl Name for Firbolg {
     fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         Elf::gen_name(rng, characteristics)
+    }
+}
+
+impl Pantheons for Firbolg {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Elven]
     }
 }
 
@@ -260,6 +267,14 @@ mod tests {
             },
         );
         insta::assert_yaml_snapshot!([female_name, male_name]);
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let firbolg = Firbolg {
+            reason_for_adventuring: String::new(),
+        };
+        insta::assert_yaml_snapshot!(firbolg.addl_pantheons());
     }
 
     #[test]

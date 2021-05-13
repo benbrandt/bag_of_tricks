@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -133,6 +134,8 @@ impl Features for Criminal {
 }
 
 impl Languages for Criminal {}
+
+impl Pantheons for Criminal {}
 
 impl PersonalityOptions for Criminal {
     fn bonds(&self) -> Vec<String> {

@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -136,6 +137,8 @@ impl Features for Sailor {
 }
 
 impl Languages for Sailor {}
+
+impl Pantheons for Sailor {}
 
 impl PersonalityOptions for Sailor {
     fn bonds(&self) -> Vec<String> {

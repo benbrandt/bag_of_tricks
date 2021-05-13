@@ -1,0 +1,12 @@
+---
+source: crates/race/src/elf.rs
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{story_hook: String::new(),\n                                subrace,}).addl_pantheons()).collect::<Vec<Vec<Pantheon>>>()"
+
+---
+- - Drow
+- - Elven
+- - Elven
+- - Elven
+- - Drow
+- - Elven
+

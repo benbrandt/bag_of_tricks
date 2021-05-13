@@ -10,6 +10,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use features::{Feature, Features};
 use gear::{
     armor::ArmorType,
@@ -383,6 +384,15 @@ impl Languages for Dwarf {
     }
 }
 
+impl Pantheons for Dwarf {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![match self.subrace {
+            DwarfSubrace::Duergar => Pantheon::Duergar,
+            DwarfSubrace::Hill(_) | DwarfSubrace::Mountain(_) => Pantheon::Dwarven,
+        }]
+    }
+}
+
 impl PersonalityOptions for Dwarf {}
 
 impl Proficiencies for Dwarf {
@@ -534,5 +544,20 @@ mod tests {
             })
             .features())
             .collect::<Vec<Vec<Feature>>>());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        insta::assert_yaml_snapshot!(DwarfSubrace::iter()
+            .map(|subrace| (Dwarf {
+                subrace,
+                clan_status: String::new(),
+                clan_trait: String::new(),
+                clan_vocation: String::new(),
+                quirk: String::new(),
+                story_hook: String::new(),
+            })
+            .addl_pantheons())
+            .collect::<Vec<Vec<Pantheon>>>());
     }
 }

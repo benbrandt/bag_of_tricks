@@ -1,0 +1,8 @@
+---
+source: crates/background/src/acolyte.rs
+expression: background.proficiencies()
+
+---
+- Skill: Insight
+- Skill: Religion
+

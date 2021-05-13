@@ -1,0 +1,7 @@
+---
+source: crates/race/src/orc.rs
+expression: orc.addl_pantheons()
+
+---
+- Orc
+

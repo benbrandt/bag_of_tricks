@@ -13,6 +13,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -192,6 +193,12 @@ impl Name for Dragonborn {
     }
 }
 
+impl Pantheons for Dragonborn {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Dragon]
+    }
+}
+
 impl PersonalityOptions for Dragonborn {}
 
 impl Proficiencies for Dragonborn {}
@@ -319,6 +326,14 @@ mod tests {
             },
         );
         insta::assert_yaml_snapshot!([female_name, male_name]);
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let dragonborn = Dragonborn {
+            ancestry: DraconicAncestry::Black,
+        };
+        insta::assert_yaml_snapshot!(dragonborn.addl_pantheons());
     }
 
     #[test]

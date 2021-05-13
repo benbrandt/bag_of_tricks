@@ -10,6 +10,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -414,6 +415,8 @@ impl Name for YuanTiPureblood {
         )
     }
 }
+
+impl Pantheons for YuanTiPureblood {}
 
 impl PersonalityOptions for YuanTiPureblood {
     fn bonds(&self) -> Vec<String> {

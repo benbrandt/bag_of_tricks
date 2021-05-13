@@ -13,6 +13,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -182,6 +183,12 @@ impl Name for Orc {
     }
 }
 
+impl Pantheons for Orc {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Orc]
+    }
+}
+
 impl PersonalityOptions for Orc {
     fn bonds(&self) -> Vec<String> {
         BONDS.iter().map(|&s| s.to_string()).collect()
@@ -320,6 +327,14 @@ mod tests {
         let characteristics = orc.gen_characteristics(&mut rng);
         let name = Orc::gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_addl_pantheons() {
+        let orc = Orc {
+            origin: String::new(),
+        };
+        insta::assert_yaml_snapshot!(orc.addl_pantheons());
     }
 
     #[test]

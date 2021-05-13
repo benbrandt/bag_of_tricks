@@ -8,6 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -198,6 +199,8 @@ impl Name for Aasimar {
         Human::gen_name(rng, characteristics)
     }
 }
+
+impl Pantheons for Aasimar {}
 
 impl PersonalityOptions for Aasimar {}
 

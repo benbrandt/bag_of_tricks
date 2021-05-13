@@ -13,6 +13,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -137,6 +138,8 @@ impl Name for Triton {
         )
     }
 }
+
+impl Pantheons for Triton {}
 
 impl PersonalityOptions for Triton {}
 

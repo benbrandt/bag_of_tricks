@@ -10,6 +10,7 @@ resolver = "2"
 [dependencies]
 backstory = { path = "../backstory" }
 citation = { path = "../citation" }
+deities = { path = "../deities" }
 features = { path = "../features" }
 gear = { path = "../gear" }
 itertools = "0.10"

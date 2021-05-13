@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -61,6 +62,8 @@ impl Languages for Courtier {
         (2, None)
     }
 }
+
+impl Pantheons for Courtier {}
 
 impl PersonalityOptions for Courtier {
     fn bonds(&self) -> Vec<String> {

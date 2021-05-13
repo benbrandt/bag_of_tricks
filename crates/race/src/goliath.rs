@@ -13,6 +13,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -109,6 +110,12 @@ impl Name for Goliath {
             NICKNAMES.choose(rng).unwrap(),
             CLAN_NAMES.choose(rng).unwrap(),
         )
+    }
+}
+
+impl Pantheons for Goliath {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Giant]
     }
 }
 
@@ -211,6 +218,12 @@ mod tests {
         let characteristics = goliath.gen_characteristics(&mut rng);
         let name = Goliath::gen_name(&mut rng, &&characteristics);
         insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let goliath = Goliath;
+        insta::assert_yaml_snapshot!(goliath.addl_pantheons());
     }
 
     #[test]

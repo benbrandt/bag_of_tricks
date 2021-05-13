@@ -10,6 +10,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{armor::ArmorType, weapons::WeaponType};
 use languages::{Language, LanguageType, Languages};
@@ -244,6 +245,8 @@ impl Languages for Gith {
         )
     }
 }
+
+impl Pantheons for Gith {}
 
 impl PersonalityOptions for Gith {
     fn bonds(&self) -> Vec<String> {

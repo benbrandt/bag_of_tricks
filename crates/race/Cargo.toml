@@ -13,6 +13,7 @@ attack = { path = "../attack" }
 backstory = { path = "../backstory" }
 characteristics = { path = "../characteristics" }
 citation = { path = "../citation" }
+deities = { path = "../deities" }
 dice_roller = { path = "../dice_roller" }
 features = { path = "../features" }
 gear = { path = "../gear" }

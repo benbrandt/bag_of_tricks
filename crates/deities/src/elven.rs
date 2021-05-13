@@ -4,9 +4,9 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct Elven;
 
-impl Deities for Elven {
+impl<'a> Deities<'a> for Elven {
     #[allow(clippy::too_many_lines)]
-    fn deities() -> Vec<Deity> {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Aerdrie Faenya",
@@ -246,8 +246,8 @@ impl Deities for Elven {
 
 pub(crate) struct Drow;
 
-impl Deities for Drow {
-    fn deities() -> Vec<Deity> {
+impl<'a> Deities<'a> for Drow {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Eilistraee",

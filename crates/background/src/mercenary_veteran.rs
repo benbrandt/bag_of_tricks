@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::Pantheons;
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -58,6 +59,8 @@ impl Features for MercenaryVeteran {
 }
 
 impl Languages for MercenaryVeteran {}
+
+impl Pantheons for MercenaryVeteran {}
 
 impl PersonalityOptions for MercenaryVeteran {
     fn bonds(&self) -> Vec<String> {

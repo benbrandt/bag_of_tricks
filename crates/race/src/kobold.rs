@@ -10,6 +10,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -217,6 +218,12 @@ impl Name for Kobold {
     }
 }
 
+impl Pantheons for Kobold {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Kobold]
+    }
+}
+
 impl PersonalityOptions for Kobold {}
 
 impl Proficiencies for Kobold {}
@@ -355,6 +362,16 @@ mod tests {
         let characteristics = kobold.gen_characteristics(&mut rng);
         let name = Kobold::gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let kobold = Kobold {
+            origin: String::new(),
+            scale_color: vec![ScaleColor::Black],
+            scale_pattern: ScalePattern::Mottled,
+        };
+        insta::assert_yaml_snapshot!(kobold.addl_pantheons());
     }
 
     #[test]

@@ -29,6 +29,7 @@ use attack::Resistances;
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails};
 use citation::Citations;
+use deities::Pantheons;
 use features::Features;
 use languages::Languages;
 use personality::PersonalityOptions;
@@ -55,6 +56,7 @@ pub trait Race:
     + Citations
     + Features
     + Languages
+    + Pantheons
     + PersonalityOptions
     + Proficiencies
     + Resistances

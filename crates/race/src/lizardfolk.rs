@@ -10,6 +10,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -128,6 +129,12 @@ impl Languages for Lizardfolk {
 impl Name for Lizardfolk {
     fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*NAMES.choose(rng).unwrap()).to_string()
+    }
+}
+
+impl Pantheons for Lizardfolk {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Lizardfolk]
     }
 }
 
@@ -263,6 +270,14 @@ mod tests {
         let characteristics = lizardfolk.gen_characteristics(&mut rng);
         let name = Lizardfolk::gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
+    }
+
+    #[test]
+    fn test_addl_pantheons() {
+        let lizardfolk = Lizardfolk {
+            quirk: String::new(),
+        };
+        insta::assert_yaml_snapshot!(lizardfolk.addl_pantheons());
     }
 
     #[test]

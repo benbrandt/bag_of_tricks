@@ -17,8 +17,12 @@ mod kobold;
 mod lizardfolk;
 mod orc;
 
-use alignment::Alignment;
+use std::fmt;
+
+use alignment::{Alignment, Attitude, Morality};
+use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
+use strum::Display;
 
 use self::{
     dragon::Dragon,
@@ -38,7 +42,7 @@ use self::{
     orc::Orc,
 };
 
-#[derive(Deserialize, Serialize)]
+#[derive(Copy, Clone, Deserialize, Display, PartialEq, Serialize)]
 pub enum Domain {
     Arcana,
     Death,
@@ -53,19 +57,45 @@ pub enum Domain {
     War,
 }
 
-#[derive(Deserialize, Serialize)]
-pub struct Deity {
-    name: &'static str,
-    titles: Vec<&'static str>,
-    alignment: Alignment,
-    domains: Vec<Domain>,
-    symbols: Vec<&'static str>,
+#[derive(Clone, Deserialize, Serialize)]
+pub struct Deity<'a> {
+    pub name: &'a str,
+    pub titles: Vec<&'a str>,
+    pub alignment: Alignment,
+    pub domains: Vec<Domain>,
+    pub symbols: Vec<&'a str>,
 }
 
-pub(crate) trait Deities {
-    fn deities() -> Vec<Deity>;
+impl Deity<'_> {
+    fn weight(&self, attitude_influences: &[Attitude], morality_influences: &[Morality]) -> f64 {
+        self.alignment
+            .weight(attitude_influences, morality_influences)
+    }
 }
 
+impl<'a> fmt::Display for Deity<'a> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "CHOSEN DEITY: {}", self.name)?;
+        writeln!(f, "Titles: {}", self.titles.join("; "))?;
+        writeln!(f, "Alignment: {}", self.alignment)?;
+        writeln!(
+            f,
+            "Domains: {}",
+            self.domains
+                .iter()
+                .map(|d| format!("{}", d))
+                .collect::<Vec<_>>()
+                .join(", ")
+        )?;
+        writeln!(f, "Symbols: {}", self.symbols.join(", "))
+    }
+}
+
+pub(crate) trait Deities<'a> {
+    fn deities() -> Vec<Deity<'a>>;
+}
+
+#[derive(Copy, Clone, Deserialize, Display, PartialEq, Serialize)]
 pub enum Pantheon {
     Bugbear,
     Celtic,
@@ -77,6 +107,7 @@ pub enum Pantheon {
     Eberron,
     Egyptian,
     Elven,
+    #[strum(serialize = "Forgotten Realms")]
     ForgottenRealms,
     Giant,
     Gnomish,
@@ -92,8 +123,7 @@ pub enum Pantheon {
 }
 
 impl Pantheon {
-    #[must_use]
-    pub fn deities(&self) -> Vec<Deity> {
+    fn all_deities<'a>(self) -> Vec<Deity<'a>> {
         match self {
             Self::Bugbear => Bugbear::deities(),
             Self::Celtic => Celtic::deities(),
@@ -118,5 +148,102 @@ impl Pantheon {
             Self::Orc => Orc::deities(),
             Self::None => vec![],
         }
+    }
+
+    #[must_use]
+    pub fn deities<'a>(self, domain: Option<Domain>) -> Vec<Deity<'a>> {
+        domain.map_or_else(
+            || self.all_deities(),
+            |d| {
+                self.all_deities()
+                    .into_iter()
+                    .filter(|deity| deity.domains.contains(&d))
+                    .collect::<Vec<_>>()
+            },
+        )
+    }
+
+    /// # Panics
+    ///
+    /// Will panic if no Pantheons available
+    pub fn choose(
+        rng: &mut impl Rng,
+        addl_pantheons: Vec<Self>,
+        domain: Option<Domain>,
+        required: bool,
+    ) -> Self {
+        let mut options = vec![
+            Self::ForgottenRealms,
+            Self::Celtic,
+            Self::Dragonlance,
+            Self::Eberron,
+            Self::Egyptian,
+            Self::Greek,
+            Self::Greyhawk,
+            Self::Norse,
+        ];
+        options.extend(addl_pantheons);
+        if !required {
+            options.push(Self::None);
+        }
+        options.dedup();
+        *options
+            .into_iter()
+            .filter(|p| !p.deities(domain).is_empty())
+            .collect::<Vec<_>>()
+            .choose_weighted(rng, |p| p.weight())
+            .unwrap()
+    }
+
+    pub fn choose_deity<'a>(
+        self,
+        rng: &mut impl Rng,
+        attitude_influences: &[Attitude],
+        morality_influences: &[Morality],
+        domain: Option<Domain>,
+    ) -> Option<Deity<'a>> {
+        self.deities(domain)
+            .choose_weighted(rng, |d| d.weight(attitude_influences, morality_influences))
+            .ok()
+            .cloned()
+    }
+
+    #[must_use]
+    pub fn weight(self) -> f64 {
+        match self {
+            Self::Bugbear
+            | Self::Dragon
+            | Self::Drow
+            | Self::Duergar
+            | Self::Dwarven
+            | Self::Elven
+            | Self::ForgottenRealms
+            | Self::Giant
+            | Self::Gnomish
+            | Self::Goblin
+            | Self::Halfling
+            | Self::Kobold
+            | Self::Lizardfolk
+            | Self::Orc
+            | Self::None => 100.0,
+            // Require some sort of plane shift for your character to end up in the forgotten realms
+            Self::Celtic
+            | Self::Dragonlance
+            | Self::Eberron
+            | Self::Egyptian
+            | Self::Greek
+            | Self::Greyhawk
+            | Self::Norse => 1.0,
+        }
+    }
+}
+
+pub trait Pantheons {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![]
+    }
+
+    fn deity_required(&self) -> bool {
+        false
     }
 }

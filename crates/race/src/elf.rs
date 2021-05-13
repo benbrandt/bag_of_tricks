@@ -13,6 +13,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use features::{Feature, Features};
 use gear::weapons::WeaponType;
 use languages::{Language, LanguageType, Languages};
@@ -238,6 +239,15 @@ impl ElfSubrace {
                 "When you were born, your grandmother prophesied you would one day rule a human kingdom. You've gone in search of that destiny.",
             ]
         }).choose(rng).unwrap()).to_string()
+    }
+}
+
+impl Pantheons for ElfSubrace {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![match self {
+            Self::Dark(_) | Self::ShadarKai => Pantheon::Drow,
+            Self::Eladrin(_) | Self::High(_) | Self::Sea | Self::Wood => Pantheon::Elven,
+        }]
     }
 }
 
@@ -522,6 +532,12 @@ impl Name for Elf {
     }
 }
 
+impl Pantheons for Elf {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        self.subrace.addl_pantheons()
+    }
+}
+
 impl PersonalityOptions for Elf {
     fn flaws(&self) -> Vec<String> {
         self.subrace.flaws()
@@ -653,5 +669,16 @@ mod tests {
             })
             .features())
             .collect::<Vec<Vec<Feature>>>());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        insta::assert_yaml_snapshot!(ElfSubrace::iter()
+            .map(|subrace| (Elf {
+                story_hook: String::new(),
+                subrace
+            })
+            .addl_pantheons())
+            .collect::<Vec<Vec<Pantheon>>>());
     }
 }

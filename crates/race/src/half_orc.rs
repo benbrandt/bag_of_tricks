@@ -8,6 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -120,6 +121,12 @@ impl Name for HalfOrc {
     }
 }
 
+impl Pantheons for HalfOrc {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Orc]
+    }
+}
+
 impl PersonalityOptions for HalfOrc {
     fn bonds(&self) -> Vec<String> {
         BONDS.iter().map(|&s| s.to_string()).collect()
@@ -207,6 +214,12 @@ mod tests {
     fn test_snapshot_features() {
         let half_orc = HalfOrc;
         insta::assert_yaml_snapshot!(half_orc.features());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let half_orc = HalfOrc;
+        insta::assert_yaml_snapshot!(half_orc.addl_pantheons());
     }
 
     #[test]

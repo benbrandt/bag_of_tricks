@@ -4,8 +4,8 @@ use super::{Deities, Deity, Domain};
 
 pub(crate) struct Orc;
 
-impl Deities for Orc {
-    fn deities() -> Vec<Deity> {
+impl<'a> Deities<'a> for Orc {
+    fn deities() -> Vec<Deity<'a>> {
         vec![
             Deity {
                 name: "Bahgtru",

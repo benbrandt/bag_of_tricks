@@ -1,0 +1,7 @@
+---
+source: crates/race/src/hobgoblin.rs
+expression: hobgoblin.addl_pantheons()
+
+---
+- Goblin
+

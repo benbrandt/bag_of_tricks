@@ -2,6 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -53,6 +54,12 @@ impl Features for ClanCrafter {
             title: "Respect of the Stout Folk",
             citation: Citation(Book::Scag, 145),
         }]
+    }
+}
+
+impl Pantheons for ClanCrafter {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Dwarven]
     }
 }
 
@@ -196,6 +203,12 @@ mod tests {
     fn test_snapshot_languages() {
         let background = ClanCrafter;
         insta::assert_yaml_snapshot!(background.languages());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let background = ClanCrafter;
+        insta::assert_yaml_snapshot!(background.addl_pantheons());
     }
 
     #[test]

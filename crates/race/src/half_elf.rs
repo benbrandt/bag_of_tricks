@@ -8,6 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, LanguageType, Languages};
@@ -211,6 +212,12 @@ impl Name for HalfElf {
     }
 }
 
+impl Pantheons for HalfElf {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        self.subrace.addl_pantheons()
+    }
+}
+
 impl PersonalityOptions for HalfElf {
     fn bonds(&self) -> Vec<String> {
         self.subrace.bonds()
@@ -321,5 +328,12 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.features());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
+        insta::assert_yaml_snapshot!(half_elf.addl_pantheons());
     }
 }

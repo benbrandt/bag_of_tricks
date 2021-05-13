@@ -27,6 +27,19 @@ characteristics:
 coins:
   - Gold
   - 10
+deity:
+  name: Malar
+  titles:
+    - god of the hunt
+    - the Beastlord
+    - the Black-Blooded One
+  alignment:
+    - Chaotic
+    - Evil
+  domains:
+    - Nature
+  symbols:
+    - Clawed paw
 equipment:
   - Other: an insignia of your rank
   - Gear:
@@ -41,6 +54,7 @@ languages:
   - Dwarvish
 level: 1
 name: Connerad Rustfire
+pantheon: ForgottenRealms
 personality:
   bond: I fight for those who cannot fight for themselves.
   flaw: The monstrous enemy we faced in battle still leaves me quivering with fear.

@@ -1,0 +1,7 @@
+---
+source: crates/race/src/kobold.rs
+expression: kobold.addl_pantheons()
+
+---
+- Kobold
+

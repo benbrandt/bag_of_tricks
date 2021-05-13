@@ -13,6 +13,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
+use deities::{Pantheon, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use gear::tools::{ArtisansTools, Tool};
@@ -231,6 +232,12 @@ impl Name for Gnome {
     }
 }
 
+impl Pantheons for Gnome {
+    fn addl_pantheons(&self) -> Vec<Pantheon> {
+        vec![Pantheon::Gnomish]
+    }
+}
+
 impl PersonalityOptions for Gnome {
     fn bonds(&self) -> Vec<String> {
         BONDS.iter().map(|&s| s.to_string()).collect()
@@ -335,5 +342,13 @@ mod tests {
         insta::assert_yaml_snapshot!(GnomeSubrace::iter()
             .map(|subrace| (Gnome { subrace }).features())
             .collect::<Vec<Vec<Feature>>>());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let gnome = Gnome {
+            subrace: GnomeSubrace::Forest,
+        };
+        insta::assert_yaml_snapshot!(gnome.addl_pantheons());
     }
 }
