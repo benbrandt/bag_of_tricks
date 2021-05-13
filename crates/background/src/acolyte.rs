@@ -154,7 +154,6 @@ impl fmt::Display for Acolyte {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

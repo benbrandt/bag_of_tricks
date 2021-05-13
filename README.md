@@ -8,7 +8,7 @@ Currently supports:
 | ------------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: |
 | Player's Handbook (PHB)               | :white_check_mark: |        :x:         | :white_check_mark: |        :x:         |
 | Volo's Guide to Monsters (VGTM)       | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: |
-| Sword Coast Adventurer's Guide (SCAG) | :white_check_mark: |        :x:         |        :x:         |        :x:         |
+| Sword Coast Adventurer's Guide (SCAG) | :white_check_mark: |        :x:         | :white_check_mark: |        :x:         |
 | Mordenkainen's Tome of Foes (MTOF)    | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: |
 | Curse of Strahd (COS)                 | :heavy_minus_sign: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: |
 

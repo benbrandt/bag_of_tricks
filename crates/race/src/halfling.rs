@@ -367,7 +367,7 @@ mod tests {
     fn test_snapshot_addl_pantheons() {
         let hobgoblin = Halfling {
             subrace: HalflingSubrace::Ghostwise,
-            reason_for_adventuring: String::new()
+            reason_for_adventuring: String::new(),
         };
         insta::assert_yaml_snapshot!(hobgoblin.addl_pantheons());
     }
