@@ -10,6 +10,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
 
 jobs:
   test:
@@ -35,7 +36,6 @@ jobs:
           command: build
           args: --workspace --all-features
         env:
-          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUSTFLAGS: "-Zinstrument-coverage"
           RUSTDOCFLAGS: "-Zinstrument-coverage -Zunstable-options --persist-doctests target/debug/doctestbins"
 
@@ -45,7 +45,6 @@ jobs:
             command: test
             args: --workspace --all-features --no-fail-fast
         env:
-          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
           RUSTFLAGS: "-Zinstrument-coverage"
           RUSTDOCFLAGS: "-Zinstrument-coverage -Zunstable-options --persist-doctests target/debug/doctestbins"
 
