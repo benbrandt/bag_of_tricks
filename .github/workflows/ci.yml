@@ -54,19 +54,21 @@ jobs:
           crate: grcov
           version: latest
 
-      - name: Gather coverage data
-        id: coverage
-        uses: actions-rs/grcov@v0.1
+      - run: grcov . -s . --binary-path ./target/debug/ -t lcov --branch --ignore-not-existing --llvm --ignore "/*" -o lcov.info
 
-      - name: Pre-installing rust-covfix
-        uses: actions-rs/install@v0.1
-        with:
-          crate: rust-covfix
-          version: latest
+      # - name: Gather coverage data
+      #   id: coverage
+      #   uses: actions-rs/grcov@v0.1
 
-      - name: Fix coverage data
-        id: fix-coverage
-        run: rust-covfix lcov.info -o lcov.info
+      # - name: Pre-installing rust-covfix
+      #   uses: actions-rs/install@v0.1
+      #   with:
+      #     crate: rust-covfix
+      #     version: latest
+
+      # - name: Fix coverage data
+      #   id: fix-coverage
+      #   run: rust-covfix lcov.info -o lcov.info
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
