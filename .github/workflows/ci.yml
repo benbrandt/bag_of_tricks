@@ -35,11 +35,9 @@ jobs:
           command: build
           args: --workspace --release --all-features
         env:
-          CARGO_INCREMENTAL: 0
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
-          RUST_BACKTRACE: 1
-          RUSTFLAGS: "-Zinstrument-coverage -Cdebuginfo=1 -Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
-          RUSTDOCFLAGS: "-Cpanic=abort"
+          RUSTFLAGS: "-Zinstrument-coverage"
+          RUSTDOCFLAGS: "-Zinstrument-coverage -Zunstable-options --persist-doctests target/debug/doctestbins"
 
       - name: Execute tests
         uses: actions-rs/cargo@v1
@@ -47,11 +45,9 @@ jobs:
             command: test
             args: --workspace --all-features --no-fail-fast
         env:
-          CARGO_INCREMENTAL: 0
           LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
-          RUST_BACKTRACE: 1
-          RUSTFLAGS: "-Zinstrument-coverage -Cdebuginfo=1 -Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
-          RUSTDOCFLAGS: "-Cpanic=abort"
+          RUSTFLAGS: "-Zinstrument-coverage"
+          RUSTDOCFLAGS: "-Zinstrument-coverage -Zunstable-options --persist-doctests target/debug/doctestbins"
 
       - name: Pre-installing grcov
         uses: actions-rs/install@v0.1
