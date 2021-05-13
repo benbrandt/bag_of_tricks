@@ -3,5 +3,6 @@ source: crates/race/src/dragonborn.rs
 expression: dragonborn.addl_pantheons()
 
 ---
-- Dragon
+- - Dragon
+  - Likely
 

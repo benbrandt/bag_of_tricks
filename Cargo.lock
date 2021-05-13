@@ -1573,6 +1573,7 @@ dependencies = [
 name = "languages"
 version = "0.1.0"
 dependencies = [
+ "deities",
  "rand 0.8.3",
  "rand_pcg",
  "serde",

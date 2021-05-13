@@ -10,7 +10,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use features::{Feature, Features};
 use gear::{
     armor::ArmorType,
@@ -385,11 +385,14 @@ impl Languages for Dwarf {
 }
 
 impl Pantheons for Dwarf {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![match self.subrace {
-            DwarfSubrace::Duergar => Pantheon::Duergar,
-            DwarfSubrace::Hill(_) | DwarfSubrace::Mountain(_) => Pantheon::Dwarven,
-        }]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(
+            match self.subrace {
+                DwarfSubrace::Duergar => Pantheon::Duergar,
+                DwarfSubrace::Hill(_) | DwarfSubrace::Mountain(_) => Pantheon::Dwarven,
+            },
+            PantheonWeight::Likely,
+        )]
     }
 }
 
@@ -558,6 +561,6 @@ mod tests {
                 story_hook: String::new(),
             })
             .addl_pantheons())
-            .collect::<Vec<Vec<Pantheon>>>());
+            .collect::<Vec<Vec<(Pantheon, PantheonWeight)>>>());
     }
 }

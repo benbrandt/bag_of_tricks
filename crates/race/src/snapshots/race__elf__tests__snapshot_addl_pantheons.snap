@@ -1,12 +1,18 @@
 ---
 source: crates/race/src/elf.rs
-expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{story_hook: String::new(),\n                                subrace,}).addl_pantheons()).collect::<Vec<Vec<Pantheon>>>()"
+expression: "ElfSubrace::iter().map(|subrace|\n                           (Elf{story_hook: String::new(),\n                                subrace,}).addl_pantheons()).collect::<Vec<Vec<(Pantheon,\n                                                                                PantheonWeight)>>>()"
 
 ---
-- - Drow
-- - Elven
-- - Elven
-- - Elven
-- - Drow
-- - Elven
+- - - Drow
+    - Likely
+- - - Elven
+    - Likely
+- - - Elven
+    - Likely
+- - - Elven
+    - Likely
+- - - Drow
+    - Likely
+- - - Elven
+    - Likely
 

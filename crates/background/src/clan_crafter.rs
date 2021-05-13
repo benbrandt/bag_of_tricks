@@ -2,7 +2,7 @@ use std::fmt;
 
 use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use features::{Feature, Features};
 use gear::{
     adventuring_gear::{Gear, OtherGear},
@@ -58,8 +58,8 @@ impl Features for ClanCrafter {
 }
 
 impl Pantheons for ClanCrafter {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Dwarven]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Dwarven, PantheonWeight::Likely)]
     }
 }
 

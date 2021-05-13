@@ -3,5 +3,6 @@ source: crates/race/src/half_elf.rs
 expression: half_elf.addl_pantheons()
 
 ---
-- Elven
+- - Elven
+  - Likely
 

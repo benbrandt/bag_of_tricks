@@ -13,7 +13,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -194,8 +194,8 @@ impl Name for Dragonborn {
 }
 
 impl Pantheons for Dragonborn {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Dragon]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Dragon, PantheonWeight::Likely)]
     }
 }
 

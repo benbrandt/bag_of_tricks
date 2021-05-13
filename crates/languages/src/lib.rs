@@ -1,3 +1,4 @@
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -92,6 +93,33 @@ impl Language {
             | Self::Sylvan
             | Self::Undercommon => LanguageType::Exotic,
         }
+    }
+}
+
+impl Pantheons for Language {
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        (match self {
+            Language::Abyssal
+            | Language::Celestial
+            | Language::DeepSpeech
+            | Language::Gith
+            | Language::Infernal
+            | Language::Primordial
+            | Language::Sylvan => vec![],
+            Language::Common => vec![Pantheon::ForgottenRealms],
+            Language::Draconic => vec![Pantheon::Dragon, Pantheon::Kobold, Pantheon::Lizardfolk],
+            Language::Dwarvish => vec![Pantheon::Dwarven],
+            Language::Elvish => vec![Pantheon::Elven],
+            Language::Giant => vec![Pantheon::Giant],
+            Language::Gnomish => vec![Pantheon::Gnomish],
+            Language::Goblin => vec![Pantheon::Bugbear, Pantheon::Goblin],
+            Language::Halfling => vec![Pantheon::Halfling],
+            Language::Orc => vec![Pantheon::Orc],
+            Language::Undercommon => vec![Pantheon::Drow, Pantheon::Duergar],
+        })
+        .into_iter()
+        .map(|p| (p, PantheonWeight::Possible))
+        .collect::<Vec<_>>()
     }
 }
 

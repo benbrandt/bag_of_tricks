@@ -3,5 +3,6 @@ source: crates/race/src/firbolg.rs
 expression: firbolg.addl_pantheons()
 
 ---
-- Elven
+- - Elven
+  - Likely
 

@@ -13,7 +13,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -114,8 +114,8 @@ impl Name for Goliath {
 }
 
 impl Pantheons for Goliath {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Giant]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Giant, PantheonWeight::Likely)]
     }
 }
 

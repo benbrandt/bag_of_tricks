@@ -17,7 +17,7 @@ mod kobold;
 mod lizardfolk;
 mod orc;
 
-use std::fmt;
+use std::{f64::consts::E, fmt};
 
 use alignment::{Alignment, Attitude, Morality};
 use rand::{prelude::SliceRandom, Rng};
@@ -95,7 +95,24 @@ pub(crate) trait Deities<'a> {
     fn deities() -> Vec<Deity<'a>>;
 }
 
-#[derive(Copy, Clone, Deserialize, Display, PartialEq, Serialize)]
+#[derive(Clone, Copy, Deserialize, Serialize)]
+pub enum PantheonWeight {
+    Exotic,
+    Possible,
+    Likely,
+}
+
+impl PantheonWeight {
+    fn weight(self) -> f64 {
+        match self {
+            Self::Exotic => E.powi(0),
+            Self::Possible => E.powi(2),
+            Self::Likely => E.powi(4),
+        }
+    }
+}
+
+#[derive(Copy, Clone, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Pantheon {
     Bugbear,
     Celtic,
@@ -168,34 +185,34 @@ impl Pantheon {
     /// Will panic if no Pantheons available
     pub fn choose(
         rng: &mut impl Rng,
-        addl_pantheons: Vec<Self>,
+        addl_pantheons: Vec<(Self, PantheonWeight)>,
         domain: Option<Domain>,
         required: bool,
     ) -> Self {
         let mut options = vec![
-            Self::ForgottenRealms,
-            Self::Celtic,
-            Self::Dragonlance,
-            Self::Eberron,
-            Self::Egyptian,
-            Self::Greek,
-            Self::Greyhawk,
-            Self::Norse,
+            (Self::ForgottenRealms, PantheonWeight::Likely),
+            (Self::Celtic, PantheonWeight::Exotic),
+            (Self::Dragonlance, PantheonWeight::Exotic),
+            (Self::Eberron, PantheonWeight::Exotic),
+            (Self::Egyptian, PantheonWeight::Exotic),
+            (Self::Greek, PantheonWeight::Exotic),
+            (Self::Greyhawk, PantheonWeight::Exotic),
+            (Self::Norse, PantheonWeight::Exotic),
         ];
         options.extend(addl_pantheons);
         if !required {
-            options.push(Self::None);
+            options.push((Self::None, PantheonWeight::Likely));
         }
-        options.dedup();
-        *domain
+        domain
             .map_or(options.clone(), |_| {
                 options
                     .into_iter()
-                    .filter(|p| p == &Self::None || !p.deities(domain).is_empty())
+                    .filter(|(p, _)| p == &Self::None || !p.deities(domain).is_empty())
                     .collect::<Vec<_>>()
             })
-            .choose_weighted(rng, |p| p.weight())
+            .choose_weighted(rng, |(_, w)| w.weight())
             .unwrap()
+            .0
     }
 
     pub fn choose_deity<'a>(
@@ -210,39 +227,10 @@ impl Pantheon {
             .ok()
             .cloned()
     }
-
-    #[must_use]
-    pub fn weight(self) -> f64 {
-        match self {
-            Self::Bugbear
-            | Self::Dragon
-            | Self::Drow
-            | Self::Duergar
-            | Self::Dwarven
-            | Self::Elven
-            | Self::ForgottenRealms
-            | Self::Giant
-            | Self::Gnomish
-            | Self::Goblin
-            | Self::Halfling
-            | Self::Kobold
-            | Self::Lizardfolk
-            | Self::Orc
-            | Self::None => 100.0,
-            // Require some sort of plane shift for your character to end up in the forgotten realms
-            Self::Celtic
-            | Self::Dragonlance
-            | Self::Eberron
-            | Self::Egyptian
-            | Self::Greek
-            | Self::Greyhawk
-            | Self::Norse => 1.0,
-        }
-    }
 }
 
 pub trait Pantheons {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
         vec![]
     }
 

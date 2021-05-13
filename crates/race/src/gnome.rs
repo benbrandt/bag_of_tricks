@@ -13,7 +13,7 @@ use characteristics::{
     Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use gear::tools::{ArtisansTools, Tool};
@@ -233,8 +233,8 @@ impl Name for Gnome {
 }
 
 impl Pantheons for Gnome {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Gnomish]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Gnomish, PantheonWeight::Likely)]
     }
 }
 

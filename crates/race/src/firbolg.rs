@@ -8,7 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -129,8 +129,8 @@ impl Name for Firbolg {
 }
 
 impl Pantheons for Firbolg {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Elven]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Elven, PantheonWeight::Likely)]
     }
 }
 

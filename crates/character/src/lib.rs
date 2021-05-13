@@ -8,7 +8,7 @@ use attack::{DamageType, Resistances};
 use background::{Background, BackgroundOption};
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
-use deities::{Deity, Pantheon};
+use deities::{Deity, Pantheon, Pantheons};
 use features::{Feature, Features};
 use gear::currency::Coin;
 use languages::Language;
@@ -91,9 +91,9 @@ impl<'a> Character<'a> {
         character.characteristics = Some(characteristics);
         character.background = Some(background);
         character.gen_personality(rng);
+        character.gen_languages(rng);
         character.gen_deity(rng);
         character.gen_alignment(rng);
-        character.gen_languages(rng);
         character.gen_proficiences(rng);
         character.gen_equipment(rng);
         character
@@ -117,6 +117,7 @@ impl<'a> Character<'a> {
             addl_pantheons.extend(background.addl_pantheons());
             required.push(background.deity_required());
         }
+        addl_pantheons.extend(self.languages.iter().flat_map(|l| l.addl_pantheons()));
         let pantheon = Pantheon::choose(rng, addl_pantheons, domain, required.contains(&true));
         self.pantheon = Some(pantheon);
         self.deity = pantheon.choose_deity(rng, &self.attitude(), &self.morality(), domain)

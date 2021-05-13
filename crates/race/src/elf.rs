@@ -13,7 +13,7 @@ use characteristics::{
     Size, Speed,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use features::{Feature, Features};
 use gear::weapons::WeaponType;
 use languages::{Language, LanguageType, Languages};
@@ -243,11 +243,14 @@ impl ElfSubrace {
 }
 
 impl Pantheons for ElfSubrace {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![match self {
-            Self::Dark(_) | Self::ShadarKai => Pantheon::Drow,
-            Self::Eladrin(_) | Self::High(_) | Self::Sea | Self::Wood => Pantheon::Elven,
-        }]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(
+            match self {
+                Self::Dark(_) | Self::ShadarKai => Pantheon::Drow,
+                Self::Eladrin(_) | Self::High(_) | Self::Sea | Self::Wood => Pantheon::Elven,
+            },
+            PantheonWeight::Likely,
+        )]
     }
 }
 
@@ -533,7 +536,7 @@ impl Name for Elf {
 }
 
 impl Pantheons for Elf {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
         self.subrace.addl_pantheons()
     }
 }
@@ -679,6 +682,6 @@ mod tests {
                 subrace
             })
             .addl_pantheons())
-            .collect::<Vec<Vec<Pantheon>>>());
+            .collect::<Vec<Vec<(Pantheon, PantheonWeight)>>>());
     }
 }

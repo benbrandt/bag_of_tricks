@@ -3,5 +3,6 @@ source: crates/race/src/bugbear.rs
 expression: bugbear.addl_pantheons()
 
 ---
-- Bugbear
+- - Bugbear
+  - Likely
 

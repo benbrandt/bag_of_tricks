@@ -3,5 +3,6 @@ source: crates/race/src/gnome.rs
 expression: gnome.addl_pantheons()
 
 ---
-- Gnomish
+- - Gnomish
+  - Likely
 

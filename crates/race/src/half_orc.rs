@@ -8,7 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -122,8 +122,8 @@ impl Name for HalfOrc {
 }
 
 impl Pantheons for HalfOrc {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Orc]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Orc, PantheonWeight::Likely)]
     }
 }
 

@@ -3,5 +3,6 @@ source: crates/race/src/half_orc.rs
 expression: half_orc.addl_pantheons()
 
 ---
-- Orc
+- - Orc
+  - Likely
 

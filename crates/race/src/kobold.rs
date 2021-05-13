@@ -10,7 +10,7 @@ use characteristics::{
     Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::{Pantheon, Pantheons};
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::{Feature, Features};
 use languages::{Language, Languages};
@@ -219,8 +219,8 @@ impl Name for Kobold {
 }
 
 impl Pantheons for Kobold {
-    fn addl_pantheons(&self) -> Vec<Pantheon> {
-        vec![Pantheon::Kobold]
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![(Pantheon::Kobold, PantheonWeight::Likely)]
     }
 }
 

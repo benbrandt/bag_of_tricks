@@ -3,5 +3,6 @@ source: crates/race/src/goliath.rs
 expression: goliath.addl_pantheons()
 
 ---
-- Giant
+- - Giant
+  - Likely
 
