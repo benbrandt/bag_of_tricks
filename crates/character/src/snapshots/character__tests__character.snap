@@ -11,7 +11,7 @@ abilities:
   Wisdom: 15
   Charisma: 10
 alignment:
-  - Chaotic
+  - Lawful
   - Good
 background:
   type: MercenaryVeteran
@@ -28,18 +28,21 @@ coins:
   - Gold
   - 10
 deity:
-  name: Malar
+  name: Marthammor Duin
   titles:
-    - god of the hunt
-    - the Beastlord
-    - the Black-Blooded One
+    - god of wanderers
+    - "the traveler's god"
+    - patron of expatriates and guides
+    - deity of lightning and roads
+    - "god of explorers, wanderers, and the lost"
   alignment:
-    - Chaotic
-    - Evil
+    - Neutral
+    - Good
   domains:
     - Nature
+    - Trickery
   symbols:
-    - Clawed paw
+    - Upright mace in front of a tall boot
 equipment:
   - Other: an insignia of your rank
   - Gear:
@@ -54,7 +57,7 @@ languages:
   - Dwarvish
 level: 1
 name: Connerad Rustfire
-pantheon: ForgottenRealms
+pantheon: Dwarven
 personality:
   bond: I fight for those who cannot fight for themselves.
   flaw: The monstrous enemy we faced in battle still leaves me quivering with fear.

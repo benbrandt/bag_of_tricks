@@ -187,10 +187,13 @@ impl Pantheon {
             options.push(Self::None);
         }
         options.dedup();
-        *options
-            .into_iter()
-            .filter(|p| !p.deities(domain).is_empty())
-            .collect::<Vec<_>>()
+        *domain
+            .map_or(options.clone(), |_| {
+                options
+                    .into_iter()
+                    .filter(|p| p == &Self::None || !p.deities(domain).is_empty())
+                    .collect::<Vec<_>>()
+            })
             .choose_weighted(rng, |p| p.weight())
             .unwrap()
     }
