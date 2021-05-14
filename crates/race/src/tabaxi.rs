@@ -59,8 +59,8 @@ const QUIRKS: &[&str] = &[
     "You can't help but pocket interesting objects you come across.",
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Tabaxi {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Tabaxi {
     obsession: String,
     quirk: String,
 }
@@ -165,7 +165,6 @@ impl Proficiencies for Tabaxi {
     }
 }
 
-#[typetag::serde]
 impl Race for Tabaxi {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

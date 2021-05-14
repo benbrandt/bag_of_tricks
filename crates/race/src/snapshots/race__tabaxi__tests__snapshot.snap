@@ -3,17 +3,6 @@ source: crates/race/src/tabaxi.rs
 expression: tabaxi
 
 ---
-- type: Tabaxi
-  obsession: a monster
-  quirk: "You keep a small ball of yarn in your hand, which you constantly fidget with."
-- Jade Shoe (Jade) Distant Rain
-- age: 91
-  base_speeds:
-    - Walking: 30
-    - Climbing: 20
-  ethnicity: ~
-  gender: Female
-  height: 68
-  size: Medium
-  weight: 140
+obsession: a monster
+quirk: "You keep a small ball of yarn in your hand, which you constantly fidget with."
 

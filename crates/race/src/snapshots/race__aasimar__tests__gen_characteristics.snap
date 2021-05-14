@@ -1,0 +1,14 @@
+---
+source: crates/race/src/aasimar.rs
+expression: aasimar.gen_characteristics(&mut rng)
+
+---
+age: 23
+base_speeds:
+  - Walking: 30
+ethnicity: Imaskari
+gender: Female
+height: 68
+size: Medium
+weight: 182
+

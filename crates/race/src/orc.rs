@@ -83,8 +83,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Orc {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Orc {
     origin: String,
 }
 
@@ -215,7 +215,6 @@ impl Proficiencies for Orc {
     }
 }
 
-#[typetag::serde]
 impl Race for Orc {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

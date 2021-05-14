@@ -31,8 +31,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D4)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Human;
+#[derive(Default, Deserialize, Serialize)]
+pub struct Human;
 
 impl Human {
     /// Separate function to make it easier to share with other races
@@ -133,7 +133,6 @@ impl PersonalityOptions for Human {}
 
 impl Proficiencies for Human {}
 
-#[typetag::serde]
 impl Race for Human {
     fn gen(_: &mut impl Rng) -> Self {
         Self

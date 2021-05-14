@@ -216,6 +216,12 @@ enum TieflingSubrace {
     Zariel,
 }
 
+impl Default for TieflingSubrace {
+    fn default() -> Self {
+        Self::Asmodeus
+    }
+}
+
 impl TieflingSubrace {
     fn gen(rng: &mut impl Rng) -> Self {
         let subrace = Self::iter().choose(rng).unwrap();
@@ -227,8 +233,8 @@ impl TieflingSubrace {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Tiefling {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Tiefling {
     appearance: Vec<PhysicalAppearance>,
     subrace: TieflingSubrace,
 }
@@ -413,7 +419,6 @@ impl PersonalityOptions for Tiefling {}
 
 impl Proficiencies for Tiefling {}
 
-#[typetag::serde]
 impl Race for Tiefling {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

@@ -35,8 +35,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Goliath;
+#[derive(Default, Deserialize, Serialize)]
+pub struct Goliath;
 
 impl AlignmentInfluences for Goliath {
     fn attitude(&self) -> Vec<Attitude> {
@@ -129,7 +129,6 @@ impl Proficiencies for Goliath {
     }
 }
 
-#[typetag::serde]
 impl Race for Goliath {
     fn gen(_: &mut impl Rng) -> Self {
         Self

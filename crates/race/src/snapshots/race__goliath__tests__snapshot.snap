@@ -3,14 +3,5 @@ source: crates/race/src/goliath.rs
 expression: goliath
 
 ---
-- type: Goliath
-- "Vaunea \"Keeneye\" Kolae-Gileana"
-- age: 94
-  base_speeds:
-    - Walking: 30
-  ethnicity: ~
-  gender: Female
-  height: 82
-  size: Medium
-  weight: 256
+~
 

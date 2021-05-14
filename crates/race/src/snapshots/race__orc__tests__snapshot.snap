@@ -3,15 +3,5 @@ source: crates/race/src/orc.rs
 expression: orc
 
 ---
-- type: Orc
-  origin: You are the victim of a curse or polymorph spell.
-- Neega Ironhead
-- age: 11
-  base_speeds:
-    - Walking: 30
-  ethnicity: ~
-  gender: Female
-  height: 72
-  size: Medium
-  weight: 263
+origin: You are the victim of a curse or polymorph spell.
 

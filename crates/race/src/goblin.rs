@@ -32,8 +32,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Fixed(1),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Goblin {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Goblin {
     origin: String,
 }
 
@@ -123,7 +123,6 @@ impl PersonalityOptions for Goblin {}
 
 impl Proficiencies for Goblin {}
 
-#[typetag::serde]
 impl Race for Goblin {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

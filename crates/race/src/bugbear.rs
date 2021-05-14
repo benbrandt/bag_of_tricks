@@ -32,8 +32,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Bugbear {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Bugbear {
     origin: String,
 }
 
@@ -132,7 +132,6 @@ impl Proficiencies for Bugbear {
     }
 }
 
-#[typetag::serde]
 impl Race for Bugbear {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

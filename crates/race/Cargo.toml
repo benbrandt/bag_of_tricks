@@ -17,6 +17,7 @@ deities = { path = "../deities" }
 dice_roller = { path = "../dice_roller" }
 features = { path = "../features" }
 gear = { path = "../gear" }
+impl-enum = "0.2"
 languages = { path = "../languages" }
 personality = { path = "../personality" }
 rand = "0.8"
@@ -25,7 +26,6 @@ serde = { version = "1", features = ["derive"] }
 stats = { path = "../stats" }
 strum = { version = "0.20", features = ["derive"] }
 trinkets = { path = "../trinkets" }
-typetag = "0.1"
 
 [dev-dependencies]
 insta = "1"

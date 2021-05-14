@@ -3,20 +3,10 @@ source: crates/race/src/tiefling.rs
 expression: tiefling
 
 ---
-- type: Tiefling
-  appearance:
-    - Horns:
-        - Large
-        - Antelope
-    - Teeth: Sharp
-  subrace: Baalzebul
-- "Skamos "
-- age: 85
-  base_speeds:
-    - Walking: 30
-  ethnicity: Ulutiun
-  gender: Male
-  height: 65
-  size: Medium
-  weight: 166
+appearance:
+  - Horns:
+      - Large
+      - Antelope
+  - Teeth: Sharp
+subrace: Baalzebul
 

@@ -85,6 +85,12 @@ enum DwarfSubrace {
     Mountain(MountainVariant),
 }
 
+impl Default for DwarfSubrace {
+    fn default() -> Self {
+        Self::Duergar
+    }
+}
+
 impl DwarfSubrace {
     fn gen(rng: &mut impl Rng) -> Self {
         let subrace = Self::iter().choose(rng).unwrap();
@@ -230,8 +236,8 @@ impl fmt::Display for DwarfSubrace {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Dwarf {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Dwarf {
     clan_status: String,
     clan_trait: String,
     clan_vocation: String,
@@ -437,7 +443,6 @@ impl Proficiencies for Dwarf {
     }
 }
 
-#[typetag::serde]
 impl Race for Dwarf {
     fn gen(rng: &mut impl Rng) -> Self {
         let subrace = DwarfSubrace::gen(rng);

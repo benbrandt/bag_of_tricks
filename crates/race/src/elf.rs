@@ -270,6 +270,12 @@ impl PersonalityOptions for ElfSubrace {
     }
 }
 
+impl Default for ElfSubrace {
+    fn default() -> Self {
+        ElfSubrace::Wood
+    }
+}
+
 impl fmt::Display for ElfSubrace {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -283,8 +289,8 @@ impl fmt::Display for ElfSubrace {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Elf {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Elf {
     story_hook: String,
     /// Randomly chosen subrace
     subrace: ElfSubrace,
@@ -561,7 +567,6 @@ impl Proficiencies for Elf {
     }
 }
 
-#[typetag::serde]
 impl Race for Elf {
     fn gen(rng: &mut impl Rng) -> Self {
         let subrace = ElfSubrace::gen(rng);

@@ -41,6 +41,12 @@ enum AasimarSubrace {
     Scourge,
 }
 
+impl Default for AasimarSubrace {
+    fn default() -> Self {
+        AasimarSubrace::Fallen
+    }
+}
+
 const GUIDE_NAME: &[&str] = &[
     "Tadriel",
     "Myllandra",
@@ -59,7 +65,7 @@ const GUIDE_NATURE: &[&str] = &[
     "Kind and parental",
 ];
 
-#[derive(Deserialize, Serialize)]
+#[derive(Default, Deserialize, Serialize)]
 struct AngelicGuide {
     name: String,
     nature: String,
@@ -74,8 +80,8 @@ impl AngelicGuide {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Aasimar {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Aasimar {
     /// Angelic guide's name and nature
     guide: AngelicGuide,
     /// Randomly chosen subrace
@@ -215,7 +221,6 @@ impl PersonalityOptions for Aasimar {}
 
 impl Proficiencies for Aasimar {}
 
-#[typetag::serde]
 impl Race for Aasimar {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

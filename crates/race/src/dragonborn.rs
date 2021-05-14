@@ -54,8 +54,14 @@ enum DraconicAncestry {
     White,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Dragonborn {
+impl Default for DraconicAncestry {
+    fn default() -> Self {
+        Self::Black
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Dragonborn {
     /// Randomly chosen draconic ancestry
     ancestry: DraconicAncestry,
 }
@@ -206,7 +212,6 @@ impl PersonalityOptions for Dragonborn {}
 
 impl Proficiencies for Dragonborn {}
 
-#[typetag::serde]
 impl Race for Dragonborn {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

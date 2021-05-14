@@ -50,6 +50,12 @@ enum Variant {
     Swimming,
 }
 
+impl Default for Variant {
+    fn default() -> Self {
+        Self::SkillVersatility
+    }
+}
+
 impl Variant {
     fn gen(rng: &mut impl Rng, subrace: &ElfSubrace) -> Self {
         let mut choices = vec![Self::SkillVersatility];
@@ -70,8 +76,8 @@ impl Variant {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct HalfElf {
+#[derive(Default, Deserialize, Serialize)]
+pub struct HalfElf {
     /// Randomly chosen additional ability score increases
     addl_increases: Vec<AbilityScore>,
     /// Randomly chosen subrace
@@ -258,7 +264,6 @@ impl Proficiencies for HalfElf {
     }
 }
 
-#[typetag::serde]
 impl Race for HalfElf {
     fn gen(rng: &mut impl Rng) -> Self {
         let subrace = ElfSubrace::gen(rng);

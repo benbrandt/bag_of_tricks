@@ -3,22 +3,11 @@ source: crates/race/src/half_elf.rs
 expression: half_elf
 
 ---
-- type: HalfElf
-  addl_increases:
-    - - Wisdom
-      - 1
-    - - Intelligence
-      - 1
-  subrace: Sea
-  variant: Swimming
-- Madevik Stayankina
-- age: 32
-  base_speeds:
-    - Walking: 30
-    - Swimming: 30
-  ethnicity: Gur
-  gender: Male
-  height: 67
-  size: Medium
-  weight: 140
+addl_increases:
+  - - Wisdom
+    - 1
+  - - Intelligence
+    - 1
+subrace: Sea
+variant: Swimming
 

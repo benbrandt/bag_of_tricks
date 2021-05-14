@@ -100,6 +100,12 @@ enum HalflingSubrace {
     Stout(StoutVariant),
 }
 
+impl Default for HalflingSubrace {
+    fn default() -> Self {
+        Self::Ghostwise
+    }
+}
+
 impl HalflingSubrace {
     fn gen(rng: &mut impl Rng) -> Self {
         let subrace = Self::iter().choose(rng).unwrap();
@@ -120,8 +126,8 @@ impl fmt::Display for HalflingSubrace {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Halfling {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Halfling {
     reason_for_adventuring: String,
     /// Randomly chosen subrace
     subrace: HalflingSubrace,
@@ -265,7 +271,6 @@ impl PersonalityOptions for Halfling {
 
 impl Proficiencies for Halfling {}
 
-#[typetag::serde]
 impl Race for Halfling {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

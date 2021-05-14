@@ -3,18 +3,8 @@ source: crates/race/src/aasimar.rs
 expression: aasimar
 
 ---
-- type: Aasimar
-  guide:
-    name: Galladia
-    nature: Compassionate and hopeful
-  subrace: Scourge
-- Bask Melpurvatta
-- age: 23
-  base_speeds:
-    - Walking: 30
-  ethnicity: Imaskari
-  gender: Female
-  height: 68
-  size: Medium
-  weight: 182
+guide:
+  name: Galladia
+  nature: Compassionate and hopeful
+subrace: Scourge
 
