@@ -48,27 +48,9 @@ jobs:
           RUSTFLAGS: "-Zinstrument-coverage"
           RUSTDOCFLAGS: "-Zinstrument-coverage -Zunstable-options --persist-doctests target/debug/doctestbins"
 
-      - name: Pre-installing grcov
-        uses: actions-rs/install@v0.1
-        with:
-          crate: grcov
-          version: latest
-
-      - run: grcov . -s . --binary-path ./target/debug/ -t lcov --branch --ignore-not-existing --llvm --ignore "/*" -o lcov.info
-
-      # - name: Gather coverage data
-      #   id: coverage
-      #   uses: actions-rs/grcov@v0.1
-
-      - name: Pre-installing rust-covfix
-        uses: actions-rs/install@v0.1
-        with:
-          crate: rust-covfix
-          version: latest
-
-      - name: Fix coverage data
-        id: fix-coverage
-        run: rust-covfix lcov.info -o lcov.info
+      - run: |
+          curl -L https://github.com/mozilla/grcov/releases/latest/download/grcov-linux-x86_64.tar.bz2 | tar jxf -
+          ./grcov . -s . --binary-path ./target/debug/ -t lcov --branch --ignore-not-existing --llvm --ignore "/*" -o lcov.info
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
