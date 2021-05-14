@@ -8,7 +8,7 @@ use characteristics::{
     HeightAndWeightTable, Size, Speed, WeightMod,
 };
 use citation::{Book, Citation, CitationList, Citations};
-use deities::Pantheons;
+use deities::{Pantheon, PantheonWeight, Pantheons};
 use dice_roller::{Die, RollCmd};
 use features::Features;
 use languages::{Language, LanguageType, Languages};
@@ -113,7 +113,16 @@ impl Name for Human {
     }
 }
 
-impl Pantheons for Human {}
+impl Pantheons for Human {
+    fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
+        vec![
+            (Pantheon::Celtic, PantheonWeight::Exotic),
+            (Pantheon::Egyptian, PantheonWeight::Exotic),
+            (Pantheon::Greek, PantheonWeight::Exotic),
+            (Pantheon::Norse, PantheonWeight::Exotic),
+        ]
+    }
+}
 
 impl PersonalityOptions for Human {}
 
@@ -181,5 +190,11 @@ mod tests {
     fn test_snapshot_features() {
         let human = Human;
         insta::assert_yaml_snapshot!(human.features());
+    }
+
+    #[test]
+    fn test_snapshot_addl_pantheons() {
+        let human = Human;
+        insta::assert_yaml_snapshot!(human.addl_pantheons());
     }
 }

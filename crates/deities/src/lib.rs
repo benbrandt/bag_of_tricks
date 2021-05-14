@@ -191,13 +191,9 @@ impl Pantheon {
     ) -> Self {
         let mut options = vec![
             (Self::ForgottenRealms, PantheonWeight::Likely),
-            (Self::Celtic, PantheonWeight::Exotic),
             (Self::Dragonlance, PantheonWeight::Exotic),
             (Self::Eberron, PantheonWeight::Exotic),
-            (Self::Egyptian, PantheonWeight::Exotic),
-            (Self::Greek, PantheonWeight::Exotic),
             (Self::Greyhawk, PantheonWeight::Exotic),
-            (Self::Norse, PantheonWeight::Exotic),
         ];
         options.extend(addl_pantheons);
         if !required {

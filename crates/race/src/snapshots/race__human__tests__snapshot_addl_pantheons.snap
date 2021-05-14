@@ -1,0 +1,14 @@
+---
+source: crates/race/src/human.rs
+expression: human.addl_pantheons()
+
+---
+- - Celtic
+  - Exotic
+- - Egyptian
+  - Exotic
+- - Greek
+  - Exotic
+- - Norse
+  - Exotic
+
