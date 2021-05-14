@@ -68,8 +68,6 @@ impl Backstory for Firbolg {
 }
 
 impl Characteristics for Firbolg {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(15..=500)
     }
@@ -80,6 +78,10 @@ impl Characteristics for Firbolg {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -123,8 +125,12 @@ impl Languages for Firbolg {
 }
 
 impl Name for Firbolg {
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
-        Elf::gen_name(rng, characteristics)
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+        format!(
+            "{} {}",
+            Elf::gen_first_name(rng, characteristics),
+            Elf::gen_family_name(rng),
+        )
     }
 }
 
@@ -140,13 +146,10 @@ impl PersonalityOptions for Firbolg {}
 
 #[typetag::serde]
 impl Race for Firbolg {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             reason_for_adventuring: (*REASON_FOR_ADVENTURING.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -184,7 +187,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (firbolg, _name, _characteristics) = Firbolg::gen(&mut rng);
+        let firbolg = Firbolg::gen(&mut rng);
         insta::assert_display_snapshot!(firbolg);
     }
 
@@ -207,7 +210,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (firbolg, _name, _characteristics) = Firbolg::gen(&mut rng);
+        let firbolg = Firbolg::gen(&mut rng);
         insta::assert_yaml_snapshot!(firbolg.backstory());
     }
 
@@ -252,14 +255,14 @@ mod tests {
         };
         let characteristics_1 = firbolg.gen_characteristics(&mut rng);
         let characteristics_2 = firbolg.gen_characteristics(&mut rng);
-        let female_name = Firbolg::gen_name(
+        let female_name = firbolg.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Female,
                 ..characteristics_1
             },
         );
-        let male_name = Firbolg::gen_name(
+        let male_name = firbolg.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Male,

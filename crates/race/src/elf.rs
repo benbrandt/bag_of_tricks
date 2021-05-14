@@ -369,8 +369,6 @@ impl Backstory for Elf {
 }
 
 impl Characteristics for Elf {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=750)
     }
@@ -399,6 +397,10 @@ impl Characteristics for Elf {
             ElfSubrace::ShadarKai => &height_and_weight::SHADAR_KAI,
             ElfSubrace::Wood => &height_and_weight::WOOD,
         }
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -526,7 +528,7 @@ impl Languages for Elf {
 }
 
 impl Name for Elf {
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         format!(
             "{} {}",
             Self::gen_first_name(rng, characteristics),
@@ -561,15 +563,12 @@ impl Proficiencies for Elf {
 
 #[typetag::serde]
 impl Race for Elf {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+    fn gen(rng: &mut impl Rng) -> Self {
         let subrace = ElfSubrace::gen(rng);
-        let race = Box::new(Self {
+        Self {
             story_hook: subrace.story_hook(rng),
             subrace,
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {

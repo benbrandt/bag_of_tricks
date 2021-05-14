@@ -57,8 +57,6 @@ impl Backstory for Hobgoblin {
 }
 
 impl Characteristics for Hobgoblin {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -69,6 +67,10 @@ impl Characteristics for Hobgoblin {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -102,7 +104,7 @@ impl Languages for Hobgoblin {
 }
 
 impl Name for Hobgoblin {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*HOBGOBLIN.choose(rng).unwrap()).to_string()
     }
 }
@@ -131,13 +133,10 @@ impl Proficiencies for Hobgoblin {
 
 #[typetag::serde]
 impl Race for Hobgoblin {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -174,7 +173,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (hobgoblin, _name, _characteristics) = Hobgoblin::gen(&mut rng);
+        let hobgoblin = Hobgoblin::gen(&mut rng);
         insta::assert_display_snapshot!(hobgoblin);
     }
 
@@ -197,7 +196,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (hobgoblin, _name, _characteristics) = Hobgoblin::gen(&mut rng);
+        let hobgoblin = Hobgoblin::gen(&mut rng);
         insta::assert_yaml_snapshot!(hobgoblin.backstory());
     }
 
@@ -213,7 +212,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (hobgoblin, _name, _characteristics) = Hobgoblin::gen(&mut rng);
+        let hobgoblin = Hobgoblin::gen(&mut rng);
         insta::assert_yaml_snapshot!(hobgoblin.citations());
     }
 
@@ -240,7 +239,7 @@ mod tests {
             origin: String::new(),
         };
         let characteristics = hobgoblin.gen_characteristics(&mut rng);
-        let name = Hobgoblin::gen_name(&mut rng, &characteristics);
+        let name = hobgoblin.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 

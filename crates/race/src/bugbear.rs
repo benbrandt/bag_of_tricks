@@ -56,8 +56,6 @@ impl Backstory for Bugbear {
 }
 
 impl Characteristics for Bugbear {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(8..=80)
     }
@@ -68,6 +66,10 @@ impl Characteristics for Bugbear {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -111,7 +113,7 @@ impl Languages for Bugbear {
 }
 
 impl Name for Bugbear {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*BUGBEAR.choose(rng).unwrap()).to_string()
     }
 }
@@ -132,13 +134,10 @@ impl Proficiencies for Bugbear {
 
 #[typetag::serde]
 impl Race for Bugbear {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -175,7 +174,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (bugbear, _name, _characteristics) = Bugbear::gen(&mut rng);
+        let bugbear = Bugbear::gen(&mut rng);
         insta::assert_display_snapshot!(bugbear);
     }
 
@@ -198,7 +197,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (bugbear, _name, _characteristics) = Bugbear::gen(&mut rng);
+        let bugbear = Bugbear::gen(&mut rng);
         insta::assert_yaml_snapshot!(bugbear.backstory());
     }
 
@@ -214,7 +213,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (bugbear, _name, _characteristics) = Bugbear::gen(&mut rng);
+        let bugbear = Bugbear::gen(&mut rng);
         insta::assert_yaml_snapshot!(bugbear.citations());
     }
 
@@ -241,7 +240,7 @@ mod tests {
             origin: String::new(),
         };
         let characteristics = bugbear.gen_characteristics(&mut rng);
-        let name = Bugbear::gen_name(&mut rng, &characteristics);
+        let name = bugbear.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 

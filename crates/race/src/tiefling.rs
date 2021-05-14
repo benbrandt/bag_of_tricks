@@ -282,9 +282,6 @@ impl Appearance for Tiefling {
 impl Backstory for Tiefling {}
 
 impl Characteristics for Tiefling {
-    const HUMAN_ANCESTRY: bool = true;
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -299,6 +296,14 @@ impl Characteristics for Tiefling {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
+    }
+
+    fn has_human_ancestry(&self) -> bool {
+        true
     }
 }
 
@@ -393,7 +398,7 @@ impl Languages for Tiefling {
 
 impl Name for Tiefling {
     /// Name also requires getting a set of human names (for human lineage)
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         format!(
             "{} {}",
             Self::gen_first_name(rng, characteristics),
@@ -410,14 +415,11 @@ impl Proficiencies for Tiefling {}
 
 #[typetag::serde]
 impl Race for Tiefling {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             appearance: PhysicalAppearance::gen(rng),
             subrace: TieflingSubrace::gen(rng),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -486,28 +488,28 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tiefling, _name, _characteristics) = Tiefling::gen(&mut rng);
+        let tiefling = Tiefling::gen(&mut rng);
         insta::assert_display_snapshot!(tiefling);
     }
 
     #[test]
     fn test_attitude() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tiefling, _name, _characteristics) = Tiefling::gen(&mut rng);
+        let tiefling = Tiefling::gen(&mut rng);
         insta::assert_yaml_snapshot!(tiefling.attitude());
     }
 
     #[test]
     fn test_morality() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tiefling, _name, _characteristics) = Tiefling::gen(&mut rng);
+        let tiefling = Tiefling::gen(&mut rng);
         insta::assert_yaml_snapshot!(tiefling.morality());
     }
 
     #[test]
     fn test_appearance() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tiefling, _name, _characteristics) = Tiefling::gen(&mut rng);
+        let tiefling = Tiefling::gen(&mut rng);
         insta::assert_yaml_snapshot!(tiefling.appearance());
     }
 
@@ -551,14 +553,14 @@ mod tests {
         };
         let characteristics_1 = tiefling.gen_characteristics(&mut rng);
         let characteristics_2 = tiefling.gen_characteristics(&mut rng);
-        let female_name = Tiefling::gen_name(
+        let female_name = tiefling.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Female,
                 ..characteristics_1
             },
         );
-        let male_name = Tiefling::gen_name(
+        let male_name = tiefling.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Male,

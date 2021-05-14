@@ -5,7 +5,10 @@ use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
 use backstory::Backstory;
 use characteristics::{
-    names::dwarf::{CLAN, DUERGAR_CLAN, FEMALE, MALE},
+    names::{
+        dwarf::{CLAN, DUERGAR_CLAN, FEMALE, MALE},
+        Name,
+    },
     AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
     Size, Speed,
 };
@@ -90,26 +93,6 @@ impl DwarfSubrace {
             Self::Mountain(_) => Self::Mountain(MountainVariant::iter().choose(rng).unwrap()),
             Self::Duergar => subrace,
         }
-    }
-
-    fn gen_name(
-        self,
-        rng: &mut impl Rng,
-        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
-    ) -> String {
-        let first_names = match gender {
-            Gender::Female => FEMALE,
-            Gender::Male => MALE,
-        };
-        let clan_names = match self {
-            Self::Duergar => DUERGAR_CLAN,
-            Self::Hill(_) | Self::Mountain(_) => CLAN,
-        };
-        format!(
-            "{} {}",
-            first_names.choose(rng).unwrap(),
-            clan_names.choose(rng).unwrap()
-        )
     }
 
     fn clan_status(self, rng: &mut impl Rng) -> String {
@@ -286,8 +269,6 @@ impl Backstory for Dwarf {
 }
 
 impl Characteristics for Dwarf {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=350)
     }
@@ -301,6 +282,10 @@ impl Characteristics for Dwarf {
             DwarfSubrace::Duergar | DwarfSubrace::Hill(_) => &height_and_weight::HILL,
             DwarfSubrace::Mountain(_) => &height_and_weight::MOUNTAIN,
         }
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -384,6 +369,28 @@ impl Languages for Dwarf {
     }
 }
 
+impl Name for Dwarf {
+    fn gen_name(
+        &self,
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
+        let first_names = match gender {
+            Gender::Female => FEMALE,
+            Gender::Male => MALE,
+        };
+        let clan_names = match self.subrace {
+            DwarfSubrace::Duergar => DUERGAR_CLAN,
+            DwarfSubrace::Hill(_) | DwarfSubrace::Mountain(_) => CLAN,
+        };
+        format!(
+            "{} {}",
+            first_names.choose(rng).unwrap(),
+            clan_names.choose(rng).unwrap()
+        )
+    }
+}
+
 impl Pantheons for Dwarf {
     fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {
         vec![(
@@ -432,19 +439,16 @@ impl Proficiencies for Dwarf {
 
 #[typetag::serde]
 impl Race for Dwarf {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+    fn gen(rng: &mut impl Rng) -> Self {
         let subrace = DwarfSubrace::gen(rng);
-        let race = Box::new(Self {
+        Self {
             clan_status: subrace.clan_status(rng),
             clan_trait: subrace.clan_trait(rng),
             clan_vocation: DwarfSubrace::clan_vocation(rng),
             quirk: subrace.quirk(rng),
             story_hook: subrace.story_hook(rng),
             subrace,
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = subrace.gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {

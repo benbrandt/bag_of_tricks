@@ -107,9 +107,6 @@ impl Backstory for HalfElf {
 }
 
 impl Characteristics for HalfElf {
-    const HUMAN_ANCESTRY: bool = true;
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=180)
     }
@@ -128,6 +125,14 @@ impl Characteristics for HalfElf {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
+    }
+
+    fn has_human_ancestry(&self) -> bool {
+        true
     }
 }
 
@@ -195,7 +200,7 @@ impl Languages for HalfElf {
 
 impl Name for HalfElf {
     /// First and last names can be either elven or human
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let first_name = *[
             Elf::gen_first_name(rng, characteristics),
             Human::gen_first_name(rng, characteristics),
@@ -255,17 +260,14 @@ impl Proficiencies for HalfElf {
 
 #[typetag::serde]
 impl Race for HalfElf {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+    fn gen(rng: &mut impl Rng) -> Self {
         let subrace = ElfSubrace::gen(rng);
         let variant = Variant::gen(rng, &subrace);
-        let race = Self {
+        Self {
             addl_increases: Self::gen_ability_increases(rng),
             subrace,
             variant,
-        };
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (Box::new(race), name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -305,35 +307,35 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", half_elf));
     }
 
     #[test]
     fn test_snapshot_abilities() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.abilities());
     }
 
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.features());
     }
 
     #[test]
     fn test_snapshot_addl_pantheons() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_elf, _name, _characteristics) = HalfElf::gen(&mut rng);
+        let half_elf = HalfElf::gen(&mut rng);
         insta::assert_yaml_snapshot!(half_elf.addl_pantheons());
     }
 }

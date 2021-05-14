@@ -50,8 +50,6 @@ impl Appearance for Kenku {}
 impl Backstory for Kenku {}
 
 impl Characteristics for Kenku {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(6..=60)
     }
@@ -62,6 +60,10 @@ impl Characteristics for Kenku {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -95,7 +97,7 @@ impl Languages for Kenku {
 }
 
 impl Name for Kenku {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*NAMES.choose(rng).unwrap()).to_string()
     }
 }
@@ -120,11 +122,8 @@ impl Proficiencies for Kenku {
 
 #[typetag::serde]
 impl Race for Kenku {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self);
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+    fn gen(_: &mut impl Rng) -> Self {
+        Self
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -161,7 +160,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku::gen(&mut rng);
         insta::assert_display_snapshot!(kenku);
     }
 
@@ -187,7 +186,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (kenku, _name, _characteristics) = Kenku::gen(&mut rng);
+        let kenku = Kenku::gen(&mut rng);
         insta::assert_yaml_snapshot!(kenku.citations());
     }
 
@@ -208,7 +207,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let kenku = Kenku;
         let characteristics = kenku.gen_characteristics(&mut rng);
-        let name = Kenku::gen_name(&mut rng, &characteristics);
+        let name = kenku.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 
