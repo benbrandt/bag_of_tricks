@@ -3,15 +3,5 @@ source: crates/race/src/goblin.rs
 expression: goblin
 
 ---
-- type: Goblin
-  origin: You are the victim of a curse or polymorph spell.
-- Yegg
-- age: 42
-  base_speeds:
-    - Walking: 30
-  ethnicity: ~
-  gender: Female
-  height: 46
-  size: Small
-  weight: 40
+origin: You are the victim of a curse or polymorph spell.
 

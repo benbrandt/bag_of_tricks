@@ -24,20 +24,23 @@ mod yuan_ti;
 
 use std::fmt;
 
-use alignment::AlignmentInfluences;
-use attack::Resistances;
+use alignment::{AlignmentInfluences, Attitude, Morality};
+use attack::{DamageType, Resistances};
 use backstory::Backstory;
-use characteristics::{names::Name, Appearance, Characteristics};
-use citation::Citations;
-use deities::Pantheons;
-use features::Features;
-use languages::Languages;
-use personality::PersonalityOptions;
-use rand::prelude::IteratorRandom;
-use rand::Rng;
-use stats::{ability::AbilityScore, proficiencies::Proficiencies};
+use characteristics::{names::Name, Appearance, CharacteristicDetails, Characteristics};
+use citation::{CitationList, Citations};
+use deities::{Pantheon, PantheonWeight, Pantheons};
+use features::{Feature, Features};
+use languages::{Language, LanguageType, Languages};
+use personality::{Influence, PersonalityOptions};
+use rand::{prelude::IteratorRandom, Rng};
+use serde::{Deserialize, Serialize};
+use stats::{
+    ability::AbilityScore,
+    proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
+};
 use strum::{EnumIter, IntoEnumIterator};
-use trinkets::Trinkets;
+use trinkets::{TrinketOption, Trinkets};
 
 use self::{
     aasimar::Aasimar, bugbear::Bugbear, dragonborn::Dragonborn, dwarf::Dwarf, elf::Elf,
@@ -48,7 +51,6 @@ use self::{
 };
 
 /// Shared racial traits each race should provide.
-#[typetag::serde(tag = "type")]
 pub trait Race:
     AlignmentInfluences
     + Appearance
@@ -74,61 +76,114 @@ pub trait Race:
     fn abilities(&self) -> Vec<AbilityScore>;
 }
 
-/// All currently supported Race Options for character creation.
-#[derive(EnumIter)]
-pub enum RaceOptions {
-    Aasimar,
-    Bugbear,
-    Dragonborn,
-    Dwarf,
-    Elf,
-    Firbolg,
-    Gith,
-    Gnome,
-    Goblin,
-    Goliath,
-    HalfElf,
-    HalfOrc,
-    Halfling,
-    Hobgoblin,
-    Human,
-    Kenku,
-    Kobold,
-    Lizardfolk,
-    Orc,
-    Tabaxi,
-    Tiefling,
-    Triton,
-    YuanTiPureblood,
+#[impl_enum::with_methods {
+    pub fn abilities(&self) -> Vec<AbilityScore> {}
+    pub fn addl_languages(&self) -> (usize, Option<LanguageType>) {}
+    pub fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {}
+    pub fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {}
+    pub fn appearance(&self) -> Vec<String> {}
+    pub fn attitude(&self) -> Vec<Attitude> {}
+    pub fn backstory(&self) -> Vec<String> {}
+    pub  fn citations(&self) -> CitationList {}
+    pub fn bonds(&self) -> Vec<String> {}
+    pub fn deity_required(&self) -> bool {}
+    pub fn features(&self) -> Vec<Feature> {}
+    pub fn flaws(&self) -> Vec<String> {}
+    pub fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {}
+    pub fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {}
+    pub fn ideals(&self) -> Vec<(String, Influence)> {}
+    pub fn immunities(&self) -> Vec<DamageType> {}
+    pub fn languages(&self) -> Vec<Language> {}
+    pub fn morality(&self) -> Vec<Morality> {}
+    pub fn proficiencies(&self) -> Vec<Proficiency> {}
+    pub fn resistances(&self) -> Vec<DamageType> {}
+    pub fn traits(&self) -> Vec<String> {}
+    pub fn trinket_options(&self) -> Vec<TrinketOption> {}
+}]
+#[derive(Deserialize, EnumIter, Serialize)]
+pub enum RaceOption {
+    Aasimar(Aasimar),
+    Bugbear(Bugbear),
+    Dragonborn(Dragonborn),
+    Dwarf(Dwarf),
+    Elf(Elf),
+    Firbolg(Firbolg),
+    Gith(Gith),
+    Gnome(Gnome),
+    Goblin(Goblin),
+    Goliath(Goliath),
+    HalfElf(HalfElf),
+    HalfOrc(HalfOrc),
+    Halfling(Halfling),
+    Hobgoblin(Hobgoblin),
+    Human(Human),
+    Kenku(Kenku),
+    Kobold(Kobold),
+    Lizardfolk(Lizardfolk),
+    Orc(Orc),
+    Tabaxi(Tabaxi),
+    Tiefling(Tiefling),
+    Triton(Triton),
+    YuanTiPureblood(YuanTiPureblood),
 }
 
-impl RaceOptions {
+impl RaceOption {
     /// Randomly choose a race option and return the result of the corresponding racial struct's `gen` method
-    pub fn gen(rng: &mut impl Rng) -> Box<dyn Race> {
+    pub fn gen(rng: &mut impl Rng) -> Self {
         match Self::iter().choose(rng).unwrap() {
-            Self::Aasimar => Box::new(Aasimar::gen(rng)),
-            Self::Bugbear => Box::new(Bugbear::gen(rng)),
-            Self::Dragonborn => Box::new(Dragonborn::gen(rng)),
-            Self::Dwarf => Box::new(Dwarf::gen(rng)),
-            Self::Elf => Box::new(Elf::gen(rng)),
-            Self::Firbolg => Box::new(Firbolg::gen(rng)),
-            Self::Gith => Box::new(Gith::gen(rng)),
-            Self::Gnome => Box::new(Gnome::gen(rng)),
-            Self::Goblin => Box::new(Goblin::gen(rng)),
-            Self::Goliath => Box::new(Goliath::gen(rng)),
-            Self::HalfElf => Box::new(HalfElf::gen(rng)),
-            Self::HalfOrc => Box::new(HalfOrc::gen(rng)),
-            Self::Halfling => Box::new(Halfling::gen(rng)),
-            Self::Hobgoblin => Box::new(Hobgoblin::gen(rng)),
-            Self::Human => Box::new(Human::gen(rng)),
-            Self::Kenku => Box::new(Kenku::gen(rng)),
-            Self::Kobold => Box::new(Kobold::gen(rng)),
-            Self::Lizardfolk => Box::new(Lizardfolk::gen(rng)),
-            Self::Orc => Box::new(Orc::gen(rng)),
-            Self::Tabaxi => Box::new(Tabaxi::gen(rng)),
-            Self::Tiefling => Box::new(Tiefling::gen(rng)),
-            Self::Triton => Box::new(Triton::gen(rng)),
-            Self::YuanTiPureblood => Box::new(YuanTiPureblood::gen(rng)),
+            Self::Aasimar(_) => Self::Aasimar(Aasimar::gen(rng)),
+            Self::Bugbear(_) => Self::Bugbear(Bugbear::gen(rng)),
+            Self::Dragonborn(_) => Self::Dragonborn(Dragonborn::gen(rng)),
+            Self::Dwarf(_) => Self::Dwarf(Dwarf::gen(rng)),
+            Self::Elf(_) => Self::Elf(Elf::gen(rng)),
+            Self::Firbolg(_) => Self::Firbolg(Firbolg::gen(rng)),
+            Self::Gith(_) => Self::Gith(Gith::gen(rng)),
+            Self::Gnome(_) => Self::Gnome(Gnome::gen(rng)),
+            Self::Goblin(_) => Self::Goblin(Goblin::gen(rng)),
+            Self::Goliath(_) => Self::Goliath(Goliath::gen(rng)),
+            Self::HalfElf(_) => Self::HalfElf(HalfElf::gen(rng)),
+            Self::HalfOrc(_) => Self::HalfOrc(HalfOrc::gen(rng)),
+            Self::Halfling(_) => Self::Halfling(Halfling::gen(rng)),
+            Self::Hobgoblin(_) => Self::Hobgoblin(Hobgoblin::gen(rng)),
+            Self::Human(_) => Self::Human(Human::gen(rng)),
+            Self::Kenku(_) => Self::Kenku(Kenku::gen(rng)),
+            Self::Kobold(_) => Self::Kobold(Kobold::gen(rng)),
+            Self::Lizardfolk(_) => Self::Lizardfolk(Lizardfolk::gen(rng)),
+            Self::Orc(_) => Self::Orc(Orc::gen(rng)),
+            Self::Tabaxi(_) => Self::Tabaxi(Tabaxi::gen(rng)),
+            Self::Tiefling(_) => Self::Tiefling(Tiefling::gen(rng)),
+            Self::Triton(_) => Self::Triton(Triton::gen(rng)),
+            Self::YuanTiPureblood(_) => Self::YuanTiPureblood(YuanTiPureblood::gen(rng)),
+        }
+    }
+}
+
+impl fmt::Display for RaceOption {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Aasimar(r) => write!(f, "{}", r),
+            Self::Bugbear(r) => write!(f, "{}", r),
+            Self::Dragonborn(r) => write!(f, "{}", r),
+            Self::Dwarf(r) => write!(f, "{}", r),
+            Self::Elf(r) => write!(f, "{}", r),
+            Self::Firbolg(r) => write!(f, "{}", r),
+            Self::Gith(r) => write!(f, "{}", r),
+            Self::Gnome(r) => write!(f, "{}", r),
+            Self::Goblin(r) => write!(f, "{}", r),
+            Self::Goliath(r) => write!(f, "{}", r),
+            Self::HalfElf(r) => write!(f, "{}", r),
+            Self::HalfOrc(r) => write!(f, "{}", r),
+            Self::Halfling(r) => write!(f, "{}", r),
+            Self::Hobgoblin(r) => write!(f, "{}", r),
+            Self::Human(r) => write!(f, "{}", r),
+            Self::Kenku(r) => write!(f, "{}", r),
+            Self::Kobold(r) => write!(f, "{}", r),
+            Self::Lizardfolk(r) => write!(f, "{}", r),
+            Self::Orc(r) => write!(f, "{}", r),
+            Self::Tabaxi(r) => write!(f, "{}", r),
+            Self::Tiefling(r) => write!(f, "{}", r),
+            Self::Triton(r) => write!(f, "{}", r),
+            Self::YuanTiPureblood(r) => write!(f, "{}", r),
         }
     }
 }

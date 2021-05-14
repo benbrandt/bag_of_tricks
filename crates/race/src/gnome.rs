@@ -84,8 +84,14 @@ enum GnomeSubrace {
     Svirfneblin,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Gnome {
+impl Default for GnomeSubrace {
+    fn default() -> Self {
+        Self::Forest
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Gnome {
     /// Randomly chosen subrace
     subrace: GnomeSubrace,
 }
@@ -271,7 +277,6 @@ impl Proficiencies for Gnome {
     }
 }
 
-#[typetag::serde]
 impl Race for Gnome {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

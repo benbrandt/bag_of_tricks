@@ -82,6 +82,12 @@ enum SkinColor {
     Yellow,
 }
 
+impl Default for SkinColor {
+    fn default() -> Self {
+        Self::Dark
+    }
+}
+
 impl SkinColor {
     fn weight(self) -> u8 {
         match self {
@@ -139,6 +145,12 @@ enum ScaleColor {
     Albino,
 }
 
+impl Default for ScaleColor {
+    fn default() -> Self {
+        Self::Black
+    }
+}
+
 impl ScaleColor {
     fn weight(self) -> u8 {
         match self {
@@ -180,6 +192,12 @@ enum ScalePattern {
     Striped,
 }
 
+impl Default for ScalePattern {
+    fn default() -> Self {
+        Self::Mottled
+    }
+}
+
 impl ScalePattern {
     fn weight(self) -> u8 {
         match self {
@@ -206,6 +224,12 @@ enum TongueColor {
     Red,
 }
 
+impl Default for TongueColor {
+    fn default() -> Self {
+        Self::Black
+    }
+}
+
 impl TongueColor {
     fn weight(self) -> u8 {
         match self {
@@ -230,6 +254,12 @@ enum EyeColor {
     Red,
     Tan,
     Yellow,
+}
+
+impl Default for EyeColor {
+    fn default() -> Self {
+        EyeColor::Blue
+    }
 }
 
 impl EyeColor {
@@ -297,8 +327,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D4)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct YuanTiPureblood {
+#[derive(Default, Deserialize, Serialize)]
+pub struct YuanTiPureblood {
     eye_color: EyeColor,
     origin: String,
     pureblood_characteristics: Vec<PurebloodCharacteristics>,
@@ -443,7 +473,6 @@ impl PersonalityOptions for YuanTiPureblood {
 
 impl Proficiencies for YuanTiPureblood {}
 
-#[typetag::serde]
 impl Race for YuanTiPureblood {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

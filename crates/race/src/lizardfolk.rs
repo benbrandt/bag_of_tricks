@@ -43,8 +43,8 @@ const QUIRKS: &[&str] = &[
     "You enjoy eating your food while it's still wriggling.",
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Lizardfolk {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Lizardfolk {
     quirk: String,
 }
 
@@ -156,7 +156,6 @@ impl Proficiencies for Lizardfolk {
     }
 }
 
-#[typetag::serde]
 impl Race for Lizardfolk {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

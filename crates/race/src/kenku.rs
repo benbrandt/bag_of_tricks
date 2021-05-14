@@ -32,8 +32,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(1, Die::D6)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Kenku;
+#[derive(Default, Deserialize, Serialize)]
+pub struct Kenku;
 
 impl AlignmentInfluences for Kenku {
     fn attitude(&self) -> Vec<Attitude> {
@@ -120,7 +120,6 @@ impl Proficiencies for Kenku {
     }
 }
 
-#[typetag::serde]
 impl Race for Kenku {
     fn gen(_: &mut impl Rng) -> Self {
         Self

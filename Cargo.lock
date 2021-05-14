@@ -1469,6 +1469,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "impl-enum"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dcf669990de016afa11e8cf922127c3ea8e817c0f0639aee9ad2906539e8a5bb"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "indexmap"
 version = "1.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1973,6 +1983,7 @@ dependencies = [
  "dice_roller",
  "features",
  "gear",
+ "impl-enum",
  "insta",
  "languages",
  "personality",
@@ -1983,7 +1994,6 @@ dependencies = [
  "stats",
  "strum",
  "trinkets",
- "typetag",
 ]
 
 [[package]]

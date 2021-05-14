@@ -13,7 +13,7 @@ use features::{Feature, Features};
 use gear::currency::Coin;
 use languages::Language;
 use personality::Personality;
-use race::{Race, RaceOptions};
+use race::RaceOption;
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
@@ -55,7 +55,7 @@ pub struct Character<'a> {
     /// Proficiencies for the character.
     proficiencies: Vec<Proficiency>,
     /// Race randomly chosen for the character.
-    race: Option<Box<dyn Race>>,
+    race: Option<RaceOption>,
 }
 
 impl<'a> Character<'a> {
@@ -76,9 +76,9 @@ impl<'a> Character<'a> {
             level: 1,
             ..Self::default()
         };
-        let race = RaceOptions::gen(rng);
+        let race = RaceOption::gen(rng);
         let characteristics = race.gen_characteristics(rng);
-        let name = race.gen_name(rng, characteristics);
+        let name = race.gen_name(rng, &characteristics);
         let mut abilities = AbilityScores::gen(rng);
         abilities.increase(race.abilities());
         character.abilities = abilities;
@@ -343,14 +343,14 @@ impl<'a> Resistances for Character<'a> {
     fn immunities(&self) -> Vec<DamageType> {
         self.race
             .as_ref()
-            .map(|r| r.immunities())
+            .map(RaceOption::immunities)
             .unwrap_or_default()
     }
 
     fn resistances(&self) -> Vec<DamageType> {
         self.race
             .as_ref()
-            .map(|r| r.resistances())
+            .map(RaceOption::resistances)
             .unwrap_or_default()
     }
 }

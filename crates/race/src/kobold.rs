@@ -105,6 +105,12 @@ enum ScalePattern {
     Striped,
 }
 
+impl Default for ScalePattern {
+    fn default() -> Self {
+        Self::Mottled
+    }
+}
+
 impl ScalePattern {
     fn gen(rng: &mut impl Rng) -> Self {
         Self::iter().choose(rng).unwrap()
@@ -118,8 +124,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Fixed(1),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Kobold {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Kobold {
     origin: String,
     scale_color: Vec<ScaleColor>,
     scale_pattern: ScalePattern,
@@ -230,7 +236,6 @@ impl PersonalityOptions for Kobold {}
 
 impl Proficiencies for Kobold {}
 
-#[typetag::serde]
 impl Race for Kobold {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

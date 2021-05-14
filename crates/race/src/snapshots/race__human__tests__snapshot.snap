@@ -3,14 +3,5 @@ source: crates/race/src/human.rs
 expression: human
 
 ---
-- type: Human
-- Nura Desai
-- age: 94
-  base_speeds:
-    - Walking: 30
-  ethnicity: Bedine
-  gender: Female
-  height: 64
-  size: Medium
-  weight: 150
+~
 

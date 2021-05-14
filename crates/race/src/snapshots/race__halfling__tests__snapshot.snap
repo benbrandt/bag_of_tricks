@@ -3,17 +3,7 @@ source: crates/race/src/halfling.rs
 expression: halfling
 
 ---
-- type: Halfling
-  reason_for_adventuring: "You talked to a nice faerie in the woods, and all of a sudden you were a thousand miles from home."
-  subrace:
-    Stout: Stout
-- Merric Brushgather
-- age: 22
-  base_speeds:
-    - Walking: 25
-  ethnicity: ~
-  gender: Male
-  height: 37
-  size: Small
-  weight: 41
+reason_for_adventuring: "You talked to a nice faerie in the woods, and all of a sudden you were a thousand miles from home."
+subrace:
+  Stout: Stout
 

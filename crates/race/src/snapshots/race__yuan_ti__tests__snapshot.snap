@@ -3,22 +3,12 @@ source: crates/race/src/yuan_ti.rs
 expression: yuan_ti
 
 ---
-- type: YuanTiPureblood
-  eye_color: Red
-  origin: "You were raised by humans, elves, or dwarves and have adopted their culture."
-  pureblood_characteristics:
-    - ScalyTorso
-  scale_color: RedAndTan
-  scale_pattern: Mottled
-  skin_color: Yellow
-  tongue_color: Orange
-- Talash Stayankina
-- age: 21
-  base_speeds:
-    - Walking: 30
-  ethnicity: Gur
-  gender: Male
-  height: 63
-  size: Medium
-  weight: 145
+eye_color: Red
+origin: "You were raised by humans, elves, or dwarves and have adopted their culture."
+pureblood_characteristics:
+  - ScalyTorso
+scale_color: RedAndTan
+scale_pattern: Mottled
+skin_color: Yellow
+tongue_color: Orange
 

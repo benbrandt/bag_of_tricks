@@ -33,8 +33,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D4)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Hobgoblin {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Hobgoblin {
     origin: String,
 }
 
@@ -131,7 +131,6 @@ impl Proficiencies for Hobgoblin {
     }
 }
 
-#[typetag::serde]
 impl Race for Hobgoblin {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

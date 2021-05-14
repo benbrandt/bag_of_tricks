@@ -41,8 +41,8 @@ const REASON_FOR_ADVENTURING: &[&str] = &[
     "Dispatched on a quest by tribe leaders",
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Firbolg {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Firbolg {
     reason_for_adventuring: String,
 }
 
@@ -144,7 +144,6 @@ impl Proficiencies for Firbolg {}
 
 impl PersonalityOptions for Firbolg {}
 
-#[typetag::serde]
 impl Race for Firbolg {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

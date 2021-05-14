@@ -34,8 +34,8 @@ const HEIGHT_AND_WEIGHT: HeightAndWeightTable = HeightAndWeightTable {
     weight_mod: WeightMod::Roll(RollCmd(2, Die::D6)),
 };
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct HalfOrc;
+#[derive(Default, Deserialize, Serialize)]
+pub struct HalfOrc;
 
 impl AlignmentInfluences for HalfOrc {
     fn attitude(&self) -> Vec<Attitude> {
@@ -156,7 +156,6 @@ impl Proficiencies for HalfOrc {
     }
 }
 
-#[typetag::serde]
 impl Race for HalfOrc {
     fn gen(_: &mut impl Rng) -> Self {
         Self

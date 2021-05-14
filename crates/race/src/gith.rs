@@ -56,6 +56,12 @@ enum GithSubrace {
     Githzerai,
 }
 
+impl Default for GithSubrace {
+    fn default() -> Self {
+        Self::Githyanki
+    }
+}
+
 impl PersonalityOptions for GithSubrace {
     fn bonds(&self) -> Vec<String> {
         (match self {
@@ -138,8 +144,8 @@ impl PersonalityOptions for GithSubrace {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Gith {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Gith {
     /// Randomly chosen subrace
     subrace: GithSubrace,
 }
@@ -299,7 +305,6 @@ impl Proficiencies for Gith {
     }
 }
 
-#[typetag::serde]
 impl Race for Gith {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {

@@ -84,12 +84,12 @@ proficiencies:
   - Tool:
       GamingSet: PlayingCard
 race:
-  type: Dwarf
-  clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"
-  clan_trait: "Clan owns a powerful artifact, such as an Axe of the Dwarvish Lords"
-  clan_vocation: Weaponsmith
-  quirk: You prefer to sleep during the day.
-  story_hook: "You were assigned to become a merchant by the priests of Moradin and have yet to forgive them for their mistake. You should be working a forge, not wandering the outside world!"
-  subrace:
-    Hill: Hill
+  Dwarf:
+    clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"
+    clan_trait: "Clan owns a powerful artifact, such as an Axe of the Dwarvish Lords"
+    clan_vocation: Weaponsmith
+    quirk: You prefer to sleep during the day.
+    story_hook: "You were assigned to become a merchant by the priests of Moradin and have yet to forgive them for their mistake. You should be working a forge, not wandering the outside world!"
+    subrace:
+      Hill: Hill
 

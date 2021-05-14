@@ -44,8 +44,8 @@ const QUIRKS: &[&str] = &[
     "You mistakenly assume that surface folk know about and are impressed by your people's history.",
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Triton {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Triton {
     quirk: String,
 }
 
@@ -148,7 +148,6 @@ impl PersonalityOptions for Triton {}
 
 impl Proficiencies for Triton {}
 
-#[typetag::serde]
 impl Race for Triton {
     fn gen(rng: &mut impl Rng) -> Self {
         Self {
