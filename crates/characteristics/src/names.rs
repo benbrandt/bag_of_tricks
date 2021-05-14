@@ -23,5 +23,7 @@ use super::{CharacteristicDetails, Characteristics};
 /// Trait for entities that need names.
 pub trait Name: Characteristics {
     /// Method of generating a random name. Characteristics are provided in case they influence the choice.
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String;
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String
+    where
+        Self: Sized;
 }

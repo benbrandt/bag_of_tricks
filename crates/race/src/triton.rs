@@ -68,8 +68,6 @@ impl Backstory for Triton {
 }
 
 impl Characteristics for Triton {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(8..=200)
     }
@@ -80,6 +78,10 @@ impl Characteristics for Triton {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -124,6 +126,7 @@ impl Languages for Triton {
 
 impl Name for Triton {
     fn gen_name(
+        &self,
         rng: &mut impl Rng,
         CharacteristicDetails { gender, .. }: &CharacteristicDetails,
     ) -> String {
@@ -147,13 +150,10 @@ impl Proficiencies for Triton {}
 
 #[typetag::serde]
 impl Race for Triton {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             quirk: (*QUIRKS.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -195,7 +195,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (triton, _name, _characteristics) = Triton::gen(&mut rng);
+        let triton = Triton::gen(&mut rng);
         insta::assert_display_snapshot!(triton);
     }
 
@@ -218,7 +218,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (triton, _name, _characteristics) = Triton::gen(&mut rng);
+        let triton = Triton::gen(&mut rng);
         insta::assert_yaml_snapshot!(triton.backstory());
     }
 
@@ -237,7 +237,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (triton, _name, _characteristics) = Triton::gen(&mut rng);
+        let triton = Triton::gen(&mut rng);
         insta::assert_yaml_snapshot!(triton.citations());
     }
 
@@ -265,14 +265,14 @@ mod tests {
         };
         let characteristics_1 = triton.gen_characteristics(&mut rng);
         let characteristics_2 = triton.gen_characteristics(&mut rng);
-        let female_name = Triton::gen_name(
+        let female_name = triton.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Female,
                 ..characteristics_1
             },
         );
-        let male_name = Triton::gen_name(
+        let male_name = triton.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Male,

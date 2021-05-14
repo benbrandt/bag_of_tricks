@@ -52,9 +52,6 @@ impl Appearance for HalfOrc {}
 impl Backstory for HalfOrc {}
 
 impl Characteristics for HalfOrc {
-    const HUMAN_ANCESTRY: bool = true;
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(8..=75)
     }
@@ -65,6 +62,14 @@ impl Characteristics for HalfOrc {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
+    }
+
+    fn has_human_ancestry(&self) -> bool {
+        true
     }
 }
 
@@ -104,7 +109,7 @@ impl Languages for HalfOrc {
 
 impl Name for HalfOrc {
     /// First name can be either orc or human name
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let first_name = *[
             Human::gen_first_name(rng, characteristics),
             Orc::gen_first_name(rng, characteristics),
@@ -153,11 +158,8 @@ impl Proficiencies for HalfOrc {
 
 #[typetag::serde]
 impl Race for HalfOrc {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self);
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+    fn gen(_: &mut impl Rng) -> Self {
+        Self
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -194,7 +196,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (half_orc, _name, _characteristics) = HalfOrc::gen(&mut rng);
+        let half_orc = HalfOrc::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", half_orc));
     }
 

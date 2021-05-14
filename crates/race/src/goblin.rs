@@ -56,8 +56,6 @@ impl Backstory for Goblin {
 }
 
 impl Characteristics for Goblin {
-    const SIZE: Size = Size::Small;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(4..=60)
     }
@@ -68,6 +66,10 @@ impl Characteristics for Goblin {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Small
     }
 }
 
@@ -106,7 +108,7 @@ impl Languages for Goblin {
 }
 
 impl Name for Goblin {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*GOBLIN.choose(rng).unwrap()).to_string()
     }
 }
@@ -123,13 +125,10 @@ impl Proficiencies for Goblin {}
 
 #[typetag::serde]
 impl Race for Goblin {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -170,7 +169,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (goblin, _name, _characteristics) = Goblin::gen(&mut rng);
+        let goblin = Goblin::gen(&mut rng);
         insta::assert_display_snapshot!(goblin);
     }
 
@@ -193,7 +192,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (goblin, _name, _characteristics) = Goblin::gen(&mut rng);
+        let goblin = Goblin::gen(&mut rng);
         insta::assert_yaml_snapshot!(goblin.backstory());
     }
 
@@ -209,7 +208,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (goblin, _name, _characteristics) = Goblin::gen(&mut rng);
+        let goblin = Goblin::gen(&mut rng);
         insta::assert_yaml_snapshot!(goblin.citations());
     }
 
@@ -236,7 +235,7 @@ mod tests {
             origin: String::new(),
         };
         let characteristics = goblin.gen_characteristics(&mut rng);
-        let name = Goblin::gen_name(&mut rng, &characteristics);
+        let name = goblin.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 

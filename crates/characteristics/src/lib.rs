@@ -144,10 +144,26 @@ impl fmt::Display for CharacteristicDetails {
 ///
 /// Separate from race since it uses associated constants (which can't be on a trait object)
 pub trait Characteristics {
-    // Does this race have human ancestry?
-    const HUMAN_ANCESTRY: bool = false;
-    /// Character size
-    const SIZE: Size;
+    /// Generate characteristics for this race
+    fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails
+    where
+        Self: Sized,
+    {
+        let (height, weight) = self.get_height_and_weight_table().gen(rng);
+        CharacteristicDetails {
+            age: self.get_age_range().gen(rng),
+            base_speeds: self.get_base_speeds(),
+            ethnicity: if self.has_human_ancestry() {
+                Some(Ethnicity::gen(rng))
+            } else {
+                None
+            },
+            gender: Gender::gen(rng),
+            height,
+            size: self.get_size(),
+            weight,
+        }
+    }
 
     /// Age range to choose from
     fn get_age_range(&self) -> AgeRange;
@@ -158,22 +174,12 @@ pub trait Characteristics {
     /// Calculate the height and weight table to generate from
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable;
 
-    /// Generate characteristics for this race
-    fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {
-        let (height, weight) = self.get_height_and_weight_table().gen(rng);
-        CharacteristicDetails {
-            age: self.get_age_range().gen(rng),
-            base_speeds: self.get_base_speeds(),
-            ethnicity: if Self::HUMAN_ANCESTRY {
-                Some(Ethnicity::gen(rng))
-            } else {
-                None
-            },
-            gender: Gender::gen(rng),
-            height,
-            size: Self::SIZE,
-            weight,
-        }
+    /// Character size
+    fn get_size(&self) -> Size;
+
+    // Does this race have human ancestry?
+    fn has_human_ancestry(&self) -> bool {
+        false
     }
 }
 

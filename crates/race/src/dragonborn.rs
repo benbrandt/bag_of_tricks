@@ -136,8 +136,6 @@ impl Appearance for Dragonborn {}
 impl Backstory for Dragonborn {}
 
 impl Characteristics for Dragonborn {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(3..=80)
     }
@@ -148,6 +146,10 @@ impl Characteristics for Dragonborn {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -177,6 +179,7 @@ impl Languages for Dragonborn {
 
 impl Name for Dragonborn {
     fn gen_name(
+        &self,
         rng: &mut impl Rng,
         CharacteristicDetails { gender, .. }: &CharacteristicDetails,
     ) -> String {
@@ -205,13 +208,10 @@ impl Proficiencies for Dragonborn {}
 
 #[typetag::serde]
 impl Race for Dragonborn {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             ancestry: DraconicAncestry::iter().choose(rng).unwrap(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -252,7 +252,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (dragonborn, _name, _characteristics) = Dragonborn::gen(&mut rng);
+        let dragonborn = Dragonborn::gen(&mut rng);
         insta::assert_display_snapshot!(dragonborn);
     }
 
@@ -311,14 +311,14 @@ mod tests {
         };
         let characteristics_1 = dragonborn.gen_characteristics(&mut rng);
         let characteristics_2 = dragonborn.gen_characteristics(&mut rng);
-        let female_name = Dragonborn::gen_name(
+        let female_name = dragonborn.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Female,
                 ..characteristics_1
             },
         );
-        let male_name = Dragonborn::gen_name(
+        let male_name = dragonborn.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Male,

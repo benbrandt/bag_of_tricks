@@ -27,7 +27,7 @@ use std::fmt;
 use alignment::AlignmentInfluences;
 use attack::Resistances;
 use backstory::Backstory;
-use characteristics::{Appearance, CharacteristicDetails};
+use characteristics::{names::Name, Appearance, Characteristics};
 use citation::Citations;
 use deities::Pantheons;
 use features::Features;
@@ -53,9 +53,11 @@ pub trait Race:
     AlignmentInfluences
     + Appearance
     + Backstory
+    + Characteristics
     + Citations
     + Features
     + Languages
+    + Name
     + Pantheons
     + PersonalityOptions
     + Proficiencies
@@ -64,7 +66,7 @@ pub trait Race:
     + fmt::Display
 {
     /// Method to generate a new instance of the struct
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails)
+    fn gen(rng: &mut impl Rng) -> Self
     where
         Self: Sized;
 
@@ -102,31 +104,31 @@ pub enum RaceOptions {
 
 impl RaceOptions {
     /// Randomly choose a race option and return the result of the corresponding racial struct's `gen` method
-    pub fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
+    pub fn gen(rng: &mut impl Rng) -> Box<dyn Race> {
         match Self::iter().choose(rng).unwrap() {
-            Self::Aasimar => Aasimar::gen(rng),
-            Self::Bugbear => Bugbear::gen(rng),
-            Self::Dragonborn => Dragonborn::gen(rng),
-            Self::Dwarf => Dwarf::gen(rng),
-            Self::Elf => Elf::gen(rng),
-            Self::Firbolg => Firbolg::gen(rng),
-            Self::Gith => Gith::gen(rng),
-            Self::Gnome => Gnome::gen(rng),
-            Self::Goblin => Goblin::gen(rng),
-            Self::Goliath => Goliath::gen(rng),
-            Self::HalfElf => HalfElf::gen(rng),
-            Self::HalfOrc => HalfOrc::gen(rng),
-            Self::Halfling => Halfling::gen(rng),
-            Self::Hobgoblin => Hobgoblin::gen(rng),
-            Self::Human => Human::gen(rng),
-            Self::Kenku => Kenku::gen(rng),
-            Self::Kobold => Kobold::gen(rng),
-            Self::Lizardfolk => Lizardfolk::gen(rng),
-            Self::Orc => Orc::gen(rng),
-            Self::Tabaxi => Tabaxi::gen(rng),
-            Self::Tiefling => Tiefling::gen(rng),
-            Self::Triton => Triton::gen(rng),
-            Self::YuanTiPureblood => YuanTiPureblood::gen(rng),
+            Self::Aasimar => Box::new(Aasimar::gen(rng)),
+            Self::Bugbear => Box::new(Bugbear::gen(rng)),
+            Self::Dragonborn => Box::new(Dragonborn::gen(rng)),
+            Self::Dwarf => Box::new(Dwarf::gen(rng)),
+            Self::Elf => Box::new(Elf::gen(rng)),
+            Self::Firbolg => Box::new(Firbolg::gen(rng)),
+            Self::Gith => Box::new(Gith::gen(rng)),
+            Self::Gnome => Box::new(Gnome::gen(rng)),
+            Self::Goblin => Box::new(Goblin::gen(rng)),
+            Self::Goliath => Box::new(Goliath::gen(rng)),
+            Self::HalfElf => Box::new(HalfElf::gen(rng)),
+            Self::HalfOrc => Box::new(HalfOrc::gen(rng)),
+            Self::Halfling => Box::new(Halfling::gen(rng)),
+            Self::Hobgoblin => Box::new(Hobgoblin::gen(rng)),
+            Self::Human => Box::new(Human::gen(rng)),
+            Self::Kenku => Box::new(Kenku::gen(rng)),
+            Self::Kobold => Box::new(Kobold::gen(rng)),
+            Self::Lizardfolk => Box::new(Lizardfolk::gen(rng)),
+            Self::Orc => Box::new(Orc::gen(rng)),
+            Self::Tabaxi => Box::new(Tabaxi::gen(rng)),
+            Self::Tiefling => Box::new(Tiefling::gen(rng)),
+            Self::Triton => Box::new(Triton::gen(rng)),
+            Self::YuanTiPureblood => Box::new(YuanTiPureblood::gen(rng)),
         }
     }
 }

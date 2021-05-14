@@ -118,9 +118,6 @@ impl Backstory for Aasimar {
 }
 
 impl Characteristics for Aasimar {
-    const HUMAN_ANCESTRY: bool = true;
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=160)
     }
@@ -131,6 +128,14 @@ impl Characteristics for Aasimar {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
+    }
+
+    fn has_human_ancestry(&self) -> bool {
+        true
     }
 }
 
@@ -195,8 +200,12 @@ impl Languages for Aasimar {
 }
 
 impl Name for Aasimar {
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
-        Human::gen_name(rng, characteristics)
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+        format!(
+            "{} {}",
+            Human::gen_first_name(rng, characteristics),
+            Human::gen_surname(rng, characteristics),
+        )
     }
 }
 
@@ -208,14 +217,11 @@ impl Proficiencies for Aasimar {}
 
 #[typetag::serde]
 impl Race for Aasimar {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             guide: AngelicGuide::gen(rng),
             subrace: AasimarSubrace::iter().choose(rng).unwrap(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -259,9 +265,16 @@ mod tests {
     }
 
     #[test]
+    fn test_gen_characteristics() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let aasimar = Aasimar::gen(&mut rng);
+        insta::assert_yaml_snapshot!(aasimar.gen_characteristics(&mut rng));
+    }
+
+    #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (aasimar, _name, _characteristics) = Aasimar::gen(&mut rng);
+        let aasimar = Aasimar::gen(&mut rng);
         insta::assert_display_snapshot!(aasimar);
     }
 
@@ -362,14 +375,14 @@ mod tests {
         };
         let characteristics_1 = aasimar.gen_characteristics(&mut rng);
         let characteristics_2 = aasimar.gen_characteristics(&mut rng);
-        let female_name = Aasimar::gen_name(
+        let female_name = aasimar.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Female,
                 ..characteristics_1
             },
         );
-        let male_name = Aasimar::gen_name(
+        let male_name = aasimar.gen_name(
             &mut rng,
             &CharacteristicDetails {
                 gender: Gender::Male,

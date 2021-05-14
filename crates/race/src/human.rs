@@ -69,9 +69,6 @@ impl Appearance for Human {}
 impl Backstory for Human {}
 
 impl Characteristics for Human {
-    const HUMAN_ANCESTRY: bool = true;
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -82,6 +79,14 @@ impl Characteristics for Human {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
+    }
+
+    fn has_human_ancestry(&self) -> bool {
+        true
     }
 }
 
@@ -104,7 +109,7 @@ impl Languages for Human {
 }
 
 impl Name for Human {
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         format!(
             "{} {}",
             Self::gen_first_name(rng, characteristics),
@@ -130,11 +135,8 @@ impl Proficiencies for Human {}
 
 #[typetag::serde]
 impl Race for Human {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self);
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+    fn gen(_: &mut impl Rng) -> Self {
+        Self
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -170,7 +172,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (human, _name, _characteristics) = Human::gen(&mut rng);
+        let human = Human::gen(&mut rng);
         insta::assert_snapshot!(format!("{}", human));
     }
 

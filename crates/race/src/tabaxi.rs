@@ -87,8 +87,6 @@ impl Backstory for Tabaxi {
 }
 
 impl Characteristics for Tabaxi {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -99,6 +97,10 @@ impl Characteristics for Tabaxi {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -141,7 +143,7 @@ impl Languages for Tabaxi {
 }
 
 impl Name for Tabaxi {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         format!(
             "{} {}",
             NAMES.choose(rng).unwrap(),
@@ -165,14 +167,11 @@ impl Proficiencies for Tabaxi {
 
 #[typetag::serde]
 impl Race for Tabaxi {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             obsession: (*OBSESSIONS.choose(rng).unwrap()).to_string(),
             quirk: (*QUIRKS.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -209,7 +208,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tabaxi, _name, _characteristics) = Tabaxi::gen(&mut rng);
+        let tabaxi = Tabaxi::gen(&mut rng);
         insta::assert_display_snapshot!(tabaxi);
     }
 
@@ -234,7 +233,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tabaxi, _name, _characteristics) = Tabaxi::gen(&mut rng);
+        let tabaxi = Tabaxi::gen(&mut rng);
         insta::assert_yaml_snapshot!(tabaxi.backstory());
     }
 
@@ -254,7 +253,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (tabaxi, _name, _characteristics) = Tabaxi::gen(&mut rng);
+        let tabaxi = Tabaxi::gen(&mut rng);
         insta::assert_yaml_snapshot!(tabaxi.citations());
     }
 
@@ -285,7 +284,7 @@ mod tests {
             quirk: String::new(),
         };
         let characteristics = tabaxi.gen_characteristics(&mut rng);
-        let name = Tabaxi::gen_name(&mut rng, &characteristics);
+        let name = tabaxi.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 

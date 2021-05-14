@@ -76,7 +76,9 @@ impl<'a> Character<'a> {
             level: 1,
             ..Self::default()
         };
-        let (race, name, characteristics) = RaceOptions::gen(rng);
+        let race = RaceOptions::gen(rng);
+        let characteristics = race.gen_characteristics(rng);
+        let name = race.gen_name(rng, characteristics);
         let mut abilities = AbilityScores::gen(rng);
         abilities.increase(race.abilities());
         character.abilities = abilities;

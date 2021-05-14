@@ -149,8 +149,6 @@ impl Backstory for Halfling {
 }
 
 impl Characteristics for Halfling {
-    const SIZE: Size = Size::Small;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=150)
     }
@@ -161,6 +159,10 @@ impl Characteristics for Halfling {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Small
     }
 }
 
@@ -221,6 +223,7 @@ impl Languages for Halfling {
 
 impl Name for Halfling {
     fn gen_name(
+        &self,
         rng: &mut impl Rng,
         CharacteristicDetails { gender, .. }: &CharacteristicDetails,
     ) -> String {
@@ -264,14 +267,11 @@ impl Proficiencies for Halfling {}
 
 #[typetag::serde]
 impl Race for Halfling {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             reason_for_adventuring: (*REASON_FOR_ADVENTURING.choose(rng).unwrap()).to_string(),
             subrace: HalflingSubrace::gen(rng),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {

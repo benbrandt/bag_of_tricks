@@ -158,8 +158,6 @@ impl Backstory for Kobold {
 }
 
 impl Characteristics for Kobold {
-    const SIZE: Size = Size::Small;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(3..=120)
     }
@@ -170,6 +168,10 @@ impl Characteristics for Kobold {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Small
     }
 }
 
@@ -213,7 +215,7 @@ impl Languages for Kobold {
 }
 
 impl Name for Kobold {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         (*NAMES.choose(rng).unwrap()).to_string()
     }
 }
@@ -230,15 +232,12 @@ impl Proficiencies for Kobold {}
 
 #[typetag::serde]
 impl Race for Kobold {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
             scale_color: ScaleColor::gen(rng),
             scale_pattern: ScalePattern::gen(rng),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -275,7 +274,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (kobold, _name, _characteristics) = Kobold::gen(&mut rng);
+        let kobold = Kobold::gen(&mut rng);
         insta::assert_display_snapshot!(kobold);
     }
 
@@ -302,14 +301,14 @@ mod tests {
     #[test]
     fn test_appearance() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (kobold, _name, _characteristics) = Kobold::gen(&mut rng);
+        let kobold = Kobold::gen(&mut rng);
         insta::assert_yaml_snapshot!(kobold.appearance());
     }
 
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (kobold, _name, _characteristics) = Kobold::gen(&mut rng);
+        let kobold = Kobold::gen(&mut rng);
         insta::assert_yaml_snapshot!(kobold.backstory());
     }
 
@@ -327,7 +326,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (kobold, _name, _characteristics) = Kobold::gen(&mut rng);
+        let kobold = Kobold::gen(&mut rng);
         insta::assert_yaml_snapshot!(kobold.citations());
     }
 
@@ -360,7 +359,7 @@ mod tests {
             scale_pattern: ScalePattern::Mottled,
         };
         let characteristics = kobold.gen_characteristics(&mut rng);
-        let name = Kobold::gen_name(&mut rng, &characteristics);
+        let name = kobold.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 

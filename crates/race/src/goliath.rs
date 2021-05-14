@@ -53,8 +53,6 @@ impl Appearance for Goliath {}
 impl Backstory for Goliath {}
 
 impl Characteristics for Goliath {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -65,6 +63,10 @@ impl Characteristics for Goliath {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -103,7 +105,7 @@ impl Languages for Goliath {
 }
 
 impl Name for Goliath {
-    fn gen_name(rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, _: &CharacteristicDetails) -> String {
         format!(
             "{} \"{}\" {}",
             BIRTH_NAMES.choose(rng).unwrap(),
@@ -129,11 +131,8 @@ impl Proficiencies for Goliath {
 
 #[typetag::serde]
 impl Race for Goliath {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self);
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+    fn gen(_: &mut impl Rng) -> Self {
+        Self
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -170,7 +169,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (goliath, _name, _characteristics) = Goliath::gen(&mut rng);
+        let goliath = Goliath::gen(&mut rng);
         insta::assert_display_snapshot!(goliath);
     }
 
@@ -216,7 +215,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let goliath = Goliath;
         let characteristics = goliath.gen_characteristics(&mut rng);
-        let name = Goliath::gen_name(&mut rng, &&characteristics);
+        let name = goliath.gen_name(&mut rng, &&characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 

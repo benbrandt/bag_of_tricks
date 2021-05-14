@@ -344,9 +344,6 @@ impl Backstory for YuanTiPureblood {
 }
 
 impl Characteristics for YuanTiPureblood {
-    const HUMAN_ANCESTRY: bool = true;
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -357,6 +354,14 @@ impl Characteristics for YuanTiPureblood {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
+    }
+
+    fn has_human_ancestry(&self) -> bool {
+        true
     }
 }
 
@@ -401,7 +406,7 @@ impl Languages for YuanTiPureblood {
 
 impl Name for YuanTiPureblood {
     /// Name also requires getting a set of human names (for human lineage)
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         let first_name = *[
             Human::gen_first_name(rng, characteristics),
             *NAMES.choose(rng).unwrap(),
@@ -440,8 +445,8 @@ impl Proficiencies for YuanTiPureblood {}
 
 #[typetag::serde]
 impl Race for YuanTiPureblood {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             eye_color: EyeColor::gen(rng),
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
             pureblood_characteristics: PurebloodCharacteristics::gen(rng),
@@ -449,10 +454,7 @@ impl Race for YuanTiPureblood {
             scale_pattern: ScalePattern::gen(rng),
             skin_color: SkinColor::gen(rng),
             tongue_color: TongueColor::gen(rng),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -493,28 +495,28 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_display_snapshot!(yuan_ti);
     }
 
     #[test]
     fn test_attitude() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.attitude());
     }
 
     #[test]
     fn test_morality() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.morality());
     }
 
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.backstory());
     }
 
@@ -536,70 +538,72 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.citations());
     }
 
     #[test]
     fn test_snapshot_features() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.features());
     }
 
     #[test]
     fn test_snapshot_languages() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.languages());
     }
 
     #[test]
     fn test_name() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (_yuan_ti, name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
+        let characteristics = yuan_ti.gen_characteristics(&mut rng);
+        let name = yuan_ti.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 
     #[test]
     fn test_snapshot_abilities() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.abilities());
     }
 
     #[test]
     fn test_snapshot_immunities() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.immunities());
     }
 
     #[test]
     fn test_bonds() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.bonds());
     }
 
     #[test]
     fn test_flaws() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.flaws());
     }
 
     #[test]
     fn test_ideals() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.ideals());
     }
 
     #[test]
     fn test_traits() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (yuan_ti, _name, _characteristics) = YuanTiPureblood::gen(&mut rng);
+        let yuan_ti = YuanTiPureblood::gen(&mut rng);
         insta::assert_yaml_snapshot!(yuan_ti.traits());
     }
 }

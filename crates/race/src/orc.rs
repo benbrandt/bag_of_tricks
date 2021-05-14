@@ -124,8 +124,6 @@ impl Backstory for Orc {
 }
 
 impl Characteristics for Orc {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(6..=50)
     }
@@ -136,6 +134,10 @@ impl Characteristics for Orc {
 
     fn get_height_and_weight_table(&self) -> &HeightAndWeightTable {
         &HEIGHT_AND_WEIGHT
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -174,7 +176,7 @@ impl Languages for Orc {
 }
 
 impl Name for Orc {
-    fn gen_name(rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
+    fn gen_name(&self, rng: &mut impl Rng, characteristics: &CharacteristicDetails) -> String {
         format!(
             "{} {}",
             Self::gen_first_name(rng, characteristics),
@@ -215,13 +217,10 @@ impl Proficiencies for Orc {
 
 #[typetag::serde]
 impl Race for Orc {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             origin: (*MONSTROUS_ORIGIN.choose(rng).unwrap()).to_string(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
@@ -259,7 +258,7 @@ mod tests {
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_display_snapshot!(orc);
     }
 
@@ -282,7 +281,7 @@ mod tests {
     #[test]
     fn test_backstory() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_yaml_snapshot!(orc.backstory());
     }
 
@@ -298,7 +297,7 @@ mod tests {
     #[test]
     fn test_snapshot_citations() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_yaml_snapshot!(orc.citations());
     }
 
@@ -325,7 +324,7 @@ mod tests {
             origin: String::new(),
         };
         let characteristics = orc.gen_characteristics(&mut rng);
-        let name = Orc::gen_name(&mut rng, &characteristics);
+        let name = orc.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 
@@ -340,28 +339,28 @@ mod tests {
     #[test]
     fn test_bonds() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_yaml_snapshot!(orc.bonds());
     }
 
     #[test]
     fn test_flaws() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_yaml_snapshot!(orc.flaws());
     }
 
     #[test]
     fn test_ideals() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_yaml_snapshot!(orc.ideals());
     }
 
     #[test]
     fn test_traits() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let (orc, _name, _characteristics) = Orc::gen(&mut rng);
+        let orc = Orc::gen(&mut rng);
         insta::assert_yaml_snapshot!(orc.traits());
     }
 

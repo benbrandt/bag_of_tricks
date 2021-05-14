@@ -111,8 +111,6 @@ impl Appearance for Gnome {}
 impl Backstory for Gnome {}
 
 impl Characteristics for Gnome {
-    const SIZE: Size = Size::Small;
-
     fn get_age_range(&self) -> AgeRange {
         match self.subrace {
             GnomeSubrace::Forest | GnomeSubrace::Rock => AgeRange(10..=500),
@@ -129,6 +127,10 @@ impl Characteristics for Gnome {
             GnomeSubrace::Forest | GnomeSubrace::Rock => &HEIGHT_AND_WEIGHT,
             GnomeSubrace::Svirfneblin => &SVIRFNEBLIN_HEIGHT_AND_WEIGHT,
         }
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Small
     }
 }
 
@@ -216,6 +218,7 @@ impl Languages for Gnome {
 
 impl Name for Gnome {
     fn gen_name(
+        &self,
         rng: &mut impl Rng,
         CharacteristicDetails { gender, .. }: &CharacteristicDetails,
     ) -> String {
@@ -270,13 +273,10 @@ impl Proficiencies for Gnome {
 
 #[typetag::serde]
 impl Race for Gnome {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let race = Box::new(Self {
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
             subrace: GnomeSubrace::iter().choose(rng).unwrap(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = Self::gen_name(rng, &characteristics);
-        (race, name, characteristics)
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {

@@ -5,7 +5,10 @@ use alignment::{AlignmentInfluences, Attitude, Morality};
 use attack::Resistances;
 use backstory::Backstory;
 use characteristics::{
-    names::gith::{GITHYANKI_FEMALE, GITHYANKI_MALE, GITHZERAI_FEMALE, GITHZERAI_MALE},
+    names::{
+        gith::{GITHYANKI_FEMALE, GITHYANKI_MALE, GITHZERAI_FEMALE, GITHZERAI_MALE},
+        Name,
+    },
     AgeRange, Appearance, CharacteristicDetails, Characteristics, Gender, HeightAndWeightTable,
     Size, Speed,
 };
@@ -47,26 +50,10 @@ mod height_and_weight {
     };
 }
 
-#[derive(Clone, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
 enum GithSubrace {
     Githyanki,
     Githzerai,
-}
-
-impl GithSubrace {
-    fn gen_name(
-        &self,
-        rng: &mut impl Rng,
-        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
-    ) -> String {
-        let first_names = match (self, gender) {
-            (Self::Githyanki, Gender::Female) => GITHYANKI_FEMALE,
-            (Self::Githyanki, Gender::Male) => GITHYANKI_MALE,
-            (Self::Githzerai, Gender::Female) => GITHZERAI_FEMALE,
-            (Self::Githzerai, Gender::Male) => GITHZERAI_MALE,
-        };
-        (*first_names.choose(rng).unwrap()).to_string()
-    }
 }
 
 impl PersonalityOptions for GithSubrace {
@@ -175,8 +162,6 @@ impl Appearance for Gith {}
 impl Backstory for Gith {}
 
 impl Characteristics for Gith {
-    const SIZE: Size = Size::Medium;
-
     fn get_age_range(&self) -> AgeRange {
         AgeRange(10..=100)
     }
@@ -190,6 +175,10 @@ impl Characteristics for Gith {
             GithSubrace::Githyanki => &height_and_weight::GITHYANKI,
             GithSubrace::Githzerai => &height_and_weight::GITHZERAI,
         }
+    }
+
+    fn get_size(&self) -> Size {
+        Size::Medium
     }
 }
 
@@ -246,6 +235,22 @@ impl Languages for Gith {
     }
 }
 
+impl Name for Gith {
+    fn gen_name(
+        &self,
+        rng: &mut impl Rng,
+        CharacteristicDetails { gender, .. }: &CharacteristicDetails,
+    ) -> String {
+        let first_names = match (self.subrace, gender) {
+            (GithSubrace::Githyanki, Gender::Female) => GITHYANKI_FEMALE,
+            (GithSubrace::Githyanki, Gender::Male) => GITHYANKI_MALE,
+            (GithSubrace::Githzerai, Gender::Female) => GITHZERAI_FEMALE,
+            (GithSubrace::Githzerai, Gender::Male) => GITHZERAI_MALE,
+        };
+        (*first_names.choose(rng).unwrap()).to_string()
+    }
+}
+
 impl Pantheons for Gith {}
 
 impl PersonalityOptions for Gith {
@@ -296,14 +301,10 @@ impl Proficiencies for Gith {
 
 #[typetag::serde]
 impl Race for Gith {
-    fn gen(rng: &mut impl Rng) -> (Box<dyn Race>, String, CharacteristicDetails) {
-        let subrace = GithSubrace::iter().choose(rng).unwrap();
-        let race = Box::new(Self {
-            subrace: subrace.clone(),
-        });
-        let characteristics = race.gen_characteristics(rng);
-        let name = subrace.gen_name(rng, &characteristics);
-        (race, name, characteristics)
+    fn gen(rng: &mut impl Rng) -> Self {
+        Self {
+            subrace: GithSubrace::iter().choose(rng).unwrap(),
+        }
     }
 
     fn abilities(&self) -> Vec<AbilityScore> {
