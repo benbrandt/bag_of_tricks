@@ -55,7 +55,6 @@ jobs:
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v1
         with:
-          path-to-lcov: ${{ steps.coverage.outputs.report }}
           token: ${{secrets.CODECOV_TOKEN}}
 
   lints:

@@ -1,9 +1,0 @@
-binary-path: ./target/debug/
-branch: true
-ignore-not-existing: true
-llvm: true
-output-type: lcov
-output-path: ./lcov.info
-source-dir: .
-ignore-dir:
-  - "/*"

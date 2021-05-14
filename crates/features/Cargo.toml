@@ -12,5 +12,5 @@ citation = { path = "../citation" }
 serde = { version = "1", features = ["derive"] }
 
 [dev-dependencies]
-insta = { version = "1", features = ["backtrace"] }
+insta = "1"
 serde_yaml = "0.8"
