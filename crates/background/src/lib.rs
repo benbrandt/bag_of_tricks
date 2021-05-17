@@ -28,18 +28,20 @@ mod waterdhavian_noble;
 use std::fmt;
 
 use backstory::Backstory;
-use citation::Citations;
-use deities::Pantheons;
-use features::Features;
+use citation::{CitationList, Citations};
+use deities::{Pantheon, PantheonWeight, Pantheons};
+use features::{Feature, Features};
+use gear::currency::Coin;
 use haunted_one::HauntedOne;
 use itertools::Itertools;
-use languages::Languages;
-use personality::PersonalityOptions;
+use languages::{Language, LanguageType, Languages};
+use personality::{Influence, PersonalityOptions};
 use rand::{prelude::SliceRandom, Rng};
+use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::StartingEquipment,
-    proficiencies::{Proficiencies, Proficiency},
+    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{EnumIter, IntoEnumIterator};
 
@@ -79,7 +81,6 @@ pub(crate) fn max_skill_weight(
 }
 
 /// Trait for backgrounds to build from
-#[typetag::serde(tag = "type")]
 pub trait Background:
     Backstory
     + Citations
@@ -97,24 +98,17 @@ pub trait Background:
         ability_scores: &AbilityScores,
         proficiencies: &[Proficiency],
         proficiency_bonus: i16,
-    ) -> Box<dyn Background>
-    where
-        Self: Sized;
+    ) -> Self;
 
     /// Return list of skills background gives proficiency in
-    fn skills() -> Vec<Skill>
-    where
-        Self: Sized;
+    fn skills() -> Vec<Skill>;
 
     /// Max skill modifier of background for weighting
     fn weight(
         ability_scores: &AbilityScores,
         proficiencies: &[Proficiency],
         proficiency_bonus: i16,
-    ) -> f64
-    where
-        Self: Sized,
-    {
+    ) -> f64 {
         max_skill_weight(
             &Self::skills(),
             ability_scores,
@@ -124,35 +118,58 @@ pub trait Background:
     }
 }
 
+#[impl_enum::with_methods {
+    pub fn addl_equipment(&self) -> Vec<EquipmentOption> {}
+    pub fn addl_languages(&self) -> (usize, Option<LanguageType>) {}
+    pub fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {}
+    pub fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {}
+    pub fn backstory(&self) -> Vec<String> {}
+    pub fn bonds(&self) -> Vec<String> {}
+    pub fn citations(&self) -> CitationList {}
+    pub fn coins(&self) -> (Coin, u8) {}
+    pub fn deity_required(&self) -> bool {}
+    pub fn equipment(&self) -> Vec<Equipment> {}
+    pub fn features(&self) -> Vec<Feature> {}
+    pub fn flaws(&self) -> Vec<String> {}
+    pub fn ideals(&self) -> Vec<(String, Influence)> {}
+    pub fn languages(&self) -> Vec<Language> {}
+    pub fn proficiencies(&self) -> Vec<Proficiency> {}
+    pub fn traits(&self) -> Vec<String> {}
+    pub fn weight(
+        ability_scores: &AbilityScores,
+        proficiencies: &[Proficiency],
+        proficiency_bonus: i16,
+    ) -> f64 {}
+}]
 /// List of currently supported background options
-#[derive(EnumIter)]
+#[derive(Deserialize, EnumIter, Serialize)]
 pub enum BackgroundOption {
-    Acolyte,
-    Charlatan,
-    CityWatch,
-    ClanCrafter,
-    CloisteredScholar,
-    Courtier,
-    Criminal,
-    Entertainer,
-    FactionAgent,
-    FarTraveler,
-    FolkHero,
-    GuildArtisan,
-    Hermit,
-    HauntedOne,
-    Inheritor,
-    KnightOfTheOrder,
-    MercenaryVeteran,
-    Noble,
-    Outlander,
-    Sage,
-    Sailor,
-    Soldier,
-    UrbanBountyHunter,
-    Urchin,
-    UthgardtTribeMember,
-    WaterdhavianNoble,
+    Acolyte(Acolyte),
+    Charlatan(Charlatan),
+    CityWatch(CityWatch),
+    ClanCrafter(ClanCrafter),
+    CloisteredScholar(CloisteredScholar),
+    Courtier(Courtier),
+    Criminal(Criminal),
+    Entertainer(Entertainer),
+    FactionAgent(FactionAgent),
+    FarTraveler(FarTraveler),
+    FolkHero(FolkHero),
+    GuildArtisan(GuildArtisan),
+    Hermit(Hermit),
+    HauntedOne(HauntedOne),
+    Inheritor(Inheritor),
+    KnightOfTheOrder(KnightOfTheOrder),
+    MercenaryVeteran(MercenaryVeteran),
+    Noble(Noble),
+    Outlander(Outlander),
+    Sage(Sage),
+    Sailor(Sailor),
+    Soldier(Soldier),
+    UrbanBountyHunter(UrbanBountyHunter),
+    Urchin(Urchin),
+    UthgardtTribeMember(UthgardtTribeMember),
+    WaterdhavianNoble(WaterdhavianNoble),
 }
 
 impl BackgroundOption {
@@ -162,7 +179,7 @@ impl BackgroundOption {
         ability_scores: &AbilityScores,
         proficiencies: &[Proficiency],
         proficiency_bonus: i16,
-    ) -> Box<dyn Background> {
+    ) -> Self {
         let options: Vec<BackgroundOption> = Self::iter().collect();
         let option = options
             .choose_weighted(rng, |o| {
@@ -170,125 +187,195 @@ impl BackgroundOption {
             })
             .unwrap();
         match option {
-            Self::Acolyte => Acolyte::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::Charlatan => {
-                Charlatan::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::CityWatch => {
-                CityWatch::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::ClanCrafter => {
-                ClanCrafter::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::CloisteredScholar => {
-                CloisteredScholar::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Courtier => Courtier::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::Criminal => Criminal::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::Entertainer => {
-                Entertainer::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::FactionAgent => {
-                FactionAgent::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::FarTraveler => {
-                FarTraveler::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::FolkHero => FolkHero::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::GuildArtisan => {
-                GuildArtisan::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Hermit => Hermit::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::HauntedOne => {
-                HauntedOne::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Inheritor => {
-                Inheritor::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::KnightOfTheOrder => {
-                KnightOfTheOrder::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::MercenaryVeteran => {
-                MercenaryVeteran::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Noble => Noble::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::Outlander => {
-                Outlander::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Sage => Sage::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::Sailor => Sailor::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::Soldier => Soldier::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::UrbanBountyHunter => {
-                UrbanBountyHunter::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Urchin => Urchin::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::UthgardtTribeMember => {
-                UthgardtTribeMember::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::WaterdhavianNoble => {
-                WaterdhavianNoble::gen(rng, ability_scores, proficiencies, proficiency_bonus)
-            }
+            Self::Acolyte(_) => Self::Acolyte(Acolyte::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Charlatan(_) => Self::Charlatan(Charlatan::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::CityWatch(_) => Self::CityWatch(CityWatch::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::ClanCrafter(_) => Self::ClanCrafter(ClanCrafter::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::CloisteredScholar(_) => Self::CloisteredScholar(CloisteredScholar::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Courtier(_) => Self::Courtier(Courtier::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Criminal(_) => Self::Criminal(Criminal::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Entertainer(_) => Self::Entertainer(Entertainer::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::FactionAgent(_) => Self::FactionAgent(FactionAgent::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::FarTraveler(_) => Self::FarTraveler(FarTraveler::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::FolkHero(_) => Self::FolkHero(FolkHero::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::GuildArtisan(_) => Self::GuildArtisan(GuildArtisan::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Hermit(_) => Self::Hermit(Hermit::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::HauntedOne(_) => Self::HauntedOne(HauntedOne::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Inheritor(_) => Self::Inheritor(Inheritor::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::KnightOfTheOrder(_) => Self::KnightOfTheOrder(KnightOfTheOrder::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::MercenaryVeteran(_) => Self::MercenaryVeteran(MercenaryVeteran::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Noble(_) => Self::Noble(Noble::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Outlander(_) => Self::Outlander(Outlander::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Sage(_) => Self::Sage(Sage::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Sailor(_) => Self::Sailor(Sailor::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Soldier(_) => Self::Soldier(Soldier::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::UrbanBountyHunter(_) => Self::UrbanBountyHunter(UrbanBountyHunter::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::Urchin(_) => Self::Urchin(Urchin::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::UthgardtTribeMember(_) => Self::UthgardtTribeMember(UthgardtTribeMember::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
+            Self::WaterdhavianNoble(_) => Self::WaterdhavianNoble(WaterdhavianNoble::gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            )),
         }
     }
+}
 
-    /// Max skill modifier of background for weighting
-    fn weight(
-        &self,
-        ability_scores: &AbilityScores,
-        proficiencies: &[Proficiency],
-        proficiency_bonus: i16,
-    ) -> f64 {
+impl fmt::Display for BackgroundOption {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Acolyte => Acolyte::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Charlatan => Charlatan::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::CityWatch => CityWatch::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::ClanCrafter => {
-                ClanCrafter::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::CloisteredScholar => {
-                CloisteredScholar::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Courtier => Courtier::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Criminal => Criminal::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Entertainer => {
-                Entertainer::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::FactionAgent => {
-                FactionAgent::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::FarTraveler => {
-                FarTraveler::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::FolkHero => FolkHero::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::GuildArtisan => {
-                GuildArtisan::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Hermit => Hermit::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::HauntedOne => {
-                HauntedOne::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Inheritor => Inheritor::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::KnightOfTheOrder => {
-                KnightOfTheOrder::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::MercenaryVeteran => {
-                MercenaryVeteran::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Noble => Noble::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Outlander => Outlander::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Sage => Sage::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Sailor => Sailor::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::Soldier => Soldier::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::UrbanBountyHunter => {
-                UrbanBountyHunter::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::Urchin => Urchin::weight(ability_scores, proficiencies, proficiency_bonus),
-            Self::UthgardtTribeMember => {
-                UthgardtTribeMember::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
-            Self::WaterdhavianNoble => {
-                WaterdhavianNoble::weight(ability_scores, proficiencies, proficiency_bonus)
-            }
+            Self::Acolyte(b) => write!(f, "{}", b),
+            Self::Charlatan(b) => write!(f, "{}", b),
+            Self::CityWatch(b) => write!(f, "{}", b),
+            Self::ClanCrafter(b) => write!(f, "{}", b),
+            Self::CloisteredScholar(b) => write!(f, "{}", b),
+            Self::Courtier(b) => write!(f, "{}", b),
+            Self::Criminal(b) => write!(f, "{}", b),
+            Self::Entertainer(b) => write!(f, "{}", b),
+            Self::FactionAgent(b) => write!(f, "{}", b),
+            Self::FarTraveler(b) => write!(f, "{}", b),
+            Self::FolkHero(b) => write!(f, "{}", b),
+            Self::GuildArtisan(b) => write!(f, "{}", b),
+            Self::Hermit(b) => write!(f, "{}", b),
+            Self::HauntedOne(b) => write!(f, "{}", b),
+            Self::Inheritor(b) => write!(f, "{}", b),
+            Self::KnightOfTheOrder(b) => write!(f, "{}", b),
+            Self::MercenaryVeteran(b) => write!(f, "{}", b),
+            Self::Noble(b) => write!(f, "{}", b),
+            Self::Outlander(b) => write!(f, "{}", b),
+            Self::Sage(b) => write!(f, "{}", b),
+            Self::Sailor(b) => write!(f, "{}", b),
+            Self::Soldier(b) => write!(f, "{}", b),
+            Self::UrbanBountyHunter(b) => write!(f, "{}", b),
+            Self::Urchin(b) => write!(f, "{}", b),
+            Self::UthgardtTribeMember(b) => write!(f, "{}", b),
+            Self::WaterdhavianNoble(b) => write!(f, "{}", b),
         }
     }
 }

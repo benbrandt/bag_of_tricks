@@ -90,22 +90,22 @@ enum Specialty {
     SupportStaff,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Soldier {
+impl Default for Specialty {
+    fn default() -> Self {
+        Self::Officer
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Soldier {
     specialty: Specialty,
 }
 
-#[typetag::serde]
 impl Background for Soldier {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

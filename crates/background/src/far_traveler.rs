@@ -69,6 +69,12 @@ enum Homeland {
     Underdark,
 }
 
+impl Default for Homeland {
+    fn default() -> Self {
+        Self::Evermeet
+    }
+}
+
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Reason {
     Emissary,
@@ -79,24 +85,24 @@ enum Reason {
     Wanderer,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct FarTraveler {
+impl Default for Reason {
+    fn default() -> Self {
+        Self::Emissary
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct FarTraveler {
     homeland: Homeland,
     reason: Reason,
 }
 
-#[typetag::serde]
 impl Background for FarTraveler {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             homeland: Homeland::iter().choose(rng).unwrap(),
             reason: Reason::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

@@ -31,13 +31,12 @@ const SKILLS: &[Skill] = &[
     Skill::Stealth,
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct UrbanBountyHunter;
+#[derive(Default, Deserialize, Serialize)]
+pub struct UrbanBountyHunter;
 
-#[typetag::serde]
 impl Background for UrbanBountyHunter {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {

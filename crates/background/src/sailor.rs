@@ -84,22 +84,22 @@ enum Variant {
     Sailor,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Sailor {
+impl Default for Variant {
+    fn default() -> Self {
+        Self::Sailor
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Sailor {
     variant: Variant,
 }
 
-#[typetag::serde]
 impl Background for Sailor {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             variant: Variant::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

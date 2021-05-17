@@ -76,22 +76,22 @@ enum Origin {
     TribalMarauder,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Outlander {
+impl Default for Origin {
+    fn default() -> Self {
+        Self::Forester
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Outlander {
     origin: Origin,
 }
 
-#[typetag::serde]
 impl Background for Outlander {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             origin: Origin::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

@@ -57,13 +57,12 @@ const TRAITS: &[&str] = &[
     "I bluntly say what other people are hinting at or hiding.",
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Urchin;
+#[derive(Default, Deserialize, Serialize)]
+pub struct Urchin;
 
-#[typetag::serde]
 impl Background for Urchin {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {

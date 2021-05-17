@@ -63,22 +63,22 @@ enum Variant {
     Noble,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Noble {
+impl Default for Variant {
+    fn default() -> Self {
+        Self::Noble
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Noble {
     variant: Variant,
 }
 
-#[typetag::serde]
 impl Background for Noble {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             variant: Variant::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

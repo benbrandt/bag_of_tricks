@@ -25,13 +25,12 @@ use super::{
 
 const SKILLS: &[Skill] = &[Skill::History, Skill::Persuasion];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct WaterdhavianNoble;
+#[derive(Default, Deserialize, Serialize)]
+pub struct WaterdhavianNoble;
 
-#[typetag::serde]
 impl Background for WaterdhavianNoble {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {

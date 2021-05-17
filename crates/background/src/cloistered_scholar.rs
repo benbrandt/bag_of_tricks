@@ -26,13 +26,12 @@ use super::{
 const SKILLS: &[Skill] = &[Skill::History];
 const ADDL_SKILLS: &[Skill] = &[Skill::Arcana, Skill::Nature, Skill::Religion];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct CloisteredScholar;
+#[derive(Default, Deserialize, Serialize)]
+pub struct CloisteredScholar;
 
-#[typetag::serde]
 impl Background for CloisteredScholar {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {

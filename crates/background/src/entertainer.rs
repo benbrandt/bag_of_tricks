@@ -85,25 +85,25 @@ enum Variant {
     Gladiator,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Entertainer {
+impl Default for Variant {
+    fn default() -> Self {
+        Self::Entertainer
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Entertainer {
     routines: Vec<Routine>,
     variant: Variant,
 }
 
-#[typetag::serde]
 impl Background for Entertainer {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
         let num_routines = rng.gen_range(1..=3);
-        Box::new(Self {
+        Self {
             routines: Routine::iter().choose_multiple(rng, num_routines),
             variant: Variant::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

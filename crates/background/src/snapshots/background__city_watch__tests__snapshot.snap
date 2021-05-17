@@ -3,6 +3,5 @@ source: crates/background/src/city_watch.rs
 expression: background
 
 ---
-type: CityWatch
 variant: Investigator
 

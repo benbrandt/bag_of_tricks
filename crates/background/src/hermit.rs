@@ -68,8 +68,8 @@ const TRAITS: &[&str] = &[
 
 const SKILLS: &[Skill] = &[Skill::Medicine, Skill::Religion];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Hermit {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Hermit {
     life_of_seclusion: String,
 }
 
@@ -79,17 +79,11 @@ impl Hermit {
     }
 }
 
-#[typetag::serde]
 impl Background for Hermit {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             life_of_seclusion: Self::gen_life_of_seclusion(rng),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

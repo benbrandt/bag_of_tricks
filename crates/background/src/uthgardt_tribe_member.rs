@@ -53,22 +53,22 @@ enum Totem {
     TreeGhost,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct UthgardtTribeMember {
+impl Default for Totem {
+    fn default() -> Self {
+        Self::BlackRaven
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct UthgardtTribeMember {
     tribal_totem: Totem,
 }
 
-#[typetag::serde]
 impl Background for UthgardtTribeMember {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             tribal_totem: Totem::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {
