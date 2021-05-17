@@ -32,6 +32,12 @@ enum Variant {
     Investigator,
 }
 
+impl Default for Variant {
+    fn default() -> Self {
+        Self::CityWatch
+    }
+}
+
 impl Variant {
     fn gen(
         rng: &mut impl Rng,
@@ -69,22 +75,21 @@ impl Variant {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct CityWatch {
+#[derive(Default, Deserialize, Serialize)]
+pub struct CityWatch {
     variant: Variant,
 }
 
-#[typetag::serde]
 impl Background for CityWatch {
     fn gen(
         rng: &mut impl Rng,
         ability_scores: &AbilityScores,
         proficiencies: &[Proficiency],
         proficiency_bonus: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    ) -> Self {
+        Self {
             variant: Variant::gen(rng, ability_scores, proficiencies, proficiency_bonus),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

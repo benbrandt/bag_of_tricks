@@ -84,30 +84,36 @@ enum Specialty {
     Smuggler,
 }
 
+impl Default for Specialty {
+    fn default() -> Self {
+        Self::Blackmailer
+    }
+}
+
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Variant {
     Criminal,
     Spy,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Criminal {
+impl Default for Variant {
+    fn default() -> Self {
+        Self::Criminal
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Criminal {
     specialty: Specialty,
     variant: Variant,
 }
 
-#[typetag::serde]
 impl Background for Criminal {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
             variant: Variant::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

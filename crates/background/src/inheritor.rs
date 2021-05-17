@@ -41,6 +41,12 @@ enum Inheritance {
     Tattoo,
 }
 
+impl Default for Inheritance {
+    fn default() -> Self {
+        Self::Document
+    }
+}
+
 impl Inheritance {
     fn gen(rng: &mut impl Rng) -> Self {
         let options = Self::iter().collect::<Vec<_>>();
@@ -94,22 +100,16 @@ impl Inheritance {
     }
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Inheritor {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Inheritor {
     inheritance: Inheritance,
 }
 
-#[typetag::serde]
 impl Background for Inheritor {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             inheritance: Inheritance::gen(rng),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

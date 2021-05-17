@@ -3,5 +3,5 @@ source: crates/background/src/courtier.rs
 expression: background
 
 ---
-type: Courtier
+~
 

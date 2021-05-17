@@ -91,8 +91,8 @@ const SKILLS: &[Skill] = &[
     Skill::Survival,
 ];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct HauntedOne {
+#[derive(Default, Deserialize, Serialize)]
+pub struct HauntedOne {
     harrowing_event: String,
 }
 
@@ -102,17 +102,11 @@ impl HauntedOne {
     }
 }
 
-#[typetag::serde]
 impl Background for HauntedOne {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             harrowing_event: Self::gen_harrowing_event(rng),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

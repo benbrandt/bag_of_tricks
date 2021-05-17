@@ -32,8 +32,8 @@ const SCAMS: &[&str] = &[
 
 const SKILLS: &[Skill] = &[Skill::Deception, Skill::SleightOfHand];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Charlatan {
+#[derive(Default, Deserialize, Serialize)]
+pub struct Charlatan {
     scam: String,
 }
 
@@ -43,17 +43,11 @@ impl Charlatan {
     }
 }
 
-#[typetag::serde]
 impl Background for Charlatan {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             scam: Self::gen_scam(rng),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

@@ -50,22 +50,22 @@ enum KnightlyOrder {
     SilverChalice,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct KnightOfTheOrder {
+impl Default for KnightlyOrder {
+    fn default() -> Self {
+        Self::Kelemvor
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct KnightOfTheOrder {
     knightly_order: KnightlyOrder,
 }
 
-#[typetag::serde]
 impl Background for KnightOfTheOrder {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             knightly_order: KnightlyOrder::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

@@ -3,5 +3,5 @@ source: crates/background/src/mercenary_veteran.rs
 expression: background
 
 ---
-type: MercenaryVeteran
+~
 

@@ -70,8 +70,8 @@ pub(crate) const TRAITS: &[&str] = &[
 
 const SKILLS: &[Skill] = &[Skill::AnimalHandling, Skill::Survival];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct FolkHero {
+#[derive(Default, Deserialize, Serialize)]
+pub struct FolkHero {
     defining_event: String,
 }
 
@@ -81,17 +81,11 @@ impl FolkHero {
     }
 }
 
-#[typetag::serde]
 impl Background for FolkHero {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             defining_event: Self::gen_defining_event(rng),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

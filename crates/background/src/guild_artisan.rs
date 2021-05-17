@@ -103,6 +103,12 @@ enum Business {
     Woodcarver,
 }
 
+impl Default for Business {
+    fn default() -> Self {
+        Self::Alchemist
+    }
+}
+
 impl Business {
     fn tools(&self) -> ArtisansTools {
         match self {
@@ -135,36 +141,42 @@ enum MerchantVariant {
     NavigatorsTools,
 }
 
+impl Default for MerchantVariant {
+    fn default() -> Self {
+        Self::Language
+    }
+}
+
 #[derive(Deserialize, Display, EnumIter, Serialize)]
 enum Variant {
     Artisan,
     Merchant,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct GuildArtisan {
+impl Default for Variant {
+    fn default() -> Self {
+        Self::Artisan
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct GuildArtisan {
     business: Business,
     proficiency: Option<MerchantVariant>,
     variant: Variant,
 }
 
-#[typetag::serde]
 impl Background for GuildArtisan {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
         let variant = Variant::iter().choose(rng).unwrap();
-        Box::new(Self {
+        Self {
             business: Business::iter().choose(rng).unwrap(),
             proficiency: match variant {
                 Variant::Artisan => None,
                 Variant::Merchant => Some(MerchantVariant::iter().choose(rng).unwrap()),
             },
             variant,
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

@@ -22,13 +22,12 @@ use super::Background;
 
 const SKILLS: &[Skill] = &[Skill::Insight, Skill::Religion];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Acolyte;
+#[derive(Default, Deserialize, Serialize)]
+pub struct Acolyte;
 
-#[typetag::serde]
 impl Background for Acolyte {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {

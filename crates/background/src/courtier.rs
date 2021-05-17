@@ -25,13 +25,12 @@ use super::{
 
 const SKILLS: &[Skill] = &[Skill::Insight, Skill::Persuasion];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Courtier;
+#[derive(Default, Deserialize, Serialize)]
+pub struct Courtier;
 
-#[typetag::serde]
 impl Background for Courtier {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {

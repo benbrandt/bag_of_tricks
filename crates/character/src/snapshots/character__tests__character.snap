@@ -14,7 +14,7 @@ alignment:
   - Lawful
   - Good
 background:
-  type: MercenaryVeteran
+  MercenaryVeteran: ~
 characteristics:
   age: 135
   base_speeds:

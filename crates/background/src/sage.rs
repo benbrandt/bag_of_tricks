@@ -89,22 +89,22 @@ enum Specialty {
     Scribe,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct Sage {
+impl Default for Specialty {
+    fn default() -> Self {
+        Self::Alchemist
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Sage {
     specialty: Specialty,
 }
 
-#[typetag::serde]
 impl Background for Sage {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             specialty: Specialty::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

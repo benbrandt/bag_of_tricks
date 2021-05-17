@@ -71,8 +71,14 @@ enum Faction {
     Zhentarim,
 }
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct FactionAgent {
+impl Default for Faction {
+    fn default() -> Self {
+        Self::Harpers
+    }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct FactionAgent {
     faction: Faction,
 }
 
@@ -91,17 +97,11 @@ impl FactionAgent {
     }
 }
 
-#[typetag::serde]
 impl Background for FactionAgent {
-    fn gen(
-        rng: &mut impl Rng,
-        _: &AbilityScores,
-        _: &[Proficiency],
-        _: i16,
-    ) -> Box<dyn Background> {
-        Box::new(Self {
+    fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self {
             faction: Faction::iter().choose(rng).unwrap(),
-        })
+        }
     }
 
     fn skills() -> Vec<Skill> {

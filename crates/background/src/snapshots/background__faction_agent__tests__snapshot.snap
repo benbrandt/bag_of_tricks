@@ -3,6 +3,5 @@ source: crates/background/src/faction_agent.rs
 expression: background
 
 ---
-type: FactionAgent
 faction: OrderOfTheGauntlet
 

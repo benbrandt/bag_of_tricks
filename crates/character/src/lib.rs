@@ -5,7 +5,7 @@ use std::fmt;
 
 use alignment::{Alignment, AlignmentInfluences, Attitude, Morality};
 use attack::{DamageType, Resistances};
-use background::{Background, BackgroundOption};
+use background::BackgroundOption;
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
 use deities::{Deity, Pantheon, Pantheons};
@@ -32,7 +32,7 @@ pub struct Character<'a> {
     /// The character's alignment.
     alignment: Option<Alignment>,
     /// The character's background choice.
-    background: Option<Box<dyn Background>>,
+    background: Option<BackgroundOption>,
     /// Characteristics of the character.
     characteristics: Option<CharacteristicDetails>,
     /// Currency

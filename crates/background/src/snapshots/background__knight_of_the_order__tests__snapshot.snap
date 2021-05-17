@@ -3,6 +3,5 @@ source: crates/background/src/knight_of_the_order.rs
 expression: background
 
 ---
-type: KnightOfTheOrder
 knightly_order: Shield
 

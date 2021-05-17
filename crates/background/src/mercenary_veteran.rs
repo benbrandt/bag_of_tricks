@@ -26,13 +26,12 @@ use super::{
 
 const SKILLS: &[Skill] = &[Skill::Athletics, Skill::Persuasion];
 
-#[derive(Deserialize, Serialize)]
-pub(crate) struct MercenaryVeteran;
+#[derive(Default, Deserialize, Serialize)]
+pub struct MercenaryVeteran;
 
-#[typetag::serde]
 impl Background for MercenaryVeteran {
-    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Box<dyn Background> {
-        Box::new(Self)
+    fn gen(_: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
+        Self
     }
 
     fn skills() -> Vec<Skill> {
