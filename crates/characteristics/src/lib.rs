@@ -145,10 +145,7 @@ impl fmt::Display for CharacteristicDetails {
 /// Separate from race since it uses associated constants (which can't be on a trait object)
 pub trait Characteristics {
     /// Generate characteristics for this race
-    fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails
-    where
-        Self: Sized,
-    {
+    fn gen_characteristics(&self, rng: &mut impl Rng) -> CharacteristicDetails {
         let (height, weight) = self.get_height_and_weight_table().gen(rng);
         CharacteristicDetails {
             age: self.get_age_range().gen(rng),

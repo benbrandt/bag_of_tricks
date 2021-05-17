@@ -68,9 +68,7 @@ pub trait Race:
     + fmt::Display
 {
     /// Method to generate a new instance of the struct
-    fn gen(rng: &mut impl Rng) -> Self
-    where
-        Self: Sized;
+    fn gen(rng: &mut impl Rng) -> Self;
 
     /// Returns ability score increases for the race
     fn abilities(&self) -> Vec<AbilityScore>;
