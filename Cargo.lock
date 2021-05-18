@@ -619,6 +619,7 @@ dependencies = [
  "background",
  "backstory",
  "characteristics",
+ "class",
  "deities",
  "features",
  "gear",
@@ -686,6 +687,27 @@ name = "citation"
 version = "0.1.0"
 dependencies = [
  "serde",
+ "strum",
+]
+
+[[package]]
+name = "class"
+version = "0.1.0"
+dependencies = [
+ "backstory",
+ "citation",
+ "deities",
+ "features",
+ "gear",
+ "impl-enum",
+ "insta",
+ "itertools",
+ "languages",
+ "rand 0.8.3",
+ "rand_pcg",
+ "serde",
+ "serde_yaml",
+ "stats",
  "strum",
 ]
 

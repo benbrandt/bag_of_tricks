@@ -8,6 +8,7 @@ use attack::{DamageType, Resistances};
 use background::BackgroundOption;
 use backstory::Backstory;
 use characteristics::{Appearance, CharacteristicDetails, Speed};
+use class::ClassOption;
 use deities::{Deity, Pantheon, Pantheons};
 use features::{Feature, Features};
 use gear::currency::Coin;
@@ -35,6 +36,8 @@ pub struct Character<'a> {
     background: Option<BackgroundOption>,
     /// Characteristics of the character.
     characteristics: Option<CharacteristicDetails>,
+    /// Character's class choice
+    class: Option<ClassOption>,
     /// Currency
     coins: (Coin, u8),
     /// Character's chosen deity
@@ -88,10 +91,12 @@ impl<'a> Character<'a> {
             &character.proficiencies,
             character.proficiency_bonus(),
         );
+        let class = ClassOption::gen(rng, &character.abilities);
         character.race = Some(race);
         character.name = name;
         character.characteristics = Some(characteristics);
         character.background = Some(background);
+        character.class = Some(class);
         character.gen_personality(rng);
         character.gen_languages(rng);
         character.gen_deity(rng);
@@ -115,6 +120,10 @@ impl<'a> Character<'a> {
             addl_pantheons.extend(race.addl_pantheons());
             required.push(race.deity_required());
         }
+        if let Some(class) = self.class.as_ref() {
+            addl_pantheons.extend(class.addl_pantheons());
+            required.push(class.deity_required());
+        }
         if let Some(background) = self.background.as_ref() {
             addl_pantheons.extend(background.addl_pantheons());
             required.push(background.deity_required());
@@ -130,6 +139,11 @@ impl<'a> Character<'a> {
         // Choose a trinket
         let mut addl_equipment = vec![EquipmentOption::Trinket(None, None, true)];
 
+        if let Some(class) = self.class.as_ref() {
+            self.coins = class.coins();
+            self.equipment.extend(class.equipment());
+            addl_equipment.extend(class.addl_equipment());
+        }
         if let Some(background) = self.background.as_ref() {
             self.coins = background.coins();
             self.equipment.extend(background.equipment());
@@ -150,19 +164,18 @@ impl<'a> Character<'a> {
     /// Generate any additional languages, ensuring no overlap with current languages.
     fn gen_languages(&mut self, rng: &mut impl Rng) {
         let mut languages = vec![];
+        let mut addl_languages = vec![];
 
         if let Some(race) = self.race.as_ref() {
             languages.extend(race.languages());
+            addl_languages.push(race.addl_languages());
+        }
+        if let Some(class) = self.class.as_ref() {
+            languages.extend(class.languages());
+            addl_languages.push(class.addl_languages());
         }
         if let Some(background) = self.background.as_ref() {
             languages.extend(background.languages());
-        }
-
-        let mut addl_languages = vec![];
-        if let Some(race) = self.race.as_ref() {
-            addl_languages.push(race.addl_languages());
-        }
-        if let Some(background) = self.background.as_ref() {
             addl_languages.push(background.addl_languages());
         }
 
@@ -218,6 +231,10 @@ impl<'a> Character<'a> {
         if let Some(race) = self.race.as_ref() {
             proficiencies.extend(race.proficiencies());
             addl_proficiencies.extend(race.addl_proficiencies());
+        }
+        if let Some(class) = self.class.as_ref() {
+            proficiencies.extend(class.proficiencies());
+            addl_proficiencies.extend(class.addl_proficiencies());
         }
         if let Some(background) = self.background.as_ref() {
             proficiencies.extend(background.proficiencies());
@@ -317,6 +334,9 @@ impl<'a> Backstory for Character<'a> {
         if let Some(race) = self.race.as_ref() {
             backstory.extend(race.backstory());
         }
+        if let Some(class) = self.class.as_ref() {
+            backstory.extend(class.backstory());
+        }
         if let Some(background) = self.background.as_ref() {
             backstory.extend(background.backstory());
         }
@@ -330,6 +350,9 @@ impl<'a> Features for Character<'a> {
         let mut features = vec![];
         if let Some(race) = self.race.as_ref() {
             features.extend(race.features());
+        }
+        if let Some(class) = self.class.as_ref() {
+            features.extend(class.features());
         }
         if let Some(background) = self.background.as_ref() {
             features.extend(background.features());
@@ -374,6 +397,9 @@ impl<'a> fmt::Display for Character<'a> {
         writeln!(f, "CHARACTER NAME: {}", self.name)?;
         if let Some(race) = self.race.as_ref() {
             writeln!(f, "RACE: {} ({})", race, race.citations())?;
+        }
+        if let Some(class) = self.class.as_ref() {
+            writeln!(f, "CLASS: {} ({})", class, class.citations())?;
         }
         if let Some(background) = self.background.as_ref() {
             writeln!(f, "BACKGROUND: {} ({})", background, background.citations())?;

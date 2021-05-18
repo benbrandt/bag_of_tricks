@@ -5,6 +5,7 @@ expression: character
 ---
 CHARACTER NAME: Connerad Rustfire
 RACE: Hill Dwarf (PHB p18,20)
+CLASS: Monk (PHB p76)
 BACKGROUND: Mercenary Veteran (SCAG p152)
 ALIGNMENT: Lawful Good
 LEVEL: 1
@@ -53,11 +54,11 @@ Height: 3'11"
 Weight: 124 lb.
 
 PERSONALITY TRAITS:
-I face problems head-on. A simple, direct solution is the best path to success.
+I enjoy being strong and like breaking things.
 I'm haunted by memories of war. I can't get the images of violence out of my mind.
-IDEAL: Independence. When people follow orders blindly, they embrace a kind of tyranny. (Chaotic)
-BOND: I fight for those who cannot fight for themselves.
-FLAW: The monstrous enemy we faced in battle still leaves me quivering with fear.
+IDEAL: Responsibility. I do what I must and obey just authority. (Lawful)
+BOND: I would still lay down my life for the people I served with.
+FLAW: I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.
 
 EQUIPMENT
 Other("an insignia of your rank"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(GamingSet(PlayingCard)), Other("A silver spoon with an M engraved on the handle")
@@ -80,10 +81,10 @@ Quirk: You prefer to sleep during the day.
 Reason for Adventuring: You were assigned to become a merchant by the priests of Moradin and have yet to forgive them for their mistake. You should be working a forge, not wandering the outside world!
 
 PANTHEON: Dwarven
-CHOSEN DEITY: Marthammor Duin
-Titles: god of wanderers; the traveler's god; patron of expatriates and guides; deity of lightning and roads; god of explorers, wanderers, and the lost
-Alignment: Neutral Good
-Domains: Nature, Trickery
-Symbols: Upright mace in front of a tall boot
+CHOSEN DEITY: Moradin
+Titles: god of creation; god of "dwarf-crafts" (smithing and stonework); god of protection; the Soulforger; Dwarf-father; All-father; Primary deity of dwarves
+Alignment: Lawful Good
+Domains: Forge, Knowledge
+Symbols: Hammer and anvil
 
 

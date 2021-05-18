@@ -24,25 +24,29 @@ characteristics:
   height: 47
   size: Medium
   weight: 124
+class:
+  Monk: ~
 coins:
   - Gold
   - 10
 deity:
-  name: Marthammor Duin
+  name: Moradin
   titles:
-    - god of wanderers
-    - "the traveler's god"
-    - patron of expatriates and guides
-    - deity of lightning and roads
-    - "god of explorers, wanderers, and the lost"
+    - god of creation
+    - "god of \"dwarf-crafts\" (smithing and stonework)"
+    - god of protection
+    - the Soulforger
+    - Dwarf-father
+    - All-father
+    - Primary deity of dwarves
   alignment:
-    - Neutral
+    - Lawful
     - Good
   domains:
-    - Nature
-    - Trickery
+    - Forge
+    - Knowledge
   symbols:
-    - Upright mace in front of a tall boot
+    - Hammer and anvil
 equipment:
   - Other: an insignia of your rank
   - Gear:
@@ -59,13 +63,13 @@ level: 1
 name: Connerad Rustfire
 pantheon: Dwarven
 personality:
-  bond: I fight for those who cannot fight for themselves.
-  flaw: The monstrous enemy we faced in battle still leaves me quivering with fear.
+  bond: I would still lay down my life for the people I served with.
+  flaw: "I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret."
   ideal:
-    - "Independence. When people follow orders blindly, they embrace a kind of tyranny."
-    - Chaotic
+    - Responsibility. I do what I must and obey just authority.
+    - Lawful
   traits:
-    - "I face problems head-on. A simple, direct solution is the best path to success."
+    - I enjoy being strong and like breaking things.
     - "I'm haunted by memories of war. I can't get the images of violence out of my mind."
 proficiencies:
   - Weapon:
