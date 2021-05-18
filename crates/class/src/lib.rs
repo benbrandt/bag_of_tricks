@@ -18,6 +18,7 @@ use citation::{CitationList, Citations};
 use deities::{Pantheon, PantheonWeight, Pantheons};
 use features::{Feature, Features};
 use gear::currency::Coin;
+use itertools::Itertools;
 use languages::{Language, LanguageType, Languages};
 use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
@@ -47,14 +48,15 @@ pub(crate) fn class_weight(
     secondary: &[AbilityScoreType],
     ability_scores: &AbilityScores,
 ) -> f64 {
-    let primary_weight = exp_weight(
-        max_score_mod(primary, ability_scores),
-        ability_scores.shift_weight_by(),
-    );
-    // Not exponential, just minor bump for secondary
-    let secondary_weight =
-        f64::from(max_score_mod(secondary, ability_scores) + ability_scores.shift_weight_by());
-    primary_weight + secondary_weight
+    let shift = ability_scores.shift_weight_by();
+    let weight: i16 = vec![primary, secondary]
+        .into_iter()
+        .flatten()
+        .map(|&a| ability_scores.modifier(a) + shift)
+        .sorted()
+        .take(2)
+        .sum();
+    exp_weight(weight, 0)
 }
 
 pub trait Class:
@@ -81,6 +83,7 @@ pub trait Class:
 }
 
 #[impl_enum::with_methods {
+    fn ability_rank() -> (Vec<AbilityScoreType>, Vec<AbilityScoreType>) {}
     pub fn addl_equipment(&self) -> Vec<EquipmentOption> {}
     pub fn addl_languages(&self) -> (usize, Option<LanguageType>) {}
     pub fn addl_pantheons(&self) -> Vec<(Pantheon, PantheonWeight)> {}
@@ -114,7 +117,17 @@ pub enum ClassOption {
 impl ClassOption {
     /// Choose a random background option, weighted by ability scores
     pub fn gen(rng: &mut impl Rng, ability_scores: &AbilityScores) -> Self {
-        let options: Vec<ClassOption> = Self::iter().collect();
+        // Get options from optimal classes
+        let groups = Self::iter()
+            .map(|c| (max_score_mod(&c.ability_rank().0, ability_scores), c))
+            .sorted_by(|a, b| Ord::cmp(&b.0, &a.0))
+            .group_by(|&(m, _)| m);
+        let options = groups
+            .into_iter()
+            .sorted_by(|a, b| Ord::cmp(&b.0, &a.0))
+            .next()
+            .map(|(_, g)| g.map(|(_, o)| o).collect_vec())
+            .unwrap();
         let option = options
             .choose_weighted(rng, |o| o.weight(ability_scores))
             .unwrap();
