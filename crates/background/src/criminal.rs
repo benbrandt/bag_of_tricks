@@ -90,29 +90,46 @@ impl Default for Specialty {
     }
 }
 
-#[derive(Deserialize, Display, EnumIter, Serialize)]
+#[derive(Deserialize, EnumIter, Serialize)]
 enum Variant {
-    Criminal,
+    Criminal(Specialty),
     Spy,
 }
 
 impl Default for Variant {
     fn default() -> Self {
-        Self::Criminal
+        Self::Spy
+    }
+}
+
+impl Variant {
+    fn gen(rng: &mut impl Rng) -> Self {
+        let variant = Self::iter().choose(rng).unwrap();
+        match variant {
+            Self::Criminal(_) => Self::Criminal(Specialty::iter().choose(rng).unwrap()),
+            Self::Spy => variant,
+        }
+    }
+}
+
+impl fmt::Display for Variant {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Criminal(s) => write!(f, "Criminal ({})", s),
+            Self::Spy => write!(f, "Spy"),
+        }
     }
 }
 
 #[derive(Default, Deserialize, Serialize)]
 pub struct Criminal {
-    specialty: Specialty,
     variant: Variant,
 }
 
 impl Background for Criminal {
     fn gen(rng: &mut impl Rng, _: &AbilityScores, _: &[Proficiency], _: i16) -> Self {
         Self {
-            specialty: Specialty::iter().choose(rng).unwrap(),
-            variant: Variant::iter().choose(rng).unwrap(),
+            variant: Variant::gen(rng),
         }
     }
 
@@ -189,6 +206,6 @@ impl StartingEquipment for Criminal {
 
 impl fmt::Display for Criminal {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} ({})", self.variant, self.specialty)
+        write!(f, "{}", self.variant)
     }
 }
