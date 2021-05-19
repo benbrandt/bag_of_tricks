@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
-use strum::Display;
+use strum::{Display, EnumIter};
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(
+    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+)]
 pub enum VehicleProficiency {
     Land,
     Water,

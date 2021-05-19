@@ -29,6 +29,8 @@ pub enum ProficiencyOption {
     From(Vec<Proficiency>, usize),
     /// Choose from multiple options (usually Musical Instrument _OR_ Gaming Set)
     FromOptions(Vec<ProficiencyOption>, usize),
+    /// Choose a random armor proficiency
+    Armor,
     /// Choose a random artisan's tools to be proficient in.
     ArtisansTools,
     /// Choose a random gaming set to be proficient in.
@@ -41,6 +43,8 @@ pub enum ProficiencyOption {
     Tool(usize),
     /// Choose a random weapon.
     Weapon(Option<WeaponCategory>, Option<WeaponClassification>, usize),
+    /// Choose a random vehicle proficiency
+    Vehicle,
 }
 
 impl ProficiencyOption {
@@ -77,6 +81,12 @@ impl ProficiencyOption {
                 }
                 options
             }
+            Self::Armor => Self::From(ArmorType::iter().map(Proficiency::Armor).collect(), 1).gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            ),
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|g| Proficiency::Tool(Tool::ArtisansTools(g)))
@@ -169,6 +179,13 @@ impl ProficiencyOption {
                 *amount,
             )
             .gen(rng, ability_scores, proficiencies, proficiency_bonus),
+            Self::Vehicle => Self::From(
+                VehicleProficiency::iter()
+                    .map(Proficiency::Vehicle)
+                    .collect(),
+                1,
+            )
+            .gen(rng, ability_scores, proficiencies, proficiency_bonus),
         }
     }
 }
@@ -193,6 +210,9 @@ impl Proficiency {
         proficiency_bonus: i16,
     ) -> Vec<Self> {
         match self {
+            Self::Armor(_) => {
+                ProficiencyOption::Armor.gen(rng, ability_scores, proficiencies, proficiency_bonus)
+            }
             Self::Skill(_) => ProficiencyOption::Skill(None, 1).gen(
                 rng,
                 ability_scores,
@@ -211,7 +231,12 @@ impl Proficiency {
                 proficiencies,
                 proficiency_bonus,
             ),
-            Self::Armor(_) | Self::Vehicle(_) => todo!(),
+            Self::Vehicle(_) => ProficiencyOption::Vehicle.gen(
+                rng,
+                ability_scores,
+                proficiencies,
+                proficiency_bonus,
+            ),
         }
     }
 }
