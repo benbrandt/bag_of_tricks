@@ -92,7 +92,7 @@ impl Proficiencies for WaterdhavianNoble {
         vec![ProficiencyOption::FromOptions(
             vec![
                 ProficiencyOption::GamingSet,
-                ProficiencyOption::MusicalInstrument,
+                ProficiencyOption::MusicalInstrument(1),
             ],
             1,
         )]

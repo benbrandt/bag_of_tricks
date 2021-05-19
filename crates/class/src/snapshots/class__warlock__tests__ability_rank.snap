@@ -1,0 +1,8 @@
+---
+source: crates/class/src/warlock.rs
+expression: "Warlock::ability_rank()"
+
+---
+- - Charisma
+- - Constitution
+

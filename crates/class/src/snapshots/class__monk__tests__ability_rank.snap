@@ -1,0 +1,8 @@
+---
+source: crates/class/src/monk.rs
+expression: "Monk::ability_rank()"
+
+---
+- - Dexterity
+- - Wisdom
+

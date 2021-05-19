@@ -1,0 +1,10 @@
+---
+source: crates/class/src/bard.rs
+expression: class.addl_proficiencies()
+
+---
+- MusicalInstrument: 3
+- Skill:
+    - ~
+    - 3
+

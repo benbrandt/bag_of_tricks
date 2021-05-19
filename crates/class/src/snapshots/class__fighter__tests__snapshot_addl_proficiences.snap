@@ -1,0 +1,16 @@
+---
+source: crates/class/src/fighter.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Acrobatics
+      - AnimalHandling
+      - Athletics
+      - History
+      - Insight
+      - Intimidation
+      - Perception
+      - Survival
+    - 2
+

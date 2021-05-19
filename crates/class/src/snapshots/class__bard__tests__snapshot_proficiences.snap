@@ -1,0 +1,19 @@
+---
+source: crates/class/src/bard.rs
+expression: class.proficiencies()
+
+---
+- Armor: Light
+- SavingThrow: Charisma
+- SavingThrow: Dexterity
+- Weapon:
+    Category: Simple
+- Weapon:
+    Specific: CrossbowHand
+- Weapon:
+    Specific: Longsword
+- Weapon:
+    Specific: Rapier
+- Weapon:
+    Specific: Shortsword
+

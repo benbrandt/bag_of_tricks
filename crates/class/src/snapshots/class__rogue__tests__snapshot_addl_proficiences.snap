@@ -1,0 +1,19 @@
+---
+source: crates/class/src/rogue.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Acrobatics
+      - Athletics
+      - Deception
+      - Insight
+      - Intimidation
+      - Investigation
+      - Perception
+      - Performance
+      - Persuasion
+      - SleightOfHand
+      - Stealth
+    - 4
+

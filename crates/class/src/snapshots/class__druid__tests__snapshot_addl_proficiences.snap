@@ -1,0 +1,16 @@
+---
+source: crates/class/src/druid.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - AnimalHandling
+      - Insight
+      - Medicine
+      - Nature
+      - Perception
+      - Religion
+      - Survival
+    - 2
+

@@ -134,7 +134,7 @@ impl Proficiencies for UthgardtTribeMember {
         vec![ProficiencyOption::FromOptions(
             vec![
                 ProficiencyOption::ArtisansTools,
-                ProficiencyOption::MusicalInstrument,
+                ProficiencyOption::MusicalInstrument(1),
             ],
             1,
         )]

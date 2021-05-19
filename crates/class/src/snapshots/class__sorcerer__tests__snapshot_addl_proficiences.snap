@@ -1,0 +1,14 @@
+---
+source: crates/class/src/sorcerer.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - Deception
+      - Insight
+      - Intimidation
+      - Persuasion
+      - Religion
+    - 2
+

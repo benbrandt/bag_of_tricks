@@ -1,0 +1,15 @@
+---
+source: crates/class/src/ranger.rs
+expression: class.proficiencies()
+
+---
+- Armor: Light
+- Armor: Medium
+- Armor: Shield
+- SavingThrow: Dexterity
+- SavingThrow: Strength
+- Weapon:
+    Category: Martial
+- Weapon:
+    Category: Simple
+

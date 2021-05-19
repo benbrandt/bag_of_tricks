@@ -1,0 +1,13 @@
+---
+source: crates/class/src/cleric.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - History
+      - Insight
+      - Medicine
+      - Persuasion
+      - Religion
+    - 2
+

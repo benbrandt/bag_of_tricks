@@ -1,0 +1,8 @@
+---
+source: crates/class/src/druid.rs
+expression: "Druid::ability_rank()"
+
+---
+- - Wisdom
+- - Constitution
+

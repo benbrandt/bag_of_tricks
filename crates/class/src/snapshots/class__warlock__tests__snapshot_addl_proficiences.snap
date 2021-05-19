@@ -1,0 +1,15 @@
+---
+source: crates/class/src/warlock.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - Deception
+      - History
+      - Intimidation
+      - Investigation
+      - Nature
+      - Religion
+    - 2
+

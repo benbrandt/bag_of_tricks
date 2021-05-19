@@ -1,0 +1,7 @@
+---
+source: crates/class/src/paladin.rs
+expression: class.deity_required()
+
+---
+true
+

@@ -1,0 +1,12 @@
+---
+source: crates/class/src/monk.rs
+expression: class.proficiencies()
+
+---
+- SavingThrow: Dexterity
+- SavingThrow: Strength
+- Weapon:
+    Category: Simple
+- Weapon:
+    Specific: Shortsword
+

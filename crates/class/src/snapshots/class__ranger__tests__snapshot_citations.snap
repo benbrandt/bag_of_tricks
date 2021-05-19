@@ -1,0 +1,8 @@
+---
+source: crates/class/src/ranger.rs
+expression: class.citations()
+
+---
+- - Phb
+  - 89
+

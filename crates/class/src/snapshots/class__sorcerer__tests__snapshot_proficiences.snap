@@ -1,0 +1,18 @@
+---
+source: crates/class/src/sorcerer.rs
+expression: class.proficiencies()
+
+---
+- SavingThrow: Charisma
+- SavingThrow: Constitution
+- Weapon:
+    Specific: CrossbowLight
+- Weapon:
+    Specific: Dagger
+- Weapon:
+    Specific: Dart
+- Weapon:
+    Specific: Quarterstaff
+- Weapon:
+    Specific: Sling
+

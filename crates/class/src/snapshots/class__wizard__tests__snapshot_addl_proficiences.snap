@@ -1,0 +1,14 @@
+---
+source: crates/class/src/wizard.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Arcana
+      - History
+      - Insight
+      - Investigation
+      - Medicine
+      - Religion
+    - 2
+

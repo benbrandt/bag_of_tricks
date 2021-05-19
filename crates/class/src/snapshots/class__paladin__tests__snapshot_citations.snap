@@ -1,0 +1,8 @@
+---
+source: crates/class/src/paladin.rs
+expression: class.citations()
+
+---
+- - Phb
+  - 82
+

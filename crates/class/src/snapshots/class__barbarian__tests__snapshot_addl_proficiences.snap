@@ -1,0 +1,14 @@
+---
+source: crates/class/src/barbarian.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - AnimalHandling
+      - Athletics
+      - Intimidation
+      - Nature
+      - Perception
+      - Survival
+    - 2
+

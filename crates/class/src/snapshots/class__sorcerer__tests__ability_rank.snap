@@ -1,0 +1,8 @@
+---
+source: crates/class/src/sorcerer.rs
+expression: "Sorcerer::ability_rank()"
+
+---
+- - Charisma
+- - Constitution
+

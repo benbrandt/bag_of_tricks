@@ -11,7 +11,7 @@ expression: background.addl_proficiencies()
     - 2
 - FromOptions:
     - - GamingSet
-      - MusicalInstrument
+      - MusicalInstrument: 1
       - From:
           - - Tool: ThievesTools
           - 1

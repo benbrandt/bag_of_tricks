@@ -1,0 +1,14 @@
+---
+source: crates/class/src/paladin.rs
+expression: class.addl_proficiencies()
+
+---
+- Skill:
+    - - Athletics
+      - Insight
+      - Intimidation
+      - Medicine
+      - Persuasion
+      - Religion
+    - 2
+

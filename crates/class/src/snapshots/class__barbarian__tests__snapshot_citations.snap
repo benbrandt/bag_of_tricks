@@ -1,0 +1,8 @@
+---
+source: crates/class/src/barbarian.rs
+expression: class.citations()
+
+---
+- - Phb
+  - 46
+

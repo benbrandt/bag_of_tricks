@@ -55,7 +55,7 @@ equipment:
       Other: Pouch
   - Tool:
       GamingSet: PlayingCard
-  - Other: A silver spoon with an M engraved on the handle
+  - Other: A rank insignia from a lost legionnaire
 languages:
   - Common
   - Dwarvish
@@ -83,10 +83,38 @@ proficiencies:
   - Skill: Athletics
   - Skill: Persuasion
   - Vehicle: Land
+  - Armor: Light
+  - Armor: Medium
+  - Armor: Shield
+  - SavingThrow: Intelligence
+  - SavingThrow: Wisdom
+  - Tool: HerbalismKit
+  - Weapon:
+      Specific: Club
+  - Weapon:
+      Specific: Dagger
+  - Weapon:
+      Specific: Dart
+  - Weapon:
+      Specific: Javelin
+  - Weapon:
+      Specific: Mace
+  - Weapon:
+      Specific: Quarterstaff
+  - Weapon:
+      Specific: Scimitar
+  - Weapon:
+      Specific: Sickle
+  - Weapon:
+      Specific: Sling
+  - Weapon:
+      Specific: Spear
   - Tool:
       ArtisansTools: BrewersSupplies
   - Tool:
       GamingSet: PlayingCard
+  - Skill: Perception
+  - Skill: AnimalHandling
 race:
   Dwarf:
     clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"

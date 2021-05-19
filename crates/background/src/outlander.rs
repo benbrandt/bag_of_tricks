@@ -149,7 +149,7 @@ impl Proficiencies for Outlander {
     }
 
     fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
-        vec![ProficiencyOption::MusicalInstrument]
+        vec![ProficiencyOption::MusicalInstrument(1)]
     }
 }
 

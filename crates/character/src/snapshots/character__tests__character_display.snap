@@ -20,7 +20,7 @@ CHA  +0 (10)
 SKILLS:
 PROF  MOD  SKILL            BONUS:
       DEX  Acrobatics       +2
-      WIS  Animal Handling  +2
+ X    WIS  Animal Handling  +4
       INT  Arcana           +1
  X    STR  Athletics        +4
       CHA  Deception        +0
@@ -30,7 +30,7 @@ PROF  MOD  SKILL            BONUS:
       INT  Investigation    +1
       WIS  Medicine         +2
       INT  Nature           +1
-      WIS  Perception       +2
+ X    WIS  Perception       +4
       CHA  Performance      +0
  X    CHA  Persuasion       +2
       INT  Religion         +1
@@ -44,7 +44,7 @@ PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
 LANGUAGES: Common, Dwarvish
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Vehicle(Land), Tool(ArtisansTools(BrewersSupplies)), Tool(GamingSet(PlayingCard))
+PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Vehicle(Land), Armor(Light), Armor(Medium), Armor(Shield), SavingThrow(Intelligence), SavingThrow(Wisdom), Tool(HerbalismKit), Weapon(Specific(Club)), Weapon(Specific(Dagger)), Weapon(Specific(Dart)), Weapon(Specific(Javelin)), Weapon(Specific(Mace)), Weapon(Specific(Quarterstaff)), Weapon(Specific(Scimitar)), Weapon(Specific(Sickle)), Weapon(Specific(Sling)), Weapon(Specific(Spear)), Tool(ArtisansTools(BrewersSupplies)), Tool(GamingSet(PlayingCard))
 
 CHARACTERISTICS:
 Age: 135
@@ -61,7 +61,7 @@ BOND: I would still lay down my life for the people I served with.
 FLAW: I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.
 
 EQUIPMENT
-Other("an insignia of your rank"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(GamingSet(PlayingCard)), Other("A silver spoon with an M engraved on the handle")
+Other("an insignia of your rank"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(GamingSet(PlayingCard)), Other("A rank insignia from a lost legionnaire")
 COINS: 10gp
 
 FEATURES AND TRAITS:

@@ -1,0 +1,20 @@
+---
+source: crates/class/src/rogue.rs
+expression: class.proficiencies()
+
+---
+- Armor: Light
+- SavingThrow: Dexterity
+- SavingThrow: Intelligence
+- Tool: ThievesTools
+- Weapon:
+    Category: Simple
+- Weapon:
+    Specific: CrossbowHand
+- Weapon:
+    Specific: Longsword
+- Weapon:
+    Specific: Rapier
+- Weapon:
+    Specific: Shortsword
+

@@ -1,0 +1,13 @@
+---
+source: crates/class/src/cleric.rs
+expression: class.proficiencies()
+
+---
+- Armor: Light
+- Armor: Medium
+- Armor: Shield
+- SavingThrow: Charisma
+- SavingThrow: Wisdom
+- Weapon:
+    Category: Simple
+

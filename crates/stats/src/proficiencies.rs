@@ -11,7 +11,7 @@ use rand::{
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 
-use super::ability::{AbilityScores, Skill};
+use super::ability::{AbilityScoreType, AbilityScores, Skill};
 
 /// Types of weapons a character is proficient in.
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
@@ -36,7 +36,7 @@ pub enum ProficiencyOption {
     /// Choose a random gaming set to be proficient in.
     GamingSet,
     /// Choose a random musical instrument to be proficient in.
-    MusicalInstrument,
+    MusicalInstrument(usize),
     /// Choose a random skill to be proficient in (weighted towards you highest modifiers)
     Skill(Option<Vec<Skill>>, usize),
     /// Choose a random tool to be proficient in
@@ -101,11 +101,11 @@ impl ProficiencyOption {
                 1,
             )
             .gen(rng, ability_scores, proficiencies, proficiency_bonus),
-            Self::MusicalInstrument => Self::From(
+            Self::MusicalInstrument(amount) => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Proficiency::Tool(Tool::MusicalInstrument(m)))
                     .collect(),
-                1,
+                *amount,
             )
             .gen(rng, ability_scores, proficiencies, proficiency_bonus),
             Self::Skill(skills, amount) => {
@@ -140,7 +140,7 @@ impl ProficiencyOption {
                             Tool::ArtisansTools(_) => Some(ProficiencyOption::ArtisansTools),
                             Tool::GamingSet(_) => Some(ProficiencyOption::GamingSet),
                             Tool::MusicalInstrument(_) => {
-                                Some(ProficiencyOption::MusicalInstrument)
+                                Some(ProficiencyOption::MusicalInstrument(1))
                             }
                             _ => (!proficiencies.contains(&Proficiency::Tool(t)))
                                 .then(|| ProficiencyOption::From(vec![Proficiency::Tool(t)], 1)),
@@ -194,6 +194,7 @@ impl ProficiencyOption {
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Proficiency {
     Armor(ArmorType),
+    SavingThrow(AbilityScoreType),
     Skill(Skill),
     Tool(Tool),
     Vehicle(VehicleProficiency),
@@ -213,6 +214,7 @@ impl Proficiency {
             Self::Armor(_) => {
                 ProficiencyOption::Armor.gen(rng, ability_scores, proficiencies, proficiency_bonus)
             }
+            Self::SavingThrow(_) => todo!(),
             Self::Skill(_) => ProficiencyOption::Skill(None, 1).gen(
                 rng,
                 ability_scores,

@@ -1,0 +1,10 @@
+---
+source: crates/class/src/fighter.rs
+expression: "Fighter::ability_rank()"
+
+---
+- - Strength
+  - Dexterity
+- - Constitution
+  - Intelligence
+

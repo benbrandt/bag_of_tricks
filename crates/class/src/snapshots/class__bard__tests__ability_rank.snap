@@ -1,0 +1,8 @@
+---
+source: crates/class/src/bard.rs
+expression: "Bard::ability_rank()"
+
+---
+- - Charisma
+- - Dexterity
+

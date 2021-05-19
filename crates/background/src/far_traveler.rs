@@ -168,7 +168,7 @@ impl Proficiencies for FarTraveler {
         vec![ProficiencyOption::FromOptions(
             vec![
                 ProficiencyOption::GamingSet,
-                ProficiencyOption::MusicalInstrument,
+                ProficiencyOption::MusicalInstrument(1),
             ],
             1,
         )]

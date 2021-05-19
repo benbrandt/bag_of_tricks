@@ -1,0 +1,8 @@
+---
+source: crates/class/src/fighter.rs
+expression: class.citations()
+
+---
+- - Phb
+  - 70
+

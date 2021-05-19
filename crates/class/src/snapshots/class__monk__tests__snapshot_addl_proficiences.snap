@@ -1,0 +1,18 @@
+---
+source: crates/class/src/monk.rs
+expression: class.addl_proficiencies()
+
+---
+- FromOptions:
+    - - ArtisansTools
+      - MusicalInstrument: 1
+    - 1
+- Skill:
+    - - Acrobatics
+      - Athletics
+      - History
+      - Insight
+      - Religion
+      - Stealth
+    - 2
+

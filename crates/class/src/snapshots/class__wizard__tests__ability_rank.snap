@@ -1,0 +1,10 @@
+---
+source: crates/class/src/wizard.rs
+expression: "Wizard::ability_rank()"
+
+---
+- - Intelligence
+- - Charisma
+  - Constitution
+  - Dexterity
+

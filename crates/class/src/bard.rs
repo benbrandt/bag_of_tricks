@@ -4,11 +4,17 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
+use gear::{
+    armor::ArmorType,
+    weapons::{WeaponCategory, WeaponType},
+};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
-    ability::AbilityScoreType, equipment::StartingEquipment, proficiencies::Proficiencies,
+    ability::AbilityScoreType,
+    equipment::StartingEquipment,
+    proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
 use super::Class;
@@ -43,12 +49,76 @@ impl Languages for Bard {}
 
 impl Pantheons for Bard {}
 
-impl Proficiencies for Bard {}
+impl Proficiencies for Bard {
+    fn proficiencies(&self) -> Vec<Proficiency> {
+        vec![
+            Proficiency::Armor(ArmorType::Light),
+            Proficiency::SavingThrow(AbilityScoreType::Charisma),
+            Proficiency::SavingThrow(AbilityScoreType::Dexterity),
+            Proficiency::Weapon(WeaponProficiency::Category(WeaponCategory::Simple)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
+            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+        ]
+    }
+
+    fn addl_proficiencies(&self) -> Vec<ProficiencyOption> {
+        vec![
+            ProficiencyOption::MusicalInstrument(3),
+            ProficiencyOption::Skill(None, 3),
+        ]
+    }
+}
 
 impl StartingEquipment for Bard {}
 
 impl fmt::Display for Bard {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "Bard")
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::SeedableRng;
+    use rand_pcg::Pcg64;
+
+    #[test]
+    fn test_snapshot() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let class = Bard::gen(&mut rng);
+        insta::assert_yaml_snapshot!(class);
+    }
+
+    #[test]
+    fn test_snapshot_display() {
+        let mut rng = Pcg64::seed_from_u64(1);
+        let class = Bard::gen(&mut rng);
+        insta::assert_display_snapshot!(class);
+    }
+
+    #[test]
+    fn test_ability_rank() {
+        insta::assert_yaml_snapshot!(Bard::ability_rank());
+    }
+
+    #[test]
+    fn test_snapshot_citations() {
+        let class = Bard;
+        insta::assert_yaml_snapshot!(class.citations());
+    }
+
+    #[test]
+    fn test_snapshot_proficiences() {
+        let class = Bard;
+        insta::assert_yaml_snapshot!(class.proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_addl_proficiences() {
+        let class = Bard;
+        insta::assert_yaml_snapshot!(class.addl_proficiencies());
     }
 }

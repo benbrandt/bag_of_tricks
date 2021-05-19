@@ -1,0 +1,11 @@
+---
+source: crates/class/src/warlock.rs
+expression: class.proficiencies()
+
+---
+- Armor: Light
+- SavingThrow: Charisma
+- SavingThrow: Wisdom
+- Weapon:
+    Category: Simple
+

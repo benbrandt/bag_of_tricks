@@ -479,6 +479,7 @@ impl<'a> fmt::Display for Character<'a> {
                 .filter_map(|p| match p {
                     Proficiency::Skill(_) => None,
                     Proficiency::Armor(_)
+                    | Proficiency::SavingThrow(_)
                     | Proficiency::Tool(_)
                     | Proficiency::Weapon(_)
                     | Proficiency::Vehicle(_) => Some(format!("{:?}", p)),

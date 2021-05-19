@@ -5,6 +5,6 @@ expression: background.addl_proficiencies()
 ---
 - FromOptions:
     - - ArtisansTools
-      - MusicalInstrument
+      - MusicalInstrument: 1
     - 1
 

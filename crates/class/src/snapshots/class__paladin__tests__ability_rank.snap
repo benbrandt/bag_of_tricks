@@ -1,0 +1,8 @@
+---
+source: crates/class/src/paladin.rs
+expression: "Paladin::ability_rank()"
+
+---
+- - Strength
+- - Charisma
+
