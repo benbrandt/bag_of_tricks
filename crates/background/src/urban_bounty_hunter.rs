@@ -92,7 +92,6 @@ impl Proficiencies for UrbanBountyHunter {
                 vec![
                     ProficiencyOption::GamingSet,
                     ProficiencyOption::MusicalInstrument,
-                    // TODO: Figure out how to replace it if you already get it
                     ProficiencyOption::From(vec![Proficiency::Tool(Tool::ThievesTools)], 1),
                 ],
                 2,

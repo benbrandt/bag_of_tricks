@@ -221,6 +221,26 @@ impl<'a> Character<'a> {
         });
     }
 
+    fn add_or_replace_proficiencies(
+        &mut self,
+        rng: &mut impl Rng,
+        proficiencies: Vec<Proficiency>,
+    ) {
+        for p in proficiencies {
+            if self.proficiencies.contains(&p) {
+                let replacements = p.gen_replacement(
+                    rng,
+                    &self.abilities,
+                    &self.proficiencies,
+                    self.proficiency_bonus(),
+                );
+                self.add_or_replace_proficiencies(rng, replacements);
+            } else {
+                self.proficiencies.push(p);
+            }
+        }
+    }
+
     /// Generate additional proficiencies, each looking at the current character sheet.
     ///
     /// They are generated from the most limited sets of options to greatest, to avoid overlapping choices.
@@ -232,37 +252,27 @@ impl<'a> Character<'a> {
             proficiencies.extend(race.proficiencies());
             addl_proficiencies.extend(race.addl_proficiencies());
         }
-        if let Some(class) = self.class.as_ref() {
-            proficiencies.extend(class.proficiencies());
-            addl_proficiencies.extend(class.addl_proficiencies());
-        }
         if let Some(background) = self.background.as_ref() {
             proficiencies.extend(background.proficiencies());
             addl_proficiencies.extend(background.addl_proficiencies());
         }
-        // Handle any dupes across these options
-        for p in proficiencies {
-            if self.proficiencies.contains(&p) {
-                self.proficiencies.extend(p.gen_replacement(
-                    rng,
-                    &self.abilities,
-                    &self.proficiencies,
-                    self.proficiency_bonus(),
-                ));
-            } else {
-                self.proficiencies.push(p);
-            }
+        if let Some(class) = self.class.as_ref() {
+            proficiencies.extend(class.proficiencies());
+            addl_proficiencies.extend(class.addl_proficiencies());
         }
+        // Handle any dupes across these options
+        self.add_or_replace_proficiencies(rng, proficiencies);
 
         // Sort so that the options with the least amount are chosen first.
         addl_proficiencies.sort();
         for option in addl_proficiencies {
-            self.proficiencies.extend(option.gen(
+            let choices = option.gen(
                 rng,
                 &self.abilities,
                 &self.proficiencies,
                 self.proficiency_bonus(),
-            ));
+            );
+            self.add_or_replace_proficiencies(rng, choices);
         }
     }
 
