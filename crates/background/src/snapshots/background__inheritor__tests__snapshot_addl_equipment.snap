@@ -15,15 +15,23 @@ expression: background.addl_equipment()
     - Tool:
         MusicalInstrument: Bagpipes
     - Tool:
+        MusicalInstrument: Birdpipes
+    - Tool:
         MusicalInstrument: Drum
     - Tool:
         MusicalInstrument: Dulcimer
     - Tool:
         MusicalInstrument: Flute
     - Tool:
+        MusicalInstrument: Glaur
+    - Tool:
+        MusicalInstrument: Longhorn
+    - Tool:
         MusicalInstrument: Lute
     - Tool:
         MusicalInstrument: Lyre
+    - Tool:
+        MusicalInstrument: HandDrum
     - Tool:
         MusicalInstrument: Horn
     - Tool:
@@ -31,7 +39,21 @@ expression: background.addl_equipment()
     - Tool:
         MusicalInstrument: Shawm
     - Tool:
+        MusicalInstrument: Songhorn
+    - Tool:
+        MusicalInstrument: Tantan
+    - Tool:
+        MusicalInstrument: Thelarr
+    - Tool:
+        MusicalInstrument: Tocken
+    - Tool:
         MusicalInstrument: Viol
+    - Tool:
+        MusicalInstrument: Wargong
+    - Tool:
+        MusicalInstrument: Yarting
+    - Tool:
+        MusicalInstrument: Zulkoon
 - Trinket:
     - inheritance
     - Custom:

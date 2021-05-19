@@ -73,16 +73,28 @@ impl Default for GamingSet {
 )]
 pub enum MusicalInstrument {
     Bagpipes,
+    Birdpipes,
     Drum,
     Dulcimer,
     Flute,
+    Glaur,
+    Longhorn,
     Lute,
     Lyre,
+    #[strum(serialize = "Hand Drum")]
+    HandDrum,
     Horn,
     #[strum(serialize = "Pan Flute")]
     PanFlute,
     Shawm,
+    Songhorn,
+    Tantan,
+    Thelarr,
+    Tocken,
     Viol,
+    Wargong,
+    Yarting,
+    Zulkoon,
 }
 
 impl Default for MusicalInstrument {
