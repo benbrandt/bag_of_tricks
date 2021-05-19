@@ -203,7 +203,7 @@ impl StartingEquipment for Inheritor {
         options
             .extend(MusicalInstrument::iter().map(|m| Equipment::Tool(Tool::MusicalInstrument(m))));
         vec![
-            EquipmentOption::From(options),
+            EquipmentOption::From(options, 1),
             self.inheritance.equipment_option(),
         ]
     }

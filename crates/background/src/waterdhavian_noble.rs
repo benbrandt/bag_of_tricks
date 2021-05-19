@@ -119,12 +119,14 @@ impl StartingEquipment for WaterdhavianNoble {
                     .iter()
                     .map(|&i| Equipment::Other(i.to_string()))
                     .collect(),
+                1,
             ),
             EquipmentOption::From(
                 ["zzar", "wine"]
                     .iter()
                     .map(|i| Equipment::Other(format!("a skin of fine {}", i)))
                     .collect(),
+                1,
             ),
         ]
     }

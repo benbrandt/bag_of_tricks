@@ -188,6 +188,7 @@ impl StartingEquipment for Charlatan {
             .iter()
             .map(|i| Equipment::Other(String::from(*i)))
             .collect(),
+            1,
         )]
     }
 }

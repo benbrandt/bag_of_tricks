@@ -69,15 +69,14 @@ impl ProficiencyOption {
                     .flat_map(|c| c.gen(rng, ability_scores, proficiencies, proficiency_bonus))
                     .collect();
                 // Add some more if we didn't get enough
-                if options.len() < *amount {
-                    options.extend(
-                        Self::FromOptions(choices.clone(), *amount - options.len()).gen(
-                            rng,
-                            ability_scores,
-                            proficiencies,
-                            proficiency_bonus,
-                        ),
-                    );
+                let remaining = *amount - options.len();
+                if remaining > 0 && choices.len() > remaining {
+                    options.extend(Self::FromOptions(choices.clone(), remaining).gen(
+                        rng,
+                        ability_scores,
+                        proficiencies,
+                        proficiency_bonus,
+                    ));
                 }
                 options
             }

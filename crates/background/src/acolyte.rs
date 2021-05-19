@@ -142,6 +142,7 @@ impl StartingEquipment for Acolyte {
                     .iter()
                     .map(|i| Equipment::Other(String::from(*i)))
                     .collect(),
+                1,
             ),
         ]
     }

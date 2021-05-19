@@ -187,12 +187,14 @@ impl StartingEquipment for Soldier {
                         Equipment::Other(format!("{} (a trophy taken from a fallen enemy)", i))
                     })
                     .collect(),
+                1,
             ),
             EquipmentOption::From(
                 ["a set of bone dice", "a deck of cards"]
                     .iter()
                     .map(|i| Equipment::Other(String::from(*i)))
                     .collect(),
+                1,
             ),
         ]
     }

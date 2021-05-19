@@ -195,6 +195,7 @@ impl StartingEquipment for Entertainer {
                     .iter()
                     .map(|i| Equipment::Other(format!("{} (the favor of an admirer)", i)))
                     .collect(),
+                1,
             ),
         ]
     }

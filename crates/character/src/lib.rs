@@ -152,7 +152,7 @@ impl<'a> Character<'a> {
 
         addl_equipment.sort();
         for option in addl_equipment {
-            self.equipment.push(option.gen(
+            self.equipment.extend(option.gen(
                 rng,
                 &self.equipment,
                 &self.proficiencies,

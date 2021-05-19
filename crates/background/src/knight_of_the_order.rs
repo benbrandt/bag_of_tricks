@@ -166,6 +166,7 @@ impl StartingEquipment for KnightOfTheOrder {
                     ))
                 })
                 .collect(),
+            1,
         )]
     }
 }

@@ -198,7 +198,7 @@ impl StartingEquipment for FarTraveler {
             .collect();
         options
             .extend(MusicalInstrument::iter().map(|m| Equipment::Tool(Tool::MusicalInstrument(m))));
-        vec![EquipmentOption::From(options)]
+        vec![EquipmentOption::From(options, 1)]
     }
 }
 

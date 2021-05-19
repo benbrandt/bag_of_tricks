@@ -165,6 +165,7 @@ impl StartingEquipment for UthgardtTribeMember {
                     ))
                 })
                 .collect(),
+            1,
         )]
     }
 }

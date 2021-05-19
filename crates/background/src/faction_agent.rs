@@ -184,6 +184,7 @@ impl StartingEquipment for FactionAgent {
                     .iter()
                     .map(|i| Equipment::Other(format!("the {} of your faction", i)))
                     .collect(),
+                1,
             ),
             EquipmentOption::From(
                 [
@@ -193,6 +194,7 @@ impl StartingEquipment for FactionAgent {
                 .iter()
                 .map(|&i| Equipment::Other(i.to_string()))
                 .collect(),
+                1,
             ),
         ]
     }

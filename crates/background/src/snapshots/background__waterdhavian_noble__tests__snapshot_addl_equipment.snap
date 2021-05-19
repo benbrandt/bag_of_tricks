@@ -4,9 +4,11 @@ expression: background.addl_equipment()
 
 ---
 - From:
-    - Other: signet ring
-    - Other: brooch
+    - - Other: signet ring
+      - Other: brooch
+    - 1
 - From:
-    - Other: a skin of fine zzar
-    - Other: a skin of fine wine
+    - - Other: a skin of fine zzar
+      - Other: a skin of fine wine
+    - 1
 

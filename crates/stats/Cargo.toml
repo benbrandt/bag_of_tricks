@@ -9,6 +9,7 @@ resolver = "2"
 [dependencies]
 dice_roller = { path = "../dice_roller" }
 gear = { path = "../gear" }
+itertools = "0.10"
 rand = "0.8"
 rand_pcg = "0.3"
 serde = { version = "1", features = ["derive"] }

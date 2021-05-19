@@ -1,4 +1,8 @@
-use rand::{prelude::IteratorRandom, Rng};
+use itertools::Itertools;
+use rand::{
+    prelude::{IteratorRandom, SliceRandom},
+    Rng,
+};
 use serde::{Deserialize, Serialize};
 use strum::{Display, IntoEnumIterator};
 use trinkets::TrinketOption;
@@ -51,10 +55,12 @@ impl Equipment {
 }
 
 /// A way to encapsulate a equipment that needs to be chosen for a character.
-#[derive(Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Clone, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum EquipmentOption {
     /// Choose from a given list of equipment options.
-    From(Vec<Equipment>),
+    From(Vec<Equipment>, usize),
+    /// Choose from multiple options
+    FromOptions(Vec<EquipmentOption>, usize),
     /// Choose a random artisan's tools.
     ArtisansTools,
     /// Choose a random gaming set.
@@ -75,9 +81,9 @@ impl EquipmentOption {
         equipment: &[Equipment],
         proficiencies: &[Proficiency],
         trinket_options: &[TrinketOption],
-    ) -> Equipment {
+    ) -> Vec<Equipment> {
         match self {
-            Self::From(list) => {
+            Self::From(list, amount) => {
                 let list = list.clone().into_iter().filter(|e| !equipment.contains(e));
                 // Choose proficient equipment if available
                 let mut proficient = list
@@ -85,33 +91,54 @@ impl EquipmentOption {
                     .filter(|e| e.proficient(proficiencies))
                     .peekable();
                 if proficient.peek().is_some() {
-                    proficient.choose(rng).unwrap()
+                    proficient.choose_multiple(rng, *amount)
                 } else {
-                    list.choose(rng).unwrap()
+                    list.choose_multiple(rng, *amount)
                 }
+            }
+            Self::FromOptions(choices, amount) => {
+                let mut options = choices
+                    .choose_multiple(rng, *amount)
+                    .flat_map(|c| c.gen(rng, equipment, proficiencies, trinket_options))
+                    .collect_vec();
+                // Add more if we didn't get enough
+                let remaining = *amount - options.len();
+                if remaining > 0 {
+                    options.extend(Self::FromOptions(choices.clone(), remaining).gen(
+                        rng,
+                        equipment,
+                        proficiencies,
+                        trinket_options,
+                    ))
+                }
+                options
             }
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|t| Equipment::Tool(Tool::ArtisansTools(t)))
                     .collect(),
+                1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
                     .map(|m| Equipment::Tool(Tool::GamingSet(m)))
                     .collect(),
+                1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::HolySymbol => Self::From(
                 HolySymbol::iter()
                     .map(|h| Equipment::Gear(Gear::HolySymbol(h)))
                     .collect(),
+                1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Equipment::Tool(Tool::MusicalInstrument(m)))
                     .collect(),
+                1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::Trinket(label, addl_option, use_all) => {
@@ -129,6 +156,7 @@ impl EquipmentOption {
                             Equipment::Other(label.map_or(t.clone(), |l| format!("{} ({})", t, l)))
                         })
                         .collect(),
+                    1,
                 )
                 .gen(rng, equipment, proficiencies, trinket_options)
             }
