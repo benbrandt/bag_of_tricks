@@ -4,13 +4,17 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::{armor::ArmorType, weapons::WeaponCategory};
+use gear::{
+    adventuring_gear::{Gear, OtherGear},
+    armor::{Armor, ArmorType},
+    weapons::{Ammunition, Weapon, WeaponCategory, WeaponClassification},
+};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -76,7 +80,42 @@ impl Proficiencies for Ranger {
     }
 }
 
-impl StartingEquipment for Ranger {}
+impl StartingEquipment for Ranger {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::new(Item::Ammunition(Ammunition::Arrows), 20),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Quiver)), 1),
+            Equipment::new(Item::Weapon(Weapon::Longbow), 1),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::From(
+                vec![
+                    Equipment::new(Item::Armor(Armor::Leather), 1),
+                    Equipment::new(Item::Armor(Armor::ScaleMail), 1),
+                ],
+                1,
+            ),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::Shortsword), 2)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(
+                        Some(WeaponCategory::Simple),
+                        Some(WeaponClassification::Melee),
+                        2,
+                    ),
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Dungeoneer, Pack::Explorer])),
+        ]
+    }
+}
 
 impl fmt::Display for Ranger {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -125,5 +164,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Ranger;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Ranger;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Ranger;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }

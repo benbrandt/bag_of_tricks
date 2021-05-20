@@ -1,0 +1,28 @@
+---
+source: crates/class/src/ranger.rs
+expression: class.addl_equipment()
+
+---
+- From:
+    - - item:
+          Armor: Leather
+        amount: 1
+      - item:
+          Armor: ScaleMail
+        amount: 1
+    - 1
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: Shortsword
+              amount: 2
+          - 1
+      - Weapon:
+          - Simple
+          - Melee
+          - 2
+    - 1
+- Pack:
+    - Dungeoneer
+    - Explorer
+

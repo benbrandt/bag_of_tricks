@@ -1,0 +1,16 @@
+---
+source: crates/class/src/ranger.rs
+expression: class.equipment()
+
+---
+- item:
+    Ammunition: Arrows
+  amount: 20
+- item:
+    Gear:
+      Other: Quiver
+  amount: 1
+- item:
+    Weapon: Longbow
+  amount: 1
+

@@ -156,6 +156,21 @@ impl EquipmentOption {
                     match choice.item {
                         Item::Weapon(w) => {
                             if let Some((a, n)) = w.default_ammunition() {
+                                match a {
+                                    Ammunition::Arrows => {
+                                        choices.push(Equipment::new(
+                                            Item::Gear(Gear::Other(OtherGear::Quiver)),
+                                            1,
+                                        ));
+                                    }
+                                    Ammunition::CrossbowBolts => {
+                                        choices.push(Equipment::new(
+                                            Item::Gear(Gear::Other(OtherGear::CaseCrossbowBolt)),
+                                            1,
+                                        ));
+                                    }
+                                    Ammunition::BlowgunNeedles | Ammunition::SlingBullets => {}
+                                }
                                 choices.push(Equipment::new(Item::Ammunition(a), n));
                             }
                         }
