@@ -1,0 +1,10 @@
+---
+source: crates/class/src/wizard.rs
+expression: class.equipment()
+
+---
+- item:
+    Gear:
+      Other: Spellbook
+  amount: 1
+

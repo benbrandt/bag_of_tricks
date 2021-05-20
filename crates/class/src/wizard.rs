@@ -4,13 +4,16 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::weapons::Weapon;
+use gear::{
+    adventuring_gear::{Gear, OtherGear},
+    weapons::Weapon,
+};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -78,7 +81,40 @@ impl Proficiencies for Wizard {
     }
 }
 
-impl StartingEquipment for Wizard {}
+impl StartingEquipment for Wizard {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![Equipment::new(
+            Item::Gear(Gear::Other(OtherGear::Spellbook)),
+            1,
+        )]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::From(
+                vec![
+                    Equipment::new(Item::Weapon(Weapon::Quarterstaff), 1),
+                    Equipment::new(Item::Weapon(Weapon::Dagger), 1),
+                ],
+                1,
+            ),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(
+                            Item::Gear(Gear::Other(OtherGear::ComponentPouch)),
+                            1,
+                        )],
+                        1,
+                    ),
+                    EquipmentOption::ArcaneFocus,
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Explorer, Pack::Scholar])),
+        ]
+    }
+}
 
 impl fmt::Display for Wizard {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -127,5 +163,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Wizard;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Wizard;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Wizard;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }

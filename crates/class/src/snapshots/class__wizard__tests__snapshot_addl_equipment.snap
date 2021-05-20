@@ -1,0 +1,26 @@
+---
+source: crates/class/src/wizard.rs
+expression: class.addl_equipment()
+
+---
+- From:
+    - - item:
+          Weapon: Quarterstaff
+        amount: 1
+      - item:
+          Weapon: Dagger
+        amount: 1
+    - 1
+- FromOptions:
+    - - From:
+          - - item:
+                Gear:
+                  Other: ComponentPouch
+              amount: 1
+          - 1
+      - ArcaneFocus
+    - 1
+- Pack:
+    - Explorer
+    - Scholar
+
