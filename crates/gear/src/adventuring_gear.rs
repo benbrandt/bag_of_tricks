@@ -3,7 +3,7 @@ use std::fmt;
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum ArcaneFocus {
     Crystal,
     Orb,
@@ -12,17 +12,37 @@ pub enum ArcaneFocus {
     Wand,
 }
 
-#[derive(
-    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
-)]
+impl fmt::Display for ArcaneFocus {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Crystal => write!(f, "Crystal"),
+            Self::Orb => write!(f, "Orb"),
+            Self::Rod => write!(f, "Rod"),
+            Self::Staff => write!(f, "Staff"),
+            Self::Wand => write!(f, "Wand"),
+        }?;
+        write!(f, " (arcane focus)")
+    }
+}
+
+#[derive(Copy, Clone, Debug, Deserialize, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum DruidicFocus {
-    #[strum(serialize = "Sprig of mistletoe")]
     SprigOfMistletoe,
     Totem,
-    #[strum(serialize = "Wooden staff")]
     WoodenStaff,
-    #[strum(serialize = "Yew wand")]
     YewWand,
+}
+
+impl fmt::Display for DruidicFocus {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::SprigOfMistletoe => write!(f, "Sprig of mistletoe"),
+            Self::Totem => write!(f, "Totem"),
+            Self::WoodenStaff => write!(f, "Wooden staff"),
+            Self::YewWand => write!(f, "Yew wand"),
+        }?;
+        write!(f, " (druidic focus)")
+    }
 }
 
 #[derive(
