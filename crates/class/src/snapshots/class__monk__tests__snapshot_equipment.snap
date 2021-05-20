@@ -1,0 +1,9 @@
+---
+source: crates/class/src/monk.rs
+expression: class.equipment()
+
+---
+- item:
+    Weapon: Dart
+  amount: 10
+

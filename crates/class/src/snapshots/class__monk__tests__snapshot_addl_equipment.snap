@@ -1,0 +1,20 @@
+---
+source: crates/class/src/monk.rs
+expression: class.addl_equipment()
+
+---
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: Shortsword
+              amount: 1
+          - 1
+      - Weapon:
+          - Simple
+          - ~
+          - 1
+    - 1
+- Pack:
+    - Dungeoneer
+    - Explorer
+

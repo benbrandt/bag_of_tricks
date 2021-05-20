@@ -10,7 +10,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -80,7 +80,27 @@ impl Proficiencies for Monk {
     }
 }
 
-impl StartingEquipment for Monk {}
+impl StartingEquipment for Monk {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![Equipment::new(Item::Weapon(Weapon::Dart), 10)]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::Shortsword), 1)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(Some(WeaponCategory::Simple), None, 1),
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Dungeoneer, Pack::Explorer])),
+        ]
+    }
+}
 
 impl fmt::Display for Monk {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -129,5 +149,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Monk;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Monk;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Monk;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }
