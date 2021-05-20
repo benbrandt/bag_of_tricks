@@ -1,0 +1,29 @@
+---
+source: crates/class/src/druid.rs
+expression: class.addl_equipment()
+
+---
+- FromOptions:
+    - - From:
+          - - item:
+                Armor: Shield
+              amount: 1
+          - 1
+      - Weapon:
+          - Simple
+          - ~
+          - 1
+    - 1
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: Scimitar
+              amount: 1
+          - 1
+      - Weapon:
+          - Simple
+          - Melee
+          - 1
+    - 1
+- DruidicFocus
+

@@ -12,7 +12,9 @@ pub enum ArcaneFocus {
     Wand,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(
+    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
+)]
 pub enum DruidicFocus {
     #[strum(serialize = "Sprig of mistletoe")]
     SprigOfMistletoe,

@@ -1,0 +1,41 @@
+---
+source: crates/class/src/druid.rs
+expression: class.equipment()
+
+---
+- item:
+    Gear:
+      Other: Backpack
+  amount: 1
+- item:
+    Gear:
+      Other: Bedroll
+  amount: 1
+- item:
+    Gear:
+      Other: MessKit
+  amount: 1
+- item:
+    Gear:
+      Other: Rations
+  amount: 10
+- item:
+    Gear:
+      Other: RopeHempen
+  amount: 1
+- item:
+    Gear:
+      Other: Tinderbox
+  amount: 1
+- item:
+    Gear:
+      Other: Torch
+  amount: 10
+- item:
+    Gear:
+      Other: Waterskin
+  amount: 1
+- item:
+    Armor: Leather
+  amount: 1
+

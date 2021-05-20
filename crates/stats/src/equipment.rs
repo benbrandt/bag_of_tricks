@@ -11,7 +11,7 @@ use strum::{EnumIter, IntoEnumIterator};
 use trinkets::TrinketOption;
 
 use gear::{
-    adventuring_gear::{Gear, HolySymbol, OtherGear},
+    adventuring_gear::{DruidicFocus, Gear, HolySymbol, OtherGear},
     armor::Armor,
     currency::Coin,
     tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
@@ -111,6 +111,8 @@ pub enum EquipmentOption {
     FromOptions(Vec<EquipmentOption>, usize),
     /// Choose a random artisan's tools.
     ArtisansTools,
+    /// Choose a random druidic focus
+    DruidicFocus,
     /// Choose a random gaming set.
     GamingSet,
     /// Choose a random holy symbol.
@@ -198,6 +200,20 @@ impl EquipmentOption {
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
                     .map(|t| Equipment::new(Item::Tool(Tool::ArtisansTools(t)), 1))
+                    .collect(),
+                1,
+            )
+            .gen(
+                rng,
+                ability_scores,
+                equipment,
+                proficiencies,
+                size,
+                trinket_options,
+            ),
+            Self::DruidicFocus => Self::From(
+                DruidicFocus::iter()
+                    .map(|d| Equipment::new(Item::Gear(Gear::DruidicFocus(d)), 1))
                     .collect(),
                 1,
             )
