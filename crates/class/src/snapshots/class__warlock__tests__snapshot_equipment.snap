@@ -1,0 +1,12 @@
+---
+source: crates/class/src/warlock.rs
+expression: class.equipment()
+
+---
+- item:
+    Armor: Leather
+  amount: 1
+- item:
+    Weapon: Dagger
+  amount: 2
+

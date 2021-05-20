@@ -4,13 +4,17 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::{armor::ArmorType, weapons::WeaponCategory};
+use gear::{
+    adventuring_gear::{Gear, OtherGear},
+    armor::{Armor, ArmorType},
+    weapons::{Weapon, WeaponCategory},
+};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -72,7 +76,44 @@ impl Proficiencies for Warlock {
     }
 }
 
-impl StartingEquipment for Warlock {}
+impl StartingEquipment for Warlock {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::new(Item::Armor(Armor::Leather), 1),
+            Equipment::new(Item::Weapon(Weapon::Dagger), 2),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::CrossbowLight), 1)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(Some(WeaponCategory::Simple), None, 1),
+                ],
+                1,
+            ),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(
+                            Item::Gear(Gear::Other(OtherGear::ComponentPouch)),
+                            1,
+                        )],
+                        1,
+                    ),
+                    EquipmentOption::ArcaneFocus,
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Dungeoneer, Pack::Scholar])),
+            EquipmentOption::Weapon(Some(WeaponCategory::Simple), None, 1),
+        ]
+    }
+}
 
 impl fmt::Display for Warlock {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -121,5 +162,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Warlock;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Warlock;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Warlock;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }

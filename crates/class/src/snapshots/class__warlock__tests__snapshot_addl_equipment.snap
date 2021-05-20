@@ -1,0 +1,33 @@
+---
+source: crates/class/src/warlock.rs
+expression: class.addl_equipment()
+
+---
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: CrossbowLight
+              amount: 1
+          - 1
+      - Weapon:
+          - Simple
+          - ~
+          - 1
+    - 1
+- FromOptions:
+    - - From:
+          - - item:
+                Gear:
+                  Other: ComponentPouch
+              amount: 1
+          - 1
+      - ArcaneFocus
+    - 1
+- Pack:
+    - Dungeoneer
+    - Scholar
+- Weapon:
+    - Simple
+    - ~
+    - 1
+
