@@ -86,7 +86,7 @@ impl StartingEquipment for Barbarian {
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
         let mut addl_equipment = Pack::Explorers.addl_equipment();
-        addl_equipment.extend([
+        addl_equipment.extend(vec![
             EquipmentOption::FromOptions(
                 vec![
                     EquipmentOption::From(
