@@ -70,7 +70,7 @@ pub trait Class:
     + fmt::Display
 {
     /// Generate new instance of class
-    fn gen(rng: &mut impl Rng) -> Self;
+    fn gen(rng: &mut impl Rng, ability_scores: &AbilityScores) -> Self;
 
     /// Return primary and secondary ability ranking
     fn ability_rank() -> (Vec<AbilityScoreType>, Vec<AbilityScoreType>);
@@ -132,18 +132,18 @@ impl ClassOption {
             .choose_weighted(rng, |o| o.weight(ability_scores))
             .unwrap();
         match option {
-            Self::Barbarian(_) => Self::Barbarian(Barbarian::gen(rng)),
-            Self::Bard(_) => Self::Bard(Bard::gen(rng)),
-            Self::Cleric(_) => Self::Cleric(Cleric::gen(rng)),
-            Self::Druid(_) => Self::Druid(Druid::gen(rng)),
-            Self::Fighter(_) => Self::Fighter(Fighter::gen(rng)),
-            Self::Monk(_) => Self::Monk(Monk::gen(rng)),
-            Self::Paladin(_) => Self::Paladin(Paladin::gen(rng)),
-            Self::Ranger(_) => Self::Ranger(Ranger::gen(rng)),
-            Self::Rogue(_) => Self::Rogue(Rogue::gen(rng)),
-            Self::Sorcerer(_) => Self::Sorcerer(Sorcerer::gen(rng)),
-            Self::Warlock(_) => Self::Warlock(Warlock::gen(rng)),
-            Self::Wizard(_) => Self::Wizard(Wizard::gen(rng)),
+            Self::Barbarian(_) => Self::Barbarian(Barbarian::gen(rng, ability_scores)),
+            Self::Bard(_) => Self::Bard(Bard::gen(rng, ability_scores)),
+            Self::Cleric(_) => Self::Cleric(Cleric::gen(rng, ability_scores)),
+            Self::Druid(_) => Self::Druid(Druid::gen(rng, ability_scores)),
+            Self::Fighter(_) => Self::Fighter(Fighter::gen(rng, ability_scores)),
+            Self::Monk(_) => Self::Monk(Monk::gen(rng, ability_scores)),
+            Self::Paladin(_) => Self::Paladin(Paladin::gen(rng, ability_scores)),
+            Self::Ranger(_) => Self::Ranger(Ranger::gen(rng, ability_scores)),
+            Self::Rogue(_) => Self::Rogue(Rogue::gen(rng, ability_scores)),
+            Self::Sorcerer(_) => Self::Sorcerer(Sorcerer::gen(rng, ability_scores)),
+            Self::Warlock(_) => Self::Warlock(Warlock::gen(rng, ability_scores)),
+            Self::Wizard(_) => Self::Wizard(Wizard::gen(rng, ability_scores)),
         }
     }
 }

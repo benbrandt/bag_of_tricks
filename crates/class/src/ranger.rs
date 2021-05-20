@@ -13,7 +13,7 @@ use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
-    ability::{AbilityScoreType, Skill},
+    ability::{AbilityScoreType, AbilityScores, Skill},
     equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
@@ -32,7 +32,7 @@ impl Citations for Ranger {
 }
 
 impl Class for Ranger {
-    fn gen(_: &mut impl Rng) -> Self {
+    fn gen(_: &mut impl Rng, _: &AbilityScores) -> Self {
         Self
     }
 
@@ -132,14 +132,14 @@ mod tests {
     #[test]
     fn test_snapshot() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let class = Ranger::gen(&mut rng);
+        let class = Ranger::gen(&mut rng, &AbilityScores::default());
         insta::assert_yaml_snapshot!(class);
     }
 
     #[test]
     fn test_snapshot_display() {
         let mut rng = Pcg64::seed_from_u64(1);
-        let class = Ranger::gen(&mut rng);
+        let class = Ranger::gen(&mut rng, &AbilityScores::default());
         insta::assert_display_snapshot!(class);
     }
 
@@ -155,13 +155,13 @@ mod tests {
     }
 
     #[test]
-    fn test_snapshot_proficiences() {
+    fn test_snapshot_proficiencies() {
         let class = Ranger;
         insta::assert_yaml_snapshot!(class.proficiencies());
     }
 
     #[test]
-    fn test_snapshot_addl_proficiences() {
+    fn test_snapshot_addl_proficiencies() {
         let class = Ranger;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
     }

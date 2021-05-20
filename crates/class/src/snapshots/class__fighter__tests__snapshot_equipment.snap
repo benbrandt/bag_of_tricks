@@ -1,0 +1,22 @@
+---
+source: crates/class/src/fighter.rs
+expression: "Base::iter().map(|base|\n                     (Fighter{base,}).equipment()).collect::<Vec<Vec<Equipment>>>()"
+
+---
+- - item:
+      Armor: ChainMail
+    amount: 1
+- - item:
+      Ammunition: Arrows
+    amount: 20
+  - item:
+      Armor: Leather
+    amount: 1
+  - item:
+      Gear:
+        Other: Quiver
+    amount: 1
+  - item:
+      Weapon: Longbow
+    amount: 1
+

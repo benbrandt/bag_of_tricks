@@ -1,0 +1,32 @@
+---
+source: crates/class/src/fighter.rs
+expression: class.addl_equipment()
+
+---
+- Weapon:
+    - Martial
+    - ~
+    - 1
+- FromOptions:
+    - - From:
+          - - item:
+                Armor: Shield
+              amount: 1
+          - 1
+      - Weapon:
+          - Martial
+          - ~
+          - 1
+    - 1
+- From:
+    - - item:
+          Weapon: CrossbowLight
+        amount: 1
+      - item:
+          Weapon: Handaxe
+        amount: 2
+    - 1
+- Pack:
+    - Dungeoneer
+    - Explorer
+
