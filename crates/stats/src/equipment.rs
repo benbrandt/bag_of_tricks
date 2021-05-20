@@ -1,10 +1,12 @@
+use std::fmt;
+
 use itertools::Itertools;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::{Display, IntoEnumIterator};
+use strum::IntoEnumIterator;
 use trinkets::TrinketOption;
 
 use gear::{
@@ -13,44 +15,87 @@ use gear::{
     currency::Coin,
     tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
     vehicles::{Vehicle, VehicleProficiency},
-    weapons::WeaponType,
+    weapons::{Ammunition, Weapon},
 };
 
 use super::proficiencies::{Proficiency, WeaponProficiency};
 
-#[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub enum Equipment {
+#[derive(Clone, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+pub enum Item {
+    Ammunition(Ammunition),
     Armor(Armor),
     Gear(Gear),
     Tool(Tool),
     Vehicle(Vehicle),
-    Weapon(WeaponType),
+    Weapon(Weapon),
     Other(String),
 }
 
-impl Equipment {
-    fn proficient(&self, proficiencies: &[Proficiency]) -> bool {
+impl fmt::Display for Item {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Armor(armor) => proficiencies
+            Self::Ammunition(i) => write!(f, "{}", i),
+            Self::Armor(i) => write!(f, "{}", i),
+            Self::Gear(i) => write!(f, "{}", i),
+            Self::Tool(i) => write!(f, "{}", i),
+            Self::Vehicle(i) => write!(f, "{}", i),
+            Self::Weapon(i) => write!(f, "{}", i),
+            Self::Other(i) => write!(f, "{}", i),
+        }
+    }
+}
+
+#[derive(Clone, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+pub struct Equipment {
+    item: Item,
+    amount: usize,
+}
+
+impl Equipment {
+    pub fn new(item: Item, amount: usize) -> Self {
+        Self { item, amount }
+    }
+
+    fn proficient(&self, proficiencies: &[Proficiency]) -> bool {
+        match &self.item {
+            Item::Ammunition(ammunition) => ammunition
+                .weapons()
+                .iter()
+                .any(|w| Self::weapon_proficiency(w, proficiencies)),
+            Item::Armor(armor) => proficiencies
                 .iter()
                 .any(|p| matches!(p, Proficiency::Armor(a) if a == &armor.armor_type())),
-            Self::Tool(tool) => proficiencies
+            Item::Tool(tool) => proficiencies
                 .iter()
                 .any(|p| matches!(p, Proficiency::Tool(t) if t == tool)),
-            Self::Vehicle(vehicle) => proficiencies.iter().any(|p| {
+            Item::Vehicle(vehicle) => proficiencies.iter().any(|p| {
                 matches!(p, Proficiency::Vehicle(v) if v == match vehicle {
                     Vehicle::Land(_) | Vehicle::Mount(_) => &VehicleProficiency::Land,
                     Vehicle::Water(_) => &VehicleProficiency::Water,
                 })
             }),
-            Self::Weapon(weapon) => proficiencies.iter().any(|p| {
-                matches!(p, Proficiency::Weapon(w) if match w {
-                    WeaponProficiency::Category(category) => category == &weapon.category(),
-                    WeaponProficiency::Specific(weapon_type) => weapon_type == weapon,
-                })
-            }),
-            Self::Gear(_) | Self::Other(_) => true,
+            Item::Weapon(weapon) => Self::weapon_proficiency(&weapon, proficiencies),
+            Item::Gear(_) | Item::Other(_) => true,
         }
+    }
+
+    fn weapon_proficiency(weapon: &Weapon, proficiencies: &[Proficiency]) -> bool {
+        proficiencies.iter().any(|p| {
+            matches!(p, Proficiency::Weapon(w) if match w {
+                WeaponProficiency::Category(category) => category == &weapon.category(),
+                WeaponProficiency::Specific(weapon_type) => weapon_type == weapon,
+            })
+        })
+    }
+}
+
+impl fmt::Display for Equipment {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.item)?;
+        if self.amount > 1 {
+            write!(f, " ({})", self.amount)?;
+        }
+        write!(f, "")
     }
 }
 
@@ -115,28 +160,28 @@ impl EquipmentOption {
             }
             Self::ArtisansTools => Self::From(
                 ArtisansTools::iter()
-                    .map(|t| Equipment::Tool(Tool::ArtisansTools(t)))
+                    .map(|t| Equipment::new(Item::Tool(Tool::ArtisansTools(t)), 1))
                     .collect(),
                 1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
-                    .map(|m| Equipment::Tool(Tool::GamingSet(m)))
+                    .map(|m| Equipment::new(Item::Tool(Tool::GamingSet(m)), 1))
                     .collect(),
                 1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::HolySymbol => Self::From(
                 HolySymbol::iter()
-                    .map(|h| Equipment::Gear(Gear::HolySymbol(h)))
+                    .map(|h| Equipment::new(Item::Gear(Gear::HolySymbol(h)), 1))
                     .collect(),
                 1,
             )
             .gen(rng, equipment, proficiencies, trinket_options),
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
-                    .map(|m| Equipment::Tool(Tool::MusicalInstrument(m)))
+                    .map(|m| Equipment::new(Item::Tool(Tool::MusicalInstrument(m)), 1))
                     .collect(),
                 1,
             )
@@ -153,7 +198,10 @@ impl EquipmentOption {
                         .iter()
                         .flat_map(TrinketOption::trinkets)
                         .map(|t| {
-                            Equipment::Other(label.map_or(t.clone(), |l| format!("{} ({})", t, l)))
+                            Equipment::new(
+                                Item::Other(label.map_or(t.clone(), |l| format!("{} ({})", t, l))),
+                                1,
+                            )
                         })
                         .collect(),
                     1,
@@ -190,18 +238,16 @@ impl StartingEquipment for Pack {
     fn equipment(&self) -> Vec<Equipment> {
         match self {
             Pack::MonsterHunter => vec![
-                Equipment::Gear(Gear::Other(OtherGear::Chest)),
-                Equipment::Gear(Gear::Other(OtherGear::Crowbar)),
-                Equipment::Gear(Gear::Other(OtherGear::Hammer)),
-                Equipment::Gear(Gear::Other(OtherGear::HolyWater)),
-                Equipment::Gear(Gear::Other(OtherGear::Manacles)),
-                Equipment::Gear(Gear::Other(OtherGear::MirrorSteel)),
-                Equipment::Gear(Gear::Other(OtherGear::Oil)),
-                Equipment::Gear(Gear::Other(OtherGear::Tinderbox)),
-                Equipment::Gear(Gear::Other(OtherGear::Torch)),
-                Equipment::Gear(Gear::Other(OtherGear::Torch)),
-                Equipment::Gear(Gear::Other(OtherGear::Torch)),
-                Equipment::Other("three wooden stakes".into()),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Chest)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Crowbar)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Hammer)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::HolyWater)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Manacles)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::MirrorSteel)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Oil)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Tinderbox)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Torch)), 3),
+                Equipment::new(Item::Other("wooden stake".into()), 3),
             ],
         }
     }

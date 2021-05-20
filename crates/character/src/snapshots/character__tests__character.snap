@@ -48,14 +48,24 @@ deity:
   symbols:
     - Hammer and anvil
 equipment:
-  - Other: an insignia of your rank
-  - Gear:
-      Other: ClothesTravelers
-  - Gear:
-      Other: Pouch
-  - Tool:
-      GamingSet: PlayingCard
-  - Other: A silver spoon with an M engraved on the handle
+  - item:
+      Other: an insignia of your rank
+    amount: 1
+  - item:
+      Gear:
+        Other: ClothesTravelers
+    amount: 1
+  - item:
+      Gear:
+        Other: Pouch
+    amount: 1
+  - item:
+      Tool:
+        GamingSet: PlayingCard
+    amount: 1
+  - item:
+      Other: A silver spoon with an M engraved on the handle
+    amount: 1
 languages:
   - Common
   - Dwarvish

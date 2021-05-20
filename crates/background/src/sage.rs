@@ -14,7 +14,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -169,12 +169,12 @@ impl StartingEquipment for Sage {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a bottle of black ink".into()),
-            Equipment::Other("a quill".into()),
-            Equipment::Other("a small knife".into()),
-            Equipment::Other("a letter from a dead colleague posing a question you have not yet been able to answer".into()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("a bottle of black ink".into()), 1),
+            Equipment::new(Item::Other("a quill".into()), 1),
+            Equipment::new(Item::Other("a small knife".into()), 1),
+            Equipment::new(Item::Other("a letter from a dead colleague posing a question you have not yet been able to answer".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

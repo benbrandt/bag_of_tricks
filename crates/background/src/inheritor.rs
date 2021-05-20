@@ -15,7 +15,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{EnumIter, IntoEnumIterator};
@@ -191,17 +191,19 @@ impl StartingEquipment for Inheritor {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesTravelers)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
         let mut options: Vec<Equipment> = GamingSet::iter()
-            .map(|g| Equipment::Tool(Tool::GamingSet(g)))
+            .map(|g| Equipment::new(Item::Tool(Tool::GamingSet(g)), 1))
             .collect();
-        options
-            .extend(MusicalInstrument::iter().map(|m| Equipment::Tool(Tool::MusicalInstrument(m))));
+        options.extend(
+            MusicalInstrument::iter()
+                .map(|m| Equipment::new(Item::Tool(Tool::MusicalInstrument(m)), 1)),
+        );
         vec![
             EquipmentOption::From(options, 1),
             self.inheritance.equipment_option(),

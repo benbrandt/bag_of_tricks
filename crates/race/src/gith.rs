@@ -15,7 +15,7 @@ use characteristics::{
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::{Feature, Features};
-use gear::{armor::ArmorType, weapons::WeaponType};
+use gear::{armor::ArmorType, weapons::Weapon};
 use languages::{Language, LanguageType, Languages};
 use personality::{Influence, PersonalityOptions};
 use rand::{
@@ -283,9 +283,9 @@ impl Proficiencies for Gith {
             GithSubrace::Githyanki => vec![
                 Proficiency::Armor(ArmorType::Light),
                 Proficiency::Armor(ArmorType::Medium),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Greatsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Greatsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortsword)),
             ],
             GithSubrace::Githzerai => vec![],
         }

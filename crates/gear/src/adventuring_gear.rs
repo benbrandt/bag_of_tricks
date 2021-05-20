@@ -1,3 +1,5 @@
+use std::fmt;
+
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
@@ -169,10 +171,21 @@ pub enum OtherGear {
     Whetstone,
 }
 
-#[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Gear {
     ArcaneFocus(ArcaneFocus),
     DruidicFocus(DruidicFocus),
     HolySymbol(HolySymbol),
     Other(OtherGear),
+}
+
+impl fmt::Display for Gear {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::ArcaneFocus(g) => write!(f, "{}", g),
+            Self::DruidicFocus(g) => write!(f, "{}", g),
+            Self::HolySymbol(g) => write!(f, "{}", g),
+            Self::Other(g) => write!(f, "{}", g),
+        }
+    }
 }

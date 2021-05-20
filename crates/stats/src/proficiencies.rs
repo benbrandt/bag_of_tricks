@@ -2,7 +2,7 @@ use gear::{
     armor::ArmorType,
     tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
     vehicles::VehicleProficiency,
-    weapons::{WeaponCategory, WeaponClassification, WeaponType},
+    weapons::{Weapon, WeaponCategory, WeaponClassification},
 };
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -19,7 +19,7 @@ pub enum WeaponProficiency {
     /// Proficiency in an entire category of weapons
     Category(WeaponCategory),
     /// Proficiency in a specific weapon type
-    Specific(WeaponType),
+    Specific(Weapon),
 }
 
 /// A way to encapsulate a proficiency that needs to be chosen for a character.
@@ -160,7 +160,7 @@ impl ProficiencyOption {
                 tools
             }
             Self::Weapon(category, classification, amount) => Self::From(
-                WeaponType::iter()
+                Weapon::iter()
                     .filter(|w| {
                         if let Some(c) = category {
                             if c != &w.category() {

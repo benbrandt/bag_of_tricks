@@ -15,7 +15,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 
@@ -155,12 +155,15 @@ impl StartingEquipment for Hermit {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other(
-                "A scroll case stuffed full of notes from your studies or prayers".into(),
+            Equipment::new(
+                Item::Other(
+                    "A scroll case stuffed full of notes from your studies or prayers".into(),
+                ),
+                1,
             ),
-            Equipment::Other("a winter blanket".into()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Tool(Tool::HerbalismKit),
+            Equipment::new(Item::Other("a winter blanket".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Tool(Tool::HerbalismKit), 1),
         ]
     }
 }

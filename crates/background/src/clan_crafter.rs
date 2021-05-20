@@ -14,7 +14,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -116,9 +116,9 @@ impl StartingEquipment for ClanCrafter {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from".into()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesTravelers)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 

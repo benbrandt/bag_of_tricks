@@ -15,7 +15,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -172,9 +172,9 @@ impl StartingEquipment for Soldier {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("an insignia of rank".into()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("an insignia of rank".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
@@ -184,7 +184,10 @@ impl StartingEquipment for Soldier {
                 ["a dagger", "a broken blade", "a piece of a banner"]
                     .iter()
                     .map(|i| {
-                        Equipment::Other(format!("{} (a trophy taken from a fallen enemy)", i))
+                        Equipment::new(
+                            Item::Other(format!("{} (a trophy taken from a fallen enemy)", i)),
+                            1,
+                        )
                     })
                     .collect(),
                 1,
@@ -192,7 +195,7 @@ impl StartingEquipment for Soldier {
             EquipmentOption::From(
                 ["a set of bone dice", "a deck of cards"]
                     .iter()
-                    .map(|i| Equipment::Other(String::from(*i)))
+                    .map(|i| Equipment::new(Item::Other(String::from(*i)), 1))
                     .collect(),
                 1,
             ),

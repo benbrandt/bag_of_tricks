@@ -14,7 +14,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 
@@ -95,8 +95,8 @@ impl StartingEquipment for Courtier {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesFine)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesFine)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

@@ -14,7 +14,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -104,10 +104,10 @@ impl StartingEquipment for CloisteredScholar {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("the scholar's robes of your cloister".to_string()),
-            Equipment::Other("a writing kit (small pouch with a quill, a bottle of ink, folded parchment, and a small penknife)".to_string()),
-            Equipment::Other("a borrowed book on the subject of your current study".to_string()),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("the scholar's robes of your cloister".to_string()), 1),
+            Equipment::new(Item::Other("a writing kit (small pouch with a quill, a bottle of ink, folded parchment, and a small penknife)".to_string()), 1),
+            Equipment::new(Item::Other("a borrowed book on the subject of your current study".to_string()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

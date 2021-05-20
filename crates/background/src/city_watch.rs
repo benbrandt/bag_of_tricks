@@ -14,7 +14,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -169,12 +169,15 @@ impl StartingEquipment for CityWatch {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other(
-                "A uniform in the style of your unit and indicative of your rank".into(),
+            Equipment::new(
+                Item::Other(
+                    "A uniform in the style of your unit and indicative of your rank".into(),
+                ),
+                1,
             ),
-            Equipment::Other("a horn with which to summon help".into()),
-            Equipment::Gear(Gear::Other(OtherGear::Manacles)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("a horn with which to summon help".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Manacles)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

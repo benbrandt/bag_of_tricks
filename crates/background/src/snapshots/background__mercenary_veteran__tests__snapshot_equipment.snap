@@ -3,9 +3,15 @@ source: crates/background/src/mercenary_veteran.rs
 expression: background.equipment()
 
 ---
-- Other: an insignia of your rank
-- Gear:
-    Other: ClothesTravelers
-- Gear:
-    Other: Pouch
+- item:
+    Other: an insignia of your rank
+  amount: 1
+- item:
+    Gear:
+      Other: ClothesTravelers
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

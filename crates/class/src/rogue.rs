@@ -7,7 +7,7 @@ use features::Features;
 use gear::{
     armor::ArmorType,
     tools::Tool,
-    weapons::{WeaponCategory, WeaponType},
+    weapons::{Weapon, WeaponCategory},
 };
 use languages::Languages;
 use rand::Rng;
@@ -58,10 +58,10 @@ impl Proficiencies for Rogue {
             Proficiency::SavingThrow(AbilityScoreType::Intelligence),
             Proficiency::Tool(Tool::ThievesTools),
             Proficiency::Weapon(WeaponProficiency::Category(WeaponCategory::Simple)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::CrossbowHand)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Longsword)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Rapier)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortsword)),
         ]
     }
 

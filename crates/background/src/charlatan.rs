@@ -15,7 +15,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 
@@ -171,25 +171,27 @@ impl StartingEquipment for Charlatan {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesFine)),
-            Equipment::Tool(Tool::DisguiseKit),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesFine)), 1),
+            Equipment::new(Item::Tool(Tool::DisguiseKit), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
-        vec![EquipmentOption::From(
+        let mut options = vec![Equipment::new(
+            Item::Other("stoppered bottle filled with colored liquid".to_string()),
+            10,
+        )];
+        options.extend(
             [
-                "ten stoppered bottles filled with colored liquid",
                 "a set of weighted dice",
                 "a deck of marked cards",
                 "a signet ring of an imaginary duke",
             ]
             .iter()
-            .map(|i| Equipment::Other(String::from(*i)))
-            .collect(),
-            1,
-        )]
+            .map(|i| Equipment::new(Item::Other(String::from(*i)), 1)),
+        );
+        vec![EquipmentOption::From(options, 1)]
     }
 }
 

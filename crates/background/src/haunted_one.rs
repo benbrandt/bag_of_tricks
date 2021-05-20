@@ -14,7 +14,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, Pack, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -175,7 +175,10 @@ impl StartingEquipment for HauntedOne {
 
     fn equipment(&self) -> Vec<Equipment> {
         let mut equipment = Pack::MonsterHunter.equipment();
-        equipment.push(Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)));
+        equipment.push(Equipment::new(
+            Item::Gear(Gear::Other(OtherGear::ClothesCommon)),
+            1,
+        ));
         equipment
     }
 

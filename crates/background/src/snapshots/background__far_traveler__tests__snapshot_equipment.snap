@@ -3,9 +3,15 @@ source: crates/background/src/far_traveler.rs
 expression: background.equipment()
 
 ---
-- Other: poorly wrought maps from your homeland that depict where you are in Faerûn
-- Gear:
-    Other: ClothesTravelers
-- Gear:
-    Other: Pouch
+- item:
+    Other: poorly wrought maps from your homeland that depict where you are in Faerûn
+  amount: 1
+- item:
+    Gear:
+      Other: ClothesTravelers
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

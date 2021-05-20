@@ -18,7 +18,7 @@ use features::{Feature, Features};
 use gear::{
     armor::ArmorType,
     tools::{ArtisansTools, Tool},
-    weapons::WeaponType,
+    weapons::Weapon,
 };
 use languages::{Language, Languages};
 use personality::PersonalityOptions;
@@ -414,10 +414,10 @@ impl PersonalityOptions for Dwarf {}
 impl Proficiencies for Dwarf {
     fn proficiencies(&self) -> Vec<Proficiency> {
         let mut proficiencies = vec![
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Battleaxe)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Handaxe)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::LightHammer)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Warhammer)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Battleaxe)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Handaxe)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::LightHammer)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Warhammer)),
         ];
         if matches!(self.subrace, DwarfSubrace::Mountain(_)) {
             proficiencies.extend(vec![

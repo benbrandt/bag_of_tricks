@@ -3,8 +3,12 @@ source: crates/background/src/faction_agent.rs
 expression: background.equipment()
 
 ---
-- Gear:
-    Other: ClothesCommon
-- Gear:
-    Other: Pouch
+- item:
+    Gear:
+      Other: ClothesCommon
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

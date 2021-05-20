@@ -15,7 +15,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -156,10 +156,10 @@ impl StartingEquipment for FolkHero {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::Shovel)),
-            Equipment::Gear(Gear::Other(OtherGear::PotIron)),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Shovel)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::PotIron)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 

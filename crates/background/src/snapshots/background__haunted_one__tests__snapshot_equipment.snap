@@ -3,29 +3,47 @@ source: crates/background/src/haunted_one.rs
 expression: background.equipment()
 
 ---
-- Gear:
-    Other: Chest
-- Gear:
-    Other: Crowbar
-- Gear:
-    Other: Hammer
-- Gear:
-    Other: HolyWater
-- Gear:
-    Other: Manacles
-- Gear:
-    Other: MirrorSteel
-- Gear:
-    Other: Oil
-- Gear:
-    Other: Tinderbox
-- Gear:
-    Other: Torch
-- Gear:
-    Other: Torch
-- Gear:
-    Other: Torch
-- Other: three wooden stakes
-- Gear:
-    Other: ClothesCommon
+- item:
+    Gear:
+      Other: Chest
+  amount: 1
+- item:
+    Gear:
+      Other: Crowbar
+  amount: 1
+- item:
+    Gear:
+      Other: Hammer
+  amount: 1
+- item:
+    Gear:
+      Other: HolyWater
+  amount: 1
+- item:
+    Gear:
+      Other: Manacles
+  amount: 1
+- item:
+    Gear:
+      Other: MirrorSteel
+  amount: 1
+- item:
+    Gear:
+      Other: Oil
+  amount: 1
+- item:
+    Gear:
+      Other: Tinderbox
+  amount: 1
+- item:
+    Gear:
+      Other: Torch
+  amount: 3
+- item:
+    Other: wooden stake
+  amount: 3
+- item:
+    Gear:
+      Other: ClothesCommon
+  amount: 1
 

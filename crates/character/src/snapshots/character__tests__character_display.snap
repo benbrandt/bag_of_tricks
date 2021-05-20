@@ -61,7 +61,7 @@ BOND: I would still lay down my life for the people I served with.
 FLAW: I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.
 
 EQUIPMENT
-Other("an insignia of your rank"), Gear(Other(ClothesTravelers)), Gear(Other(Pouch)), Tool(GamingSet(PlayingCard)), Other("A silver spoon with an M engraved on the handle")
+an insignia of your rank, a set of traveler's clothes, Pouch, Playing Card Set, A silver spoon with an M engraved on the handle
 COINS: 10gp
 
 FEATURES AND TRAITS:

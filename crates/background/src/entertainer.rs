@@ -15,7 +15,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -182,8 +182,8 @@ impl StartingEquipment for Entertainer {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCostume)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCostume)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
@@ -193,7 +193,9 @@ impl StartingEquipment for Entertainer {
             EquipmentOption::From(
                 ["love letter", "lock of hair", "trinket"]
                     .iter()
-                    .map(|i| Equipment::Other(format!("{} (the favor of an admirer)", i)))
+                    .map(|i| {
+                        Equipment::new(Item::Other(format!("{} (the favor of an admirer)", i)), 1)
+                    })
                     .collect(),
                 1,
             ),

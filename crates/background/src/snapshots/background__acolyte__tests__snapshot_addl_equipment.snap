@@ -5,7 +5,11 @@ expression: background.addl_equipment()
 ---
 - HolySymbol
 - From:
-    - - Other: prayer book
-      - Other: prayer wheel
+    - - item:
+          Other: prayer book
+        amount: 1
+      - item:
+          Other: prayer wheel
+        amount: 1
     - 1
 

@@ -16,7 +16,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -176,10 +176,10 @@ impl StartingEquipment for Sailor {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a belaying pin (club)".into()),
-            Equipment::Gear(Gear::Other(OtherGear::RopeSilk)),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("a belaying pin (club)".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::RopeSilk)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 

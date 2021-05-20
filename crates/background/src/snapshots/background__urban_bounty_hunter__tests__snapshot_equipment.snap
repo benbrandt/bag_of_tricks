@@ -3,7 +3,11 @@ source: crates/background/src/urban_bounty_hunter.rs
 expression: background.equipment()
 
 ---
-- Other: a set of clothes appropriate to your duties
-- Gear:
-    Other: Pouch
+- item:
+    Other: a set of clothes appropriate to your duties
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

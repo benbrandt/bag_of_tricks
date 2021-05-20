@@ -4,55 +4,105 @@ expression: background.addl_equipment()
 
 ---
 - From:
-    - - Tool:
-          GamingSet: Dice
-      - Tool:
-          GamingSet: Dragonchess
-      - Tool:
-          GamingSet: PlayingCard
-      - Tool:
-          GamingSet: ThreeDragonAnte
-      - Tool:
-          MusicalInstrument: Bagpipes
-      - Tool:
-          MusicalInstrument: Birdpipes
-      - Tool:
-          MusicalInstrument: Drum
-      - Tool:
-          MusicalInstrument: Dulcimer
-      - Tool:
-          MusicalInstrument: Flute
-      - Tool:
-          MusicalInstrument: Glaur
-      - Tool:
-          MusicalInstrument: Longhorn
-      - Tool:
-          MusicalInstrument: Lute
-      - Tool:
-          MusicalInstrument: Lyre
-      - Tool:
-          MusicalInstrument: HandDrum
-      - Tool:
-          MusicalInstrument: Horn
-      - Tool:
-          MusicalInstrument: PanFlute
-      - Tool:
-          MusicalInstrument: Shawm
-      - Tool:
-          MusicalInstrument: Songhorn
-      - Tool:
-          MusicalInstrument: Tantan
-      - Tool:
-          MusicalInstrument: Thelarr
-      - Tool:
-          MusicalInstrument: Tocken
-      - Tool:
-          MusicalInstrument: Viol
-      - Tool:
-          MusicalInstrument: Wargong
-      - Tool:
-          MusicalInstrument: Yarting
-      - Tool:
-          MusicalInstrument: Zulkoon
+    - - item:
+          Tool:
+            GamingSet: Dice
+        amount: 1
+      - item:
+          Tool:
+            GamingSet: Dragonchess
+        amount: 1
+      - item:
+          Tool:
+            GamingSet: PlayingCard
+        amount: 1
+      - item:
+          Tool:
+            GamingSet: ThreeDragonAnte
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Bagpipes
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Birdpipes
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Drum
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Dulcimer
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Flute
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Glaur
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Longhorn
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Lute
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Lyre
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: HandDrum
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Horn
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: PanFlute
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Shawm
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Songhorn
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Tantan
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Thelarr
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Tocken
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Viol
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Wargong
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Yarting
+        amount: 1
+      - item:
+          Tool:
+            MusicalInstrument: Zulkoon
+        amount: 1
     - 1
 

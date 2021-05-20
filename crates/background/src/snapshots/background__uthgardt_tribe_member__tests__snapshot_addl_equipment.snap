@@ -4,7 +4,11 @@ expression: background.addl_equipment()
 
 ---
 - From:
-    - - Other: a totemic token marking your loyalty to Uthgar and your tribal totem
-      - Other: a set of tattoos marking your loyalty to Uthgar and your tribal totem
+    - - item:
+          Other: a totemic token marking your loyalty to Uthgar and your tribal totem
+        amount: 1
+      - item:
+          Other: a set of tattoos marking your loyalty to Uthgar and your tribal totem
+        amount: 1
     - 1
 

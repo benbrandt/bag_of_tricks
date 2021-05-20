@@ -1,4 +1,6 @@
 #![allow(clippy::default_trait_access)]
+use std::fmt;
+
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
@@ -103,23 +105,31 @@ impl Default for MusicalInstrument {
     }
 }
 
-#[derive(
-    Copy, Clone, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
-)]
+#[derive(Copy, Clone, Debug, Deserialize, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Tool {
     ArtisansTools(ArtisansTools),
-    #[strum(serialize = "Disguise Kit")]
     DisguiseKit,
-    #[strum(serialize = "Forgery Set")]
     ForgerySet,
     GamingSet(GamingSet),
-    #[strum(serialize = "Herbalism Kit")]
     HerbalismKit,
     MusicalInstrument(MusicalInstrument),
-    #[strum(serialize = "Navigator's Tools")]
     NavigatorsTools,
-    #[strum(serialize = "Poisoner's Kit")]
     PoisonerKit,
-    #[strum(serialize = "Thieves' Tools")]
     ThievesTools,
+}
+
+impl fmt::Display for Tool {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::ArtisansTools(t) => write!(f, "{}", t),
+            Self::DisguiseKit => write!(f, "Disguise Kit"),
+            Self::ForgerySet => write!(f, "Forgery Set"),
+            Self::GamingSet(t) => write!(f, "{}", t),
+            Self::HerbalismKit => write!(f, "Herbalism Kit"),
+            Self::MusicalInstrument(t) => write!(f, "{}", t),
+            Self::NavigatorsTools => write!(f, "Navigator's Tools"),
+            Self::PoisonerKit => write!(f, "Poisoner's Kit"),
+            Self::ThievesTools => write!(f, "Thieves' Tools"),
+        }
+    }
 }

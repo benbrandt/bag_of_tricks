@@ -15,7 +15,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -107,8 +107,11 @@ impl StartingEquipment for UrbanBountyHunter {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a set of clothes appropriate to your duties".to_string()),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(
+                Item::Other("a set of clothes appropriate to your duties".to_string()),
+                1,
+            ),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

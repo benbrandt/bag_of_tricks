@@ -14,7 +14,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -158,13 +158,13 @@ impl StartingEquipment for Noble {
 
     fn equipment(&self) -> Vec<Equipment> {
         let mut equipment = vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesFine)),
-            Equipment::Gear(Gear::Other(OtherGear::SignetRing)),
-            Equipment::Other("a scroll of pedigree".into()),
-            Equipment::Other("a purse".into()),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesFine)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::SignetRing)), 1),
+            Equipment::new(Item::Other("a scroll of pedigree".into()), 1),
+            Equipment::new(Item::Other("a purse".into()), 1),
         ];
         if let Variant::Knight = self.variant {
-            equipment.push(Equipment::Other("a banner or other token from a noble lord or lady to whom you have given your heart \u{2014} in a chaste sort of devotion".into()));
+            equipment.push(Equipment::new(Item::Other("a banner or other token from a noble lord or lady to whom you have given your heart \u{2014} in a chaste sort of devotion".into()), 1));
         }
         equipment
     }

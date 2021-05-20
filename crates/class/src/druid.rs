@@ -4,7 +4,7 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::{armor::ArmorType, tools::Tool, weapons::WeaponType};
+use gear::{armor::ArmorType, tools::Tool, weapons::Weapon};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -55,16 +55,16 @@ impl Proficiencies for Druid {
             Proficiency::SavingThrow(AbilityScoreType::Intelligence),
             Proficiency::SavingThrow(AbilityScoreType::Wisdom),
             Proficiency::Tool(Tool::HerbalismKit),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Club)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Dagger)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Dart)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Javelin)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Mace)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Quarterstaff)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Scimitar)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Sickle)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Sling)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Spear)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Club)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Dagger)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Dart)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Javelin)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Mace)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Quarterstaff)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Scimitar)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Sickle)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Sling)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Spear)),
         ]
     }
 

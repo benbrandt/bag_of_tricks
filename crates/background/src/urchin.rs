@@ -15,7 +15,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 
@@ -128,12 +128,12 @@ impl StartingEquipment for Urchin {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a small knife".into()),
-            Equipment::Other("a map of the city you grew up in".into()),
-            Equipment::Other("a pet mouse".into()),
-            Equipment::Other("a token to remember your parents by".into()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("a small knife".into()), 1),
+            Equipment::new(Item::Other("a map of the city you grew up in".into()), 1),
+            Equipment::new(Item::Other("a pet mouse".into()), 1),
+            Equipment::new(Item::Other("a token to remember your parents by".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

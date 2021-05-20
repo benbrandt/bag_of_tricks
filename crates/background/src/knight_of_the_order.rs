@@ -14,7 +14,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -150,8 +150,8 @@ impl StartingEquipment for KnightOfTheOrder {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesTravelers)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
@@ -160,10 +160,13 @@ impl StartingEquipment for KnightOfTheOrder {
             ["signet", "banner", "seal"]
                 .iter()
                 .map(|i| {
-                    Equipment::Other(format!(
-                        "a {} representing your place or rank in the order",
-                        i
-                    ))
+                    Equipment::new(
+                        Item::Other(format!(
+                            "a {} representing your place or rank in the order",
+                            i
+                        )),
+                        1,
+                    )
                 })
                 .collect(),
             1,

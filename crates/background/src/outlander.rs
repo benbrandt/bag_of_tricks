@@ -14,7 +14,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, StartingEquipment},
+    equipment::{Equipment, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -160,11 +160,11 @@ impl StartingEquipment for Outlander {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::ArcaneFocus(ArcaneFocus::Staff)),
-            Equipment::Gear(Gear::Other(OtherGear::HuntingTrap)),
-            Equipment::Other("a trophy from an animal you killed".into()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::ArcaneFocus(ArcaneFocus::Staff)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::HuntingTrap)), 1),
+            Equipment::new(Item::Other("a trophy from an animal you killed".into()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesTravelers)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 }

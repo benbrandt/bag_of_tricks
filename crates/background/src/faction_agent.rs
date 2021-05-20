@@ -14,7 +14,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -172,8 +172,8 @@ impl StartingEquipment for FactionAgent {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::ClothesCommon)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCommon)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
@@ -182,7 +182,7 @@ impl StartingEquipment for FactionAgent {
             EquipmentOption::From(
                 ["badge", "emblem"]
                     .iter()
-                    .map(|i| Equipment::Other(format!("the {} of your faction", i)))
+                    .map(|i| Equipment::new(Item::Other(format!("the {} of your faction", i)), 1))
                     .collect(),
                 1,
             ),
@@ -192,7 +192,7 @@ impl StartingEquipment for FactionAgent {
                     "a code-book for a covert faction",
                 ]
                 .iter()
-                .map(|&i| Equipment::Other(i.to_string()))
+                .map(|&i| Equipment::new(Item::Other(i.to_string()), 1))
                 .collect(),
                 1,
             ),

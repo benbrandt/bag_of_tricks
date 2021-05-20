@@ -14,7 +14,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -148,9 +148,9 @@ impl StartingEquipment for UthgardtTribeMember {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Gear(Gear::Other(OtherGear::HuntingTrap)),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::HuntingTrap)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesTravelers)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
@@ -159,10 +159,13 @@ impl StartingEquipment for UthgardtTribeMember {
             ["totemic token", "set of tattoos"]
                 .iter()
                 .map(|i| {
-                    Equipment::Other(format!(
-                        "a {} marking your loyalty to Uthgar and your tribal totem",
-                        i
-                    ))
+                    Equipment::new(
+                        Item::Other(format!(
+                            "a {} marking your loyalty to Uthgar and your tribal totem",
+                            i
+                        )),
+                        1,
+                    )
                 })
                 .collect(),
             1,

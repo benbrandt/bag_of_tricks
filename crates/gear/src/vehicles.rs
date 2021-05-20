@@ -1,3 +1,5 @@
+use std::fmt;
+
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter};
 
@@ -44,9 +46,19 @@ pub enum WaterVehicle {
     Warship,
 }
 
-#[derive(Copy, Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Copy, Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Vehicle {
     Land(LandVehicle),
     Mount(Mount),
     Water(WaterVehicle),
+}
+
+impl fmt::Display for Vehicle {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Land(v) => write!(f, "{}", v),
+            Self::Mount(v) => write!(f, "{}", v),
+            Self::Water(v) => write!(f, "{}", v),
+        }
+    }
 }

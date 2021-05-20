@@ -4,7 +4,7 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::weapons::{WeaponCategory, WeaponType};
+use gear::weapons::{Weapon, WeaponCategory};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -52,7 +52,7 @@ impl Proficiencies for Monk {
             Proficiency::SavingThrow(AbilityScoreType::Dexterity),
             Proficiency::SavingThrow(AbilityScoreType::Strength),
             Proficiency::Weapon(WeaponProficiency::Category(WeaponCategory::Simple)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortsword)),
         ]
     }
 

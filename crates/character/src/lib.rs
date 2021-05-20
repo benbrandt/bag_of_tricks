@@ -501,7 +501,7 @@ impl<'a> fmt::Display for Character<'a> {
             "{}",
             self.equipment
                 .iter()
-                .map(|e| format!("{:?}", e))
+                .map(|e| format!("{}", e))
                 .collect::<Vec<String>>()
                 .join(", ")
         )?;

@@ -3,10 +3,18 @@ source: crates/background/src/acolyte.rs
 expression: background.equipment()
 
 ---
-- Other: 5 sticks of incense
-- Other: vestments
-- Gear:
-    Other: ClothesCommon
-- Gear:
-    Other: Pouch
+- item:
+    Other: stick of incense
+  amount: 5
+- item:
+    Other: vestments
+  amount: 1
+- item:
+    Gear:
+      Other: ClothesCommon
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

@@ -14,7 +14,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption},
 };
 
@@ -106,9 +106,9 @@ impl StartingEquipment for WaterdhavianNoble {
 
     fn equipment(&self) -> Vec<Equipment> {
         vec![
-            Equipment::Other("a scroll of pedigree".to_string()),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesFine)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(Item::Other("a scroll of pedigree".to_string()), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesFine)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ]
     }
 
@@ -117,14 +117,14 @@ impl StartingEquipment for WaterdhavianNoble {
             EquipmentOption::From(
                 ["signet ring", "brooch"]
                     .iter()
-                    .map(|&i| Equipment::Other(i.to_string()))
+                    .map(|&i| Equipment::new(Item::Other(i.to_string()), 1))
                     .collect(),
                 1,
             ),
             EquipmentOption::From(
                 ["zzar", "wine"]
                     .iter()
-                    .map(|i| Equipment::Other(format!("a skin of fine {}", i)))
+                    .map(|i| Equipment::new(Item::Other(format!("a skin of fine {}", i)), 1))
                     .collect(),
                 1,
             ),

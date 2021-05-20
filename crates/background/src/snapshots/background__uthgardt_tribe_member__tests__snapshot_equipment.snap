@@ -3,10 +3,16 @@ source: crates/background/src/uthgardt_tribe_member.rs
 expression: background.equipment()
 
 ---
-- Gear:
-    Other: HuntingTrap
-- Gear:
-    Other: ClothesTravelers
-- Gear:
-    Other: Pouch
+- item:
+    Gear:
+      Other: HuntingTrap
+  amount: 1
+- item:
+    Gear:
+      Other: ClothesTravelers
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

@@ -4,11 +4,19 @@ expression: background.addl_equipment()
 
 ---
 - From:
-    - - Other: the badge of your faction
-      - Other: the emblem of your faction
+    - - item:
+          Other: the badge of your faction
+        amount: 1
+      - item:
+          Other: the emblem of your faction
+        amount: 1
     - 1
 - From:
-    - - Other: a copy of a seminal faction text
-      - Other: a code-book for a covert faction
+    - - item:
+          Other: a copy of a seminal faction text
+        amount: 1
+      - item:
+          Other: a code-book for a covert faction
+        amount: 1
     - 1
 

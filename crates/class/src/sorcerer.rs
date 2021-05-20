@@ -4,7 +4,7 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::weapons::WeaponType;
+use gear::weapons::Weapon;
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
@@ -51,11 +51,11 @@ impl Proficiencies for Sorcerer {
         vec![
             Proficiency::SavingThrow(AbilityScoreType::Charisma),
             Proficiency::SavingThrow(AbilityScoreType::Constitution),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowLight)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Dagger)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Dart)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Quarterstaff)),
-            Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Sling)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::CrossbowLight)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Dagger)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Dart)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Quarterstaff)),
+            Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Sling)),
         ]
     }
 

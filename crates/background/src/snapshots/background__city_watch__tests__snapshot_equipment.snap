@@ -3,10 +3,18 @@ source: crates/background/src/city_watch.rs
 expression: background.equipment()
 
 ---
-- Other: A uniform in the style of your unit and indicative of your rank
-- Other: a horn with which to summon help
-- Gear:
-    Other: Manacles
-- Gear:
-    Other: Pouch
+- item:
+    Other: A uniform in the style of your unit and indicative of your rank
+  amount: 1
+- item:
+    Other: a horn with which to summon help
+  amount: 1
+- item:
+    Gear:
+      Other: Manacles
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

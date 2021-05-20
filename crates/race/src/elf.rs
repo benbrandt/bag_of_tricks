@@ -15,7 +15,7 @@ use characteristics::{
 use citation::{Book, Citation, CitationList, Citations};
 use deities::{Pantheon, PantheonWeight, Pantheons};
 use features::{Feature, Features};
-use gear::weapons::WeaponType;
+use gear::weapons::Weapon;
 use languages::{Language, LanguageType, Languages};
 use personality::PersonalityOptions;
 use rand::{
@@ -319,28 +319,28 @@ impl Elf {
     pub(crate) fn weapon_training(subrace: &ElfSubrace) -> Vec<Proficiency> {
         match subrace {
             ElfSubrace::Dark(_) => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowHand)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Rapier)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::CrossbowHand)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Rapier)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortsword)),
             ],
             ElfSubrace::High(_) => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Longbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortsword)),
             ],
             ElfSubrace::Sea => {
                 vec![
-                    Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::CrossbowLight)),
-                    Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Net)),
-                    Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Spear)),
-                    Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Trident)),
+                    Proficiency::Weapon(WeaponProficiency::Specific(Weapon::CrossbowLight)),
+                    Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Net)),
+                    Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Spear)),
+                    Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Trident)),
                 ]
             }
             ElfSubrace::Wood => vec![
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Longsword)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortbow)),
-                Proficiency::Weapon(WeaponProficiency::Specific(WeaponType::Shortsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Longbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Longsword)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortbow)),
+                Proficiency::Weapon(WeaponProficiency::Specific(Weapon::Shortsword)),
             ],
             ElfSubrace::Eladrin(_) | ElfSubrace::ShadarKai => vec![],
         }

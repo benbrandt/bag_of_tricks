@@ -3,8 +3,12 @@ source: crates/background/src/courtier.rs
 expression: background.equipment()
 
 ---
-- Gear:
-    Other: ClothesFine
-- Gear:
-    Other: Pouch
+- item:
+    Gear:
+      Other: ClothesFine
+  amount: 1
+- item:
+    Gear:
+      Other: Pouch
+  amount: 1
 

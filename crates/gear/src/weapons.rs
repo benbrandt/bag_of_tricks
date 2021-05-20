@@ -19,7 +19,7 @@ pub enum WeaponClassification {
 #[derive(
     Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize,
 )]
-pub enum WeaponType {
+pub enum Weapon {
     Battleaxe,
     Blowgun,
     Club,
@@ -64,7 +64,7 @@ pub enum WeaponType {
     Whip,
 }
 
-impl WeaponType {
+impl Weapon {
     pub fn category(self) -> WeaponCategory {
         match self {
             Self::Club
@@ -152,7 +152,7 @@ impl WeaponType {
 
 /// Types of ammunition available
 #[derive(Clone, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub enum AmmunitionType {
+pub enum Ammunition {
     Arrows,
     #[strum(serialize = "Blowgun needles")]
     BlowgunNeedles,
@@ -162,5 +162,17 @@ pub enum AmmunitionType {
     SlingBullets,
 }
 
-// /// Ammunition type and quantity
-// struct Ammunition(AmmunitionType, u8);
+impl Ammunition {
+    pub fn weapons(&self) -> Vec<Weapon> {
+        match self {
+            Ammunition::Arrows => vec![Weapon::Shortbow, Weapon::Longbow],
+            Ammunition::BlowgunNeedles => vec![Weapon::Blowgun],
+            Ammunition::CrossbowBolts => vec![
+                Weapon::CrossbowLight,
+                Weapon::CrossbowHand,
+                Weapon::CrossbowHeavy,
+            ],
+            Ammunition::SlingBullets => vec![Weapon::Sling],
+        }
+    }
+}

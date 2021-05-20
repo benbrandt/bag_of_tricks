@@ -16,7 +16,7 @@ use rand::{prelude::IteratorRandom, Rng};
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScores, Skill},
-    equipment::{Equipment, EquipmentOption, StartingEquipment},
+    equipment::{Equipment, EquipmentOption, Item, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency},
 };
 use strum::{Display, EnumIter, IntoEnumIterator};
@@ -263,14 +263,17 @@ impl StartingEquipment for GuildArtisan {
 
     fn equipment(&self) -> Vec<Equipment> {
         let mut equipment = vec![
-            Equipment::Other(String::from("a letter of introduction from your guild")),
-            Equipment::Gear(Gear::Other(OtherGear::ClothesTravelers)),
-            Equipment::Gear(Gear::Other(OtherGear::Pouch)),
+            Equipment::new(
+                Item::Other(String::from("a letter of introduction from your guild")),
+                1,
+            ),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesTravelers)), 1),
+            Equipment::new(Item::Gear(Gear::Other(OtherGear::Pouch)), 1),
         ];
         if let Variant::Merchant = self.variant {
             equipment.extend(vec![
-                Equipment::Vehicle(Vehicle::Mount(Mount::Mule)),
-                Equipment::Vehicle(Vehicle::Land(LandVehicle::Cart)),
+                Equipment::new(Item::Vehicle(Vehicle::Mount(Mount::Mule)), 1),
+                Equipment::new(Item::Vehicle(Vehicle::Land(LandVehicle::Cart)), 1),
             ])
         }
         equipment
