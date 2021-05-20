@@ -96,6 +96,7 @@ impl<'a> Character<'a> {
         character.name = name;
         character.characteristics = Some(characteristics);
         character.background = Some(background);
+        println!("{}", class);
         character.class = Some(class);
         character.gen_personality(rng);
         character.gen_languages(rng);

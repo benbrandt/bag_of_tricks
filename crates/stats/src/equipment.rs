@@ -142,17 +142,21 @@ impl EquipmentOption {
     ) -> Vec<Equipment> {
         match self {
             Self::From(list, amount) => {
-                let list = list.clone().into_iter().filter(|e| !equipment.contains(e));
+                let new_list = list.clone().into_iter().filter(|e| !equipment.contains(e));
                 // Choose proficient equipment if available
-                let mut proficient = list
+                let mut proficient = new_list
                     .clone()
                     .filter(|e| e.proficient(proficiencies))
                     .peekable();
                 let mut choices = if proficient.peek().is_some() {
                     proficient.choose_multiple(rng, *amount)
                 } else {
-                    list.choose_multiple(rng, *amount)
+                    new_list.choose_multiple(rng, *amount)
                 };
+                let remaining = amount - choices.len();
+                if choices.len() < *amount {
+                    choices.extend(list.clone().into_iter().choose_multiple(rng, remaining));
+                }
                 // Add default ammunition
                 for choice in &choices.clone() {
                     match choice.item {
@@ -186,34 +190,19 @@ impl EquipmentOption {
                 }
                 choices
             }
-            Self::FromOptions(choices, amount) => {
-                let mut options = choices
-                    .choose_multiple(rng, *amount)
-                    .flat_map(|c| {
-                        c.gen(
-                            rng,
-                            ability_scores,
-                            equipment,
-                            proficiencies,
-                            size,
-                            trinket_options,
-                        )
-                    })
-                    .collect_vec();
-                // Add more if we didn't get enough
-                let remaining = *amount - options.len();
-                if remaining > 0 {
-                    options.extend(Self::FromOptions(choices.clone(), remaining).gen(
+            Self::FromOptions(choices, amount) => choices
+                .choose_multiple(rng, *amount)
+                .flat_map(|c| {
+                    c.gen(
                         rng,
                         ability_scores,
                         equipment,
                         proficiencies,
                         size,
                         trinket_options,
-                    ))
-                }
-                options
-            }
+                    )
+                })
+                .collect_vec(),
             Self::ArcaneFocus => Self::From(
                 ArcaneFocus::iter()
                     .map(|a| Equipment::new(Item::Gear(Gear::ArcaneFocus(a)), 1))
