@@ -4,14 +4,17 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::{armor::ArmorType, weapons::WeaponCategory};
+use gear::{
+    armor::{Armor, ArmorType},
+    weapons::{Weapon, WeaponCategory, WeaponClassification},
+};
 use itertools::Itertools;
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 use strum::IntoEnumIterator;
@@ -80,7 +83,40 @@ impl Proficiencies for Paladin {
     }
 }
 
-impl StartingEquipment for Paladin {}
+impl StartingEquipment for Paladin {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![Equipment::new(Item::Armor(Armor::ChainMail), 1)]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::Weapon(Some(WeaponCategory::Martial), None, 1),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(vec![Equipment::new(Item::Armor(Armor::Shield), 1)], 1),
+                    EquipmentOption::Weapon(Some(WeaponCategory::Martial), None, 1),
+                ],
+                1,
+            ),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::Javelin), 5)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(
+                        Some(WeaponCategory::Simple),
+                        Some(WeaponClassification::Melee),
+                        1,
+                    ),
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Explorer, Pack::Priest])),
+            EquipmentOption::HolySymbol,
+        ]
+    }
+}
 
 impl fmt::Display for Paladin {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -135,5 +171,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Paladin;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Paladin;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Paladin;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }
