@@ -154,11 +154,14 @@ impl<'a> Character<'a> {
         for option in addl_equipment {
             self.equipment.extend(option.gen(
                 rng,
+                &self.abilities,
                 &self.equipment,
                 &self.proficiencies,
+                &self.characteristics.as_ref().map(|c| &c.size),
                 &self.trinket_options(),
             ));
         }
+        self.equipment.sort();
     }
 
     /// Generate any additional languages, ensuring no overlap with current languages.
@@ -274,6 +277,7 @@ impl<'a> Character<'a> {
             );
             self.add_or_replace_proficiencies(rng, choices);
         }
+        self.proficiencies.sort();
     }
 
     /// Return the character's proficiency bonus based on their level.
@@ -471,22 +475,6 @@ impl<'a> fmt::Display for Character<'a> {
                 .collect::<Vec<String>>()
                 .join(", ")
         )?;
-        writeln!(
-            f,
-            "PROFICIENCIES: {}",
-            self.proficiencies
-                .iter()
-                .filter_map(|p| match p {
-                    Proficiency::Skill(_) => None,
-                    Proficiency::Armor(_)
-                    | Proficiency::SavingThrow(_)
-                    | Proficiency::Tool(_)
-                    | Proficiency::Weapon(_)
-                    | Proficiency::Vehicle(_) => Some(format!("{:?}", p)),
-                })
-                .collect::<Vec<String>>()
-                .join(", ")
-        )?;
         writeln!(f)?;
         writeln!(f, "CHARACTERISTICS:")?;
         if let Some(characteristics) = self.characteristics.as_ref() {
@@ -495,18 +483,6 @@ impl<'a> fmt::Display for Character<'a> {
         if let Some(personality) = self.personality.as_ref() {
             writeln!(f, "{}", personality)?;
         }
-        writeln!(f, "EQUIPMENT")?;
-        writeln!(
-            f,
-            "{}",
-            self.equipment
-                .iter()
-                .map(|e| format!("{}", e))
-                .collect::<Vec<String>>()
-                .join(", ")
-        )?;
-        writeln!(f, "COINS: {}{}", self.coins.1, self.coins.0)?;
-        writeln!(f)?;
         writeln!(f, "FEATURES AND TRAITS:")?;
         for feature in self.features() {
             writeln!(f, "- {}", feature)?;
@@ -528,6 +504,30 @@ impl<'a> fmt::Display for Character<'a> {
         if let Some(deity) = self.deity.as_ref() {
             writeln!(f, "{}", deity)?;
         }
+        writeln!(f)?;
+        writeln!(
+            f,
+            "PROFICIENCIES: {}",
+            self.proficiencies
+                .iter()
+                .filter_map(|p| match p {
+                    Proficiency::Skill(_) => None,
+                    Proficiency::Armor(_)
+                    | Proficiency::SavingThrow(_)
+                    | Proficiency::Tool(_)
+                    | Proficiency::Weapon(_)
+                    | Proficiency::Vehicle(_) => Some(format!("{:?}", p)),
+                })
+                .collect::<Vec<String>>()
+                .join(", ")
+        )?;
+        writeln!(f)?;
+        writeln!(f, "EQUIPMENT")?;
+        for equipment in &self.equipment {
+            writeln!(f, "{}", equipment)?;
+        }
+        writeln!(f)?;
+        writeln!(f, "COINS: {}{}", self.coins.1, self.coins.0)?;
         write!(f, "")
     }
 }

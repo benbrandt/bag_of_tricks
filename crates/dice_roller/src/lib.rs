@@ -3,11 +3,12 @@
 use std::fmt;
 
 use rand::Rng;
+use serde::{Deserialize, Serialize};
 use strum::Display;
 
 /// Dice types
 #[allow(dead_code)]
-#[derive(Clone, Copy, Debug, Display, PartialEq)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Die {
     #[strum(serialize = "d4")]
     D4 = 4,
@@ -50,7 +51,7 @@ fn roll_die(rng: &mut impl Rng, die: Die) -> DieResult {
 }
 
 /// Roll multiple dice
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub struct RollCmd(pub usize, pub Die);
 
 impl RollCmd {

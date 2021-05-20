@@ -1,5 +1,6 @@
 use std::fmt;
 
+use characteristics::Size;
 use itertools::Itertools;
 use rand::{
     prelude::{IteratorRandom, SliceRandom},
@@ -15,8 +16,10 @@ use gear::{
     currency::Coin,
     tools::{ArtisansTools, GamingSet, MusicalInstrument, Tool},
     vehicles::{Vehicle, VehicleProficiency},
-    weapons::{Ammunition, Weapon},
+    weapons::{Ammunition, Weapon, WeaponCategory, WeaponClassification, WeaponProperty},
 };
+
+use crate::ability::AbilityScores;
 
 use super::proficiencies::{Proficiency, WeaponProficiency};
 
@@ -116,6 +119,8 @@ pub enum EquipmentOption {
     MusicalInstrument,
     /// Choose a random trinket.
     Trinket(Option<&'static str>, Option<TrinketOption>, bool),
+    /// Choose a random weapon
+    Weapon(Option<WeaponCategory>, Option<WeaponClassification>, usize),
 }
 
 impl EquipmentOption {
@@ -123,8 +128,10 @@ impl EquipmentOption {
     pub fn gen(
         &self,
         rng: &mut impl Rng,
+        ability_scores: &AbilityScores,
         equipment: &[Equipment],
         proficiencies: &[Proficiency],
+        size: &Option<&Size>,
         trinket_options: &[TrinketOption],
     ) -> Vec<Equipment> {
         match self {
@@ -144,15 +151,26 @@ impl EquipmentOption {
             Self::FromOptions(choices, amount) => {
                 let mut options = choices
                     .choose_multiple(rng, *amount)
-                    .flat_map(|c| c.gen(rng, equipment, proficiencies, trinket_options))
+                    .flat_map(|c| {
+                        c.gen(
+                            rng,
+                            ability_scores,
+                            equipment,
+                            proficiencies,
+                            size,
+                            trinket_options,
+                        )
+                    })
                     .collect_vec();
                 // Add more if we didn't get enough
                 let remaining = *amount - options.len();
                 if remaining > 0 {
                     options.extend(Self::FromOptions(choices.clone(), remaining).gen(
                         rng,
+                        ability_scores,
                         equipment,
                         proficiencies,
+                        size,
                         trinket_options,
                     ))
                 }
@@ -164,28 +182,56 @@ impl EquipmentOption {
                     .collect(),
                 1,
             )
-            .gen(rng, equipment, proficiencies, trinket_options),
+            .gen(
+                rng,
+                ability_scores,
+                equipment,
+                proficiencies,
+                size,
+                trinket_options,
+            ),
             Self::GamingSet => Self::From(
                 GamingSet::iter()
                     .map(|m| Equipment::new(Item::Tool(Tool::GamingSet(m)), 1))
                     .collect(),
                 1,
             )
-            .gen(rng, equipment, proficiencies, trinket_options),
+            .gen(
+                rng,
+                ability_scores,
+                equipment,
+                proficiencies,
+                size,
+                trinket_options,
+            ),
             Self::HolySymbol => Self::From(
                 HolySymbol::iter()
                     .map(|h| Equipment::new(Item::Gear(Gear::HolySymbol(h)), 1))
                     .collect(),
                 1,
             )
-            .gen(rng, equipment, proficiencies, trinket_options),
+            .gen(
+                rng,
+                ability_scores,
+                equipment,
+                proficiencies,
+                size,
+                trinket_options,
+            ),
             Self::MusicalInstrument => Self::From(
                 MusicalInstrument::iter()
                     .map(|m| Equipment::new(Item::Tool(Tool::MusicalInstrument(m)), 1))
                     .collect(),
                 1,
             )
-            .gen(rng, equipment, proficiencies, trinket_options),
+            .gen(
+                rng,
+                ability_scores,
+                equipment,
+                proficiencies,
+                size,
+                trinket_options,
+            ),
             Self::Trinket(label, addl_option, use_all) => {
                 let mut options = use_all
                     .then(|| trinket_options.to_vec())
@@ -206,7 +252,47 @@ impl EquipmentOption {
                         .collect(),
                     1,
                 )
-                .gen(rng, equipment, proficiencies, trinket_options)
+                .gen(
+                    rng,
+                    ability_scores,
+                    equipment,
+                    proficiencies,
+                    size,
+                    trinket_options,
+                )
+            }
+            Self::Weapon(category, classification, amount) => {
+                let options = Weapon::iter()
+                    .filter(|w| {
+                        if let Some(c) = category {
+                            if c != &w.category() {
+                                return false;
+                            }
+                        }
+                        if let Some(c) = classification {
+                            if c != &w.classification() {
+                                return false;
+                            }
+                        }
+                        if let Some(s) = size {
+                            if matches!(s, Size::Small)
+                                && w.properties().contains(&WeaponProperty::Heavy)
+                            {
+                                return false;
+                            }
+                        }
+                        true
+                    })
+                    .map(|w| Equipment::new(Item::Weapon(w), 1))
+                    .collect_vec();
+                Self::From(options, *amount).gen(
+                    rng,
+                    ability_scores,
+                    equipment,
+                    proficiencies,
+                    size,
+                    trinket_options,
+                )
             }
         }
     }
@@ -231,12 +317,23 @@ pub trait StartingEquipment {
 }
 
 pub enum Pack {
+    Explorers,
     MonsterHunter,
 }
 
 impl StartingEquipment for Pack {
     fn equipment(&self) -> Vec<Equipment> {
         match self {
+            Pack::Explorers => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Bedroll)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::MessKit)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Rations)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::RopeHempen)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Tinderbox)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Torch)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Waterskin)), 1),
+            ],
             Pack::MonsterHunter => vec![
                 Equipment::new(Item::Gear(Gear::Other(OtherGear::Chest)), 1),
                 Equipment::new(Item::Gear(Gear::Other(OtherGear::Crowbar)), 1),
@@ -254,6 +351,7 @@ impl StartingEquipment for Pack {
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
         match self {
+            Pack::Explorers => vec![],
             Pack::MonsterHunter => vec![EquipmentOption::HolySymbol],
         }
     }

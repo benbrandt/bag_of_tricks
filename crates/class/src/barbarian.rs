@@ -4,13 +4,16 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::{armor::ArmorType, weapons::WeaponCategory};
+use gear::{
+    armor::ArmorType,
+    weapons::{Weapon, WeaponCategory, WeaponClassification},
+};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -74,7 +77,44 @@ impl Proficiencies for Barbarian {
     }
 }
 
-impl StartingEquipment for Barbarian {}
+impl StartingEquipment for Barbarian {
+    fn equipment(&self) -> Vec<Equipment> {
+        let mut equipment = Pack::Explorers.equipment();
+        equipment.push(Equipment::new(Item::Weapon(Weapon::Javelin), 4));
+        equipment
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        let mut addl_equipment = Pack::Explorers.addl_equipment();
+        addl_equipment.extend([
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::Greataxe), 1)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(
+                        Some(WeaponCategory::Martial),
+                        Some(WeaponClassification::Melee),
+                        1,
+                    ),
+                ],
+                1,
+            ),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::Handaxe), 2)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(Some(WeaponCategory::Simple), None, 1),
+                ],
+                1,
+            ),
+        ]);
+        addl_equipment
+    }
+}
 
 impl fmt::Display for Barbarian {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -123,5 +163,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Barbarian;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Barbarian;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Barbarian;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }

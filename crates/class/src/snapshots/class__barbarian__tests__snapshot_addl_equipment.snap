@@ -1,0 +1,28 @@
+---
+source: crates/class/src/barbarian.rs
+expression: class.addl_equipment()
+
+---
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: Greataxe
+              amount: 1
+          - 1
+      - Weapon:
+          - Martial
+          - Melee
+          - 1
+    - 1
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: Handaxe
+              amount: 2
+          - 1
+      - Weapon:
+          - Simple
+          - ~
+          - 1
+    - 1
+

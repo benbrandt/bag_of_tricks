@@ -49,9 +49,6 @@ deity:
     - Hammer and anvil
 equipment:
   - item:
-      Other: an insignia of your rank
-    amount: 1
-  - item:
       Gear:
         Other: ClothesTravelers
     amount: 1
@@ -65,6 +62,9 @@ equipment:
     amount: 1
   - item:
       Other: A silver spoon with an M engraved on the handle
+    amount: 1
+  - item:
+      Other: an insignia of your rank
     amount: 1
 languages:
   - Common
@@ -82,23 +82,23 @@ personality:
     - I enjoy being strong and like breaking things.
     - "I'm haunted by memories of war. I can't get the images of violence out of my mind."
 proficiencies:
-  - Weapon:
-      Specific: Battleaxe
-  - Weapon:
-      Specific: Handaxe
-  - Weapon:
-      Specific: LightHammer
-  - Weapon:
-      Specific: Warhammer
-  - Skill: Athletics
-  - Skill: Persuasion
-  - Vehicle: Land
   - Armor: Light
   - Armor: Medium
   - Armor: Shield
   - SavingThrow: Intelligence
   - SavingThrow: Wisdom
+  - Skill: AnimalHandling
+  - Skill: Athletics
+  - Skill: Perception
+  - Skill: Persuasion
+  - Tool:
+      ArtisansTools: BrewersSupplies
+  - Tool:
+      GamingSet: PlayingCard
   - Tool: HerbalismKit
+  - Vehicle: Land
+  - Weapon:
+      Specific: Battleaxe
   - Weapon:
       Specific: Club
   - Weapon:
@@ -106,7 +106,11 @@ proficiencies:
   - Weapon:
       Specific: Dart
   - Weapon:
+      Specific: Handaxe
+  - Weapon:
       Specific: Javelin
+  - Weapon:
+      Specific: LightHammer
   - Weapon:
       Specific: Mace
   - Weapon:
@@ -119,12 +123,8 @@ proficiencies:
       Specific: Sling
   - Weapon:
       Specific: Spear
-  - Tool:
-      ArtisansTools: BrewersSupplies
-  - Tool:
-      GamingSet: PlayingCard
-  - Skill: Perception
-  - Skill: AnimalHandling
+  - Weapon:
+      Specific: Warhammer
 race:
   Dwarf:
     clan_status: "Refugees. Stronghold lost, survivors occupy a neighborhood or ward in human city"

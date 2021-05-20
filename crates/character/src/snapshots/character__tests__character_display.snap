@@ -44,7 +44,6 @@ PROFICIENCY BONUS: +2
 RESISTANCES: Poison
 IMMUNITIES: 
 LANGUAGES: Common, Dwarvish
-PROFICIENCIES: Weapon(Specific(Battleaxe)), Weapon(Specific(Handaxe)), Weapon(Specific(LightHammer)), Weapon(Specific(Warhammer)), Vehicle(Land), Armor(Light), Armor(Medium), Armor(Shield), SavingThrow(Intelligence), SavingThrow(Wisdom), Tool(HerbalismKit), Weapon(Specific(Club)), Weapon(Specific(Dagger)), Weapon(Specific(Dart)), Weapon(Specific(Javelin)), Weapon(Specific(Mace)), Weapon(Specific(Quarterstaff)), Weapon(Specific(Scimitar)), Weapon(Specific(Sickle)), Weapon(Specific(Sling)), Weapon(Specific(Spear)), Tool(ArtisansTools(BrewersSupplies)), Tool(GamingSet(PlayingCard))
 
 CHARACTERISTICS:
 Age: 135
@@ -59,10 +58,6 @@ I'm haunted by memories of war. I can't get the images of violence out of my min
 IDEAL: Responsibility. I do what I must and obey just authority. (Lawful)
 BOND: I would still lay down my life for the people I served with.
 FLAW: I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.
-
-EQUIPMENT
-an insignia of your rank, a set of traveler's clothes, Pouch, Playing Card Set, A silver spoon with an M engraved on the handle
-COINS: 10gp
 
 FEATURES AND TRAITS:
 - Darkvision (PHB p20)
@@ -87,4 +82,15 @@ Alignment: Lawful Good
 Domains: Forge, Knowledge
 Symbols: Hammer and anvil
 
+
+PROFICIENCIES: Armor(Light), Armor(Medium), Armor(Shield), SavingThrow(Intelligence), SavingThrow(Wisdom), Tool(ArtisansTools(BrewersSupplies)), Tool(GamingSet(PlayingCard)), Tool(HerbalismKit), Vehicle(Land), Weapon(Specific(Battleaxe)), Weapon(Specific(Club)), Weapon(Specific(Dagger)), Weapon(Specific(Dart)), Weapon(Specific(Handaxe)), Weapon(Specific(Javelin)), Weapon(Specific(LightHammer)), Weapon(Specific(Mace)), Weapon(Specific(Quarterstaff)), Weapon(Specific(Scimitar)), Weapon(Specific(Sickle)), Weapon(Specific(Sling)), Weapon(Specific(Spear)), Weapon(Specific(Warhammer))
+
+EQUIPMENT
+a set of traveler's clothes
+Pouch
+Playing Card Set
+A silver spoon with an M engraved on the handle
+an insignia of your rank
+
+COINS: 10gp
 

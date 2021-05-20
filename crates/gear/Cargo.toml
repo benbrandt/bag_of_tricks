@@ -7,5 +7,6 @@ resolver = "2"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+dice_roller = { path = "../dice_roller" }
 serde = { version = "1", features = ["derive"] }
 strum = { version = "0.20", features = ["derive"] }

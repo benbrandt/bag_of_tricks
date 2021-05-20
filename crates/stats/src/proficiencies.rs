@@ -166,7 +166,8 @@ impl ProficiencyOption {
                             if c != &w.category() {
                                 return false;
                             }
-                        } else if let Some(c) = classification {
+                        }
+                        if let Some(c) = classification {
                             if c != &w.classification() {
                                 return false;
                             }
