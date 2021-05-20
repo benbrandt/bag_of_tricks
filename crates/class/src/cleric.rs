@@ -4,13 +4,16 @@ use backstory::Backstory;
 use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
-use gear::{armor::ArmorType, weapons::WeaponCategory};
+use gear::{
+    armor::{Armor, ArmorType},
+    weapons::{Weapon, WeaponCategory},
+};
 use languages::Languages;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -76,7 +79,43 @@ impl Proficiencies for Cleric {
     }
 }
 
-impl StartingEquipment for Cleric {}
+impl StartingEquipment for Cleric {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![Equipment::new(Item::Armor(Armor::Shield), 1)]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::From(
+                vec![
+                    Equipment::new(Item::Weapon(Weapon::Mace), 1),
+                    Equipment::new(Item::Weapon(Weapon::Warhammer), 1),
+                ],
+                1,
+            ),
+            EquipmentOption::From(
+                vec![
+                    Equipment::new(Item::Armor(Armor::ChainMail), 1),
+                    Equipment::new(Item::Armor(Armor::Leather), 1),
+                    Equipment::new(Item::Armor(Armor::ScaleMail), 1),
+                ],
+                1,
+            ),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::CrossbowLight), 1)],
+                        1,
+                    ),
+                    EquipmentOption::Weapon(Some(WeaponCategory::Simple), None, 1),
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Explorer, Pack::Priest])),
+            EquipmentOption::HolySymbol,
+        ]
+    }
+}
 
 impl fmt::Display for Cleric {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -131,5 +170,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Cleric;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Cleric;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Cleric;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }

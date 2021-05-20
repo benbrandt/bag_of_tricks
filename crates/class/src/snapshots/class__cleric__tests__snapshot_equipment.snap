@@ -1,0 +1,9 @@
+---
+source: crates/class/src/cleric.rs
+expression: class.equipment()
+
+---
+- item:
+    Armor: Shield
+  amount: 1
+

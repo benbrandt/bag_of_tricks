@@ -165,6 +165,16 @@ impl Weapon {
         }
     }
 
+    pub fn default_ammunition(&self) -> Option<(Ammunition, usize)> {
+        self.properties().into_iter().find_map(|p| match p {
+            WeaponProperty::Ammunition(ammo, _, _) => {
+                let amount = ammo.default_amount();
+                Some((ammo, amount))
+            }
+            _ => None,
+        })
+    }
+
     pub fn properties(&self) -> Vec<WeaponProperty> {
         match self {
             Self::Battleaxe => vec![WeaponProperty::Versatile(RollCmd(1, Die::D10))],
@@ -280,6 +290,13 @@ impl Ammunition {
                 Weapon::CrossbowHeavy,
             ],
             Ammunition::SlingBullets => vec![Weapon::Sling],
+        }
+    }
+
+    fn default_amount(&self) -> usize {
+        match self {
+            Ammunition::Arrows | Ammunition::CrossbowBolts | Ammunition::SlingBullets => 20,
+            Ammunition::BlowgunNeedles => 50,
         }
     }
 }

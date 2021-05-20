@@ -144,11 +144,28 @@ impl EquipmentOption {
                     .clone()
                     .filter(|e| e.proficient(proficiencies))
                     .peekable();
-                if proficient.peek().is_some() {
+                let mut choices = if proficient.peek().is_some() {
                     proficient.choose_multiple(rng, *amount)
                 } else {
                     list.choose_multiple(rng, *amount)
+                };
+                // Add default ammunition
+                for choice in &choices.clone() {
+                    match choice.item {
+                        Item::Weapon(w) => {
+                            if let Some((a, n)) = w.default_ammunition() {
+                                choices.push(Equipment::new(Item::Ammunition(a), n));
+                            }
+                        }
+                        Item::Ammunition(_)
+                        | Item::Armor(_)
+                        | Item::Gear(_)
+                        | Item::Tool(_)
+                        | Item::Vehicle(_)
+                        | Item::Other(_) => {}
+                    }
                 }
+                choices
             }
             Self::FromOptions(choices, amount) => {
                 let mut options = choices
