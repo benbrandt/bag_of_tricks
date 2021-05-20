@@ -7,7 +7,7 @@ use rand::{
     Rng,
 };
 use serde::{Deserialize, Serialize};
-use strum::IntoEnumIterator;
+use strum::{EnumIter, IntoEnumIterator};
 use trinkets::TrinketOption;
 
 use gear::{
@@ -117,6 +117,8 @@ pub enum EquipmentOption {
     HolySymbol,
     /// Choose a random musical instrument.
     MusicalInstrument,
+    /// Choose a random pack
+    Pack(Option<Vec<Pack>>),
     /// Choose a random trinket.
     Trinket(Option<&'static str>, Option<TrinketOption>, bool),
     /// Choose a random weapon
@@ -232,6 +234,12 @@ impl EquipmentOption {
                 size,
                 trinket_options,
             ),
+            Self::Pack(packs) => packs
+                .clone()
+                .unwrap_or_else(|| Pack::iter().collect_vec())
+                .choose(rng)
+                .unwrap()
+                .equipment(),
             Self::Trinket(label, addl_option, use_all) => {
                 let mut options = use_all
                     .then(|| trinket_options.to_vec())
@@ -316,15 +324,71 @@ pub trait StartingEquipment {
     }
 }
 
+#[derive(Clone, Copy, Deserialize, EnumIter, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Pack {
-    Explorers,
+    Burglar,
+    Diplomat,
+    Dungeoneer,
+    Entertainer,
+    Explorer,
     MonsterHunter,
+    Priest,
+    Scholar,
 }
 
 impl StartingEquipment for Pack {
     fn equipment(&self) -> Vec<Equipment> {
         match self {
-            Pack::Explorers => vec![
+            Pack::Burglar => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::BallBearings)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Bell)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Candle)), 5),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Crowbar)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Hammer)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::LanternHooded)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Oil)), 2),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Piton)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Rations)), 5),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::RopeHempen)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Tinderbox)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Waterskin)), 1),
+                Equipment::new(Item::Other("10 feet of string".to_string()), 1),
+            ],
+            Pack::Diplomat => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::CaseMapOrScroll)), 2),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Chest)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesFine)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Ink)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::InkPen)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Lamp)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Oil)), 2),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Paper)), 5),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Perfume)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::SealingWax)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Soap)), 1),
+            ],
+            Pack::Dungeoneer => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Crowbar)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Hammer)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Piton)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Rations)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::RopeHempen)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Tinderbox)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Torch)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Waterskin)), 1),
+            ],
+            Pack::Entertainer => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Bedroll)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Candle)), 5),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::ClothesCostume)), 2),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Rations)), 5),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Waterskin)), 1),
+                Equipment::new(Item::Tool(Tool::DisguiseKit), 1),
+            ],
+            Pack::Explorer => vec![
                 Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
                 Equipment::new(Item::Gear(Gear::Other(OtherGear::Bedroll)), 1),
                 Equipment::new(Item::Gear(Gear::Other(OtherGear::MessKit)), 1),
@@ -346,13 +410,40 @@ impl StartingEquipment for Pack {
                 Equipment::new(Item::Gear(Gear::Other(OtherGear::Torch)), 3),
                 Equipment::new(Item::Other("wooden stake".into()), 3),
             ],
+            Pack::Priest => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Blanket)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Candle)), 10),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Rations)), 2),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Tinderbox)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Waterskin)), 1),
+                Equipment::new(Item::Other("an alms box".to_string()), 1),
+                Equipment::new(Item::Other("block of incense".to_string()), 2),
+                Equipment::new(Item::Other("a censer".to_string()), 1),
+                Equipment::new(Item::Other("vestments".to_string()), 1),
+            ],
+            Pack::Scholar => vec![
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Backpack)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Ink)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Ink)), 1),
+                Equipment::new(Item::Gear(Gear::Other(OtherGear::Parchment)), 10),
+                Equipment::new(Item::Other("a book of lore".to_string()), 1),
+                Equipment::new(Item::Other("a little bag of sand".to_string()), 1),
+                Equipment::new(Item::Other("a small knife".to_string()), 1),
+            ],
         }
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
         match self {
-            Pack::Explorers => vec![],
             Pack::MonsterHunter => vec![EquipmentOption::HolySymbol],
+            Pack::Burglar
+            | Pack::Diplomat
+            | Pack::Dungeoneer
+            | Pack::Entertainer
+            | Pack::Explorer
+            | Pack::Priest
+            | Pack::Scholar => vec![],
         }
     }
 }

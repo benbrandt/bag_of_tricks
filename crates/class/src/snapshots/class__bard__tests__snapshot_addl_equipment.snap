@@ -1,0 +1,34 @@
+---
+source: crates/class/src/bard.rs
+expression: class.addl_equipment()
+
+---
+- FromOptions:
+    - - From:
+          - - item:
+                Weapon: Longsword
+              amount: 1
+          - 1
+      - From:
+          - - item:
+                Weapon: Rapier
+              amount: 1
+          - 1
+      - Weapon:
+          - Simple
+          - ~
+          - 1
+    - 1
+- Pack:
+    - Diplomat
+    - Entertainer
+- FromOptions:
+    - - From:
+          - - item:
+                Tool:
+                  MusicalInstrument: Lute
+              amount: 1
+          - 1
+      - MusicalInstrument
+    - 1
+

@@ -79,16 +79,17 @@ impl Proficiencies for Barbarian {
 
 impl StartingEquipment for Barbarian {
     fn equipment(&self) -> Vec<Equipment> {
-        let mut equipment = Pack::Explorers.equipment();
+        let mut equipment = Pack::Explorer.equipment();
         equipment.push(Equipment::new(Item::Weapon(Weapon::Javelin), 4));
         equipment
     }
 
     fn addl_equipment(&self) -> Vec<EquipmentOption> {
-        let mut addl_equipment = Pack::Explorers.addl_equipment();
+        let mut addl_equipment = Pack::Explorer.addl_equipment();
         addl_equipment.extend(vec![
             EquipmentOption::FromOptions(
                 vec![
+                    // TODO: This weapon not valid for all players
                     EquipmentOption::From(
                         vec![Equipment::new(Item::Weapon(Weapon::Greataxe), 1)],
                         1,

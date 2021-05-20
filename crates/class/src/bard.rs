@@ -5,7 +5,8 @@ use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
 use gear::{
-    armor::ArmorType,
+    armor::{Armor, ArmorType},
+    tools::{MusicalInstrument, Tool},
     weapons::{Weapon, WeaponCategory},
 };
 use languages::Languages;
@@ -13,7 +14,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::AbilityScoreType,
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -71,7 +72,44 @@ impl Proficiencies for Bard {
     }
 }
 
-impl StartingEquipment for Bard {}
+impl StartingEquipment for Bard {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::new(Item::Armor(Armor::Leather), 1),
+            Equipment::new(Item::Weapon(Weapon::Dagger), 1),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(Item::Weapon(Weapon::Longsword), 1)],
+                        1,
+                    ),
+                    EquipmentOption::From(vec![Equipment::new(Item::Weapon(Weapon::Rapier), 1)], 1),
+                    EquipmentOption::Weapon(Some(WeaponCategory::Simple), None, 1),
+                ],
+                1,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Diplomat, Pack::Entertainer])),
+            EquipmentOption::FromOptions(
+                vec![
+                    EquipmentOption::From(
+                        vec![Equipment::new(
+                            Item::Tool(Tool::MusicalInstrument(MusicalInstrument::Lute)),
+                            1,
+                        )],
+                        1,
+                    ),
+                    EquipmentOption::MusicalInstrument,
+                ],
+                1,
+            ),
+        ]
+    }
+}
 
 impl fmt::Display for Bard {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -120,5 +158,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Bard;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Bard;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Bard;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }

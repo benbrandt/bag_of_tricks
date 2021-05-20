@@ -504,7 +504,6 @@ impl<'a> fmt::Display for Character<'a> {
         if let Some(deity) = self.deity.as_ref() {
             writeln!(f, "{}", deity)?;
         }
-        writeln!(f)?;
         writeln!(
             f,
             "PROFICIENCIES: {}",
