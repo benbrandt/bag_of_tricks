@@ -1,0 +1,24 @@
+---
+source: crates/class/src/rogue.rs
+expression: class.addl_equipment()
+
+---
+- From:
+    - - item:
+          Weapon: Rapier
+        amount: 1
+      - item:
+          Weapon: Shortbow
+        amount: 1
+      - item:
+          Weapon: Shortsword
+        amount: 1
+      - item:
+          Weapon: Shortsword
+        amount: 1
+    - 2
+- Pack:
+    - Burglar
+    - Dungeoneer
+    - Explorer
+

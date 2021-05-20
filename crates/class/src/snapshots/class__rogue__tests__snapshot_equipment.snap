@@ -1,0 +1,15 @@
+---
+source: crates/class/src/rogue.rs
+expression: class.equipment()
+
+---
+- item:
+    Armor: Leather
+  amount: 1
+- item:
+    Tool: ThievesTools
+  amount: 1
+- item:
+    Weapon: Dagger
+  amount: 2
+

@@ -5,7 +5,7 @@ use citation::{Book, Citation, CitationList, Citations};
 use deities::Pantheons;
 use features::Features;
 use gear::{
-    armor::ArmorType,
+    armor::{Armor, ArmorType},
     tools::Tool,
     weapons::{Weapon, WeaponCategory},
 };
@@ -14,7 +14,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use stats::{
     ability::{AbilityScoreType, Skill},
-    equipment::StartingEquipment,
+    equipment::{Equipment, EquipmentOption, Item, Pack, StartingEquipment},
     proficiencies::{Proficiencies, Proficiency, ProficiencyOption, WeaponProficiency},
 };
 
@@ -85,7 +85,30 @@ impl Proficiencies for Rogue {
     }
 }
 
-impl StartingEquipment for Rogue {}
+impl StartingEquipment for Rogue {
+    fn equipment(&self) -> Vec<Equipment> {
+        vec![
+            Equipment::new(Item::Armor(Armor::Leather), 1),
+            Equipment::new(Item::Tool(Tool::ThievesTools), 1),
+            Equipment::new(Item::Weapon(Weapon::Dagger), 2),
+        ]
+    }
+
+    fn addl_equipment(&self) -> Vec<EquipmentOption> {
+        vec![
+            EquipmentOption::From(
+                vec![
+                    Equipment::new(Item::Weapon(Weapon::Rapier), 1),
+                    Equipment::new(Item::Weapon(Weapon::Shortbow), 1),
+                    Equipment::new(Item::Weapon(Weapon::Shortsword), 1),
+                    Equipment::new(Item::Weapon(Weapon::Shortsword), 1),
+                ],
+                2,
+            ),
+            EquipmentOption::Pack(Some(vec![Pack::Burglar, Pack::Dungeoneer, Pack::Explorer])),
+        ]
+    }
+}
 
 impl fmt::Display for Rogue {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -134,5 +157,17 @@ mod tests {
     fn test_snapshot_addl_proficiences() {
         let class = Rogue;
         insta::assert_yaml_snapshot!(class.addl_proficiencies());
+    }
+
+    #[test]
+    fn test_snapshot_equipment() {
+        let class = Rogue;
+        insta::assert_yaml_snapshot!(class.equipment());
+    }
+
+    #[test]
+    fn test_snapshot_addl_equipment() {
+        let class = Rogue;
+        insta::assert_yaml_snapshot!(class.addl_equipment());
     }
 }
