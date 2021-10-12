@@ -9,4 +9,4 @@ resolver = "2"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
-strum = { version = "0.21", features = ["derive"] }
+strum = { version = "0.22", features = ["derive"] }
