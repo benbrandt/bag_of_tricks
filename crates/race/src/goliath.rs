@@ -214,7 +214,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(1);
         let goliath = Goliath;
         let characteristics = goliath.gen_characteristics(&mut rng);
-        let name = goliath.gen_name(&mut rng, &&characteristics);
+        let name = goliath.gen_name(&mut rng, &characteristics);
         insta::assert_yaml_snapshot!(name);
     }
 
