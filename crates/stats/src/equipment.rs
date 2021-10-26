@@ -77,7 +77,7 @@ impl Equipment {
                     Vehicle::Water(_) => &VehicleProficiency::Water,
                 })
             }),
-            Item::Weapon(weapon) => Self::weapon_proficiency(&weapon, proficiencies),
+            Item::Weapon(weapon) => Self::weapon_proficiency(weapon, proficiencies),
             Item::Gear(_) | Item::Other(_) => true,
         }
     }
