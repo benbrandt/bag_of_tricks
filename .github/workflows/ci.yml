@@ -25,7 +25,7 @@ jobs:
         with:
           components: llvm-tools-preview
           profile: minimal
-          toolchain: stable      
+          toolchain: nightly      
       
       - uses: Swatinem/rust-cache@v1
 
