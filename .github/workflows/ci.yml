@@ -10,7 +10,6 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
 
 jobs:
   test:
@@ -20,12 +19,12 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v3
 
-      - name: Install nightly toolchain
+      - name: Install toolchain
         uses: actions-rs/toolchain@v1
         with:
           components: llvm-tools-preview
           profile: minimal
-          toolchain: nightly      
+          toolchain: stable    
       
       - uses: Swatinem/rust-cache@v1
 
