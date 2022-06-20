@@ -14,7 +14,7 @@ rand_pcg = "0.3"
 sentry = "0.26"
 tera = "1"
 tide = "0.16"
-tide-compress = "0.9"
+tide-compress = "0.10"
 tide-tera = "0.2"
 
 [workspace]
