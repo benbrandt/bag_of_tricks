@@ -28,4 +28,4 @@ trinkets = { path = "../trinkets" }
 
 [dev-dependencies]
 insta = "1"
-serde_yaml = "0.8"
+serde_yaml = "0.9"
