@@ -35,7 +35,7 @@ impl Gender {
 }
 
 /// Weight modifier
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq, PartialEq)]
 pub enum WeightMod {
     /// Fixed additional weight
     Fixed(u16),
@@ -50,7 +50,7 @@ pub const fn in_inches(feet: u8, inches: u8) -> u8 {
 }
 
 /// Data from a table to generate a height and weight for a given character.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct HeightAndWeightTable {
     /// Base height for this character
     pub base_height: u8,
@@ -86,7 +86,7 @@ pub enum Size {
 }
 
 /// Types of movement speeds
-#[derive(Clone, Copy, Debug, Deserialize, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, EnumIter, Eq, PartialEq, Serialize)]
 pub enum Speed {
     Climbing(u8),
     Flying(u8),

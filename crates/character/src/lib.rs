@@ -129,7 +129,7 @@ impl<'a> Character<'a> {
             addl_pantheons.extend(background.addl_pantheons());
             required.push(background.deity_required());
         }
-        addl_pantheons.extend(self.languages.iter().flat_map(|l| l.addl_pantheons()));
+        addl_pantheons.extend(self.languages.iter().flat_map(Pantheons::addl_pantheons));
         let pantheon = Pantheon::choose(rng, addl_pantheons, domain, required.contains(&true));
         self.pantheon = Some(pantheon);
         self.deity = pantheon.choose_deity(rng, &self.attitude(), &self.morality(), domain);

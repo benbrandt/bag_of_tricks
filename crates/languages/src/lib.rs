@@ -3,7 +3,7 @@ use rand::{prelude::SliceRandom, Rng};
 use serde::{Deserialize, Serialize};
 use strum::{Display, EnumIter, IntoEnumIterator};
 
-#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Display, EnumIter, Eq, PartialEq, Serialize)]
 pub enum LanguageType {
     Exotic,
     Standard,

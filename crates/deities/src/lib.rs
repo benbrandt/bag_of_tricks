@@ -42,7 +42,7 @@ use self::{
     orc::Orc,
 };
 
-#[derive(Copy, Clone, Deserialize, Display, PartialEq, Serialize)]
+#[derive(Copy, Clone, Deserialize, Display, Eq, PartialEq, Serialize)]
 pub enum Domain {
     Arcana,
     Death,

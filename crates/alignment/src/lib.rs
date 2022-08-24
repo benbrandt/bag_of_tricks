@@ -11,7 +11,7 @@ fn exp_weight(val: usize) -> f64 {
     E.powi(i32::try_from(val).unwrap_or_default())
 }
 
-#[derive(Clone, Copy, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Eq, PartialEq, Serialize)]
 pub enum Attitude {
     Chaotic,
     Lawful,
@@ -24,7 +24,7 @@ impl Attitude {
     }
 }
 
-#[derive(Clone, Copy, Deserialize, Display, EnumIter, PartialEq, Serialize)]
+#[derive(Clone, Copy, Deserialize, Display, EnumIter, Eq, PartialEq, Serialize)]
 pub enum Morality {
     Evil,
     Good,
