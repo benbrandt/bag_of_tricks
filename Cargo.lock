@@ -395,7 +395,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "stats",
  "strum",
  "trinkets",
@@ -625,7 +625,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "stats",
  "strum",
  "trinkets",
@@ -640,7 +640,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "strum",
 ]
 
@@ -721,7 +721,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "stats",
  "strum",
 ]
@@ -747,13 +747,13 @@ dependencies = [
 
 [[package]]
 name = "console"
-version = "0.15.1"
+version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "89eab4d20ce20cea182308bca13088fecea9c05f6776cf287205d41a0ed3c847"
+checksum = "c050367d967ced717c04b65d8c619d863ef9292ce0c5760028655a2fb298718c"
 dependencies = [
  "encode_unicode",
+ "lazy_static",
  "libc",
- "once_cell",
  "terminal_size",
  "winapi",
 ]
@@ -949,7 +949,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "strum",
 ]
 
@@ -1042,7 +1042,7 @@ dependencies = [
  "citation",
  "insta",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
 ]
 
 [[package]]
@@ -1561,16 +1561,15 @@ checksum = "64e9829a50b42bb782c1df523f78d332fe371b10c661e78b7a3c34b0198e9fac"
 
 [[package]]
 name = "insta"
-version = "1.17.2"
+version = "1.21.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f6de657c6e99c9f665a595db63c6342de64cbd076a817f24c4a548847a81aee5"
+checksum = "261bf85ed492cd1c47c9ba675e48649682a9d2d2e77f515c5386d7726fb0ba76"
 dependencies = [
  "console",
- "once_cell",
- "serde",
- "serde_json",
- "serde_yaml 0.8.26",
+ "lazy_static",
+ "linked-hash-map",
  "similar",
+ "yaml-rust",
 ]
 
 [[package]]
@@ -1661,9 +1660,9 @@ dependencies = [
 
 [[package]]
 name = "linked-hash-map"
-version = "0.5.4"
+version = "0.5.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7fb9b38af92608140b86b693604b9ffcc5824240a484d1ecd4795bacb2fe88f3"
+checksum = "0717cef1bc8b636c6e1c1bbdefc09e6322da8a9321966e8928ef80d20f7f770f"
 
 [[package]]
 name = "log"
@@ -2121,7 +2120,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "stats",
  "strum",
  "trinkets",
@@ -2528,18 +2527,6 @@ dependencies = [
 
 [[package]]
 name = "serde_yaml"
-version = "0.8.26"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "578a7433b776b56a35785ed5ce9a7e777ac0598aac5a6dd1b4b18a307c7fc71b"
-dependencies = [
- "indexmap",
- "ryu",
- "serde",
- "yaml-rust",
-]
-
-[[package]]
-name = "serde_yaml"
 version = "0.9.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6d232d893b10de3eb7258ff01974d6ee20663d8e833263c99409d4b13a0209da"
@@ -2677,7 +2664,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml",
  "strum",
  "trinkets",
 ]
