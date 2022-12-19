@@ -395,7 +395,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "stats",
  "strum",
  "trinkets",
@@ -625,7 +625,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "stats",
  "strum",
  "trinkets",
@@ -640,7 +640,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "strum",
 ]
 
@@ -721,7 +721,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "stats",
  "strum",
 ]
@@ -949,7 +949,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "strum",
 ]
 
@@ -1042,7 +1042,7 @@ dependencies = [
  "citation",
  "insta",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
 ]
 
 [[package]]
@@ -2121,7 +2121,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "stats",
  "strum",
  "trinkets",
@@ -2540,9 +2540,9 @@ dependencies = [
 
 [[package]]
 name = "serde_yaml"
-version = "0.9.14"
+version = "0.9.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6d232d893b10de3eb7258ff01974d6ee20663d8e833263c99409d4b13a0209da"
+checksum = "92b5b431e8907b50339b51223b97d102db8d987ced36f6e4d03621db9316c834"
 dependencies = [
  "indexmap",
  "itoa 1.0.1",
@@ -2677,7 +2677,7 @@ dependencies = [
  "rand 0.8.5",
  "rand_pcg",
  "serde",
- "serde_yaml 0.9.14",
+ "serde_yaml 0.9.16",
  "strum",
  "trinkets",
 ]
