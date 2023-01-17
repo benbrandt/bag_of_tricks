@@ -2885,9 +2885,9 @@ dependencies = [
 
 [[package]]
 name = "tide-compress"
-version = "0.10.6"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "92a55e754f247bb04c6ea1c2ec46f1a4e8a91dabca9dc7a38c67aa3a9df6b359"
+checksum = "000ffc53bf09b9307c3e333f2d411a501b29a980d189a8e3cc1186a78d673d14"
 dependencies = [
  "async-compression",
  "futures-lite",
