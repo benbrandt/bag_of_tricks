@@ -12,7 +12,7 @@ citation = { path = "../citation" }
 deities = { path = "../deities" }
 features = { path = "../features" }
 gear = { path = "../gear" }
-impl-enum = "0.2"
+impl-enum = "0.3"
 itertools = "0.10"
 languages = { path = "../languages" }
 personality = { path = "../personality" }
