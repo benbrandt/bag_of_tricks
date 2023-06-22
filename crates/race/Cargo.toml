@@ -16,7 +16,7 @@ deities = { path = "../deities" }
 dice_roller = { path = "../dice_roller" }
 features = { path = "../features" }
 gear = { path = "../gear" }
-impl-enum = "0.2"
+impl-enum = "0.3"
 languages = { path = "../languages" }
 personality = { path = "../personality" }
 rand = "0.8"
