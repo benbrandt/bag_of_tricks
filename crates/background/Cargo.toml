@@ -13,7 +13,7 @@ deities = { path = "../deities" }
 features = { path = "../features" }
 gear = { path = "../gear" }
 impl-enum = "0.2"
-itertools = "0.10"
+itertools = "0.11"
 languages = { path = "../languages" }
 personality = { path = "../personality" }
 rand = "0.8"
